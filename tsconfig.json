@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "moduleResolution":"node",
+    "lib": ["ES2020"],
+    "module": "CommonJS",
+    "target": "es2020",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"],
+      "__tests__/*": ["__tests__/*"]
+    }
+  }
+}

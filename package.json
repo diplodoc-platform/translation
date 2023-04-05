@@ -1,0 +1,64 @@
+{
+  "name": "markdown-it-markdown-renderer",
+  "version": "0.0.0",
+  "description": "render markdown-it tokens into markdown",
+  "homepage": "https://github.com/moki/markdown-it-markdown-renderer",
+  "bugs": {
+    "url": "https://github.com/moki/markdown-it-markdown-renderer/issues",
+    "email": "morozov.kirill.moki@gmail.com"
+  },
+  "keywords": [
+    "markdown-it",
+    "markdown",
+    "parser",
+    "generator",
+    "renderer"
+  ],
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch --coverage --verbose --silent=false",
+    "build:dev": "npm run build:dev:clean && npm run build:dev:code && npm run build:dev:types && node dist/index.js",
+    "build:dev:clean": "rm -rf dist",
+    "build:dev:code": "node scripts/build.dev.js",
+    "build:dev:types": "tsc -p scripts/tsconfig.dev.json",
+    "build": "npm run build:clean && npm run build:cjs && npm run build:esm",
+    "build:clean": "rm -rf lib",
+    "build:cjs": "npm run build:cjs:code && npm run build:cjs:types",
+    "build:cjs:code": "node scripts/build.cjs.js",
+    "build:cjs:types": "tsc -p scripts/tsconfig.cjs.json",
+    "build:esm": "npm run build:esm:code && npm run build:esm:types",
+    "build:esm:code": "node scripts/build.esm.js",
+    "build:esm:types": "tsc -p scripts/tsconfig.esm.json",
+    "prepublishOnly": "npm run build"
+  },
+  "author": {
+    "name": "moki",
+    "email": "morozov.kirill.moki@gmail.com",
+    "url": "github.com/moki"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "@types/markdown-it": "^12.2.3",
+    "@types/node": "^18.11.19",
+    "@yandex-cloud/eslint-config": "^1.0.1",
+    "@yandex-cloud/prettier-config": "^1.0.0",
+    "commonmark-spec": "^0.30.0",
+    "esbuild": "^0.14.39",
+    "esbuild-jest": "^0.5.0",
+    "esbuild-node-externals": "^1.4.1",
+    "eslint": "^8.16.0",
+    "jest": "^28.1.0",
+    "markdown-it": "^13.0.1",
+    "prettier": "^2.6.2",
+    "typescript": "^4.6.4"
+  },
+  "peerDependencies": {
+    "markdown-it": "^13.0.1"
+  }
+}
