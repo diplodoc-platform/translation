@@ -60,5 +60,9 @@
   },
   "peerDependencies": {
     "markdown-it": "^13.0.1"
+  },
+  "dependencies": {
+    "@cospired/i18n-iso-languages": "^4.1.0",
+    "i18n-iso-countries": "^7.5.0"
   }
 }
