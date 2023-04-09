@@ -1,11 +1,8 @@
-import {extract, ExtractParameters} from './extract';
+import {generate, WrapperParameters} from './template';
 
 describe('smoke', () => {
     it('works', () => {
         const parameters = {
-            markdown: '1',
-            markdownPath: 'file.md',
-            skeletonPath: 'file.skl.md',
             source: {
                 language: 'ru',
                 locale: 'RU' as const,
@@ -14,16 +11,17 @@ describe('smoke', () => {
                 language: 'en',
                 locale: 'US' as const,
             },
+            skeletonPath: 'file.skl.md',
+            markdownPath: 'file.md',
         };
 
-        extract(parameters);
+        generate(parameters);
     });
 });
 
 describe('validates parameters', () => {
     it('works with valid parameters', () => {
         const parameters = {
-            markdown: '1',
             markdownPath: 'file.md',
             skeletonPath: 'file.skl.md',
             source: {
@@ -36,39 +34,64 @@ describe('validates parameters', () => {
             },
         };
 
-        extract(parameters);
+        generate(parameters);
     });
 
     it('throws on invalid parameters', () => {
         const invalidLocale = {
-            markdown: 'x',
             markdownPath: 'file.md',
             skeletonPath: 'file.skl.md',
             source: {
                 language: 'ru',
-                locale: 'RU' as const,
+                locale: 'XX' as WrapperParameters['source']['locale'],
             },
             target: {
-                language: 'us',
-                locale: 'XX' as ExtractParameters['target']['locale'],
-            },
-        };
-
-        const invalidLanguage = {
-            markdown: 'x',
-            markdownPath: 'file.md',
-            skeletonPath: 'file.skl.md',
-            source: {
-                language: 'ru',
-                locale: 'RU' as const,
-            },
-            target: {
-                language: 'xx' as ExtractParameters['target']['language'],
+                language: 'en',
                 locale: 'US' as const,
             },
         };
 
-        expect(() => extract(invalidLanguage)).toThrow();
-        expect(() => extract(invalidLocale)).toThrow();
+        const invalidLanguage = {
+            markdownPath: 'file.md',
+            skeletonPath: 'file.skl.md',
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'xx' as WrapperParameters['target']['language'],
+                locale: 'US' as const,
+            },
+        };
+
+        expect(() => generate(invalidLanguage)).toThrow();
+        expect(() => generate(invalidLocale)).toThrow();
+    });
+});
+
+describe('template', () => {
+    it('generates xlf template', () => {
+        const parameters = {
+            markdownPath: 'file.md',
+            skeletonPath: 'file.skl.md',
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+        };
+
+        const {
+            template: [before, after],
+            indentation,
+        } = generate(parameters);
+
+        expect(indentation).toStrictEqual(4);
+        expect(before).toMatchSnapshot();
+        expect(after).toMatchSnapshot();
+        expect(before + after).toMatchSnapshot();
     });
 });

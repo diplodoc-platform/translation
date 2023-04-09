@@ -1,6 +1,4 @@
-const rules = {};
-const hooks = {};
+export * as renderer from './renderer';
+export * as template from './template';
 
-export * from './xlf';
-export {rules, hooks};
-export default {rules, hooks};
+export * as default from './index';

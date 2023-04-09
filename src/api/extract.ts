@@ -1,44 +1,44 @@
-import languages from '@cospired/i18n-iso-languages';
+import xlf from 'src/xlf';
 
-import countries from 'i18n-iso-countries';
+import {RenderParameters} from 'src/xlf/renderer';
 
-export type ExtractParameters = {
-    source: LanguageLocale;
-    target: LanguageLocale;
-    markdown: string;
-    path?: string;
-};
-
-export type LanguageLocale = {
-    language: Language;
-    locale: countries.Alpha2Code;
-};
-
-const languagesList = languages.langs();
-
-export type Language = typeof languagesList[number];
-
+export type ExtractParameters = RenderParameters;
 export type ExtractOutput = {
     skeleton: string;
     xlf: string;
 };
 
 function extract(parameters: ExtractParameters): ExtractOutput {
-    if (!validate(parameters)) {
+    const result = {
+        xlf: '',
+        skeleton: '',
+    };
+
+    // upon recieving empty markdown give back empty xlf and skeleton
+    if (!parameters.markdown) {
+        return result;
+    }
+
+    // proper defaults for markdown and skeleton ids
+    if (!parameters.markdownPath) {
+        parameters.markdownPath = 'markdown.md';
+    }
+
+    if (!parameters.skeletonPath) {
+        parameters.skeletonPath = 'markdown.skl.md';
+    }
+
+    if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
 
-    return {xlf: '', skeleton: ''};
+    result.xlf = xlf.renderer.render(parameters as RenderParameters);
+
+    return result;
 }
 
-function validate(parameters: ExtractParameters) {
-    const {source, target, markdown, path = ''} = parameters;
-
-    const locales = [source.locale, target.locale].map(countries.isValid);
-    const langs = [source.language, target.language].map(languages.isValid);
-    const strings = [markdown, path].map((s) => s !== undefined);
-
-    return [...locales, ...langs, ...strings].reduce((a, v) => a && v, true);
+function validParameters(parameters: ExtractParameters) {
+    return xlf.renderer.validParameters(parameters);
 }
 
 export {extract};
