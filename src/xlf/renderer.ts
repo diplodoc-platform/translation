@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it';
-import {customRenderer} from '@diplodoc/markdown-it-custom-renderer/lib/cjs';
+import {customRenderer} from '@diplodoc/markdown-it-custom-renderer';
 
 import template, {WrapperParameters} from './template';
 import {rules} from './rules';

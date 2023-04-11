@@ -1,4 +1,4 @@
-import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer/lib/cjs';
+import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 
 export type HooksParameters = {
     template: string[];
