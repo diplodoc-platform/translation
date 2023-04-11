@@ -1,19 +1,18 @@
 {
+  "extends": "@tsconfig/node14/tsconfig.json",
   "compilerOptions": {
-    "moduleResolution":"node",
-    "lib": ["ES2020"],
-    "module": "CommonJS",
-    "target": "es2020",
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "moduleResolution":"node",
     "esModuleInterop": true,
-    "strict": true,
-    "noImplicitAny": false,
     "skipLibCheck": true,
     "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "lib/",
     "paths": {
       "src/*": ["src/*"],
       "__tests__/*": ["__tests__/*"]
     }
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["./src/playground.ts", "./node_modules"]
 }
