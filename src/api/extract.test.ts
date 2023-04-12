@@ -36,7 +36,10 @@ describe('validates parameters', () => {
             },
         };
 
-        extract(parameters);
+        const {xlf, skeleton} = extract(parameters);
+
+        expect(xlf).not.toBe('');
+        expect(skeleton).not.toBe('');
     });
 
     it('throws on invalid parameters', () => {

@@ -1,8 +1,8 @@
 import xlf from 'src/xlf';
+import skeleton from 'src/skeleton';
 
-import {RenderParameters} from 'src/xlf/renderer';
+export type ExtractParameters = xlf.renderer.RenderParameters & skeleton.renderer.RenderParameters;
 
-export type ExtractParameters = RenderParameters;
 export type ExtractOutput = {
     skeleton: string;
     xlf: string;
@@ -32,13 +32,19 @@ function extract(parameters: ExtractParameters): ExtractOutput {
         throw new Error('invalid parameters');
     }
 
-    result.xlf = xlf.renderer.render(parameters as RenderParameters);
+    result.xlf = xlf.renderer.render(parameters as xlf.renderer.RenderParameters);
+    result.skeleton = skeleton.renderer.render(parameters as skeleton.renderer.RenderParameters);
 
     return result;
 }
 
 function validParameters(parameters: ExtractParameters) {
-    return xlf.renderer.validParameters(parameters);
+    const conditions = [
+        xlf.renderer.validParameters(parameters),
+        skeleton.renderer.validParameters(parameters),
+    ];
+
+    return conditions.reduce((a, v) => a && v, true);
 }
 
 export {extract};
