@@ -1,5 +1,2 @@
-const handlers = {};
-
-export * from './skeleton';
-export {handlers};
-export default {handlers};
+export * as renderer from './renderer';
+export * as default from './index';
