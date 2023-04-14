@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`markdown rendering renders identital markdown without translations 1`] = `
+"# title
+hello, world"
+`;
