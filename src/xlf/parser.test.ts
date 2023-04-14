@@ -36,8 +36,8 @@ describe('smoke', () => {
 
         const generator = generateTransUnit(indentation);
 
-        const xlfString = before + transUnits.map(generator).join('') + after;
-        translationUnits(xlfString);
+        const xlf = before + transUnits.map(generator).join('') + after;
+        translationUnits({xlf});
     });
 });
 
@@ -50,8 +50,8 @@ describe('validates parameters', () => {
 
         const generator = generateTransUnit(indentation);
 
-        const xlfString = before + transUnits.map(generator).join('') + after;
-        translationUnits(xlfString);
+        const xlf = before + transUnits.map(generator).join('') + after;
+        translationUnits({xlf});
     });
 
     it('throws on invalid parameters', () => {
@@ -62,9 +62,9 @@ describe('validates parameters', () => {
 
         const generator = generateTransUnit(indentation);
 
-        const invalidXLF = before + '</kek>' + transUnits.map(generator).join('') + after;
-        expect(() => translationUnits('')).toThrow();
-        expect(() => translationUnits(invalidXLF)).toThrow();
+        const xlf = before + '</kek>' + transUnits.map(generator).join('') + after;
+        expect(() => translationUnits({xlf: ''})).toThrow();
+        expect(() => translationUnits({xlf})).toThrow();
     });
 });
 
@@ -76,8 +76,8 @@ describe('parses translation units', () => {
         } = generate(templateParameters);
 
         const generator = generateTransUnit(indentation);
-        const xlfString = before + transUnits.map(generator).join('') + after;
-        const translations = translationUnits(xlfString);
+        const xlf = before + transUnits.map(generator).join('') + after;
+        const translations = translationUnits({xlf});
 
         for (const expected of transUnits) {
             const translation = translations.get(String(expected.id));

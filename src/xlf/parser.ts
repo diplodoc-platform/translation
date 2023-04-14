@@ -4,8 +4,13 @@ const parser = new XMLParser({ignoreAttributes: false});
 
 export type TranslationUnitsByID = Map<string, string>;
 
-function translationUnits(xlf: string): TranslationUnitsByID {
-    if (!validParameters(xlf)) {
+export type TranslationUnitsParameters = {
+    xlf: string;
+};
+
+function translationUnits(parameters: TranslationUnitsParameters): TranslationUnitsByID {
+    const {xlf} = parameters;
+    if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
 
@@ -76,7 +81,9 @@ function handleTranslationUnits(units: TranslationUnit[], ref: Ref) {
     }
 }
 
-function validParameters(xlf: string) {
+function validParameters(parameters: TranslationUnitsParameters) {
+    const {xlf} = parameters;
+
     const conditions = [Boolean(xlf), validXML(xlf)];
 
     return conditions.reduce((a, v) => a && v, true);
