@@ -1,5 +1,3 @@
-const handlers = {};
+export * as renderer from './renderer';
 
-export * from './markdown';
-export {handlers};
-export default {handlers};
+export * as default from './index';
