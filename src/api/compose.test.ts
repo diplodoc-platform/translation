@@ -1,5 +1,5 @@
 import {compose, ComposeParameters} from './compose';
-import xlf from 'src/xlf';
+import {template} from 'src/xlf/generator';
 
 const templateParameters = {
     source: {language: 'en', locale: 'US' as const},
@@ -8,7 +8,7 @@ const templateParameters = {
     skeletonPath: 'file.skl.md',
 };
 
-const emptyXLF = xlf.template.generate(templateParameters).template.join('');
+const emptyXLF = template.generate(templateParameters).template.join('');
 
 describe('smoke', () => {
     it('works', () => {

@@ -1,13 +1,13 @@
 import MarkdownIt from 'markdown-it';
 import {customRenderer} from '@diplodoc/markdown-it-custom-renderer';
 
-import template, {WrapperParameters} from './template';
+import {template} from './generator';
 import {rules} from './rules';
 import {hooks} from './hooks';
 
 export type RenderParameters = {
     markdown: string;
-} & WrapperParameters;
+} & template.TemplateParameters;
 
 function render(parameters: RenderParameters) {
     if (!validParameters(parameters)) {
