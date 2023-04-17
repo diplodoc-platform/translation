@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`trans-unit generator generates trans-unit with provided source, id, target 1`] = `
+"  <trans-unit id=\\"1\\">
+    <source>Sentence about something</source>
+    <target>Предложение о чем-то</target>
+  </trans-unit>"
+`;
+
+exports[`trans-unit generator generates trans-unit with provided: source, id 1`] = `
+"  <trans-unit id=\\"1\\">
+    <source>Sentence about something</source>
+  </trans-unit>"
+`;
