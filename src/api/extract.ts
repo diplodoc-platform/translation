@@ -32,8 +32,8 @@ function extract(parameters: ExtractParameters): ExtractOutput {
         throw new Error('invalid parameters');
     }
 
-    result.xlf = xlf.renderer.render(parameters as xlf.renderer.RenderParameters);
-    result.skeleton = skeleton.renderer.render(parameters as skeleton.renderer.RenderParameters);
+    result.xlf = xlf.renderer.render(parameters);
+    result.skeleton = skeleton.renderer.render(parameters);
 
     return result;
 }
