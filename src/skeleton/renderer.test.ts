@@ -1,4 +1,5 @@
 import {render, RenderParameters} from './renderer';
+import {text} from 'src/__fixtures__';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -23,5 +24,16 @@ describe('validates parameters', () => {
         const parameters = {} as RenderParameters;
 
         expect(() => render(parameters)).toThrow();
+    });
+});
+
+describe('skeleton rendering', () => {
+    it('renders hashes instead of content of the text tokens', () => {
+        const parameters = {
+            markdown: text,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
     });
 });
