@@ -1,3 +1,22 @@
+import {text} from './text';
+
+export type RulesParameters = {
+    indentation: number;
+};
+
+export type XLFRulesState = {
+    xlf: {
+        id: number;
+        indentation: number;
+    };
+};
+
+function generate(parameters: RulesParameters) {
+    const {indentation} = parameters;
+
+    return {rules: rules(), initState: initState(indentation)};
+}
+
 // blocks(container and leaf) create group
 function rules() {
     return {
@@ -7,7 +26,6 @@ function rules() {
         image: () => '',
         hardbreak: () => '',
         softbreak: () => '',
-        text: () => '',
         html_block: () => '',
         html_inline: () => '',
         heading_open: () => '',
@@ -24,8 +42,18 @@ function rules() {
         strong_close: () => '',
         list_item_open: () => '',
         list_item_close: () => '',
+        text,
     };
 }
 
-export {rules};
-export default {rules};
+function initState(indentation: number) {
+    return () => ({
+        xlf: {
+            id: 1,
+            indentation,
+        },
+    });
+}
+
+export {generate};
+export default {generate};

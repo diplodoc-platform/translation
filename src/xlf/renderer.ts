@@ -1,8 +1,8 @@
 import MarkdownIt from 'markdown-it';
-import {customRenderer} from '@diplodoc/markdown-it-custom-renderer';
+import {customRenderer, CustomRendererParams} from '@diplodoc/markdown-it-custom-renderer';
 
 import {template} from './generator';
-import {rules} from './rules';
+import rules, {XLFRulesState} from './rules';
 import {hooks} from './hooks';
 
 export type RenderParameters = {
@@ -18,8 +18,11 @@ function render(parameters: RenderParameters) {
 
     const xlfRenderer = new MarkdownIt('commonmark', {html: true});
 
-    const xlfOptions = {
-        rules: rules(),
+    const xlfRules = rules.generate(wrapper);
+
+    const xlfOptions: CustomRendererParams<XLFRulesState> = {
+        initState: xlfRules.initState,
+        rules: xlfRules.rules,
         hooks: hooks({template: wrapper.template}),
     };
 
