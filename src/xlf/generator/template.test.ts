@@ -1,4 +1,4 @@
-import {generate, WrapperParameters} from './template';
+import {generate, TemplateParameters} from './template';
 
 describe('smoke', () => {
     it('works', () => {
@@ -43,7 +43,7 @@ describe('validates parameters', () => {
             skeletonPath: 'file.skl.md',
             source: {
                 language: 'ru',
-                locale: 'XX' as WrapperParameters['source']['locale'],
+                locale: 'XX' as TemplateParameters['source']['locale'],
             },
             target: {
                 language: 'en',
@@ -59,7 +59,7 @@ describe('validates parameters', () => {
                 locale: 'RU' as const,
             },
             target: {
-                language: 'xx' as WrapperParameters['target']['language'],
+                language: 'xx' as TemplateParameters['target']['language'],
                 locale: 'US' as const,
             },
         };

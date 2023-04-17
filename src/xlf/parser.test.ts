@@ -1,5 +1,5 @@
 import {translationUnits} from './parser';
-import {generate} from './template';
+import {template} from './generator';
 
 const transUnits = [
     {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0},
@@ -32,7 +32,7 @@ describe('smoke', () => {
         const {
             template: [before, after],
             indentation,
-        } = generate(templateParameters);
+        } = template.generate(templateParameters);
 
         const generator = generateTransUnit(indentation);
 
@@ -46,7 +46,7 @@ describe('validates parameters', () => {
         const {
             template: [before, after],
             indentation,
-        } = generate(templateParameters);
+        } = template.generate(templateParameters);
 
         const generator = generateTransUnit(indentation);
 
@@ -58,7 +58,7 @@ describe('validates parameters', () => {
         const {
             template: [before, after],
             indentation,
-        } = generate(templateParameters);
+        } = template.generate(templateParameters);
 
         const generator = generateTransUnit(indentation);
 
@@ -73,7 +73,7 @@ describe('parses translation units', () => {
         const {
             template: [before, after],
             indentation,
-        } = generate(templateParameters);
+        } = template.generate(templateParameters);
 
         const generator = generateTransUnit(indentation);
         const xlf = before + transUnits.map(generator).join('') + after;

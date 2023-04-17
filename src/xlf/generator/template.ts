@@ -2,7 +2,7 @@ import languages from '@cospired/i18n-iso-languages';
 import countries from 'i18n-iso-countries';
 import {XMLBuilder} from 'fast-xml-parser';
 
-export type WrapperParameters = {
+export type TemplateParameters = {
     source: LanguageLocale;
     target: LanguageLocale;
     skeletonPath: string;
@@ -27,7 +27,7 @@ const options = {
 
 const builder = new XMLBuilder(options);
 
-function generate(parameters: WrapperParameters) {
+function generate(parameters: TemplateParameters) {
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
@@ -71,7 +71,7 @@ function generate(parameters: WrapperParameters) {
     return {template: [before, after], indentation};
 }
 
-function validParameters(parameters: WrapperParameters) {
+function validParameters(parameters: TemplateParameters) {
     const {source, target, skeletonPath, markdownPath} = parameters;
 
     const conditions = [
