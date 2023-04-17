@@ -1,10 +1,5 @@
 import {translationUnits} from './parser';
-import {template} from './generator';
-
-const transUnits = [
-    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0},
-    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1},
-];
+import {template, transUnit} from './generator';
 
 const templateParameters = {
     source: {language: 'en', locale: 'US' as const},
@@ -13,70 +8,39 @@ const templateParameters = {
     skeletonPath: 'file.skl.md',
 };
 
-type GenerateTranslationUnitsParameters = {source: string; target: string; id: number};
+const {
+    template: [before, after],
+    indentation,
+} = template.generate(templateParameters);
 
-function generateTransUnit(indent: number) {
-    return ({source, target, id}: GenerateTranslationUnitsParameters) =>
-        ' '.repeat(indent) +
-        `<trans-unit id="${id}">\n` +
-        ' '.repeat(indent + 2) +
-        `<source>${source}</source>\n` +
-        ' '.repeat(indent + 2) +
-        `<target>${target}</target>\n` +
-        ' '.repeat(indent) +
-        '</trans-unit>\n';
-}
+const transUnits = [
+    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0, indentation},
+    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
+];
+
+const xlf = before + transUnits.map(transUnit.generate).join('') + after;
 
 describe('smoke', () => {
     it('works', () => {
-        const {
-            template: [before, after],
-            indentation,
-        } = template.generate(templateParameters);
-
-        const generator = generateTransUnit(indentation);
-
-        const xlf = before + transUnits.map(generator).join('') + after;
         translationUnits({xlf});
     });
 });
 
 describe('validates parameters', () => {
     it('works with valid parameters', () => {
-        const {
-            template: [before, after],
-            indentation,
-        } = template.generate(templateParameters);
-
-        const generator = generateTransUnit(indentation);
-
-        const xlf = before + transUnits.map(generator).join('') + after;
         translationUnits({xlf});
     });
 
     it('throws on invalid parameters', () => {
-        const {
-            template: [before, after],
-            indentation,
-        } = template.generate(templateParameters);
+        const invalidXLF = before + '</kek>' + after;
 
-        const generator = generateTransUnit(indentation);
-
-        const xlf = before + '</kek>' + transUnits.map(generator).join('') + after;
         expect(() => translationUnits({xlf: ''})).toThrow();
-        expect(() => translationUnits({xlf})).toThrow();
+        expect(() => translationUnits({xlf: invalidXLF})).toThrow();
     });
 });
 
 describe('parses translation units', () => {
     it('parses targets', () => {
-        const {
-            template: [before, after],
-            indentation,
-        } = template.generate(templateParameters);
-
-        const generator = generateTransUnit(indentation);
-        const xlf = before + transUnits.map(generator).join('') + after;
         const translations = translationUnits({xlf});
 
         for (const expected of transUnits) {
