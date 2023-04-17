@@ -1,5 +1,7 @@
 import {render, RenderParameters} from './renderer';
 
+import {text} from 'src/__fixtures__';
+
 describe('smoke', () => {
     test('it works', () => {
         const parameters = {
@@ -73,8 +75,26 @@ describe('xlf rendering', () => {
             markdownPath: 'file.md',
         };
 
-        const generated = render(parameters);
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 
-        expect(generated).toMatchSnapshot();
+    it('renders trans-units from text tokens', () => {
+        const parameters = {
+            markdown: text,
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
     });
 });

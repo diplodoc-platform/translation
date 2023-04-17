@@ -15,3 +15,57 @@ exports[`xlf rendering renders empty xlf document for empty markdown 1`] = `
 </xliff>
 "
 `;
+
+exports[`xlf rendering renders trans-units from text tokens 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Заголовок 1</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Параграф</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Первый элемент списка</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>Второй элемент списка</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>Заголовок 2</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>Параграф содержащий </source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>жирный текст</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source> и </source>
+      </trans-unit>
+<em>      <trans-unit id=\\"9\\">
+        <source>курсив</source>
+      </trans-unit>
+</em><blockquote>
+      <trans-unit id=\\"10\\">
+        <source>текст внутри цитаты</source>
+      </trans-unit>
+</blockquote>
+      <trans-unit id=\\"11\\">
+        <source>Первый элемент нумерованного списка</source>
+      </trans-unit>
+      <trans-unit id=\\"12\\">
+        <source>Второй элемент нумерованного списка</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
