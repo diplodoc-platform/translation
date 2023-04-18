@@ -1,6 +1,6 @@
 import {render, RenderParameters} from './renderer';
 
-import {text} from 'src/__fixtures__';
+import {markdown} from 'src/__fixtures__';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -81,7 +81,7 @@ describe('xlf rendering', () => {
 
     it('renders trans-units from text tokens', () => {
         const parameters = {
-            markdown: text,
+            markdown,
             source: {
                 language: 'ru',
                 locale: 'RU' as const,
