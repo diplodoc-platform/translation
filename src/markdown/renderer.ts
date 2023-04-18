@@ -5,7 +5,7 @@ import {
     MarkdownRendererEnv,
 } from '@diplodoc/markdown-it-markdown-renderer';
 
-import {translationHandlers} from './handlers';
+import markdownHandlers, {MarkdownHandlersState} from './handlers';
 
 export type RenderParameters = {
     skeleton: string;
@@ -19,9 +19,9 @@ function render(parameters: RenderParameters) {
 
     const md = new MarkdownIt('commonmark', {html: true});
 
-    const {handlers, initState} = translationHandlers(parameters.translations);
+    const {handlers, initState} = markdownHandlers.generate(parameters);
 
-    const mdOptions: MarkdownRendererParams = {
+    const mdOptions: MarkdownRendererParams<MarkdownHandlersState> = {
         handlers,
         initState,
     };
