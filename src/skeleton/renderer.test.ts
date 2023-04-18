@@ -1,5 +1,5 @@
 import {render, RenderParameters} from './renderer';
-import {text} from 'src/__fixtures__';
+import {markdown} from 'src/__fixtures__';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -30,7 +30,7 @@ describe('validates parameters', () => {
 describe('skeleton rendering', () => {
     it('renders hashes instead of content of the text tokens', () => {
         const parameters = {
-            markdown: text,
+            markdown,
         };
 
         const rendered = render(parameters);

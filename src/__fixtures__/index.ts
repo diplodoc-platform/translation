@@ -1,4 +1,4 @@
-const text = `# Заголовок 1
+const markdown = `# Заголовок 1
 
 Параграф
 
@@ -16,5 +16,5 @@ const text = `# Заголовок 1
 2. Второй элемент нумерованного списка
 `;
 
-export {text};
-export default {text};
+export {markdown};
+export default {markdown};
