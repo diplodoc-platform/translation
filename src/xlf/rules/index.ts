@@ -1,3 +1,5 @@
+import linkRules, {linkOpen, linkClose, LinkRuleState} from './link';
+
 import {text} from './text';
 
 export type RulesParameters = {
@@ -9,7 +11,7 @@ export type XLFRulesState = {
         id: number;
         indentation: number;
     };
-};
+} & LinkRuleState;
 
 function generate(parameters: RulesParameters) {
     const {indentation} = parameters;
@@ -36,13 +38,13 @@ function rules() {
         bullet_list_close: () => '',
         ordered_list_open: () => '',
         ordered_list_close: () => '',
-        link_open: () => '',
-        link_close: () => '',
         strong_open: () => '',
         strong_close: () => '',
         list_item_open: () => '',
         list_item_close: () => '',
         text,
+        link_open: linkOpen,
+        link_close: linkClose,
     };
 }
 
@@ -52,6 +54,7 @@ function initState(indentation: number) {
             id: 1,
             indentation,
         },
+        ...linkRules.initState(),
     });
 }
 
