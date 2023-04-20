@@ -28,6 +28,8 @@ const skeleton = `# %%%1%%%
 > %%%10%%%
 1. %%%11%%%
 2. %%%12%%%
+
+[%%%13%%%](files/file.md "%%%14%%%")
 `;
 
 const translations = new Map<string, string>([
@@ -43,6 +45,8 @@ const translations = new Map<string, string>([
     ['10', 'text inside of the blockquote'],
     ['11', 'First ordered list item'],
     ['12', 'Second ordered list item'],
+    ['13', 'Link text'],
+    ['14', 'Link Description'],
 ]);
 
 export {markdown, skeleton, translations};
