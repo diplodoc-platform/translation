@@ -1,5 +1,5 @@
 import linkRules, {linkOpen, linkClose, LinkRuleState} from './link';
-
+import imageRules, {image, imageClose, ImageRuleState} from './image';
 import {text} from './text';
 
 export type RulesParameters = {
@@ -11,7 +11,8 @@ export type XLFRulesState = {
         id: number;
         indentation: number;
     };
-} & LinkRuleState;
+} & LinkRuleState &
+    ImageRuleState;
 
 function generate(parameters: RulesParameters) {
     const {indentation} = parameters;
@@ -25,7 +26,6 @@ function rules() {
         code_inline: () => '',
         code_block: () => '',
         fence: () => '',
-        image: () => '',
         hardbreak: () => '',
         softbreak: () => '',
         html_block: () => '',
@@ -45,6 +45,8 @@ function rules() {
         text,
         link_open: linkOpen,
         link_close: linkClose,
+        image,
+        image_close: imageClose,
     };
 }
 
@@ -55,6 +57,7 @@ function initState(indentation: number) {
             indentation,
         },
         ...linkRules.initState(),
+        ...imageRules.initState(),
     });
 }
 
