@@ -1,4 +1,5 @@
 import {text} from './text';
+import {linkClose} from './link';
 
 export type SkeletonHandlersState = {
     skeleton: {
@@ -13,6 +14,8 @@ function generate() {
 function handlers() {
     return {
         text,
+        // eslint-disable-next-line camelcase
+        link_close: linkClose,
     };
 }
 
