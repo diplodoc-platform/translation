@@ -17,5 +17,7 @@ Paragraph with **bold text** and *italic*
 1. First ordered list item
 2. Second ordered list item
 
-[Link text](files/file.md \\"Link Description\\")"
+[Link text](files/file.md \\"Link Description\\")
+
+![Alternative image text](files/image.png \\"Image title\\")"
 `;
