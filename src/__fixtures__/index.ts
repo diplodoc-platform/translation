@@ -32,6 +32,8 @@ const skeleton = `# %%%1%%%
 2. %%%12%%%
 
 [%%%13%%%](files/file.md "%%%14%%%")
+
+![%%%15%%%](files/image.png "%%%16%%%")
 `;
 
 const translations = new Map<string, string>([
@@ -49,6 +51,8 @@ const translations = new Map<string, string>([
     ['12', 'Second ordered list item'],
     ['13', 'Link text'],
     ['14', 'Link Description'],
+    ['15', 'Alternative image text'],
+    ['16', 'Image title'],
 ]);
 
 export {markdown, skeleton, translations};
