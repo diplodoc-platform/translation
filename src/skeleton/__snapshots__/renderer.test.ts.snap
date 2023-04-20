@@ -10,5 +10,7 @@ exports[`skeleton rendering renders hashes instead of content of the text tokens
 %%%6%%%**%%%7%%%**%%%8%%%*%%%9%%%*
 > %%%10%%%
 1. %%%11%%%
-2. %%%12%%%"
+2. %%%12%%%
+
+[%%%13%%%](files/file.md \\"%%%14%%%\\")"
 `;
