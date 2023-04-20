@@ -1,5 +1,6 @@
 import {TranslationUnitsByID} from 'src/xlf/parser';
 import {text} from './text';
+import {linkClose} from './link';
 
 export type MarkdownHandlersState = {
     markdown: {
@@ -16,7 +17,7 @@ function generate(parameters: MarkdownHandlersParameters) {
 }
 
 function handlers() {
-    return {text};
+    return {text, link_close: linkClose};
 }
 
 function initState(parameters: MarkdownHandlersParameters) {
