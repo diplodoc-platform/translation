@@ -70,6 +70,12 @@ exports[`xlf rendering renders trans-units from text tokens 1`] = `
       <trans-unit id=\\"14\\">
         <source>Описание ссылки</source>
       </trans-unit>
+      <trans-unit id=\\"15\\">
+        <source>Альтернативный текст картинки</source>
+      </trans-unit>
+      <trans-unit id=\\"16\\">
+        <source>Титул картинки</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
