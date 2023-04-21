@@ -1,21 +1,20 @@
 # 📝 markdown-translation
-# 📝 markdown-translation
 
 ## 📚 Sections
 
-- [👋 Introduction](#introduction)
+- [👋 Introduction](#-introduction)
 
-- [🌟 Project Overview](#project-overview)
+- [🌟 Project Overview](#-project-overview)
 
-- [🎯 Purpose and Scope](#purpose-and-scope)
+- [🎯 Purpose and Scope](#-purpose-and-scope)
 
-- [🚀 Getting Started](#getting-started)
+- [🚀 Getting Started](#-getting-started)
 
-- [💻 Installation](#installation)
+- [💻 Installation](#-installation)
 
-- [📖 API](#api)
+- [📖 API](#-api)
 
-- [💡 Usage](#usage)
+- [💡 Usage](#-usage)
 
 ## 👋 Introduction
 
