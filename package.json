@@ -1,7 +1,7 @@
 {
-  "name": "markdown-it-markdown-renderer",
+  "name": "@diplodoc/markdown-translation",
   "version": "0.0.0",
-  "description": "render markdown-it tokens into markdown",
+  "description": "markdown translation utilities",
   "homepage": "https://github.com/moki/markdown-it-markdown-renderer",
   "bugs": {
     "url": "https://github.com/moki/markdown-it-markdown-renderer/issues",
@@ -10,9 +10,15 @@
   "keywords": [
     "markdown-it",
     "markdown",
+    "md",
     "parser",
+    "translation",
+    "localization",
     "generator",
-    "renderer"
+    "renderer",
+    "xlf",
+    "xliff",
+    "skeleton"
   ],
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
