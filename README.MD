@@ -1,7 +1,7 @@
 # 📝 markdown-translation
----
+# 📝 markdown-translation
+
 ## 📚 Sections
----
 
 - [👋 Introduction](#introduction)
 
@@ -17,9 +17,7 @@
 
 - [💡 Usage](#usage)
 
----
 ## 👋 Introduction
----
 
 Hey, There! 🤙🏼
 
@@ -29,9 +27,7 @@ Say no more! 👌
 
 With markdown-translation, you can easily generate a skeleton and xlf for CATs, and translate your content on the go! 🚀
 
----
 ## 🌟 Project Overview
----
 
 🚀💻 This library got you covered with two API interfaces: extract and compose. 💻🚀
 
@@ -41,9 +37,7 @@ Compose the extracted text with the translations from the XLF file to create the
 
 Say goodbye to manual translation work and streamline your workflow with markdown-translation! 🤖💪
 
----
 ## 🎯 Purpose and Scope
----
 
 🤯 Hold on to your hats, folks! This library is tackling some serious problems with markdown translations!
 
@@ -55,9 +49,7 @@ Say goodbye to manual translation work and streamline your workflow with markdow
 
 🧑‍💻 Say goodbye to those pesky issues and hello to efficient and accurate translations with markdown-translation!
 
----
 ## 🚀 Getting Started
----
 
 ### 💻 Installation
 
@@ -116,9 +108,7 @@ function compose(parameters: ComposeParameters): string
 | `skeleton`     | `string`         | The skeleton with hashes instead of translatable text     |
 | `xlf`          | `string`         | XLF with translated text                                  |
 
----
 ### 👨‍💻 Usage
----
 
 #### 🔍 Extract
 
