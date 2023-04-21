@@ -50,14 +50,12 @@ exports[`xlf rendering renders trans-units from text tokens 1`] = `
       <trans-unit id=\\"8\\">
         <source> и </source>
       </trans-unit>
-<em>      <trans-unit id=\\"9\\">
+      <trans-unit id=\\"9\\">
         <source>курсив</source>
       </trans-unit>
-</em><blockquote>
       <trans-unit id=\\"10\\">
         <source>текст внутри цитаты</source>
       </trans-unit>
-</blockquote>
       <trans-unit id=\\"11\\">
         <source>Первый элемент нумерованного списка</source>
       </trans-unit>
