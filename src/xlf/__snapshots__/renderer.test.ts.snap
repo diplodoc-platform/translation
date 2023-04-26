@@ -42,37 +42,55 @@ exports[`xlf rendering renders trans-units from text tokens 1`] = `
         <source>Заголовок 2</source>
       </trans-unit>
       <trans-unit id=\\"6\\">
-        <source>Параграф содержащий </source>
+        <source>Параграф содержащий</source>
       </trans-unit>
       <trans-unit id=\\"7\\">
         <source>жирный текст</source>
       </trans-unit>
       <trans-unit id=\\"8\\">
-        <source> и </source>
+        <source>и</source>
       </trans-unit>
       <trans-unit id=\\"9\\">
         <source>курсив</source>
       </trans-unit>
       <trans-unit id=\\"10\\">
-        <source>текст внутри цитаты</source>
+        <source>А ещё ключевые особенности структуры проекта освещают чрезвычайно интересные особенности картины в целом.</source>
       </trans-unit>
       <trans-unit id=\\"11\\">
-        <source>Первый элемент нумерованного списка</source>
+        <source>Предложения складываются в абзацы — и вы наслаждетесь очередным бредошедевром.</source>
       </trans-unit>
       <trans-unit id=\\"12\\">
-        <source>Второй элемент нумерованного списка</source>
+        <source>текст внутри цитаты</source>
       </trans-unit>
       <trans-unit id=\\"13\\">
-        <source>Текст ссылки</source>
+        <source>Первый элемент нумерованного списка</source>
       </trans-unit>
       <trans-unit id=\\"14\\">
-        <source>Описание ссылки</source>
+        <source>Второй элемент нумерованного списка</source>
       </trans-unit>
       <trans-unit id=\\"15\\">
-        <source>Альтернативный текст картинки</source>
+        <source>Текст ссылки.</source>
       </trans-unit>
       <trans-unit id=\\"16\\">
-        <source>Титул картинки</source>
+        <source>Всё ещё текст ссылки.</source>
+      </trans-unit>
+      <trans-unit id=\\"17\\">
+        <source>Описание ссылки.</source>
+      </trans-unit>
+      <trans-unit id=\\"18\\">
+        <source>Всё ещё описание ссылки.</source>
+      </trans-unit>
+      <trans-unit id=\\"19\\">
+        <source>Альтернативный текст картинки.</source>
+      </trans-unit>
+      <trans-unit id=\\"20\\">
+        <source>Всё ещё альт. текст картинки.</source>
+      </trans-unit>
+      <trans-unit id=\\"21\\">
+        <source>Титул картинки.</source>
+      </trans-unit>
+      <trans-unit id=\\"22\\">
+        <source>Всё ещё титул картинки.</source>
       </trans-unit>
     </body>
   </file>

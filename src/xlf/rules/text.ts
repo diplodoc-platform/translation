@@ -1,5 +1,7 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
+import {sentenize} from '@diplodoc/sentenizer';
+
 import {transUnit} from 'src/xlf/generator';
 
 import {XLFRulesState} from './index';
@@ -11,15 +13,22 @@ function text(this: CustomRenderer<XLFRulesState>, tokens: Token[], i: number) {
     }
 
     const {xlf} = this.state;
-    let rendererd = '';
 
-    rendererd += transUnit.generate({source: content, id: xlf.id, indentation: xlf.indentation});
+    let rendered = '';
 
-    rendererd += '\n';
+    for (const segment of sentenize(content)) {
+        rendered += transUnit.generate({
+            source: segment,
+            id: xlf.id,
+            indentation: xlf.indentation,
+        });
 
-    this.state.xlf.id++;
+        rendered += '\n';
 
-    return rendererd;
+        this.state.xlf.id++;
+    }
+
+    return rendered;
 }
 
 export {text};

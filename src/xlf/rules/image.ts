@@ -1,8 +1,10 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
-import {Options} from 'markdown-it';
 import Token from 'markdown-it/lib/token';
+import {Options} from 'markdown-it';
+import {sentenize} from '@diplodoc/sentenizer';
 
 import {transUnit} from 'src/xlf/generator';
+
 import {XLFRulesState} from './index';
 
 export type ImageRuleState = {
@@ -37,7 +39,6 @@ function image(
     return this.renderInline([...children, close], options, env);
 }
 
-// eslint-disable-next-line camelcase
 function imageClose(this: CustomRenderer<XLFRulesState>) {
     const token = this.state.image.pending.pop();
     if (token?.type !== 'image') {
@@ -53,11 +54,17 @@ function imageClose(this: CustomRenderer<XLFRulesState>) {
 
     let rendered = '';
 
-    rendered += transUnit.generate({source: title, id: xlf.id, indentation: xlf.indentation});
+    for (const segment of sentenize(title)) {
+        rendered += transUnit.generate({
+            indentation: xlf.indentation,
+            source: segment,
+            id: xlf.id,
+        });
 
-    rendered += '\n';
+        rendered += '\n';
 
-    this.state.xlf.id++;
+        this.state.xlf.id++;
+    }
 
     return rendered;
 }

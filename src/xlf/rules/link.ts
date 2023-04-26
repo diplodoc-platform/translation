@@ -1,7 +1,9 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
+import {sentenize} from '@diplodoc/sentenizer';
 
 import {transUnit} from 'src/xlf/generator';
+
 import {XLFRulesState} from './index';
 
 export type LinkRuleState = {
@@ -18,14 +20,12 @@ function initState() {
     };
 }
 
-// eslint-disable-next-line camelcase
 function linkOpen(this: CustomRenderer<XLFRulesState>, tokens: Token[], i: number) {
     this.state.link.pending.push(tokens[i]);
 
     return '';
 }
 
-// eslint-disable-next-line camelcase
 function linkClose(this: CustomRenderer<XLFRulesState>) {
     const token = this.state.link.pending.pop();
     if (token?.type !== 'link_open') {
@@ -41,16 +41,20 @@ function linkClose(this: CustomRenderer<XLFRulesState>) {
 
     let rendered = '';
 
-    rendered += transUnit.generate({source: title, id: xlf.id, indentation: xlf.indentation});
+    for (const segment of sentenize(title)) {
+        rendered += transUnit.generate({
+            indentation: xlf.indentation,
+            source: segment,
+            id: xlf.id,
+        });
 
-    rendered += '\n';
+        rendered += '\n';
 
-    this.state.xlf.id++;
+        this.state.xlf.id++;
+    }
 
     return rendered;
 }
 
-// eslint-disable-next-line camelcase
 export {linkOpen, linkClose, initState};
-// eslint-disable-next-line camelcase
 export default {linkOpen, linkClose, initState};
