@@ -1,19 +1,31 @@
-function replaceHashes(content: string, translations: Map<string, string>) {
+import {replaceAfter} from 'src/string';
+
+import {MarkdownHandlersState} from './index';
+
+function replacer(content: string, state: MarkdownHandlersState) {
     let replaced = content;
+    let success = true;
+    let cursor = 0;
 
-    replaced = replaced.replace(/%%%(\d+)%%%/mu, function (match, id) {
-        const parsed = parseInt(id, 10);
+    const translations = state.markdown.translations;
 
-        const translation = translations.get(String(parsed));
+    while (success) {
+        const id = state.markdown.id;
+        const hash = `%%%${id}%%%`;
+
+        const translation = translations.get(String(id));
         if (!translation?.length) {
-            throw new Error('failed replacing with translation');
+            return replaced;
         }
 
-        return translation;
-    });
+        ({replaced, cursor, success} = replaceAfter(replaced, hash, translation, cursor));
+        if (success) {
+            state.markdown.id++;
+        }
+    }
 
     return replaced;
 }
 
-export {replaceHashes};
-export default {replaceHashes};
+export {replacer};
+export default {replacer};
