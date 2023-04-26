@@ -1,7 +1,8 @@
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 
+import {replacer} from './replacer';
+
 import {MarkdownHandlersState} from './index';
-import {replaceHashes} from './replacer';
 
 function linkClose(this: MarkdownRenderer<MarkdownHandlersState>) {
     const token = this.state.link.pending.pop();
@@ -14,11 +15,7 @@ function linkClose(this: MarkdownRenderer<MarkdownHandlersState>) {
         return '';
     }
 
-    const {markdown} = this.state;
-
-    const replaced = replaceHashes(title, markdown.translations);
-
-    token.attrSet('title', replaced);
+    token.attrSet('title', replacer(title, this.state));
 
     this.state.link.pending.push(token);
 

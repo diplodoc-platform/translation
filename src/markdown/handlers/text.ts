@@ -1,8 +1,9 @@
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import Token from 'markdown-it/lib/token';
 
+import {replacer} from './replacer';
+
 import {MarkdownHandlersState} from './index';
-import {replaceHashes} from './replacer';
 
 function text(this: MarkdownRenderer<MarkdownHandlersState>, tokens: Token[], i: number) {
     const content = tokens[i].content;
@@ -10,11 +11,7 @@ function text(this: MarkdownRenderer<MarkdownHandlersState>, tokens: Token[], i:
         return '';
     }
 
-    const {markdown} = this.state;
-
-    const replaced = replaceHashes(content, markdown.translations);
-
-    tokens[i].content = replaced;
+    tokens[i].content = replacer(content, this.state);
 
     return '';
 }

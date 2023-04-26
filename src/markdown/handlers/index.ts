@@ -5,6 +5,7 @@ import {imageClose} from './image';
 
 export type MarkdownHandlersState = {
     markdown: {
+        id: number;
         translations: TranslationUnitsByID;
     };
 };
@@ -27,6 +28,7 @@ function initState(parameters: MarkdownHandlersParameters) {
     return () => ({
         markdown: {
             translations,
+            id: 1,
         },
     });
 }

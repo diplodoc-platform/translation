@@ -32,7 +32,10 @@ describe('markdown rendering', () => {
     it('renders identital markdown without translations', () => {
         const parameters = {
             skeleton: '# title\nhello, world\n',
-            translations: new Map<string, string>(),
+            translations: new Map<string, string>([
+                ['1', 'титул'],
+                ['2', 'привет, мир'],
+            ]),
         };
 
         const generated = render(parameters);
