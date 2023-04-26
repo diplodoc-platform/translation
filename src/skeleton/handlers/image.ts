@@ -1,5 +1,7 @@
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 
+import {replacer} from './replacer';
+
 import {SkeletonHandlersState} from './index';
 
 function imageClose(this: MarkdownRenderer<SkeletonHandlersState>) {
@@ -13,13 +15,9 @@ function imageClose(this: MarkdownRenderer<SkeletonHandlersState>) {
         return '';
     }
 
-    const {skeleton} = this.state;
-
-    token.attrSet('title', `%%%${skeleton.id}%%%`);
+    token.attrSet('title', replacer(title, this.state));
 
     this.state.image.pending.push(token);
-
-    this.state.skeleton.id++;
 
     return '';
 }
