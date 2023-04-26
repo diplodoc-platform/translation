@@ -1,6 +1,8 @@
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import Token from 'markdown-it/lib/token';
 
+import {replacer} from './replacer';
+
 import {SkeletonHandlersState} from './index';
 
 function text(this: MarkdownRenderer<SkeletonHandlersState>, tokens: Token[], i: number) {
@@ -9,11 +11,7 @@ function text(this: MarkdownRenderer<SkeletonHandlersState>, tokens: Token[], i:
         return '';
     }
 
-    const {skeleton} = this.state;
-
-    tokens[i].content = `%%%${skeleton.id}%%%`;
-
-    this.state.skeleton.id++;
+    tokens[i].content = replacer(content, this.state);
 
     return '';
 }
