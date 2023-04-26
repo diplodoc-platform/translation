@@ -1,3 +1,4 @@
+// xlf, skeleton testing
 const markdown = `# Заголовок 1
 
 Параграф
@@ -10,30 +11,35 @@ const markdown = `# Заголовок 1
 
 Параграф содержащий **жирный текст** и *курсив*
 
+А ещё ключевые особенности структуры проекта освещают чрезвычайно интересные особенности картины в целом. Предложения складываются в абзацы — и вы наслаждетесь очередным бредошедевром.
+
 > текст внутри цитаты
 
 1. Первый элемент нумерованного списка
 2. Второй элемент нумерованного списка
 
-[Текст ссылки](files/file.md "Описание ссылки")
+[Текст ссылки. Всё ещё текст ссылки.](files/file.md "Описание ссылки. Всё ещё описание ссылки.")
 
-![Альтернативный текст картинки](files/image.png "Титул картинки")
+![Альтернативный текст картинки. Всё ещё альт. текст картинки.](files/image.png "Титул картинки. Всё ещё титул картинки.")
 `;
 
+// markdown testing
 const skeleton = `# %%%1%%%
 %%%2%%%
 - %%%3%%%
 - %%%4%%%
 %%%5%%%
 -----------
-%%%6%%%**%%%7%%%**%%%8%%%*%%%9%%%*
-> %%%10%%%
-1. %%%11%%%
-2. %%%12%%%
+%%%6%%% **%%%7%%%** %%%8%%% *%%%9%%%*
 
-[%%%13%%%](files/file.md "%%%14%%%")
+%%%10%%% %%%11%%%
+> %%%12%%%
+1. %%%13%%%
+2. %%%14%%%
 
-![%%%15%%%](files/image.png "%%%16%%%")
+[%%%15%%% %%%16%%%](files/file.md "%%%17%%% %%%18%%%")
+
+![%%%19%%% %%%20%%%](files/image.png "%%%21%%% %%%22%%%")
 `;
 
 const translations = new Map<string, string>([
@@ -42,17 +48,26 @@ const translations = new Map<string, string>([
     ['3', 'First list item'],
     ['4', 'Second list item'],
     ['5', 'Heading 2'],
-    ['6', 'Paragraph with '],
+    ['6', 'Paragraph with'],
     ['7', 'bold text'],
-    ['8', ' and '],
-    ['9', 'italic'],
-    ['10', 'text inside of the blockquote'],
-    ['11', 'First ordered list item'],
-    ['12', 'Second ordered list item'],
-    ['13', 'Link text'],
-    ['14', 'Link Description'],
-    ['15', 'Alternative image text'],
-    ['16', 'Image title'],
+    ['8', 'and'],
+    ['9', 'italics'],
+    [
+        '10',
+        'Also key features of the project structure highlight extremely interesting features of the picture as a whole.',
+    ],
+    ['11', 'Sentences add up to paragraphs — and you will enjoy another delirium.'],
+    ['12', 'text inside of the blockquote'],
+    ['13', 'First ordered list item'],
+    ['14', 'Second ordered list item'],
+    ['15', 'Link text.'],
+    ['16', 'Link text continued.'],
+    ['17', 'Link description.'],
+    ['18', 'Link description continued.'],
+    ['19', 'Alternative image text'],
+    ['20', 'Alt. text continued'],
+    ['21', 'Image title'],
+    ['22', 'Image title continued'],
 ]);
 
 export {markdown, skeleton, translations};
