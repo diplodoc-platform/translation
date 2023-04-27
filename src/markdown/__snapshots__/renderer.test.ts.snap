@@ -23,3 +23,12 @@ Also key features of the project structure highlight extremely interesting featu
 
 ![Alternative image text Alt. text continued](files/image.png \\"Image title Image title continued\\")"
 `;
+
+exports[`markdown rendering renders translated text instead of hashes, with liquid variables in text 1`] = `
+"# {{ service-name }} Сервис
+Попробуйте {{ service-name }} и расскажите нам что вы думаете о нём.
+
+Также присмотритесь к [{{ other-service-name }}](files/file.md \\"{{ other-service-name }} описание\\")
+
+![скриншот использования {{ service-name }}](files/image.png \\"{{ service-name }} в действие\\")"
+`;

@@ -1,5 +1,10 @@
 import {render, RenderParameters} from './renderer';
-import {skeleton, translations} from 'src/__fixtures__';
+import {
+    skeleton,
+    skeletonWithVariables,
+    translations,
+    translationsWithVariables,
+} from 'src/__fixtures__';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -47,6 +52,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton,
             translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with liquid variables in text', () => {
+        const parameters = {
+            skeleton: skeletonWithVariables,
+            translations: translationsWithVariables,
         };
 
         const generated = render(parameters);
