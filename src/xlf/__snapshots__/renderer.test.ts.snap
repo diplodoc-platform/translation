@@ -1,5 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`xlf rendering handles markdown with liquid variables 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>{{ service-name }} Service</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Try out {{ service-name }} and let us know what you think</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Also check out</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>{{ other-service-name }}</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>{{ other-service-name }} description</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>{{ service-name }} usage screenshot</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>{{ service-name }} in action</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering renders empty xlf document for empty markdown 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
