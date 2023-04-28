@@ -4,6 +4,8 @@ import {
     skeletonWithVariables,
     translations,
     translationsWithVariables,
+    skeletonWithConditionals,
+    translationsWithConditionals,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -62,6 +64,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: skeletonWithVariables,
             translations: translationsWithVariables,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with liquid conditionals in text', () => {
+        const parameters = {
+            skeleton: skeletonWithConditionals,
+            translations: translationsWithConditionals,
         };
 
         const generated = render(parameters);
