@@ -1,5 +1,5 @@
 import {render, RenderParameters} from './renderer';
-import {markdown, markdownWithVariables} from 'src/__fixtures__';
+import {markdown, markdownWithVariables, markdownWithConditionals} from 'src/__fixtures__';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -40,6 +40,15 @@ describe('skeleton rendering', () => {
     it('renders hash rendering instead of the content from markdown with liquid variables', () => {
         const parameters = {
             markdown: markdownWithVariables,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with liquid conditionals', () => {
+        const parameters = {
+            markdown: markdownWithConditionals,
         };
 
         const rendered = render(parameters);

@@ -24,6 +24,21 @@ Also key features of the project structure highlight extremely interesting featu
 ![Alternative image text Alt. text continued](files/image.png \\"Image title Image title continued\\")"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with liquid conditionals in text 1`] = `
+"# Титул Документа
+{% if OS == 'iOS' %}
+
+Скачайте приложение из  [{{ ios-marketplace }} Стора](https://www.apple.com/ios/app-store).
+
+{% else %}
+
+Скачайте приложение из  [{{ other-marketplace }} Стора](https://play.google.com).
+
+Какой-то текст {% if  OS == 'iOS' %} Apple {% else %} Android {% endif %} Продолжение текста.
+
+{% endif %}"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with liquid variables in text 1`] = `
 "# {{ service-name }} Сервис
 Попробуйте {{ service-name }} и расскажите нам что вы думаете о нём.

@@ -1,5 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`xlf rendering handles markdown with liquid conditionals 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Document Title</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Download the app from the</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>{{ ios-marketplace }} Store</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>.</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>Download the app from</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>{{ other-marketplace }} Store</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>.</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>Some text</source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source>Apple</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source>Android</source>
+      </trans-unit>
+      <trans-unit id=\\"11\\">
+        <source>text continued.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with liquid variables 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
