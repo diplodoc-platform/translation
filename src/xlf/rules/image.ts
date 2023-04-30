@@ -47,6 +47,7 @@ function imageClose(this: CustomRenderer<XLFRulesState>) {
 
     const title = token.attrGet('title');
     if (!title?.length) {
+        this.state.image.pending.push(token);
         return '';
     }
 
