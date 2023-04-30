@@ -12,6 +12,7 @@ function linkClose(this: MarkdownRenderer<SkeletonHandlersState>) {
 
     const title = token.attrGet('title');
     if (!title?.length) {
+        this.state.link.pending.push(token);
         return '';
     }
 
