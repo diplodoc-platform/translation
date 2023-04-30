@@ -1,5 +1,10 @@
 import {render, RenderParameters} from './renderer';
-import {markdown, markdownWithVariables, markdownWithConditionals} from 'src/__fixtures__';
+import {
+    markdown,
+    markdownWithVariables,
+    markdownWithConditionals,
+    markdownWithLoops,
+} from 'src/__fixtures__';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -120,6 +125,25 @@ describe('xlf rendering', () => {
     it('handles markdown with liquid conditionals', () => {
         const parameters = {
             markdown: markdownWithConditionals,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with liquid loops', () => {
+        const parameters = {
+            markdown: markdownWithLoops,
             source: {
                 language: 'en',
                 locale: 'US' as const,
