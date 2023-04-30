@@ -12,6 +12,7 @@ function imageClose(this: MarkdownRenderer<SkeletonHandlersState>) {
 
     const title = token.attrGet('title');
     if (!title?.length) {
+        this.state.image.pending.push(token);
         return '';
     }
 
