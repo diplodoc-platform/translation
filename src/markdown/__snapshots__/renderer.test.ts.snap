@@ -47,3 +47,14 @@ exports[`markdown rendering renders translated text instead of hashes, with liqu
 
 ![скриншот использования {{ service-name }}](files/image.png \\"{{ service-name }} в действие\\")"
 `;
+
+exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `
+"# Титул Документа
+{% for element in array %}
+
+Какой-то текст {{ variable_name }} продолжение текста.
+
+{% endfor %}
+
+Перед однострочным циклом {% for element in array %} текст внутри содержащий {{variable}} {% endfor %} после однострочного цикла"
+`;

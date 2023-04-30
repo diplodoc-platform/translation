@@ -6,6 +6,8 @@ import {
     translationsWithVariables,
     skeletonWithConditionals,
     translationsWithConditionals,
+    skeletonWithLoops,
+    translationsWithLoops,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -74,6 +76,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: skeletonWithConditionals,
             translations: translationsWithConditionals,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated txt instead of hashes, with liquid loops in text', () => {
+        const parameters = {
+            skeleton: skeletonWithLoops,
+            translations: translationsWithLoops,
         };
 
         const generated = render(parameters);

@@ -49,6 +49,37 @@ exports[`xlf rendering handles markdown with liquid conditionals 1`] = `
 "
 `;
 
+exports[`xlf rendering handles markdown with liquid loops 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Document Title</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Some text {{ variable_name }} text continued.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>before inline loop</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>text inside with {{variable}}</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>after inline loop</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with liquid variables 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
