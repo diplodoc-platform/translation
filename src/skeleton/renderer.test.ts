@@ -42,7 +42,7 @@ describe('skeleton rendering', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders hash rendering instead of the content from markdown with liquid variables', () => {
+    it('renders hash instead of the content from markdown with liquid variables', () => {
         const parameters = {
             markdown: markdownWithVariables,
         };
