@@ -15,6 +15,13 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 {% endif %}"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with liquid filters 1`] = `
+"# %%%1%%%
+%%%2%%%
+
+%%%3%%%"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with liquid variables 1`] = `
 "# %%%1%%%
 %%%2%%%
