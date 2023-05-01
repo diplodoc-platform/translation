@@ -4,6 +4,7 @@ import {
     markdownWithVariables,
     markdownWithConditionals,
     markdownWithLoops,
+    markdownWithFilters,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -106,6 +107,25 @@ describe('xlf rendering', () => {
     it('handles markdown with liquid variables', () => {
         const parameters = {
             markdown: markdownWithVariables,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with liquid filters', () => {
+        const parameters = {
+            markdown: markdownWithFilters,
             source: {
                 language: 'en',
                 locale: 'US' as const,
