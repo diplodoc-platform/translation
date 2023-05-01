@@ -46,6 +46,13 @@ exports[`markdown rendering renders translated text instead of hashes, with liqu
 всего пользователей: {{ users | length }}"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with liquid functions in text 1`] = `
+"Титул Документа
+Привет П{{ user.name.slice(1) }}!
+
+Привет П{{ user.name.slice(1, 2) }}вел!"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with liquid variables in text 1`] = `
 "# {{ service-name }} Сервис
 Попробуйте {{ service-name }} и расскажите нам что вы думаете о нём.

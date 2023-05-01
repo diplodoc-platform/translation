@@ -74,6 +74,31 @@ exports[`xlf rendering handles markdown with liquid filters 1`] = `
 "
 `;
 
+exports[`xlf rendering handles markdown with liquid functions 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Document Title</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Hello P{{ user.name.slice(1) }}!</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Hello P{{ user.name.slice(1, 2) }}vel!</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with liquid loops 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">

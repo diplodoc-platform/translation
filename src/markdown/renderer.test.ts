@@ -10,6 +10,8 @@ import {
     translationsWithLoops,
     skeletonWithFilters,
     translationsWithFilters,
+    skeletonWithFunctions,
+    translationsWithFunctions,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -78,6 +80,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: skeletonWithFilters,
             translations: translationsWithFilters,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with liquid functions in text', () => {
+        const parameters = {
+            skeleton: skeletonWithFunctions,
+            translations: translationsWithFunctions,
         };
 
         const generated = render(parameters);
