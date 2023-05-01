@@ -113,6 +113,25 @@ const translationsWithFilters = new Map<string, string>([
     ['3', 'всего пользователей: {{ users | length }}'],
 ]);
 
+const markdownWithFunctions = `Document Title
+
+Hello P{{ user.name.slice(1) }}!
+
+Hello P{{ user.name.slice(1, 2) }}vel!
+`;
+
+const skeletonWithFunctions = `%%%1%%%
+%%%2%%%
+
+%%%3%%%
+`;
+
+const translationsWithFunctions = new Map<string, string>([
+    ['1', 'Титул Документа'],
+    ['2', 'Привет П{{ user.name.slice(1) }}!'],
+    ['3', 'Привет П{{ user.name.slice(1, 2) }}вел!'],
+]);
+
 const markdownWithConditionals = `# Document Title
 
 {% if OS == 'iOS' %}
@@ -203,6 +222,9 @@ export {
     markdownWithFilters,
     skeletonWithFilters,
     translationsWithFilters,
+    markdownWithFunctions,
+    skeletonWithFunctions,
+    translationsWithFunctions,
 };
 
 export default {
@@ -221,4 +243,7 @@ export default {
     markdownWithFilters,
     skeletonWithFilters,
     translationsWithFilters,
+    markdownWithFunctions,
+    skeletonWithFunctions,
+    translationsWithFunctions,
 };

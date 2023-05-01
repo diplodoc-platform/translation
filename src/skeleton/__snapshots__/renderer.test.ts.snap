@@ -22,6 +22,14 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 %%%3%%%"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with liquid functions 1`] = `
+"%%%1%%%
+
+%%%2%%%
+
+%%%3%%%"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with liquid variables 1`] = `
 "# %%%1%%%
 %%%2%%%
