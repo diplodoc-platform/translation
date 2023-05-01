@@ -15,6 +15,15 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 {% endif %}"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with liquid variables 1`] = `
+"# %%%1%%%
+%%%2%%%
+
+%%%3%%% [%%%4%%%](files/file.md \\"%%%5%%%\\")
+
+![%%%6%%%](files/image.png \\"%%%7%%%\\")"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with loops 1`] = `
 "# %%%1%%%
 {% for element in array %}
@@ -24,15 +33,6 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 {% endfor %}
 
 %%%3%%% {% for element in array %} %%%4%%% {% endfor %} %%%5%%%"
-`;
-
-exports[`skeleton rendering renders hash rendering instead of the content from markdown with liquid variables 1`] = `
-"# %%%1%%%
-%%%2%%%
-
-%%%3%%% [%%%4%%%](files/file.md \\"%%%5%%%\\")
-
-![%%%6%%%](files/image.png \\"%%%7%%%\\")"
 `;
 
 exports[`skeleton rendering renders hashes instead of content of the text tokens 1`] = `
