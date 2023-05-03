@@ -6,6 +6,7 @@ import {
     markdownWithLoops,
     markdownWithFilters,
     markdownWithFunctions,
+    markdownWithMeta,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -184,6 +185,25 @@ describe('xlf rendering', () => {
     it('handles markdown with liquid loops', () => {
         const parameters = {
             markdown: markdownWithLoops,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with meta', () => {
+        const parameters = {
+            markdown: markdownWithMeta,
             source: {
                 language: 'en',
                 locale: 'US' as const,

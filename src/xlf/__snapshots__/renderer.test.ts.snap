@@ -167,6 +167,98 @@ exports[`xlf rendering handles markdown with liquid variables 1`] = `
 "
 `;
 
+exports[`xlf rendering handles markdown with meta 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Создание виртуальной машины Windows</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Cоздайте виртуальную машину Windows в облаке с помощью сервиса {{ compute-short-name }}.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Вы можете подключиться к виртуальной машине Windows используя Remote Dektop Protocol (RDP), встроенный в образ ОС.</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>Перед подключением к виртуальной машине Windows убедитесь, что NLA включен в настройках вашего компьютера.</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>Sammy Sosa
+      Let&apos;s Goooo</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>windows</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>windows vm</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>windows вм</source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source>windows виртуальная машина</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source>виртуальная машина</source>
+      </trans-unit>
+      <trans-unit id=\\"11\\">
+        <source>вм</source>
+      </trans-unit>
+      <trans-unit id=\\"12\\">
+        <source>Mark</source>
+      </trans-unit>
+      <trans-unit id=\\"13\\">
+        <source>Noam</source>
+      </trans-unit>
+      <trans-unit id=\\"14\\">
+        <source>John Smith</source>
+      </trans-unit>
+      <trans-unit id=\\"15\\">
+        <source>milk</source>
+      </trans-unit>
+      <trans-unit id=\\"16\\">
+        <source>pumpkin pie</source>
+      </trans-unit>
+      <trans-unit id=\\"17\\">
+        <source>eggs</source>
+      </trans-unit>
+      <trans-unit id=\\"18\\">
+        <source>juice</source>
+      </trans-unit>
+      <trans-unit id=\\"19\\">
+        <source>Mark McGwire</source>
+      </trans-unit>
+      <trans-unit id=\\"20\\">
+        <source>Sammy Sosa</source>
+      </trans-unit>
+      <trans-unit id=\\"21\\">
+        <source>bob</source>
+      </trans-unit>
+      <trans-unit id=\\"22\\">
+        <source>marry</source>
+      </trans-unit>
+      <trans-unit id=\\"23\\">
+        <source>Мета</source>
+      </trans-unit>
+      <trans-unit id=\\"24\\">
+        <source>Комментарии и метаданные — это элементы разметки, которые не отображаются в собранном файле.</source>
+      </trans-unit>
+      <trans-unit id=\\"25\\">
+        <source>Они используются, чтобы хранить в исходном тексте информацию для SEO или авторов документа.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering renders empty xlf document for empty markdown 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
