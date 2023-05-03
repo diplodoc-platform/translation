@@ -1,9 +1,15 @@
 import MarkdownIt from 'markdown-it';
 import {customRenderer, CustomRendererParams} from '@diplodoc/markdown-it-custom-renderer';
 
+// configure with diplodoc plugins
+// @ts-ignore
+import meta from 'markdown-it-meta';
+
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
-import {hooks} from './hooks';
+import hooks, {HooksParameters} from './hooks';
+
+export type XLFRendererState = XLFRulesState;
 
 export type RenderParameters = {
     markdown: string;
@@ -16,17 +22,17 @@ function render(parameters: RenderParameters) {
 
     const wrapper = template.generate(parameters);
 
-    const xlfRenderer = new MarkdownIt('commonmark', {html: true});
-
+    const xlfRenderer = new MarkdownIt('commonmark', {html: true}) as HooksParameters['markdownit'];
     const xlfRules = rules.generate(wrapper);
-
-    const xlfOptions: CustomRendererParams<XLFRulesState> = {
-        initState: xlfRules.initState,
+    const xlfHooks = hooks.generate({template: wrapper.template, markdownit: xlfRenderer});
+    const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
-        hooks: hooks({template: wrapper.template}),
+        hooks: xlfHooks.hooks,
+        initState: xlfRules.initState,
     };
 
     xlfRenderer.use(customRenderer, xlfOptions);
+    xlfRenderer.use(meta);
 
     return xlfRenderer.render(parameters.markdown);
 }
