@@ -16,7 +16,7 @@ export type LanguageLocale = {
 
 const languagesList = languages.langs();
 
-export type Language = typeof languagesList[number];
+export type Language = (typeof languagesList)[number];
 
 const options = {
     format: true,
@@ -68,7 +68,7 @@ function generate(parameters: TemplateParameters) {
     before += '<body>\n';
     after = ' '.repeat(indentation) + after;
 
-    return {template: [before, after], indentation};
+    return {template: [before, after] as [string, string], indentation};
 }
 
 function validParameters(parameters: TemplateParameters) {
