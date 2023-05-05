@@ -2,17 +2,18 @@ import linkRules, {linkOpen, linkClose, LinkRuleState} from './link';
 import imageRules, {image, imageClose, ImageRuleState} from './image';
 import {text} from './text';
 
-export type RulesParameters = {
-    indentation: number;
-};
+export type XLFRulesState = CommonRulesState & LinkRuleState & ImageRuleState;
 
-export type XLFRulesState = {
+export type CommonRulesState = {
     xlf: {
         id: number;
         indentation: number;
     };
-} & LinkRuleState &
-    ImageRuleState;
+};
+
+export type RulesParameters = {
+    indentation: number;
+};
 
 function generate(parameters: RulesParameters) {
     const {indentation} = parameters;
@@ -56,13 +57,19 @@ function rules() {
 
 function initState(indentation: number) {
     return () => ({
+        ...commonInitState(indentation),
+        ...linkRules.initState(),
+        ...imageRules.initState(),
+    });
+}
+
+function commonInitState(indentation: number) {
+    return {
         xlf: {
             id: 1,
             indentation,
         },
-        ...linkRules.initState(),
-        ...imageRules.initState(),
-    });
+    };
 }
 
 export {generate};

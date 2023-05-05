@@ -1,10 +1,9 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
-import {sentenize} from '@diplodoc/sentenizer';
 
-import {transUnit} from 'src/xlf/generator';
+import {segmenter} from 'src/xlf/segmenter';
 
-import {XLFRulesState} from './index';
+import {XLFRendererState} from 'src/xlf/renderer';
 
 export type LinkRuleState = {
     link: {
@@ -20,13 +19,13 @@ function initState() {
     };
 }
 
-function linkOpen(this: CustomRenderer<XLFRulesState>, tokens: Token[], i: number) {
+function linkOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
     this.state.link.pending.push(tokens[i]);
 
     return '';
 }
 
-function linkClose(this: CustomRenderer<XLFRulesState>) {
+function linkClose(this: CustomRenderer<XLFRendererState>) {
     const token = this.state.link.pending.pop();
     if (token?.type !== 'link_open') {
         throw new Error('failed to render trans-unit from link');
@@ -38,21 +37,9 @@ function linkClose(this: CustomRenderer<XLFRulesState>) {
         return '';
     }
 
-    const {xlf} = this.state;
-
     let rendered = '';
 
-    for (const segment of sentenize(title)) {
-        rendered += transUnit.generate({
-            indentation: xlf.indentation,
-            source: segment,
-            id: xlf.id,
-        });
-
-        rendered += '\n';
-
-        this.state.xlf.id++;
-    }
+    rendered += segmenter(title, this.state);
 
     return rendered;
 }

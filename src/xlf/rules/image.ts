@@ -1,11 +1,10 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
 import {Options} from 'markdown-it';
-import {sentenize} from '@diplodoc/sentenizer';
 
-import {transUnit} from 'src/xlf/generator';
+import {segmenter} from 'src/xlf/segmenter';
 
-import {XLFRulesState} from './index';
+import {XLFRendererState} from 'src/xlf/renderer';
 
 export type ImageRuleState = {
     image: {
@@ -22,7 +21,7 @@ function initState() {
 }
 
 function image(
-    this: CustomRenderer<XLFRulesState>,
+    this: CustomRenderer<XLFRendererState>,
     tokens: Token[],
     i: number,
     options: Options,
@@ -39,7 +38,7 @@ function image(
     return this.renderInline([...children, close], options, env);
 }
 
-function imageClose(this: CustomRenderer<XLFRulesState>) {
+function imageClose(this: CustomRenderer<XLFRendererState>) {
     const token = this.state.image.pending.pop();
     if (token?.type !== 'image') {
         throw new Error('failed to render trans-unit from image');
@@ -51,21 +50,9 @@ function imageClose(this: CustomRenderer<XLFRulesState>) {
         return '';
     }
 
-    const {xlf} = this.state;
-
     let rendered = '';
 
-    for (const segment of sentenize(title)) {
-        rendered += transUnit.generate({
-            indentation: xlf.indentation,
-            source: segment,
-            id: xlf.id,
-        });
-
-        rendered += '\n';
-
-        this.state.xlf.id++;
-    }
+    rendered += segmenter(title, this.state);
 
     return rendered;
 }
