@@ -1,6 +1,6 @@
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 
-import {replacer} from './replacer';
+import {replacer} from 'src/skeleton/replacer';
 
 import {SkeletonHandlersState} from './index';
 

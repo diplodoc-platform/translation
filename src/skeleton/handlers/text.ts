@@ -1,7 +1,7 @@
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import Token from 'markdown-it/lib/token';
 
-import {replacer} from './replacer';
+import {replacer} from 'src/skeleton/replacer';
 
 import {SkeletonHandlersState} from './index';
 
