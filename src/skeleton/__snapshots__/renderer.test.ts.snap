@@ -50,6 +50,48 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 %%%3%%% {% for element in array %} %%%4%%% {% endfor %} %%%5%%%"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with meta 1`] = `
+"---
+title: '%%%1%%%'
+description: '%%%2%%% %%%3%%% %%%4%%%'
+key: |
+  %%%5%%%
+seq:
+  - '%%%6%%%'
+  - '%%%7%%%'
+  - '%%%8%%%'
+  - '%%%9%%%'
+  - '%%%10%%%'
+  - '%%%11%%%'
+seq_of_mappings:
+  - name: '%%%12%%%'
+    age: 13
+  - name: '%%%13%%%'
+    age: 99
+object_inline:
+  name: '%%%14%%%'
+  age: 33
+array_inline:
+  - '%%%15%%%'
+  - '%%%16%%%'
+  - '%%%17%%%'
+  - '%%%18%%%'
+seq_of_seq:
+  - - '%%%19%%%'
+    - 65
+    - 0.278
+  - - '%%%20%%%'
+    - 63
+    - 0.288
+nesting:
+  - children:
+      - name: '%%%21%%%'
+      - name: '%%%22%%%'
+---
+# %%%23%%%
+%%%24%%% %%%25%%%"
+`;
+
 exports[`skeleton rendering renders hashes instead of content of the text tokens 1`] = `
 "# %%%1%%%
 %%%2%%%
