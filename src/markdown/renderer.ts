@@ -5,7 +5,12 @@ import {
     MarkdownRendererEnv,
 } from '@diplodoc/markdown-it-markdown-renderer';
 
+// configure with diplodoc plugins
+// @ts-ignore
+import meta from 'markdown-it-meta';
+
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
+import hooks, {HooksParameters} from './hooks';
 
 export type RenderParameters = {
     skeleton: string;
@@ -17,13 +22,14 @@ function render(parameters: RenderParameters) {
         throw new Error('invalid parameters');
     }
 
-    const md = new MarkdownIt('commonmark', {html: true});
+    const md = new MarkdownIt('commonmark', {html: true}) as HooksParameters['markdownit'];
 
     const {handlers, initState} = markdownHandlers.generate(parameters);
-
+    const markdownHooks = hooks.generate({markdownit: md});
     const mdOptions: MarkdownRendererParams<MarkdownHandlersState> = {
         handlers,
         initState,
+        hooks: markdownHooks.hooks,
     };
 
     const env: MarkdownRendererEnv = {
@@ -31,6 +37,7 @@ function render(parameters: RenderParameters) {
     };
 
     md.use(mdRenderer, mdOptions);
+    md.use(meta);
 
     return md.render(parameters.skeleton, env);
 }
