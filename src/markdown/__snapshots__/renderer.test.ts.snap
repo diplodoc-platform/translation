@@ -62,6 +62,53 @@ exports[`markdown rendering renders translated text instead of hashes, with liqu
 ![скриншот использования {{ service-name }}](files/image.png \\"{{ service-name }} в действие\\")"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with meta in text 1`] = `
+"---
+title: Creation of the Windows virtual machine
+description: >-
+  Create Windows virtual machine with {{ compute-short-name }} service. You can
+  connect to the virtual machine using Remote Desktop Protocol (RDP). Before
+  connecting ensure that NLA is enabled.
+key: |
+  Sammy Sosa
+
+  Let's Goooo
+seq:
+  - windows
+  - windows vm
+  - windows vm
+  - windows virtual machine
+  - virtual machine
+  - vm
+seq_of_mappings:
+  - name: Mark
+    age: 13
+  - name: Noam
+    age: 99
+object_inline:
+  name: John Smith
+  age: 33
+array_inline:
+  - milk
+  - pumpkin pie
+  - eggs
+  - juice
+seq_of_seq:
+  - - Mark McGwire
+    - 65
+    - 0.278
+  - - Sammy Sosa
+    - 63
+    - 0.288
+nesting:
+  - children:
+      - name: bob
+      - name: marry
+---
+# Meta
+Comments and metadata - not displayed in the final file. They are used to make comments for other writers or set meta into final html for seo."
+`;
+
 exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `
 "# Титул Документа
 {% for element in array %}
