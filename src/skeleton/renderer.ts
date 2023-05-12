@@ -12,6 +12,8 @@ import meta from 'markdown-it-meta';
 import skeletonHandlers, {SkeletonHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
 
+export type SkeletonRendererState = SkeletonHandlersState;
+
 export type RenderParameters = {
     markdown: string;
 };

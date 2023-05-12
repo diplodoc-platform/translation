@@ -3,9 +3,9 @@ import {sentenize} from '@diplodoc/sentenizer';
 import {replaceAfter} from 'src/string';
 import {tokenize, LiquidTokenType} from 'src/liquid';
 
-import {SkeletonHandlersState} from './index';
+import {SkeletonRendererState} from './renderer';
 
-function replacer(content: string, state: SkeletonHandlersState) {
+function replacer(content: string, state: SkeletonRendererState) {
     let result = '';
 
     for (const token of tokenize(content)) {
