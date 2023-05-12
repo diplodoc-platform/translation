@@ -12,6 +12,8 @@ import meta from 'markdown-it-meta';
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
 
+export type MarkdownRendererState = MarkdownHandlersState;
+
 export type RenderParameters = {
     skeleton: string;
     translations: Map<string, string>;
