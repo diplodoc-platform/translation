@@ -1,9 +1,9 @@
 import {replaceAfter} from 'src/string';
 import {tokenize, LiquidTokenType} from 'src/liquid';
 
-import {MarkdownHandlersState} from './index';
+import {MarkdownRendererState} from './renderer';
 
-function replacer(content: string, state: MarkdownHandlersState) {
+function replacer(content: string, state: MarkdownRendererState) {
     let result = '';
 
     const translations = state.markdown.translations;
