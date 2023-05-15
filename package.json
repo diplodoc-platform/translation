@@ -2,9 +2,9 @@
   "name": "@diplodoc/markdown-translation",
   "version": "0.0.0",
   "description": "markdown translation utilities",
-  "homepage": "https://github.com/moki/markdown-it-markdown-renderer",
+  "homepage": "https://github.com/diplodoc-platform/markdown-translation",
   "bugs": {
-    "url": "https://github.com/moki/markdown-it-markdown-renderer/issues",
+    "url": "https://github.com/diplodoc-platform/markdown-translation/issues",
     "email": "morozov.kirill.moki@gmail.com"
   },
   "keywords": [
@@ -20,14 +20,14 @@
     "xliff",
     "skeleton"
   ],
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/esm/index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.js",
   "files": [
     "lib/"
   ],
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch --coverage --verbose --silent=false",
+    "test": "jest --verbose --coverage --silence=false",
+    "test:watch": "jest --watch --verbose --silent=false",
     "build:dev": "node scripts/development.js",
     "build": "npm run build:clean && tsc -p tsconfig.types.json && node scripts/bundle.js",
     "build:clean": "rm -rf lib",
