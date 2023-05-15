@@ -7,6 +7,10 @@
     "url": "https://github.com/diplodoc-platform/markdown-translation/issues",
     "email": "morozov.kirill.moki@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diplodoc-platform/markdown-translation.git"
+  },
   "keywords": [
     "markdown-it",
     "markdown",
