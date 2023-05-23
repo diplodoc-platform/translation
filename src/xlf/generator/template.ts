@@ -1,5 +1,5 @@
 import languages from '@cospired/i18n-iso-languages';
-import countries from 'i18n-iso-countries';
+import countries from '@shellscape/i18n-iso-countries';
 import {XMLBuilder} from 'fast-xml-parser';
 
 export type TemplateParameters = {
