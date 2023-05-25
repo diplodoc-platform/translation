@@ -2,7 +2,9 @@ import linkRules, {linkOpen, linkClose, LinkRuleState} from './link';
 import imageRules, {image, imageClose, ImageRuleState} from './image';
 import {text} from './text';
 
-export type XLFRulesState = CommonRulesState & LinkRuleState & ImageRuleState;
+import diplodocRules, {DiplodocRulesState} from './diplodoc';
+
+export type XLFRulesState = CommonRulesState & LinkRuleState & ImageRuleState & DiplodocRulesState;
 
 export type CommonRulesState = {
     xlf: {
@@ -52,6 +54,7 @@ function rules() {
         link_close: linkClose,
         image,
         image_close: imageClose,
+        ...diplodocRules.rules,
     };
 }
 
@@ -60,6 +63,7 @@ function initState(indentation: number) {
         ...commonInitState(indentation),
         ...linkRules.initState(),
         ...imageRules.initState(),
+        ...diplodocRules.initState(),
     });
 }
 

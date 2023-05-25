@@ -7,6 +7,7 @@ import {
     markdownWithFilters,
     markdownWithFunctions,
     markdownWithMeta,
+    markdownWithNotes,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -62,7 +63,23 @@ describe('validates parameters', () => {
             markdownPath: 'file.md',
         } as RenderParameters;
 
+        const invalidLang = {
+            markdown: '',
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            skeletonPath: 'file.skl.md',
+            markdownPath: 'file.md',
+            lang: 'xx',
+        } as RenderParameters;
+
         expect(() => render(parameters)).toThrow();
+        expect(() => render(invalidLang)).toThrow();
     });
 });
 
@@ -204,6 +221,25 @@ describe('xlf rendering', () => {
     it('handles markdown with meta', () => {
         const parameters = {
             markdown: markdownWithMeta,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with notes', () => {
+        const parameters = {
+            markdown: markdownWithNotes,
             source: {
                 language: 'en',
                 locale: 'US' as const,
