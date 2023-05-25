@@ -331,6 +331,30 @@ const markdownWithNotes = `\
   {% endnote %}
 `;
 
+const skeletonWithNotes = `\
+{% note info "%%%1%%%" %}
+
+%%%2%%%
+
+{% endnote %}
+
+- %%%3%%%
+
+  {% note alert "%%%4%%%" %}
+
+  %%%5%%%
+
+  {% endnote %}
+`;
+
+const translationsWithNotes = new Map<string, string>([
+    ['1', 'Information'],
+    ['2', 'information'],
+    ['3', 'list with note inside'],
+    ['4', 'Alert'],
+    ['5', 'alert'],
+]);
+
 export {
     markdown,
     skeleton,
@@ -354,6 +378,8 @@ export {
     skeletonWithMeta,
     translationsWithMeta,
     markdownWithNotes,
+    skeletonWithNotes,
+    translationsWithNotes,
 };
 
 export default {
@@ -379,4 +405,6 @@ export default {
     skeletonWithMeta,
     translationsWithMeta,
     markdownWithNotes,
+    skeletonWithNotes,
+    translationsWithNotes,
 };
