@@ -4,7 +4,7 @@ import markdown from 'src/markdown';
 export type ComposeParameters = {
     skeleton: string;
     xlf: string;
-};
+} & markdown.renderer.DiplodocParameters;
 
 function compose(parameters: ComposeParameters) {
     if (!validParameters(parameters)) {
@@ -22,6 +22,7 @@ function validParameters(parameters: ComposeParameters) {
         parameters.skeleton !== undefined,
         parameters.xlf !== undefined,
         xlf.parser.validParameters(parameters),
+        markdown.renderer.validDiplodocParameters(parameters),
     ];
 
     return conditions.reduce((a, v) => a && v, true);
