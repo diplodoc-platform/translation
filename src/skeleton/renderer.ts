@@ -8,6 +8,7 @@ import {
 // configure with diplodoc plugins
 // @ts-ignore
 import meta from 'markdown-it-meta';
+import notes from '@doc-tools/transform/lib/plugins/notes';
 
 import skeletonHandlers, {SkeletonHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
@@ -16,10 +17,18 @@ export type SkeletonRendererState = SkeletonHandlersState;
 
 export type RenderParameters = {
     markdown: string;
+} & DiplodocParameters;
+
+export type DiplodocParameters = {
+    lang?: string;
 };
 
 function render(parameters: RenderParameters) {
-    const {markdown} = parameters;
+    if (!validParameters(parameters)) {
+        throw new Error('invalid parameters');
+    }
+
+    const {markdown, lang} = parameters;
 
     const md = new MarkdownIt('commonmark', {html: true}) as HooksParameters['markdownit'];
     const env: MarkdownRendererEnv = {source: markdown.split('\n')};
@@ -32,15 +41,25 @@ function render(parameters: RenderParameters) {
         initState,
         hooks: skeletonHooks.hooks,
     };
+    const diplodocOptions = {
+        lang: lang ?? 'ru',
+    };
 
     md.use(mdRenderer, mdOptions);
-    md.use(meta);
+
+    // diplodoc plugins
+    md.use(meta, diplodocOptions);
+    md.use(notes, diplodocOptions);
 
     return md.render(markdown, env);
 }
 
 function validParameters(parameters: RenderParameters) {
-    const conditions = [parameters.markdown !== undefined];
+    const {markdown, lang} = parameters;
+
+    const markdownCondition = markdown !== undefined;
+    const langCondition = lang === undefined || lang === 'ru' || lang === 'en';
+    const conditions = [markdownCondition, langCondition];
 
     return conditions.reduce((a, v) => a && v, true);
 }
