@@ -7,6 +7,7 @@ import {
     markdownWithFilters,
     markdownWithFunctions,
     markdownWithMeta,
+    markdownWithNotes,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -93,6 +94,15 @@ describe('skeleton rendering', () => {
     it('renders hash instead of the content from markdown with meta', () => {
         const parameters = {
             markdown: markdownWithMeta,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with notes', () => {
+        const parameters = {
+            markdown: markdownWithNotes,
         };
 
         const rendered = render(parameters);

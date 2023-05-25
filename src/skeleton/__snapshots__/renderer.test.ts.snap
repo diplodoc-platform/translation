@@ -92,6 +92,25 @@ nesting:
 %%%24%%% %%%25%%%"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with notes 1`] = `
+"
+{% note info \\"%%%1%%%\\" %}
+
+%%%2%%%
+
+{% endnote %}
+
+
+- %%%3%%%
+
+  {% note alert \\"%%%4%%%\\" %}
+
+  %%%5%%%
+
+  {% endnote %}
+"
+`;
+
 exports[`skeleton rendering renders hashes instead of content of the text tokens 1`] = `
 "# %%%1%%%
 %%%2%%%
