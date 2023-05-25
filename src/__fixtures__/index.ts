@@ -315,6 +315,22 @@ const translationsWithMeta = new Map<string, string>([
     ['25', 'They are used to make comments for other writers or set meta into final html for seo.'],
 ]);
 
+const markdownWithNotes = `\
+{% note info "Информация" %}
+
+информация
+
+{% endnote %}
+
+- список с запиской
+
+  {% note alert "Предупреждение" %}
+
+  предупреждение
+
+  {% endnote %}
+`;
+
 export {
     markdown,
     skeleton,
@@ -337,6 +353,7 @@ export {
     markdownWithMeta,
     skeletonWithMeta,
     translationsWithMeta,
+    markdownWithNotes,
 };
 
 export default {
@@ -361,4 +378,5 @@ export default {
     markdownWithMeta,
     skeletonWithMeta,
     translationsWithMeta,
+    markdownWithNotes,
 };
