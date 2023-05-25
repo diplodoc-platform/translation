@@ -109,6 +109,25 @@ nesting:
 Comments and metadata - not displayed in the final file. They are used to make comments for other writers or set meta into final html for seo."
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with notes in text 1`] = `
+"
+{% note info \\"Information\\" %}
+
+information
+
+{% endnote %}
+
+
+- list with note inside
+
+  {% note alert \\"Alert\\" %}
+
+  alert
+
+  {% endnote %}
+"
+`;
+
 exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `
 "# Титул Документа
 {% for element in array %}

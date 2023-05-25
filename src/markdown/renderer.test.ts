@@ -14,6 +14,8 @@ import {
     translationsWithFunctions,
     skeletonWithMeta,
     translationsWithMeta,
+    skeletonWithNotes,
+    translationsWithNotes,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -39,7 +41,13 @@ describe('validates parameters', () => {
 
     it('throws on invalid parameters', () => {
         const parameters = {} as RenderParameters;
+        const invalidLang = {
+            skeleton: '',
+            translations: new Map<string, string>(),
+            lang: 'xx',
+        } as RenderParameters;
         expect(() => render(parameters)).toThrow();
+        expect(() => render(invalidLang)).toThrow();
     });
 });
 
@@ -122,6 +130,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: skeletonWithMeta,
             translations: translationsWithMeta,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with notes in text', () => {
+        const parameters = {
+            skeleton: skeletonWithNotes,
+            translations: translationsWithNotes,
         };
 
         const generated = render(parameters);
