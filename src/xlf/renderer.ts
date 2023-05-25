@@ -4,6 +4,7 @@ import {customRenderer, CustomRendererParams} from '@diplodoc/markdown-it-custom
 // configure with diplodoc plugins
 // @ts-ignore
 import meta from 'markdown-it-meta';
+import notes from '@doc-tools/transform/lib/plugins/notes';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -13,7 +14,12 @@ export type XLFRendererState = XLFRulesState;
 
 export type RenderParameters = {
     markdown: string;
-} & template.TemplateParameters;
+} & template.TemplateParameters &
+    DiplodocParameters;
+
+export type DiplodocParameters = {
+    lang?: string;
+};
 
 function render(parameters: RenderParameters) {
     if (!validParameters(parameters)) {
@@ -30,15 +36,25 @@ function render(parameters: RenderParameters) {
         hooks: xlfHooks.hooks,
         initState: xlfRules.initState,
     };
+    const diplodocOptions = {
+        lang: parameters.lang ?? 'ru',
+    };
 
     xlfRenderer.use(customRenderer, xlfOptions);
+
+    // diplodoc plugins
     xlfRenderer.use(meta);
+    xlfRenderer.use(notes, diplodocOptions);
 
     return xlfRenderer.render(parameters.markdown);
 }
 
 function validParameters(parameters: RenderParameters) {
-    const conditions = [template.validParameters(parameters), parameters.markdown !== undefined];
+    const {lang, markdown} = parameters;
+
+    const markdownCondition = markdown !== undefined;
+    const langCondition = lang === undefined || lang === 'ru' || lang === 'en';
+    const conditions = [template.validParameters(parameters), markdownCondition, langCondition];
 
     return conditions.reduce((a, v) => a && v, true);
 }
