@@ -9,6 +9,7 @@ import {
 // @ts-ignore
 import meta from 'markdown-it-meta';
 import notes from '@doc-tools/transform/lib/plugins/notes';
+import cut from '@doc-tools/transform/lib/plugins/cut';
 
 import skeletonHandlers, {SkeletonHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
@@ -50,6 +51,7 @@ function render(parameters: RenderParameters) {
     // diplodoc plugins
     md.use(meta, diplodocOptions);
     md.use(notes, diplodocOptions);
+    md.use(cut, diplodocOptions);
 
     return md.render(markdown, env);
 }
