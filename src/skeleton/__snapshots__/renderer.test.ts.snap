@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`skeleton rendering renders hash instead of the content from markdown with cuts 1`] = `
+"
+{% cut \\"%%%1%%%\\" %}
+
+%%%2%%%
+
+{% endcut %}"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with liquid conditionals 1`] = `
 "# %%%1%%%
 {% if OS == 'iOS' %}
