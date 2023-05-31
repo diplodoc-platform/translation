@@ -116,16 +116,13 @@ exports[`markdown rendering renders translated text instead of hashes, with note
 information
 
 {% endnote %}
-
-
 - list with note inside
 
   {% note alert \\"Alert\\" %}
 
   alert
 
-  {% endnote %}
-"
+  {% endnote %}"
 `;
 
 exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `
