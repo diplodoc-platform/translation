@@ -99,16 +99,13 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 %%%2%%%
 
 {% endnote %}
-
-
 - %%%3%%%
 
   {% note alert \\"%%%4%%%\\" %}
 
   %%%5%%%
 
-  {% endnote %}
-"
+  {% endnote %}"
 `;
 
 exports[`skeleton rendering renders hashes instead of content of the text tokens 1`] = `
