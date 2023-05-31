@@ -363,6 +363,19 @@ const markdownWithCuts = `\
 {% endcut %}
 `;
 
+const skeletonWithCuts = `\
+{% cut "%%%1%%%" %}
+
+%%%2%%%
+
+{% endcut %}
+`;
+
+const translationsWithCuts = new Map<string, string>([
+    ['1', 'Cut Title'],
+    ['2', 'Content inside of the cut'],
+]);
+
 export {
     markdown,
     skeleton,
@@ -389,6 +402,8 @@ export {
     skeletonWithNotes,
     translationsWithNotes,
     markdownWithCuts,
+    skeletonWithCuts,
+    translationsWithCuts,
 };
 
 export default {
@@ -417,4 +432,6 @@ export default {
     skeletonWithNotes,
     translationsWithNotes,
     markdownWithCuts,
+    skeletonWithCuts,
+    translationsWithCuts,
 };

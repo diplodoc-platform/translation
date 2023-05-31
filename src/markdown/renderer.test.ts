@@ -16,6 +16,8 @@ import {
     translationsWithMeta,
     skeletonWithNotes,
     translationsWithNotes,
+    skeletonWithCuts,
+    translationsWithCuts,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -140,6 +142,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: skeletonWithNotes,
             translations: translationsWithNotes,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with cuts in text', () => {
+        const parameters = {
+            skeleton: skeletonWithCuts,
+            translations: translationsWithCuts,
         };
 
         const generated = render(parameters);
