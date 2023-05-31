@@ -8,6 +8,7 @@ import {
     markdownWithFunctions,
     markdownWithMeta,
     markdownWithNotes,
+    markdownWithCuts,
 } from 'src/__fixtures__';
 
 describe('smoke', () => {
@@ -240,6 +241,25 @@ describe('xlf rendering', () => {
     it('handles markdown with notes', () => {
         const parameters = {
             markdown: markdownWithNotes,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with cuts', () => {
+        const parameters = {
+            markdown: markdownWithCuts,
             source: {
                 language: 'en',
                 locale: 'US' as const,
