@@ -355,6 +355,14 @@ const translationsWithNotes = new Map<string, string>([
     ['5', 'alert'],
 ]);
 
+const markdownWithCuts = `\
+{% cut "Заголовок Ката" %}
+
+Контент внутри ката
+
+{% endcut %}
+`;
+
 export {
     markdown,
     skeleton,
@@ -380,6 +388,7 @@ export {
     markdownWithNotes,
     skeletonWithNotes,
     translationsWithNotes,
+    markdownWithCuts,
 };
 
 export default {
@@ -407,4 +416,5 @@ export default {
     markdownWithNotes,
     skeletonWithNotes,
     translationsWithNotes,
+    markdownWithCuts,
 };
