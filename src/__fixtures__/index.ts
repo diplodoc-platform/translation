@@ -7,6 +7,18 @@ import loops from 'src/__fixtures__/loops';
 import meta from 'src/__fixtures__/meta';
 import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
+import gfmTables from 'src/__fixtures__/gfm-tables';
 
-export {basic, variables, filters, functions, conditionals, loops, meta, notes, cuts};
-export default {basic, variables, filters, functions, conditionals, loops, meta, notes, cuts};
+export {basic, variables, filters, functions, conditionals, loops, meta, notes, cuts, gfmTables};
+export default {
+    basic,
+    variables,
+    filters,
+    functions,
+    conditionals,
+    loops,
+    meta,
+    notes,
+    cuts,
+    gfmTables,
+};
