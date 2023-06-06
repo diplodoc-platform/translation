@@ -1,15 +1,14 @@
 import {render, RenderParameters} from './renderer';
-import {
-    markdown,
-    markdownWithVariables,
-    markdownWithConditionals,
-    markdownWithLoops,
-    markdownWithFilters,
-    markdownWithFunctions,
-    markdownWithMeta,
-    markdownWithNotes,
-    markdownWithCuts,
-} from 'src/__fixtures__';
+
+import basic from 'src/__fixtures__/basic';
+import variables from 'src/__fixtures__/variables';
+import filters from 'src/__fixtures__/filters';
+import functions from 'src/__fixtures__/functions';
+import conditionals from 'src/__fixtures__/conditionals';
+import loops from 'src/__fixtures__/loops';
+import meta from 'src/__fixtures__/meta';
+import notes from 'src/__fixtures__/notes';
+import cuts from 'src/__fixtures__/cuts';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -106,7 +105,7 @@ describe('xlf rendering', () => {
 
     it('renders trans-units from text tokens', () => {
         const parameters = {
-            markdown,
+            markdown: basic.markdown,
             source: {
                 language: 'ru',
                 locale: 'RU' as const,
@@ -126,7 +125,7 @@ describe('xlf rendering', () => {
     // naive approach leaves variables inside of text as is
     it('handles markdown with liquid variables', () => {
         const parameters = {
-            markdown: markdownWithVariables,
+            markdown: variables.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
@@ -145,7 +144,7 @@ describe('xlf rendering', () => {
 
     it('handles markdown with liquid filters', () => {
         const parameters = {
-            markdown: markdownWithFilters,
+            markdown: filters.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
@@ -164,7 +163,7 @@ describe('xlf rendering', () => {
 
     it('handles markdown with liquid functions', () => {
         const parameters = {
-            markdown: markdownWithFunctions,
+            markdown: functions.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
@@ -183,7 +182,7 @@ describe('xlf rendering', () => {
 
     it('handles markdown with liquid conditionals', () => {
         const parameters = {
-            markdown: markdownWithConditionals,
+            markdown: conditionals.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
@@ -202,7 +201,7 @@ describe('xlf rendering', () => {
 
     it('handles markdown with liquid loops', () => {
         const parameters = {
-            markdown: markdownWithLoops,
+            markdown: loops.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
@@ -221,7 +220,7 @@ describe('xlf rendering', () => {
 
     it('handles markdown with meta', () => {
         const parameters = {
-            markdown: markdownWithMeta,
+            markdown: meta.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
@@ -240,7 +239,7 @@ describe('xlf rendering', () => {
 
     it('handles markdown with notes', () => {
         const parameters = {
-            markdown: markdownWithNotes,
+            markdown: notes.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
@@ -259,7 +258,7 @@ describe('xlf rendering', () => {
 
     it('handles markdown with cuts', () => {
         const parameters = {
-            markdown: markdownWithCuts,
+            markdown: cuts.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
