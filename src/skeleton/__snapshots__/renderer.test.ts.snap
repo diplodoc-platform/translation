@@ -9,6 +9,14 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 {% endcut %}"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with gfm tables 1`] = `
+"|%%%1%%%|%%%2%%%|
+|-----------|-----------|
+|[%%%3%%%](https://www.google.com)|**%%%4%%%**|
+|![%%%5%%%](image.png \\"%%%6%%%\\")|*%%%7%%%*|
+"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with liquid conditionals 1`] = `
 "# %%%1%%%
 {% if OS == 'iOS' %}
