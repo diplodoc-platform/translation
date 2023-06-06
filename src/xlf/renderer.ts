@@ -29,7 +29,7 @@ function render(parameters: RenderParameters) {
 
     const wrapper = template.generate(parameters);
 
-    const xlfRenderer = new MarkdownIt('commonmark', {html: true}) as HooksParameters['markdownit'];
+    const xlfRenderer = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
     const xlfRules = rules.generate(wrapper);
     const xlfHooks = hooks.generate({template: wrapper.template, markdownit: xlfRenderer});
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
