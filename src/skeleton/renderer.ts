@@ -31,7 +31,7 @@ function render(parameters: RenderParameters) {
 
     const {markdown, lang} = parameters;
 
-    const md = new MarkdownIt('commonmark', {html: true}) as HooksParameters['markdownit'];
+    const md = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
     const env: MarkdownRendererEnv = {source: markdown.split('\n')};
 
     const {handlers, initState} = skeletonHandlers.generate();
