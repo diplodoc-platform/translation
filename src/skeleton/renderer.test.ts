@@ -1,15 +1,14 @@
 import {render, RenderParameters} from './renderer';
-import {
-    markdown,
-    markdownWithVariables,
-    markdownWithConditionals,
-    markdownWithLoops,
-    markdownWithFilters,
-    markdownWithFunctions,
-    markdownWithMeta,
-    markdownWithNotes,
-    markdownWithCuts,
-} from 'src/__fixtures__';
+
+import basic from 'src/__fixtures__/basic';
+import variables from 'src/__fixtures__/variables';
+import filters from 'src/__fixtures__/filters';
+import functions from 'src/__fixtures__/functions';
+import conditionals from 'src/__fixtures__/conditionals';
+import loops from 'src/__fixtures__/loops';
+import meta from 'src/__fixtures__/meta';
+import notes from 'src/__fixtures__/notes';
+import cuts from 'src/__fixtures__/cuts';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -40,7 +39,7 @@ describe('validates parameters', () => {
 describe('skeleton rendering', () => {
     it('renders hashes instead of content of the text tokens', () => {
         const parameters = {
-            markdown,
+            markdown: basic.markdown,
         };
 
         const rendered = render(parameters);
@@ -49,7 +48,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with liquid variables', () => {
         const parameters = {
-            markdown: markdownWithVariables,
+            markdown: variables.markdown,
         };
 
         const rendered = render(parameters);
@@ -58,7 +57,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with liquid filters', () => {
         const parameters = {
-            markdown: markdownWithFilters,
+            markdown: filters.markdown,
         };
 
         const rendered = render(parameters);
@@ -67,7 +66,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with liquid functions', () => {
         const parameters = {
-            markdown: markdownWithFunctions,
+            markdown: functions.markdown,
         };
 
         const rendered = render(parameters);
@@ -76,7 +75,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with liquid conditionals', () => {
         const parameters = {
-            markdown: markdownWithConditionals,
+            markdown: conditionals.markdown,
         };
 
         const rendered = render(parameters);
@@ -85,7 +84,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with loops', () => {
         const parameters = {
-            markdown: markdownWithLoops,
+            markdown: loops.markdown,
         };
 
         const rendered = render(parameters);
@@ -94,7 +93,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with meta', () => {
         const parameters = {
-            markdown: markdownWithMeta,
+            markdown: meta.markdown,
         };
 
         const rendered = render(parameters);
@@ -103,7 +102,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with notes', () => {
         const parameters = {
-            markdown: markdownWithNotes,
+            markdown: notes.markdown,
         };
 
         const rendered = render(parameters);
@@ -112,7 +111,7 @@ describe('skeleton rendering', () => {
 
     it('renders hash instead of the content from markdown with cuts', () => {
         const parameters = {
-            markdown: markdownWithCuts,
+            markdown: cuts.markdown,
         };
 
         const rendered = render(parameters);

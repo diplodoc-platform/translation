@@ -1,24 +1,14 @@
 import {render, RenderParameters} from './renderer';
-import {
-    skeleton,
-    skeletonWithVariables,
-    translations,
-    translationsWithVariables,
-    skeletonWithConditionals,
-    translationsWithConditionals,
-    skeletonWithLoops,
-    translationsWithLoops,
-    skeletonWithFilters,
-    translationsWithFilters,
-    skeletonWithFunctions,
-    translationsWithFunctions,
-    skeletonWithMeta,
-    translationsWithMeta,
-    skeletonWithNotes,
-    translationsWithNotes,
-    skeletonWithCuts,
-    translationsWithCuts,
-} from 'src/__fixtures__';
+
+import basic from 'src/__fixtures__/basic';
+import variables from 'src/__fixtures__/variables';
+import filters from 'src/__fixtures__/filters';
+import functions from 'src/__fixtures__/functions';
+import conditionals from 'src/__fixtures__/conditionals';
+import loops from 'src/__fixtures__/loops';
+import meta from 'src/__fixtures__/meta';
+import notes from 'src/__fixtures__/notes';
+import cuts from 'src/__fixtures__/cuts';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -70,8 +60,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes', () => {
         const parameters = {
-            skeleton,
-            translations,
+            skeleton: basic.skeleton,
+            translations: basic.translations,
         };
 
         const generated = render(parameters);
@@ -80,8 +70,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes, with liquid variables in text', () => {
         const parameters = {
-            skeleton: skeletonWithVariables,
-            translations: translationsWithVariables,
+            skeleton: variables.skeleton,
+            translations: variables.translations,
         };
 
         const generated = render(parameters);
@@ -90,8 +80,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes, with liquid filters in text', () => {
         const parameters = {
-            skeleton: skeletonWithFilters,
-            translations: translationsWithFilters,
+            skeleton: filters.skeleton,
+            translations: filters.translations,
         };
 
         const generated = render(parameters);
@@ -100,8 +90,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes, with liquid functions in text', () => {
         const parameters = {
-            skeleton: skeletonWithFunctions,
-            translations: translationsWithFunctions,
+            skeleton: functions.skeleton,
+            translations: functions.translations,
         };
 
         const generated = render(parameters);
@@ -110,8 +100,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes, with liquid conditionals in text', () => {
         const parameters = {
-            skeleton: skeletonWithConditionals,
-            translations: translationsWithConditionals,
+            skeleton: conditionals.skeleton,
+            translations: conditionals.translations,
         };
 
         const generated = render(parameters);
@@ -120,8 +110,8 @@ describe('markdown rendering', () => {
 
     it('renders translated txt instead of hashes, with liquid loops in text', () => {
         const parameters = {
-            skeleton: skeletonWithLoops,
-            translations: translationsWithLoops,
+            skeleton: loops.skeleton,
+            translations: loops.translations,
         };
 
         const generated = render(parameters);
@@ -130,8 +120,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes, with meta in text', () => {
         const parameters = {
-            skeleton: skeletonWithMeta,
-            translations: translationsWithMeta,
+            skeleton: meta.skeleton,
+            translations: meta.translations,
         };
 
         const generated = render(parameters);
@@ -140,8 +130,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes, with notes in text', () => {
         const parameters = {
-            skeleton: skeletonWithNotes,
-            translations: translationsWithNotes,
+            skeleton: notes.skeleton,
+            translations: notes.translations,
         };
 
         const generated = render(parameters);
@@ -150,8 +140,8 @@ describe('markdown rendering', () => {
 
     it('renders translated text instead of hashes, with cuts in text', () => {
         const parameters = {
-            skeleton: skeletonWithCuts,
-            translations: translationsWithCuts,
+            skeleton: cuts.skeleton,
+            translations: cuts.translations,
         };
 
         const generated = render(parameters);
