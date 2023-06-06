@@ -9,6 +9,7 @@ import loops from 'src/__fixtures__/loops';
 import meta from 'src/__fixtures__/meta';
 import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
+import gfmTables from 'src/__fixtures__/gfm-tables';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -259,6 +260,25 @@ describe('xlf rendering', () => {
     it('handles markdown with cuts', () => {
         const parameters = {
             markdown: cuts.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with gfm tables', () => {
+        const parameters = {
+            markdown: gfmTables.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
