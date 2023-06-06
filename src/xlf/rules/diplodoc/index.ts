@@ -12,16 +12,31 @@ const always =
 const alwaysEmptyString = always('');
 
 const rules = {
+    // notes
     yfm_note_open: alwaysEmptyString,
     yfm_note_close: alwaysEmptyString,
     yfm_note_title_open: alwaysEmptyString,
     yfm_note_title_close: alwaysEmptyString,
+    // cuts
     yfm_cut_open: alwaysEmptyString,
     yfm_cut_title_open: alwaysEmptyString,
     yfm_cut_title_close: alwaysEmptyString,
     yfm_cut_content_open: alwaysEmptyString,
     yfm_cut_content_close: alwaysEmptyString,
     yfm_cut_close: alwaysEmptyString,
+    // gfm tables
+    table_open: alwaysEmptyString,
+    thead_open: alwaysEmptyString,
+    tr_open: alwaysEmptyString,
+    tr_close: alwaysEmptyString,
+    th_open: alwaysEmptyString,
+    th_close: alwaysEmptyString,
+    thead_close: alwaysEmptyString,
+    tbody_open: alwaysEmptyString,
+    tbody_close: alwaysEmptyString,
+    td_open: alwaysEmptyString,
+    td_close: alwaysEmptyString,
+    table_close: alwaysEmptyString,
 };
 
 export {rules, initState};
