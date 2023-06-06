@@ -22,6 +22,43 @@ exports[`xlf rendering handles markdown with cuts 1`] = `
 "
 `;
 
+exports[`xlf rendering handles markdown with gfm tables 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Заголовок 1</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Заголовок 2</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>текст ссылки</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>жирный текст</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>текст картинки</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>подсказка</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>курсив</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with liquid conditionals 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
