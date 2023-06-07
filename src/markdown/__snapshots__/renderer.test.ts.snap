@@ -33,6 +33,14 @@ Content inside of the cut
 {% endcut %}"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with gfm tables in text 1`] = `
+"|Header 1|Header 2|
+|-----------|-----------|
+|[link text](https://www.google.com)|**bold text**|
+|![image text](image.png \\"hint\\")|*italics*|
+"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with liquid conditionals in text 1`] = `
 "# Титул Документа
 {% if OS == 'iOS' %}

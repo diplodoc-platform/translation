@@ -9,6 +9,7 @@ import loops from 'src/__fixtures__/loops';
 import meta from 'src/__fixtures__/meta';
 import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
+import gfmTables from 'src/__fixtures__/gfm-tables';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -142,6 +143,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: cuts.skeleton,
             translations: cuts.translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with gfm tables in text', () => {
+        const parameters = {
+            skeleton: gfmTables.skeleton,
+            translations: gfmTables.translations,
         };
 
         const generated = render(parameters);
