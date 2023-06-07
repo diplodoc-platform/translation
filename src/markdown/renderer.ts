@@ -30,7 +30,7 @@ function render(parameters: RenderParameters) {
         throw new Error('invalid parameters');
     }
 
-    const md = new MarkdownIt('commonmark', {html: true}) as HooksParameters['markdownit'];
+    const md = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
 
     const {handlers, initState} = markdownHandlers.generate(parameters);
     const markdownHooks = hooks.generate({markdownit: md});
