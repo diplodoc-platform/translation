@@ -142,6 +142,12 @@ information
   {% endnote %}"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with sup syntax in text 1`] = `
+"paragraph of text 1^st^ line
+this is 2^nd^ line
+[1^st^ link inside the paragraph](file.md)"
+`;
+
 exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `
 "# Титул Документа
 {% for element in array %}

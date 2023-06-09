@@ -10,6 +10,7 @@ import meta from 'src/__fixtures__/meta';
 import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
 import gfmTables from 'src/__fixtures__/gfm-tables';
+import sup from 'src/__fixtures__/sup';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -153,6 +154,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: gfmTables.skeleton,
             translations: gfmTables.translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with sup syntax in text', () => {
+        const parameters = {
+            skeleton: sup.skeleton,
+            translations: sup.translations,
         };
 
         const generated = render(parameters);
