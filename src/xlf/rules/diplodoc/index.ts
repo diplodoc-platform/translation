@@ -37,6 +37,9 @@ const rules = {
     td_open: alwaysEmptyString,
     td_close: alwaysEmptyString,
     table_close: alwaysEmptyString,
+    // sup
+    sup_open: alwaysEmptyString,
+    sup_close: alwaysEmptyString,
 };
 
 export {rules, initState};
