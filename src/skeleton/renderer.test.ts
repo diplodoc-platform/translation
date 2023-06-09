@@ -10,6 +10,7 @@ import meta from 'src/__fixtures__/meta';
 import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
 import gfmTables from 'src/__fixtures__/gfm-tables';
+import sup from 'src/__fixtures__/sup';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -122,6 +123,15 @@ describe('skeleton rendering', () => {
     it('renders hash instead of the content from markdown with gfm tables', () => {
         const parameters = {
             markdown: gfmTables.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with sup text', () => {
+        const parameters = {
+            markdown: sup.markdown,
         };
 
         const rendered = render(parameters);
