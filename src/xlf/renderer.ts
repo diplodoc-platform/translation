@@ -4,6 +4,8 @@ import {customRenderer, CustomRendererParams} from '@diplodoc/markdown-it-custom
 // configure with diplodoc plugins
 // @ts-ignore
 import meta from 'markdown-it-meta';
+// @ts-ignore
+import sup from 'markdown-it-sup';
 import notes from '@doc-tools/transform/lib/plugins/notes';
 import cut from '@doc-tools/transform/lib/plugins/cut';
 
@@ -47,6 +49,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(meta);
     xlfRenderer.use(notes, diplodocOptions);
     xlfRenderer.use(cut, diplodocOptions);
+    xlfRenderer.use(sup, diplodocOptions);
 
     return xlfRenderer.render(parameters.markdown);
 }
