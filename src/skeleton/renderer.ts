@@ -8,6 +8,8 @@ import {
 // configure with diplodoc plugins
 // @ts-ignore
 import meta from 'markdown-it-meta';
+// @ts-ignore
+import sup from 'markdown-it-sup';
 import notes from '@doc-tools/transform/lib/plugins/notes';
 import cut from '@doc-tools/transform/lib/plugins/cut';
 
@@ -52,6 +54,7 @@ function render(parameters: RenderParameters) {
     md.use(meta, diplodocOptions);
     md.use(notes, diplodocOptions);
     md.use(cut, diplodocOptions);
+    md.use(sup, diplodocOptions);
 
     return md.render(markdown, env);
 }
