@@ -1,5 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`xlf rendering handles markdown with checkbox syntax 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>первый</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>второй</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>надо сделать подчёркивание</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>надо сделать тире</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>надо сделать пробел</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>сделано крестик</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>сделано крестик заглавный</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>элемент листа</source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source>сделан</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source>надо сделaть</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with cuts 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
