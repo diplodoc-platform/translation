@@ -40,6 +40,12 @@ const rules = {
     // sup
     sup_open: alwaysEmptyString,
     sup_close: alwaysEmptyString,
+    // checkbox
+    checkbox_open: alwaysEmptyString,
+    checkbox_input: alwaysEmptyString,
+    checkbox_label_open: alwaysEmptyString,
+    checkbox_label_close: alwaysEmptyString,
+    checkbox_close: alwaysEmptyString,
 };
 
 export {rules, initState};
