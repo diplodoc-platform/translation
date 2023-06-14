@@ -11,6 +11,7 @@ import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
 import gfmTables from 'src/__fixtures__/gfm-tables';
 import sup from 'src/__fixtures__/sup';
+import checkbox from 'src/__fixtures__/checkbox';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -132,6 +133,15 @@ describe('skeleton rendering', () => {
     it('renders hash instead of the content from markdown with sup text', () => {
         const parameters = {
             markdown: sup.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with checkboxes in text', () => {
+        const parameters = {
+            markdown: checkbox.markdown,
         };
 
         const rendered = render(parameters);

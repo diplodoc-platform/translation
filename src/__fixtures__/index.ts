@@ -8,8 +8,21 @@ import meta from 'src/__fixtures__/meta';
 import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
 import gfmTables from 'src/__fixtures__/gfm-tables';
+import checkbox from 'src/__fixtures__/checkbox';
 
-export {basic, variables, filters, functions, conditionals, loops, meta, notes, cuts, gfmTables};
+export {
+    basic,
+    variables,
+    filters,
+    functions,
+    conditionals,
+    loops,
+    meta,
+    notes,
+    cuts,
+    gfmTables,
+    checkbox,
+};
 export default {
     basic,
     variables,
@@ -21,4 +34,5 @@ export default {
     notes,
     cuts,
     gfmTables,
+    checkbox,
 };

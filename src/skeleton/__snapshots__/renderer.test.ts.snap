@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`skeleton rendering renders hash instead of the content from markdown with checkboxes in text 1`] = `
+"[ ] %%%1%%%
+
+[x] %%%2%%%
+- [_] %%%3%%%
+- [-] %%%4%%%
+- [ ] %%%5%%%
+- [x] %%%6%%%
+- [X] %%%7%%%
+
+- %%%8%%%
+  - [x] %%%9%%%
+  - [ ] %%%10%%%"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with cuts 1`] = `
 "
 {% cut \\"%%%1%%%\\" %}
