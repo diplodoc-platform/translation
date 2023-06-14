@@ -8,6 +8,7 @@ import meta from 'markdown-it-meta';
 import sup from 'markdown-it-sup';
 import notes from '@doc-tools/transform/lib/plugins/notes';
 import cut from '@doc-tools/transform/lib/plugins/cut';
+import checkbox from '@doc-tools/transform/lib/plugins/checkbox';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -50,6 +51,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(notes, diplodocOptions);
     xlfRenderer.use(cut, diplodocOptions);
     xlfRenderer.use(sup, diplodocOptions);
+    xlfRenderer.use(checkbox, diplodocOptions);
 
     return xlfRenderer.render(parameters.markdown);
 }
