@@ -12,6 +12,7 @@ import meta from 'markdown-it-meta';
 import sup from 'markdown-it-sup';
 import notes from '@doc-tools/transform/lib/plugins/notes';
 import cut from '@doc-tools/transform/lib/plugins/cut';
+import checkbox from '@doc-tools/transform/lib/plugins/checkbox';
 
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
@@ -56,6 +57,7 @@ function render(parameters: RenderParameters) {
     md.use(notes, diplodocOptions);
     md.use(cut, diplodocOptions);
     md.use(sup, diplodocOptions);
+    md.use(checkbox, diplodocOptions);
 
     return md.render(parameters.skeleton, env);
 }
