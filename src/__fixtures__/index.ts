@@ -9,6 +9,7 @@ import notes from 'src/__fixtures__/notes';
 import cuts from 'src/__fixtures__/cuts';
 import gfmTables from 'src/__fixtures__/gfm-tables';
 import checkbox from 'src/__fixtures__/checkbox';
+import anchors from 'src/__fixtures__/anchors';
 
 export {
     basic,
@@ -22,6 +23,7 @@ export {
     cuts,
     gfmTables,
     checkbox,
+    anchors,
 };
 export default {
     basic,
@@ -35,4 +37,5 @@ export default {
     cuts,
     gfmTables,
     checkbox,
+    anchors,
 };
