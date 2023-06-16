@@ -9,6 +9,7 @@ import sup from 'markdown-it-sup';
 import notes from '@doc-tools/transform/lib/plugins/notes';
 import cut from '@doc-tools/transform/lib/plugins/cut';
 import checkbox from '@doc-tools/transform/lib/plugins/checkbox';
+import anchors from '@doc-tools/transform/lib/plugins/anchors';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -52,6 +53,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(cut, diplodocOptions);
     xlfRenderer.use(sup, diplodocOptions);
     xlfRenderer.use(checkbox, diplodocOptions);
+    xlfRenderer.use(anchors, diplodocOptions);
 
     return xlfRenderer.render(parameters.markdown);
 }
