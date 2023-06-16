@@ -12,6 +12,7 @@ import cuts from 'src/__fixtures__/cuts';
 import gfmTables from 'src/__fixtures__/gfm-tables';
 import sup from 'src/__fixtures__/sup';
 import checkbox from 'src/__fixtures__/checkbox';
+import anchors from 'src/__fixtures__/anchors';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -175,6 +176,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: checkbox.skeleton,
             translations: checkbox.translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with anchors syntax in text', () => {
+        const parameters = {
+            skeleton: anchors.skeleton,
+            translations: anchors.translations,
         };
 
         const generated = render(parameters);
