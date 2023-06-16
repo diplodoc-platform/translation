@@ -12,6 +12,7 @@ import cuts from 'src/__fixtures__/cuts';
 import gfmTables from 'src/__fixtures__/gfm-tables';
 import sup from 'src/__fixtures__/sup';
 import checkbox from 'src/__fixtures__/checkbox';
+import anchors from 'src/__fixtures__/anchors';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -319,6 +320,25 @@ describe('xlf rendering', () => {
     it('handles markdown with checkbox syntax', () => {
         const parameters = {
             markdown: checkbox.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with anchors syntax', () => {
+        const parameters = {
+            markdown: anchors.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
