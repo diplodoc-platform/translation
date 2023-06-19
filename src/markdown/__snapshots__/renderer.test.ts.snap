@@ -147,6 +147,12 @@ nesting:
 Comments and metadata - not displayed in the final file. They are used to make comments for other writers or set meta into final html for seo."
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with monospace syntax in text 1`] = `
+"##monospace##
+this ##is## mono**space** he##he##he
+[hello ##world## i'm ##fine##](href \\"hint\\")"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with notes in text 1`] = `
 "
 {% note info \\"Information\\" %}

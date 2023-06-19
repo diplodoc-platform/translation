@@ -389,6 +389,61 @@ exports[`xlf rendering handles markdown with meta 1`] = `
 "
 `;
 
+exports[`xlf rendering handles markdown with monospace syntax inside 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>моноспейс</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>вот</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>это</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>моно</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>спейс</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>хе</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>хе</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>хе</source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source>привет</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source>мир</source>
+      </trans-unit>
+      <trans-unit id=\\"11\\">
+        <source>мне</source>
+      </trans-unit>
+      <trans-unit id=\\"12\\">
+        <source>хорошо</source>
+      </trans-unit>
+      <trans-unit id=\\"13\\">
+        <source>подсказка</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with notes 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
