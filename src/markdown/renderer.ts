@@ -14,6 +14,7 @@ import notes from '@doc-tools/transform/lib/plugins/notes';
 import cut from '@doc-tools/transform/lib/plugins/cut';
 import checkbox from '@doc-tools/transform/lib/plugins/checkbox';
 import anchors from '@doc-tools/transform/lib/plugins/anchors';
+import monospace from '@doc-tools/transform/lib/plugins/monospace';
 
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
@@ -60,6 +61,7 @@ function render(parameters: RenderParameters) {
     md.use(sup, diplodocOptions);
     md.use(checkbox, diplodocOptions);
     md.use(anchors, diplodocOptions);
+    md.use(monospace, diplodocOptions);
 
     return md.render(parameters.skeleton, env);
 }

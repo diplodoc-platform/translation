@@ -46,6 +46,9 @@ const rules = {
     checkbox_label_open: alwaysEmptyString,
     checkbox_label_close: alwaysEmptyString,
     checkbox_close: alwaysEmptyString,
+    // monospace
+    monospace_open: alwaysEmptyString,
+    monospace_close: alwaysEmptyString,
 };
 
 export {rules, initState};
