@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`skeleton rendering renders hash instead of the content from markdown with anchors in text 1`] = `
+"# %%%1%%%
+%%%2%%%
+## %%%3%%% {#anchor}"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with checkboxes in text 1`] = `
 "[ ] %%%1%%%
 
