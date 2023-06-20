@@ -38,6 +38,8 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 "
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with imsize images 1`] = `"%%%1%%% ![%%%2%%%](image.png \\"%%%3%%%\\" =13x37) %%%4%%%"`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with liquid conditionals 1`] = `
 "# %%%1%%%
 {% if OS == 'iOS' %}
