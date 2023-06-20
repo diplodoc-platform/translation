@@ -11,6 +11,7 @@ import cut from '@doc-tools/transform/lib/plugins/cut';
 import checkbox from '@doc-tools/transform/lib/plugins/checkbox';
 import anchors from '@doc-tools/transform/lib/plugins/anchors';
 import monospace from '@doc-tools/transform/lib/plugins/monospace';
+import imsize from '@doc-tools/transform/lib/plugins/imsize';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -56,6 +57,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(checkbox, diplodocOptions);
     xlfRenderer.use(anchors, diplodocOptions);
     xlfRenderer.use(monospace, diplodocOptions);
+    xlfRenderer.use(imsize, diplodocOptions);
 
     return xlfRenderer.render(parameters.markdown);
 }
