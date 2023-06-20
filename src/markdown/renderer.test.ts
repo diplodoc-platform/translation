@@ -14,6 +14,7 @@ import sup from 'src/__fixtures__/sup';
 import checkbox from 'src/__fixtures__/checkbox';
 import anchors from 'src/__fixtures__/anchors';
 import monospace from 'src/__fixtures__/monospace';
+import imsize from 'src/__fixtures__/imsize';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -197,6 +198,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: monospace.skeleton,
             translations: monospace.translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with imsize syntax in text', () => {
+        const parameters = {
+            skeleton: imsize.skeleton,
+            translations: imsize.translations,
         };
 
         const generated = render(parameters);

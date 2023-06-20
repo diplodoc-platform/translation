@@ -62,6 +62,8 @@ exports[`markdown rendering renders translated text instead of hashes, with gfm 
 "
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with imsize syntax in text 1`] = `"paragraph with ![image inside](image.png \\"alt text\\" =13x37) with width and height specified"`;
+
 exports[`markdown rendering renders translated text instead of hashes, with liquid conditionals in text 1`] = `
 "# Титул Документа
 {% if OS == 'iOS' %}
