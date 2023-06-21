@@ -47,8 +47,6 @@ function render(parameters: RenderParameters) {
         lang: parameters.lang ?? 'ru',
     };
 
-    xlfRenderer.use(customRenderer, xlfOptions);
-
     // diplodoc plugins
     xlfRenderer.use(meta);
     xlfRenderer.use(notes, diplodocOptions);
@@ -58,6 +56,8 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(anchors, diplodocOptions);
     xlfRenderer.use(monospace, diplodocOptions);
     xlfRenderer.use(imsize, diplodocOptions);
+
+    xlfRenderer.use(customRenderer, xlfOptions);
 
     return xlfRenderer.render(parameters.markdown);
 }
