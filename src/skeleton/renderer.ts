@@ -52,8 +52,6 @@ function render(parameters: RenderParameters) {
         lang: lang ?? 'ru',
     };
 
-    md.use(mdRenderer, mdOptions);
-
     // diplodoc plugins
     md.use(meta, diplodocOptions);
     md.use(notes, diplodocOptions);
@@ -63,6 +61,8 @@ function render(parameters: RenderParameters) {
     md.use(anchors, diplodocOptions);
     md.use(monospace, diplodocOptions);
     md.use(imsize, diplodocOptions);
+
+    md.use(mdRenderer, mdOptions);
 
     return md.render(markdown, env);
 }

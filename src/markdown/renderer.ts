@@ -53,8 +53,6 @@ function render(parameters: RenderParameters) {
         source: parameters.skeleton.split('\n'),
     };
 
-    md.use(mdRenderer, mdOptions);
-
     // diplodoc plugins
     md.use(meta);
     md.use(notes, diplodocOptions);
@@ -64,6 +62,8 @@ function render(parameters: RenderParameters) {
     md.use(anchors, diplodocOptions);
     md.use(monospace, diplodocOptions);
     md.use(imsize, diplodocOptions);
+
+    md.use(mdRenderer, mdOptions);
 
     return md.render(parameters.skeleton, env);
 }
