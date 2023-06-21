@@ -13,6 +13,8 @@ import gfmTables from 'src/__fixtures__/gfm-tables';
 import sup from 'src/__fixtures__/sup';
 import checkbox from 'src/__fixtures__/checkbox';
 import anchors from 'src/__fixtures__/anchors';
+import monospace from 'src/__fixtures__/monospace';
+import imsize from 'src/__fixtures__/imsize';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -152,6 +154,24 @@ describe('skeleton rendering', () => {
     it('renders hash instead of the content from markdown with anchors in text', () => {
         const parameters = {
             markdown: anchors.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with monospace text', () => {
+        const parameters = {
+            markdown: monospace.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with imsize images', () => {
+        const parameters = {
+            markdown: imsize.markdown,
         };
 
         const rendered = render(parameters);

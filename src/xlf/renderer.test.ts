@@ -13,6 +13,8 @@ import gfmTables from 'src/__fixtures__/gfm-tables';
 import sup from 'src/__fixtures__/sup';
 import checkbox from 'src/__fixtures__/checkbox';
 import anchors from 'src/__fixtures__/anchors';
+import monospace from 'src/__fixtures__/monospace';
+import imsize from 'src/__fixtures__/imsize';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -317,6 +319,25 @@ describe('xlf rendering', () => {
         expect(rendered).toMatchSnapshot();
     });
 
+    it('handles markdown with monospace syntax inside', () => {
+        const parameters = {
+            markdown: monospace.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
     it('handles markdown with checkbox syntax', () => {
         const parameters = {
             markdown: checkbox.markdown,
@@ -339,6 +360,25 @@ describe('xlf rendering', () => {
     it('handles markdown with anchors syntax', () => {
         const parameters = {
             markdown: anchors.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with imsize syntax', () => {
+        const parameters = {
+            markdown: imsize.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
