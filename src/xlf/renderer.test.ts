@@ -15,6 +15,7 @@ import checkbox from 'src/__fixtures__/checkbox';
 import anchors from 'src/__fixtures__/anchors';
 import monospace from 'src/__fixtures__/monospace';
 import imsize from 'src/__fixtures__/imsize';
+import file from 'src/__fixtures__/file';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -379,6 +380,25 @@ describe('xlf rendering', () => {
     it('handles markdown with imsize syntax', () => {
         const parameters = {
             markdown: imsize.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with file syntax', () => {
+        const parameters = {
+            markdown: file.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,

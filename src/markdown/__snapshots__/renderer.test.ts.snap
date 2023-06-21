@@ -54,6 +54,8 @@ Content inside of the cut
 {% endcut %}"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with file syntax in text 1`] = `"{% file src=\\"sample-file\\" name=\\"file.zip\\" type=\\"application/zip\\" %} text {% file src=\\"sample-file\\" name=\\"file2.zip\\" type=\\"application/zip\\" %}"`;
+
 exports[`markdown rendering renders translated text instead of hashes, with gfm tables in text 1`] = `
 "|Header 1|Header 2|
 |-----------|-----------|
