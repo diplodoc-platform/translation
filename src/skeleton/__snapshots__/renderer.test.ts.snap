@@ -30,6 +30,8 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 {% endcut %}"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with file in text 1`] = `"{% file src=\\"sample-file\\" name=\\"%%%1%%%\\" type=\\"application/zip\\" %} %%%2%%% {% file src=\\"sample-file\\" name=\\"%%%3%%%\\" type=\\"application/zip\\" %}"`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with gfm tables 1`] = `
 "|%%%1%%%|%%%2%%%|
 |-----------|-----------|

@@ -16,6 +16,7 @@ import checkbox from '@doc-tools/transform/lib/plugins/checkbox';
 import anchors from '@doc-tools/transform/lib/plugins/anchors';
 import monospace from '@doc-tools/transform/lib/plugins/monospace';
 import imsize from '@doc-tools/transform/lib/plugins/imsize';
+import file from '@doc-tools/transform/lib/plugins/file';
 
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
@@ -62,6 +63,7 @@ function render(parameters: RenderParameters) {
     md.use(anchors, diplodocOptions);
     md.use(monospace, diplodocOptions);
     md.use(imsize, diplodocOptions);
+    md.use(file, diplodocOptions);
 
     md.use(mdRenderer, mdOptions);
 

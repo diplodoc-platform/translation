@@ -2,6 +2,7 @@ import {TranslationUnitsByID} from 'src/xlf/parser';
 import {text} from './text';
 import {linkClose} from './link';
 import {imageClose} from './image';
+import {yfmFile} from './diplodoc/file';
 
 export type MarkdownHandlersState = {
     markdown: {
@@ -19,7 +20,7 @@ function generate(parameters: MarkdownHandlersParameters) {
 }
 
 function handlers() {
-    return {text, link_close: linkClose, image_close: imageClose};
+    return {text, link_close: linkClose, image_close: imageClose, yfm_file: yfmFile};
 }
 
 function initState(parameters: MarkdownHandlersParameters) {
