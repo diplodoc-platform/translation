@@ -16,6 +16,7 @@ import anchors from 'src/__fixtures__/anchors';
 import monospace from 'src/__fixtures__/monospace';
 import imsize from 'src/__fixtures__/imsize';
 import file from 'src/__fixtures__/file';
+import links from 'src/__fixtures__/links';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -182,6 +183,15 @@ describe('skeleton rendering', () => {
     it('renders hash instead of the content from markdown with file in text', () => {
         const parameters = {
             markdown: file.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('does not render hash instead of the special syntax {#T} inside link text', () => {
+        const parameters = {
+            markdown: links.markdown,
         };
 
         const rendered = render(parameters);
