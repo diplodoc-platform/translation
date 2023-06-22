@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`skeleton rendering does not render hash instead of the special syntax {#T} inside link text 1`] = `"%%%1%%% [{#T}](file.md \\"%%%2%%%\\") %%%3%%%"`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with anchors in text 1`] = `
 "# %%%1%%%
 %%%2%%%
