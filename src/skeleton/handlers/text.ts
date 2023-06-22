@@ -3,6 +3,7 @@ import Token from 'markdown-it/lib/token';
 
 import {replacer} from 'src/skeleton/replacer';
 import {isAnchor} from 'src/anchor';
+import {isTitleRefLink} from 'src/link';
 
 import {SkeletonHandlersState} from './index';
 
@@ -13,6 +14,11 @@ function text(this: MarkdownRenderer<SkeletonHandlersState>, tokens: Token[], i:
     }
 
     if (isAnchor(content)) {
+        return '';
+    }
+
+    const insideLink = this.state.link.pending?.length;
+    if (insideLink && isTitleRefLink(content)) {
         return '';
     }
 
