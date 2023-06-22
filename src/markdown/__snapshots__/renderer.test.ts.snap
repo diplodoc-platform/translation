@@ -173,6 +173,8 @@ information
   {% endnote %}"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with ref links({#T}) syntax in text 1`] = `"paragraph with ref link [{#T}](file.md \\"title\\") paragraph continuation"`;
+
 exports[`markdown rendering renders translated text instead of hashes, with sup syntax in text 1`] = `
 "paragraph of text 1^st^ line
 this is 2^nd^ line
