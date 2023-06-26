@@ -12,6 +12,7 @@ import checkbox from 'src/__fixtures__/checkbox';
 import anchors from 'src/__fixtures__/anchors';
 import imsize from 'src/__fixtures__/imsize';
 import links from 'src/__fixtures__/links';
+import includes from 'src/__fixtures__/includes';
 
 export {
     basic,
@@ -28,6 +29,7 @@ export {
     anchors,
     imsize,
     links,
+    includes,
 };
 export default {
     basic,
@@ -44,4 +46,5 @@ export default {
     anchors,
     imsize,
     links,
+    includes,
 };
