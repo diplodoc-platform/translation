@@ -18,6 +18,7 @@ import imsize from 'src/__fixtures__/imsize';
 import file from 'src/__fixtures__/file';
 import links from 'src/__fixtures__/links';
 import includes from 'src/__fixtures__/includes';
+import strikethrough from 'src/__fixtures__/strikethrough';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -439,6 +440,25 @@ describe('xlf rendering', () => {
     it('handles {% includes ... %}', () => {
         const parameters = {
             markdown: includes.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with strikethrough syntax', () => {
+        const parameters = {
+            markdown: strikethrough.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,
