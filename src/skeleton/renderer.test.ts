@@ -17,6 +17,7 @@ import monospace from 'src/__fixtures__/monospace';
 import imsize from 'src/__fixtures__/imsize';
 import file from 'src/__fixtures__/file';
 import links from 'src/__fixtures__/links';
+import includes from 'src/__fixtures__/includes';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -192,6 +193,15 @@ describe('skeleton rendering', () => {
     it('does not render hash instead of the special syntax {#T} inside link text', () => {
         const parameters = {
             markdown: links.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('does not render hashes instead of the {% include ... %} syntax', () => {
+        const parameters = {
+            markdown: includes.markdown,
         };
 
         const rendered = render(parameters);
