@@ -18,6 +18,7 @@ import imsize from 'src/__fixtures__/imsize';
 import file from 'src/__fixtures__/file';
 import links from 'src/__fixtures__/links';
 import includes from 'src/__fixtures__/includes';
+import strikethrough from 'src/__fixtures__/strikethrough';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -202,6 +203,15 @@ describe('skeleton rendering', () => {
     it('does not render hashes instead of the {% include ... %} syntax', () => {
         const parameters = {
             markdown: includes.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with strikethrough', () => {
+        const parameters = {
+            markdown: strikethrough.markdown,
         };
 
         const rendered = render(parameters);
