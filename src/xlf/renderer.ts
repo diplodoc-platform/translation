@@ -13,6 +13,7 @@ import anchors from '@doc-tools/transform/lib/plugins/anchors';
 import monospace from '@doc-tools/transform/lib/plugins/monospace';
 import imsize from '@doc-tools/transform/lib/plugins/imsize';
 import file from '@doc-tools/transform/lib/plugins/file';
+import includes from '@doc-tools/transform/lib/plugins/includes';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -46,6 +47,7 @@ function render(parameters: RenderParameters) {
     };
     const diplodocOptions = {
         lang: parameters.lang ?? 'ru',
+        path: '',
     };
 
     // diplodoc plugins
@@ -58,6 +60,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(monospace, diplodocOptions);
     xlfRenderer.use(imsize, diplodocOptions);
     xlfRenderer.use(file, diplodocOptions);
+    xlfRenderer.use(includes, diplodocOptions);
 
     xlfRenderer.use(customRenderer, xlfOptions);
 
