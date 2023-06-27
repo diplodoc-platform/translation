@@ -17,6 +17,7 @@ import monospace from 'src/__fixtures__/monospace';
 import imsize from 'src/__fixtures__/imsize';
 import file from 'src/__fixtures__/file';
 import links from 'src/__fixtures__/links';
+import includes from 'src/__fixtures__/includes';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -230,6 +231,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: links.skeleton,
             translations: links.translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, ignoring {% include ... %} syntax in text', () => {
+        const parameters = {
+            skeleton: includes.skeleton,
+            translations: includes.translations,
         };
 
         const generated = render(parameters);

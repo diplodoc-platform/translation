@@ -17,9 +17,11 @@ import anchors from '@doc-tools/transform/lib/plugins/anchors';
 import monospace from '@doc-tools/transform/lib/plugins/monospace';
 import imsize from '@doc-tools/transform/lib/plugins/imsize';
 import file from '@doc-tools/transform/lib/plugins/file';
+import includes from '@doc-tools/transform/lib/plugins/includes';
 
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
+import {rules} from './rules';
 
 export type MarkdownRendererState = MarkdownHandlersState;
 
@@ -45,9 +47,11 @@ function render(parameters: RenderParameters) {
         handlers,
         initState,
         hooks: markdownHooks.hooks,
+        rules,
     };
     const diplodocOptions = {
         lang: parameters.lang ?? 'ru',
+        path: '',
     };
 
     const env: MarkdownRendererEnv = {
@@ -64,6 +68,7 @@ function render(parameters: RenderParameters) {
     md.use(monospace, diplodocOptions);
     md.use(imsize, diplodocOptions);
     md.use(file, diplodocOptions);
+    md.use(includes, diplodocOptions);
 
     md.use(mdRenderer, mdOptions);
 

@@ -24,6 +24,12 @@ Also key features of the project structure highlight extremely interesting featu
 ![Alternative image text Alt. text continued](files/image.png \\"Image title Image title continued\\")"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, ignoring {% include ... %} syntax in text 1`] = `
+"{% include notitle [Description](../_includes/file.md) %}
+
+{% include [Description](../_includes/file.md) %}"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with anchors syntax in text 1`] = `
 "# heading with implicit anchor
 paragraph
