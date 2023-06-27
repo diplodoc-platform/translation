@@ -1,6 +1,7 @@
 import {text} from './text';
 import {linkClose} from './link';
 import {imageClose} from './image';
+import {yfmFile} from './diplodoc/file';
 
 export type SkeletonHandlersState = {
     skeleton: {
@@ -17,6 +18,7 @@ function handlers() {
         text,
         link_close: linkClose,
         image_close: imageClose,
+        yfm_file: yfmFile,
     };
 }
 

@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`skeleton rendering does not render hash instead of the special syntax {#T} inside link text 1`] = `"%%%1%%% [{#T}](file.md \\"%%%2%%%\\") %%%3%%%"`;
+
+exports[`skeleton rendering does not render hashes instead of the {% include ... %} syntax 1`] = `
+"{% include notitle [Description](../_includes/file.md) %}
+
+{% include [Description](../_includes/file.md) %}"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with anchors in text 1`] = `
 "# %%%1%%%
 %%%2%%%
@@ -29,6 +37,8 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 
 {% endcut %}"
 `;
+
+exports[`skeleton rendering renders hash instead of the content from markdown with file in text 1`] = `"{% file src=\\"sample-file\\" name=\\"%%%1%%%\\" type=\\"application/zip\\" %} %%%2%%% {% file src=\\"sample-file\\" name=\\"%%%3%%%\\" type=\\"application/zip\\" %}"`;
 
 exports[`skeleton rendering renders hash instead of the content from markdown with gfm tables 1`] = `
 "|%%%1%%%|%%%2%%%|

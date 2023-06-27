@@ -1,3 +1,5 @@
+import {yfmFile} from './file';
+
 export type DiplodocRulesState = {};
 
 function initState() {
@@ -49,6 +51,10 @@ const rules = {
     // monospace
     monospace_open: alwaysEmptyString,
     monospace_close: alwaysEmptyString,
+    // yfmFile
+    yfm_file: yfmFile,
+    // include
+    include: alwaysEmptyString,
 };
 
 export {rules, initState};

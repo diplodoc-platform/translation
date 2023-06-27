@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`xlf rendering handles {% includes ... %} 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with anchors syntax 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -86,6 +102,31 @@ exports[`xlf rendering handles markdown with cuts 1`] = `
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>Контент внутри ката</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`xlf rendering handles markdown with file syntax 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>файлик.zip</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>текст</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>файлик2.zip</source>
       </trans-unit>
     </body>
   </file>
@@ -496,6 +537,31 @@ exports[`xlf rendering handles markdown with notes 1`] = `
       </trans-unit>
       <trans-unit id=\\"5\\">
         <source>предупреждение</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`xlf rendering handles markdown with ref links({#T}) syntax 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>параграф содержащий реф ссылку</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>титул</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>продолжение предложения.</source>
       </trans-unit>
     </body>
   </file>

@@ -24,6 +24,12 @@ Also key features of the project structure highlight extremely interesting featu
 ![Alternative image text Alt. text continued](files/image.png \\"Image title Image title continued\\")"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, ignoring {% include ... %} syntax in text 1`] = `
+"{% include notitle [Description](../_includes/file.md) %}
+
+{% include [Description](../_includes/file.md) %}"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with anchors syntax in text 1`] = `
 "# heading with implicit anchor
 paragraph
@@ -53,6 +59,8 @@ Content inside of the cut
 
 {% endcut %}"
 `;
+
+exports[`markdown rendering renders translated text instead of hashes, with file syntax in text 1`] = `"{% file src=\\"sample-file\\" name=\\"file.zip\\" type=\\"application/zip\\" %} text {% file src=\\"sample-file\\" name=\\"file2.zip\\" type=\\"application/zip\\" %}"`;
 
 exports[`markdown rendering renders translated text instead of hashes, with gfm tables in text 1`] = `
 "|Header 1|Header 2|
@@ -170,6 +178,8 @@ information
 
   {% endnote %}"
 `;
+
+exports[`markdown rendering renders translated text instead of hashes, with ref links({#T}) syntax in text 1`] = `"paragraph with ref link [{#T}](file.md \\"title\\") paragraph continuation"`;
 
 exports[`markdown rendering renders translated text instead of hashes, with sup syntax in text 1`] = `
 "paragraph of text 1^st^ line

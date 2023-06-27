@@ -11,6 +11,8 @@ import gfmTables from 'src/__fixtures__/gfm-tables';
 import checkbox from 'src/__fixtures__/checkbox';
 import anchors from 'src/__fixtures__/anchors';
 import imsize from 'src/__fixtures__/imsize';
+import links from 'src/__fixtures__/links';
+import includes from 'src/__fixtures__/includes';
 
 export {
     basic,
@@ -26,6 +28,8 @@ export {
     checkbox,
     anchors,
     imsize,
+    links,
+    includes,
 };
 export default {
     basic,
@@ -41,4 +45,6 @@ export default {
     checkbox,
     anchors,
     imsize,
+    links,
+    includes,
 };
