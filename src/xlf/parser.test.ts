@@ -18,6 +18,12 @@ const transUnits = [
     {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
 ];
 
+const transUnitWithAttributes = (id: number, text: string) => `\
+<trans-unit id="${id}">
+    <source>source</source>
+    <target xml:lang="en-US">${text}</target>
+</trans-unit>`;
+
 const xlf = before + transUnits.map(transUnit.generate).join('') + after;
 
 describe('smoke', () => {
@@ -50,6 +56,30 @@ describe('parses translation units', () => {
             }
 
             expect(translation).toStrictEqual(expected.target);
+        }
+    });
+
+    it('parses targets with attributes', () => {
+        const [open, close] = template.generate(templateParameters).template;
+
+        const fixtures: Array<[number, string]> = [
+            [1, 'text segment 1'],
+            [2, 'text segment 2'],
+        ];
+
+        const document =
+            open + fixtures.map((fixture) => transUnitWithAttributes(...fixture)) + close;
+
+        const translations = translationUnits({xlf: document});
+
+        for (const [id, text] of fixtures) {
+            const translation = translations.get(String(id));
+
+            if (!translation) {
+                throw new Error(`failed to receive ${id} translation unit`);
+            }
+
+            expect(translation).toStrictEqual(text);
         }
     });
 });
