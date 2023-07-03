@@ -3,6 +3,7 @@ import {
     mdRenderer,
     MarkdownRendererParams,
     MarkdownRendererEnv,
+    MarkdownRenderer,
 } from '@diplodoc/markdown-it-markdown-renderer';
 
 // configure with diplodoc plugins
@@ -18,6 +19,7 @@ import monospace from '@doc-tools/transform/lib/plugins/monospace';
 import imsize from '@doc-tools/transform/lib/plugins/imsize';
 import file from '@doc-tools/transform/lib/plugins/file';
 import includes from '@doc-tools/transform/lib/plugins/includes';
+import tabs from '@doc-tools/transform/lib/plugins/tabs';
 
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
@@ -43,6 +45,16 @@ function render(parameters: RenderParameters) {
 
     const {handlers, initState} = markdownHandlers.generate(parameters);
     const markdownHooks = hooks.generate({markdownit: md});
+
+    // todo: add non-destructive way of extending markdown-renderer hooks
+    for (const defaultHook of Object.entries(MarkdownRenderer.defaultHooks)) {
+        const [lifecycle, hooks_] = defaultHook as any;
+
+        if (markdownHooks.hooks[lifecycle]) {
+            markdownHooks.hooks[lifecycle] = [...markdownHooks.hooks[lifecycle], ...hooks_];
+        }
+    }
+
     const mdOptions: MarkdownRendererParams<MarkdownHandlersState> = {
         handlers,
         initState,
@@ -69,6 +81,7 @@ function render(parameters: RenderParameters) {
     md.use(imsize, diplodocOptions);
     md.use(file, diplodocOptions);
     md.use(includes, diplodocOptions);
+    md.use(tabs, diplodocOptions);
 
     md.use(mdRenderer, mdOptions);
 
