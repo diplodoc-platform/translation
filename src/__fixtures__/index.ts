@@ -13,6 +13,7 @@ import anchors from 'src/__fixtures__/anchors';
 import imsize from 'src/__fixtures__/imsize';
 import links from 'src/__fixtures__/links';
 import includes from 'src/__fixtures__/includes';
+import tabs from 'src/__fixtures__/tabs';
 
 export {
     basic,
@@ -30,6 +31,7 @@ export {
     imsize,
     links,
     includes,
+    tabs,
 };
 export default {
     basic,
@@ -47,4 +49,5 @@ export default {
     imsize,
     links,
     includes,
+    tabs,
 };
