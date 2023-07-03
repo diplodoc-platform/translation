@@ -19,6 +19,7 @@ import file from 'src/__fixtures__/file';
 import links from 'src/__fixtures__/links';
 import includes from 'src/__fixtures__/includes';
 import strikethrough from 'src/__fixtures__/strikethrough';
+import tabs from 'src/__fixtures__/tabs';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -212,6 +213,15 @@ describe('skeleton rendering', () => {
     it('renders hash instead of the content from markdown with strikethrough', () => {
         const parameters = {
             markdown: strikethrough.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with tabs', () => {
+        const parameters = {
+            markdown: tabs.markdown,
         };
 
         const rendered = render(parameters);
