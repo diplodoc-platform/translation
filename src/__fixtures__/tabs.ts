@@ -15,5 +15,31 @@ const markdown = `\
 {% endlist %}
 `;
 
-export {markdown};
-export default {markdown};
+const skeleton = `\
+{% list tabs %}
+
+- %%%1%%%
+
+  %%%2%%%
+
+  - %%%3%%%
+        
+    %%%4%%%
+- %%%5%%%
+  
+  %%%6%%%
+
+{% endlist %}
+`;
+
+const translations = new Map<string, string>([
+    ['1', 'First tab'],
+    ['2', 'text of the first tab'],
+    ['3', 'list inside the tab'],
+    ['4', 'content inside the list'],
+    ['5', 'Second tab'],
+    ['6', 'text of the second tab'],
+]);
+
+export {markdown, skeleton, translations};
+export default {markdown, skeleton, translations};
