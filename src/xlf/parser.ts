@@ -45,9 +45,14 @@ type XLF =
     | {};
 
 type TranslationUnit = {
-    target: string;
+    target: string | HasText;
     source: string;
     '@_id': string;
+};
+
+type HasText = {
+    [key: string]: string;
+    '#text': string;
 };
 
 type Ref = {
@@ -77,7 +82,13 @@ function handleTranslationUnits(units: TranslationUnit[], ref: Ref) {
             throw new Error('failed parsing xliff no id on trans-unit');
         }
 
-        ref.translationUnits.set(id, target);
+        const targetText = (target as HasText)['#text'];
+        if (targetText) {
+            ref.translationUnits.set(id, targetText);
+            continue;
+        } else {
+            ref.translationUnits.set(id, target as string);
+        }
     }
 }
 
