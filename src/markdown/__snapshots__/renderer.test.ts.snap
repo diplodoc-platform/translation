@@ -192,6 +192,23 @@ this is 2^nd^ line
 [1^st^ link inside the paragraph](file.md)"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with tabs syntax in text 1`] = `
+"{% list tabs %}
+
+- First tab
+
+  text of the first tab
+  - list inside the tab
+    
+    content inside the list
+- Second tab
+
+  text of the second tab
+
+{% endlist %}
+"
+`;
+
 exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `
 "# Титул Документа
 {% for element in array %}
