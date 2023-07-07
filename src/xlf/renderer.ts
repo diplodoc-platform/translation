@@ -1,5 +1,10 @@
 import MarkdownIt from 'markdown-it';
-import {customRenderer, CustomRendererParams} from '@diplodoc/markdown-it-custom-renderer';
+import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
+import {
+    CustomRendererHooks,
+    customRenderer,
+    CustomRendererParams,
+} from '@diplodoc/markdown-it-custom-renderer';
 
 // configure with diplodoc plugins
 // @ts-ignore
@@ -14,6 +19,7 @@ import monospace from '@doc-tools/transform/lib/plugins/monospace';
 import imsize from '@doc-tools/transform/lib/plugins/imsize';
 import file from '@doc-tools/transform/lib/plugins/file';
 import includes from '@doc-tools/transform/lib/plugins/includes';
+import tabs from '@doc-tools/transform/lib/plugins/tabs';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -39,7 +45,24 @@ function render(parameters: RenderParameters) {
 
     const xlfRenderer = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
     const xlfRules = rules.generate(wrapper);
-    const xlfHooks = hooks.generate({template: wrapper.template, markdownit: xlfRenderer});
+    const xlfHooks: {hooks: CustomRendererHooks} = hooks.generate({
+        template: wrapper.template,
+        markdownit: xlfRenderer,
+    });
+
+    // todo: add non-destructive way of extending custom-renderer hooks
+    for (const lifecycleHook of Object.entries(MarkdownRenderer.defaultHooks)) {
+        const [lifecycle, hooks_] = lifecycleHook as any;
+
+        const hooksForLifeCycle = xlfHooks.hooks[lifecycle];
+
+        if (Array.isArray(hooksForLifeCycle)) {
+            xlfHooks.hooks[lifecycle] = [...hooksForLifeCycle, ...hooks_];
+        } else {
+            xlfHooks.hooks[lifecycle] = [hooksForLifeCycle, ...hooks_];
+        }
+    }
+
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
         hooks: xlfHooks.hooks,
@@ -61,6 +84,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(imsize, diplodocOptions);
     xlfRenderer.use(file, diplodocOptions);
     xlfRenderer.use(includes, diplodocOptions);
+    xlfRenderer.use(tabs, diplodocOptions);
 
     xlfRenderer.use(customRenderer, xlfOptions);
 

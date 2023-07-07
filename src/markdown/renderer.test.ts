@@ -19,6 +19,7 @@ import file from 'src/__fixtures__/file';
 import links from 'src/__fixtures__/links';
 import includes from 'src/__fixtures__/includes';
 import strikethrough from 'src/__fixtures__/strikethrough';
+import tabs from 'src/__fixtures__/tabs';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -252,6 +253,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: strikethrough.skeleton,
             translations: strikethrough.translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with tabs syntax in text', () => {
+        const parameters = {
+            skeleton: tabs.skeleton,
+            translations: tabs.translations,
         };
 
         const generated = render(parameters);

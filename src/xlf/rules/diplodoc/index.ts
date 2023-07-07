@@ -55,6 +55,15 @@ const rules = {
     yfm_file: yfmFile,
     // include
     include: alwaysEmptyString,
+    // tabs
+    tabs_open: alwaysEmptyString,
+    tabs_close: alwaysEmptyString,
+    'tab-list_open': alwaysEmptyString,
+    'tab-list_close': alwaysEmptyString,
+    tab_open: alwaysEmptyString,
+    tab_close: alwaysEmptyString,
+    'tab-panel_open': alwaysEmptyString,
+    'tab-panel_close': alwaysEmptyString,
 };
 
 export {rules, initState};
