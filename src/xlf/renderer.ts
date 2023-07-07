@@ -20,6 +20,7 @@ import imsize from '@doc-tools/transform/lib/plugins/imsize';
 import file from '@doc-tools/transform/lib/plugins/file';
 import includes from '@doc-tools/transform/lib/plugins/includes';
 import tabs from '@doc-tools/transform/lib/plugins/tabs';
+import video from '@doc-tools/transform/lib/plugins/video';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -85,6 +86,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(file, diplodocOptions);
     xlfRenderer.use(includes, diplodocOptions);
     xlfRenderer.use(tabs, diplodocOptions);
+    xlfRenderer.use(video, diplodocOptions);
 
     xlfRenderer.use(customRenderer, xlfOptions);
 
