@@ -209,6 +209,11 @@ exports[`markdown rendering renders translated text instead of hashes, with tabs
 "
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with video syntax in text 1`] = `
+"@[youtube](https://www.youtube.com/video?v=dQw4w9WgXcQ) text after
+@[youtube](dQw4w9WgXcQ)"
+`;
+
 exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `
 "# Титул Документа
 {% for element in array %}

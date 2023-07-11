@@ -64,6 +64,8 @@ const rules = {
     tab_close: alwaysEmptyString,
     'tab-panel_open': alwaysEmptyString,
     'tab-panel_close': alwaysEmptyString,
+    // video
+    video: alwaysEmptyString,
 };
 
 export {rules, initState};

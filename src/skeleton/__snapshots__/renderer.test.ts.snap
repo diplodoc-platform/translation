@@ -192,6 +192,11 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 "
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with video 1`] = `
+"@[youtube](https://www.youtube.com/video?v=dQw4w9WgXcQ) %%%1%%%
+@[youtube](dQw4w9WgXcQ)"
+`;
+
 exports[`skeleton rendering renders hashes instead of content of the text tokens 1`] = `
 "# %%%1%%%
 %%%2%%%
