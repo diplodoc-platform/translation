@@ -69,6 +69,15 @@ const rules = {
     // anchors
     span_open: alwaysEmptyString,
     span_close: alwaysEmptyString,
+    // table
+    yfm_tbody_open: alwaysEmptyString,
+    yfm_tbody_close: alwaysEmptyString,
+    yfm_table_open: alwaysEmptyString,
+    yfm_table_close: alwaysEmptyString,
+    yfm_tr_open: alwaysEmptyString,
+    yfm_tr_close: alwaysEmptyString,
+    yfm_td_open: alwaysEmptyString,
+    yfm_td_close: alwaysEmptyString,
 };
 
 export {rules, initState};
