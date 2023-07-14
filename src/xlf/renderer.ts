@@ -25,6 +25,7 @@ import video from '@doc-tools/transform/lib/plugins/video';
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
 import hooks, {HooksParameters} from './hooks';
+import {handlers} from './handlers';
 
 export type XLFRendererState = XLFRulesState;
 
@@ -68,6 +69,7 @@ function render(parameters: RenderParameters) {
         rules: xlfRules.rules,
         hooks: xlfHooks.hooks,
         initState: xlfRules.initState,
+        handlers,
     };
     const diplodocOptions = {
         lang: parameters.lang ?? 'ru',
