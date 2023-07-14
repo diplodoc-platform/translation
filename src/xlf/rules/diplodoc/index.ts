@@ -66,6 +66,9 @@ const rules = {
     'tab-panel_close': alwaysEmptyString,
     // video
     video: alwaysEmptyString,
+    // anchors
+    span_open: alwaysEmptyString,
+    span_close: alwaysEmptyString,
 };
 
 export {rules, initState};
