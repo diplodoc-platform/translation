@@ -516,7 +516,7 @@ describe('xlf rendering', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('handles markdown with video syntax', () => {
+    it('handles markdown with multiline tables syntax', () => {
         const parameters = {
             markdown: multilineTables.markdown,
             source: {
