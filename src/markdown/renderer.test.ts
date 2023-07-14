@@ -21,6 +21,7 @@ import includes from 'src/__fixtures__/includes';
 import strikethrough from 'src/__fixtures__/strikethrough';
 import tabs from 'src/__fixtures__/tabs';
 import video from 'src/__fixtures__/video';
+import multilineTables from 'src/__fixtures__/multiline-tables';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -274,6 +275,16 @@ describe('markdown rendering', () => {
         const parameters = {
             skeleton: video.skeleton,
             translations: video.translations,
+        };
+
+        const generated = render(parameters);
+        expect(generated).toMatchSnapshot();
+    });
+
+    it('renders translated text instead of hashes, with multiline tables syntax in text', () => {
+        const parameters = {
+            skeleton: multilineTables.skeleton,
+            translations: multilineTables.translations,
         };
 
         const generated = render(parameters);
