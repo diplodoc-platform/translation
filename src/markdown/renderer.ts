@@ -21,6 +21,7 @@ import file from '@doc-tools/transform/lib/plugins/file';
 import includes from '@doc-tools/transform/lib/plugins/includes';
 import tabs from '@doc-tools/transform/lib/plugins/tabs';
 import video from '@doc-tools/transform/lib/plugins/video';
+import table from '@doc-tools/transform/lib/plugins/table';
 
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
@@ -84,6 +85,7 @@ function render(parameters: RenderParameters) {
     md.use(includes, diplodocOptions);
     md.use(tabs, diplodocOptions);
     md.use(video, diplodocOptions);
+    md.use(table, diplodocOptions);
 
     md.use(mdRenderer, mdOptions);
 
