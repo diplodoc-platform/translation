@@ -148,6 +148,38 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
 [%%%9%%% ##%%%10%%%## %%%11%%% ##%%%12%%%##](href \\"%%%13%%%\\")"
 `;
 
+exports[`skeleton rendering renders hash instead of the content from markdown with multiline tables 1`] = `
+"#|
+||
+**%%%1%%%**
+|
+**%%%2%%%**
+||
+||
+%%%3%%%
+|
+%%%4%%%
+||
+|#
+
+- %%%5%%%
+
+  #|
+  ||
+  %%%6%%%
+  |
+  %%%7%%%
+  ||
+  ||
+  %%%8%%%
+  |
+  %%%9%%%
+  ||
+  |#
+
+  %%%10%%%"
+`;
+
 exports[`skeleton rendering renders hash instead of the content from markdown with notes 1`] = `
 "
 {% note info \\"%%%1%%%\\" %}
