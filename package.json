@@ -1,6 +1,6 @@
 {
   "name": "@diplodoc/markdown-translation",
-  "version": "0.13.0",
+  "version": "0.15.0",
   "description": "markdown translation utilities",
   "homepage": "https://github.com/diplodoc-platform/markdown-translation",
   "bugs": {
@@ -69,9 +69,9 @@
   "dependencies": {
     "@cospired/i18n-iso-languages": "^4.1.0",
     "@diplodoc/markdown-it-custom-renderer": "0.0.2",
-    "@diplodoc/markdown-it-markdown-renderer": "^0.11.0",
+    "@diplodoc/markdown-it-markdown-renderer": "^0.13.1",
     "@diplodoc/sentenizer": "0.0.0",
-    "@doc-tools/transform": "^3.1.3",
+    "@doc-tools/transform": "^3.3.2",
     "@shellscape/i18n-iso-countries": "^7.5.0-shellscape.v1",
     "fast-xml-parser": "^4.1.3",
     "js-yaml": "^4.1.0",

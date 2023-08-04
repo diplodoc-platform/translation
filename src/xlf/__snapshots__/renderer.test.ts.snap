@@ -513,6 +513,52 @@ exports[`xlf rendering handles markdown with monospace syntax inside 1`] = `
 "
 `;
 
+exports[`xlf rendering handles markdown with multiline tables syntax 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Первый Заголовок</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Второй Заголовок</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>текст первой колонки</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>текст второй колонки</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>текст перед таблицей</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>Первый Заголовок</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>Второй Заголовок</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>текст первой колонки</source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source>текст второй колонки</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source>текст после таблицы</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with notes 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -673,6 +719,25 @@ exports[`xlf rendering handles markdown with tabs syntax 1`] = `
       </trans-unit>
       <trans-unit id=\\"6\\">
         <source>Текст второго таба</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`xlf rendering handles markdown with video syntax 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>текст после</source>
       </trans-unit>
     </body>
   </file>

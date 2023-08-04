@@ -163,6 +163,38 @@ this ##is## mono**space** he##he##he
 [hello ##world## i'm ##fine##](href \\"hint\\")"
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with multiline tables syntax in text 1`] = `
+"#|
+||
+**First Heading**
+|
+**Second Heading**
+||
+||
+first cell text
+|
+second cell text
+||
+|#
+
+- text before table
+
+  #|
+  ||
+  First Heading
+  |
+  Second Heading
+  ||
+  ||
+  first cell text
+  |
+  second cell text
+  ||
+  |#
+
+  text after table"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with notes in text 1`] = `
 "
 {% note info \\"Information\\" %}
@@ -207,6 +239,11 @@ exports[`markdown rendering renders translated text instead of hashes, with tabs
 
 {% endlist %}
 "
+`;
+
+exports[`markdown rendering renders translated text instead of hashes, with video syntax in text 1`] = `
+"@[youtube](https://www.youtube.com/video?v=dQw4w9WgXcQ) text after
+@[youtube](dQw4w9WgXcQ)"
 `;
 
 exports[`markdown rendering renders translated txt instead of hashes, with liquid loops in text 1`] = `

@@ -20,6 +20,8 @@ import links from 'src/__fixtures__/links';
 import includes from 'src/__fixtures__/includes';
 import strikethrough from 'src/__fixtures__/strikethrough';
 import tabs from 'src/__fixtures__/tabs';
+import video from 'src/__fixtures__/video';
+import multilineTables from 'src/__fixtures__/multiline-tables';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -479,6 +481,44 @@ describe('xlf rendering', () => {
     it('handles markdown with tabs syntax', () => {
         const parameters = {
             markdown: tabs.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with video syntax', () => {
+        const parameters = {
+            markdown: video.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with multiline tables syntax', () => {
+        const parameters = {
+            markdown: multilineTables.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,

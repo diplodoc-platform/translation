@@ -20,10 +20,13 @@ import imsize from '@doc-tools/transform/lib/plugins/imsize';
 import file from '@doc-tools/transform/lib/plugins/file';
 import includes from '@doc-tools/transform/lib/plugins/includes';
 import tabs from '@doc-tools/transform/lib/plugins/tabs';
+import video from '@doc-tools/transform/lib/plugins/video';
+import table from '@doc-tools/transform/lib/plugins/table';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
 import hooks, {HooksParameters} from './hooks';
+import {handlers} from './handlers';
 
 export type XLFRendererState = XLFRulesState;
 
@@ -67,6 +70,7 @@ function render(parameters: RenderParameters) {
         rules: xlfRules.rules,
         hooks: xlfHooks.hooks,
         initState: xlfRules.initState,
+        handlers,
     };
     const diplodocOptions = {
         lang: parameters.lang ?? 'ru',
@@ -85,6 +89,8 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(file, diplodocOptions);
     xlfRenderer.use(includes, diplodocOptions);
     xlfRenderer.use(tabs, diplodocOptions);
+    xlfRenderer.use(video, diplodocOptions);
+    xlfRenderer.use(table, diplodocOptions);
 
     xlfRenderer.use(customRenderer, xlfOptions);
 

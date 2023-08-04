@@ -14,6 +14,7 @@ import imsize from 'src/__fixtures__/imsize';
 import links from 'src/__fixtures__/links';
 import includes from 'src/__fixtures__/includes';
 import tabs from 'src/__fixtures__/tabs';
+import video from 'src/__fixtures__/video';
 
 export {
     basic,
@@ -32,6 +33,7 @@ export {
     links,
     includes,
     tabs,
+    video,
 };
 export default {
     basic,
@@ -50,4 +52,5 @@ export default {
     links,
     includes,
     tabs,
+    video,
 };
