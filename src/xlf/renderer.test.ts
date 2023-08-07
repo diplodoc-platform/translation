@@ -22,6 +22,7 @@ import strikethrough from 'src/__fixtures__/strikethrough';
 import tabs from 'src/__fixtures__/tabs';
 import video from 'src/__fixtures__/video';
 import multilineTables from 'src/__fixtures__/multiline-tables';
+import term from 'src/__fixtures__/term';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -519,6 +520,25 @@ describe('xlf rendering', () => {
     it('handles markdown with multiline tables syntax', () => {
         const parameters = {
             markdown: multilineTables.markdown,
+            source: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            target: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('handles markdown with term syntax', () => {
+        const parameters = {
+            markdown: term.markdown,
             source: {
                 language: 'en',
                 locale: 'US' as const,

@@ -726,6 +726,47 @@ exports[`xlf rendering handles markdown with tabs syntax 1`] = `
 "
 `;
 
+exports[`xlf rendering handles markdown with term syntax 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"en-US\\" target-language=\\"ru-RU\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>первая строка</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>вторая строка</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>базовую</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\"></trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>разметку</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>.</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>Использование</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>термина</source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source>в тексте</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`xlf rendering handles markdown with video syntax 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">

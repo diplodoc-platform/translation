@@ -22,6 +22,7 @@ import strikethrough from 'src/__fixtures__/strikethrough';
 import tabs from 'src/__fixtures__/tabs';
 import video from 'src/__fixtures__/video';
 import multilineTables from 'src/__fixtures__/multiline-tables';
+import term from 'src/__fixtures__/term';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -242,6 +243,15 @@ describe('skeleton rendering', () => {
     it('renders hash instead of the content from markdown with multiline tables', () => {
         const parameters = {
             markdown: multilineTables.markdown,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders hash instead of the content from markdown with term', () => {
+        const parameters = {
+            markdown: term.markdown,
         };
 
         const rendered = render(parameters);
