@@ -78,6 +78,9 @@ const rules = {
     yfm_tr_close: alwaysEmptyString,
     yfm_td_open: alwaysEmptyString,
     yfm_td_close: alwaysEmptyString,
+    // strikethrough,
+    s_open: alwaysEmptyString,
+    s_close: alwaysEmptyString,
 };
 
 export {rules, initState};
