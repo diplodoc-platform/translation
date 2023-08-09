@@ -81,6 +81,13 @@ const rules = {
     // strikethrough,
     s_open: alwaysEmptyString,
     s_close: alwaysEmptyString,
+    // term
+    template_open: alwaysEmptyString,
+    template_close: alwaysEmptyString,
+    dfn_open: alwaysEmptyString,
+    dfn_close: alwaysEmptyString,
+    term_open: alwaysEmptyString,
+    term_close: alwaysEmptyString,
 };
 
 export {rules, initState};

@@ -241,6 +241,14 @@ exports[`markdown rendering renders translated text instead of hashes, with tabs
 "
 `;
 
+exports[`markdown rendering renders translated text instead of hashes, with term syntax in text 1`] = `
+"
+[*ключ_термина]: first line
+second line ##basic## ~~markup~~.
+
+usage [term](*ключ_термина) in text"
+`;
+
 exports[`markdown rendering renders translated text instead of hashes, with video syntax in text 1`] = `
 "@[youtube](https://www.youtube.com/video?v=dQw4w9WgXcQ) text after
 @[youtube](dQw4w9WgXcQ)"

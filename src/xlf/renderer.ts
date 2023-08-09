@@ -22,6 +22,7 @@ import includes from '@doc-tools/transform/lib/plugins/includes';
 import tabs from '@doc-tools/transform/lib/plugins/tabs';
 import video from '@doc-tools/transform/lib/plugins/video';
 import table from '@doc-tools/transform/lib/plugins/table';
+import term from '@doc-tools/transform/lib/plugins/term';
 
 import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
@@ -91,6 +92,7 @@ function render(parameters: RenderParameters) {
     xlfRenderer.use(tabs, diplodocOptions);
     xlfRenderer.use(video, diplodocOptions);
     xlfRenderer.use(table, diplodocOptions);
+    xlfRenderer.use(term, {...diplodocOptions, isLintRun: false});
 
     xlfRenderer.use(customRenderer, xlfOptions);
 
