@@ -625,22 +625,22 @@ exports[`xlf rendering handles markdown with strikethrough syntax 1`] = `
       </skeleton>
     </header>
     <body>
-<s>      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"1\\">
         <source>перечеркнуто</source>
       </trans-unit>
-</s>      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"2\\">
         <source>привет</source>
       </trans-unit>
-<s>      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"3\\">
         <source>мир</source>
       </trans-unit>
-</s>      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"4\\">
         <source>мне</source>
       </trans-unit>
-<s>      <trans-unit id=\\"5\\">
+      <trans-unit id=\\"5\\">
         <source>хорошо</source>
       </trans-unit>
-</s>      <trans-unit id=\\"6\\">
+      <trans-unit id=\\"6\\">
         <source>подсказка</source>
       </trans-unit>
     </body>
