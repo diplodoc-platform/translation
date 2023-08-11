@@ -13,6 +13,14 @@ const markdown = `\
   Текст второго таба
 
 {% endlist %}
+
+{% list tabs %}
+
+* Первый Таб во второй таб секции
+
+  контент первого таба во второй таб секции
+
+{% endlist %}
 `;
 
 const skeleton = `\
@@ -30,6 +38,14 @@ const skeleton = `\
   %%%6%%%
 
 {% endlist %}
+
+{% list tabs %}
+
+* %%%7%%%
+
+  %%%8%%%
+
+{% endlist %}
 `;
 
 const translations = new Map<string, string>([
@@ -39,6 +55,8 @@ const translations = new Map<string, string>([
     ['4', 'content inside the list'],
     ['5', 'Second tab'],
     ['6', 'text of the second tab'],
+    ['7', 'First tab inside the second tab section'],
+    ['8', 'content of the first tab inside the second tab section'],
 ]);
 
 export {markdown, skeleton, translations};
