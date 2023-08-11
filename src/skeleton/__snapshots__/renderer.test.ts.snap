@@ -221,6 +221,15 @@ exports[`skeleton rendering renders hash instead of the content from markdown wi
   %%%6%%%
 
 {% endlist %}
+
+
+{% list tabs %}
+
+* %%%7%%%
+
+  %%%8%%%
+
+{% endlist %}
 "
 `;
 
