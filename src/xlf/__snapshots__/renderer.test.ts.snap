@@ -720,6 +720,12 @@ exports[`xlf rendering handles markdown with tabs syntax 1`] = `
       <trans-unit id=\\"6\\">
         <source>Текст второго таба</source>
       </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>Первый Таб во второй таб секции</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>контент первого таба во второй таб секции</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>
