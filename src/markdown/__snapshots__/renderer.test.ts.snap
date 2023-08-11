@@ -238,6 +238,15 @@ exports[`markdown rendering renders translated text instead of hashes, with tabs
   text of the second tab
 
 {% endlist %}
+
+
+{% list tabs %}
+
+* First tab inside the second tab section
+
+  content of the first tab inside the second tab section
+
+{% endlist %}
 "
 `;
 
