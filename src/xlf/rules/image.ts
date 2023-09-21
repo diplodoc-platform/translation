@@ -4,7 +4,7 @@ import {Options} from 'markdown-it';
 
 import {segmenter} from 'src/xlf/segmenter';
 
-import {XLFRendererState} from 'src/xlf/renderer';
+import {XLFRendererState} from 'src/xlf/state';
 
 export type ImageRuleState = {
     image: {

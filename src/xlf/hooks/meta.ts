@@ -4,7 +4,7 @@ import MarkdownIt from 'markdown-it';
 import {traverse} from 'src/meta';
 import {segmenter} from 'src/xlf/segmenter';
 
-import {XLFRendererState} from 'src/xlf/renderer';
+import {XLFRendererState} from 'src/xlf/state';
 
 export type MetaParameters = {
     markdownit: MarkdownItWithMeta;
