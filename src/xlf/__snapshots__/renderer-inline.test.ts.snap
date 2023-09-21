@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with plain text. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер один.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
