@@ -23,17 +23,17 @@ import tabs from '@doc-tools/transform/lib/plugins/tabs';
 import video from '@doc-tools/transform/lib/plugins/video';
 import table from '@doc-tools/transform/lib/plugins/table';
 
-import markdownHandlers, {MarkdownHandlersState} from './handlers';
-import hooks, {HooksParameters} from './hooks';
+import markdownHandlers from './handlers';
+import hooks, {HooksParameters, HooksState} from './hooks';
 import {rules} from './rules';
 
-export type MarkdownRendererState = MarkdownHandlersState;
+export type MarkdownRendererState = HooksState;
 
-export type RenderParameters = {
+export type RenderParameters = BaseParameters & DiplodocParameters;
+export type BaseParameters = {
     skeleton: string;
     translations: Map<string, string>;
-} & DiplodocParameters;
-
+};
 export type DiplodocParameters = {
     lang?: string;
 };
@@ -45,8 +45,8 @@ function render(parameters: RenderParameters) {
 
     const md = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
 
-    const {handlers, initState} = markdownHandlers.generate(parameters);
-    const markdownHooks = hooks.generate({markdownit: md});
+    const {handlers} = markdownHandlers.generate();
+    const markdownHooks = hooks.generate({...parameters, markdownit: md});
 
     // todo: add non-destructive way of extending markdown-renderer hooks
     for (const defaultHook of Object.entries(MarkdownRenderer.defaultHooks)) {
@@ -57,9 +57,9 @@ function render(parameters: RenderParameters) {
         }
     }
 
-    const mdOptions: MarkdownRendererParams<MarkdownHandlersState> = {
+    const mdOptions: MarkdownRendererParams<MarkdownRendererState> = {
         handlers,
-        initState,
+        initState: markdownHooks.initState,
         hooks: markdownHooks.hooks,
         rules,
     };
