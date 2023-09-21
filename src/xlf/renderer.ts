@@ -23,18 +23,17 @@ import tabs from '@doc-tools/transform/lib/plugins/tabs';
 import video from '@doc-tools/transform/lib/plugins/video';
 import table from '@doc-tools/transform/lib/plugins/table';
 
-import {template} from './generator';
-import rules, {XLFRulesState} from './rules';
+import {xlfInitState, XLFRendererState} from './state';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
+import rules from './rules';
 
-export type XLFRendererState = XLFRulesState;
+import {template} from './generator';
 
-export type RenderParameters = {
+export type RenderParameters = template.TemplateParameters & DiplodocParameters & BaseParameters;
+export type BaseParameters = {
     markdown: string;
-} & template.TemplateParameters &
-    DiplodocParameters;
-
+};
 export type DiplodocParameters = {
     lang?: string;
 };
@@ -47,7 +46,7 @@ function render(parameters: RenderParameters) {
     const wrapper = template.generate(parameters);
 
     const xlfRenderer = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
-    const xlfRules = rules.generate(wrapper);
+    const xlfRules = rules.generate();
     const xlfHooks: {hooks: CustomRendererHooks} = hooks.generate({
         template: wrapper.template,
         markdownit: xlfRenderer,
@@ -66,12 +65,18 @@ function render(parameters: RenderParameters) {
         }
     }
 
+    const initState = () => ({
+        ...xlfInitState(wrapper),
+        ...xlfRules.initState(),
+    });
+
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
         hooks: xlfHooks.hooks,
-        initState: xlfRules.initState,
+        initState,
         handlers,
     };
+
     const diplodocOptions = {
         lang: parameters.lang ?? 'ru',
         path: '',
