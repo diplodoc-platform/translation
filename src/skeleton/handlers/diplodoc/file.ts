@@ -3,9 +3,9 @@ import Token from 'markdown-it/lib/token';
 
 import {replacer} from 'src/skeleton/replacer';
 
-import {SkeletonHandlersState} from '../index';
+import {SkeletonRendererState} from 'src/skeleton/renderer';
 
-function yfmFile(this: MarkdownRenderer<SkeletonHandlersState>, tokens: Token[], i: number) {
+function yfmFile(this: MarkdownRenderer<SkeletonRendererState>, tokens: Token[], i: number) {
     const token = tokens[i];
     const content = token.content;
 
