@@ -3,7 +3,7 @@ import Token from 'markdown-it/lib/token';
 
 import {segmenter} from 'src/xlf/segmenter';
 
-import {XLFRendererState} from 'src/xlf/renderer';
+import {XLFRendererState} from 'src/xlf/state';
 
 function yfmFile(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
     const content = tokens[i].content;

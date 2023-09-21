@@ -1,26 +1,11 @@
 import linkRules, {linkOpen, linkClose, LinkRuleState} from './link';
 import imageRules, {image, imageClose, ImageRuleState} from './image';
-import {text} from './text';
-
 import diplodocRules, {DiplodocRulesState} from './diplodoc';
 
-export type XLFRulesState = CommonRulesState & LinkRuleState & ImageRuleState & DiplodocRulesState;
+export type XLFRulesState = LinkRuleState & ImageRuleState & DiplodocRulesState;
 
-export type CommonRulesState = {
-    xlf: {
-        id: number;
-        indentation: number;
-    };
-};
-
-export type RulesParameters = {
-    indentation: number;
-};
-
-function generate(parameters: RulesParameters) {
-    const {indentation} = parameters;
-
-    return {rules: rules(), initState: initState(indentation)};
+function generate() {
+    return {rules: rules(), initState: initState()};
 }
 
 // blocks(container and leaf) create group
@@ -49,7 +34,6 @@ function rules() {
         blockquote_close: () => '',
         list_item_open: () => '',
         list_item_close: () => '',
-        text,
         link_open: linkOpen,
         link_close: linkClose,
         image,
@@ -58,22 +42,12 @@ function rules() {
     };
 }
 
-function initState(indentation: number) {
+function initState() {
     return () => ({
-        ...commonInitState(indentation),
         ...linkRules.initState(),
         ...imageRules.initState(),
         ...diplodocRules.initState(),
     });
-}
-
-function commonInitState(indentation: number) {
-    return {
-        xlf: {
-            id: 1,
-            indentation,
-        },
-    };
 }
 
 export {generate};
