@@ -3,9 +3,9 @@ import Token from 'markdown-it/lib/token';
 
 import {replacer} from 'src/markdown/replacer';
 
-import {MarkdownHandlersState} from './index';
+import {MarkdownRendererState} from 'src/markdown/renderer';
 
-function text(this: MarkdownRenderer<MarkdownHandlersState>, tokens: Token[], i: number) {
+function text(this: MarkdownRenderer<MarkdownRendererState>, tokens: Token[], i: number) {
     const content = tokens[i].content;
     if (!content?.length) {
         return '';
