@@ -5,9 +5,16 @@ import {replacer} from 'src/skeleton/replacer';
 import {isAnchor} from 'src/anchor';
 import {isTitleRefLink} from 'src/link';
 
-import {SkeletonHandlersState} from './index';
+import {SkeletonRendererState} from 'src/skeleton/renderer';
 
-function text(this: MarkdownRenderer<SkeletonHandlersState>, tokens: Token[], i: number) {
+// disabled for now
+// handle ref links {#T}
+// src/__fixtures__/links.ts
+//
+// handle anchors # title {#anchor}
+// src/__fixtures__/anchors.ts
+
+function text(this: MarkdownRenderer<SkeletonRendererState>, tokens: Token[], i: number) {
     const content = tokens[i].content;
     if (!content?.length) {
         return '';

@@ -1,34 +1,22 @@
 import {sentenize} from '@diplodoc/sentenizer';
 
 import {replaceAfter} from 'src/string';
-import {tokenize, LiquidTokenType} from 'src/liquid';
-
 import {SkeletonRendererState} from './renderer';
 
 function replacer(content: string, state: SkeletonRendererState) {
-    let result = '';
+    let replaced = content;
 
-    for (const token of tokenize(content)) {
-        if (token.type === LiquidTokenType.Liquid) {
-            result += token.lexemme;
-            continue;
-        }
+    for (const segment of sentenize(content)) {
+        const hash = `%%%${state.skeleton.id}%%%`;
 
-        let replaced = token.lexemme;
         let cursor = 0;
 
-        for (const segment of sentenize(token.lexemme)) {
-            const hash = `%%%${state.skeleton.id}%%%`;
+        ({replaced, cursor} = replaceAfter(replaced, segment, hash, cursor));
 
-            ({replaced, cursor} = replaceAfter(replaced, segment, hash, cursor));
-
-            state.skeleton.id++;
-        }
-
-        result += replaced;
+        state.skeleton.id++;
     }
 
-    return result;
+    return replaced;
 }
 
 export {replacer};
