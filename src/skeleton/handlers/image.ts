@@ -2,9 +2,9 @@ import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 
 import {replacer} from 'src/skeleton/replacer';
 
-import {SkeletonHandlersState} from './index';
+import {SkeletonRendererState} from 'src/skeleton/renderer';
 
-function imageClose(this: MarkdownRenderer<SkeletonHandlersState>) {
+function imageClose(this: MarkdownRenderer<SkeletonRendererState>) {
     const token = this.state.image.pending.pop();
     if (token?.type !== 'image') {
         throw new Error('failed to replace image content with hashes');

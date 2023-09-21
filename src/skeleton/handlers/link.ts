@@ -2,9 +2,9 @@ import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 
 import {replacer} from 'src/skeleton/replacer';
 
-import {SkeletonHandlersState} from './index';
+import {SkeletonRendererState} from 'src/skeleton/renderer';
 
-function linkClose(this: MarkdownRenderer<SkeletonHandlersState>) {
+function linkClose(this: MarkdownRenderer<SkeletonRendererState>) {
     const token = this.state.link.pending.pop();
     if (token?.type !== 'link_open') {
         throw new Error('failed to replace link content with hashes');
