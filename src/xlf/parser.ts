@@ -61,8 +61,12 @@ type Ref = {
 
 function translationUnitsRecursive(...[xlf, ref]: TranslationUnitsRecursiveParameters) {
     for (const [key, val] of Object.entries(xlf)) {
-        if (key === 'trans-unit' && Array.isArray(val)) {
-            handleTranslationUnits(val, ref);
+        if (key === 'trans-unit') {
+            if (Array.isArray(val)) {
+                handleTranslationUnits(val, ref);
+            } else {
+                handleTranslationUnit(val as TranslationUnit, ref);
+            }
         }
 
         if (key !== 'trans-unit' && isObject(val)) {
@@ -76,19 +80,22 @@ function isObject(o: unknown) {
 }
 
 function handleTranslationUnits(units: TranslationUnit[], ref: Ref) {
-    for (const {target, ...rest} of units) {
-        const id = rest['@_id'];
-        if (!id) {
-            throw new Error('failed parsing xliff no id on trans-unit');
-        }
+    for (const unit of units) {
+        handleTranslationUnit(unit, ref);
+    }
+}
 
-        const targetText = (target as HasText)['#text'];
-        if (targetText) {
-            ref.translationUnits.set(id, targetText);
-            continue;
-        } else {
-            ref.translationUnits.set(id, target as string);
-        }
+function handleTranslationUnit({target, ...rest}: TranslationUnit, ref: Ref) {
+    const id = rest['@_id'];
+    if (!id) {
+        throw new Error('failed parsing xliff no id on trans-unit');
+    }
+
+    const targetText = (target as HasText)['#text'];
+    if (targetText) {
+        ref.translationUnits.set(id, targetText);
+    } else {
+        ref.translationUnits.set(id, target as string);
     }
 }
 
