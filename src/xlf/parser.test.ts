@@ -59,7 +59,7 @@ describe('parses translation units', () => {
         }
     });
 
-    it('parses targets with attributes', () => {
+    it('parses trans-units', () => {
         const [open, close] = template.generate(templateParameters).template;
 
         const fixtures: Array<[number, string]> = [
