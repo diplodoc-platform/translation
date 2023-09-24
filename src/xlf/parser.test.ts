@@ -82,4 +82,25 @@ describe('parses translation units', () => {
             expect(translation).toStrictEqual(text);
         }
     });
+
+    it('parses single trans-unit', () => {
+        const [open, close] = template.generate(templateParameters).template;
+
+        const fixtures: Array<[number, string]> = [[1, 'text segment 1']];
+
+        const document =
+            open + fixtures.map((fixture) => transUnitWithAttributes(...fixture)) + close;
+
+        const translations = translationUnits({xlf: document});
+
+        for (const [id, text] of fixtures) {
+            const translation = translations.get(String(id));
+
+            if (!translation) {
+                throw new Error(`failed to receive ${id} translation unit`);
+            }
+
+            expect(translation).toStrictEqual(text);
+        }
+    });
 });
