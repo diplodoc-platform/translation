@@ -4,6 +4,8 @@ import {
     CustomRendererHooks,
     customRenderer,
     CustomRendererParams,
+    CustomRendererLifeCycle,
+    CustomRendererHook,
 } from '@diplodoc/markdown-it-custom-renderer';
 
 // configure with diplodoc plugins
@@ -27,11 +29,17 @@ import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
+import {mergeAdditionalHooks} from '../util';
 
 export type XLFRendererState = XLFRulesState;
 
+type AdditionalHooks = Partial<
+    Record<keyof typeof CustomRendererLifeCycle, CustomRendererHook | CustomRendererHook[]>
+>;
+
 export type RenderParameters = {
     markdown: string;
+    hooks?: AdditionalHooks;
 } & template.TemplateParameters &
     DiplodocParameters;
 
@@ -43,7 +51,6 @@ function render(parameters: RenderParameters) {
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
-
     const wrapper = template.generate(parameters);
 
     const xlfRenderer = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
@@ -53,8 +60,8 @@ function render(parameters: RenderParameters) {
         markdownit: xlfRenderer,
     });
 
-    // todo: add non-destructive way of extending custom-renderer hooks
-    for (const lifecycleHook of Object.entries(MarkdownRenderer.defaultHooks)) {
+    const mergedHooks = mergeAdditionalHooks(MarkdownRenderer.defaultHooks, parameters.hooks);
+    for (const lifecycleHook of Object.entries(mergedHooks)) {
         const [lifecycle, hooks_] = lifecycleHook as any;
 
         const hooksForLifeCycle = xlfHooks.hooks[lifecycle];
@@ -65,7 +72,6 @@ function render(parameters: RenderParameters) {
             xlfHooks.hooks[lifecycle] = [hooksForLifeCycle, ...hooks_];
         }
     }
-
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
         hooks: xlfHooks.hooks,
