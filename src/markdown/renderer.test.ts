@@ -293,6 +293,7 @@ describe('markdown rendering', () => {
         expect(generated).toMatchSnapshot();
     });
 });
+
 describe('passing hooks', () => {
     it('should call the hook', () => {
         const hookFn = jest.fn().mockImplementation(() => '');
