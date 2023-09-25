@@ -55,15 +55,14 @@ function render(parameters: RenderParameters) {
         markdownit: xlfRenderer,
     });
 
-    const allHooks: CustomRendererHooks[] = [MarkdownRenderer.defaultHooks, xlfHooks.hooks].concat(
-        parameters.hooks ?? [],
-    );
-    const mergedHooks = mergeHooks(...allHooks);
     const initState = () => ({
         ...xlfInitState(wrapper),
         ...xlfRules.initState(),
     });
-
+    const allHooks: CustomRendererHooks[] = [MarkdownRenderer.defaultHooks, xlfHooks.hooks].concat(
+        parameters.hooks ?? [],
+    );
+    const mergedHooks = mergeHooks(...allHooks);
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
         hooks: mergedHooks,
