@@ -4,10 +4,18 @@ import {
     CustomRendererLifeCycle,
 } from '@diplodoc/markdown-it-custom-renderer';
 
-export type AdditionalHooks = Record<string, CustomRendererHook | CustomRendererHook[]>;
+export type AdditionalHooks = Partial<
+    Record<keyof typeof CustomRendererLifeCycle, CustomRendererHook | CustomRendererHook[]>
+>;
+const lifeCycleStringToEnums = (
+    lifeCycle: keyof typeof CustomRendererLifeCycle,
+): CustomRendererLifeCycle => {
+    return CustomRendererLifeCycle[lifeCycle];
+};
+
 export const mergeAdditionalHooks = (
     defaultHooks: CustomRendererHooks,
-    additionalHooks?: AdditionalHooks,
+    additionalHooks?: CustomRendererHooks,
 ) => {
     const result: CustomRendererHooks = {};
     if (!additionalHooks) {
@@ -28,10 +36,4 @@ export const mergeAdditionalHooks = (
         result[key] = [defaultHooks[key], enumAddtionalHooks[key]].flat().filter((hook) => hook);
     }
     return result;
-};
-
-const lifeCycleStringToEnums = (
-    lifeCycle: keyof typeof CustomRendererLifeCycle,
-): CustomRendererLifeCycle => {
-    return CustomRendererLifeCycle[lifeCycle];
 };

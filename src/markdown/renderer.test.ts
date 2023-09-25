@@ -1,3 +1,5 @@
+import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer/lib';
+
 import {render, RenderParameters} from './renderer';
 
 import basic from 'src/__fixtures__/basic';
@@ -289,5 +291,32 @@ describe('markdown rendering', () => {
 
         const generated = render(parameters);
         expect(generated).toMatchSnapshot();
+    });
+});
+describe('passing hooks', () => {
+    it('should call the hook', () => {
+        const hookFn = jest.fn().mockImplementation(() => '');
+        const parameters = {
+            skeleton: basic.skeleton,
+            translations: basic.translations,
+            hooks: {
+                BeforeRender: [hookFn],
+            },
+        };
+        render(parameters);
+        expect(hookFn).toHaveBeenCalled();
+    });
+    it('default hooks should still be called', () => {
+        const defaultHookSpy = jest.spyOn(MarkdownRenderer.defaultHooks['0'], 0);
+        const hookFn = jest.fn().mockImplementation(() => '');
+        const parameters = {
+            skeleton: basic.skeleton,
+            translations: basic.translations,
+            hooks: {
+                BeforeRender: [hookFn],
+            },
+        };
+        render(parameters);
+        expect(defaultHookSpy).toHaveBeenCalled();
     });
 });

@@ -26,12 +26,14 @@ import table from '@doc-tools/transform/lib/plugins/table';
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
 import {rules} from './rules';
+import {AdditionalHooks, mergeAdditionalHooks} from 'src/additional-hooks';
 
 export type MarkdownRendererState = MarkdownHandlersState;
 
 export type RenderParameters = {
     skeleton: string;
     translations: Map<string, string>;
+    hooks?: AdditionalHooks;
 } & DiplodocParameters;
 
 export type DiplodocParameters = {
@@ -48,9 +50,10 @@ function render(parameters: RenderParameters) {
     const {handlers, initState} = markdownHandlers.generate(parameters);
     const markdownHooks = hooks.generate({markdownit: md});
 
-    // todo: add non-destructive way of extending markdown-renderer hooks
-    for (const defaultHook of Object.entries(MarkdownRenderer.defaultHooks)) {
-        const [lifecycle, hooks_] = defaultHook as any;
+    for (const lifecycleHook of Object.entries(
+        mergeAdditionalHooks(MarkdownRenderer.defaultHooks, parameters.hooks),
+    )) {
+        const [lifecycle, hooks_] = lifecycleHook as any;
 
         if (markdownHooks.hooks[lifecycle]) {
             markdownHooks.hooks[lifecycle] = [...markdownHooks.hooks[lifecycle], ...hooks_];

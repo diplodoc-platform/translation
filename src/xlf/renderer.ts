@@ -4,8 +4,6 @@ import {
     CustomRendererHooks,
     customRenderer,
     CustomRendererParams,
-    CustomRendererLifeCycle,
-    CustomRendererHook,
 } from '@diplodoc/markdown-it-custom-renderer';
 
 // configure with diplodoc plugins
@@ -29,13 +27,9 @@ import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
-import {mergeAdditionalHooks} from '../util';
+import {AdditionalHooks, mergeAdditionalHooks} from '../additional-hooks';
 
 export type XLFRendererState = XLFRulesState;
-
-type AdditionalHooks = Partial<
-    Record<keyof typeof CustomRendererLifeCycle, CustomRendererHook | CustomRendererHook[]>
->;
 
 export type RenderParameters = {
     markdown: string;
@@ -60,8 +54,9 @@ function render(parameters: RenderParameters) {
         markdownit: xlfRenderer,
     });
 
-    const mergedHooks = mergeAdditionalHooks(MarkdownRenderer.defaultHooks, parameters.hooks);
-    for (const lifecycleHook of Object.entries(mergedHooks)) {
+    for (const lifecycleHook of Object.entries(
+        mergeAdditionalHooks(MarkdownRenderer.defaultHooks, parameters.hooks),
+    )) {
         const [lifecycle, hooks_] = lifecycleHook as any;
 
         const hooksForLifeCycle = xlfHooks.hooks[lifecycle];
