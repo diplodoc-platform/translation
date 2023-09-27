@@ -26,14 +26,15 @@ import table from '@doc-tools/transform/lib/plugins/table';
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
 import {rules} from './rules';
-import {AdditionalHooks, mergeAdditionalHooks} from 'src/additional-hooks';
+import {mergeAdditionalHooks} from 'src/additional-hooks';
+import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
 
 export type MarkdownRendererState = MarkdownHandlersState;
 
 export type RenderParameters = {
     skeleton: string;
     translations: Map<string, string>;
-    hooks?: AdditionalHooks;
+    hooks?: CustomRendererHooks;
 } & DiplodocParameters;
 
 export type DiplodocParameters = {

@@ -1,17 +1,4 @@
-import {
-    CustomRendererHook,
-    CustomRendererHooks,
-    CustomRendererLifeCycle,
-} from '@diplodoc/markdown-it-custom-renderer';
-
-export type AdditionalHooks = Partial<
-    Record<keyof typeof CustomRendererLifeCycle, CustomRendererHook | CustomRendererHook[]>
->;
-const lifeCycleStringToEnums = (
-    lifeCycle: keyof typeof CustomRendererLifeCycle,
-): CustomRendererLifeCycle => {
-    return CustomRendererLifeCycle[lifeCycle];
-};
+import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
 
 export const mergeAdditionalHooks = (
     defaultHooks: CustomRendererHooks,
@@ -22,18 +9,9 @@ export const mergeAdditionalHooks = (
         return defaultHooks;
     }
 
-    const enumAddtionalHooks = Object.keys(additionalHooks).reduce(
-        (acc: CustomRendererHooks, key: string) => {
-            acc[lifeCycleStringToEnums(key as keyof typeof CustomRendererLifeCycle)] =
-                additionalHooks[key];
-            return acc;
-        },
-        {},
-    );
-
-    const keys = new Set([...Object.keys(defaultHooks), ...Object.keys(enumAddtionalHooks)]);
+    const keys = new Set([...Object.keys(defaultHooks), ...Object.keys(additionalHooks)]);
     for (const key of keys) {
-        result[key] = [defaultHooks[key], enumAddtionalHooks[key]].flat().filter((hook) => hook);
+        result[key] = [defaultHooks[key], additionalHooks[key]].flat().filter((hook) => hook);
     }
     return result;
 };

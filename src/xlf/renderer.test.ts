@@ -23,6 +23,7 @@ import strikethrough from 'src/__fixtures__/strikethrough';
 import tabs from 'src/__fixtures__/tabs';
 import video from 'src/__fixtures__/video';
 import multilineTables from 'src/__fixtures__/multiline-tables';
+import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -553,7 +554,7 @@ describe('passing hooks', () => {
             markdownPath: 'text.md',
             skeletonPath: 'text.skl.md',
             hooks: {
-                BeforeRender: [hookFn],
+                [CustomRendererLifeCycle.BeforeRender]: [hookFn],
             },
         } as RenderParameters;
         render(parameters);
@@ -575,7 +576,7 @@ describe('passing hooks', () => {
             markdownPath: 'text.md',
             skeletonPath: 'text.skl.md',
             hooks: {
-                BeforeRender: [hookFn],
+                [CustomRendererLifeCycle.BeforeRender]: [hookFn],
             },
         } as RenderParameters;
         render(parameters);

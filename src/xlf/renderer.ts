@@ -27,13 +27,13 @@ import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
-import {AdditionalHooks, mergeAdditionalHooks} from '../additional-hooks';
+import {mergeAdditionalHooks} from '../additional-hooks';
 
 export type XLFRendererState = XLFRulesState;
 
 export type RenderParameters = {
     markdown: string;
-    hooks?: AdditionalHooks;
+    hooks?: CustomRendererHooks;
 } & template.TemplateParameters &
     DiplodocParameters;
 
