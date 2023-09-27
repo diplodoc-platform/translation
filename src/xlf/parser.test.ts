@@ -1,4 +1,4 @@
-import {translationUnits} from './parser';
+import {parseTranslations} from './parser';
 import {template, transUnit} from './generator';
 
 const templateParameters = {
@@ -28,26 +28,26 @@ const xlf = before + transUnits.map(transUnit.generate).join('') + after;
 
 describe('smoke', () => {
     it('works', () => {
-        translationUnits({xlf});
+        parseTranslations({xlf});
     });
 });
 
 describe('validates parameters', () => {
     it('works with valid parameters', () => {
-        translationUnits({xlf});
+        parseTranslations({xlf});
     });
 
     it('throws on invalid parameters', () => {
         const invalidXLF = before + '</kek>' + after;
 
-        expect(() => translationUnits({xlf: ''})).toThrow();
-        expect(() => translationUnits({xlf: invalidXLF})).toThrow();
+        expect(() => parseTranslations({xlf: ''})).toThrow();
+        expect(() => parseTranslations({xlf: invalidXLF})).toThrow();
     });
 });
 
 describe('parses translation units', () => {
     it('parses targets', () => {
-        const translations = translationUnits({xlf});
+        const translations = parseTranslations({xlf, startID: 0});
 
         for (const expected of transUnits) {
             const translation = translations.get(String(expected.id));
@@ -70,7 +70,7 @@ describe('parses translation units', () => {
         const document =
             open + fixtures.map((fixture) => transUnitWithAttributes(...fixture)) + close;
 
-        const translations = translationUnits({xlf: document});
+        const translations = parseTranslations({xlf: document});
 
         for (const [id, text] of fixtures) {
             const translation = translations.get(String(id));
@@ -91,8 +91,34 @@ describe('parses translation units', () => {
         const document =
             open + fixtures.map((fixture) => transUnitWithAttributes(...fixture)) + close;
 
-        const translations = translationUnits({xlf: document});
+        const translations = parseTranslations({xlf: document});
 
+        for (const [id, text] of fixtures) {
+            const translation = translations.get(String(id));
+
+            if (!translation) {
+                throw new Error(`failed to receive ${id} translation unit`);
+            }
+
+            expect(translation).toStrictEqual(text);
+        }
+    });
+
+    it('parses trans-units sources when trans-unit targets are absent', () => {
+        const [open, close] = template.generate(templateParameters).template;
+
+        const fixtures: Array<[number, string]> = [
+            [1, 'текст 1'],
+            [2, 'текст 2'],
+        ];
+
+        const document =
+            open +
+            `<trans-unit id="${fixtures[0][0]}"><source>${fixtures[0][1]}</source></trans-unit>` +
+            `<trans-unit id="${fixtures[1][0]}"><source>${fixtures[1][1]}</source></trans-unit>` +
+            close;
+
+        const translations = parseTranslations({xlf: document});
         for (const [id, text] of fixtures) {
             const translation = translations.get(String(id));
 
