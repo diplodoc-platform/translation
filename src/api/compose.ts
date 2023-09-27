@@ -11,7 +11,7 @@ function compose(parameters: ComposeParameters) {
         throw new Error('invalid parameters');
     }
 
-    const translations = xlf.parser.translationUnits(parameters);
+    const translations = xlf.parser.parseTranslations(parameters);
     const translated = markdown.renderer.render({...parameters, translations});
 
     return translated;
