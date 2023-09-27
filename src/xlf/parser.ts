@@ -1,105 +1,48 @@
-import {XMLParser, XMLValidator} from 'fast-xml-parser';
-
-const parser = new XMLParser({ignoreAttributes: false});
+import {XMLValidator} from 'fast-xml-parser';
+import cheerio from 'cheerio';
 
 export type TranslationUnitsByID = Map<string, string>;
 
-export type TranslationUnitsParameters = {
+export type GetTranslationsParameters = {
     xlf: string;
+    startID?: number;
 };
 
-function translationUnits(parameters: TranslationUnitsParameters): TranslationUnitsByID {
-    const {xlf} = parameters;
+function parseTranslations(parameters: GetTranslationsParameters): TranslationUnitsByID {
+    const {xlf, startID = 1} = parameters;
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
 
-    const parsed = parser.parse(xlf);
-    if (!parsed) {
-        throw new Error('invalid XML document');
+    const query = cheerio.load(xlf);
+
+    let translations = query('trans-unit').find('target');
+    if (!translations) {
+        throw new Error('failed to parse trans-units');
     }
 
-    const body = parsed?.xliff?.file?.body;
-
-    const ref: Ref = {
-        translationUnits: new Map<string, string>(),
-    };
-
-    // eslint-disable-next-line no-eq-null, eqeqeq
-    if (body == null) {
-        throw new Error('failed parsing XLF document');
+    if (translations.length === 0) {
+        translations = query('trans-unit');
     }
 
-    translationUnitsRecursive(body, ref);
+    const units = new Map<string, string>();
 
-    return ref.translationUnits;
-}
-
-type TranslationUnitsRecursiveParameters = [XLF, Ref];
-
-type XLF =
-    | {
-          'trans-unit'?: TranslationUnit[];
-          [key: string]: unknown | TranslationUnit;
-      }
-    | {};
-
-type TranslationUnit = {
-    target: string | HasText;
-    source: string;
-    '@_id': string;
-};
-
-type HasText = {
-    [key: string]: string;
-    '#text': string;
-};
-
-type Ref = {
-    translationUnits: TranslationUnitsByID;
-};
-
-function translationUnitsRecursive(...[xlf, ref]: TranslationUnitsRecursiveParameters) {
-    for (const [key, val] of Object.entries(xlf)) {
-        if (key === 'trans-unit') {
-            if (Array.isArray(val)) {
-                handleTranslationUnits(val, ref);
-            } else {
-                handleTranslationUnit(val as TranslationUnit, ref);
+    let i = startID;
+    for (const target of translations) {
+        let text = '';
+        for (const child of target.children ?? []) {
+            if (child.type === 'text') {
+                text += child.data;
             }
         }
 
-        if (key !== 'trans-unit' && isObject(val)) {
-            translationUnitsRecursive(val as XLF, ref);
-        }
-    }
-}
-
-function isObject(o: unknown) {
-    return o && typeof o === 'object';
-}
-
-function handleTranslationUnits(units: TranslationUnit[], ref: Ref) {
-    for (const unit of units) {
-        handleTranslationUnit(unit, ref);
-    }
-}
-
-function handleTranslationUnit({target, ...rest}: TranslationUnit, ref: Ref) {
-    const id = rest['@_id'];
-    if (!id) {
-        throw new Error('failed parsing xliff no id on trans-unit');
+        units.set(String(i++), text);
     }
 
-    const targetText = (target as HasText)['#text'];
-    if (targetText) {
-        ref.translationUnits.set(id, targetText);
-    } else {
-        ref.translationUnits.set(id, target as string);
-    }
+    return units;
 }
 
-function validParameters(parameters: TranslationUnitsParameters) {
+function validParameters(parameters: GetTranslationsParameters) {
     const {xlf} = parameters;
 
     const conditions = [Boolean(xlf), validXML(xlf)];
@@ -113,5 +56,5 @@ function validXML(xml: string) {
     return typeof validation === 'boolean' && validation;
 }
 
-export {translationUnits, validParameters};
-export default {translationUnits, validParameters};
+export {parseTranslations, validParameters};
+export default {parseTranslations, validParameters};
