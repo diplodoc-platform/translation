@@ -1,5 +1,5 @@
 import {compose, ComposeParameters} from './compose';
-import {template} from 'src/xlf/generator';
+import {template, transUnit} from 'src/xlf/generator';
 
 const templateParameters = {
     source: {language: 'en', locale: 'US' as const},
@@ -8,13 +8,23 @@ const templateParameters = {
     skeletonPath: 'file.skl.md',
 };
 
-const emptyXLF = template.generate(templateParameters).template.join('');
+const {
+    template: [before, after],
+    indentation,
+} = template.generate(templateParameters);
+
+const transUnits = [
+    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0, indentation},
+    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
+];
+
+const xlf = before + transUnits.map(transUnit.generate).join('') + after;
 
 describe('smoke', () => {
     it('works', () => {
         const parameters = {
             skeleton: '',
-            xlf: emptyXLF,
+            xlf: xlf,
         };
 
         compose(parameters);
@@ -25,7 +35,7 @@ describe('validates parameters', () => {
     it('works with valid parameters', () => {
         const parameters = {
             skeleton: '',
-            xlf: emptyXLF,
+            xlf: xlf,
         };
 
         compose(parameters);
@@ -37,12 +47,12 @@ describe('validates parameters', () => {
         };
 
         const invalidSkeleton = {
-            xlf: emptyXLF,
+            xlf: xlf,
         };
 
         const invalidBoth = {};
 
-        const invalidLang = {xlf: emptyXLF, skeleton: '', lang: 'xx'};
+        const invalidLang = {xlf, skeleton: '', lang: 'xx'};
 
         expect(() => compose(invalidSkeleton as ComposeParameters)).toThrow();
         expect(() => compose(invalidXLF as ComposeParameters)).toThrow();
