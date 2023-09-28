@@ -118,7 +118,7 @@ describe('parses translation units', () => {
             `<trans-unit id="${fixtures[1][0]}"><source>${fixtures[1][1]}</source></trans-unit>` +
             close;
 
-        const translations = parseTranslations({xlf: document});
+        const translations = parseTranslations({xlf: document, useSource: true});
         for (const [id, text] of fixtures) {
             const translation = translations.get(String(id));
 
