@@ -6,23 +6,24 @@ export type TranslationUnitsByID = Map<string, string>;
 export type GetTranslationsParameters = {
     xlf: string;
     startID?: number;
+    useSource?: boolean;
 };
 
 function parseTranslations(parameters: GetTranslationsParameters): TranslationUnitsByID {
-    const {xlf, startID = 1} = parameters;
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
 
-    const query = cheerio.load(xlf);
-
-    let translations = query('trans-unit').find('target');
-    if (!translations) {
-        throw new Error('failed to parse trans-units');
-    }
-
-    if (translations.length === 0) {
-        translations = query('trans-unit');
+    const {startID = 1, useSource = false} = parameters;
+    let xlf = parameters.xlf;
+    let {translations, success} = findTargets(xlf);
+    if (!success) {
+        if (useSource) {
+            xlf = replaceSourceWithTarget(xlf);
+            ({translations, success} = findTargets(xlf));
+        } else {
+            throw new Error('did not find any translations');
+        }
     }
 
     const units = new Map<string, string>();
@@ -40,6 +41,25 @@ function parseTranslations(parameters: GetTranslationsParameters): TranslationUn
     }
 
     return units;
+}
+
+function findTargets(xlf: string) {
+    let success = true;
+    const query = cheerio.load(xlf);
+
+    const translations = query('trans-unit').find('target');
+    if (translations.length === 0) {
+        success = false;
+    }
+
+    return {
+        translations,
+        success,
+    };
+}
+
+function replaceSourceWithTarget(xlf: string) {
+    return xlf.replace(/<source>/gmu, '<target>').replace(/<\/source>/gmu, '</target>');
 }
 
 function validParameters(parameters: GetTranslationsParameters) {
