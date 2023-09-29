@@ -129,4 +129,19 @@ describe('parses translation units', () => {
             expect(translation).toStrictEqual(text);
         }
     });
+
+    it('parses trans-units targets with g and x tags', () => {
+        const [open, close] = template.generate(templateParameters).template;
+
+        const unit = `\
+<trans-unit id="1">
+    <target>Sentence with <g ctype="x-[-]">link</g><g ctype="x-(-)"><x ctype="x-link-href" equiv-text="file.md" /><g ctype="x-&quot-&quot">title</g></g>.</target>
+</trans-unit>`;
+        const expected = 'Sentence with [link](file.md "title").';
+
+        const document = open + unit + close;
+
+        const translations = parseTranslations({xlf: document});
+        expect(translations.get(String(1))).toStrictEqual(expected);
+    });
 });
