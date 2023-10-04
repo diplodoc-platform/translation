@@ -66,6 +66,28 @@ exports[`inline: xlf rendering inline: renders trans-unit for each sentence from
 "
 `;
 
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with links without titles. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер один <g ctype=\\"x-[-]\\">ссылка на файл</g><g ctype=\\"x-(-)\\"><x ctype=\\"x-link-href\\" equiv-text=\\"file.md\\" /></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with links. 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">

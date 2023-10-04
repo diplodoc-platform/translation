@@ -40,11 +40,9 @@ function linkClose(this: CustomRenderer<XLFRendererState>) {
     const title = token.attrGet('title');
     if (!title?.length) {
         this.state.link.pending.push(token);
-
-        return rendered;
+    } else {
+        rendered += `${lt}g ctype=${qt}x-"-"${qt}${gt}${title}${lt}${sl}g${gt}`;
     }
-
-    rendered += `${lt}g ctype=${qt}x-"-"${qt}${gt}${title}${lt}${sl}g${gt}`;
 
     rendered += `${lt}${sl}g${gt}`;
 

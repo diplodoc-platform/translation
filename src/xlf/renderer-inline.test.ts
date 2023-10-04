@@ -40,6 +40,25 @@ describe('inline: xlf rendering', () => {
         expect(rendered).toMatchSnapshot();
     });
 
+    it('inline: renders trans-unit for each sentence from paragraph with links without titles.', () => {
+        const parameters: RenderParameters = {
+            markdown: 'Предложение номер один [ссылка на файл](file.md). Предложение номер два.',
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
     it('inline: renders trans-unit for each sentence from paragraph with bold.', () => {
         const parameters: RenderParameters = {
             markdown: 'Предложение номер **один**. Предложение номер **два**.',
