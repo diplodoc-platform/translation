@@ -27,7 +27,7 @@ import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
-import {mergeAdditionalHooks} from '../additional-hooks';
+import {mergeHooks} from '../hooks';
 
 export type XLFRendererState = XLFRulesState;
 
@@ -54,22 +54,13 @@ function render(parameters: RenderParameters) {
         markdownit: xlfRenderer,
     });
 
-    for (const lifecycleHook of Object.entries(
-        mergeAdditionalHooks(MarkdownRenderer.defaultHooks, parameters.hooks),
-    )) {
-        const [lifecycle, hooks_] = lifecycleHook as any;
-
-        const hooksForLifeCycle = xlfHooks.hooks[lifecycle];
-
-        if (Array.isArray(hooksForLifeCycle)) {
-            xlfHooks.hooks[lifecycle] = [...hooksForLifeCycle, ...hooks_];
-        } else {
-            xlfHooks.hooks[lifecycle] = [hooksForLifeCycle, ...hooks_];
-        }
-    }
+    const allHooks: CustomRendererHooks[] = [MarkdownRenderer.defaultHooks, xlfHooks.hooks].concat(
+        parameters.hooks ?? [],
+    );
+    const mergedHooks = mergeHooks(...allHooks);
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
-        hooks: xlfHooks.hooks,
+        hooks: mergedHooks,
         initState: xlfRules.initState,
         handlers,
     };
