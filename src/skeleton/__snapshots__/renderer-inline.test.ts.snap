@@ -1,3 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with bold. 1`] = `"%%%1%%% %%%2%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with inline code. 1`] = `"%%%1%%% %%%2%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with italics. 1`] = `"%%%1%%% %%%2%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with links. 1`] = `"%%%1%%% %%%2%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with monospace. 1`] = `"%%%1%%% %%%2%%%"`;
+
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with plain text. 1`] = `"%%%1%%% %%%2%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with strikethrough. 1`] = `"%%%1%%% %%%2%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with superscript. 1`] = `"%%%1%%% %%%2%%%"`;

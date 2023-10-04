@@ -1,3 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with bold. 1`] = `"Sentence number **one**. Sentence number **two**."`;
+
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with inline code. 1`] = `"Sentence number \`one\`. Sentence number \`two\`."`;
+
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with italics. 1`] = `"Sentence number *one*. Sentence number *two*."`;
+
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with links. 1`] = `"Sentence number one [link to file](file.md \\"title\\"). Sentence number two."`;
+
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with monospace. 1`] = `"Sentence number ##one##. Sentence number ##two##."`;
+
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with plain text. 1`] = `"Sentence number one. Sentence number two."`;
+
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with strikethrough. 1`] = `"Sentence number ~~one~~. Sentence number ~~two~~."`;
+
+exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with superscript. 1`] = `"Sentence number ^one^. Sentence number ^two^."`;

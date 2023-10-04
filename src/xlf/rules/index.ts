@@ -1,6 +1,9 @@
 import linkRules, {linkOpen, linkClose, LinkRuleState} from './link';
 import imageRules, {image, imageClose, ImageRuleState} from './image';
 import diplodocRules, {DiplodocRulesState} from './diplodoc';
+import strong from './strong';
+import italics from './italics';
+import codeInline from './code-inline';
 
 export type XLFRulesState = LinkRuleState & ImageRuleState & DiplodocRulesState;
 
@@ -11,7 +14,6 @@ function generate() {
 // blocks(container and leaf) create group
 function rules() {
     return {
-        code_inline: () => '',
         code_block: () => '',
         fence: () => '',
         hardbreak: () => '',
@@ -26,10 +28,6 @@ function rules() {
         bullet_list_close: () => '',
         ordered_list_open: () => '',
         ordered_list_close: () => '',
-        strong_open: () => '',
-        strong_close: () => '',
-        em_open: () => '',
-        em_close: () => '',
         blockquote_open: () => '',
         blockquote_close: () => '',
         list_item_open: () => '',
@@ -38,7 +36,10 @@ function rules() {
         link_close: linkClose,
         image,
         image_close: imageClose,
+        ...strong.rules,
+        ...italics.rules,
         ...diplodocRules.rules,
+        ...codeInline.rules,
     };
 }
 

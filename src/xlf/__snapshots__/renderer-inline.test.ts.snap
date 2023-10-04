@@ -1,5 +1,115 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with bold. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-**-**\\">один</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-**-**\\">два</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with inline code. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-\`-\`\\">один</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-\`-\`\\">два</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with italics. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-*-*\\">один</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-*-*\\">два</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with links. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер один <g ctype=\\"x-[-]\\">ссылка на файл</g><g ctype=\\"x-(-)\\"><x ctype=\\"x-link-href\\" equiv-text=\\"file.md\\" /><g ctype=\\"x-&quot;-&quot;\\">title</g></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with monospace. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-##-##\\">один</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-##-##\\">два</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with plain text. 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -15,6 +125,50 @@ exports[`inline: xlf rendering inline: renders trans-unit for each sentence from
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with strikethrough. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-~~-~~\\">один</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-~~-~~\\">два</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
+exports[`inline: xlf rendering inline: renders trans-unit for each sentence from paragraph with superscript. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-^-^\\">один</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-^-^\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>

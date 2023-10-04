@@ -1,9 +1,8 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
 
-import {segmenter} from 'src/xlf/segmenter';
-
 import {XLFRendererState} from 'src/xlf/state';
+import {gt, lt, qt, sl} from 'src/xlf/symbols';
 
 export type LinkRuleState = {
     link: {
@@ -22,7 +21,7 @@ function initState() {
 function linkOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
     this.state.link.pending.push(tokens[i]);
 
-    return '';
+    return `${lt}g ctype=${qt}x-[-]${qt}${gt}`;
 }
 
 function linkClose(this: CustomRenderer<XLFRendererState>) {
@@ -31,15 +30,23 @@ function linkClose(this: CustomRenderer<XLFRendererState>) {
         throw new Error('failed to render trans-unit from link');
     }
 
+    let rendered = `${lt}${sl}g${gt}${lt}g ctype=${qt}x-(-)${qt}${gt}`;
+
+    const href = token.attrGet('href');
+    if (href?.length) {
+        rendered += `${lt}x ctype=${qt}x-link-href${qt} equiv-text=${qt}${href}${qt} ${sl}${gt}`;
+    }
+
     const title = token.attrGet('title');
     if (!title?.length) {
         this.state.link.pending.push(token);
-        return '';
+
+        return rendered;
     }
 
-    let rendered = '';
+    rendered += `${lt}g ctype=${qt}x-"-"${qt}${gt}${title}${lt}${sl}g${gt}`;
 
-    rendered += segmenter(title, this.state);
+    rendered += `${lt}${sl}g${gt}`;
 
     return rendered;
 }

@@ -1,4 +1,7 @@
 import {yfmFile} from './file';
+import strikethrough from './strikethrough';
+import sup from './sup';
+import monospace from './monospace';
 
 export type DiplodocRulesState = {};
 
@@ -39,18 +42,12 @@ const rules = {
     td_open: alwaysEmptyString,
     td_close: alwaysEmptyString,
     table_close: alwaysEmptyString,
-    // sup
-    sup_open: alwaysEmptyString,
-    sup_close: alwaysEmptyString,
     // checkbox
     checkbox_open: alwaysEmptyString,
     checkbox_input: alwaysEmptyString,
     checkbox_label_open: alwaysEmptyString,
     checkbox_label_close: alwaysEmptyString,
     checkbox_close: alwaysEmptyString,
-    // monospace
-    monospace_open: alwaysEmptyString,
-    monospace_close: alwaysEmptyString,
     // yfmFile
     yfm_file: yfmFile,
     // include
@@ -78,9 +75,12 @@ const rules = {
     yfm_tr_close: alwaysEmptyString,
     yfm_td_open: alwaysEmptyString,
     yfm_td_close: alwaysEmptyString,
-    // strikethrough,
-    s_open: alwaysEmptyString,
-    s_close: alwaysEmptyString,
+    // strikethrough
+    ...strikethrough.rules,
+    // sup
+    ...sup.rules,
+    // monospace
+    ...monospace.rules,
 };
 
 export {rules, initState};
