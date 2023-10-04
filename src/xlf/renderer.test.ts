@@ -1,3 +1,4 @@
+import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import {render, RenderParameters} from './renderer';
 
 import basic from 'src/__fixtures__/basic';
@@ -22,6 +23,7 @@ import strikethrough from 'src/__fixtures__/strikethrough';
 import tabs from 'src/__fixtures__/tabs';
 import video from 'src/__fixtures__/video';
 import multilineTables from 'src/__fixtures__/multiline-tables';
+import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -533,5 +535,51 @@ describe('xlf rendering', () => {
 
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
+    });
+});
+
+describe('passing hooks', () => {
+    it('should call the hook', () => {
+        const hookFn = jest.fn().mockImplementation(() => '');
+        const parameters = {
+            markdown: basic.markdown,
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+            hooks: {
+                [CustomRendererLifeCycle.BeforeRender]: [hookFn],
+            },
+        } as RenderParameters;
+        render(parameters);
+        expect(hookFn).toHaveBeenCalled();
+    });
+    it('default hooks should still be called', () => {
+        const defaultHookSpy = jest.spyOn(MarkdownRenderer.defaultHooks['0'], 0);
+        const hookFn = jest.fn().mockImplementation(() => '');
+        const parameters = {
+            markdown: basic.markdown,
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'en',
+                locale: 'US' as const,
+            },
+            markdownPath: 'text.md',
+            skeletonPath: 'text.skl.md',
+            hooks: {
+                [CustomRendererLifeCycle.BeforeRender]: [hookFn],
+            },
+        } as RenderParameters;
+        render(parameters);
+        expect(defaultHookSpy).toHaveBeenCalled();
     });
 });

@@ -26,12 +26,15 @@ import table from '@doc-tools/transform/lib/plugins/table';
 import markdownHandlers, {MarkdownHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
 import {rules} from './rules';
+import {mergeHooks} from 'src/hooks';
+import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
 
 export type MarkdownRendererState = MarkdownHandlersState;
 
 export type RenderParameters = {
     skeleton: string;
     translations: Map<string, string>;
+    hooks?: CustomRendererHooks;
 } & DiplodocParameters;
 
 export type DiplodocParameters = {
@@ -48,19 +51,15 @@ function render(parameters: RenderParameters) {
     const {handlers, initState} = markdownHandlers.generate(parameters);
     const markdownHooks = hooks.generate({markdownit: md});
 
-    // todo: add non-destructive way of extending markdown-renderer hooks
-    for (const defaultHook of Object.entries(MarkdownRenderer.defaultHooks)) {
-        const [lifecycle, hooks_] = defaultHook as any;
-
-        if (markdownHooks.hooks[lifecycle]) {
-            markdownHooks.hooks[lifecycle] = [...markdownHooks.hooks[lifecycle], ...hooks_];
-        }
-    }
+    const allHooks = [MarkdownRenderer.defaultHooks, markdownHooks.hooks].concat(
+        parameters.hooks ?? [],
+    );
+    const mergedHooks = mergeHooks(...allHooks);
 
     const mdOptions: MarkdownRendererParams<MarkdownHandlersState> = {
         handlers,
         initState,
-        hooks: markdownHooks.hooks,
+        hooks: mergedHooks,
         rules,
     };
     const diplodocOptions = {

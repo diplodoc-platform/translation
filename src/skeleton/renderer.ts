@@ -26,11 +26,14 @@ import table from '@doc-tools/transform/lib/plugins/table';
 import skeletonHandlers, {SkeletonHandlersState} from './handlers';
 import hooks, {HooksParameters} from './hooks';
 import {rules} from './rules';
+import {mergeHooks} from 'src/hooks';
+import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
 
 export type SkeletonRendererState = SkeletonHandlersState;
 
 export type RenderParameters = {
     markdown: string;
+    hooks?: CustomRendererHooks;
 } & DiplodocParameters;
 
 export type DiplodocParameters = {
@@ -51,20 +54,18 @@ function render(parameters: RenderParameters) {
 
     const skeletonHooks = hooks.generate({markdownit: md});
 
-    // todo: add non-destructive way of extending markdown-renderer hooks
-    for (const defaultHook of Object.entries(MarkdownRenderer.defaultHooks)) {
-        const [lifecycle, hooks_] = defaultHook as any;
+    const allHooks: CustomRendererHooks[] = [
+        MarkdownRenderer.defaultHooks,
+        skeletonHooks.hooks,
+    ].concat(parameters.hooks ?? []);
 
-        if (skeletonHooks.hooks[lifecycle]) {
-            skeletonHooks.hooks[lifecycle] = [...skeletonHooks.hooks[lifecycle], ...hooks_];
-        }
-    }
+    const mergedHooks = mergeHooks(...allHooks);
 
     const mdOptions: MarkdownRendererParams<SkeletonHandlersState> = {
         handlers,
         initState,
         rules,
-        hooks: skeletonHooks.hooks,
+        hooks: mergedHooks,
     };
     const diplodocOptions = {
         lang: lang ?? 'ru',

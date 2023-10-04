@@ -27,11 +27,13 @@ import {template} from './generator';
 import rules, {XLFRulesState} from './rules';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
+import {mergeHooks} from '../hooks';
 
 export type XLFRendererState = XLFRulesState;
 
 export type RenderParameters = {
     markdown: string;
+    hooks?: CustomRendererHooks;
 } & template.TemplateParameters &
     DiplodocParameters;
 
@@ -43,7 +45,6 @@ function render(parameters: RenderParameters) {
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
-
     const wrapper = template.generate(parameters);
 
     const xlfRenderer = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
@@ -53,22 +54,13 @@ function render(parameters: RenderParameters) {
         markdownit: xlfRenderer,
     });
 
-    // todo: add non-destructive way of extending custom-renderer hooks
-    for (const lifecycleHook of Object.entries(MarkdownRenderer.defaultHooks)) {
-        const [lifecycle, hooks_] = lifecycleHook as any;
-
-        const hooksForLifeCycle = xlfHooks.hooks[lifecycle];
-
-        if (Array.isArray(hooksForLifeCycle)) {
-            xlfHooks.hooks[lifecycle] = [...hooksForLifeCycle, ...hooks_];
-        } else {
-            xlfHooks.hooks[lifecycle] = [hooksForLifeCycle, ...hooks_];
-        }
-    }
-
+    const allHooks: CustomRendererHooks[] = [MarkdownRenderer.defaultHooks, xlfHooks.hooks].concat(
+        parameters.hooks ?? [],
+    );
+    const mergedHooks = mergeHooks(...allHooks);
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
-        hooks: xlfHooks.hooks,
+        hooks: mergedHooks,
         initState: xlfRules.initState,
         handlers,
     };
