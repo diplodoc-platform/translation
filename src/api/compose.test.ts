@@ -36,6 +36,7 @@ describe('validates parameters', () => {
         const parameters = {
             skeleton: '',
             xlf: xlf,
+            useSource: true,
         };
 
         compose(parameters);
@@ -45,18 +46,15 @@ describe('validates parameters', () => {
         const invalidXLF = {
             xlf: '',
         };
-
         const invalidSkeleton = {
             xlf: xlf,
         };
-
-        const invalidBoth = {};
-
         const invalidLang = {xlf, skeleton: '', lang: 'xx'};
+        const invalidUseSource = {xlf, useSource: null};
 
         expect(() => compose(invalidSkeleton as ComposeParameters)).toThrow();
         expect(() => compose(invalidXLF as ComposeParameters)).toThrow();
-        expect(() => compose(invalidBoth as ComposeParameters)).toThrow();
         expect(() => compose(invalidLang as ComposeParameters)).toThrow();
+        expect(() => compose(invalidUseSource as unknown as ComposeParameters)).toThrow();
     });
 });

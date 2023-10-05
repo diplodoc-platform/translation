@@ -4,6 +4,7 @@ import markdown from 'src/markdown';
 export type ComposeParameters = {
     skeleton: string;
     xlf: string;
+    useSource?: boolean;
 } & markdown.renderer.DiplodocParameters;
 
 function compose(parameters: ComposeParameters) {
@@ -19,6 +20,7 @@ function compose(parameters: ComposeParameters) {
 
 function validParameters(parameters: ComposeParameters) {
     const conditions = [
+        parameters.useSource === undefined || typeof parameters.useSource === 'boolean',
         parameters.skeleton !== undefined,
         parameters.xlf !== undefined,
         xlf.parser.validParameters(parameters),
