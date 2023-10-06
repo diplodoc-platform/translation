@@ -1,56 +1,46 @@
-import {XMLBuilder} from 'fast-xml-parser';
-
-const options = {format: true, ignoreAttributes: false};
-const builder = new XMLBuilder(options);
-
 export type TransUnitParameters = {
     indentation?: number;
     target?: string;
+    targetLangLocale?: string;
     source?: string;
+    sourceLangLocale?: string;
     id: number;
 };
 
-export type TransUnitData = {
-    'trans-unit': {
-        source?: XLFHasText;
-        target?: XLFHasText;
-    } & XLFHasID;
-};
+function generateTransUnit(parameters: TransUnitParameters) {
+    const {source, sourceLangLocale, target, targetLangLocale, id, indentation = 0} = parameters;
 
-export type XLFHasText = {
-    '#text'?: string;
-};
-
-export type XLFHasID = {
-    '@_id'?: number;
-};
-
-function generate({source, target, id, indentation = 0}: TransUnitParameters) {
-    const data: TransUnitData = {
-        'trans-unit': {
-            '@_id': id,
-        },
-    };
+    let rendered = ' '.repeat(indentation + 2);
+    rendered += `<trans-unit id="${id}">`;
 
     if (source?.length) {
-        data['trans-unit'].source = {
-            '#text': source,
-        };
+        rendered += '\n';
+        rendered += ' '.repeat(indentation + 4);
+        rendered += `<source`;
+        if (sourceLangLocale?.length) {
+            rendered += ` xml:lang="${sourceLangLocale}"`;
+        }
+        rendered += '>';
+        rendered += `${source}</source>`;
     }
 
     if (target?.length) {
-        data['trans-unit'].target = {
-            '#text': target,
-        };
+        rendered += '\n';
+        rendered += ' '.repeat(indentation + 4);
+        rendered += `<target`;
+        if (targetLangLocale?.length) {
+            rendered += ` xml:lang="${targetLangLocale}"`;
+        }
+        rendered += '>';
+        rendered += `${target}</target>`;
     }
 
-    return builder
-        .build(data)
-        .split('\n')
-        .filter(Boolean)
-        .map((s: string) => ' '.repeat(indentation + 2) + s)
-        .join('\n');
+    rendered += '\n';
+    rendered += ' '.repeat(indentation + 2);
+    rendered += '</trans-unit>';
+
+    return rendered;
 }
 
-export {generate};
-export default {generate};
+export {generateTransUnit};
+export default {generateTransUnit};

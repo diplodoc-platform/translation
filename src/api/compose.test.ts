@@ -1,5 +1,5 @@
 import {compose, ComposeParameters} from './compose';
-import {template, transUnit} from 'src/xlf/generator';
+import {template, generateTransUnit} from 'src/xlf/generator';
 
 const templateParameters = {
     source: {language: 'en', locale: 'US' as const},
@@ -18,7 +18,7 @@ const transUnits = [
     {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
 ];
 
-const xlf = before + transUnits.map(transUnit.generate).join('') + after;
+const xlf = before + transUnits.map(generateTransUnit).join('') + after;
 
 describe('smoke', () => {
     it('works', () => {
