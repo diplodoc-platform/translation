@@ -1,5 +1,5 @@
-import {parseTranslations} from './parser';
-import {template, transUnit} from './generator';
+import {parseTranslations} from './index';
+import {template, transUnit} from 'src/xlf/generator';
 
 const templateParameters = {
     source: {language: 'en', locale: 'US' as const},
