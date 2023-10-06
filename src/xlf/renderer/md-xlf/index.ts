@@ -29,7 +29,7 @@ import {handlers} from './handlers';
 import {mergeHooks} from '../hooks';
 import rules from './rules';
 
-import {template} from './generator';
+import {template} from 'src/xlf/generator';
 
 export type RenderParameters = template.TemplateParameters & DiplodocParameters & BaseParameters;
 export type BaseParameters = {

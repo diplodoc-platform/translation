@@ -2,9 +2,9 @@ import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import MarkdownIt from 'markdown-it';
 
 import {traverse} from 'src/meta';
-import {segmenter} from 'src/xlf/segmenter';
+import {segmenter} from 'src/xlf/renderer/md-xlf/segmenter';
 
-import {XLFRendererState} from 'src/xlf/state';
+import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
 export type MetaParameters = {
     markdownit: MarkdownItWithMeta;

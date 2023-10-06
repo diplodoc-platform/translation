@@ -1,5 +1,6 @@
+import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
-import {render, RenderParameters} from './renderer';
+import {render, RenderParameters} from './index';
 
 import basic from 'src/__fixtures__/basic';
 import variables from 'src/__fixtures__/variables';
@@ -23,7 +24,6 @@ import strikethrough from 'src/__fixtures__/strikethrough';
 import tabs from 'src/__fixtures__/tabs';
 import video from 'src/__fixtures__/video';
 import multilineTables from 'src/__fixtures__/multiline-tables';
-import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 
 describe('smoke', () => {
     test('it works', () => {
@@ -560,6 +560,7 @@ describe('passing hooks', () => {
         render(parameters);
         expect(hookFn).toHaveBeenCalled();
     });
+
     it('default hooks should still be called', () => {
         const defaultHookSpy = jest.spyOn(MarkdownRenderer.defaultHooks['0'], 0);
         const hookFn = jest.fn().mockImplementation(() => '');

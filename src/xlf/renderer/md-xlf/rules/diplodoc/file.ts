@@ -1,9 +1,9 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
 
-import {segmenter} from 'src/xlf/segmenter';
+import {segmenter} from 'src/xlf/renderer/md-xlf/segmenter';
 
-import {XLFRendererState} from 'src/xlf/state';
+import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
 function yfmFile(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
     const content = tokens[i].content;
