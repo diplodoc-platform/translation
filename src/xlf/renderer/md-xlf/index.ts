@@ -28,7 +28,7 @@ import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
 import rules from './rules';
 
-import {template} from './generator';
+import {template} from 'src/xlf/generator';
 
 export type RenderParameters = template.TemplateParameters & DiplodocParameters & BaseParameters;
 export type BaseParameters = {

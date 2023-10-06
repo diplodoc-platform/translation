@@ -1,4 +1,4 @@
-import {render, RenderParameters} from './renderer';
+import {render, RenderParameters} from './index';
 
 describe('inline: xlf rendering', () => {
     it('inline: renders trans-unit for each sentence from paragraph with plain text.', () => {
