@@ -1,13 +1,13 @@
 import {sentenize} from '@diplodoc/sentenizer';
 
-import {transUnit} from 'src/xlf/generator';
+import {generateTransUnit} from 'src/xlf/generator';
 import {XLFRendererState} from './state';
 
 function segmenter(content: string, state: XLFRendererState) {
     let rendered = '';
 
     for (const segment of sentenize(content)) {
-        rendered += transUnit.generate({
+        rendered += generateTransUnit({
             source: segment,
             id: state.xlf.id,
             indentation: state.xlf.indentation,
