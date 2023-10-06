@@ -1,8 +1,8 @@
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import {CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
-import {segmenter} from 'src/xlf/segmenter';
+import {segmenter} from 'src/xlf/renderer/md-xlf/segmenter';
 
-import {XLFRendererState} from 'src/xlf/state';
+import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
 function afterInline(
     this: MarkdownRenderer<XLFRendererState>,

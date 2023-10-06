@@ -1,10 +1,10 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
 
-import {segmenter} from 'src/xlf/segmenter';
+import {segmenter} from 'src/xlf/renderer/md-xlf/segmenter';
 import {isTitleRefLink} from 'src/link';
 
-import {XLFRendererState} from 'src/xlf/state';
+import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
 // disabled for now
 // handle ref links {#T}
