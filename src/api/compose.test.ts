@@ -1,5 +1,5 @@
 import {compose, ComposeParameters} from './compose';
-import {template, generateTransUnit} from 'src/xlf/generator';
+import {generateTemplate, generateTransUnit} from 'src/xlf/generator';
 
 const templateParameters = {
     source: {language: 'en', locale: 'US' as const},
@@ -11,7 +11,7 @@ const templateParameters = {
 const {
     template: [before, after],
     indentation,
-} = template.generate(templateParameters);
+} = generateTemplate(templateParameters);
 
 const transUnits = [
     {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0, indentation},
