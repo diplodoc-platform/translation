@@ -28,9 +28,9 @@ import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
 import rules from './rules';
 
-import {template} from 'src/xlf/generator';
+import {generateTemplate, templateValidParameters, TemplateParameters} from 'src/xlf/generator';
 
-export type RenderParameters = template.TemplateParameters & DiplodocParameters & BaseParameters;
+export type RenderParameters = TemplateParameters & DiplodocParameters & BaseParameters;
 export type BaseParameters = {
     markdown: string;
 };
@@ -43,7 +43,7 @@ function render(parameters: RenderParameters) {
         throw new Error('invalid parameters');
     }
 
-    const wrapper = template.generate(parameters);
+    const wrapper = generateTemplate(parameters);
 
     const xlfRenderer = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
     const xlfRules = rules.generate();
@@ -107,7 +107,7 @@ function validParameters(parameters: RenderParameters) {
 
     const markdownCondition = markdown !== undefined;
     const langCondition = lang === undefined || lang === 'ru' || lang === 'en';
-    const conditions = [template.validParameters(parameters), markdownCondition, langCondition];
+    const conditions = [templateValidParameters(parameters), markdownCondition, langCondition];
 
     return conditions.reduce((a, v) => a && v, true);
 }
