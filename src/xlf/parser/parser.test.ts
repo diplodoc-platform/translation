@@ -1,5 +1,5 @@
 import {parseTranslations} from './index';
-import {template, generateTransUnit} from 'src/xlf/generator';
+import {generateTemplate, generateTransUnit} from 'src/xlf/generator';
 
 const templateParameters = {
     source: {language: 'en', locale: 'US' as const},
@@ -11,29 +11,38 @@ const templateParameters = {
 const {
     template: [before, after],
     indentation,
-} = template.generate(templateParameters);
-
-const transUnits = [
-    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0, indentation},
-    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
-];
-
-const transUnitWithAttributes = (id: number, text: string) => `\
-<trans-unit id="${id}">
-    <source>source</source>
-    <target xml:lang="en-US">${text}</target>
-</trans-unit>`;
-
-const xlf = before + transUnits.map(generateTransUnit).join('') + after;
+} = generateTemplate(templateParameters);
 
 describe('smoke', () => {
     it('works', () => {
+        const transUnits = [
+            {
+                source: 'Sentence about something',
+                target: 'Предложение о чем-то',
+                id: 1,
+                indentation,
+            },
+            {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
+        ];
+        const xlf = before + transUnits.map(generateTransUnit).join('') + after;
+
         parseTranslations({xlf});
     });
 });
 
 describe('validates parameters', () => {
     it('works with valid parameters', () => {
+        const transUnits = [
+            {
+                source: 'Sentence about something',
+                target: 'Предложение о чем-то',
+                id: 1,
+                indentation,
+            },
+            {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
+        ];
+        const xlf = before + transUnits.map(generateTransUnit).join('') + after;
+
         parseTranslations({xlf});
     });
 
@@ -47,7 +56,18 @@ describe('validates parameters', () => {
 
 describe('parses translation units', () => {
     it('parses targets', () => {
-        const translations = parseTranslations({xlf, startID: 0});
+        const transUnits = [
+            {
+                source: 'Sentence about something',
+                target: 'Предложение о чем-то',
+                id: 1,
+                indentation,
+            },
+            {source: 'Text fragment', target: 'Фрагмент Текста', id: 2, indentation},
+        ];
+        const xlf = before + transUnits.map(generateTransUnit).join('') + after;
+
+        const translations = parseTranslations({xlf});
 
         for (const expected of transUnits) {
             const translation = translations.get(String(expected.id));
@@ -60,73 +80,57 @@ describe('parses translation units', () => {
     });
 
     it('parses trans-units', () => {
-        const [open, close] = template.generate(templateParameters).template;
-
-        const fixtures: Array<[number, string]> = [
-            [1, 'text segment 1'],
-            [2, 'text segment 2'],
+        const fixtures = [
+            {id: 1, target: 'text segment 1'},
+            {id: 2, target: 'text segment 2'},
         ];
+        const xlf = before + fixtures.map(generateTransUnit).join('') + after;
 
-        const document =
-            open + fixtures.map((fixture) => transUnitWithAttributes(...fixture)) + close;
+        const translations = parseTranslations({xlf});
 
-        const translations = parseTranslations({xlf: document});
-
-        for (const [id, text] of fixtures) {
+        for (const {id, target} of fixtures) {
             const translation = translations.get(String(id));
 
             if (!translation) {
                 throw new Error(`failed to receive ${id} translation unit`);
             }
 
-            expect(translation).toStrictEqual(text);
+            expect(translation).toStrictEqual(target);
         }
     });
 
     it('parses single trans-unit', () => {
-        const [open, close] = template.generate(templateParameters).template;
+        const fixtures = [{id: 1, target: 'text segment 1'}];
+        const xlf = before + fixtures.map(generateTransUnit).join('') + after;
 
-        const fixtures: Array<[number, string]> = [[1, 'text segment 1']];
+        const translations = parseTranslations({xlf});
 
-        const document =
-            open + fixtures.map((fixture) => transUnitWithAttributes(...fixture)) + close;
-
-        const translations = parseTranslations({xlf: document});
-
-        for (const [id, text] of fixtures) {
+        for (const {id, target} of fixtures) {
             const translation = translations.get(String(id));
-
             if (!translation) {
                 throw new Error(`failed to receive ${id} translation unit`);
             }
 
-            expect(translation).toStrictEqual(text);
+            expect(translation).toStrictEqual(target);
         }
     });
 
     it('parses trans-units sources when trans-unit targets are absent', () => {
-        const [open, close] = template.generate(templateParameters).template;
-
-        const fixtures: Array<[number, string]> = [
-            [1, 'текст 1'],
-            [2, 'текст 2'],
+        const fixtures = [
+            {id: 1, source: 'текст 1'},
+            {id: 2, source: 'текст 2'},
         ];
+        const xlf = before + fixtures.map(generateTransUnit).join('') + after;
 
-        const document =
-            open +
-            `<trans-unit id="${fixtures[0][0]}"><source>${fixtures[0][1]}</source></trans-unit>` +
-            `<trans-unit id="${fixtures[1][0]}"><source>${fixtures[1][1]}</source></trans-unit>` +
-            close;
-
-        const translations = parseTranslations({xlf: document, useSource: true});
-        for (const [id, text] of fixtures) {
+        const translations = parseTranslations({xlf, useSource: true});
+        for (const {id, source} of fixtures) {
             const translation = translations.get(String(id));
 
             if (!translation) {
                 throw new Error(`failed to receive ${id} translation unit`);
             }
 
-            expect(translation).toStrictEqual(text);
+            expect(translation).toStrictEqual(source);
         }
     });
 });
