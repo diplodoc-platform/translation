@@ -1,6 +1,5 @@
 import languages from '@cospired/i18n-iso-languages';
 import countries from '@shellscape/i18n-iso-countries';
-import {XMLBuilder} from 'fast-xml-parser';
 
 export type TemplateParameters = {
     source: LanguageLocale;
@@ -18,57 +17,79 @@ const languagesList = languages.langs();
 
 export type Language = (typeof languagesList)[number];
 
-const options = {
-    format: true,
-    ignoreAttributes: false,
-    allowBooleanAttributes: true,
-    suppressBooleanAttributes: false,
-};
-
-const builder = new XMLBuilder(options);
-
-function generate(parameters: TemplateParameters) {
+function generateTemplate(parameters: TemplateParameters) {
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
+    const {source, target, skeletonPath, markdownPath} = parameters;
+    let indentation = 0;
+    let before = '<?xml version="1.0" encoding="UTF-8"?>';
+    before += '\n';
 
-    const {source, target, markdownPath, skeletonPath} = parameters;
+    before += '<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">';
+    before += '\n';
 
-    const doc = {
-        '?xml': {
-            '@_version': '1.0',
-            '@_encoding': 'UTF-8',
-        },
-        xliff: {
-            '@_xmlns': 'urn:oasis:names:tc:xliff:document:1.2',
-            '@_version': '1.2',
-            file: {
-                '@_original': markdownPath,
-                '@_source-language': `${source.language}-${source.locale}`,
-                '@_target-language': `${target.language}-${target.locale}`,
-                '@_datatype': 'markdown',
-                header: {
-                    skeleton: {
-                        'external-file': {
-                            '@_href': skeletonPath,
-                        },
-                    },
-                },
-                body: {},
-            },
-        },
+    indentation += 2;
+
+    before += ' '.repeat(indentation);
+    before += `<file original="${markdownPath}" source-language="${source.language}-${source.locale}" target-language="${target.language}-${target.locale}" datatype="markdown">`;
+    before += '\n';
+
+    indentation += 2;
+
+    before += ' '.repeat(indentation);
+    before += '<header>';
+    before += '\n';
+
+    indentation += 2;
+
+    before += ' '.repeat(indentation);
+    before += '<skeleton>';
+    before += '\n';
+
+    indentation += 2;
+
+    before += ' '.repeat(indentation);
+    before += `<external-file href="${skeletonPath}"></external-file>`;
+    before += '\n';
+
+    indentation -= 2;
+
+    before += ' '.repeat(indentation);
+    before += '</skeleton>';
+    before += '\n';
+
+    indentation -= 2;
+
+    before += ' '.repeat(indentation);
+    before += '</header>';
+    before += '\n';
+
+    before += ' '.repeat(indentation);
+    before += '<body>';
+    before += '\n';
+
+    const indentationInsideBody = indentation;
+
+    let after = ' '.repeat(indentation);
+    after += '</body>';
+    after += '\n';
+
+    indentation -= 2;
+
+    after += ' '.repeat(indentation);
+    after += '</file>';
+    after += '\n';
+
+    indentation -= 2;
+    after += ' '.repeat(indentation);
+    after += '</xliff>';
+    after += '\n';
+
+    return {
+        template: [before, after] as [string, string],
+        indentation: indentationInsideBody,
     };
-
-    const rendered = builder.build(doc);
-
-    let [before, after] = rendered.split('<body>');
-
-    const indentation = before.length - before.trimEnd().length - 1;
-
-    before += '<body>\n';
-    after = ' '.repeat(indentation) + after;
-
-    return {template: [before, after] as [string, string], indentation};
 }
 
 function validParameters(parameters: TemplateParameters) {
@@ -88,5 +109,5 @@ function validLanguageLocale(parameters: LanguageLocale) {
     return languages.isValid(language) && countries.isValid(locale);
 }
 
-export {generate, validParameters};
-export default {generate, validParameters};
+export {generateTemplate, validParameters};
+export default {generateTemplate, validParameters};
