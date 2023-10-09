@@ -1,65 +1,119 @@
 import {XMLValidator} from 'fast-xml-parser';
-import cheerio from 'cheerio';
+import cheerio, {Cheerio} from 'cheerio';
+import {Element, ChildNode, isTag, isText} from 'domhandler';
 
-export type TranslationUnitsByID = Map<string, string>;
+import {XLFToken, XLFTagToken, XLFTextToken} from 'src/xlf/token';
 
 export type GetTranslationsParameters = {
     xlf: string;
-    startID?: number;
     useSource?: boolean;
 };
 
-function parseTranslations(parameters: GetTranslationsParameters): TranslationUnitsByID {
+function parseTranslations(parameters: GetTranslationsParameters): Array<Array<XLFToken>> {
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
 
-    const {startID = 1, useSource = false} = parameters;
+    const {useSource = false} = parameters;
     let xlf = parameters.xlf;
-    let {translations, success} = findTargets(xlf);
+    let {targets, success} = selectTargets(xlf);
     if (!success) {
         if (useSource) {
             xlf = replaceSourceWithTarget(xlf);
-            ({translations, success} = findTargets(xlf));
+            ({targets, success} = selectTargets(xlf));
         } else {
             throw new Error('did not find any translations');
         }
     }
 
-    const units = new Map<string, string>();
-
-    let i = startID;
-    for (const target of translations) {
-        let text = '';
-        for (const child of target.children ?? []) {
-            if (child.type === 'text') {
-                text += child.data;
-            }
-        }
-
-        units.set(String(i++), text);
-    }
-
-    return units;
-}
-
-function findTargets(xlf: string) {
-    let success = true;
-    const query = cheerio.load(xlf);
-
-    const translations = query('trans-unit').find('target');
-    if (translations.length === 0) {
-        success = false;
-    }
-
-    return {
-        translations,
-        success,
-    };
+    return parseTargets(targets);
 }
 
 function replaceSourceWithTarget(xlf: string) {
     return xlf.replace(/<source>/gmu, '<target>').replace(/<\/source>/gmu, '</target>');
+}
+
+function selectTargets(xlf: string) {
+    let success = true;
+    const query = cheerio.load(xlf);
+
+    const targets = query('trans-unit').find('target');
+    if (targets.length === 0) {
+        success = false;
+    }
+
+    return {
+        targets,
+        success,
+    };
+}
+
+function parseTargets(targets: Cheerio<Element>) {
+    const parsed = new Array<Array<XLFToken>>();
+    const ref = {nodes: []};
+
+    for (const target of targets.get()) {
+        inorderNodes(target, ref);
+
+        const tokens = nodesIntoXLFTokens(ref.nodes);
+        parsed.push(tokens);
+
+        ref.nodes = [];
+    }
+
+    return parsed;
+}
+
+function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
+    if (!node) {
+        return;
+    }
+
+    ref.nodes.push(node);
+
+    if (isTag(node)) {
+        let next = node.firstChild;
+
+        while (next) {
+            inorderNodes(next, ref);
+            next = next.nextSibling;
+        }
+    }
+
+    if (isTag(node)) {
+        ref.nodes.push(node);
+    }
+}
+
+function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
+    const tokens = new Array<XLFToken>();
+
+    for (const node of nodes) {
+        if (isTag(node)) {
+            const token: XLFTagToken = {
+                type: 'tag',
+                data: node.name,
+            };
+
+            if (node?.attribs?.ctype?.length) {
+                token.ctype = node.attribs.ctype;
+            }
+
+            if (node?.attribs['equiv-text']?.length) {
+                token.equivText = node.attribs['equiv-text'];
+            }
+
+            tokens.push(token);
+        } else if (isText(node)) {
+            const token: XLFTextToken = {
+                type: 'text',
+                data: node.data,
+            };
+            tokens.push(token);
+        }
+    }
+
+    return tokens;
 }
 
 function validParameters(parameters: GetTranslationsParameters) {
