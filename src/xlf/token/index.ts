@@ -11,3 +11,14 @@ export type XLFTagToken = {
     ctype?: string;
     equivText?: string;
 };
+
+function isXLFTextToken(token: XLFToken): token is XLFTextToken {
+    return token?.type === 'text';
+}
+
+function isXLFTagToken(token: XLFToken): token is XLFTagToken {
+    return token?.type === 'tag';
+}
+
+export {isXLFTextToken, isXLFTagToken};
+export default {isXLFTextToken, isXLFTagToken};
