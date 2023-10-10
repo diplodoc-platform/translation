@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders xlf to markdown renders plain text 1`] = `"Sentence about something. Another sentence."`;
