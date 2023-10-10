@@ -55,14 +55,7 @@ describe('parses translation units', () => {
         const translations = parseTranslations({xlf});
 
         expect(translations.length).toStrictEqual(2);
-
-        for (let i = 0; i < translations.length; i++) {
-            const translation = translations[i];
-            const tokens = translation.filter(({type}) => type === 'text');
-            expect(tokens.length).toStrictEqual(1);
-            const data = tokens.reduce((str, {data}) => str + data, '');
-            expect(data).toStrictEqual(units[i].target);
-        }
+        expect(translations).toMatchSnapshot();
     });
 
     it('parses single trans-unit', () => {
@@ -71,10 +64,7 @@ describe('parses translation units', () => {
         const translations = parseTranslations({xlf});
 
         expect(translations.length).toStrictEqual(1);
-        const tokens = translations[0].filter(({type}) => type === 'text');
-        expect(tokens.length).toStrictEqual(1);
-        const data = tokens.reduce((str, {data}) => str + data, '');
-        expect(data).toStrictEqual(units[0].target);
+        expect(translations).toMatchSnapshot();
     });
 
     it('parses sources when targets are absent with useSource flag enabled', () => {
@@ -86,13 +76,6 @@ describe('parses translation units', () => {
         const translations = parseTranslations({xlf, useSource: true});
 
         expect(translations.length).toStrictEqual(2);
-
-        for (let i = 0; i < translations.length; i++) {
-            const translation = translations[i];
-            const tokens = translation.filter(({type}) => type === 'text');
-            expect(tokens.length).toStrictEqual(1);
-            const data = tokens.reduce((str, {data}) => str + data, '');
-            expect(data).toStrictEqual(units[i].source);
-        }
+        expect(translations).toMatchSnapshot();
     });
 });

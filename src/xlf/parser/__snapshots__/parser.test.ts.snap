@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parses translation units parses single trans-unit 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение о чем-то",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units parses sources when targets are absent with useSource flag enabled 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение о чем-то",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+    Object {
+      "data": "Фрагмент Текста",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units parses targets 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение о чем-то",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+    Object {
+      "data": "Фрагмент Текста",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "type": "tag",
+    },
+  ],
+]
+`;
