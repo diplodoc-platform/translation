@@ -1,8 +1,12 @@
+import MarkdownIt from 'markdown-it';
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import {CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
 import {segmenter} from 'src/xlf/renderer/md-xlf/segmenter';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
+import {unescapeSymbols} from 'src/xlf/symbols';
+
+const escapeHTML = new MarkdownIt().utils.escapeHtml;
 
 function afterInline(
     this: MarkdownRenderer<XLFRendererState>,
@@ -12,14 +16,16 @@ function afterInline(
         return '';
     }
 
-    const artifact = parameters.rendered.join('');
-    if (!artifact.length) {
+    let rendered = parameters.rendered.join('');
+    if (!rendered.length) {
         return '';
     }
 
-    const generated = segmenter(artifact, this.state);
+    rendered = escapeHTML(rendered);
+    rendered = unescapeSymbols(rendered);
+    rendered = segmenter(rendered, this.state);
 
-    parameters.rendered.splice(0, parameters.rendered.length, generated);
+    parameters.rendered.splice(0, parameters.rendered.length, rendered);
 
     return '';
 }
