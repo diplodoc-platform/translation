@@ -3,17 +3,15 @@ import {CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-rendere
 import {replacer} from 'src/markdown/replacer';
 
 import {MarkdownRendererState} from 'src/markdown/renderer';
-import {TranslationUnitsByID} from 'src/xlf/parser';
-
 export type AfterInlineState = {
     markdown: {
         id: number;
-        translations: TranslationUnitsByID;
+        translations: Map<string, string>;
     };
 };
 
 export type AfterInlineParameters = {
-    translations: TranslationUnitsByID;
+    translations: Map<string, string>;
 };
 
 function afterInline(
