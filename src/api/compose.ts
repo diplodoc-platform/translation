@@ -1,4 +1,4 @@
-import xlf from 'src/xlf';
+import {getTranslations, validTranslationsParameters} from 'src/xlf/translations';
 import markdown from 'src/markdown';
 
 export type ComposeParameters = {
@@ -12,7 +12,7 @@ function compose(parameters: ComposeParameters) {
         throw new Error('invalid parameters');
     }
 
-    const translations = xlf.parser.parseTranslations(parameters);
+    const translations = getTranslations(parameters);
     const translated = markdown.renderer.render({...parameters, translations});
 
     return translated;
@@ -23,7 +23,7 @@ function validParameters(parameters: ComposeParameters) {
         parameters.useSource === undefined || typeof parameters.useSource === 'boolean',
         parameters.skeleton !== undefined,
         parameters.xlf !== undefined,
-        xlf.parser.validParameters(parameters),
+        validTranslationsParameters(parameters),
         markdown.renderer.validDiplodocParameters(parameters),
     ];
 
