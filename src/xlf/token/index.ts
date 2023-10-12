@@ -11,7 +11,7 @@ export type XLFTagToken = {
     type: 'tag';
     data: string;
     nodeType: NodeTypes;
-    ctype?: string;
+    syntax?: string;
     equivText?: string;
 };
 
