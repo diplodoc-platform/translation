@@ -1,4 +1,5 @@
-import {XLFToken} from 'src/xlf/token';
+import assert from 'assert';
+import {XLFToken, XLFTagToken, XLFTextToken, isXLFTagToken, isXLFTextToken} from 'src/xlf/token';
 
 export type XLFMDRendererRuleSet = {
     text: XLFMDRendererRule;
@@ -13,6 +14,9 @@ class XLFMDRenderer {
     constructor() {
         this.rules = {
             text: this.text.bind(this),
+            tag: this.tag.bind(this),
+            g: this.g.bind(this),
+            bold: this.bold.bind(this),
         };
     }
 
@@ -30,7 +34,43 @@ class XLFMDRenderer {
     }
 
     text(token: XLFToken): string {
+        assert(isXLFTextToken(token));
+        token as XLFTextToken;
+
         return token.data;
+    }
+
+    tag(token: XLFToken): string {
+        const handler = this.rules[token.data];
+        if (!handler) {
+            return '';
+        }
+
+        return handler(token);
+    }
+
+    g(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const syntax = token.syntax;
+        if (!syntax?.length) {
+            throw new Error("can't render g tag without syntax");
+        }
+
+        const handler = this.rules[syntax];
+        if (!handler) {
+            throw new Error(`syntax ${syntax} not implemented`);
+        }
+
+        return handler(token);
+    }
+
+    bold(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        return token.equivText ?? '**';
     }
 }
 
