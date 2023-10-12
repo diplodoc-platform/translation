@@ -1,3 +1,4 @@
+import assert from 'assert';
 import {XMLValidator} from 'fast-xml-parser';
 import cheerio, {Cheerio} from 'cheerio';
 import {Element, ChildNode, isTag, isText} from 'domhandler';
@@ -98,9 +99,7 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
     for (const node of nodes) {
         if (isTag(node)) {
             const nodeType = node?.attribs?.nodeType;
-            if (!(nodeType === 'open' || nodeType === 'close')) {
-                throw new Error('invalid node type');
-            }
+            assert(nodeType === 'open' || nodeType === 'close');
 
             const token: XLFTagToken = {
                 type: 'tag',
@@ -108,9 +107,9 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
                 nodeType,
             };
 
-            const ctype = node?.attribs?.ctype;
-            if (ctype?.length) {
-                token.ctype = ctype;
+            const [_, syntax] = node?.attribs?.ctype?.split('-') ?? [];
+            if (syntax?.length) {
+                token.syntax = syntax;
             }
 
             const equivText = node?.attribs['equiv-text'];
