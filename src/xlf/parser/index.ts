@@ -69,9 +69,14 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
         return;
     }
 
-    ref.nodes.push(node);
+    if (isText(node)) {
+        ref.nodes.push(node);
+    }
 
     if (isTag(node)) {
+        node.attribs.nodeType = 'open';
+        ref.nodes.push(node);
+
         let next = node.firstChild;
 
         while (next) {
@@ -81,7 +86,9 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
     }
 
     if (isTag(node)) {
-        ref.nodes.push(node);
+        const closeNode = node.cloneNode();
+        closeNode.attribs.nodeType = 'close';
+        ref.nodes.push(closeNode);
     }
 }
 
@@ -90,17 +97,25 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
 
     for (const node of nodes) {
         if (isTag(node)) {
+            const nodeType = node?.attribs?.nodeType;
+            if (!(nodeType === 'open' || nodeType === 'close')) {
+                throw new Error('invalid node type');
+            }
+
             const token: XLFTagToken = {
                 type: 'tag',
                 data: node.name,
+                nodeType,
             };
 
-            if (node?.attribs?.ctype?.length) {
-                token.ctype = node.attribs.ctype;
+            const ctype = node?.attribs?.ctype;
+            if (ctype?.length) {
+                token.ctype = ctype;
             }
 
-            if (node?.attribs['equiv-text']?.length) {
-                token.equivText = node.attribs['equiv-text'];
+            const equivText = node?.attribs['equiv-text'];
+            if (equivText?.length) {
+                token.equivText = equivText;
             }
 
             tokens.push(token);
