@@ -13,7 +13,7 @@ describe('renders xlf to markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders bold wrapped in <g> tags', () => {
+    it('renders strong wrapped in <g> tags', () => {
         const renderer = new XLFMDRenderer();
         const tokens: Array<XLFToken> = [
             {type: 'tag', data: 'target', nodeType: 'open'},
@@ -22,7 +22,7 @@ describe('renders xlf to markdown', () => {
                 type: 'tag',
                 data: 'g',
                 nodeType: 'open',
-                syntax: 'bold',
+                syntax: 'strong',
                 equivText: '**',
             },
             {type: 'text', data: 'один'},
@@ -30,7 +30,7 @@ describe('renders xlf to markdown', () => {
                 type: 'tag',
                 data: 'g',
                 nodeType: 'close',
-                syntax: 'bold',
+                syntax: 'strong',
                 equivText: '**',
             },
             {type: 'text', data: '.'},

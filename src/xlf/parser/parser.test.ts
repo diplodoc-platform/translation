@@ -81,9 +81,9 @@ describe('parses translation units', () => {
 });
 
 describe('parses translation units with <g> and <x> tags', () => {
-    it('parses bold wrapped in <g> tags', () => {
+    it('parses strong wrapped in <g> tags', () => {
         const units = [
-            {id: 1, target: 'Предложение номер <g ctype="x-bold" equiv-text="**">один</g>.'},
+            {id: 1, target: 'Предложение номер <g ctype="x-strong" equiv-text="**">один</g>.'},
         ];
         const xlf = generateXLF(units);
         const translations = parseTranslations({xlf});

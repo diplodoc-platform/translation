@@ -95,7 +95,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses bold wrapped in <g> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses strong wrapped in <g> tags 1`] = `
 Array [
   Array [
     Object {
@@ -111,7 +111,7 @@ Array [
       "data": "g",
       "equivText": "**",
       "nodeType": "open",
-      "syntax": "bold",
+      "syntax": "strong",
       "type": "tag",
     },
     Object {
@@ -122,7 +122,7 @@ Array [
       "data": "g",
       "equivText": "**",
       "nodeType": "close",
-      "syntax": "bold",
+      "syntax": "strong",
       "type": "tag",
     },
     Object {
