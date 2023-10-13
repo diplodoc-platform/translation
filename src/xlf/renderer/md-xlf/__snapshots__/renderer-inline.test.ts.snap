@@ -21,3 +21,25 @@ exports[`renders xlf from markdown renders plain text 1`] = `
 </xliff>
 "
 `;
+
+exports[`renders xlf from markdown renders strong wrapped in <g> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-strong\\" equiv-text=\\"**\\">один</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-strong\\" equiv-text=\\"**\\">два</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
