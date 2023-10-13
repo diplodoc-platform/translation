@@ -2,6 +2,8 @@ import linkRules, {linkOpen, linkClose, LinkRuleState} from './link';
 import imageRules, {image, imageClose, ImageRuleState} from './image';
 import diplodocRules, {DiplodocRulesState} from './diplodoc';
 
+import {pair} from './pair';
+
 export type XLFRulesState = LinkRuleState & ImageRuleState & DiplodocRulesState;
 
 function generate() {
@@ -39,6 +41,7 @@ function rules() {
         image,
         image_close: imageClose,
         ...diplodocRules.rules,
+        ...pair,
     };
 }
 
