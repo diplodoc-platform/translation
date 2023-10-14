@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`inline: markdown rendering inline: renders translated markdown instead of hashes inside of the sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
+exports[`inline: renders translated markdown inline: renders sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
+
+exports[`inline: renders translated markdown inline: renders sentences with strong syntax 1`] = `"Sentence number **one**. Sentence number **two**."`;
