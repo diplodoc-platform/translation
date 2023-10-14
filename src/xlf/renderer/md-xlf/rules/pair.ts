@@ -8,6 +8,8 @@ import {generateOpenG, generateCloseG} from 'src/xlf/generator';
 const pair: Renderer.RenderRuleRecord = {
     strong_open: pairOpen,
     strong_close: generateCloseG,
+    em_open: pairOpen,
+    em_close: generateCloseG,
 };
 
 function pairOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
