@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders xlf to markdown renders em wrapped in <g> tags 1`] = `"Предложение номер *один*."`;
+
 exports[`renders xlf to markdown renders plain text 1`] = `"Sentence about something. Another sentence."`;
 
 exports[`renders xlf to markdown renders strong wrapped in <g> tags 1`] = `"Предложение номер **один**."`;
