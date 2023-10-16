@@ -18,6 +18,7 @@ class XLFMDRenderer {
             g: this.g.bind(this),
             strong: this.strong.bind(this),
             em: this.em.bind(this),
+            s: this.s.bind(this),
         };
     }
 
@@ -85,6 +86,17 @@ class XLFMDRenderer {
         }
 
         return token.equivText ?? '*';
+    }
+
+    s(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        if (!token?.equivText) {
+            throw new Error(`token: ${token} missing equiv-text`);
+        }
+
+        return token.equivText ?? '~~';
     }
 }
 
