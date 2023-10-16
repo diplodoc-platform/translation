@@ -27,4 +27,13 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with s syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown: 'Предложение номер ~~один~~. Предложение номер ~~два~~.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });

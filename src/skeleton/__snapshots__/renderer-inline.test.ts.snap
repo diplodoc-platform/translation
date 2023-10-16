@@ -4,4 +4,6 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with plain text. 1`] = `"%%%1%%% %%%2%%%"`;
 
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with s syntax. 1`] = `"%%%1%%% %%%2%%%"`;
+
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with strong syntax. 1`] = `"%%%1%%% %%%2%%%"`;
