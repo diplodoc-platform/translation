@@ -223,3 +223,46 @@ Array [
   ],
 ]
 `;
+
+exports[`parses translation units with <g> and <x> tags parses sup wrapped in <g> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "^",
+      "nodeType": "open",
+      "syntax": "sup",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "^",
+      "nodeType": "close",
+      "syntax": "sup",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
