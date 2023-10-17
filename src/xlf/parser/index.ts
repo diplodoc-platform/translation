@@ -10,6 +10,8 @@ export type GetTranslationsParameters = {
     useSource?: boolean;
 };
 
+const selfClosingTags = new Set(['x']);
+
 function parseTranslations(parameters: GetTranslationsParameters): Array<Array<XLFToken>> {
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
@@ -75,7 +77,11 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
     }
 
     if (isTag(node)) {
-        node.attribs.nodeType = 'open';
+        if (selfClosingTags.has(node.name)) {
+            node.attribs.nodeType = 'self-closing';
+        } else {
+            node.attribs.nodeType = 'open';
+        }
         ref.nodes.push(node);
 
         let next = node.firstChild;
@@ -86,7 +92,7 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
         }
     }
 
-    if (isTag(node)) {
+    if (isTag(node) && !selfClosingTags.has(node.name)) {
         const closeNode = node.cloneNode();
         closeNode.attribs.nodeType = 'close';
         ref.nodes.push(closeNode);
@@ -99,7 +105,7 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
     for (const node of nodes) {
         if (isTag(node)) {
             const nodeType = node?.attribs?.nodeType;
-            assert(nodeType === 'open' || nodeType === 'close');
+            assert(nodeType === 'open' || nodeType === 'close' || nodeType === 'self-closing');
 
             const token: XLFTagToken = {
                 type: 'tag',
