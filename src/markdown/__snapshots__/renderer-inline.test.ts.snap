@@ -6,6 +6,8 @@ exports[`inline: renders translated markdown inline: renders sentences with plai
 
 exports[`inline: renders translated markdown inline: renders sentences with s syntax 1`] = `"Sentence number ~~one~~. Sentence number ~~two~~."`;
 
+exports[`inline: renders translated markdown inline: renders sentences with samp syntax 1`] = `"Sentence number ##one##. Sentence number ##two##."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with strong syntax 1`] = `"Sentence number **one**. Sentence number **two**."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with sup syntax 1`] = `"Sentence number^one^. Sentence number^two^."`;
