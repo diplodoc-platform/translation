@@ -21,6 +21,8 @@ class XLFMDRenderer {
             s: this.s.bind(this),
             sup: this.sup.bind(this),
             samp: this.samp.bind(this),
+            x: this.x.bind(this),
+            code: this.code.bind(this),
         };
     }
 
@@ -121,6 +123,32 @@ class XLFMDRenderer {
         }
 
         return token.equivText ?? '##';
+    }
+
+    x(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const syntax = token.syntax;
+        if (!syntax?.length) {
+            throw new Error("can't render g tag without syntax");
+        }
+
+        const handler = this.rules[syntax];
+        if (!handler) {
+            throw new Error(`syntax ${syntax} not implemented`);
+        }
+
+        return handler(token);
+    }
+
+    code(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        assert(token.equivText?.length, 'x supposed to wrap original markup inside equiv-text');
+
+        return token.equivText;
     }
 }
 
