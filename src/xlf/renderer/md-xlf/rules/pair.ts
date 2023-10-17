@@ -14,6 +14,8 @@ const pair: Renderer.RenderRuleRecord = {
     s_close: generateCloseG,
     sup_open: pairOpen,
     sup_close: generateCloseG,
+    monospace_open: pairOpen,
+    monospace_close: generateCloseG,
 };
 
 function pairOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
