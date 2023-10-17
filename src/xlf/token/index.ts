@@ -5,7 +5,7 @@ export type XLFTextToken = {
     data: string;
 };
 
-export type NodeTypes = 'open' | 'close';
+export type NodeTypes = 'open' | 'close' | 'self-closing';
 
 export type XLFTagToken = {
     type: 'tag';
