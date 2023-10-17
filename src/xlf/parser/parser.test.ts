@@ -135,4 +135,15 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(1);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses code wrapped in <x> tag', () => {
+        const units = [
+            {id: 1, target: 'Предложение номер <x ctype="x-code" equiv-text="`один`" />.'},
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(1);
+        expect(translations).toMatchSnapshot();
+    });
 });
