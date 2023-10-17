@@ -3,6 +3,7 @@ import imageRules, {image, imageClose, ImageRuleState} from './image';
 import diplodocRules, {DiplodocRulesState} from './diplodoc';
 
 import {pair} from './pair';
+import {codeInline} from './code-inline';
 
 export type XLFRulesState = LinkRuleState & ImageRuleState & DiplodocRulesState;
 
@@ -13,7 +14,6 @@ function generate() {
 // blocks(container and leaf) create group
 function rules() {
     return {
-        code_inline: () => '',
         code_block: () => '',
         fence: () => '',
         hardbreak: () => '',
@@ -42,6 +42,7 @@ function rules() {
         image_close: imageClose,
         ...diplodocRules.rules,
         ...pair,
+        ...codeInline,
     };
 }
 
