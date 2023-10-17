@@ -73,4 +73,14 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders code wrapped in <x> tag', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown: 'Предложение номер `один`. Предложение номер `два`.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
