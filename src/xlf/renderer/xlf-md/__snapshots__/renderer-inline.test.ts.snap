@@ -6,6 +6,8 @@ exports[`renders xlf to markdown renders plain text 1`] = `"Sentence about somet
 
 exports[`renders xlf to markdown renders s wrapped in <g> tags 1`] = `"Предложение номер ~~один~~."`;
 
+exports[`renders xlf to markdown renders samp wrapped in <g> tags 1`] = `"Предложение номер ##один##."`;
+
 exports[`renders xlf to markdown renders strong wrapped in <g> tags 1`] = `"Предложение номер **один**."`;
 
 exports[`renders xlf to markdown renders sup wrapped in <g> tags 1`] = `"Предложение номер ^один^."`;

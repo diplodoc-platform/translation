@@ -124,4 +124,32 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders samp wrapped in <g> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Предложение номер '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'samp',
+                equivText: '##',
+            },
+            {type: 'text', data: 'один'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'samp',
+                equivText: '##',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
