@@ -4,6 +4,8 @@ exports[`inline: renders translated markdown inline: renders sentences with code
 
 exports[`inline: renders translated markdown inline: renders sentences with em syntax 1`] = `"Sentence number *one*. Sentence number *two*."`;
 
+exports[`inline: renders translated markdown inline: renders sentences with links syntax 1`] = `"Sentence number [one](one.md \\"one\\"). Sentence number [two](two.md \\"two\\")."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with s syntax 1`] = `"Sentence number ~~one~~. Sentence number ~~two~~."`;
