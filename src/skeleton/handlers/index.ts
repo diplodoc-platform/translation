@@ -1,4 +1,3 @@
-import {linkClose} from './link';
 import {imageClose} from './image';
 import {yfmFile} from './diplodoc/file';
 
@@ -8,7 +7,6 @@ function generate() {
 
 function handlers() {
     return {
-        link_close: linkClose,
         image_close: imageClose,
         yfm_file: yfmFile,
     };
