@@ -146,4 +146,22 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(1);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses links wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Предложение номер <g ctype="x-link_text_part" equiv-text="[]">один</g><g ctype="x-link_attributes_part" equiv-text="()"><x ctype="x-link_attributes_href" equiv-text="one.md" /><g ctype="x-link_attributes_title" equiv-text="&quot;&quot;">one</g></g>.',
+            },
+            {
+                id: 2,
+                target: 'Предложение номер <g ctype="x-link_text_part" equiv-text="[]">два</g><g ctype="x-link_attributes_part" equiv-text="()"><x ctype="x-link_attributes_href" equiv-text="two.md" /></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
