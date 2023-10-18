@@ -63,4 +63,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with links syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Предложение номер [один](one.md "one"). Предложение номер [два](two.md "two").',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
