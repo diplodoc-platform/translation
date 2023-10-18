@@ -19,7 +19,7 @@ function isXLFTextToken(token: XLFToken): token is XLFTextToken {
     return token?.type === 'text';
 }
 
-const xlfTagTokenNodeTypes = new Set(['open', 'close']);
+const xlfTagTokenNodeTypes = new Set(['open', 'close', 'self-closing']);
 
 function isXLFTagToken(token: XLFToken): token is XLFTagToken {
     return token?.type === 'tag' && xlfTagTokenNodeTypes.has(token.nodeType);
