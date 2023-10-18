@@ -44,7 +44,7 @@ function linkClose(this: CustomRenderer<XLFRendererState>) {
 
     const href = token.attrGet('href');
     if (href?.length) {
-        rendered += generateX({ctype: 'link_attributes_href', equivText: `href="${href}"`});
+        rendered += generateX({ctype: 'link_attributes_href', equivText: `"${href}"`});
     }
 
     const title = token.attrGet('title');
