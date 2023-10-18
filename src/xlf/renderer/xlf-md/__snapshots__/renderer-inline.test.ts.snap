@@ -4,6 +4,10 @@ exports[`renders xlf to markdown renders code wrapped in <x> tag 1`] = `"Пре�
 
 exports[`renders xlf to markdown renders em wrapped in <g> tags 1`] = `"Предложение номер *один*."`;
 
+exports[`renders xlf to markdown renders link with title wrapped in <g> and <x> tags 1`] = `"Предложение номер [один](one.md \\"one\\")."`;
+
+exports[`renders xlf to markdown renders link wrapped in <g> and <x> tags 1`] = `"Предложение номер [два](two.md)."`;
+
 exports[`renders xlf to markdown renders plain text 1`] = `"Sentence about something. Another sentence."`;
 
 exports[`renders xlf to markdown renders s wrapped in <g> tags 1`] = `"Предложение номер ~~один~~."`;
