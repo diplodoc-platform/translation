@@ -82,4 +82,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with autolink syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Предложение номер один <https://www.google.com>. Предложение номер два <https://www.youtube.com>.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
