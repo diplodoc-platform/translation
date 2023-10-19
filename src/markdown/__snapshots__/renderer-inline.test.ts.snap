@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`inline: renders translated markdown inline: renders sentences with autolink syntax 1`] = `"Sentence number one <https://www.google.com>. Sentence number two <https://www.youtube.com>."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with code syntax 1`] = `"Sentence number \`one\`. Sentence number \`two\`."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with em syntax 1`] = `"Sentence number *one*. Sentence number *two*."`;
