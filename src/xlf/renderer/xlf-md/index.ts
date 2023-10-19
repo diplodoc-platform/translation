@@ -27,6 +27,7 @@ class XLFMDRenderer {
             link_attributes_part: this.linkAttributesPart.bind(this),
             link_attributes_title: this.linkAttributesTitle.bind(this),
             link_attributes_href: this.linkAttributesHref.bind(this),
+            link_reflink: this.linkRefLink.bind(this),
         };
     }
 
@@ -207,6 +208,18 @@ class XLFMDRenderer {
         assert(
             token.equivText?.length,
             `x supposed to wrap original link href markup inside equiv-text`,
+        );
+
+        return token.equivText;
+    }
+
+    linkRefLink(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        assert(
+            token.equivText?.length,
+            `x supposed to wrap original ref link markup inside equiv-text`,
         );
 
         return token.equivText;
