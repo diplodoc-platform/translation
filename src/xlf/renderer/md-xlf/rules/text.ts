@@ -1,8 +1,6 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
+import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
-
-import {segmenter} from 'src/xlf/renderer/md-xlf/segmenter';
-import {isTitleRefLink} from 'src/link';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
@@ -12,23 +10,21 @@ import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 //
 // handle anchors # title {#anchor}
 // src/__fixtures__/anchors.ts
+//
 
-function text(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
+const text: Renderer.RenderRuleRecord = {
+    text: textRule,
+};
+
+function textRule(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
     const content = tokens[i].content;
-    if (!content?.length) {
+    const insideLink = this.state.link.pending?.length;
+    const reflink = this.state.link.reflink;
+    if (!content?.length || (insideLink && reflink)) {
         return '';
     }
 
-    let rendered = '';
-
-    const insideLink = this.state.link.pending?.length;
-    if (insideLink && isTitleRefLink(content)) {
-        return rendered;
-    }
-
-    rendered += segmenter(content, this.state);
-
-    return rendered;
+    return content;
 }
 
 export {text};
