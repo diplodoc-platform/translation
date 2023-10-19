@@ -73,4 +73,13 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with ref links syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown: 'Предложение номер [{#T}](one.md "one"). Предложение номер [{#T}](two.md).',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
