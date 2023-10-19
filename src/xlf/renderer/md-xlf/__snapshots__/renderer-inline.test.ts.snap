@@ -88,6 +88,28 @@ exports[`renders xlf from markdown renders plain text 1`] = `
 "
 `;
 
+exports[`renders xlf from markdown renders ref links wrapped in <g> and <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <x ctype=\\"x-link_reflink\\" equiv-text=\\"[{#T}]\\" /><g ctype=\\"x-link_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"one.md\\" /><g ctype=\\"x-link_attributes_title\\" equiv-text=\\"&quot;&quot;\\">one</g></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <x ctype=\\"x-link_reflink\\" equiv-text=\\"[{#T}]\\" /><g ctype=\\"x-link_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"two.md\\" /></g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders s wrapped in <g> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
