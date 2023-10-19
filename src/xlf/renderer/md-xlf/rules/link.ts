@@ -9,6 +9,7 @@ export type LinkRuleState = {
     link: {
         pending: Array<Token>;
         reflink: boolean;
+        autolink: boolean;
     };
 };
 
@@ -17,6 +18,7 @@ function initState() {
         link: {
             pending: new Array<Token>(),
             reflink: false,
+            autolink: false,
         },
     };
 }
@@ -36,6 +38,13 @@ function linkOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
         return '';
     }
 
+    const autolink = isAutolink(tokens, i);
+    if (isAutolink(tokens, i)) {
+        this.state.link.autolink = autolink;
+
+        return '';
+    }
+
     const rendered = generateOpenG({ctype: 'link_text_part', equivText: '[]'});
 
     return rendered;
@@ -47,17 +56,23 @@ function linkClose(this: CustomRenderer<XLFRendererState>) {
         throw new Error('failed to render trans-unit from link');
     }
 
+    const href = token.attrGet('href');
     let rendered = '';
     if (this.state.link.reflink) {
         rendered += generateX({ctype: 'link_reflink', equivText: '[{#T}]'});
         this.state.link.reflink = false;
+    } else if (this.state.link.autolink) {
+        rendered += generateX({ctype: 'link_autolink', equivText: `<${href}>`});
+
+        this.state.link.autolink = false;
+
+        return rendered;
     } else {
         rendered += generateCloseG();
     }
 
     rendered += generateOpenG({ctype: 'link_attributes_part', equivText: '()'});
 
-    const href = token.attrGet('href');
     if (href?.length) {
         rendered += generateX({ctype: 'link_attributes_href', equivText: `${href}`});
     }
@@ -97,6 +112,10 @@ function isRefLink(tokens: Token[], i: number) {
     }
 
     return text?.content === '{#T}';
+}
+
+function isAutolink(tokens: Token[], i: number) {
+    return tokens[i].markup === 'autolink';
 }
 
 export {link, initState};

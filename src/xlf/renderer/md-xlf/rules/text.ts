@@ -20,7 +20,8 @@ function textRule(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
     const content = tokens[i].content;
     const insideLink = this.state.link.pending?.length;
     const reflink = this.state.link.reflink;
-    if (!content?.length || (insideLink && reflink)) {
+    const autolink = this.state.link.autolink;
+    if (!content?.length || (insideLink && (reflink || autolink))) {
         return '';
     }
 
