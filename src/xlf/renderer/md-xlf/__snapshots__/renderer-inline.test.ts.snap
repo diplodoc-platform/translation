@@ -219,3 +219,25 @@ exports[`renders xlf from markdown renders sup wrapped in <g> tags 1`] = `
 </xliff>
 "
 `;
+
+exports[`renders xlf from markdown renders variable href link wrapped in <g> and <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Предложение номер <g ctype=\\"x-link_text_part\\" equiv-text=\\"[]\\">один</g><g ctype=\\"x-link_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"{{one}}\\" /><g ctype=\\"x-link_attributes_title\\" equiv-text=\\"&quot;&quot;\\">one</g></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Предложение номер <g ctype=\\"x-link_text_part\\" equiv-text=\\"[]\\">два</g><g ctype=\\"x-link_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"{{two}}\\" /></g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
