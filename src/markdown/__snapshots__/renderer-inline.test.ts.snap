@@ -19,3 +19,5 @@ exports[`inline: renders translated markdown inline: renders sentences with samp
 exports[`inline: renders translated markdown inline: renders sentences with strong syntax 1`] = `"Sentence number **one**. Sentence number **two**."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with sup syntax 1`] = `"Sentence number^one^. Sentence number^two^."`;
+
+exports[`inline: renders translated markdown inline: renders sentences with variale href link syntax 1`] = `"Sentence number [one]({{one}}). Sentence number [two]({{ two }})."`;
