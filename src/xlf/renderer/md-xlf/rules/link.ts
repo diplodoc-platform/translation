@@ -1,9 +1,12 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
+import MarkdownIt from 'markdown-it';
 import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 import {generateOpenG, generateCloseG, generateX} from 'src/xlf/generator';
+
+const decodeURL = new MarkdownIt().utils.lib.mdurl.decode;
 
 export type LinkRuleState = {
     link: {
@@ -56,7 +59,11 @@ function linkClose(this: CustomRenderer<XLFRendererState>) {
         throw new Error('failed to render trans-unit from link');
     }
 
-    const href = token.attrGet('href');
+    let href = token.attrGet('href');
+    if (href?.length) {
+        href = decodeURL(href);
+    }
+
     let rendered = '';
     if (this.state.link.reflink) {
         rendered += generateX({ctype: 'link_reflink', equivText: '[{#T}]'});
