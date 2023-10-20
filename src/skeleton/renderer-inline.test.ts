@@ -92,4 +92,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with variable href link syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Предложение номер [один]({{one}} "title"). Предложение номер [два]({{two}}).',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
