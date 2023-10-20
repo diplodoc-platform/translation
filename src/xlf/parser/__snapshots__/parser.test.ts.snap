@@ -633,3 +633,85 @@ Array [
   ],
 ]
 `;
+
+exports[`parses translation units with <g> and <x> tags parses variable href link wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "[]",
+      "nodeType": "open",
+      "syntax": "link_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "[]",
+      "nodeType": "close",
+      "syntax": "link_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "link_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{{one}}",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "open",
+      "syntax": "link_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "one",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "close",
+      "syntax": "link_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "link_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
