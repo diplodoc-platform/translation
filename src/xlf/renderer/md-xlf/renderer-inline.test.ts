@@ -124,4 +124,15 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders image with href, title and size wrapped in <g> and <x> tags', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown:
+                'Sentence ![image](image.png "hint" =100x100). Sentence ![image](image.png "hint" =x100). Sentence ![image](image.png "hint" =100x). Sentence ![image](image.png =100x100). Sentence ![image](image.png "hint"). Sentence ![image](image.png). Sentence ![]().',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
