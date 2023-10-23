@@ -1,12 +1,13 @@
-import imageRules, {image, imageClose, ImageRuleState} from './image';
+// import imageRules, {image, imageClose, ImageRuleState} from './image';
 import diplodocRules, {DiplodocRulesState} from './diplodoc';
 
 import {link, initState as linkInitState, LinkRuleState} from './link';
 import {pair} from './pair';
 import {codeInline} from './code-inline';
 import {text} from './text';
+import {image} from './image';
 
-export type XLFRulesState = LinkRuleState & ImageRuleState & DiplodocRulesState;
+export type XLFRulesState = LinkRuleState & DiplodocRulesState;
 
 function generate() {
     return {rules: rules(), initState: initState()};
@@ -33,20 +34,21 @@ function rules() {
         blockquote_close: () => '',
         list_item_open: () => '',
         list_item_close: () => '',
-        image,
-        image_close: imageClose,
+        // image,
+        // image_close: imageClose,
         ...diplodocRules.rules,
         ...pair,
         ...codeInline,
         ...link,
         ...text,
+        ...image,
     };
 }
 
 function initState() {
     return () => ({
         ...linkInitState(),
-        ...imageRules.initState(),
+        // ...imageRules.initState(),
         ...diplodocRules.initState(),
     });
 }
