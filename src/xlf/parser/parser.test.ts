@@ -210,4 +210,102 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses image with all attributes wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g><x ctype="x-image_attributes_size" equiv-text="=100x100" /></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses image with src title and height wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g><x ctype="x-image_attributes_size" equiv-text="=x100" /></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses image with src title and width wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g><x ctype="x-image_attributes_size" equiv-text="=100x" /></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses image with src and size wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><x ctype="x-image_attributes_size" equiv-text="=100x100" /></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses image with src and title wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses image with src wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses empty image wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]"></g><g ctype="x-image_attributes_part" equiv-text="()"></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
