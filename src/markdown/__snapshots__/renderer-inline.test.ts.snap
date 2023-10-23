@@ -21,3 +21,5 @@ exports[`inline: renders translated markdown inline: renders sentences with stro
 exports[`inline: renders translated markdown inline: renders sentences with sup syntax 1`] = `"Sentence number^one^. Sentence number^two^."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with variale href link syntax 1`] = `"Sentence number [one]({{one}}). Sentence number [two]({{ two }})."`;
+
+exports[`inline: renders translated markdown inline: renders sentences with variale image syntax 1`] = `"Sentence ![image](_images/image.png \\"текст_подсказки\\" =100x100). Sentence ![image](_images/image.png \\"текст_подсказки\\" =x100). Sentence ![image](_images/image.png \\"текст_подсказки\\" =100x). Sentence ![image](_images/image.png =100x100). Sentence ![image](_images/image.png). Sentence ![]()."`;
