@@ -425,4 +425,427 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders image with all attributes wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {type: 'text', data: 'image'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_src',
+                equivText: 'image.png',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {type: 'text', data: 'hint'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_size',
+                equivText: '=100x50',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders image with src title and height size wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {type: 'text', data: 'image'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_src',
+                equivText: 'image.png',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {type: 'text', data: 'hint'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_size',
+                equivText: '=x100',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders image with src title and width size wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {type: 'text', data: 'image'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_src',
+                equivText: 'image.png',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {type: 'text', data: 'hint'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_size',
+                equivText: '=100x',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders image with src and size wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {type: 'text', data: 'image'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_src',
+                equivText: 'image.png',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_size',
+                equivText: '=100x100',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders image with src and title wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {type: 'text', data: 'image'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_src',
+                equivText: 'image.png',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {type: 'text', data: 'hint'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_title',
+                equivText: '""',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders image with src wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {type: 'text', data: 'image'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'image_attributes_src',
+                equivText: 'image.png',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders empty image wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_text_part',
+                equivText: '![]',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'image_attributes_part',
+                equivText: '()',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
