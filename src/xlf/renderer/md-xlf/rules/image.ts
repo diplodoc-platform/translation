@@ -1,61 +1,63 @@
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
-import {Options} from 'markdown-it';
-
-import {segmenter} from 'src/xlf/renderer/md-xlf/segmenter';
-
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
-export type ImageRuleState = {
-    image: {
-        pending: Array<Token>;
-    };
+import {generateOpenG, generateCloseG, generateX} from 'src/xlf/generator';
+
+const image = {
+    image_open: imageOpen,
+    image_close: imageClose,
 };
 
-function initState() {
-    return {
-        image: {
-            pending: new Array<Token>(),
-        },
-    };
+function imageOpen(this: CustomRenderer<XLFRendererState>) {
+    return generateOpenG({ctype: 'image_text_part', equivText: '![]'});
 }
 
-function image(
-    this: CustomRenderer<XLFRendererState>,
-    tokens: Token[],
-    i: number,
-    options: Options,
-    env: unknown,
-) {
-    const img = tokens[i];
+function imageClose(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
+    const token = tokens[i];
+    let rendered = '';
 
-    this.state.image.pending.push(img);
+    rendered += generateCloseG();
 
-    const close = new Token('image_close', '', 0);
+    rendered += generateOpenG({ctype: 'image_attributes_part', equivText: '()'});
 
-    const children = img.children ?? [];
-
-    return this.renderInline([...children, close], options, env);
-}
-
-function imageClose(this: CustomRenderer<XLFRendererState>) {
-    const token = this.state.image.pending.pop();
-    if (token?.type !== 'image') {
-        throw new Error('failed to render trans-unit from image');
+    const src = token.attrGet('src');
+    if (src?.length) {
+        rendered += generateX({ctype: 'image_attributes_src', equivText: src});
     }
 
     const title = token.attrGet('title');
-    if (!title?.length) {
-        this.state.image.pending.push(token);
-        return '';
+    if (title?.length) {
+        rendered += generateOpenG({ctype: 'image_attributes_title', equivText: '""'});
+
+        rendered += title;
+
+        rendered += generateCloseG();
     }
 
-    let rendered = '';
+    const height = token.attrGet('height');
+    const width = token.attrGet('width');
 
-    rendered += segmenter(title, this.state);
+    if (width?.length || height?.length) {
+        let equivText = '=';
+
+        if (width?.length) {
+            equivText += width;
+        }
+
+        equivText += 'x';
+
+        if (height?.length) {
+            equivText += height;
+        }
+
+        rendered += generateX({ctype: 'image_attributes_size', equivText});
+    }
+
+    rendered += generateCloseG();
 
     return rendered;
 }
 
-export {image, imageClose, initState};
-export default {image, imageClose, initState};
+export {image};
+export default {image};
