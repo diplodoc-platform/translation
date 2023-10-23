@@ -245,6 +245,543 @@ Array [
 ]
 `;
 
+exports[`parses translation units with <g> and <x> tags parses empty image wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "open",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "close",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses image with all attributes wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "open",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "image",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "close",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "image.png",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_src",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "open",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "hint",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "close",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "=100x100",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_size",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses image with src and size wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "open",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "image",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "close",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "image.png",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_src",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "=100x100",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_size",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses image with src and title wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "open",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "image",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "close",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "image.png",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_src",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "open",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "hint",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "close",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses image with src title and height wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "open",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "image",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "close",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "image.png",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_src",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "open",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "hint",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "close",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "=x100",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_size",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses image with src title and width wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "open",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "image",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "close",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "image.png",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_src",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "open",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "hint",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\\"\\"",
+      "nodeType": "close",
+      "syntax": "image_attributes_title",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "=100x",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_size",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses image with src wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "open",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "image",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "![]",
+      "nodeType": "close",
+      "syntax": "image_text_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "open",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "image.png",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_src",
+      "type": "tag",
+    },
+    Object {
+      "data": "g",
+      "equivText": "()",
+      "nodeType": "close",
+      "syntax": "image_attributes_part",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
 exports[`parses translation units with <g> and <x> tags parses links wrapped in <g> and <x> tags 1`] = `
 Array [
   Array [
