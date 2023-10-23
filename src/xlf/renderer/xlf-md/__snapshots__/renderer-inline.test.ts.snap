@@ -6,6 +6,20 @@ exports[`renders xlf to markdown renders code wrapped in <x> tag 1`] = `"Пре�
 
 exports[`renders xlf to markdown renders em wrapped in <g> tags 1`] = `"Предложение номер *один*."`;
 
+exports[`renders xlf to markdown renders empty image wrapped in <g> and <x> tags 1`] = `"Sentence ![]()."`;
+
+exports[`renders xlf to markdown renders image with all attributes wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png \\"hint\\" =100x50)."`;
+
+exports[`renders xlf to markdown renders image with src and size wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png =100x100)."`;
+
+exports[`renders xlf to markdown renders image with src and title wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png \\"hint\\")."`;
+
+exports[`renders xlf to markdown renders image with src title and height size wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png \\"hint\\" =x100)."`;
+
+exports[`renders xlf to markdown renders image with src title and width size wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png \\"hint\\" =100x)."`;
+
+exports[`renders xlf to markdown renders image with src wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png)."`;
+
 exports[`renders xlf to markdown renders link with title wrapped in <g> and <x> tags 1`] = `"Предложение номер [один](one.md \\"one\\")."`;
 
 exports[`renders xlf to markdown renders link wrapped in <g> and <x> tags 1`] = `"Предложение номер [два](two.md)."`;
