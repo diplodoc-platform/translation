@@ -29,6 +29,11 @@ class XLFMDRenderer {
             link_attributes_href: this.linkAttributesHref.bind(this),
             link_reflink: this.linkRefLink.bind(this),
             link_autolink: this.linkAutolink.bind(this),
+            image_text_part: this.imageTextPart.bind(this),
+            image_attributes_part: this.imageAttributesPart.bind(this),
+            image_attributes_src: this.imageAttributesSrc.bind(this),
+            image_attributes_title: this.imageAttributesTitle.bind(this),
+            image_attributes_size: this.imageAttributesSize.bind(this),
         };
     }
 
@@ -56,6 +61,23 @@ class XLFMDRenderer {
         const handler = this.rules[token.data];
         if (!handler) {
             return '';
+        }
+
+        return handler(token);
+    }
+
+    x(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const syntax = token.syntax;
+        if (!syntax?.length) {
+            throw new Error("can't render g tag without syntax");
+        }
+
+        const handler = this.rules[syntax];
+        if (!handler) {
+            throw new Error(`syntax ${syntax} not implemented`);
         }
 
         return handler(token);
@@ -161,6 +183,18 @@ class XLFMDRenderer {
         return nodeType === 'open' ? open : close;
     }
 
+    linkAttributesHref(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        assert(
+            token.equivText?.length,
+            `x supposed to wrap original link href markup inside equiv-text`,
+        );
+
+        return token.equivText;
+    }
+
     linkAttributesTitle(token: XLFToken): string {
         assert(isXLFTagToken(token));
         token as XLFTagToken;
@@ -174,44 +208,6 @@ class XLFMDRenderer {
         const [open, close] = equivText.split('');
 
         return nodeType === 'open' ? ' ' + open : close;
-    }
-
-    x(token: XLFToken): string {
-        assert(isXLFTagToken(token));
-        token as XLFTagToken;
-
-        const syntax = token.syntax;
-        if (!syntax?.length) {
-            throw new Error("can't render g tag without syntax");
-        }
-
-        const handler = this.rules[syntax];
-        if (!handler) {
-            throw new Error(`syntax ${syntax} not implemented`);
-        }
-
-        return handler(token);
-    }
-
-    code(token: XLFToken): string {
-        assert(isXLFTagToken(token));
-        token as XLFTagToken;
-
-        assert(token.equivText?.length, 'x supposed to wrap original markup inside equiv-text');
-
-        return token.equivText;
-    }
-
-    linkAttributesHref(token: XLFToken): string {
-        assert(isXLFTagToken(token));
-        token as XLFTagToken;
-
-        assert(
-            token.equivText?.length,
-            `x supposed to wrap original link href markup inside equiv-text`,
-        );
-
-        return token.equivText;
     }
 
     linkRefLink(token: XLFToken): string {
@@ -234,6 +230,79 @@ class XLFMDRenderer {
             token.equivText?.length,
             `x supposed to wrap original ref link markup inside equiv-text`,
         );
+
+        return token.equivText;
+    }
+
+    imageTextPart(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText, nodeType} = token;
+        if (equivText?.length !== 3) {
+            throw new Error(`token: ${token} has invalid equiv-text`);
+        }
+
+        const [open, close] = equivText.split(/(\]$)/gmu);
+        return nodeType === 'open' ? open : close;
+    }
+
+    imageAttributesPart(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText, nodeType} = token;
+        if (equivText?.length !== 2) {
+            throw new Error(`token: ${token} has invalid equiv-text`);
+        }
+
+        const [open, close] = equivText.split('');
+
+        return nodeType === 'open' ? open : close;
+    }
+
+    imageAttributesSrc(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        if (!token?.equivText?.length) {
+            throw new Error(`x supposed to wrap image src inside equiv-text`);
+        }
+
+        return token.equivText;
+    }
+
+    imageAttributesTitle(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText, nodeType} = token;
+        if (equivText?.length !== 2) {
+            throw new Error(`token: ${token} has invalid equiv-text`);
+        }
+
+        const [open, close] = equivText.split('');
+
+        return nodeType === 'open' ? ' ' + open : close;
+    }
+
+    imageAttributesSize(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText} = token;
+        if (!equivText?.length) {
+            throw new Error(`token: ${token} has invalid equiv-text`);
+        }
+
+        return ' ' + equivText;
+    }
+
+    code(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        assert(token.equivText?.length, 'x supposed to wrap original markup inside equiv-text');
 
         return token.equivText;
     }
