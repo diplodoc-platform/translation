@@ -143,4 +143,21 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with variale image syntax', () => {
+        const parameters: RenderParameters = {
+            skeleton: '%%%1%%% %%%2%%% %%%3%%% %%%4%%% %%%5%%% %%%6%%%',
+            translations: new Map<string, string>([
+                ['1', 'Sentence ![image](_images/image.png "текст_подсказки" =100x100).'],
+                ['2', 'Sentence ![image](_images/image.png "текст_подсказки" =x100).'],
+                ['3', 'Sentence ![image](_images/image.png "текст_подсказки" =100x).'],
+                ['4', 'Sentence ![image](_images/image.png =100x100).'],
+                ['5', 'Sentence ![image](_images/image.png).'],
+                ['6', 'Sentence ![]().'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
