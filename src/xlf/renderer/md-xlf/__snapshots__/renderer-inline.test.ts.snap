@@ -66,6 +66,43 @@ exports[`renders xlf from markdown renders em wrapped in <g> tags 1`] = `
 "
 `;
 
+exports[`renders xlf from markdown renders image with href, title and size wrapped in <g> and <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Sentence <g ctype=\\"x-image_text_part\\" equiv-text=\\"![]\\">image</g><g ctype=\\"x-image_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"image.png\\" /><g ctype=\\"x-image_attributes_title\\" equiv-text=\\"&quot;&quot;\\">hint</g><x ctype=\\"x-image_attributes_size\\" equiv-text=\\"=100x100\\" /></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Sentence <g ctype=\\"x-image_text_part\\" equiv-text=\\"![]\\">image</g><g ctype=\\"x-image_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"image.png\\" /><g ctype=\\"x-image_attributes_title\\" equiv-text=\\"&quot;&quot;\\">hint</g><x ctype=\\"x-image_attributes_size\\" equiv-text=\\"=x100\\" /></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Sentence <g ctype=\\"x-image_text_part\\" equiv-text=\\"![]\\">image</g><g ctype=\\"x-image_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"image.png\\" /><g ctype=\\"x-image_attributes_title\\" equiv-text=\\"&quot;&quot;\\">hint</g><x ctype=\\"x-image_attributes_size\\" equiv-text=\\"=100x\\" /></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>Sentence <g ctype=\\"x-image_text_part\\" equiv-text=\\"![]\\">image</g><g ctype=\\"x-image_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"image.png\\" /><x ctype=\\"x-image_attributes_size\\" equiv-text=\\"=100x100\\" /></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>Sentence <g ctype=\\"x-image_text_part\\" equiv-text=\\"![]\\">image</g><g ctype=\\"x-image_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"image.png\\" /><g ctype=\\"x-image_attributes_title\\" equiv-text=\\"&quot;&quot;\\">hint</g></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>Sentence <g ctype=\\"x-image_text_part\\" equiv-text=\\"![]\\">image</g><g ctype=\\"x-image_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"image.png\\" /></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>Sentence <g ctype=\\"x-image_text_part\\" equiv-text=\\"![]\\"></g><g ctype=\\"x-image_attributes_part\\" equiv-text=\\"()\\"></g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders links wrapped in <g> and <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
