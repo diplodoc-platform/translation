@@ -11,17 +11,17 @@ import {
 import meta from 'markdown-it-meta';
 // @ts-ignore
 import sup from 'markdown-it-sup';
-import notes from '@doc-tools/transform/lib/plugins/notes';
-import cut from '@doc-tools/transform/lib/plugins/cut';
-import checkbox from '@doc-tools/transform/lib/plugins/checkbox';
-import anchors from '@doc-tools/transform/lib/plugins/anchors';
-import monospace from '@doc-tools/transform/lib/plugins/monospace';
-import imsize from '@doc-tools/transform/lib/plugins/imsize';
-import file from '@doc-tools/transform/lib/plugins/file';
-import includes from '@doc-tools/transform/lib/plugins/includes';
-import tabs from '@doc-tools/transform/lib/plugins/tabs';
-import video from '@doc-tools/transform/lib/plugins/video';
-import table from '@doc-tools/transform/lib/plugins/table';
+import notes from '@diplodoc/transform/lib/plugins/notes';
+import cut from '@diplodoc/transform/lib/plugins/cut';
+import checkbox from '@diplodoc/transform/lib/plugins/checkbox';
+import anchors from '@diplodoc/transform/lib/plugins/anchors';
+import monospace from '@diplodoc/transform/lib/plugins/monospace';
+import imsize from '@diplodoc/transform/lib/plugins/imsize';
+import file from '@diplodoc/transform/lib/plugins/file';
+import includes from '@diplodoc/transform/lib/plugins/includes';
+import tabs from '@diplodoc/transform/lib/plugins/tabs';
+import video from '@diplodoc/transform/lib/plugins/video';
+import table from '@diplodoc/transform/lib/plugins/table';
 
 import {xlfInitState, XLFRendererState} from './state';
 import hooks, {HooksParameters} from './hooks';
