@@ -29,6 +29,10 @@
   "files": [
     "lib/"
   ],
+  "engines": {
+    "node": "18.*",
+    "npm": "10.*"
+  },
   "scripts": {
     "test": "jest --verbose --coverage --silence=false",
     "test:watch": "jest --watch --verbose --silent=false",
@@ -46,11 +50,11 @@
   "devDependencies": {
     "@es-exec/api": "0.0.5",
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
-    "@tsconfig/node14": "^1.0.3",
+    "@tsconfig/node18": "^18.2.2",
     "@types/jest": "^27.5.1",
     "@types/js-yaml": "^4.0.5",
-    "@types/markdown-it": "^12.2.3",
-    "@types/node": "^18.11.19",
+    "@types/markdown-it": "^13.0.5",
+    "@types/node": "^18.18.6",
     "@yandex-cloud/eslint-config": "^1.0.1",
     "@yandex-cloud/prettier-config": "^1.0.0",
     "commonmark-spec": "^0.30.0",
@@ -59,17 +63,17 @@
     "esbuild-node-externals": "^1.4.1",
     "eslint": "^8.16.0",
     "jest": "^28.1.0",
-    "markdown-it": "^13.0.1",
+    "markdown-it": "^13.0.2",
     "prettier": "^2.6.2",
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "markdown-it": "^13.0.1"
+    "markdown-it": "^13.0.2"
   },
   "dependencies": {
     "@cospired/i18n-iso-languages": "^4.1.0",
     "@diplodoc/markdown-it-custom-renderer": "^0.1.1",
-    "@diplodoc/markdown-it-markdown-renderer": "^0.15.1",
+    "@diplodoc/markdown-it-markdown-renderer": "^0.15.3",
     "@diplodoc/sentenizer": "0.0.0",
     "@doc-tools/transform": "^3.8.3",
     "@shellscape/i18n-iso-countries": "^7.5.0-shellscape.v1",
