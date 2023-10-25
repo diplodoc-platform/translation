@@ -20,6 +20,7 @@ function replacer(content: string, state: MarkdownRendererState) {
 
         ({replaced, cursor, success} = replaceAfter(replaced, hash, translation, cursor));
         if (success) {
+            // eslint-disable-next-line no-param-reassign
             state.markdown.id++;
         }
     }

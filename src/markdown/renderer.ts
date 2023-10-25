@@ -1,9 +1,9 @@
 import MarkdownIt from 'markdown-it';
 import {
-    mdRenderer,
-    MarkdownRendererParams,
-    MarkdownRendererEnv,
     MarkdownRenderer,
+    MarkdownRendererEnv,
+    MarkdownRendererParams,
+    mdRenderer,
 } from '@diplodoc/markdown-it-markdown-renderer';
 
 // configure with diplodoc plugins
@@ -50,6 +50,7 @@ function render(parameters: RenderParameters) {
 
     // todo: add non-destructive way of extending markdown-renderer hooks
     for (const defaultHook of Object.entries(MarkdownRenderer.defaultHooks)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const [lifecycle, hooks_] = defaultHook as any;
 
         if (markdownHooks.hooks[lifecycle]) {

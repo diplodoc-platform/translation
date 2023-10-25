@@ -1,4 +1,4 @@
-import {lt, sl, qt, gt} from 'src/xlf/symbols';
+import {gt, lt, qt, sl} from 'src/xlf/symbols';
 
 export type GenerateXParameters = {
     ctype: string;

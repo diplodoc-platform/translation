@@ -1,4 +1,4 @@
-import {render, RenderParameters} from './index';
+import {RenderParameters, render} from './index';
 
 const baseRendererParameters = {
     source: {

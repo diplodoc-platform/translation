@@ -1,7 +1,7 @@
 // import imageRules, {image, imageClose, ImageRuleState} from './image';
 import diplodocRules, {DiplodocRulesState} from './diplodoc';
 
-import {link, initState as linkInitState, LinkRuleState} from './link';
+import {LinkRuleState, link, initState as linkInitState} from './link';
 import {pair} from './pair';
 import {codeInline} from './code-inline';
 import {text} from './text';

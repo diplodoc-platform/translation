@@ -4,7 +4,7 @@ import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
-import {generateOpenG, generateCloseG, generateX} from 'src/xlf/generator';
+import {generateCloseG, generateOpenG, generateX} from 'src/xlf/generator';
 
 const decodeURL = new MarkdownIt().utils.lib.mdurl.decode;
 

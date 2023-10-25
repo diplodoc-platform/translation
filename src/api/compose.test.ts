@@ -1,4 +1,4 @@
-import {compose, ComposeParameters} from './compose';
+import {ComposeParameters, compose} from './compose';
 import {generateTemplate, generateTransUnit} from 'src/xlf/generator';
 
 const templateParameters = {

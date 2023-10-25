@@ -2,8 +2,8 @@ import MarkdownIt from 'markdown-it';
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import {
     CustomRendererHooks,
-    customRenderer,
     CustomRendererParams,
+    customRenderer,
 } from '@diplodoc/markdown-it-custom-renderer';
 
 // configure with diplodoc plugins
@@ -23,12 +23,12 @@ import tabs from '@diplodoc/transform/lib/plugins/tabs';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 
-import {xlfInitState, XLFRendererState} from './state';
+import {XLFRendererState, xlfInitState} from './state';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
 import rules from './rules';
 
-import {generateTemplate, templateValidParameters, TemplateParameters} from 'src/xlf/generator';
+import {TemplateParameters, generateTemplate, templateValidParameters} from 'src/xlf/generator';
 
 export type RenderParameters = TemplateParameters & DiplodocParameters & BaseParameters;
 export type BaseParameters = {
@@ -54,6 +54,7 @@ function render(parameters: RenderParameters) {
 
     // todo: add non-destructive way of extending custom-renderer hooks
     for (const lifecycleHook of Object.entries(MarkdownRenderer.defaultHooks)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const [lifecycle, hooks_] = lifecycleHook as any;
 
         const hooksForLifeCycle = xlfHooks.hooks[lifecycle];
