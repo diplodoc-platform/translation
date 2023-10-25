@@ -1,6 +1,6 @@
 import {MarkdownRendererLifeCycle} from '@diplodoc/markdown-it-markdown-renderer';
 
-import {afterInline, initState, AfterInlineParameters, AfterInlineState} from './after-inline';
+import {AfterInlineParameters, AfterInlineState, afterInline, initState} from './after-inline';
 import meta, {MetaParameters} from './meta';
 import {includes} from './diplodoc/includes';
 

@@ -22,10 +22,12 @@ function extract(parameters: ExtractParameters): ExtractOutput {
 
     // proper defaults for markdown and skeleton ids
     if (!parameters.markdownPath) {
+        // eslint-disable-next-line no-param-reassign
         parameters.markdownPath = 'markdown.md';
     }
 
     if (!parameters.skeletonPath) {
+        // eslint-disable-next-line no-param-reassign
         parameters.skeletonPath = 'markdown.skl.md';
     }
 

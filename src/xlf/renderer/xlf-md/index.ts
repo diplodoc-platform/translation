@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {XLFToken, XLFTagToken, XLFTextToken, isXLFTagToken, isXLFTextToken} from 'src/xlf/token';
+import {XLFTagToken, XLFTextToken, XLFToken, isXLFTagToken, isXLFTextToken} from 'src/xlf/token';
 
 export type XLFMDRendererRuleSet = {
     text: XLFMDRendererRule;

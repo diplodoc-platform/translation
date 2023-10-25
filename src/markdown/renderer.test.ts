@@ -1,4 +1,4 @@
-import {render, RenderParameters} from './renderer';
+import {RenderParameters, render} from './renderer';
 
 import basic from 'src/__fixtures__/basic';
 import variables from 'src/__fixtures__/variables';

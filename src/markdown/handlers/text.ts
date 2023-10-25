@@ -11,6 +11,7 @@ function text(this: MarkdownRenderer<MarkdownRendererState>, tokens: Token[], i:
         return '';
     }
 
+    // eslint-disable-next-line no-param-reassign
     tokens[i].content = replacer(content, this.state);
 
     return '';

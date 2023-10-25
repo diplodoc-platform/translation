@@ -1,4 +1,4 @@
-import {render, RenderParameters} from './renderer';
+import {RenderParameters, render} from './renderer';
 
 describe('inline: skeleton rendering', () => {
     it('inline: renders hash instead of the sentences with plain text.', () => {

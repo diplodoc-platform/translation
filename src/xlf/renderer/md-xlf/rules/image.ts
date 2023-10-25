@@ -2,7 +2,7 @@ import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
-import {generateOpenG, generateCloseG, generateX} from 'src/xlf/generator';
+import {generateCloseG, generateOpenG, generateX} from 'src/xlf/generator';
 
 const image = {
     image_open: imageOpen,
