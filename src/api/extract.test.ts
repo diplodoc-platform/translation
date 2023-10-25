@@ -1,4 +1,4 @@
-import {extract, ExtractParameters} from './extract';
+import {ExtractParameters, extract} from './extract';
 
 describe('smoke', () => {
     it('works', () => {

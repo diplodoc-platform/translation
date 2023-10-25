@@ -1,9 +1,9 @@
 import assert from 'assert';
 import {XMLValidator} from 'fast-xml-parser';
 import cheerio, {Cheerio} from 'cheerio';
-import {Element, ChildNode, isTag, isText} from 'domhandler';
+import {ChildNode, Element, isTag, isText} from 'domhandler';
 
-import {XLFToken, XLFTagToken, XLFTextToken} from 'src/xlf/token';
+import {XLFTagToken, XLFTextToken, XLFToken} from 'src/xlf/token';
 
 export type GetTranslationsParameters = {
     xlf: string;
@@ -78,8 +78,10 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
 
     if (isTag(node)) {
         if (selfClosingTags.has(node.name)) {
+            // eslint-disable-next-line no-param-reassign
             node.attribs.nodeType = 'self-closing';
         } else {
+            // eslint-disable-next-line no-param-reassign
             node.attribs.nodeType = 'open';
         }
         ref.nodes.push(node);

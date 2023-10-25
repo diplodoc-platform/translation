@@ -1,0 +1,5 @@
+{
+    "extends": ["@gravity-ui/eslint-config", "@gravity-ui/eslint-config/prettier", "@gravity-ui/eslint-config/server"],
+    "ignorePatterns": ["*.snap"],
+    "root": true
+}

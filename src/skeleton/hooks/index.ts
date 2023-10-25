@@ -1,7 +1,7 @@
 import {MarkdownRendererLifeCycle} from '@diplodoc/markdown-it-markdown-renderer';
 
 import meta, {MetaParameters} from './meta';
-import {afterInline, AfterInlineState, initState} from './after-inline';
+import {AfterInlineState, afterInline, initState} from './after-inline';
 import {includes} from './diplodoc';
 
 export type HooksState = AfterInlineState;
