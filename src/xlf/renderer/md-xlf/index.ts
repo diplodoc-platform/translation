@@ -2,8 +2,8 @@ import MarkdownIt from 'markdown-it';
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
 import {
     CustomRendererHooks,
-    customRenderer,
     CustomRendererParams,
+    customRenderer,
 } from '@diplodoc/markdown-it-custom-renderer';
 
 // configure with diplodoc plugins
@@ -23,13 +23,13 @@ import tabs from '@diplodoc/transform/lib/plugins/tabs';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 
-import {xlfInitState, XLFRendererState} from './state';
+import {XLFRendererState, xlfInitState} from './state';
 import hooks, {HooksParameters} from './hooks';
 import {handlers} from './handlers';
 import {mergeHooks} from 'src/hooks';
 import rules from './rules';
 
-import {generateTemplate, templateValidParameters, TemplateParameters} from 'src/xlf/generator';
+import {TemplateParameters, generateTemplate, templateValidParameters} from 'src/xlf/generator';
 
 export type RenderParameters = TemplateParameters & DiplodocParameters & BaseParameters;
 export type BaseParameters = {
@@ -59,7 +59,6 @@ function render(parameters: RenderParameters) {
         parameters.hooks ?? [],
     );
     const mergedHooks = mergeHooks(...allHooks);
-
     const initState = () => ({
         ...xlfInitState(wrapper),
         ...xlfRules.initState(),

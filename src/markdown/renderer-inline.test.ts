@@ -1,4 +1,4 @@
-import {render, RenderParameters} from './renderer';
+import {RenderParameters, render} from './renderer';
 
 describe('inline: renders translated markdown', () => {
     it('inline: renders sentences with plain text', () => {

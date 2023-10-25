@@ -2,7 +2,7 @@
   "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "moduleResolution":"node",
+    "moduleResolution":"nodenext",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": ".",
