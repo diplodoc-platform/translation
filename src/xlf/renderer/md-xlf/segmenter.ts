@@ -15,6 +15,7 @@ function segmenter(content: string, state: XLFRendererState) {
 
         rendered += '\n';
 
+        // eslint-disable-next-line no-param-reassign
         state.xlf.id++;
     }
 

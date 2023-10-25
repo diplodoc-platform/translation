@@ -1,4 +1,4 @@
-import {lt, sl, gt, qt} from 'src/xlf/symbols';
+import {gt, lt, qt, sl} from 'src/xlf/symbols';
 
 export type OpenGParameters = {
     ctype: string;

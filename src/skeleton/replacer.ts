@@ -13,6 +13,7 @@ function replacer(content: string, state: SkeletonRendererState) {
 
         ({replaced, cursor} = replaceAfter(replaced, segment, hash, cursor));
 
+        // eslint-disable-next-line no-param-reassign
         state.skeleton.id++;
     }
 

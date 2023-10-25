@@ -29,6 +29,7 @@ function text(this: MarkdownRenderer<SkeletonRendererState>, tokens: Token[], i:
         return '';
     }
 
+    // eslint-disable-next-line no-param-reassign
     tokens[i].content = replacer(content, this.state);
 
     return '';

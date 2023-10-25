@@ -7,6 +7,7 @@ function traverse(
         const newpath = [...path, key];
 
         if (typeof val === 'string') {
+            // eslint-disable-next-line no-param-reassign
             meta[key] = fn(val, newpath) ?? val;
         } else if (isObjectOrArray(val)) {
             traverse(val, fn, newpath);

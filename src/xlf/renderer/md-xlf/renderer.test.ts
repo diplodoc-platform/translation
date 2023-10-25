@@ -1,6 +1,6 @@
 import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
-import {render, RenderParameters} from './index';
+import {RenderParameters, render} from './index';
 
 import basic from 'src/__fixtures__/basic';
 import variables from 'src/__fixtures__/variables';

@@ -1,4 +1,4 @@
-import {generateTemplate, TemplateParameters} from './template';
+import {TemplateParameters, generateTemplate} from './template';
 
 describe('smoke', () => {
     it('works', () => {

@@ -1,9 +1,9 @@
 import MarkdownIt from 'markdown-it';
 import {
-    mdRenderer,
     MarkdownRenderer,
-    MarkdownRendererParams,
     MarkdownRendererEnv,
+    MarkdownRendererParams,
+    mdRenderer,
 } from '@diplodoc/markdown-it-markdown-renderer';
 
 // configure with diplodoc plugins
@@ -35,7 +35,7 @@ export type RenderParameters = BaseParameters & DiplodocParameters;
 export type BaseParameters = {
     markdown: string;
     hooks?: CustomRendererHooks;
-} & DiplodocParameters;
+};
 
 export type DiplodocParameters = {
     lang?: string;
@@ -54,12 +54,10 @@ function render(parameters: RenderParameters) {
     const {handlers} = skeletonHandlers.generate();
 
     const skeletonHooks = hooks.generate({markdownit: md});
-
     const allHooks: CustomRendererHooks[] = [
         MarkdownRenderer.defaultHooks,
         skeletonHooks.hooks,
     ].concat(parameters.hooks ?? []);
-
     const mergedHooks = mergeHooks(...allHooks);
 
     const mdOptions: MarkdownRendererParams<HooksState> = {
