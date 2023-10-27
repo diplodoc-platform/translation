@@ -308,4 +308,18 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses video wrapped in x tag', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Another sentence <x ctype="x-video" equiv-text="@[youtube](rJz4OaURJ6U)" />',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
