@@ -160,4 +160,17 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with video syntax', () => {
+        const parameters: RenderParameters = {
+            skeleton: '%%%1%%% %%%2%%%',
+            translations: new Map<string, string>([
+                ['1', 'Sentence goes here.'],
+                ['2', 'Another sentence @[youtube](https://youtu.be/rJz4OaURJ6U)'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
