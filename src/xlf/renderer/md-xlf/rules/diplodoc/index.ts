@@ -39,9 +39,6 @@ const rules = {
     td_open: alwaysEmptyString,
     td_close: alwaysEmptyString,
     table_close: alwaysEmptyString,
-    // sup
-    sup_open: alwaysEmptyString,
-    sup_close: alwaysEmptyString,
     // checkbox
     checkbox_open: alwaysEmptyString,
     checkbox_input: alwaysEmptyString,
@@ -64,8 +61,6 @@ const rules = {
     tab_close: alwaysEmptyString,
     'tab-panel_open': alwaysEmptyString,
     'tab-panel_close': alwaysEmptyString,
-    // video
-    video: alwaysEmptyString,
     // anchors
     span_open: alwaysEmptyString,
     span_close: alwaysEmptyString,
@@ -78,9 +73,6 @@ const rules = {
     yfm_tr_close: alwaysEmptyString,
     yfm_td_open: alwaysEmptyString,
     yfm_td_close: alwaysEmptyString,
-    // strikethrough,
-    s_open: alwaysEmptyString,
-    s_close: alwaysEmptyString,
 };
 
 export {rules, initState};
