@@ -6,6 +6,7 @@ import {pair} from './pair';
 import {codeInline} from './code-inline';
 import {text} from './text';
 import {image} from './image';
+import {video} from './video';
 
 export type XLFRulesState = LinkRuleState & DiplodocRulesState;
 
@@ -34,21 +35,19 @@ function rules() {
         blockquote_close: () => '',
         list_item_open: () => '',
         list_item_close: () => '',
-        // image,
-        // image_close: imageClose,
         ...diplodocRules.rules,
         ...pair,
         ...codeInline,
         ...link,
         ...text,
         ...image,
+        ...video,
     };
 }
 
 function initState() {
     return () => ({
         ...linkInitState(),
-        // ...imageRules.initState(),
         ...diplodocRules.initState(),
     });
 }
