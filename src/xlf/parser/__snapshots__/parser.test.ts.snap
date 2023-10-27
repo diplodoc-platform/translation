@@ -1252,3 +1252,31 @@ Array [
   ],
 ]
 `;
+
+exports[`parses translation units with <g> and <x> tags parses video wrapped in x tag 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Another sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "@[youtube](rJz4OaURJ6U)",
+      "nodeType": "self-closing",
+      "syntax": "video",
+      "type": "tag",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
