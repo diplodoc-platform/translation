@@ -34,6 +34,7 @@ class XLFMDRenderer {
             image_attributes_src: this.imageAttributesSrc.bind(this),
             image_attributes_title: this.imageAttributesTitle.bind(this),
             image_attributes_size: this.imageAttributesSize.bind(this),
+            video: this.video.bind(this),
         };
     }
 
@@ -290,19 +291,25 @@ class XLFMDRenderer {
         assert(isXLFTagToken(token));
         token as XLFTagToken;
 
-        const {equivText} = token;
-        if (!equivText?.length) {
-            throw new Error(`token: ${token} has invalid equiv-text`);
-        }
+        assert(token.equivText?.length, `token: ${token} has invalid equiv-text`);
 
-        return ' ' + equivText;
+        return ' ' + token.equivText;
     }
 
     code(token: XLFToken): string {
         assert(isXLFTagToken(token));
         token as XLFTagToken;
 
-        assert(token.equivText?.length, 'x supposed to wrap original markup inside equiv-text');
+        assert(token.equivText?.length, `token: ${token} has invalid equiv-text`);
+
+        return token.equivText;
+    }
+
+    video(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        assert(token.equivText?.length, `token: ${token} has invalid equiv-text`);
 
         return token.equivText;
     }
