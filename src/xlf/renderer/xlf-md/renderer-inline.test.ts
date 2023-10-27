@@ -848,4 +848,23 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders video wrapped in <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Another sentence '},
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'video',
+                equivText: '@[youtube](rJz4OaURJ6U)',
+            },
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
