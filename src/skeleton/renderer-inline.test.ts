@@ -112,4 +112,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with video syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Sentence goes here. Another sentence @[youtube](https://youtu.be/rJz4OaURJ6U)',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
