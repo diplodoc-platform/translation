@@ -867,4 +867,30 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders heading with anchor wrapped in <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Heading with anchors'},
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'anchor',
+                equivText: ' {#anchor1}',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'anchor',
+                equivText: ' {#anchor2}',
+            },
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
