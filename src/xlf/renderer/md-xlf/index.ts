@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it';
-import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
+import {MarkdownRenderer, MarkdownRendererEnv} from '@diplodoc/markdown-it-markdown-renderer';
 import {
     CustomRendererHooks,
     CustomRendererParams,
@@ -83,6 +83,10 @@ function render(parameters: RenderParameters) {
         path: '',
     };
 
+    const env: MarkdownRendererEnv = {
+        source: parameters.markdown.split('\n'),
+    };
+
     // diplodoc plugins
     xlfRenderer.use(meta);
     xlfRenderer.use(notes, diplodocOptions);
@@ -100,7 +104,7 @@ function render(parameters: RenderParameters) {
 
     xlfRenderer.use(customRenderer, xlfOptions);
 
-    return xlfRenderer.render(parameters.markdown);
+    return xlfRenderer.render(parameters.markdown, env);
 }
 
 function validParameters(parameters: RenderParameters) {
