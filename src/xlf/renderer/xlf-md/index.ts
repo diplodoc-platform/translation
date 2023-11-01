@@ -35,6 +35,7 @@ class XLFMDRenderer {
             image_attributes_title: this.imageAttributesTitle.bind(this),
             image_attributes_size: this.imageAttributesSize.bind(this),
             video: this.video.bind(this),
+            anchor: this.anchor.bind(this),
         };
     }
 
@@ -306,6 +307,15 @@ class XLFMDRenderer {
     }
 
     video(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        assert(token.equivText?.length, `token: ${token} has invalid equiv-text`);
+
+        return token.equivText;
+    }
+
+    anchor(token: XLFToken): string {
         assert(isXLFTagToken(token));
         token as XLFTagToken;
 
