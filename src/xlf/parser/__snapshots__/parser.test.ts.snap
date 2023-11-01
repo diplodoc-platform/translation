@@ -298,6 +298,41 @@ Array [
 ]
 `;
 
+exports[`parses translation units with <g> and <x> tags parses heading with anchors wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Heading with anchors",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": " {#anchor1}",
+      "nodeType": "self-closing",
+      "syntax": "anchor",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": " {#anchor2}",
+      "nodeType": "self-closing",
+      "syntax": "anchor",
+      "type": "tag",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
 exports[`parses translation units with <g> and <x> tags parses image with all attributes wrapped in <g> and <x> tags 1`] = `
 Array [
   Array [
