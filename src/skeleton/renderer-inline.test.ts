@@ -122,4 +122,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with anchor heading syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                '# Heading with multiple anchors {#anchor1} {#anchor2}\n\n## Heading without anchor',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
