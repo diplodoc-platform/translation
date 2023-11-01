@@ -322,4 +322,17 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses heading with anchors wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Heading with anchors<x ctype="x-anchor" equiv-text=" {#anchor1}" /><x ctype="x-anchor" equiv-text=" {#anchor2}" />',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
