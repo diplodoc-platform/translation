@@ -1,4 +1,3 @@
-// import imageRules, {image, imageClose, ImageRuleState} from './image';
 import diplodocRules, {DiplodocRulesState} from './diplodoc';
 
 import {LinkRuleState, link, initState as linkInitState} from './link';
@@ -7,6 +6,7 @@ import {codeInline} from './code-inline';
 import {text} from './text';
 import {image} from './image';
 import {video} from './video';
+import {anchor} from './anchor';
 
 export type XLFRulesState = LinkRuleState & DiplodocRulesState;
 
@@ -42,6 +42,7 @@ function rules() {
         ...text,
         ...image,
         ...video,
+        ...anchor,
     };
 }
 
