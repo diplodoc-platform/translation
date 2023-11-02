@@ -8,6 +8,8 @@ exports[`renders xlf to markdown renders em wrapped in <g> tags 1`] = `"Пред
 
 exports[`renders xlf to markdown renders empty image wrapped in <g> and <x> tags 1`] = `"Sentence ![]()."`;
 
+exports[`renders xlf to markdown renders file wrapped in <g> and <x> tags 1`] = `"Sentence with {% file src=\\"path/to/file\\" name=\\"readme.md\\" referrerpolicy=\\"no-referrer\\" rel=\\"noopener\\" target=\\"_blank\\" type=\\"text/plain\\" %}."`;
+
 exports[`renders xlf to markdown renders heading with anchor wrapped in <x> tags 1`] = `"Heading with anchors {#anchor1} {#anchor2}"`;
 
 exports[`renders xlf to markdown renders image with all attributes wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png \\"hint\\" =100x50)."`;
