@@ -66,6 +66,25 @@ exports[`renders xlf from markdown renders em wrapped in <g> tags 1`] = `
 "
 `;
 
+exports[`renders xlf from markdown renders file wrapped in <g> and <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Sentence with <g ctype=\\"x-file\\" equiv-text=\\"{%%}\\"><x ctype=\\"x-file_src\\" equiv-text=\\" src=&quot;path/to/file&quot;\\" /><g ctype=\\"x-file_name\\" equiv-text=\\"&quot;&quot;\\">readme.md</g><x ctype=\\"x-file_referrerpolicy\\" equiv-text=\\" referrerpolicy=&quot;no-referrer&quot;\\" /><x ctype=\\"x-file_rel\\" equiv-text=\\" rel=&quot;noopener&quot;\\" /><x ctype=\\"x-file_target\\" equiv-text=\\" target=&quot;_blank&quot;\\" /><x ctype=\\"x-file_type\\" equiv-text=\\" type=&quot;text/plain&quot;\\" /></g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders heading with anchors wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
