@@ -36,6 +36,14 @@ class XLFMDRenderer {
             image_attributes_size: this.imageAttributesSize.bind(this),
             video: this.video.bind(this),
             anchor: this.anchor.bind(this),
+            file: this.file.bind(this),
+            file_src: this.fileAttributeNonTranslatable.bind(this),
+            file_name: this.fileAttributeTranslatable.bind(this),
+            file_referrerpolicy: this.fileAttributeNonTranslatable.bind(this),
+            file_rel: this.fileAttributeNonTranslatable.bind(this),
+            file_target: this.fileAttributeNonTranslatable.bind(this),
+            file_type: this.fileAttributeNonTranslatable.bind(this),
+            // file
         };
     }
 
@@ -322,6 +330,44 @@ class XLFMDRenderer {
         assert(token.equivText?.length, `token: ${token} has invalid equiv-text`);
 
         return token.equivText;
+    }
+
+    file(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText, nodeType} = token;
+        assert(equivText?.length === 4, `token: ${token} has invalid equiv-text`);
+
+        const [open, close] = equivText.split(/(%\}$)/gmu);
+
+        return nodeType === 'open' ? `${open} file` : ` ${close}`;
+    }
+
+    fileAttributeNonTranslatable(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText} = token;
+        assert(equivText?.length, `token: ${token} has invalid equiv-text`);
+
+        return equivText;
+    }
+
+    fileAttributeTranslatable(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {syntax, nodeType, equivText} = token;
+        assert(syntax?.length, `token: ${token} has invalid syntax name`);
+
+        const [_, name] = syntax.split('_');
+        assert(name?.length, `token: ${token} has invalid syntax name`);
+        assert(equivText?.length === 2, `token: ${token} has invalid equiv-text`);
+
+        const [open, close] = equivText.split('');
+
+        return nodeType === 'open' ? ` ${name}=${open}` : close;
     }
 }
 
