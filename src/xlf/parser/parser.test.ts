@@ -335,4 +335,17 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses file wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence with <g ctype="x-file" equiv-text="{%%}"><x ctype="x-file_src" equiv-text=" src=&quot;path/to/file&quot;" /><g ctype="x-file_name" equiv-text="&quot;&quot;">readme.md</g><x ctype="x-file_referrerpolicy" equiv-text=" referrerpolicy=&quot;no-referrer&quot;" /><x ctype="x-file_rel" equiv-text=" rel=&quot;noopener&quot;" /><x ctype="x-file_target" equiv-text=" target=&quot;_blank&quot;" /><x ctype="x-file_type" equiv-text=" type=&quot;text/plain&quot;" /></g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
