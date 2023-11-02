@@ -893,4 +893,81 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders file wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence with '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'file',
+                equivText: '{%%}',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'file_src',
+                equivText: ' src="path/to/file"',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'file_name',
+                equivText: '""',
+            },
+            {type: 'text', data: 'readme.md'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'file_name',
+                equivText: '""',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'file_referrerpolicy',
+                equivText: ' referrerpolicy="no-referrer"',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'file_rel',
+                equivText: ' rel="noopener"',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'file_target',
+                equivText: ' target="_blank"',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'file_type',
+                equivText: ' type="text/plain"',
+            },
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'file',
+                equivText: '{%%}',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
