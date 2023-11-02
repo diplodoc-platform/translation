@@ -7,6 +7,7 @@ import {text} from './text';
 import {image} from './image';
 import {video} from './video';
 import {anchor} from './anchor';
+import {file} from './file';
 
 export type XLFRulesState = LinkRuleState & DiplodocRulesState;
 
@@ -43,6 +44,7 @@ function rules() {
         ...image,
         ...video,
         ...anchor,
+        ...file,
     };
 }
 
