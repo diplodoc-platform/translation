@@ -132,4 +132,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with file syntax.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Sentence with {% file src="path/to/file" name="readme.md" referrerpolicy="no-referrer" rel="noopener" target="_blank" type="text/plain" %}. Another sentence.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
