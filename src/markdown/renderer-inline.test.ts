@@ -186,4 +186,20 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with file syntax', () => {
+        const parameters: RenderParameters = {
+            skeleton: '%%%1%%% %%%2%%%',
+            translations: new Map<string, string>([
+                [
+                    '1',
+                    'Sentence with {% file src="path/to/file" name="readme.md" referrerpolicy="no-referrer" rel="noopener" target="_blank" type="text/plain" %}.',
+                ],
+                ['2', 'Another sentence.'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
