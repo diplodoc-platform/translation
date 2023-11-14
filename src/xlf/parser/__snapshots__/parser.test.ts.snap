@@ -1050,6 +1050,60 @@ Array [
 ]
 `;
 
+exports[`parses translation units with <g> and <x> tags parses liquid conditions wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence with ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{% if var == \\"val\\" %}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_If",
+      "type": "tag",
+    },
+    Object {
+      "data": " val ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{% else %}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_Else",
+      "type": "tag",
+    },
+    Object {
+      "data": " other val ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{% endif %}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_EndIf",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
 exports[`parses translation units with <g> and <x> tags parses ref links wrapped in <g> and <x> tags 1`] = `
 Array [
   Array [
