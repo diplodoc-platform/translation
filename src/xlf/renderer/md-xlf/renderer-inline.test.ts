@@ -167,4 +167,15 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders liquid conditions wrapped in <x> tags', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown:
+                'Sentence with {% if var == "val" %} val {% else %} other val {% endif %}. {% if var == "val" %} A {% else %} B {% endif %} Point.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
