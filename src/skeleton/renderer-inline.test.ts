@@ -152,4 +152,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with liquid loops.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Sentence {% for x in xs %} x {% endfor %}. {% for x in xs %} X {% endfor %} cool.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
