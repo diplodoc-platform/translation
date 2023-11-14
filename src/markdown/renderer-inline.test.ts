@@ -215,4 +215,17 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with liquid for loop', () => {
+        const parameters: RenderParameters = {
+            skeleton: '%%%1%%% %%%2%%%',
+            translations: new Map<string, string>([
+                ['1', 'Sentence {% for x in xs %} x {% endfor %}.'],
+                ['2', '{% for x in xs %} X {% endfor %} cool.'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
