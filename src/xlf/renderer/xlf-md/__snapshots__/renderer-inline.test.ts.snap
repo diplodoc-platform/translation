@@ -30,6 +30,8 @@ exports[`renders xlf to markdown renders link wrapped in <g> and <x> tags 1`] = 
 
 exports[`renders xlf to markdown renders liquid conditions wrapped in <x> tags 1`] = `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}."`;
 
+exports[`renders xlf to markdown renders liquid function wrapped in <x> tags 1`] = `"Sentence with function {{ user.name.slice(1, 2) }}."`;
+
 exports[`renders xlf to markdown renders liquid loop wrapped in <x> tags 1`] = `"Sentence {% for x in xs %} x {% endfor %}."`;
 
 exports[`renders xlf to markdown renders plain text 1`] = `"Sentence about something. Another sentence."`;
