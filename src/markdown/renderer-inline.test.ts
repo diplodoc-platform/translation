@@ -202,4 +202,17 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with liquid conditions', () => {
+        const parameters: RenderParameters = {
+            skeleton: '%%%1%%% %%%2%%%',
+            translations: new Map<string, string>([
+                ['1', 'Sentence with {% if var == "val" %} val {% else %} other val {% endif %}.'],
+                ['2', '{% var == "val" %} A {% else %} B {% endif %} Point.'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
