@@ -28,6 +28,8 @@ exports[`renders xlf to markdown renders link with title wrapped in <g> and <x> 
 
 exports[`renders xlf to markdown renders link wrapped in <g> and <x> tags 1`] = `"Предложение номер [два](two.md)."`;
 
+exports[`renders xlf to markdown renders liquid conditions wrapped in <x> tags 1`] = `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}."`;
+
 exports[`renders xlf to markdown renders plain text 1`] = `"Sentence about something. Another sentence."`;
 
 exports[`renders xlf to markdown renders ref link wrapped in <g> and <x> tags 1`] = `"Предложение номер [{#T}](one.md \\"one\\")."`;
