@@ -143,7 +143,7 @@ describe('inline: skeleton rendering', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('inline: renders hash instead of the sentences with file liquid conditions.', () => {
+    it('inline: renders hash instead of the sentences with liquid conditions.', () => {
         const parameters: RenderParameters = {
             markdown:
                 'Sentence with {% if var == "val" %} val {% else %} other val {% endif %}. {% var == "val" %} A {% else %} B {% endif %} Point.',
