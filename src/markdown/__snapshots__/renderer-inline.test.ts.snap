@@ -16,6 +16,8 @@ exports[`inline: renders translated markdown inline: renders sentences with liqu
 
 exports[`inline: renders translated markdown inline: renders sentences with liquid for loop 1`] = `"Sentence {% for x in xs %} x {% endfor %}. {% for x in xs %} X {% endfor %} cool."`;
 
+exports[`inline: renders translated markdown inline: renders sentences with liquid functions 1`] = `"Sentence with function {{ user.name.slice(1, 2) }}. {{ user.name.slice(1, 2) }} Functions are cool."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with ref links syntax 1`] = `"Sentence number [{#T}](one.md \\"one\\"). Sentence number [{#T}](two.md)."`;
