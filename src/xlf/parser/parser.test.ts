@@ -361,4 +361,17 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses liquid loop wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <x ctype="x-liquid_ForInLoop" equiv-text="{% for x in xs %}" /> x <x ctype="x-liquid_EndForInLoop" equiv-text="{% endfor %}" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
