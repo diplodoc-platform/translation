@@ -348,4 +348,17 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses liquid conditions wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence with <x ctype="x-liquid_If" equiv-text="{% if var == &quot;val&quot; %}" /> val <x ctype="x-liquid_Else" equiv-text="{% else %}" /> other val <x ctype="x-liquid_EndIf" equiv-text="{% endif %}" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
