@@ -1034,4 +1034,24 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders liquid function wrapped in <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence with function '},
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'liquid_Function',
+                equivText: '{{ user.name.slice(1, 2) }}',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
