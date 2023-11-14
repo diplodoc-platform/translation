@@ -374,4 +374,17 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses liquid function wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence with function <x ctype="x-liquid_Function" equiv-text="{{ user.name.slice(1, 2) }}" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
