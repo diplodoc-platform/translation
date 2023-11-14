@@ -43,7 +43,9 @@ class XLFMDRenderer {
             file_rel: this.fileAttributeNonTranslatable.bind(this),
             file_target: this.fileAttributeNonTranslatable.bind(this),
             file_type: this.fileAttributeNonTranslatable.bind(this),
-            // file
+            liquid_If: this.liquidAsIs.bind(this),
+            liquid_Else: this.liquidAsIs.bind(this),
+            liquid_EndIf: this.liquidAsIs.bind(this),
         };
     }
 
@@ -368,6 +370,16 @@ class XLFMDRenderer {
         const [open, close] = equivText.split('');
 
         return nodeType === 'open' ? ` ${name}=${open}` : close;
+    }
+
+    liquidAsIs(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText} = token;
+        assert(equivText?.length, `token: ${token} has invalid equiv-text`);
+
+        return equivText;
     }
 }
 
