@@ -16,11 +16,13 @@ class Renderer {
         this.rendered = '';
 
         this.rules = {
-            Text: this.PlainText.bind(this),
-            Space: this.PlainText.bind(this),
-            If: this.renderAsX.bind(this),
-            Else: this.renderAsX.bind(this),
-            EndIf: this.renderAsX.bind(this),
+            Text: this.plainText.bind(this),
+            Space: this.plainText.bind(this),
+            If: this.wrapInX.bind(this),
+            Else: this.wrapInX.bind(this),
+            EndIf: this.wrapInX.bind(this),
+            ForInLoop: this.wrapInX.bind(this),
+            EndForInLoop: this.wrapInX.bind(this),
         };
     }
 
@@ -37,11 +39,11 @@ class Renderer {
         return this.rendered;
     }
 
-    private PlainText(token: Token) {
+    private plainText(token: Token) {
         return token.value;
     }
 
-    private renderAsX(token: Token) {
+    private wrapInX(token: Token) {
         const {type, value} = token;
 
         return generateX({
