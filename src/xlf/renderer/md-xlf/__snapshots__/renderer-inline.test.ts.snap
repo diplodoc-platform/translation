@@ -185,6 +185,28 @@ exports[`renders xlf from markdown renders liquid conditions wrapped in <x> tags
 "
 `;
 
+exports[`renders xlf from markdown renders liquid loops wrapped in <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Sentence <x ctype=\\"x-liquid_ForInLoop\\" equiv-text=\\"{% for x in xs %}\\" /> x <x ctype=\\"x-liquid_EndForInLoop\\" equiv-text=\\"{% endfor %}\\" />.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source><x ctype=\\"x-liquid_ForInLoop\\" equiv-text=\\"{% for x in xs %}\\" /> X <x ctype=\\"x-liquid_EndForInLoop\\" equiv-text=\\"{% endfor %}\\" /> cool.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders plain text 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
