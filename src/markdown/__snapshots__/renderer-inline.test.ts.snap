@@ -12,6 +12,8 @@ exports[`inline: renders translated markdown inline: renders sentences with file
 
 exports[`inline: renders translated markdown inline: renders sentences with links syntax 1`] = `"Sentence number [one](one.md \\"one\\"). Sentence number [two](two.md \\"two\\")."`;
 
+exports[`inline: renders translated markdown inline: renders sentences with liquid conditions 1`] = `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}. {% var == \\"val\\" %} A {% else %} B {% endif %} Point."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with ref links syntax 1`] = `"Sentence number [{#T}](one.md \\"one\\"). Sentence number [{#T}](two.md)."`;
