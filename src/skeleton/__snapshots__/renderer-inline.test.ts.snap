@@ -11,13 +11,13 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with em syntax. 1`] = `"%%%1%%% %%%2%%%"`;
 
-exports[`inline: skeleton rendering inline: renders hash instead of the sentences with file liquid conditions. 1`] = `"%%%1%%% %%%2%%%"`;
-
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with file syntax. 1`] = `"%%%1%%% %%%2%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with image syntax. 1`] = `"%%%1%%% %%%2%%% %%%3%%% %%%4%%% %%%5%%% %%%6%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with links syntax. 1`] = `"%%%1%%% %%%2%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with liquid conditions. 1`] = `"%%%1%%% %%%2%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with plain text. 1`] = `"%%%1%%% %%%2%%%"`;
 
