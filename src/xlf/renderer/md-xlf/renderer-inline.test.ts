@@ -189,4 +189,15 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders liquid functions wrapped in <x> tags', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown:
+                'Sentence with function {{ user.name.slice(1, 2) }}. {{ user.name.slice(1, 2) }} starts with function.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
