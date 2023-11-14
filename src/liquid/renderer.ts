@@ -23,6 +23,7 @@ class Renderer {
             EndIf: this.wrapInX.bind(this),
             ForInLoop: this.wrapInX.bind(this),
             EndForInLoop: this.wrapInX.bind(this),
+            Function: this.wrapInX.bind(this),
         };
     }
 
