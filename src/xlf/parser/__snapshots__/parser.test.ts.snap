@@ -1104,6 +1104,49 @@ Array [
 ]
 `;
 
+exports[`parses translation units with <g> and <x> tags parses liquid loop wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{% for x in xs %}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_ForInLoop",
+      "type": "tag",
+    },
+    Object {
+      "data": " x ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{% endfor %}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_EndForInLoop",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
 exports[`parses translation units with <g> and <x> tags parses ref links wrapped in <g> and <x> tags 1`] = `
 Array [
   Array [
