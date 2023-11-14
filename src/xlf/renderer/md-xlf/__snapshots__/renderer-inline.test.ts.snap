@@ -163,6 +163,28 @@ exports[`renders xlf from markdown renders links wrapped in <g> and <x> tags 1`]
 "
 `;
 
+exports[`renders xlf from markdown renders liquid conditions wrapped in <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Sentence with <x ctype=\\"x-liquid_If\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" /> val <x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> other val <x ctype=\\"x-liquid_EndIf\\" equiv-text=\\"{% endif %}\\" />.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source><x ctype=\\"x-liquid_If\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" /> A <x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> B <x ctype=\\"x-liquid_EndIf\\" equiv-text=\\"{% endif %}\\" /> Point.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders plain text 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
