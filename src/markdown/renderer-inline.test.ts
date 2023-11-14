@@ -228,4 +228,17 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with liquid functions', () => {
+        const parameters: RenderParameters = {
+            skeleton: '%%%1%%% %%%2%%%',
+            translations: new Map<string, string>([
+                ['1', 'Sentence with function {{ user.name.slice(1, 2) }}.'],
+                ['2', '{{ user.name.slice(1, 2) }} Functions are cool.'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
