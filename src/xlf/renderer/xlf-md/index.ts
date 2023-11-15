@@ -50,6 +50,7 @@ class XLFMDRenderer {
             liquid_EndForInLoop: this.liquidAsIs.bind(this),
             liquid_Function: this.liquidAsIs.bind(this),
             liquid_Filter: this.liquidAsIs.bind(this),
+            liquid_Variable: this.liquidAsIs.bind(this),
         };
     }
 
