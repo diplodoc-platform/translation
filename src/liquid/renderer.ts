@@ -25,6 +25,7 @@ class Renderer {
             EndForInLoop: this.wrapInX.bind(this),
             Function: this.wrapInX.bind(this),
             Filter: this.wrapInX.bind(this),
+            Variable: this.wrapInX.bind(this),
         };
     }
 
