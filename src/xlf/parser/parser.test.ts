@@ -400,4 +400,17 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses liquid variables wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence with <x ctype="x-liquid_Variable" equiv-text="{{ variable }}" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
