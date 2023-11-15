@@ -172,4 +172,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with liquid filters.', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Sentence with function {{ users | length }}. {{user | capitalize}} Functions are cool.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
