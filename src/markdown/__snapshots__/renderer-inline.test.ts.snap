@@ -14,6 +14,8 @@ exports[`inline: renders translated markdown inline: renders sentences with link
 
 exports[`inline: renders translated markdown inline: renders sentences with liquid conditions 1`] = `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}. {% var == \\"val\\" %} A {% else %} B {% endif %} Point."`;
 
+exports[`inline: renders translated markdown inline: renders sentences with liquid filters 1`] = `"Sentence with function {{ users | length }}. {{user | capitalize}} Functions are cool."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with liquid for loop 1`] = `"Sentence {% for x in xs %} x {% endfor %}. {% for x in xs %} X {% endfor %} cool."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with liquid functions 1`] = `"Sentence with function {{ user.name.slice(1, 2) }}. {{ user.name.slice(1, 2) }} Functions are cool."`;
