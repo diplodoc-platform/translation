@@ -182,4 +182,13 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with liquid variables.', () => {
+        const parameters: RenderParameters = {
+            markdown: 'Sentence with {{ variables }}. {{variable}} sentence.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
