@@ -25,6 +25,8 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with liquid loops. 1`] = `"%%%1%%% %%%2%%%"`;
 
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with liquid variables. 1`] = `"%%%1%%% %%%2%%%"`;
+
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with plain text. 1`] = `"%%%1%%% %%%2%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with ref links syntax. 1`] = `"%%%1%%% %%%2%%%"`;
