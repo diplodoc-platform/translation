@@ -36,6 +36,8 @@ exports[`renders xlf to markdown renders liquid function wrapped in <x> tags 1`]
 
 exports[`renders xlf to markdown renders liquid loop wrapped in <x> tags 1`] = `"Sentence {% for x in xs %} x {% endfor %}."`;
 
+exports[`renders xlf to markdown renders liquid variables wrapped in <x> tags 1`] = `"Sentence with {{ variable }}."`;
+
 exports[`renders xlf to markdown renders plain text 1`] = `"Sentence about something. Another sentence."`;
 
 exports[`renders xlf to markdown renders ref link wrapped in <g> and <x> tags 1`] = `"Предложение номер [{#T}](one.md \\"one\\")."`;
