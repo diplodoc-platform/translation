@@ -1104,6 +1104,38 @@ Array [
 ]
 `;
 
+exports[`parses translation units with <g> and <x> tags parses liquid filters wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence with filter ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{{ users | length }}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_Filter",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
 exports[`parses translation units with <g> and <x> tags parses liquid function wrapped in <x> tags 1`] = `
 Array [
   Array [
