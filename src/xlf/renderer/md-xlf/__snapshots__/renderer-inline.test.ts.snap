@@ -185,6 +185,28 @@ exports[`renders xlf from markdown renders liquid conditions wrapped in <x> tags
 "
 `;
 
+exports[`renders xlf from markdown renders liquid filters wrapped in <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Sentence with filter <x ctype=\\"x-liquid_Filter\\" equiv-text=\\"{{ users | length }}\\" />.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source><x ctype=\\"x-liquid_Filter\\" equiv-text=\\"{{user | capitalize}}\\" /> starts with filter.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders liquid functions wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
