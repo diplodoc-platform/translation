@@ -1074,4 +1074,24 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders liquid variables wrapped in <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence with '},
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'liquid_Variable',
+                equivText: '{{ variable }}',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
