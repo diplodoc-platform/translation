@@ -563,6 +563,60 @@ Array [
 ]
 `;
 
+exports[`liquid tokenizer syntax loop-3 1`] = `
+Array [
+  Object {
+    "type": "ForInLoop",
+    "value": "{%for x.a_b in xs.ys%}",
+  },
+  Object {
+    "type": "Space",
+    "value": " ",
+  },
+  Object {
+    "type": "Text",
+    "value": "x",
+  },
+  Object {
+    "type": "Space",
+    "value": " ",
+  },
+  Object {
+    "type": "EndForInLoop",
+    "value": "{%endfor%}",
+  },
+]
+`;
+
+exports[`liquid tokenizer syntax loop-4 1`] = `
+Array [
+  Object {
+    "type": "ForInLoop",
+    "value": "{%for x.a_b in xs.ys%}",
+  },
+  Object {
+    "type": "Newline",
+    "value": "
+
+",
+  },
+  Object {
+    "type": "Variable",
+    "value": "{{a_b.c}}",
+  },
+  Object {
+    "type": "Newline",
+    "value": "
+
+",
+  },
+  Object {
+    "type": "EndForInLoop",
+    "value": "{%endfor%}",
+  },
+]
+`;
+
 exports[`liquid tokenizer syntax text-1 1`] = `
 Array [
   Object {
