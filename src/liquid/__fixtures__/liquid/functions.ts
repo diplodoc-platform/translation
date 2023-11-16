@@ -16,6 +16,11 @@ const functions: Fixtures = [
         content: '{{user.slice(1)}}.',
         number: 3,
     },
+    {
+        section: 'functions',
+        content: '{{user_name-cool.slice(1)}}.',
+        number: 4,
+    },
 ];
 
 export {functions};

@@ -471,6 +471,19 @@ Array [
 ]
 `;
 
+exports[`liquid tokenizer syntax functions-4 1`] = `
+Array [
+  Object {
+    "type": "Function",
+    "value": "{{user_name-cool.slice(1)}}",
+  },
+  Object {
+    "type": "Text",
+    "value": ".",
+  },
+]
+`;
+
 exports[`liquid tokenizer syntax loop-1 1`] = `
 Array [
   Object {
