@@ -16,6 +16,11 @@ const variable: Fixtures = [
         content: 'Users amount: {{user.name}}.',
         number: 3,
     },
+    {
+        section: 'variable',
+        content: 'Users amount: {{user_name-cool}}.',
+        number: 4,
+    },
 ];
 
 export {variable};
