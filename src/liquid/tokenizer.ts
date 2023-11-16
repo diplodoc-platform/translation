@@ -16,7 +16,7 @@ const specification_: Specification = [
     // EndIf statement
     [/^\{%[^\S\r\n]*endif[^\S\r\n]*%\}/, 'EndIf'],
     // Function
-    [/^\{\{[^\S\r\n]*[\w.]+?\(.*?\)[^\S\r\n]*\}\}/, 'Function'],
+    [/^\{\{[^\S\r\n]*[\w.-]+?\(.*?\)[^\S\r\n]*\}\}/, 'Function'],
     // Filter
     [/^\{\{[^\S\r\n]*[\w.]+[^\S\r\n]*\|[^\S\r\n]*\w+[^\S\r\n]*\}\}/, 'Filter'],
     // Variable
