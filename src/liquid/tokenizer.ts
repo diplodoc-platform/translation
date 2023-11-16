@@ -20,7 +20,7 @@ const specification_: Specification = [
     // Filter
     [/^\{\{[^\S\r\n]*[\w.-]+[^\S\r\n]*\|[^\S\r\n]*\w+[^\S\r\n]*\}\}/, 'Filter'],
     // Variable
-    [/^\{\{[^\S\r\n]*[\w.]+[^\S\r\n]*\}\}/, 'Variable'],
+    [/^\{\{[^\S\r\n]*[\w.-]+[^\S\r\n]*\}\}/, 'Variable'],
     // ForInLoop
     [/^\{%[^\S\r\n]*for[^\S\r\n]+[\w.]+[^\S\r\n]+in[^\S\r\n]+[\w.]+[^\S\r\n]*%\}/, 'ForInLoop'],
     // EndForInLoop
