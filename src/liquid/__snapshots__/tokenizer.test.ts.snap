@@ -400,6 +400,35 @@ Array [
 ]
 `;
 
+exports[`liquid tokenizer syntax filter-4 1`] = `
+Array [
+  Object {
+    "type": "Text",
+    "value": "Users",
+  },
+  Object {
+    "type": "Space",
+    "value": " ",
+  },
+  Object {
+    "type": "Text",
+    "value": "amount:",
+  },
+  Object {
+    "type": "Space",
+    "value": " ",
+  },
+  Object {
+    "type": "Filter",
+    "value": "{{ user_name-cool | length }}",
+  },
+  Object {
+    "type": "Text",
+    "value": ".",
+  },
+]
+`;
+
 exports[`liquid tokenizer syntax functions-1 1`] = `
 Array [
   Object {
