@@ -22,7 +22,7 @@ const specification_: Specification = [
     // Variable
     [/^\{\{[^\S\r\n]*[\w.-]+[^\S\r\n]*\}\}/, 'Variable'],
     // ForInLoop
-    [/^\{%[^\S\r\n]*for[^\S\r\n]+[\w.]+[^\S\r\n]+in[^\S\r\n]+[\w.]+[^\S\r\n]*%\}/, 'ForInLoop'],
+    [/^\{%[^\S\r\n]*for[^\S\r\n]+[\w.-]+[^\S\r\n]+in[^\S\r\n]+[\w.-]+[^\S\r\n]*%\}/, 'ForInLoop'],
     // EndForInLoop
     [/^\{%[^\S\r\n]*endfor[^\S\r\n]*%\}/, 'EndForInLoop'],
     // Space
