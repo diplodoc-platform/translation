@@ -751,3 +751,32 @@ Array [
   },
 ]
 `;
+
+exports[`liquid tokenizer syntax variable-4 1`] = `
+Array [
+  Object {
+    "type": "Text",
+    "value": "Users",
+  },
+  Object {
+    "type": "Space",
+    "value": " ",
+  },
+  Object {
+    "type": "Text",
+    "value": "amount:",
+  },
+  Object {
+    "type": "Space",
+    "value": " ",
+  },
+  Object {
+    "type": "Variable",
+    "value": "{{user_name-cool}}",
+  },
+  Object {
+    "type": "Text",
+    "value": ".",
+  },
+]
+`;
