@@ -16,6 +16,11 @@ const filter: Fixtures = [
         content: 'Users amount: {{ user.name | length }}.',
         number: 3,
     },
+    {
+        section: 'filter',
+        content: 'Users amount: {{ user_name-cool | length }}.',
+        number: 4,
+    },
 ];
 
 export {filter};
