@@ -21,7 +21,7 @@ function rules() {
         code_block: () => '',
         fence: () => '',
         hardbreak: () => '',
-        softbreak: () => '',
+        softbreak: () => '\n',
         html_block: () => '',
         html_inline: () => '',
         heading_open: () => '',
