@@ -24,6 +24,16 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
+    it('renders plain text sentences separated by newline', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown: 'Предложение номер один.\nПредложение номер два.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
     it('renders strong wrapped in <g> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
