@@ -14,6 +14,19 @@ describe('inline: renders translated markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
+    it('inline: renders sentences with plain text, separated by newline', () => {
+        const parameters: RenderParameters = {
+            skeleton: `%%%1%%%\n%%%2%%%`,
+            translations: new Map<string, string>([
+                ['1', 'Sentence number one.'],
+                ['2', 'Sentence number two.'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
     it('inline: renders sentences with strong syntax', () => {
         const parameters: RenderParameters = {
             skeleton: '%%%1%%% %%%2%%%',
