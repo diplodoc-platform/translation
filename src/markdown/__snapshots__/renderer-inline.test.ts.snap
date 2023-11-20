@@ -24,6 +24,11 @@ exports[`inline: renders translated markdown inline: renders sentences with liqu
 
 exports[`inline: renders translated markdown inline: renders sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
 
+exports[`inline: renders translated markdown inline: renders sentences with plain text, separated by newline 1`] = `
+"Sentence number one.
+Sentence number two."
+`;
+
 exports[`inline: renders translated markdown inline: renders sentences with ref links syntax 1`] = `"Sentence number [{#T}](one.md \\"one\\"). Sentence number [{#T}](two.md)."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with s syntax 1`] = `"Sentence number ~~one~~. Sentence number ~~two~~."`;
