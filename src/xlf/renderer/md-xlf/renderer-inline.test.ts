@@ -231,4 +231,14 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders html wrapped in <x> tags', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown: 'Sentence<br>with <b>html</b>.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
