@@ -84,7 +84,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders code wrapped in <x> tag', () => {
+    it('renders code wrapped in <g> tag', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер `один`. Предложение номер `два`.',
