@@ -413,4 +413,17 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses inline html wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence<x ctype="x-html_inline" equiv-text="&lt;br&gt;" />with <x ctype="x-html_inline" equiv-text="&lt;b&gt;" />html<x ctype="x-html_inline" equiv-text="&lt;/b&gt;" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });
