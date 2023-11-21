@@ -24,6 +24,8 @@ exports[`renders xlf to markdown renders image with src title and width size wra
 
 exports[`renders xlf to markdown renders image with src wrapped in <g> and <x> tags 1`] = `"Sentence ![image](image.png)."`;
 
+exports[`renders xlf to markdown renders inline html wrapped in <x> tags 1`] = `"Sentence<br>with <b>html</b>."`;
+
 exports[`renders xlf to markdown renders link with title wrapped in <g> and <x> tags 1`] = `"Предложение номер [один](one.md \\"one\\")."`;
 
 exports[`renders xlf to markdown renders link wrapped in <g> and <x> tags 1`] = `"Предложение номер [два](two.md)."`;

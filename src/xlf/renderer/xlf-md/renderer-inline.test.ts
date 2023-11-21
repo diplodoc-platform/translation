@@ -1102,4 +1102,40 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders inline html wrapped in <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence'},
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'html_inline',
+                equivText: '<br>',
+            },
+            {type: 'text', data: 'with '},
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'html_inline',
+                equivText: '<b>',
+            },
+            {type: 'text', data: 'html'},
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'html_inline',
+                equivText: '</b>',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
