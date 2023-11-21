@@ -136,9 +136,9 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations).toMatchSnapshot();
     });
 
-    it('parses code wrapped in <x> tag', () => {
+    it('parses code wrapped in <g> tag', () => {
         const units = [
-            {id: 1, target: 'Предложение номер <x ctype="x-code" equiv-text="`один`" />.'},
+            {id: 1, target: 'Предложение номер <g ctype="x-code" equiv-text="`">один</g>.'},
         ];
         const xlf = generateXLF(units);
         const translations = parseTranslations({xlf});
