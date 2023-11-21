@@ -127,7 +127,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses code wrapped in <x> tag 1`] = `
+exports[`parses translation units with <g> and <x> tags parses code wrapped in <g> tag 1`] = `
 Array [
   Array [
     Object {
@@ -140,9 +140,20 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "x",
-      "equivText": "\`один\`",
-      "nodeType": "self-closing",
+      "data": "g",
+      "equivText": "\`",
+      "nodeType": "open",
+      "syntax": "code",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\`",
+      "nodeType": "close",
       "syntax": "code",
       "type": "tag",
     },
