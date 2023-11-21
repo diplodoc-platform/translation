@@ -201,4 +201,13 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with inline html.', () => {
+        const parameters: RenderParameters = {
+            markdown: 'Sentence<br>with <b>html</b>. Another <s>sentence</s>.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
