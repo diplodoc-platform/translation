@@ -22,7 +22,7 @@ exports[`renders xlf from markdown renders autolink wrapped in <g> and <x> tags 
 "
 `;
 
-exports[`renders xlf from markdown renders code wrapped in <x> tag 1`] = `
+exports[`renders xlf from markdown renders code wrapped in <g> tag 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -33,10 +33,10 @@ exports[`renders xlf from markdown renders code wrapped in <x> tag 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>Предложение номер <x ctype=\\"x-code\\" equiv-text=\\"\`один\`\\" />.</source>
+        <source>Предложение номер <g ctype=\\"x-code\\" equiv-text=\\"\`\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>Предложение номер <x ctype=\\"x-code\\" equiv-text=\\"\`два\`\\" />.</source>
+        <source>Предложение номер <g ctype=\\"x-code\\" equiv-text=\\"\`\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
