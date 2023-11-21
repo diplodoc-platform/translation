@@ -2,7 +2,7 @@
 
 exports[`renders xlf to markdown renders autolink wrapped in <x> tags 1`] = `"Предложение номер один <https://www.google.com>."`;
 
-exports[`renders xlf to markdown renders code wrapped in <x> tag 1`] = `"Предложение номер \`один\`."`;
+exports[`renders xlf to markdown renders code wrapped in <g> tag 1`] = `"Предложение номер \`один\`."`;
 
 exports[`renders xlf to markdown renders em wrapped in <g> tags 1`] = `"Предложение номер *один*."`;
 
