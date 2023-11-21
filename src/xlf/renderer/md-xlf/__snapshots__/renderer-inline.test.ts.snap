@@ -104,6 +104,25 @@ exports[`renders xlf from markdown renders heading with anchors wrapped in <x> t
 "
 `;
 
+exports[`renders xlf from markdown renders html wrapped in <x> tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Sentence<x ctype=\\"x-html_inline\\" equiv-text=\\"&lt;br&gt;\\" />with <x ctype=\\"x-html_inline\\" equiv-text=\\"&lt;b&gt;\\" />html<x ctype=\\"x-html_inline\\" equiv-text=\\"&lt;/b&gt;\\" />.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders image with href, title and size wrapped in <g> and <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
