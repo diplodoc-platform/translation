@@ -1,6 +1,6 @@
 {
   "name": "@diplodoc/markdown-translation",
-  "version": "0.15.4",
+  "version": "1.0.0-beta.9",
   "description": "markdown translation utilities",
   "homepage": "https://github.com/diplodoc-platform/markdown-translation",
   "bugs": {
