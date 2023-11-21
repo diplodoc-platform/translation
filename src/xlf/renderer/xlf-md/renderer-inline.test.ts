@@ -153,17 +153,25 @@ describe('renders xlf to markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders code wrapped in <x> tag', () => {
+    it('renders code wrapped in <g> tag', () => {
         const renderer = new XLFMDRenderer();
         const tokens: Array<XLFToken> = [
             {type: 'tag', data: 'target', nodeType: 'open'},
             {type: 'text', data: 'Предложение номер '},
             {
                 type: 'tag',
-                data: 'x',
+                data: 'g',
                 nodeType: 'open',
                 syntax: 'code',
-                equivText: '`один`',
+                equivText: '`',
+            },
+            {type: 'text', data: 'один'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'code',
+                equivText: '`',
             },
             {type: 'text', data: '.'},
             {type: 'tag', data: 'target', nodeType: 'close'},
@@ -171,6 +179,7 @@ describe('renders xlf to markdown', () => {
 
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
+        console.log(rendered);
     });
 
     it('renders link wrapped in <g> and <x> tags', () => {
