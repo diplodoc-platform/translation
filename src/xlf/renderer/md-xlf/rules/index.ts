@@ -8,6 +8,7 @@ import {image} from './image';
 import {video} from './video';
 import {anchor} from './anchor';
 import {file} from './file';
+import {htmlInline} from './html-inline';
 
 export type XLFRulesState = LinkRuleState & DiplodocRulesState;
 
@@ -23,7 +24,6 @@ function rules() {
         hardbreak: () => '',
         softbreak: () => '\n',
         html_block: () => '',
-        html_inline: () => '',
         heading_open: () => '',
         heading_close: () => '',
         paragraph_open: () => '',
@@ -45,6 +45,7 @@ function rules() {
         ...video,
         ...anchor,
         ...file,
+        ...htmlInline,
     };
 }
 
