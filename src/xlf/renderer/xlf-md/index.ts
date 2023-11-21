@@ -51,6 +51,7 @@ class XLFMDRenderer {
             liquid_Function: this.liquidAsIs.bind(this),
             liquid_Filter: this.liquidAsIs.bind(this),
             liquid_Variable: this.liquidAsIs.bind(this),
+            html_inline: this.htmlInline.bind(this),
         };
     }
 
@@ -378,6 +379,16 @@ class XLFMDRenderer {
     }
 
     liquidAsIs(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const {equivText} = token;
+        assert(equivText?.length, `token: ${token} has invalid equiv-text`);
+
+        return equivText;
+    }
+
+    htmlInline(token: XLFToken): string {
         assert(isXLFTagToken(token));
         token as XLFTagToken;
 
