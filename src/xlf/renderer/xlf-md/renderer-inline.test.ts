@@ -179,7 +179,6 @@ describe('renders xlf to markdown', () => {
 
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
-        console.log(rendered);
     });
 
     it('renders link wrapped in <g> and <x> tags', () => {

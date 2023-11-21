@@ -3,7 +3,7 @@ import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
-import {generateOpenG, generateCloseG} from 'src/xlf/generator';
+import {generateCloseG, generateOpenG} from 'src/xlf/generator';
 
 const codeInline: Renderer.RenderRuleRecord = {
     code_inline: codeInlineRule,
