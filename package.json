@@ -77,7 +77,7 @@
     "@diplodoc/markdown-it-custom-renderer": "^0.1.2",
     "@diplodoc/markdown-it-markdown-renderer": "^0.15.5",
     "@diplodoc/sentenizer": "^0.0.1",
-    "@diplodoc/transform": "^4.2.1",
+    "@diplodoc/transform": "^4.3.1",
     "@shellscape/i18n-iso-countries": "^7.5.0-shellscape.v1",
     "cheerio": "^1.0.0-rc.12",
     "domhandler": "^5.0.3",
