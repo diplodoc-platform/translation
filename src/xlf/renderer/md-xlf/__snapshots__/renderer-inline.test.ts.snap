@@ -226,6 +226,34 @@ exports[`renders xlf from markdown renders liquid filters wrapped in <x> tags 1`
 "
 `;
 
+exports[`renders xlf from markdown renders liquid filters wrapped in <x> tags inside tables 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Heading one</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Heading two</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Cell with <x ctype=\\"x-liquid_Filter\\" equiv-text=\\"{{ variable | length }}\\" /></source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>Cell with <x ctype=\\"x-liquid_Variable\\" equiv-text=\\"{{ variable }}\\" /></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders liquid functions wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">

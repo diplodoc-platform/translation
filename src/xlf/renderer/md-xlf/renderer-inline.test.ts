@@ -241,4 +241,18 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders liquid filters wrapped in <x> tags inside tables', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown: `\
+#|
+|| Heading one | Heading two ||
+|| Cell with {{ variable | length }} | Cell with {{ variable }} ||
+|#`,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
