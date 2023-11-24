@@ -293,4 +293,23 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with filters inside tables', () => {
+        const parameters: RenderParameters = {
+            skeleton: `\
+#|
+|| %%%1%%% | %%%2%%% ||
+|| %%%3%%% | %%%4%%% ||
+|#`,
+            translations: new Map<string, string>([
+                ['1', 'Heading one'],
+                ['2', 'Heading two'],
+                ['3', 'Cell with {{ variable | length }}'],
+                ['4', 'Cell with {{ variable }}'],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
