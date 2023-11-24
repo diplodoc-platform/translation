@@ -30,8 +30,8 @@
     "lib/"
   ],
   "engines": {
-    "node": "18.*",
-    "npm": "9.*"
+    "node": ">=18.*",
+    "npm": ">=9.*"
   },
   "scripts": {
     "test": "jest --verbose --coverage --silence=false",
