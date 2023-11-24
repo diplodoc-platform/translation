@@ -210,4 +210,17 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with liquid filters inside tables.', () => {
+        const parameters: RenderParameters = {
+            markdown: `\
+#|
+|| Heading one | Heading two ||
+|| Cell with {{ variable | length }} | Cell with {{ variable }} ||
+|#`,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
