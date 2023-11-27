@@ -20,7 +20,7 @@ function getTranslations(parameters: TranslationsParameters) {
 
         rendered += renderer.render(tokens);
 
-        translations.set(String(i), rendered);
+        translations.set(String(i + 1), rendered);
         rendered = '';
     }
 
