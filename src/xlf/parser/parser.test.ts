@@ -29,7 +29,7 @@ describe('validates parameters', () => {
     it('works with valid parameters', () => {
         const units = [
             {target: 'Предложение о чем-то', id: 1},
-            {target: 'Фрагмент Текста', id: 1},
+            {target: 'Фрагмент Текста', id: 2},
         ];
         const xlf = generateXLF(units);
         parseTranslations({xlf});
