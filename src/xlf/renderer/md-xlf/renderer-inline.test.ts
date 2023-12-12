@@ -255,4 +255,15 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders sentences with abbreviations inside parenthesis', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown: `Sentence (см. [link](file.md)) continues. Another sentence.`,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+        console.log(rendered);
+    });
 });
