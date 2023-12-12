@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with abbreviations inside parenthesis 1`] = `"%%%1%%% %%%2%%%"`;
+
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with anchor heading syntax. 1`] = `
 "# %%%1%%%
 ## %%%2%%%"

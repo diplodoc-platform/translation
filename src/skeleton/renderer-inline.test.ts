@@ -223,4 +223,13 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with abbreviations inside parenthesis', () => {
+        const parameters: RenderParameters = {
+            markdown: `Sentence (см. [link](file.md)) continues. Another Sentence.`,
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
