@@ -232,4 +232,14 @@ describe('inline: skeleton rendering', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with inline code that has liquid syntax inside', () => {
+        const parameters: RenderParameters = {
+            markdown:
+                'Sentence with `inline code and {{ui-key.yacloud.common.label_tcp}}`. Another sentence.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
