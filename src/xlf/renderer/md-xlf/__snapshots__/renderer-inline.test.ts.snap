@@ -452,6 +452,28 @@ exports[`renders xlf from markdown renders sentences with abbreviations inside p
 "
 `;
 
+exports[`renders xlf from markdown renders sentences with inline code that has liquid syntax inside 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Sentence <g ctype=\\"x-code\\" equiv-text=\\"\`\\"><x ctype=\\"x-liquid_Variable\\" equiv-text=\\"{{ ui-key.yacloud.common.label_tcp }}\\" /> other</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Another sentence <g ctype=\\"x-code\\" equiv-text=\\"\`\\"><x ctype=\\"x-liquid_Filter\\" equiv-text=\\"{{user.name | capitalize}}\\" /> other</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders strong wrapped in <g> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
