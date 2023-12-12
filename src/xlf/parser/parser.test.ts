@@ -426,4 +426,21 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
+
+    it('parses inline code with liquid wrapped in <g> and <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Sentence <g ctype="x-code" equiv-text="`"><x ctype="x-liquid_Variable" equiv-text="{{ ui-key.yacloud.common.label_tcp }}" /> other</g>.',
+            },
+            {
+                id: 2,
+                target: 'Another sentence <g ctype="x-code" equiv-text="`"><x ctype="x-liquid_Filter" equiv-text="{{user.name | capitalize}}" /> other</g>.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
 });

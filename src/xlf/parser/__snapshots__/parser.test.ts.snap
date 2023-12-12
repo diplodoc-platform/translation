@@ -920,6 +920,101 @@ Array [
 ]
 `;
 
+exports[`parses translation units with <g> and <x> tags parses inline code with liquid wrapped in <g> and <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\`",
+      "nodeType": "open",
+      "syntax": "code",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{{ ui-key.yacloud.common.label_tcp }}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_Variable",
+      "type": "tag",
+    },
+    Object {
+      "data": " other",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\`",
+      "nodeType": "close",
+      "syntax": "code",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Another sentence ",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\`",
+      "nodeType": "open",
+      "syntax": "code",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "{{user.name | capitalize}}",
+      "nodeType": "self-closing",
+      "syntax": "liquid_Filter",
+      "type": "tag",
+    },
+    Object {
+      "data": " other",
+      "type": "text",
+    },
+    Object {
+      "data": "g",
+      "equivText": "\`",
+      "nodeType": "close",
+      "syntax": "code",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
 exports[`parses translation units with <g> and <x> tags parses inline html wrapped in <x> tags 1`] = `
 Array [
   Array [
