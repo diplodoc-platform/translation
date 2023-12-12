@@ -264,6 +264,16 @@ describe('renders xlf from markdown', () => {
 
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
-        console.log(rendered);
+    });
+
+    it('renders sentences with inline code that has liquid syntax inside', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown:
+                'Sentence `{{ ui-key.yacloud.common.label_tcp }} other`. Another sentence `{{user.name | capitalize}} other`.',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
     });
 });
