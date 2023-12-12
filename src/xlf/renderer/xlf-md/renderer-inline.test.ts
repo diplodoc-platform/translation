@@ -1138,4 +1138,39 @@ describe('renders xlf to markdown', () => {
         const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('parses inline code with liquid syntax wrapped in <g> and <x> tags', () => {
+        const renderer = new XLFMDRenderer();
+        const tokens: Array<XLFToken> = [
+            {type: 'tag', data: 'target', nodeType: 'open'},
+            {type: 'text', data: 'Sentence '},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'open',
+                syntax: 'code',
+                equivText: '`',
+            },
+            {
+                type: 'tag',
+                data: 'x',
+                nodeType: 'self-closing',
+                syntax: 'liquid_Variable',
+                equivText: '{{ ui-key.yacloud.common.label_tcp }}',
+            },
+            {type: 'text', data: ' other'},
+            {
+                type: 'tag',
+                data: 'g',
+                nodeType: 'close',
+                syntax: 'code',
+                equivText: '`',
+            },
+            {type: 'text', data: '.'},
+            {type: 'tag', data: 'target', nodeType: 'close'},
+        ];
+
+        const rendered = renderer.render(tokens);
+        expect(rendered).toMatchSnapshot();
+    });
 });
