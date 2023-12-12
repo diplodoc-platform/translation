@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders xlf to markdown parses inline code with liquid syntax wrapped in <g> and <x> tags 1`] = `"Sentence \`{{ ui-key.yacloud.common.label_tcp }} other\`."`;
+
 exports[`renders xlf to markdown renders autolink wrapped in <x> tags 1`] = `"Предложение номер один <https://www.google.com>."`;
 
 exports[`renders xlf to markdown renders code wrapped in <g> tag 1`] = `"Предложение номер \`один\`."`;
