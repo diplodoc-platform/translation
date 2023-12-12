@@ -28,6 +28,8 @@ Cell with {{ variable }}
 "
 `;
 
+exports[`inline: renders translated markdown inline: renders sentences with inline code that has liquid syntax inside 1`] = `"Sentence with \`inline code and {{ui-key.yacloud.common.label_tcp}}\`. Another Sentence."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with inline html 1`] = `"Sentence<br>with <i>inline</i> html. Inline <b>html</b>."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with links syntax 1`] = `"Sentence number [one](one.md \\"one\\"). Sentence number [two](two.md \\"two\\")."`;
