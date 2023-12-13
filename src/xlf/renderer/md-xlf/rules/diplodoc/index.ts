@@ -17,6 +17,8 @@ const rules = {
     yfm_note_close: alwaysEmptyString,
     yfm_note_title_open: alwaysEmptyString,
     yfm_note_title_close: alwaysEmptyString,
+    yfm_note_content_open: alwaysEmptyString,
+    yfm_note_content_close: alwaysEmptyString,
     // cuts
     yfm_cut_open: alwaysEmptyString,
     yfm_cut_title_open: alwaysEmptyString,
