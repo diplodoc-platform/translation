@@ -1,4 +1,4 @@
-export {extract, ExtractParameters} from 'src/api/extract';
-export {compose, ComposeParameters} from 'src/api/compose';
+export {extract, ExtractParameters} from './api/extract';
+export {compose, ComposeParameters} from './api/compose';
 
-export * as default from 'src/api';
+export * as default from './api';
