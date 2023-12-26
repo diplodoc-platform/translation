@@ -32,6 +32,8 @@ exports[`inline: renders translated markdown inline: renders sentences with inli
 
 exports[`inline: renders translated markdown inline: renders sentences with inline html 1`] = `"Sentence<br>with <i>inline</i> html. Inline <b>html</b>."`;
 
+exports[`inline: renders translated markdown inline: renders sentences with links in the end of the sentences 1`] = `"Инструкция содержит информацию о создании и настройке [группы рабочих столов](concepts/desktops-and-groups.md). Если вы получили от администратора ссылку на [витрину пользовательских рабочих столов](concepts/showcase.md), перейдите к подразделу [{#T}](#get-credentials)."`;
+
 exports[`inline: renders translated markdown inline: renders sentences with links syntax 1`] = `"Sentence number [one](one.md \\"one\\"). Sentence number [two](two.md \\"two\\")."`;
 
 exports[`inline: renders translated markdown inline: renders sentences with liquid conditions 1`] = `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}. {% var == \\"val\\" %} A {% else %} B {% endif %} Point."`;
