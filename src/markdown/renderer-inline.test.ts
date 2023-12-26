@@ -338,4 +338,23 @@ describe('inline: renders translated markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders sentences with links in the end of the sentences', () => {
+        const parameters: RenderParameters = {
+            skeleton: `%%%1%%% %%%2%%%`,
+            translations: new Map<string, string>([
+                [
+                    '1',
+                    'Инструкция содержит информацию о создании и настройке [группы рабочих столов](concepts/desktops-and-groups.md).',
+                ],
+                [
+                    '2',
+                    'Если вы получили от администратора ссылку на [витрину пользовательских рабочих столов](concepts/showcase.md), перейдите к подразделу [{#T}](#get-credentials).',
+                ],
+            ]),
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
 });
