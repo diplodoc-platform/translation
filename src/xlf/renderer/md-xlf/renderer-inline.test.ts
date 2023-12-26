@@ -276,4 +276,16 @@ describe('renders xlf from markdown', () => {
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
     });
+
+    it('renders sentences with links in the end', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown:
+                'Инструкция содержит информацию о создании и настройке [группы рабочих столов](concepts/desktops-and-groups.md). Если вы получили от администратора ссылку на [витрину пользовательских рабочих столов](concepts/showcase.md), перейдите к подразделу [{#T}](#get-credentials).',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+        console.log(rendered);
+    });
 });

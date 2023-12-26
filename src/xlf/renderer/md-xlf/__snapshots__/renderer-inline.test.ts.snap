@@ -474,6 +474,28 @@ exports[`renders xlf from markdown renders sentences with inline code that has l
 "
 `;
 
+exports[`renders xlf from markdown renders sentences with links in the end 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"text.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"text.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Инструкция содержит информацию о создании и настройке <g ctype=\\"x-link_text_part\\" equiv-text=\\"[]\\">группы рабочих столов</g><g ctype=\\"x-link_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"concepts/desktops-and-groups.md\\" /></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Если вы получили от администратора ссылку на <g ctype=\\"x-link_text_part\\" equiv-text=\\"[]\\">витрину пользовательских рабочих столов</g><g ctype=\\"x-link_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"concepts/showcase.md\\" /></g>, перейдите к подразделу <x ctype=\\"x-link_reflink\\" equiv-text=\\"[{#T}]\\" /><g ctype=\\"x-link_attributes_part\\" equiv-text=\\"()\\"><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"#get-credentials\\" /></g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+"
+`;
+
 exports[`renders xlf from markdown renders strong wrapped in <g> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
