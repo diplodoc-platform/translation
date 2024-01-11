@@ -1,4 +1,24 @@
-import {RenderParameters, render} from './renderer';
+import {RenderParameters, render as _render} from './renderer';
+
+function render(parameters) {
+    return _render({
+        ...baseRendererParameters,
+        ...parameters,
+    }).skeleton;
+}
+
+const baseRendererParameters = {
+    source: {
+        language: 'ru',
+        locale: 'RU' as const,
+    },
+    target: {
+        language: 'en',
+        locale: 'US' as const,
+    },
+    markdownPath: 'text.md',
+    skeletonPath: 'text.skl.md',
+};
 
 describe('inline: skeleton rendering', () => {
     it('inline: renders hash instead of the sentences with plain text.', () => {

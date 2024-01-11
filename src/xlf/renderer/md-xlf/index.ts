@@ -23,17 +23,17 @@ import tabs from '@diplodoc/transform/lib/plugins/tabs';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 
-import {XLFRendererState, xlfInitState} from './state';
-import hooks, {HooksParameters} from './hooks';
+import {XLFRendererState} from './state';
+import hooks from './hooks';
 import {handlers} from './handlers';
 import {mergeHooks} from 'src/hooks';
 import rules from './rules';
 
-import {TemplateParameters, generateTemplate, templateValidParameters} from 'src/xlf/generator';
+import {generateTransUnit} from 'src/xlf/generator';
 
-export type RenderParameters = TemplateParameters & DiplodocParameters & BaseParameters;
+export type RenderParameters = DiplodocParameters & BaseParameters;
 export type BaseParameters = {
-    markdown: string;
+    unitId: number;
     hooks?: CustomRendererHooks;
 };
 
@@ -41,42 +41,31 @@ export type DiplodocParameters = {
     lang?: string;
 };
 
-function render(parameters: RenderParameters) {
-    if (!validParameters(parameters)) {
-        throw new Error('invalid parameters');
-    }
-
-    const wrapper = generateTemplate(parameters);
-
-    const xlfRenderer = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
+function render(markdown: string, parameters: RenderParameters) {
+    const xlfRenderer = new MarkdownIt({html: true});
     const xlfRules = rules.generate();
-    const xlfHooks: {hooks: CustomRendererHooks} = hooks.generate({
-        template: wrapper.template,
-        markdownit: xlfRenderer,
-    });
+    const xlfHooks: {hooks: CustomRendererHooks} = hooks.generate();
 
-    const initState = () => ({
-        ...xlfInitState(wrapper),
-        ...xlfRules.initState(),
-    });
-    const allHooks: CustomRendererHooks[] = [MarkdownRenderer.defaultHooks, xlfHooks.hooks].concat(
-        parameters.hooks ?? [],
-    );
+    const allHooks: CustomRendererHooks[] = [MarkdownRenderer.defaultHooks, xlfHooks.hooks];
     const mergedHooks = mergeHooks(...allHooks);
     const xlfOptions: CustomRendererParams<XLFRendererState> = {
         rules: xlfRules.rules,
         hooks: mergedHooks,
-        initState,
+        initState: xlfRules.initState,
         handlers,
     };
 
     const diplodocOptions = {
         lang: parameters.lang ?? 'ru',
         path: '',
+        log: {
+            warn: console.warn,
+            error: console.error,
+        }
     };
 
     const env: MarkdownRendererEnv = {
-        source: parameters.markdown.split('\n'),
+        source: markdown.split('\n'),
     };
 
     // diplodoc plugins
@@ -96,18 +85,11 @@ function render(parameters: RenderParameters) {
 
     xlfRenderer.use(customRenderer, xlfOptions);
 
-    return xlfRenderer.render(parameters.markdown, env);
+    return generateTransUnit({
+        source: xlfRenderer.render(markdown, env),
+        id: parameters.unitId,
+    });
 }
 
-function validParameters(parameters: RenderParameters) {
-    const {lang, markdown} = parameters;
-
-    const markdownCondition = markdown !== undefined;
-    const langCondition = lang === undefined || lang === 'ru' || lang === 'en';
-    const conditions = [templateValidParameters(parameters), markdownCondition, langCondition];
-
-    return conditions.reduce((a, v) => a && v, true);
-}
-
-export {render, validParameters};
-export default {render, validParameters};
+export {render};
+export default {render};

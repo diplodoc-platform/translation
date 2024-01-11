@@ -1,16 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`inline: renders translated markdown inline: renders sentences with abbreviations inside parenthesis 1`] = `"Sentence (см. [link](file.md)) continues. Another Sentence."`;
+exports[`inline: renders translated markdown inline: renders sentences with abbreviations inside parenthesis 1`] = `
+"Sentence (см. [link](file.md)) continues. Another Sentence.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with anchor heading syntax 1`] = `"# Heading with multiple anchors {#anchor1} {#anchor2} ## Heading without anchor"`;
+exports[`inline: renders translated markdown inline: renders sentences with anchor heading syntax 1`] = `
+"# Heading with multiple anchors {#anchor1} {#anchor2} ## Heading without anchor
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with autolink syntax 1`] = `"Sentence number one <https://www.google.com>. Sentence number two <https://www.youtube.com>."`;
+exports[`inline: renders translated markdown inline: renders sentences with autolink syntax 1`] = `
+"Sentence number one <https://www.google.com>. Sentence number two <https://www.youtube.com>.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with code syntax 1`] = `"Sentence number \`one\`. Sentence number \`two\`."`;
+exports[`inline: renders translated markdown inline: renders sentences with code syntax 1`] = `
+"Sentence number \`one\`. Sentence number \`two\`.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with em syntax 1`] = `"Sentence number *one*. Sentence number *two*."`;
+exports[`inline: renders translated markdown inline: renders sentences with em syntax 1`] = `
+"Sentence number *one*. Sentence number *two*.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with file syntax 1`] = `"Sentence with {% file src=\\"path/to/file\\" name=\\"readme.md\\" referrerpolicy=\\"no-referrer\\" rel=\\"noopener\\" target=\\"_blank\\" type=\\"text/plain\\" %}. Another sentence."`;
+exports[`inline: renders translated markdown inline: renders sentences with file syntax 1`] = `
+"Sentence with {% file src=\\"path/to/file\\" name=\\"readme.md\\" referrerpolicy=\\"no-referrer\\" rel=\\"noopener\\" target=\\"_blank\\" type=\\"text/plain\\" %}. Another sentence.
+"
+`;
 
 exports[`inline: renders translated markdown inline: renders sentences with filters inside tables 1`] = `
 "#|
@@ -25,46 +43,102 @@ Cell with {{ variable | length }}
 Cell with {{ variable }}
 ||
 |#
+
 "
 `;
 
-exports[`inline: renders translated markdown inline: renders sentences with inline code that has liquid syntax inside 1`] = `"Sentence with \`inline code and {{ui-key.yacloud.common.label_tcp}}\`. Another Sentence."`;
+exports[`inline: renders translated markdown inline: renders sentences with inline code that has liquid syntax inside 1`] = `
+"Sentence with \`inline code and {{ui-key.yacloud.common.label_tcp}}\`. Another Sentence.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with inline html 1`] = `"Sentence<br>with <i>inline</i> html. Inline <b>html</b>."`;
+exports[`inline: renders translated markdown inline: renders sentences with inline html 1`] = `
+"Sentence<br>with <i>inline</i> html. Inline <b>html</b>.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with links in the end of the sentences 1`] = `"Инструкция содержит информацию о создании и настройке [группы рабочих столов](concepts/desktops-and-groups.md). Если вы получили от администратора ссылку на [витрину пользовательских рабочих столов](concepts/showcase.md), перейдите к подразделу [{#T}](#get-credentials)."`;
+exports[`inline: renders translated markdown inline: renders sentences with links in the end of the sentences 1`] = `
+"Инструкция содержит информацию о создании и настройке [группы рабочих столов](concepts/desktops-and-groups.md). Если вы получили от администратора ссылку на [витрину пользовательских рабочих столов](concepts/showcase.md), перейдите к подразделу [{#T}](#get-credentials).
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with links syntax 1`] = `"Sentence number [one](one.md \\"one\\"). Sentence number [two](two.md \\"two\\")."`;
+exports[`inline: renders translated markdown inline: renders sentences with links syntax 1`] = `
+"Sentence number [one](one.md \\"one\\"). Sentence number [two](two.md \\"two\\").
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with liquid conditions 1`] = `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}. {% var == \\"val\\" %} A {% else %} B {% endif %} Point."`;
+exports[`inline: renders translated markdown inline: renders sentences with liquid conditions 1`] = `
+"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}. {% var == \\"val\\" %} A {% else %} B {% endif %} Point.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with liquid filters 1`] = `"Sentence with function {{ users | length }}. {{user | capitalize}} Functions are cool."`;
+exports[`inline: renders translated markdown inline: renders sentences with liquid filters 1`] = `
+"Sentence with function {{ users | length }}. {{user | capitalize}} Functions are cool.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with liquid for loop 1`] = `"Sentence {% for x in xs %} x {% endfor %}. {% for x in xs %} X {% endfor %} cool."`;
+exports[`inline: renders translated markdown inline: renders sentences with liquid for loop 1`] = `
+"Sentence {% for x in xs %} x {% endfor %}. {% for x in xs %} X {% endfor %} cool.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with liquid functions 1`] = `"Sentence with function {{ user.name.slice(1, 2) }}. {{ user.name.slice(1, 2) }} Functions are cool."`;
+exports[`inline: renders translated markdown inline: renders sentences with liquid functions 1`] = `
+"Sentence with function {{ user.name.slice(1, 2) }}. {{ user.name.slice(1, 2) }} Functions are cool.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with liquid variables 1`] = `"Sentence with {{ variable }}. {{variable}} sentence."`;
+exports[`inline: renders translated markdown inline: renders sentences with liquid variables 1`] = `
+"Sentence with {{ variable }}. {{variable}} sentence.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with plain text 1`] = `"Sentence number one. Sentence number two."`;
+exports[`inline: renders translated markdown inline: renders sentences with plain text 1`] = `
+"Sentence number one. Sentence number two.
+"
+`;
 
 exports[`inline: renders translated markdown inline: renders sentences with plain text, separated by newline 1`] = `
 "Sentence number one.
-Sentence number two."
+Sentence number two.
+"
 `;
 
-exports[`inline: renders translated markdown inline: renders sentences with ref links syntax 1`] = `"Sentence number [{#T}](one.md \\"one\\"). Sentence number [{#T}](two.md)."`;
+exports[`inline: renders translated markdown inline: renders sentences with ref links syntax 1`] = `
+"Sentence number [{#T}](one.md \\"one\\"). Sentence number [{#T}](two.md).
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with s syntax 1`] = `"Sentence number ~~one~~. Sentence number ~~two~~."`;
+exports[`inline: renders translated markdown inline: renders sentences with s syntax 1`] = `
+"Sentence number ~~one~~. Sentence number ~~two~~.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with samp syntax 1`] = `"Sentence number ##one##. Sentence number ##two##."`;
+exports[`inline: renders translated markdown inline: renders sentences with samp syntax 1`] = `
+"Sentence number ##one##. Sentence number ##two##.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with strong syntax 1`] = `"Sentence number **one**. Sentence number **two**."`;
+exports[`inline: renders translated markdown inline: renders sentences with strong syntax 1`] = `
+"Sentence number **one**. Sentence number **two**.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with sup syntax 1`] = `"Sentence number^one^. Sentence number^two^."`;
+exports[`inline: renders translated markdown inline: renders sentences with sup syntax 1`] = `
+"Sentence number^one^. Sentence number^two^.
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with variale href link syntax 1`] = `"Sentence number [one]({{one}}). Sentence number [two]({{ two }})."`;
+exports[`inline: renders translated markdown inline: renders sentences with variale href link syntax 1`] = `
+"Sentence number [one]({{one}}). Sentence number [two]({{ two }}).
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with variale image syntax 1`] = `"Sentence ![image](_images/image.png \\"текст_подсказки\\" =100x100). Sentence ![image](_images/image.png \\"текст_подсказки\\" =x100). Sentence ![image](_images/image.png \\"текст_подсказки\\" =100x). Sentence ![image](_images/image.png =100x100). Sentence ![image](_images/image.png). Sentence ![]()."`;
+exports[`inline: renders translated markdown inline: renders sentences with variale image syntax 1`] = `
+"Sentence ![image](_images/image.png \\"текст_подсказки\\" =100x100). Sentence ![image](_images/image.png \\"текст_подсказки\\" =x100). Sentence ![image](_images/image.png \\"текст_подсказки\\" =100x). Sentence ![image](_images/image.png =100x100). Sentence ![image](_images/image.png). Sentence ![]().
+"
+`;
 
-exports[`inline: renders translated markdown inline: renders sentences with video syntax 1`] = `"Sentence goes here. Another sentence @[youtube](https://youtu.be/rJz4OaURJ6U)"`;
+exports[`inline: renders translated markdown inline: renders sentences with video syntax 1`] = `
+"Sentence goes here. Another sentence @[youtube](https://youtu.be/rJz4OaURJ6U)
+"
+`;

@@ -1,4 +1,9 @@
-import {RenderParameters, render} from './index';
+import {renderer} from 'src/skeleton';
+import {RenderParameters} from 'src/skeleton/renderer';
+
+function render(...args) {
+    return renderer.render(...args).xlf;
+}
 
 const baseRendererParameters = {
     source: {

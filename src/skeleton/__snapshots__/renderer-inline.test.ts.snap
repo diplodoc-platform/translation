@@ -4,6 +4,7 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with anchor heading syntax. 1`] = `
 "# %%%1%%%
+
 ## %%%2%%%"
 `;
 

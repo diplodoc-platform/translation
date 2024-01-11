@@ -5,6 +5,7 @@ import {replacer} from 'src/skeleton/replacer';
 export type AfterInlineState = {
     skeleton: {
         id: number;
+        segments: string[];
     };
 };
 
@@ -21,7 +22,7 @@ function afterInline(
         return '';
     }
 
-    const replaced = replacer(artifact, this.state);
+    const replaced = replacer(artifact, this.state, parameters.tokens[0].isHeading);
 
     parameters.rendered.splice(0, parameters.rendered.length, replaced);
 
@@ -32,6 +33,7 @@ function initState() {
     return () => ({
         skeleton: {
             id: 1,
+            segments: [],
         },
     });
 }

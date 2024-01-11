@@ -28,12 +28,17 @@ import hooks, {HooksParameters, HooksState} from './hooks';
 import {rules} from './rules';
 import {mergeHooks} from 'src/hooks';
 import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
+import {CodeRuleState, initState as codeState} from './rules/code-inline';
 
-export type SkeletonRendererState = HooksState;
+import {TemplateParameters, generateTemplate} from 'src/xlf/generator';
 
-export type RenderParameters = BaseParameters & DiplodocParameters;
+export type SkeletonRendererState = HooksState & CodeRuleState;
+
+export type RenderParameters = BaseParameters & TemplateParameters & DiplodocParameters;
 export type BaseParameters = {
     markdown: string;
+    markdownPath?: string;
+    skeletonPath?: string;
     hooks?: CustomRendererHooks;
 };
 
@@ -62,7 +67,10 @@ function render(parameters: RenderParameters) {
 
     const mdOptions: MarkdownRendererParams<HooksState> = {
         handlers,
-        initState: skeletonHooks.initState,
+        initState: () => ({
+            ...skeletonHooks.initState(),
+            ...codeState(),
+        }),
         rules,
         hooks: mergedHooks,
     };
@@ -88,7 +96,12 @@ function render(parameters: RenderParameters) {
 
     md.use(mdRenderer, mdOptions);
 
-    return md.render(markdown, env);
+    const skeleton = md.render(markdown, env);
+    const state = (md.renderer as MarkdownRenderer<SkeletonRendererState>)
+        .state as SkeletonRendererState;
+    const xlf = generateTemplate(parameters, state.skeleton.segments);
+
+    return {skeleton, xlf};
 }
 
 function validParameters(parameters: RenderParameters) {

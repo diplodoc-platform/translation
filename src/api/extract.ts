@@ -1,8 +1,6 @@
-import xlf from 'src/xlf';
 import skeleton from 'src/skeleton';
 
-export type ExtractParameters = xlf.mdXLFRenderer.RenderParameters &
-    skeleton.renderer.RenderParameters;
+export type ExtractParameters = skeleton.renderer.RenderParameters;
 
 export type ExtractOutput = {
     skeleton: string;
@@ -10,14 +8,9 @@ export type ExtractOutput = {
 };
 
 function extract(parameters: ExtractParameters): ExtractOutput {
-    const result = {
-        xlf: '',
-        skeleton: '',
-    };
-
     // upon recieving empty markdown give back empty xlf and skeleton
     if (!parameters.markdown) {
-        return result;
+        return {xlf: '', skeleton: ''};
     }
 
     // proper defaults for markdown and skeleton ids
@@ -35,19 +28,11 @@ function extract(parameters: ExtractParameters): ExtractOutput {
         throw new Error('invalid parameters');
     }
 
-    result.xlf = xlf.mdXLFRenderer.render(parameters);
-    result.skeleton = skeleton.renderer.render(parameters);
-
-    return result;
+    return skeleton.renderer.render(parameters);
 }
 
 function validParameters(parameters: ExtractParameters) {
-    const conditions = [
-        xlf.mdXLFRenderer.validParameters(parameters),
-        skeleton.renderer.validParameters(parameters),
-    ];
-
-    return conditions.reduce((a, v) => a && v, true);
+    return skeleton.renderer.validParameters(parameters);
 }
 
 export {extract};
