@@ -127,7 +127,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses code wrapped in <g> tag 1`] = `
+exports[`parses translation units with <g> and <x> tags parses code wrapped in <x> tag 1`] = `
 Array [
   Array [
     Object {
@@ -140,10 +140,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "\`",
-      "nodeType": "open",
-      "syntax": "code",
+      "nodeType": "self-closing",
+      "syntax": "code_open",
       "type": "tag",
     },
     Object {
@@ -151,10 +151,48 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "\`",
+      "nodeType": "self-closing",
+      "syntax": "code_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
       "nodeType": "close",
-      "syntax": "code",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "\`",
+      "nodeType": "self-closing",
+      "syntax": "code_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "\`",
+      "nodeType": "self-closing",
+      "syntax": "code_close",
       "type": "tag",
     },
     Object {
@@ -170,7 +208,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses em wrapped in <g> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses em wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -183,10 +221,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "*",
-      "nodeType": "open",
-      "syntax": "em",
+      "nodeType": "self-closing",
+      "syntax": "em_open",
       "type": "tag",
     },
     Object {
@@ -194,10 +232,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "*",
-      "nodeType": "close",
-      "syntax": "em",
+      "nodeType": "self-closing",
+      "syntax": "em_close",
       "type": "tag",
     },
     Object {
@@ -210,11 +248,6 @@ Array [
       "type": "tag",
     },
   ],
-]
-`;
-
-exports[`parses translation units with <g> and <x> tags parses em wrapped in <g> tags 2`] = `
-Array [
   Array [
     Object {
       "data": "target",
@@ -226,21 +259,21 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "~~",
-      "nodeType": "open",
-      "syntax": "s",
+      "data": "x",
+      "equivText": "*",
+      "nodeType": "self-closing",
+      "syntax": "em_open",
       "type": "tag",
     },
     Object {
-      "data": "один",
+      "data": "два",
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "~~",
-      "nodeType": "close",
-      "syntax": "s",
+      "data": "x",
+      "equivText": "*",
+      "nodeType": "self-closing",
+      "syntax": "em_close",
       "type": "tag",
     },
     Object {
@@ -256,60 +289,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses empty image wrapped in <g> and <x> tags 1`] = `
-Array [
-  Array [
-    Object {
-      "data": "target",
-      "nodeType": "open",
-      "type": "tag",
-    },
-    Object {
-      "data": "Sentence ",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "open",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "close",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": ".",
-      "type": "text",
-    },
-    Object {
-      "data": "target",
-      "nodeType": "close",
-      "type": "tag",
-    },
-  ],
-]
-`;
-
-exports[`parses translation units with <g> and <x> tags parses file wrapped in <g> and <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses file wrapped <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -322,24 +302,24 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "{%%}",
-      "nodeType": "open",
-      "syntax": "file",
+      "data": "x",
+      "equivText": "{%",
+      "nodeType": "self-closing",
+      "syntax": "file_open",
       "type": "tag",
     },
     Object {
       "data": "x",
-      "equivText": " src=\\"path/to/file\\"",
+      "equivText": "src=\\"path/to/file\\"",
       "nodeType": "self-closing",
       "syntax": "file_src",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "file_name",
+      "data": "x",
+      "equivText": "name=\\"",
+      "nodeType": "self-closing",
+      "syntax": "file_name_open",
       "type": "tag",
     },
     Object {
@@ -347,45 +327,45 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "file_name",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "file_name_close",
       "type": "tag",
     },
     Object {
       "data": "x",
-      "equivText": " referrerpolicy=\\"no-referrer\\"",
+      "equivText": "referrerpolicy=\\"no-referrer\\"",
       "nodeType": "self-closing",
       "syntax": "file_referrerpolicy",
       "type": "tag",
     },
     Object {
       "data": "x",
-      "equivText": " rel=\\"noopener\\"",
+      "equivText": "rel=\\"noopener\\"",
       "nodeType": "self-closing",
       "syntax": "file_rel",
       "type": "tag",
     },
     Object {
       "data": "x",
-      "equivText": " target=\\"_blank\\"",
+      "equivText": "target=\\"_blank\\"",
       "nodeType": "self-closing",
       "syntax": "file_target",
       "type": "tag",
     },
     Object {
       "data": "x",
-      "equivText": " type=\\"text/plain\\"",
+      "equivText": "type=\\"text/plain\\"",
       "nodeType": "self-closing",
       "syntax": "file_type",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "{%%}",
-      "nodeType": "close",
-      "syntax": "file",
+      "data": "x",
+      "equivText": "%}",
+      "nodeType": "self-closing",
+      "syntax": "file_close",
       "type": "tag",
     },
     Object {
@@ -436,7 +416,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses image with all attributes wrapped in <g> and <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses image with all attributes wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -449,10 +429,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "open",
-      "syntax": "image_text_part",
+      "data": "x",
+      "equivText": "![",
+      "nodeType": "self-closing",
+      "syntax": "image_text_part_open",
       "type": "tag",
     },
     Object {
@@ -460,17 +440,17 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "close",
-      "syntax": "image_text_part",
+      "data": "x",
+      "equivText": "]",
+      "nodeType": "self-closing",
+      "syntax": "image_text_part_close",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "image_attributes_part",
+      "data": "x",
+      "equivText": "(",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_part_open",
       "type": "tag",
     },
     Object {
@@ -481,10 +461,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "image_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_title_open",
       "type": "tag",
     },
     Object {
@@ -492,10 +472,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "image_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_title_close",
       "type": "tag",
     },
     Object {
@@ -506,10 +486,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "image_attributes_part",
+      "data": "x",
+      "equivText": ")",
+      "nodeType": "self-closing",
+      "syntax": "image_attributes_part_close",
       "type": "tag",
     },
     Object {
@@ -525,7 +505,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses image with src and size wrapped in <g> and <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses inline code with liquid wrapped in <x> tag 1`] = `
 Array [
   Array [
     Object {
@@ -538,405 +518,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "open",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "image",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "close",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
       "data": "x",
-      "equivText": "image.png",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_src",
-      "type": "tag",
-    },
-    Object {
-      "data": "x",
-      "equivText": "=100x100",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_size",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": ".",
-      "type": "text",
-    },
-    Object {
-      "data": "target",
-      "nodeType": "close",
-      "type": "tag",
-    },
-  ],
-]
-`;
-
-exports[`parses translation units with <g> and <x> tags parses image with src and title wrapped in <g> and <x> tags 1`] = `
-Array [
-  Array [
-    Object {
-      "data": "target",
-      "nodeType": "open",
-      "type": "tag",
-    },
-    Object {
-      "data": "Sentence ",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "open",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "image",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "close",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "x",
-      "equivText": "image.png",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_src",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "image_attributes_title",
-      "type": "tag",
-    },
-    Object {
-      "data": "hint",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "image_attributes_title",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": ".",
-      "type": "text",
-    },
-    Object {
-      "data": "target",
-      "nodeType": "close",
-      "type": "tag",
-    },
-  ],
-]
-`;
-
-exports[`parses translation units with <g> and <x> tags parses image with src title and height wrapped in <g> and <x> tags 1`] = `
-Array [
-  Array [
-    Object {
-      "data": "target",
-      "nodeType": "open",
-      "type": "tag",
-    },
-    Object {
-      "data": "Sentence ",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "open",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "image",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "close",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "x",
-      "equivText": "image.png",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_src",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "image_attributes_title",
-      "type": "tag",
-    },
-    Object {
-      "data": "hint",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "image_attributes_title",
-      "type": "tag",
-    },
-    Object {
-      "data": "x",
-      "equivText": "=x100",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_size",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": ".",
-      "type": "text",
-    },
-    Object {
-      "data": "target",
-      "nodeType": "close",
-      "type": "tag",
-    },
-  ],
-]
-`;
-
-exports[`parses translation units with <g> and <x> tags parses image with src title and width wrapped in <g> and <x> tags 1`] = `
-Array [
-  Array [
-    Object {
-      "data": "target",
-      "nodeType": "open",
-      "type": "tag",
-    },
-    Object {
-      "data": "Sentence ",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "open",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "image",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "close",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "x",
-      "equivText": "image.png",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_src",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "image_attributes_title",
-      "type": "tag",
-    },
-    Object {
-      "data": "hint",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "image_attributes_title",
-      "type": "tag",
-    },
-    Object {
-      "data": "x",
-      "equivText": "=100x",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_size",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": ".",
-      "type": "text",
-    },
-    Object {
-      "data": "target",
-      "nodeType": "close",
-      "type": "tag",
-    },
-  ],
-]
-`;
-
-exports[`parses translation units with <g> and <x> tags parses image with src wrapped in <g> and <x> tags 1`] = `
-Array [
-  Array [
-    Object {
-      "data": "target",
-      "nodeType": "open",
-      "type": "tag",
-    },
-    Object {
-      "data": "Sentence ",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "open",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "image",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
-      "equivText": "![]",
-      "nodeType": "close",
-      "syntax": "image_text_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": "x",
-      "equivText": "image.png",
-      "nodeType": "self-closing",
-      "syntax": "image_attributes_src",
-      "type": "tag",
-    },
-    Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "image_attributes_part",
-      "type": "tag",
-    },
-    Object {
-      "data": ".",
-      "type": "text",
-    },
-    Object {
-      "data": "target",
-      "nodeType": "close",
-      "type": "tag",
-    },
-  ],
-]
-`;
-
-exports[`parses translation units with <g> and <x> tags parses inline code with liquid wrapped in <g> and <x> tags 1`] = `
-Array [
-  Array [
-    Object {
-      "data": "target",
-      "nodeType": "open",
-      "type": "tag",
-    },
-    Object {
-      "data": "Sentence ",
-      "type": "text",
-    },
-    Object {
-      "data": "g",
       "equivText": "\`",
-      "nodeType": "open",
-      "syntax": "code",
+      "nodeType": "self-closing",
+      "syntax": "code_open",
       "type": "tag",
     },
     Object {
@@ -951,10 +536,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "\`",
-      "nodeType": "close",
-      "syntax": "code",
+      "nodeType": "self-closing",
+      "syntax": "code_close",
       "type": "tag",
     },
     Object {
@@ -978,10 +563,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "\`",
-      "nodeType": "open",
-      "syntax": "code",
+      "nodeType": "self-closing",
+      "syntax": "code_open",
       "type": "tag",
     },
     Object {
@@ -996,10 +581,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "\`",
-      "nodeType": "close",
-      "syntax": "code",
+      "nodeType": "self-closing",
+      "syntax": "code_close",
       "type": "tag",
     },
     Object {
@@ -1069,7 +654,113 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses links wrapped in <g> and <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses link with multiple sentences inside link text and link title 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "[",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link text sentence one!",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link text sentence Two?",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "]",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "(",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "file.md",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link title sentence one.",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link title sentence two!",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_close",
+      "type": "tag",
+    },
+    Object {
+      "data": "x",
+      "equivText": ")",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses links wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1082,10 +773,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "[]",
-      "nodeType": "open",
-      "syntax": "link_text_part",
+      "data": "x",
+      "equivText": "[",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_open",
       "type": "tag",
     },
     Object {
@@ -1093,17 +784,17 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "[]",
-      "nodeType": "close",
-      "syntax": "link_text_part",
+      "data": "x",
+      "equivText": "]",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_close",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": "(",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_open",
       "type": "tag",
     },
     Object {
@@ -1114,10 +805,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "link_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_open",
       "type": "tag",
     },
     Object {
@@ -1125,17 +816,17 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "link_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_close",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": ")",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_close",
       "type": "tag",
     },
     Object {
@@ -1159,10 +850,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "[]",
-      "nodeType": "open",
-      "syntax": "link_text_part",
+      "data": "x",
+      "equivText": "[",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_open",
       "type": "tag",
     },
     Object {
@@ -1170,17 +861,17 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "[]",
-      "nodeType": "close",
-      "syntax": "link_text_part",
+      "data": "x",
+      "equivText": "]",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_close",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": "(",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_open",
       "type": "tag",
     },
     Object {
@@ -1191,10 +882,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": ")",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_close",
       "type": "tag",
     },
     Object {
@@ -1403,7 +1094,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses ref links wrapped in <g> and <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses ref links wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1423,10 +1114,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": "(",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_open",
       "type": "tag",
     },
     Object {
@@ -1437,10 +1128,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "link_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_open",
       "type": "tag",
     },
     Object {
@@ -1448,17 +1139,17 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "link_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_close",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": ")",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_close",
       "type": "tag",
     },
     Object {
@@ -1489,10 +1180,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": "(",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_open",
       "type": "tag",
     },
     Object {
@@ -1503,10 +1194,91 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
+      "data": "x",
+      "equivText": ")",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
       "nodeType": "close",
-      "syntax": "link_attributes_part",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses s wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "~~",
+      "nodeType": "self-closing",
+      "syntax": "s_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "~~",
+      "nodeType": "self-closing",
+      "syntax": "s_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "~~",
+      "nodeType": "self-closing",
+      "syntax": "s_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "~~",
+      "nodeType": "self-closing",
+      "syntax": "s_close",
       "type": "tag",
     },
     Object {
@@ -1535,10 +1307,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "##",
-      "nodeType": "open",
-      "syntax": "samp",
+      "nodeType": "self-closing",
+      "syntax": "samp_open",
       "type": "tag",
     },
     Object {
@@ -1546,10 +1318,48 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "##",
+      "nodeType": "self-closing",
+      "syntax": "samp_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
       "nodeType": "close",
-      "syntax": "samp",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "##",
+      "nodeType": "self-closing",
+      "syntax": "samp_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "##",
+      "nodeType": "self-closing",
+      "syntax": "samp_close",
       "type": "tag",
     },
     Object {
@@ -1565,7 +1375,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses strong wrapped in <g> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses strong wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1578,10 +1388,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "**",
-      "nodeType": "open",
-      "syntax": "strong",
+      "nodeType": "self-closing",
+      "syntax": "strong_open",
       "type": "tag",
     },
     Object {
@@ -1589,10 +1399,48 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "**",
+      "nodeType": "self-closing",
+      "syntax": "strong_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
       "nodeType": "close",
-      "syntax": "strong",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "**",
+      "nodeType": "self-closing",
+      "syntax": "strong_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "**",
+      "nodeType": "self-closing",
+      "syntax": "strong_close",
       "type": "tag",
     },
     Object {
@@ -1608,7 +1456,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses sup wrapped in <g> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags parses sup wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1617,14 +1465,14 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "Предложение номер ",
+      "data": "Предложение номер",
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "^",
-      "nodeType": "open",
-      "syntax": "sup",
+      "nodeType": "self-closing",
+      "syntax": "sup_open",
       "type": "tag",
     },
     Object {
@@ -1632,10 +1480,48 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
+      "data": "x",
       "equivText": "^",
+      "nodeType": "self-closing",
+      "syntax": "sup_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "data": "target",
       "nodeType": "close",
-      "syntax": "sup",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "data": "target",
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "^",
+      "nodeType": "self-closing",
+      "syntax": "sup_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "data": "x",
+      "equivText": "^",
+      "nodeType": "self-closing",
+      "syntax": "sup_close",
       "type": "tag",
     },
     Object {
@@ -1664,10 +1550,10 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "[]",
-      "nodeType": "open",
-      "syntax": "link_text_part",
+      "data": "x",
+      "equivText": "[",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_open",
       "type": "tag",
     },
     Object {
@@ -1675,17 +1561,17 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "[]",
-      "nodeType": "close",
-      "syntax": "link_text_part",
+      "data": "x",
+      "equivText": "]",
+      "nodeType": "self-closing",
+      "syntax": "link_text_part_close",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "open",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": "(",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_open",
       "type": "tag",
     },
     Object {
@@ -1696,10 +1582,10 @@ Array [
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "open",
-      "syntax": "link_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_open",
       "type": "tag",
     },
     Object {
@@ -1707,17 +1593,17 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "g",
-      "equivText": "\\"\\"",
-      "nodeType": "close",
-      "syntax": "link_attributes_title",
+      "data": "x",
+      "equivText": "\\"",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_title_close",
       "type": "tag",
     },
     Object {
-      "data": "g",
-      "equivText": "()",
-      "nodeType": "close",
-      "syntax": "link_attributes_part",
+      "data": "x",
+      "equivText": ")",
+      "nodeType": "self-closing",
+      "syntax": "link_attributes_part_close",
       "type": "tag",
     },
     Object {
