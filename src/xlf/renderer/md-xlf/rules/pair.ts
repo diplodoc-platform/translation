@@ -3,19 +3,19 @@ import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
-import {generateCloseG, generateOpenG} from 'src/xlf/generator';
+import {generateX} from 'src/xlf/generator';
 
 const pair: Renderer.RenderRuleRecord = {
     strong_open: pairOpen,
-    strong_close: generateCloseG,
+    strong_close: pairOpen,
     em_open: pairOpen,
-    em_close: generateCloseG,
+    em_close: pairOpen,
     s_open: pairOpen,
-    s_close: generateCloseG,
+    s_close: pairOpen,
     sup_open: pairOpen,
-    sup_close: generateCloseG,
+    sup_close: pairOpen,
     monospace_open: pairOpen,
-    monospace_close: generateCloseG,
+    monospace_close: pairOpen,
 };
 
 function pairOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
@@ -27,7 +27,12 @@ function pairOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
         throw new Error(`tag missing for token: ${type}`);
     }
 
-    return generateOpenG({ctype: tag, equivText: markup});
+    const [_, tagType] = type.split('_');
+
+    return generateX({
+        ctype: `${tag}_${tagType}`,
+        equivText: markup,
+    });
 }
 
 export {pair};
