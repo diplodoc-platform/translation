@@ -13,847 +13,795 @@ describe('renders xlf to markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders strong wrapped in <g> tags', () => {
+    it('renders strong wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'strong',
-                equivText: '**',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'strong',
-                equivText: '**',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'strong_open',
+                    equivText: '**',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'strong_close',
+                    equivText: '**',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'strong_open',
+                    equivText: '**',
+                },
+                {type: 'text', data: 'два'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'strong_close',
+                    equivText: '**',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
+        const rendered: Array<string> = [];
 
-        const rendered = renderer.render(tokens);
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders em wrapped in <g> tags', () => {
+    it('renders em wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'em',
-                equivText: '*',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'em',
-                equivText: '*',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'em_open',
+                    equivText: '*',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'em_close',
+                    equivText: '*',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'em_open',
+                    equivText: '*',
+                },
+                {type: 'text', data: 'два'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'em_close',
+                    equivText: '*',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
+        const rendered: Array<string> = [];
 
-        const rendered = renderer.render(tokens);
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders s wrapped in <g> tags', () => {
+    it('renders s wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 's',
-                equivText: '~~',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 's',
-                equivText: '~~',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 's_open',
+                    equivText: '~~',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 's_close',
+                    equivText: '~~',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 's_open',
+                    equivText: '~~',
+                },
+                {type: 'text', data: 'два'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 's_close',
+                    equivText: '~~',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
 
-        const rendered = renderer.render(tokens);
+        const rendered: Array<string> = [];
+
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders sup wrapped in <g> tags', () => {
+    it('renders sup wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'sup',
-                equivText: '^',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'sup',
-                equivText: '^',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'sup_open',
+                    equivText: '^',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'sup_close',
+                    equivText: '^',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'sup_open',
+                    equivText: '^',
+                },
+                {type: 'text', data: 'два'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'sup_close',
+                    equivText: '^',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
 
-        const rendered = renderer.render(tokens);
+        const rendered: Array<string> = [];
+
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders samp wrapped in <g> tags', () => {
+    it('renders samp wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'samp',
-                equivText: '##',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'samp',
-                equivText: '##',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'samp_open',
+                    equivText: '##',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'samp_close',
+                    equivText: '##',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'samp_open',
+                    equivText: '##',
+                },
+                {type: 'text', data: 'два'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'samp_close',
+                    equivText: '##',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
+        const rendered: Array<string> = [];
 
-        const rendered = renderer.render(tokens);
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders code wrapped in <g> tag', () => {
+    it('renders code wrapped in <x> tag', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'code',
-                equivText: '`',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'code',
-                equivText: '`',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_open',
+                    equivText: '`',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_close',
+                    equivText: '`',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_open',
+                    equivText: '`',
+                },
+                {type: 'text', data: 'два'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_close',
+                    equivText: '`',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
 
-        const rendered = renderer.render(tokens);
+        const rendered: Array<string> = [];
+
+        for (const token of tokenUnits) {
+            rendered.push(renderer.render(token));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders link wrapped in <g> and <x> tags', () => {
+    it('renders link with title wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_text_part',
-                equivText: '[]',
-            },
-            {type: 'text', data: 'два'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_text_part',
-                equivText: '[]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'link_attributes_href',
-                equivText: 'two.md',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_open',
+                    equivText: '[',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_close',
+                    equivText: ']',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_open',
+                    equivText: '(',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_href',
+                    equivText: 'one.md',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_open',
+                    equivText: '"',
+                },
+                {type: 'text', data: 'one'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_close',
+                    equivText: '"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_close',
+                    equivText: ')',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_open',
+                    equivText: '[',
+                },
+                {type: 'text', data: 'два'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_close',
+                    equivText: ']',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_open',
+                    equivText: '(',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_href',
+                    equivText: 'two.md',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_close',
+                    equivText: ')',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
+        const rendered: Array<string> = [];
+        for (const token of tokenUnits) {
+            rendered.push(renderer.render(token));
+        }
 
-        const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders link with title wrapped in <g> and <x> tags', () => {
+    it('renders ref link wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_text_part',
-                equivText: '[]',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_text_part',
-                equivText: '[]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'link_attributes_href',
-                equivText: 'one.md',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_attributes_title',
-                equivText: '""',
-            },
-            {type: 'text', data: 'one'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_attributes_title',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_reflink',
+                    equivText: '[{#T}]',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_open',
+                    equivText: '(',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_href',
+                    equivText: 'one.md',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_open',
+                    equivText: '"',
+                },
+                {type: 'text', data: 'one'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_close',
+                    equivText: '"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_close',
+                    equivText: ')',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_reflink',
+                    equivText: '[{#T}]',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_open',
+                    equivText: '(',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_href',
+                    equivText: 'two.md',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_close',
+                    equivText: ')',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
 
-        const rendered = renderer.render(tokens);
-        expect(rendered).toMatchSnapshot();
-    });
+        const rendered: Array<string> = [];
+        for (const token of tokenUnits) {
+            rendered.push(renderer.render(token));
+        }
 
-    it('renders ref link wrapped in <g> and <x> tags', () => {
-        const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'link_reflink',
-                equivText: '[{#T}]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'link_attributes_href',
-                equivText: 'one.md',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_attributes_title',
-                equivText: '""',
-            },
-            {type: 'text', data: 'one'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_attributes_title',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
-        ];
-
-        const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
 
     it('renders autolink wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер один '},
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'link_autolink',
-                equivText: '<https://www.google.com>',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер один '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_autolink',
+                    equivText: '<https://www.google.com>',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
 
-        const rendered = renderer.render(tokens);
+        const rendered: Array<string> = [];
+        for (const token of tokenUnits) {
+            rendered.push(renderer.render(token));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders variable href link wrapped in <g> and <x> tags', () => {
+    it('renders variable href link wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Предложение номер '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_text_part',
-                equivText: '[]',
-            },
-            {type: 'text', data: 'один'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_text_part',
-                equivText: '[]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'link_attributes_href',
-                equivText: '{{one}}',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'link_attributes_title',
-                equivText: '""',
-            },
-            {type: 'text', data: 'one'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_attributes_title',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'link_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Предложение номер '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_open',
+                    equivText: '[',
+                },
+                {type: 'text', data: 'один'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_close',
+                    equivText: ']',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_open',
+                    equivText: '(',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_href',
+                    equivText: '{{one}}',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_open',
+                    equivText: '"',
+                },
+                {type: 'text', data: 'one'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_close',
+                    equivText: '"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_close',
+                    equivText: ')',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
+        const rendered: Array<string> = [];
 
-        const rendered = renderer.render(tokens);
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders image with all attributes wrapped in <g> and <x> tags', () => {
+    it('renders link containing multiple sentences wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {type: 'text', data: 'image'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_src',
-                equivText: 'image.png',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {type: 'text', data: 'hint'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_size',
-                equivText: '=100x50',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_open',
+                    equivText: '[',
+                },
+                {type: 'text', data: 'Link text sentence one!'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Link text sentence Two?'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_text_part_close',
+                    equivText: ']',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_open',
+                    equivText: '(',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_href',
+                    equivText: 'file.md',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_open',
+                    equivText: '"',
+                },
+                {type: 'text', data: 'Link title sentence one.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Link title sentence two!'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_title_close',
+                    equivText: '"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'link_attributes_part_close',
+                    equivText: ')',
+                },
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
 
-        const rendered = renderer.render(tokens);
+        const rendered: Array<string> = [];
+
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders image with src title and height size wrapped in <g> and <x> tags', () => {
+    it('renders image with all attributes wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {type: 'text', data: 'image'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_src',
-                equivText: 'image.png',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {type: 'text', data: 'hint'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_size',
-                equivText: '=x100',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Sentence '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_text_part_open',
+                    equivText: '![',
+                },
+                {type: 'text', data: 'image'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_text_part_close',
+                    equivText: ']',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_attributes_part_open',
+                    equivText: '(',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_attributes_src',
+                    equivText: 'image.png',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_attributes_title_open',
+                    equivText: '"',
+                },
+                {type: 'text', data: 'hint'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_attributes_title_close',
+                    equivText: '"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_attributes_size',
+                    equivText: '=100x100',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'image_attributes_part_close',
+                    equivText: ')',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
+        const rendered: Array<string> = [];
 
-        const rendered = renderer.render(tokens);
-        expect(rendered).toMatchSnapshot();
-    });
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
 
-    it('renders image with src title and width size wrapped in <g> and <x> tags', () => {
-        const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {type: 'text', data: 'image'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_src',
-                equivText: 'image.png',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {type: 'text', data: 'hint'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_size',
-                equivText: '=100x',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
-        ];
-
-        const rendered = renderer.render(tokens);
-        expect(rendered).toMatchSnapshot();
-    });
-
-    it('renders image with src and size wrapped in <g> and <x> tags', () => {
-        const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {type: 'text', data: 'image'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_src',
-                equivText: 'image.png',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_size',
-                equivText: '=100x100',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
-        ];
-
-        const rendered = renderer.render(tokens);
-        expect(rendered).toMatchSnapshot();
-    });
-
-    it('renders image with src and title wrapped in <g> and <x> tags', () => {
-        const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {type: 'text', data: 'image'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_src',
-                equivText: 'image.png',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {type: 'text', data: 'hint'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_title',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
-        ];
-
-        const rendered = renderer.render(tokens);
-        expect(rendered).toMatchSnapshot();
-    });
-
-    it('renders image with src wrapped in <g> and <x> tags', () => {
-        const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {type: 'text', data: 'image'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'image_attributes_src',
-                equivText: 'image.png',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
-        ];
-
-        const rendered = renderer.render(tokens);
-        expect(rendered).toMatchSnapshot();
-    });
-
-    it('renders empty image wrapped in <g> and <x> tags', () => {
-        const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_text_part',
-                equivText: '![]',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'image_attributes_part',
-                equivText: '()',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
-        ];
-
-        const rendered = renderer.render(tokens);
         expect(rendered).toMatchSnapshot();
     });
 
@@ -902,80 +850,87 @@ describe('renders xlf to markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders file wrapped in <g> and <x> tags', () => {
+    it('renders file wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence with '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'file',
-                equivText: '{%%}',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'file_src',
-                equivText: ' src="path/to/file"',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'file_name',
-                equivText: '""',
-            },
-            {type: 'text', data: 'readme.md'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'file_name',
-                equivText: '""',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'file_referrerpolicy',
-                equivText: ' referrerpolicy="no-referrer"',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'file_rel',
-                equivText: ' rel="noopener"',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'file_target',
-                equivText: ' target="_blank"',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'file_type',
-                equivText: ' type="text/plain"',
-            },
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'file',
-                equivText: '{%%}',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Sentence with '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_open',
+                    equivText: '{%',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_src',
+                    equivText: 'src="path/to/file"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_name_open',
+                    equivText: 'name="',
+                },
+                {type: 'text', data: 'readme.md'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_name_close',
+                    equivText: '"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_referrerpolicy',
+                    equivText: 'referrerpolicy="no-referrer"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_rel',
+                    equivText: 'rel="noopener"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_target',
+                    equivText: 'target="_blank"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_type',
+                    equivText: 'type="text/plain"',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'file_close',
+                    equivText: '%}',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
 
-        const rendered = renderer.render(tokens);
+        const rendered: Array<string> = [];
+
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 
@@ -1139,38 +1094,72 @@ describe('renders xlf to markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('parses inline code with liquid syntax wrapped in <g> and <x> tags', () => {
+    it('parses inline code with liquid syntax wrapped in <x> tags', () => {
         const renderer = new XLFMDRenderer();
-        const tokens: Array<XLFToken> = [
-            {type: 'tag', data: 'target', nodeType: 'open'},
-            {type: 'text', data: 'Sentence '},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'open',
-                syntax: 'code',
-                equivText: '`',
-            },
-            {
-                type: 'tag',
-                data: 'x',
-                nodeType: 'self-closing',
-                syntax: 'liquid_Variable',
-                equivText: '{{ ui-key.yacloud.common.label_tcp }}',
-            },
-            {type: 'text', data: ' other'},
-            {
-                type: 'tag',
-                data: 'g',
-                nodeType: 'close',
-                syntax: 'code',
-                equivText: '`',
-            },
-            {type: 'text', data: '.'},
-            {type: 'tag', data: 'target', nodeType: 'close'},
+        const tokenUnits: Array<Array<XLFToken>> = [
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Sentence '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_open',
+                    equivText: '`',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'liquid_Variable',
+                    equivText: '{{ ui-key.yacloud.common.label_tcp }}',
+                },
+                {type: 'text', data: ' other'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_close',
+                    equivText: '`',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
+            [
+                {type: 'tag', data: 'target', nodeType: 'open'},
+                {type: 'text', data: 'Another sentence '},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_open',
+                    equivText: '`',
+                },
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'liquid_Filter',
+                    equivText: '{{user.name | capitalize}}',
+                },
+                {type: 'text', data: ' other'},
+                {
+                    type: 'tag',
+                    data: 'x',
+                    nodeType: 'self-closing',
+                    syntax: 'code_close',
+                    equivText: '`',
+                },
+                {type: 'text', data: '.'},
+                {type: 'tag', data: 'target', nodeType: 'close'},
+            ],
         ];
+        const rendered: Array<string> = [];
 
-        const rendered = renderer.render(tokens);
+        for (const tokens of tokenUnits) {
+            rendered.push(renderer.render(tokens));
+        }
+
         expect(rendered).toMatchSnapshot();
     });
 });
