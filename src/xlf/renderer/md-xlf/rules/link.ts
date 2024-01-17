@@ -4,7 +4,7 @@ import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
-import {generateCloseG, generateOpenG, generateX} from 'src/xlf/generator';
+import {generateX} from 'src/xlf/generator';
 
 const decodeURL = new MarkdownIt().utils.lib.mdurl.decode;
 
@@ -37,7 +37,6 @@ function linkOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
     const reflink = isRefLink(tokens, i);
     if (reflink) {
         this.state.link.reflink = reflink;
-
         return '';
     }
 
@@ -48,9 +47,10 @@ function linkOpen(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
         return '';
     }
 
-    const rendered = generateOpenG({ctype: 'link_text_part', equivText: '[]'});
-
-    return rendered;
+    return generateX({
+        ctype: 'link_text_part_open',
+        equivText: '[',
+    });
 }
 
 function linkClose(this: CustomRenderer<XLFRendererState>) {
@@ -66,38 +66,67 @@ function linkClose(this: CustomRenderer<XLFRendererState>) {
 
     let rendered = '';
     if (this.state.link.reflink) {
-        rendered += generateX({ctype: 'link_reflink', equivText: '[{#T}]'});
+        rendered += generateX({
+            ctype: 'link_reflink',
+            equivText: '[{#T}]',
+        });
+
         this.state.link.reflink = false;
     } else if (this.state.link.autolink) {
-        rendered += generateX({ctype: 'link_autolink', equivText: `<${href}>`});
+        rendered += generateX({
+            ctype: 'link_autolink',
+            equivText: `<${href}>`,
+        });
 
         this.state.link.autolink = false;
 
         return rendered;
     } else {
-        rendered += generateCloseG();
+        rendered += generateX({
+            ctype: 'link_text_part_close',
+            equivText: ']',
+        });
     }
 
-    rendered += generateOpenG({ctype: 'link_attributes_part', equivText: '()'});
+    rendered += generateX({
+        ctype: 'link_attributes_part_open',
+        equivText: '(',
+    });
 
     if (href?.length) {
-        rendered += generateX({ctype: 'link_attributes_href', equivText: `${href}`});
+        rendered += generateX({
+            ctype: 'link_attributes_href',
+            equivText: href,
+        });
     }
 
     const title = token.attrGet('title');
     if (!title?.length) {
         this.state.link.pending.push(token);
-
-        rendered += generateCloseG();
+        rendered += generateX({
+            ctype: 'link_attributes_part_close',
+            equivText: ')',
+        });
 
         return rendered;
     }
 
-    rendered += generateOpenG({ctype: 'link_attributes_title', equivText: '""'});
-    rendered += title;
-    rendered += generateCloseG();
+    rendered += generateX({
+        ctype: 'link_attributes_title_open',
+        equivText: '"',
+    });
 
-    rendered += generateCloseG();
+    rendered += title;
+
+    rendered += generateX({
+        ctype: 'link_attributes_title_close',
+        equivText: '"',
+    });
+
+    rendered += generateX({
+        ctype: 'link_attributes_part_close',
+        equivText: ')',
+    });
 
     return rendered;
 }
