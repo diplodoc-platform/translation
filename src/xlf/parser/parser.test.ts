@@ -81,81 +81,15 @@ describe('parses translation units', () => {
 });
 
 describe('parses translation units with <g> and <x> tags', () => {
-    it('parses strong wrapped in <g> tags', () => {
-        const units = [
-            {id: 1, target: 'Предложение номер <g ctype="x-strong" equiv-text="**">один</g>.'},
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(1);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses em wrapped in <g> tags', () => {
-        const units = [
-            {id: 1, target: 'Предложение номер <g ctype="x-em" equiv-text="*">один</g>.'},
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(1);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses em wrapped in <g> tags', () => {
-        const units = [
-            {id: 1, target: 'Предложение номер <g ctype="x-s" equiv-text="~~">один</g>.'},
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(1);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses sup wrapped in <g> tags', () => {
-        const units = [
-            {id: 1, target: 'Предложение номер <g ctype="x-sup" equiv-text="^">один</g>.'},
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(1);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses samp wrapped in <g> tags', () => {
-        const units = [
-            {id: 1, target: 'Предложение номер <g ctype="x-samp" equiv-text="##">один</g>.'},
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(1);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses code wrapped in <g> tag', () => {
-        const units = [
-            {id: 1, target: 'Предложение номер <g ctype="x-code" equiv-text="`">один</g>.'},
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(1);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses links wrapped in <g> and <x> tags', () => {
+    it('parses strong wrapped in <x> tags', () => {
         const units = [
             {
                 id: 1,
-                target: 'Предложение номер <g ctype="x-link_text_part" equiv-text="[]">один</g><g ctype="x-link_attributes_part" equiv-text="()"><x ctype="x-link_attributes_href" equiv-text="one.md" /><g ctype="x-link_attributes_title" equiv-text="&quot;&quot;">one</g></g>.',
+                target: 'Предложение номер <x ctype="x-strong_open" equiv-text="**" />один<x ctype="x-strong_close" equiv-text="**" />.',
             },
             {
                 id: 2,
-                target: 'Предложение номер <g ctype="x-link_text_part" equiv-text="[]">два</g><g ctype="x-link_attributes_part" equiv-text="()"><x ctype="x-link_attributes_href" equiv-text="two.md" /></g>.',
+                target: 'Предложение номер <x ctype="x-strong_open" equiv-text="**" />два<x ctype="x-strong_close" equiv-text="**" />.',
             },
         ];
         const xlf = generateXLF(units);
@@ -165,20 +99,127 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations).toMatchSnapshot();
     });
 
-    it('parses ref links wrapped in <g> and <x> tags', () => {
+    it('parses em wrapped in <x> tags', () => {
         const units = [
             {
                 id: 1,
-                target: 'Предложение номер <x ctype="x-link_reflink" equiv-text="[{#T}]" /><g ctype="x-link_attributes_part" equiv-text="()"><x ctype="x-link_attributes_href" equiv-text="one.md" /><g ctype="x-link_attributes_title" equiv-text="&quot;&quot;">one</g></g>.',
+                target: 'Предложение номер <x ctype="x-em_open" equiv-text="*" />один<x ctype="x-em_close" equiv-text="*" />.',
             },
             {
                 id: 2,
-                target: 'Предложение номер <x ctype="x-link_reflink" equiv-text="[{#T}]" /><g ctype="x-link_attributes_part" equiv-text="()"><x ctype="x-link_attributes_href" equiv-text="two.md" /></g>.',
+                target: 'Предложение номер <x ctype="x-em_open" equiv-text="*" />два<x ctype="x-em_close" equiv-text="*" />.',
             },
         ];
         const xlf = generateXLF(units);
         const translations = parseTranslations({xlf});
 
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses s wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Предложение номер <x ctype="x-s_open" equiv-text="~~" />один<x ctype="x-s_close" equiv-text="~~" />.',
+            },
+            {
+                id: 2,
+                target: 'Предложение номер <x ctype="x-s_open" equiv-text="~~" />два<x ctype="x-s_close" equiv-text="~~" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses sup wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Предложение номер<x ctype="x-sup_open" equiv-text="^" />один<x ctype="x-sup_close" equiv-text="^" />.',
+            },
+            {
+                id: 2,
+                target: 'Предложение номер<x ctype="x-sup_open" equiv-text="^" />два<x ctype="x-sup_close" equiv-text="^" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses samp wrapped in <g> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Предложение номер <x ctype="x-samp_open" equiv-text="##" />один<x ctype="x-samp_close" equiv-text="##" />.',
+            },
+            {
+                id: 2,
+                target: 'Предложение номер <x ctype="x-samp_open" equiv-text="##" />два<x ctype="x-samp_close" equiv-text="##" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses code wrapped in <x> tag', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Предложение номер <x ctype="x-code_open" equiv-text="`" />один<x ctype="x-code_close" equiv-text="`" />.',
+            },
+            {
+                id: 2,
+                target: 'Предложение номер <x ctype="x-code_open" equiv-text="`" />два<x ctype="x-code_close" equiv-text="`" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses links wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Предложение номер <x ctype="x-link_text_part_open" equiv-text="[" />один<x ctype="x-link_text_part_close" equiv-text="]" /><x ctype="x-link_attributes_part_open" equiv-text="(" /><x ctype="x-link_attributes_href" equiv-text="one.md" /><x ctype="x-link_attributes_title_open" equiv-text="&quot;" />one<x ctype="x-link_attributes_title_close" equiv-text="&quot;" /><x ctype="x-link_attributes_part_close" equiv-text=")" />.',
+            },
+            {
+                id: 2,
+                target: 'Предложение номер <x ctype="x-link_text_part_open" equiv-text="[" />два<x ctype="x-link_text_part_close" equiv-text="]" /><x ctype="x-link_attributes_part_open" equiv-text="(" /><x ctype="x-link_attributes_href" equiv-text="two.md" /><x ctype="x-link_attributes_part_close" equiv-text=")" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
+
+        expect(translations.length).toStrictEqual(units.length);
+        expect(translations).toMatchSnapshot();
+    });
+
+    it('parses ref links wrapped in <x> tags', () => {
+        const units = [
+            {
+                id: 1,
+                target: 'Предложение номер <x ctype="x-link_reflink" equiv-text="[{#T}]" /><x ctype="x-link_attributes_part_open" equiv-text="(" /><x ctype="x-link_attributes_href" equiv-text="one.md" /><x ctype="x-link_attributes_title_open" equiv-text="&quot;" />one<x ctype="x-link_attributes_title_close" equiv-text="&quot;" /><x ctype="x-link_attributes_part_close" equiv-text=")" />.',
+            },
+            {
+                id: 2,
+                target: 'Предложение номер <x ctype="x-link_reflink" equiv-text="[{#T}]" /><x ctype="x-link_attributes_part_open" equiv-text="(" /><x ctype="x-link_attributes_href" equiv-text="two.md" /><x ctype="x-link_attributes_part_close" equiv-text=")" />.',
+            },
+        ];
+        const xlf = generateXLF(units);
+        const translations = parseTranslations({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -201,7 +242,7 @@ describe('parses translation units with <g> and <x> tags', () => {
         const units = [
             {
                 id: 1,
-                target: 'Предложение номер <g ctype="x-link_text_part" equiv-text="[]">один</g><g ctype="x-link_attributes_part" equiv-text="()"><x ctype="x-link_attributes_href" equiv-text="{{one}}" /><g ctype="x-link_attributes_title" equiv-text="&quot;&quot;">one</g></g>.',
+                target: 'Предложение номер <x ctype="x-link_text_part_open" equiv-text="[" />один<x ctype="x-link_text_part_close" equiv-text="]" /><x ctype="x-link_attributes_part_open" equiv-text="(" /><x ctype="x-link_attributes_href" equiv-text="{{one}}" /><x ctype="x-link_attributes_title_open" equiv-text="&quot;" />one<x ctype="x-link_attributes_title_close" equiv-text="&quot;" /><x ctype="x-link_attributes_part_close" equiv-text=")" />.',
             },
         ];
         const xlf = generateXLF(units);
@@ -211,11 +252,19 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations).toMatchSnapshot();
     });
 
-    it('parses image with all attributes wrapped in <g> and <x> tags', () => {
+    it('parses link with multiple sentences inside link text and link title', () => {
         const units = [
             {
                 id: 1,
-                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g><x ctype="x-image_attributes_size" equiv-text="=100x100" /></g>.',
+                target: '<x ctype="x-link_text_part_open" equiv-text="[" />Link text sentence one!',
+            },
+            {
+                id: 2,
+                target: 'Link text sentence Two?<x ctype="x-link_text_part_close" equiv-text="]" /><x ctype="x-link_attributes_part_open" equiv-text="(" /><x ctype="x-link_attributes_href" equiv-text="file.md" /><x ctype="x-link_attributes_title_open" equiv-text="&quot;" />Link title sentence one.',
+            },
+            {
+                id: 3,
+                target: 'Link title sentence two!<x ctype="x-link_attributes_title_close" equiv-text="&quot;" /><x ctype="x-link_attributes_part_close" equiv-text=")" />',
             },
         ];
         const xlf = generateXLF(units);
@@ -225,81 +274,11 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations).toMatchSnapshot();
     });
 
-    it('parses image with src title and height wrapped in <g> and <x> tags', () => {
+    it('parses image with all attributes wrapped in <x> tags', () => {
         const units = [
             {
                 id: 1,
-                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g><x ctype="x-image_attributes_size" equiv-text="=x100" /></g>.',
-            },
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(units.length);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses image with src title and width wrapped in <g> and <x> tags', () => {
-        const units = [
-            {
-                id: 1,
-                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g><x ctype="x-image_attributes_size" equiv-text="=100x" /></g>.',
-            },
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(units.length);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses image with src and size wrapped in <g> and <x> tags', () => {
-        const units = [
-            {
-                id: 1,
-                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><x ctype="x-image_attributes_size" equiv-text="=100x100" /></g>.',
-            },
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(units.length);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses image with src and title wrapped in <g> and <x> tags', () => {
-        const units = [
-            {
-                id: 1,
-                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /><g ctype="x-image_attributes_title" equiv-text="&quot;&quot;">hint</g></g>.',
-            },
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(units.length);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses image with src wrapped in <g> and <x> tags', () => {
-        const units = [
-            {
-                id: 1,
-                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]">image</g><g ctype="x-image_attributes_part" equiv-text="()"><x ctype="x-image_attributes_src" equiv-text="image.png" /></g>.',
-            },
-        ];
-        const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
-
-        expect(translations.length).toStrictEqual(units.length);
-        expect(translations).toMatchSnapshot();
-    });
-
-    it('parses empty image wrapped in <g> and <x> tags', () => {
-        const units = [
-            {
-                id: 1,
-                target: 'Sentence <g ctype="x-image_text_part" equiv-text="![]"></g><g ctype="x-image_attributes_part" equiv-text="()"></g>.',
+                target: 'Sentence <x ctype="x-image_text_part_open" equiv-text="![" />image<x ctype="x-image_text_part_close" equiv-text="]" /><x ctype="x-image_attributes_part_open" equiv-text="(" /><x ctype="x-image_attributes_src" equiv-text="image.png" /><x ctype="x-image_attributes_title_open" equiv-text="&quot;" />hint<x ctype="x-image_attributes_title_close" equiv-text="&quot;" /><x ctype="x-image_attributes_size" equiv-text="=100x100" /><x ctype="x-image_attributes_part_close" equiv-text=")" />.',
             },
         ];
         const xlf = generateXLF(units);
@@ -336,11 +315,11 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations).toMatchSnapshot();
     });
 
-    it('parses file wrapped in <g> and <x> tags', () => {
+    it('parses file wrapped <x> tags', () => {
         const units = [
             {
                 id: 1,
-                target: 'Sentence with <g ctype="x-file" equiv-text="{%%}"><x ctype="x-file_src" equiv-text=" src=&quot;path/to/file&quot;" /><g ctype="x-file_name" equiv-text="&quot;&quot;">readme.md</g><x ctype="x-file_referrerpolicy" equiv-text=" referrerpolicy=&quot;no-referrer&quot;" /><x ctype="x-file_rel" equiv-text=" rel=&quot;noopener&quot;" /><x ctype="x-file_target" equiv-text=" target=&quot;_blank&quot;" /><x ctype="x-file_type" equiv-text=" type=&quot;text/plain&quot;" /></g>.',
+                target: 'Sentence with <x ctype="x-file_open" equiv-text="{%" /><x ctype="x-file_src" equiv-text="src=&quot;path/to/file&quot;" /><x ctype="x-file_name_open" equiv-text="name=&quot;" />readme.md<x ctype="x-file_name_close" equiv-text="&quot;" /><x ctype="x-file_referrerpolicy" equiv-text="referrerpolicy=&quot;no-referrer&quot;" /><x ctype="x-file_rel" equiv-text="rel=&quot;noopener&quot;" /><x ctype="x-file_target" equiv-text="target=&quot;_blank&quot;" /><x ctype="x-file_type" equiv-text="type=&quot;text/plain&quot;" /><x ctype="x-file_close" equiv-text="%}" />.',
             },
         ];
         const xlf = generateXLF(units);
@@ -427,15 +406,15 @@ describe('parses translation units with <g> and <x> tags', () => {
         expect(translations).toMatchSnapshot();
     });
 
-    it('parses inline code with liquid wrapped in <g> and <x> tags', () => {
+    it('parses inline code with liquid wrapped in <x> tag', () => {
         const units = [
             {
                 id: 1,
-                target: 'Sentence <g ctype="x-code" equiv-text="`"><x ctype="x-liquid_Variable" equiv-text="{{ ui-key.yacloud.common.label_tcp }}" /> other</g>.',
+                target: 'Sentence <x ctype="x-code_open" equiv-text="`" /><x ctype="x-liquid_Variable" equiv-text="{{ ui-key.yacloud.common.label_tcp }}" /> other<x ctype="x-code_close" equiv-text="`" />.',
             },
             {
                 id: 2,
-                target: 'Another sentence <g ctype="x-code" equiv-text="`"><x ctype="x-liquid_Filter" equiv-text="{{user.name | capitalize}}" /> other</g>.',
+                target: 'Another sentence <x ctype="x-code_open" equiv-text="`" /><x ctype="x-liquid_Filter" equiv-text="{{user.name | capitalize}}" /> other<x ctype="x-code_close" equiv-text="`" />.',
             },
         ];
         const xlf = generateXLF(units);
