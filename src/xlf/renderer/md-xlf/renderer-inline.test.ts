@@ -34,7 +34,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders strong wrapped in <g> tags', () => {
+    it('renders strong wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер **один**. Предложение номер **два**.',
@@ -44,7 +44,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders em wrapped in <g> tags', () => {
+    it('renders em wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер *один*. Предложение номер *два*.',
@@ -54,7 +54,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders s wrapped in <g> tags', () => {
+    it('renders s wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер ~~один~~. Предложение номер ~~два~~.',
@@ -64,7 +64,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders sup wrapped in <g> tags', () => {
+    it('renders sup wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер^один^. Предложение номер^два^.',
@@ -74,7 +74,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders samp wrapped in <g> tags', () => {
+    it('renders samp wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер ##один##. Предложение номер ##два##.',
@@ -84,7 +84,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders code wrapped in <g> tag', () => {
+    it('renders code wrapped in <x> tag', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер `один`. Предложение номер `два`.',
@@ -94,7 +94,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders links wrapped in <g> and <x> tags', () => {
+    it('renders links wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер [один](one.md "one"). Предложение номер [два](two.md).',
@@ -104,7 +104,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders ref links wrapped in <g> and <x> tags', () => {
+    it('renders ref links wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер [{#T}](one.md "one"). Предложение номер [{#T}](two.md).',
@@ -114,7 +114,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders autolink wrapped in <g> and <x> tags', () => {
+    it('renders autolink wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown:
@@ -125,7 +125,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders variable href link wrapped in <g> and <x> tags', () => {
+    it('renders variable href link wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown: 'Предложение номер [один]({{one}} "one"). Предложение номер [два]({{two}}).',
@@ -135,7 +135,18 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders image with href, title and size wrapped in <g> and <x> tags', () => {
+    it('renders link with multiple sentences inside text part and title part wrapped in <x> tags', () => {
+        const parameters: RenderParameters = {
+            ...baseRendererParameters,
+            markdown:
+                '[Link text sentence one! Link text sentence Two?](file.md "Link title sentence one. Link title sentence two!")',
+        };
+
+        const rendered = render(parameters);
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('renders image all attributes wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown:
@@ -167,7 +178,7 @@ describe('renders xlf from markdown', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    it('renders file wrapped in <g> and <x> tags', () => {
+    it('renders file wrapped in <x> tags', () => {
         const parameters: RenderParameters = {
             ...baseRendererParameters,
             markdown:
@@ -286,6 +297,5 @@ describe('renders xlf from markdown', () => {
 
         const rendered = render(parameters);
         expect(rendered).toMatchSnapshot();
-        console.log(rendered);
     });
 });
