@@ -4,7 +4,7 @@ import Token from 'markdown-it/lib/token';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
 
-import {generateCloseG, generateOpenG, generateX} from 'src/xlf/generator';
+import {generateX} from 'src/xlf/generator';
 
 const file: Renderer.RenderRuleRecord = {
     yfm_file: fileRule,
@@ -28,7 +28,10 @@ function fileRule(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
         throw new Error(`failed to render token: ${tokens[i]}`);
     }
 
-    let rendered = generateOpenG({ctype: 'file', equivText: '{%%}'});
+    let rendered = generateX({
+        ctype: 'file_open',
+        equivText: '{%',
+    });
 
     for (const [key, val] of attrs) {
         const attribute = attributes.get(key);
@@ -37,17 +40,26 @@ function fileRule(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
         }
 
         const ctype = `file_${attribute}`;
-        const equivText = ` ${attribute}="${val}"`;
+        const equivText = `${attribute}="${val}"`;
         if (translatable.has(key)) {
-            rendered += generateOpenG({ctype, equivText: '""'});
+            rendered += generateX({
+                ctype: `${ctype}_open`,
+                equivText: `${attribute}="`,
+            });
             rendered += val;
-            rendered += generateCloseG();
+            rendered += generateX({
+                ctype: `${ctype}_close`,
+                equivText: '"',
+            });
         } else {
             rendered += generateX({ctype, equivText});
         }
     }
 
-    rendered += generateCloseG();
+    rendered += generateX({
+        ctype: 'file_close',
+        equivText: '%}',
+    });
 
     return rendered;
 }
