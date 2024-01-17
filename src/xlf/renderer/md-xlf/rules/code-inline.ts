@@ -3,7 +3,7 @@ import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
 
 import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
-import {generateCloseG, generateOpenG} from 'src/xlf/generator';
+import {generateX} from 'src/xlf/generator';
 import {Tokenizer} from 'src/liquid/tokenizer';
 import {Renderer as LiquidRenderer} from 'src/liquid';
 
@@ -23,9 +23,17 @@ function codeInlineRule(this: CustomRenderer<XLFRendererState>, tokens: Token[],
 
     let rendered = '';
 
-    rendered += generateOpenG({ctype: tag, equivText: markup});
+    rendered += generateX({
+        ctype: `${tag}_open`,
+        equivText: '`',
+    });
+
     rendered += renderer.render();
-    rendered += generateCloseG();
+
+    rendered += generateX({
+        ctype: `${tag}_close`,
+        equivText: '`',
+    });
 
     return rendered;
 }
