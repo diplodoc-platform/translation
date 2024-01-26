@@ -64,6 +64,10 @@ function render(parameters: RenderParameters) {
     const diplodocOptions = {
         lang: parameters.lang ?? 'ru',
         path: '',
+        log: {
+            warn: console.warn,
+            error: console.error,
+        }
     };
 
     const env: MarkdownRendererEnv = {
@@ -87,7 +91,7 @@ function render(parameters: RenderParameters) {
 
     md.use(mdRenderer, mdOptions);
 
-    return md.render(parameters.skeleton, env);
+    return md.render(parameters.skeleton, env) + '\n';
 }
 
 function validParameters(parameters: RenderParameters) {

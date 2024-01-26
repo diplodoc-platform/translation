@@ -8,11 +8,7 @@ const templateParameters = {
     skeletonPath: 'file.skl.md',
 };
 
-const {
-    template: [before, after],
-} = generateTemplate(templateParameters);
-
-const generateXLF = (units: TransUnitParameters[]) => before + units.map(generateTransUnit) + after;
+const generateXLF = (units: TransUnitParameters[]) => generateTemplate(templateParameters, units.map(generateTransUnit));
 
 describe('smoke', () => {
     it('works', () => {
@@ -36,7 +32,7 @@ describe('validates parameters', () => {
     });
 
     it('throws on invalid parameters', () => {
-        const invalidXLF = before + '</kek>' + after;
+        const invalidXLF = generateTemplate(templateParameters, ['</kek>']);
 
         // empty xlf is invalid
         expect(() => parseTranslations({xlf: ''})).toThrow();

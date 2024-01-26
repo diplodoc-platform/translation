@@ -8,17 +8,12 @@ const templateParameters = {
     skeletonPath: 'file.skl.md',
 };
 
-const {
-    template: [before, after],
-    indentation,
-} = generateTemplate(templateParameters);
-
 const transUnits = [
-    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0, indentation},
-    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
+    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0},
+    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1},
 ];
 
-const xlf = before + transUnits.map(generateTransUnit).join('') + after;
+const xlf = generateTemplate(templateParameters, transUnits.map(generateTransUnit));
 
 describe('smoke', () => {
     it('works', () => {

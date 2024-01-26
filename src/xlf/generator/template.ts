@@ -15,9 +15,14 @@ export type LanguageLocale = {
 
 const languagesList = languages.langs();
 
+const gap = (ident: number) => (chunk: string) => {
+    const gap = ' '.repeat(ident);
+    return chunk.split('\n').map((part) => gap + part).join('\n')
+};
+
 export type Language = (typeof languagesList)[number];
 
-function generateTemplate(parameters: TemplateParameters) {
+function generateTemplate(parameters: TemplateParameters, units: string[]) {
     if (!validParameters(parameters)) {
         throw new Error('invalid parameters');
     }
@@ -69,7 +74,8 @@ function generateTemplate(parameters: TemplateParameters) {
     before += '<body>';
     before += '\n';
 
-    const indentationInsideBody = indentation;
+    before += units.map(gap(indentation)).join('\n');
+    before += '\n';
 
     let after = ' '.repeat(indentation);
     after += '</body>';
@@ -86,10 +92,7 @@ function generateTemplate(parameters: TemplateParameters) {
     after += '</xliff>';
     after += '\n';
 
-    return {
-        template: [before, after] as [string, string],
-        indentation: indentationInsideBody,
-    };
+    return before + after;
 }
 
 function validParameters(parameters: TemplateParameters) {

@@ -1,5 +1,4 @@
 export type TransUnitParameters = {
-    indentation?: number;
     target?: string;
     targetLangLocale?: string;
     source?: string;
@@ -8,14 +7,13 @@ export type TransUnitParameters = {
 };
 
 function generateTransUnit(parameters: TransUnitParameters) {
-    const {source, sourceLangLocale, target, targetLangLocale, id, indentation = 0} = parameters;
+    const {source, sourceLangLocale, target, targetLangLocale, id} = parameters;
 
-    let rendered = ' '.repeat(indentation + 2);
-    rendered += `<trans-unit id="${id}">`;
+    let rendered = `  <trans-unit id="${id}">`;
 
     if (source?.length) {
         rendered += '\n';
-        rendered += ' '.repeat(indentation + 4);
+        rendered += ' '.repeat(4);
         rendered += `<source`;
         if (sourceLangLocale?.length) {
             rendered += ` xml:lang="${sourceLangLocale}"`;
@@ -26,7 +24,7 @@ function generateTransUnit(parameters: TransUnitParameters) {
 
     if (target?.length) {
         rendered += '\n';
-        rendered += ' '.repeat(indentation + 4);
+        rendered += ' '.repeat(4);
         rendered += `<target`;
         if (targetLangLocale?.length) {
             rendered += ` xml:lang="${targetLangLocale}"`;
@@ -36,8 +34,7 @@ function generateTransUnit(parameters: TransUnitParameters) {
     }
 
     rendered += '\n';
-    rendered += ' '.repeat(indentation + 2);
-    rendered += '</trans-unit>';
+    rendered += '  </trans-unit>';
 
     return rendered;
 }

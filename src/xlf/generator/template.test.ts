@@ -15,7 +15,7 @@ describe('smoke', () => {
             markdownPath: 'file.md',
         };
 
-        generateTemplate(parameters);
+        generateTemplate(parameters, []);
     });
 });
 
@@ -34,7 +34,7 @@ describe('validates parameters', () => {
             },
         };
 
-        generateTemplate(parameters);
+        generateTemplate(parameters, []);
     });
 
     it('throws on invalid parameters', () => {
@@ -64,8 +64,8 @@ describe('validates parameters', () => {
             },
         };
 
-        expect(() => generateTemplate(invalidLanguage)).toThrow();
-        expect(() => generateTemplate(invalidLocale)).toThrow();
+        expect(() => generateTemplate(invalidLanguage, [])).toThrow();
+        expect(() => generateTemplate(invalidLocale, [])).toThrow();
     });
 });
 
@@ -84,14 +84,8 @@ describe('template', () => {
             },
         };
 
-        const {
-            template: [before, after],
-            indentation,
-        } = generateTemplate(parameters);
+        const template = generateTemplate(parameters, []);
 
-        expect(indentation).toStrictEqual(4);
-        expect(before).toMatchSnapshot();
-        expect(after).toMatchSnapshot();
-        expect(before + after).toMatchSnapshot();
+        expect(template).toMatchSnapshot();
     });
 });
