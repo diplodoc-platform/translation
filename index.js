@@ -1,8 +1,10 @@
+require('colors');
+
 const glob = require('glob');
 const {readFileSync, writeFileSync} = require("node:fs");
 const {resolve} = require("node:path");
 const {extract, compose} = require('./lib/index.js');
-const {createPatch, structuredPatch} = require("diff");
+const {createPatch, structuredPatch, diffLines, diffChars} = require("diff");
 
 const arg = (value) => process.argv.includes(value);
 
@@ -10,6 +12,49 @@ const interactive = arg('-i') || arg('--interactive');
 const useReport = arg('--report');
 const allFiles = arg('--all');
 const noUpdate = arg('--no-update');
+
+function diff(file, hunks) {
+    console.log('===================================================================');
+    console.log(`--- ${file}`.gray);
+    console.log(`+++ ${file}`.gray);
+
+    for (const hunk of hunks) {
+        console.log(`@@ -${hunk.oldStart},${hunk.oldLines} +${hunk.newStart},${hunk.newLines} @@`.gray);
+
+        const diff = {
+            phase: ' ',
+            removed: [],
+            added: [],
+        };
+
+        for (let i = 0; i < hunk.lines.length; i++) {
+            const line = hunk.lines[i];
+
+            if (line[0] === ' ') {
+                if (line[0] !== diff.phase) {
+                    const chars = diffChars(diff.removed.join('\n'), diff.added.join('\n'));
+                    diff.phase = line[0];
+                    diff.removed = [];
+                    diff.added = [];
+
+                    console.log(chars.reduce(
+                        (acc, chunk) => acc + (
+                            chunk.removed ? chunk.value.bgRed :
+                                chunk.added ? chunk.value.bgGreen :
+                                    chunk.value.gray
+                        ), '')
+                    );
+                }
+
+                console.log(line.gray);
+            } else {
+                diff.phase = line[0];
+                diff[line[0] === '+' ? 'added' : 'removed'].push(' ' + line.slice(1));
+            }
+        }
+    }
+    console.log('===================================================================');
+}
 
 (async () => {
     const {default: inquirer} = await import('inquirer');
@@ -70,20 +115,17 @@ const noUpdate = arg('--no-update');
             });
 
             if (content !== to) {
-                bad.push(file);
-                continue;
-
-                const {hunks} = structuredPatch('', '', content, to, '', '', {
+                const {hunks} = structuredPatch(file, file, content, to, '', '', {
                     ignoreWhitespace: true
                 });
 
                 if (hunks.length) {
                     if (noskip.includes(file)) {
                         bad.push(file);
-                        // console.log(createPatch(file, content, to));
+                        diff(file, hunks);
                         console.log(files.length, processed, (processed - bad.length) / processed, file);
                     } else {
-                        console.log(createPatch(file, content, to));
+                        diff(file, hunks);
                         if (interactive) {
                             const {action} = await inquirer.prompt([{
                                 message: `Пропустить дифф?`,

@@ -35,7 +35,7 @@ const rules: Renderer.RenderRuleRecord = {
                     .map((children, index) =>
                         token('inline', {
                             children,
-                            map: [map[0] + index, map[1]],
+                            map: map ? [map[0] + index, map[1]] : null,
                         }),
                     );
 
