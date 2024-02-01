@@ -15,15 +15,12 @@ export type XLFTagToken = {
     equivText?: string;
 };
 
-function isXLFTextToken(token: XLFToken): token is XLFTextToken {
+export function isXLFTextToken(token: XLFToken): token is XLFTextToken {
     return token?.type === 'text';
 }
 
 const xlfTagTokenNodeTypes = new Set(['open', 'close', 'self-closing']);
 
-function isXLFTagToken(token: XLFToken): token is XLFTagToken {
+export function isXLFTagToken(token: XLFToken): token is XLFTagToken {
     return token?.type === 'tag' && xlfTagTokenNodeTypes.has(token.nodeType);
 }
-
-export {isXLFTextToken, isXLFTagToken};
-export default {isXLFTextToken, isXLFTagToken};

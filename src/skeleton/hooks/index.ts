@@ -1,21 +1,20 @@
 import {MarkdownRendererLifeCycle} from '@diplodoc/markdown-it-markdown-renderer';
 
-import meta, {MetaParameters} from './meta';
-import {AfterInlineState, afterInline, initState} from './after-inline';
+import {MetaParams, hook as meta} from './meta';
+import {AfterInlineState, AfterInlineStateParams, afterInline, initState} from './after-inline';
+import {beforeInline} from './before-inline';
 import {includes} from './diplodoc';
 
 export type HooksState = AfterInlineState;
-export type HooksParameters = MetaParameters;
+export type HooksParams = MetaParams;
 
-function generate(parameters: HooksParameters) {
+export function generate(parameters: HooksParams & AfterInlineStateParams) {
     return {
         hooks: {
-            [MarkdownRendererLifeCycle.BeforeRender]: [meta.hook(parameters), includes],
+            [MarkdownRendererLifeCycle.BeforeRender]: [meta(parameters), includes],
             [MarkdownRendererLifeCycle.AfterInlineRender]: [afterInline],
+            [MarkdownRendererLifeCycle.BeforeInlineRender]: [beforeInline],
         },
-        initState: initState(),
+        initState: initState(parameters),
     };
 }
-
-export {generate};
-export default {generate};

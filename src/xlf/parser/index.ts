@@ -1,61 +1,45 @@
-import assert from 'assert';
+import assert, {ok} from 'assert';
 import {XMLValidator} from 'fast-xml-parser';
-import cheerio, {Cheerio} from 'cheerio';
+import {load} from 'cheerio';
 import {ChildNode, Element, isTag, isText} from 'domhandler';
 
 import {XLFTagToken, XLFTextToken, XLFToken} from 'src/xlf/token';
 
-export type GetTranslationsParameters = {
-    xlf: string;
+export type GetTranslationsParams = {
+    xlf?: string;
+    units?: string[];
     useSource?: boolean;
 };
 
 const selfClosingTags = new Set(['x']);
 
-function parseTranslations(parameters: GetTranslationsParameters): Array<Array<XLFToken>> {
-    if (!validParameters(parameters)) {
-        throw new Error('invalid parameters');
+export function parse(parameters: GetTranslationsParams): Array<Array<XLFToken>> {
+    validateParams(parameters);
+
+    const {xlf, units, useSource = false} = parameters;
+    if (units) {
+        return parseTargets(units.map((unit) => selectTargets(unit, useSource).get(0) as Element));
     }
 
-    const {useSource = false} = parameters;
-    let xlf = parameters.xlf;
-    let {targets, success} = selectTargets(xlf);
-    if (!success) {
-        if (useSource) {
-            xlf = replaceSourceWithTarget(xlf);
-            ({targets, success} = selectTargets(xlf));
-        } else {
-            throw new Error('did not find any translations');
-        }
-    }
+    const targets = selectTargets(xlf as string, useSource);
 
-    return parseTargets(targets);
+    return parseTargets(targets.get());
 }
 
-function replaceSourceWithTarget(xlf: string) {
-    return xlf.replace(/<source>/gmu, '<target>').replace(/<\/source>/gmu, '</target>');
+function selectTargets(xlf: string, useSource: boolean) {
+    const $ = load(xlf, {xml: true});
+    const targets = $(useSource ? 'source' : 'target');
+
+    ok(targets.length, 'Did not find any translations');
+
+    return targets;
 }
 
-function selectTargets(xlf: string) {
-    let success = true;
-    const query = cheerio.load(xlf);
-
-    const targets = query('trans-unit').find('target');
-    if (targets.length === 0) {
-        success = false;
-    }
-
-    return {
-        targets,
-        success,
-    };
-}
-
-function parseTargets(targets: Cheerio<Element>) {
+function parseTargets(targets: Element[]) {
     const parsed = new Array<Array<XLFToken>>();
     const ref = {nodes: []};
 
-    for (const target of targets.get()) {
+    for (const target of targets) {
         inorderNodes(target, ref);
 
         const tokens = nodesIntoXLFTokens(ref.nodes);
@@ -71,6 +55,8 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
     if (!node) {
         return;
     }
+
+    // console.log('node', node.name, isText(node), isTag(node), !selfClosingTags.has(node.name));
 
     if (isText(node)) {
         ref.nodes.push(node);
@@ -138,19 +124,14 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
     return tokens;
 }
 
-function validParameters(parameters: GetTranslationsParameters) {
-    const {xlf} = parameters;
+function validateParams(parameters: GetTranslationsParams) {
+    if (parameters.units) {
+        return;
+    }
 
-    const conditions = [Boolean(xlf), validXML(xlf)];
+    const validation = XMLValidator.validate(parameters.xlf as string);
 
-    return conditions.reduce((a, v) => a && v, true);
+    if (validation !== true) {
+        throw validation.err.msg;
+    }
 }
-
-function validXML(xml: string) {
-    const validation = XMLValidator.validate(xml);
-
-    return typeof validation === 'boolean' && validation;
-}
-
-export {parseTranslations, validParameters};
-export default {parseTranslations, validParameters};

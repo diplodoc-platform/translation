@@ -1,4 +1,12 @@
 import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
+import MdIt from 'markdown-it';
+
+const md = new MdIt();
+const state = new md.core.State('', md, {});
+
+export function token(type: string, props: Record<string, any> = {}) {
+    return Object.assign(new state.Token(type, '', 0), props);
+}
 
 export const mergeHooks = (...args: CustomRendererHooks[]): CustomRendererHooks => {
     const result: CustomRendererHooks = {};

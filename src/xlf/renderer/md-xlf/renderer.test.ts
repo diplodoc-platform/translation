@@ -1,6 +1,6 @@
 import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
-import {RenderParameters, render} from './index';
+import {RenderParams, render} from './index';
 
 import basic from 'src/__fixtures__/basic';
 import variables from 'src/__fixtures__/variables';
@@ -76,7 +76,7 @@ describe('validates parameters', () => {
             },
             skeletonPath: 'file.skl.md',
             markdownPath: 'file.md',
-        } as RenderParameters;
+        } as RenderParams;
 
         const invalidLang = {
             markdown: '',
@@ -91,7 +91,7 @@ describe('validates parameters', () => {
             skeletonPath: 'file.skl.md',
             markdownPath: 'file.md',
             lang: 'xx',
-        } as RenderParameters;
+        } as RenderParams;
 
         expect(() => render(parameters)).toThrow();
         expect(() => render(invalidLang)).toThrow();
@@ -556,7 +556,7 @@ describe('passing hooks', () => {
             hooks: {
                 [CustomRendererLifeCycle.BeforeRender]: [hookFn],
             },
-        } as RenderParameters;
+        } as RenderParams;
         render(parameters);
         expect(hookFn).toHaveBeenCalled();
     });
@@ -579,7 +579,7 @@ describe('passing hooks', () => {
             hooks: {
                 [CustomRendererLifeCycle.BeforeRender]: [hookFn],
             },
-        } as RenderParameters;
+        } as RenderParams;
         render(parameters);
         expect(defaultHookSpy).toHaveBeenCalled();
     });

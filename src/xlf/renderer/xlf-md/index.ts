@@ -8,6 +8,24 @@ export type XLFMDRendererRuleSet = {
 
 export type XLFMDRendererRule = (token: XLFToken) => string;
 
+const literal = (token: XLFToken): string => {
+    assert(isXLFTagToken(token));
+    token as XLFTagToken;
+
+    const {equivText} = token;
+    assert(
+        equivText?.length,
+        'literal tag should contain original markup inside equiv-text attritbute',
+    );
+
+    return equivText;
+};
+
+const spaced = (actor: (token: XLFToken) => string) => (token: XLFToken) => ' ' + actor(token);
+const quoted = (actor: (token: XLFToken) => string) => (token: XLFToken) =>
+    '"' + actor(token) + '"';
+const attr = spaced(quoted(literal));
+
 class XLFMDRenderer {
     rules: XLFMDRendererRuleSet;
 
@@ -19,74 +37,72 @@ class XLFMDRenderer {
 
             // simple pair syntax
             // strong
-            strong_open: this.literal.bind(this),
-            strong_close: this.literal.bind(this),
+            strong_open: literal,
+            strong_close: literal,
             // em
-            em_open: this.literal.bind(this),
-            em_close: this.literal.bind(this),
+            em_open: literal,
+            em_close: literal,
             // s
-            s_open: this.literal.bind(this),
-            s_close: this.literal.bind(this),
+            s_open: literal,
+            s_close: literal,
             // sup
-            sup_open: this.literal.bind(this),
-            sup_close: this.literal.bind(this),
+            sup_open: literal,
+            sup_close: literal,
             // samp
-            samp_open: this.literal.bind(this),
-            samp_close: this.literal.bind(this),
+            samp_open: literal,
+            samp_close: literal,
             // code
-            code_open: this.literal.bind(this),
-            code_close: this.literal.bind(this),
+            code_open: literal,
+            code_close: literal,
 
             // link
-            link_text_part_open: this.literal.bind(this),
-            link_text_part_close: this.literal.bind(this),
-            link_attributes_part_open: this.literal.bind(this),
-            link_attributes_part_close: this.literal.bind(this),
-            link_attributes_href: this.literal.bind(this),
-            link_attributes_title_open: this.prependSpaceLiteral.bind(this),
-            link_attributes_title_close: this.literal.bind(this),
-            link_autolink: this.literal.bind(this),
-            link_reflink: this.literal.bind(this),
+            link_text_part_open: literal,
+            link_text_part_close: literal,
+            link_attributes_part_open: literal,
+            link_attributes_part_close: literal,
+            link_attributes_href: literal,
+            link_attributes_title: attr,
+            link_autolink: literal,
+            link_reflink: literal,
 
             // image
-            image_text_part_open: this.literal.bind(this),
-            image_text_part_close: this.literal.bind(this),
-            image_attributes_part_open: this.literal.bind(this),
-            image_attributes_part_close: this.literal.bind(this),
-            image_attributes_src: this.literal.bind(this),
-            image_attributes_title_open: this.prependSpaceLiteral.bind(this),
-            image_attributes_title_close: this.literal.bind(this),
-            image_attributes_size: this.prependSpaceLiteral.bind(this),
+            image_text_part_open: literal,
+            image_text_part_close: literal,
+            image_attributes_part_open: literal,
+            image_attributes_part_close: literal,
+            image_attributes_src: literal,
+            image_attributes_title: attr,
+            image_attributes_size: spaced(literal),
 
             // video
-            video: this.literal.bind(this),
+            video: literal,
 
             // anchor
-            anchor: this.literal.bind(this),
+            anchor: literal,
 
             // file
-            file_open: this.literal.bind(this),
-            file_src: this.prependSpaceLiteral.bind(this),
-            file_name_open: this.prependSpaceLiteral.bind(this),
-            file_name_close: this.literal.bind(this),
-            file_referrerpolicy: this.prependSpaceLiteral.bind(this),
-            file_rel: this.prependSpaceLiteral.bind(this),
-            file_target: this.prependSpaceLiteral.bind(this),
-            file_type: this.prependSpaceLiteral.bind(this),
-            file_close: this.prependSpaceLiteral.bind(this),
+            file_open: literal,
+            file_src: spaced(literal),
+            file_name_open: spaced(literal),
+            file_name_close: literal,
+            file_referrerpolicy: spaced(literal),
+            file_rel: spaced(literal),
+            file_target: spaced(literal),
+            file_type: spaced(literal),
+            file_close: spaced(literal),
 
             // liquid
-            liquid_If: this.literal.bind(this),
-            liquid_Else: this.literal.bind(this),
-            liquid_EndIf: this.literal.bind(this),
-            liquid_ForInLoop: this.literal.bind(this),
-            liquid_EndForInLoop: this.literal.bind(this),
-            liquid_Function: this.literal.bind(this),
-            liquid_Filter: this.literal.bind(this),
-            liquid_Variable: this.literal.bind(this),
+            liquid_If: literal,
+            liquid_Else: literal,
+            liquid_EndIf: literal,
+            liquid_ForInLoop: literal,
+            liquid_EndForInLoop: literal,
+            liquid_Function: literal,
+            liquid_Filter: literal,
+            liquid_Variable: literal,
 
             // html
-            html_inline: this.literal.bind(this),
+            html_inline: literal,
         };
     }
 
@@ -134,23 +150,6 @@ class XLFMDRenderer {
         }
 
         return handler(token);
-    }
-
-    prependSpaceLiteral(token: XLFToken): string {
-        return ' ' + this.literal(token);
-    }
-
-    literal(token: XLFToken): string {
-        assert(isXLFTagToken(token));
-        token as XLFTagToken;
-
-        const {equivText} = token;
-        assert(
-            equivText?.length,
-            'literal tag should contain original markup inside equiv-text attritbute',
-        );
-
-        return equivText;
     }
 }
 

@@ -7,7 +7,7 @@ export type ParseIncludeOutput = {
     token: Token;
 };
 
-function parseInclude(token: Token): ParseIncludeOutput {
+export function parseInclude(token: Token): ParseIncludeOutput {
     const result = {result: false, token};
 
     const {type, content} = token;
@@ -25,6 +25,3 @@ function parseInclude(token: Token): ParseIncludeOutput {
 
     return result;
 }
-
-export {parseInclude};
-export default {parseInclude};

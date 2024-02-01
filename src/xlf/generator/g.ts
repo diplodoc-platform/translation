@@ -1,11 +1,11 @@
 import {gt, lt, qt, sl} from 'src/xlf/symbols';
 
-export type OpenGParameters = {
+export type OpenGParams = {
     ctype: string;
     equivText: string;
 };
 
-function generateOpenG(parameters: OpenGParameters): string {
+function generateOpenG(parameters: OpenGParams): string {
     const {ctype, equivText} = parameters;
     let rendered = `${lt}g`;
 

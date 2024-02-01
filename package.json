@@ -34,10 +34,10 @@
     "npm": ">=9.*"
   },
   "scripts": {
-    "test": "jest --verbose --coverage --silence=false",
+    "test": "jest --verbose --silence=false",
     "test:watch": "jest --watch --verbose --silent=false",
     "build:dev": "node scripts/development.js",
-    "build": "npm run build:clean && tsc -p tsconfig.types.json && node scripts/bundle.js",
+    "build": "npm run build:clean && node scripts/bundle.js",
     "build:clean": "rm -rf lib",
     "lint": "eslint -c .eslintrc.json \"src/**/*.ts*\"",
     "fix": "prettier --write --log-level=silent \"./src/**/*.{ts,tsx}\"",
@@ -64,6 +64,7 @@
     "esbuild-jest": "^0.5.0",
     "esbuild-node-externals": "^1.9.0",
     "eslint": "^8.52.0",
+    "inquirer": "^9.2.13",
     "jest": "^29.7.0",
     "markdown-it": "^13.0.2",
     "prettier": "^3.0.3",
@@ -79,6 +80,7 @@
     "@diplodoc/sentenizer": "^0.0.3",
     "@diplodoc/transform": "^4.7.1",
     "@shellscape/i18n-iso-countries": "^7.5.0-shellscape.v1",
+    "@types/diff": "^5.0.9",
     "cheerio": "^1.0.0-rc.12",
     "domhandler": "^5.0.3",
     "fast-xml-parser": "^4.1.3",

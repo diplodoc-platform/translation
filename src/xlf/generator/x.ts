@@ -1,11 +1,11 @@
 import {gt, lt, qt, sl} from 'src/xlf/symbols';
 
-export type GenerateXParameters = {
+export type GenerateXParams = {
     ctype: string;
     equivText: string;
 };
 
-function generateX(parameters: GenerateXParameters) {
+function generateX(parameters: GenerateXParams) {
     const {ctype, equivText} = parameters;
 
     let rendered = `${lt}x`;

@@ -1,6 +1,6 @@
 import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer/lib';
-import {RenderParameters, render} from './renderer';
+import {RenderParams, render} from './renderer';
 
 import basic from 'src/__fixtures__/basic';
 import variables from 'src/__fixtures__/variables';
@@ -45,7 +45,7 @@ describe('validates parameters', () => {
     });
 
     it('throws on invalid parameters', () => {
-        const parameters = {} as RenderParameters;
+        const parameters = {} as RenderParams;
 
         expect(() => render(parameters)).toThrow();
     });

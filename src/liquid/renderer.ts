@@ -17,6 +17,7 @@ class Renderer {
 
         this.rules = {
             Text: this.plainText.bind(this),
+            Newline: this.plainText.bind(this),
             Space: this.plainText.bind(this),
             If: this.wrapInX.bind(this),
             Else: this.wrapInX.bind(this),

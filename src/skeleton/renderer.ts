@@ -1,3 +1,4 @@
+import {ok} from 'assert';
 import MarkdownIt from 'markdown-it';
 import {
     MarkdownRenderer,
@@ -23,37 +24,53 @@ import tabs from '@diplodoc/transform/lib/plugins/tabs';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 
-import skeletonHandlers from './handlers';
-import hooks, {HooksParameters, HooksState} from './hooks';
-import {rules} from './rules';
-import {mergeHooks} from 'src/hooks';
+import {HooksParams, HooksState, generate as generateHooks} from './hooks';
+import {rules, initState as rulesInitState} from './rules';
+import {mergeHooks} from 'src/utils';
 import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
+import {TemplateParams, XLF} from 'src/xlf';
+import {LinkState} from 'src/skeleton/rules/link';
+import {ImageState} from 'src/skeleton/rules/image';
 
-export type SkeletonRendererState = HooksState;
+export type SkeletonRendererState = HooksState & LinkState & ImageState;
 
-export type RenderParameters = BaseParameters & DiplodocParameters;
-export type BaseParameters = {
+export type RenderParams = BaseParams & TemplateParams & DiplodocParams;
+export type BaseParams = {
     markdown: string;
+    markdownPath?: string;
+    skeletonPath?: string;
     hooks?: CustomRendererHooks;
 };
 
-export type DiplodocParameters = {
+export type DiplodocParams = {
     lang?: string;
+    notesAutotitle?: boolean;
 };
 
-function render(parameters: RenderParameters) {
-    if (!validParameters(parameters)) {
-        throw new Error('invalid parameters');
-    }
+export function render(parameters: RenderParams) {
+    validateParams(parameters);
 
+    const {markdown} = parameters;
+    const md = createRenderer(parameters);
+
+    md.render(markdown, {
+        source: markdown.split('\n'),
+    });
+
+    const state = (md.renderer as MarkdownRenderer<SkeletonRendererState>)
+        .state as SkeletonRendererState;
+
+    const xlf = XLF.generate(parameters, state.segments);
+
+    return {skeleton: state.result, xlf, units: state.segments};
+}
+
+export function createRenderer(parameters: RenderParams) {
     const {markdown, lang} = parameters;
 
-    const md = new MarkdownIt({html: true}) as HooksParameters['markdownit'];
-    const env: MarkdownRendererEnv = {source: markdown.split('\n')};
+    const md = new MarkdownIt({html: true}) as HooksParams['markdownit'];
 
-    const {handlers} = skeletonHandlers.generate();
-
-    const skeletonHooks = hooks.generate({markdownit: md});
+    const skeletonHooks = generateHooks({markdownit: md, source: markdown});
     const allHooks: CustomRendererHooks[] = [
         MarkdownRenderer.defaultHooks,
         skeletonHooks.hooks,
@@ -61,15 +78,20 @@ function render(parameters: RenderParameters) {
     const mergedHooks = mergeHooks(...allHooks);
 
     const mdOptions: MarkdownRendererParams<HooksState> = {
-        handlers,
-        initState: skeletonHooks.initState,
+        initState: () => ({
+            ...skeletonHooks.initState(),
+            ...rulesInitState(),
+        }),
         rules,
         hooks: mergedHooks,
     };
     const diplodocOptions = {
         lang: lang ?? 'ru',
+        notesAutotitle: false,
         path: '',
     };
+
+    md.disable('reference');
 
     // diplodoc plugins
     md.use(meta, diplodocOptions);
@@ -88,18 +110,12 @@ function render(parameters: RenderParameters) {
 
     md.use(mdRenderer, mdOptions);
 
-    return md.render(markdown, env);
+    return md;
 }
 
-function validParameters(parameters: RenderParameters) {
+export function validateParams(parameters: RenderParams) {
     const {markdown, lang} = parameters;
 
-    const markdownCondition = markdown !== undefined;
-    const langCondition = lang === undefined || lang === 'ru' || lang === 'en';
-    const conditions = [markdownCondition, langCondition];
-
-    return conditions.reduce((a, v) => a && v, true);
+    ok(markdown !== undefined, 'Markdown is empty');
+    ok(lang === undefined || lang === 'ru' || lang === 'en', 'Unexpected lang');
 }
-
-export {render, validParameters};
-export default {render, validParameters};

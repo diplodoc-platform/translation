@@ -25,7 +25,7 @@ exports[`parses translation units parses sources when targets are absent with us
 Array [
   Array [
     Object {
-      "data": "target",
+      "data": "source",
       "nodeType": "open",
       "type": "tag",
     },
@@ -34,14 +34,14 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "target",
+      "data": "source",
       "nodeType": "close",
       "type": "tag",
     },
   ],
   Array [
     Object {
-      "data": "target",
+      "data": "source",
       "nodeType": "open",
       "type": "tag",
     },
@@ -50,7 +50,7 @@ Array [
       "type": "text",
     },
     Object {
-      "data": "target",
+      "data": "source",
       "nodeType": "close",
       "type": "tag",
     },

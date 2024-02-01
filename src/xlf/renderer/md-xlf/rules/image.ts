@@ -45,15 +45,8 @@ function imageClose(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: 
     const title = token.attrGet('title');
     if (title?.length) {
         rendered += generateX({
-            ctype: 'image_attributes_title_open',
-            equivText: '"',
-        });
-
-        rendered += title;
-
-        rendered += generateX({
-            ctype: 'image_attributes_title_close',
-            equivText: '"',
+            ctype: 'image_attributes_title',
+            equivText: title,
         });
     }
 

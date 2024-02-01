@@ -1,18 +1,15 @@
-import {parseTranslations} from './index';
-import {TransUnitParameters, generateTemplate, generateTransUnit} from 'src/xlf/generator';
+import {parse} from './index';
+import {TransUnitParams, XLF} from 'src/xlf';
 
-const templateParameters = {
+const templateParams = {
     source: {language: 'en', locale: 'US' as const},
     target: {language: 'ru', locale: 'RU' as const},
     markdownPath: 'file.md',
     skeletonPath: 'file.skl.md',
 };
 
-const {
-    template: [before, after],
-} = generateTemplate(templateParameters);
-
-const generateXLF = (units: TransUnitParameters[]) => before + units.map(generateTransUnit) + after;
+const generateXLF = (units: TransUnitParams[]) =>
+    XLF.generate(templateParams, units.map(XLF.generateTransUnit));
 
 describe('smoke', () => {
     it('works', () => {
@@ -21,7 +18,7 @@ describe('smoke', () => {
             {target: 'Фрагмент Текста', id: 2},
         ];
         const xlf = generateXLF(units);
-        parseTranslations({xlf});
+        parse({xlf});
     });
 });
 
@@ -32,16 +29,16 @@ describe('validates parameters', () => {
             {target: 'Фрагмент Текста', id: 2},
         ];
         const xlf = generateXLF(units);
-        parseTranslations({xlf});
+        expect(() => parse({xlf})).not.toThrow();
     });
 
     it('throws on invalid parameters', () => {
-        const invalidXLF = before + '</kek>' + after;
+        const invalidXLF = XLF.generate(templateParams, ['</kek>']);
 
         // empty xlf is invalid
-        expect(() => parseTranslations({xlf: ''})).toThrow();
+        expect(() => parse({xlf: ''})).toThrow();
         // invalid xml is invalid xlf
-        expect(() => parseTranslations({xlf: invalidXLF})).toThrow();
+        expect(() => parse({xlf: invalidXLF})).toThrow();
     });
 });
 
@@ -52,7 +49,7 @@ describe('parses translation units', () => {
             {target: 'Фрагмент Текста', id: 2},
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(2);
         expect(translations).toMatchSnapshot();
@@ -61,7 +58,7 @@ describe('parses translation units', () => {
     it('parses single trans-unit', () => {
         const units = [{target: 'Предложение о чем-то', id: 1}];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(1);
         expect(translations).toMatchSnapshot();
@@ -73,7 +70,7 @@ describe('parses translation units', () => {
             {source: 'Фрагмент Текста', id: 2},
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf, useSource: true});
+        const translations = parse({xlf, useSource: true});
 
         expect(translations.length).toStrictEqual(2);
         expect(translations).toMatchSnapshot();
@@ -93,7 +90,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -111,7 +108,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -129,7 +126,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -147,7 +144,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -165,7 +162,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -183,7 +180,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -201,7 +198,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -219,7 +216,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -232,7 +229,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -246,7 +243,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -268,7 +265,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -282,7 +279,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -296,7 +293,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
 
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
@@ -310,7 +307,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -323,7 +320,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -336,7 +333,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -349,7 +346,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -362,7 +359,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -375,7 +372,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -388,7 +385,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -401,7 +398,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });
@@ -418,7 +415,7 @@ describe('parses translation units with <g> and <x> tags', () => {
             },
         ];
         const xlf = generateXLF(units);
-        const translations = parseTranslations({xlf});
+        const translations = parse({xlf});
         expect(translations.length).toStrictEqual(units.length);
         expect(translations).toMatchSnapshot();
     });

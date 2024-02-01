@@ -1,41 +1,34 @@
-import {parser} from 'src/xlf';
+import {ok} from 'assert';
+import {XLF} from 'src/xlf';
 import {XLFMDRenderer} from 'src/xlf/renderer/xlf-md';
 
-export type TranslationsParameters = {
-    xlf: string;
+export type TranslationsParams = {
+    xlf?: string;
+    units?: string[];
     useSource?: boolean;
 };
 
-function getTranslations(parameters: TranslationsParameters) {
-    if (!validTranslationsParameters(parameters)) {
-        throw new Error('invalid parameters');
-    }
-    const translationsTokens = parser.parseTranslations(parameters);
+export function getTranslations(parameters: TranslationsParams) {
+    validateTranslationsParams(parameters);
+
+    const translationsTokens = XLF.parse(parameters);
     const renderer = new XLFMDRenderer();
 
     const translations = new Map<string, string>();
-    let rendered = '';
+
     for (let i = 0; i < translationsTokens.length; i++) {
         const tokens = translationsTokens[i];
 
-        rendered += renderer.render(tokens);
-
-        translations.set(String(i + 1), rendered);
-        rendered = '';
+        translations.set(String(i + 1), renderer.render(tokens));
     }
 
     return translations;
 }
 
-function validTranslationsParameters(parameters: TranslationsParameters) {
-    const conditions = [
+function validateTranslationsParams(parameters: TranslationsParams) {
+    ok(
         parameters.useSource === undefined || typeof parameters.useSource === 'boolean',
-        parameters.xlf !== undefined,
-        parser.validParameters(parameters),
-    ];
-
-    return conditions.reduce((a, v) => a && v, true);
+        'Unexpected useSource value',
+    );
+    ok(parameters.xlf || parameters.units?.length, 'Source is empty');
 }
-
-export {getTranslations, validTranslationsParameters};
-export default {getTranslations, validTranslationsParameters};

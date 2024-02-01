@@ -1,0 +1,17 @@
+import Renderer from 'markdown-it/lib/renderer';
+
+function escapeMarkupLikeChars(tokens: Token[], idx: number) {
+    const inline = tokens[idx + 1];
+    if (inline && inline.children?.length) {
+        for (const token of inline.children) {
+            if (token.type === 'text' || token.type === 'code_inline') {
+                token.content = token.content.replace(/\|/g, '\\|');
+            }
+        }
+    }
+}
+
+export const table: Renderer.RenderRuleRecord = {
+    th_open: escapeMarkupLikeChars,
+    td_open: escapeMarkupLikeChars,
+};

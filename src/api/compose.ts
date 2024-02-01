@@ -1,34 +1,47 @@
-import {getTranslations, validTranslationsParameters} from 'src/xlf/translations';
-import markdown from 'src/markdown';
+import {ok} from 'assert';
+import {getTranslations} from 'src/xlf/translations';
 
-export type ComposeParameters = {
+export type ComposeParams = {
     skeleton: string;
-    xlf: string;
+    xlf?: string;
+    units?: string[];
     useSource?: boolean;
-} & markdown.renderer.DiplodocParameters;
+};
 
-function compose(parameters: ComposeParameters) {
-    if (!validParameters(parameters)) {
-        throw new Error('invalid parameters');
-    }
+export function compose(parameters: ComposeParams) {
+    validateParams(parameters);
 
     const translations = getTranslations(parameters);
-    const translated = markdown.renderer.render({...parameters, translations});
 
-    return translated;
+    return replace(parameters.skeleton, translations)[0];
 }
 
-function validParameters(parameters: ComposeParameters) {
-    const conditions = [
+function replace(source: string, translations: Map<string, string>): [string, boolean] {
+    let matched = false;
+
+    const result = source.replace(/%%%(\d+)%%%/g, (_, id: string) => {
+        matched = true;
+
+        if (!translations.has(id)) {
+            throw new Error('Translation token not found.');
+        }
+
+        let [value, submatch] = replace(translations.get(id) as string, translations);
+        while (submatch) {
+            [value, submatch] = replace(value, translations);
+        }
+
+        return value;
+    });
+
+    return [result, matched];
+}
+
+function validateParams(parameters: ComposeParams) {
+    ok(
         parameters.useSource === undefined || typeof parameters.useSource === 'boolean',
-        parameters.skeleton !== undefined,
-        parameters.xlf !== undefined,
-        validTranslationsParameters(parameters),
-        markdown.renderer.validDiplodocParameters(parameters),
-    ];
-
-    return conditions.reduce((a, v) => a && v, true);
+        'Unexpected useSource value',
+    );
+    ok(parameters.skeleton, 'Skeleton is empty');
+    ok(parameters.xlf || parameters.units?.length, 'Source is empty');
 }
-
-export {compose};
-export default {compose};

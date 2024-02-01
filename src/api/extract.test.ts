@@ -1,4 +1,4 @@
-import {ExtractParameters, extract} from './extract';
+import {ExtractParams, extract} from './extract';
 
 describe('smoke', () => {
     it('works', () => {
@@ -53,7 +53,7 @@ describe('validates parameters', () => {
             },
             target: {
                 language: 'us',
-                locale: 'XX' as ExtractParameters['target']['locale'],
+                locale: 'XX' as ExtractParams['target']['locale'],
             },
         };
 
@@ -66,7 +66,7 @@ describe('validates parameters', () => {
                 locale: 'RU' as const,
             },
             target: {
-                language: 'xx' as ExtractParameters['target']['language'],
+                language: 'xx' as ExtractParams['target']['language'],
                 locale: 'US' as const,
             },
         };

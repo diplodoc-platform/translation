@@ -1,4 +1,4 @@
-import {TemplateParameters, generateTemplate} from './template';
+import {TemplateParams, generate} from './template';
 
 describe('smoke', () => {
     it('works', () => {
@@ -15,7 +15,7 @@ describe('smoke', () => {
             markdownPath: 'file.md',
         };
 
-        generateTemplate(parameters);
+        generate(parameters, []);
     });
 });
 
@@ -34,7 +34,7 @@ describe('validates parameters', () => {
             },
         };
 
-        generateTemplate(parameters);
+        generate(parameters, []);
     });
 
     it('throws on invalid parameters', () => {
@@ -43,7 +43,7 @@ describe('validates parameters', () => {
             skeletonPath: 'file.skl.md',
             source: {
                 language: 'ru',
-                locale: 'XX' as TemplateParameters['source']['locale'],
+                locale: 'XX' as TemplateParams['source']['locale'],
             },
             target: {
                 language: 'en',
@@ -59,13 +59,13 @@ describe('validates parameters', () => {
                 locale: 'RU' as const,
             },
             target: {
-                language: 'xx' as TemplateParameters['target']['language'],
+                language: 'xx' as TemplateParams['target']['language'],
                 locale: 'US' as const,
             },
         };
 
-        expect(() => generateTemplate(invalidLanguage)).toThrow();
-        expect(() => generateTemplate(invalidLocale)).toThrow();
+        expect(() => generate(invalidLanguage, [])).toThrow();
+        expect(() => generate(invalidLocale, [])).toThrow();
     });
 });
 
@@ -84,14 +84,8 @@ describe('template', () => {
             },
         };
 
-        const {
-            template: [before, after],
-            indentation,
-        } = generateTemplate(parameters);
+        const template = generate(parameters, []);
 
-        expect(indentation).toStrictEqual(4);
-        expect(before).toMatchSnapshot();
-        expect(after).toMatchSnapshot();
-        expect(before + after).toMatchSnapshot();
+        expect(template).toMatchSnapshot();
     });
 });

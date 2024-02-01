@@ -1,6 +1,5 @@
-import diplodocRules, {DiplodocRulesState} from './diplodoc';
-
-import {LinkRuleState, link, initState as linkInitState} from './link';
+import {rules as diplodocRules} from './diplodoc';
+import {LinkRuleState, link} from './link';
 import {pair} from './pair';
 import {codeInline} from './code-inline';
 import {text} from './text';
@@ -10,14 +9,10 @@ import {anchor} from './anchor';
 import {file} from './file';
 import {htmlInline} from './html-inline';
 
-export type XLFRulesState = LinkRuleState & DiplodocRulesState;
-
-function generate() {
-    return {rules: rules(), initState: initState()};
-}
+export type XLFRulesState = LinkRuleState;
 
 // blocks(container and leaf) create group
-function rules() {
+export function rules() {
     return {
         code_block: () => '',
         fence: () => '',
@@ -36,7 +31,7 @@ function rules() {
         blockquote_close: () => '',
         list_item_open: () => '',
         list_item_close: () => '',
-        ...diplodocRules.rules,
+        ...diplodocRules,
         ...pair,
         ...codeInline,
         ...link,
@@ -49,12 +44,8 @@ function rules() {
     };
 }
 
-function initState() {
-    return () => ({
-        ...linkInitState(),
-        ...diplodocRules.initState(),
-    });
+export function initState() {
+    return {
+        reflink: false,
+    };
 }
-
-export {generate};
-export default {generate};

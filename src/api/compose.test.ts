@@ -1,29 +1,24 @@
-import {ComposeParameters, compose} from './compose';
-import {generateTemplate, generateTransUnit} from 'src/xlf/generator';
+import {ComposeParams, compose} from './compose';
+import {XLF} from 'src/xlf';
 
-const templateParameters = {
+const templateParams = {
     source: {language: 'en', locale: 'US' as const},
     target: {language: 'ru', locale: 'RU' as const},
     markdownPath: 'file.md',
     skeletonPath: 'file.skl.md',
 };
 
-const {
-    template: [before, after],
-    indentation,
-} = generateTemplate(templateParameters);
-
 const transUnits = [
-    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0, indentation},
-    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1, indentation},
+    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0},
+    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1},
 ];
 
-const xlf = before + transUnits.map(generateTransUnit).join('') + after;
+const xlf = XLF.generate(templateParams, transUnits.map(XLF.generateTransUnit));
 
 describe('smoke', () => {
     it('works', () => {
         const parameters = {
-            skeleton: '',
+            skeleton: '%%%1%%%',
             xlf: xlf,
         };
 
@@ -34,7 +29,7 @@ describe('smoke', () => {
 describe('validates parameters', () => {
     it('works with valid parameters', () => {
         const parameters = {
-            skeleton: '',
+            skeleton: '%%%1%%%',
             xlf: xlf,
             useSource: true,
         };
@@ -52,9 +47,9 @@ describe('validates parameters', () => {
         const invalidLang = {xlf, skeleton: '', lang: 'xx'};
         const invalidUseSource = {xlf, useSource: null};
 
-        expect(() => compose(invalidSkeleton as ComposeParameters)).toThrow();
-        expect(() => compose(invalidXLF as ComposeParameters)).toThrow();
-        expect(() => compose(invalidLang as ComposeParameters)).toThrow();
-        expect(() => compose(invalidUseSource as unknown as ComposeParameters)).toThrow();
+        expect(() => compose(invalidSkeleton as ComposeParams)).toThrow();
+        expect(() => compose(invalidXLF as ComposeParams)).toThrow();
+        expect(() => compose(invalidLang as ComposeParams)).toThrow();
+        expect(() => compose(invalidUseSource as unknown as ComposeParams)).toThrow();
     });
 });

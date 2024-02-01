@@ -1,9 +1,3 @@
-export type DiplodocRulesState = {};
-
-function initState() {
-    return () => ({});
-}
-
 const always =
     <T>(a: T) =>
     () =>
@@ -11,7 +5,7 @@ const always =
 
 const alwaysEmptyString = always('');
 
-const rules = {
+export const rules = {
     // notes
     yfm_note_open: alwaysEmptyString,
     yfm_note_close: alwaysEmptyString,
@@ -72,6 +66,3 @@ const rules = {
     yfm_td_open: alwaysEmptyString,
     yfm_td_close: alwaysEmptyString,
 };
-
-export {rules, initState};
-export default {rules, initState};

@@ -1,25 +1,12 @@
-import {XLFRulesState} from './rules';
+import {XLFRulesState, initState} from './rules';
 
-export type XLFRendererState = XLFState & XLFRulesState;
-export type XLFState = {
-    xlf: {
-        id: number;
-        indentation: number;
-    };
-};
+export type XLFRenderState = XLFRulesState;
 
-export type XLFInitStateParameters = {
-    indentation: number;
-};
+export type XLFInitStateParams = XLFRulesState;
 
-function xlfInitState(parameters: XLFInitStateParameters) {
+export function state(externalState: XLFInitStateParams) {
     return {
-        xlf: {
-            id: 1,
-            indentation: parameters.indentation,
-        },
+        ...initState(),
+        ...externalState,
     };
 }
-
-export {xlfInitState};
-export default {xlfInitState};
