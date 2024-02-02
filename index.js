@@ -74,7 +74,7 @@ function diff(file, hunks) {
     }
 
     // files = [
-    //     'ydb/tutorials/index.md'
+    //     'wiki/release-notes/2210.md'
     // ];
 
     for (const file of files) {

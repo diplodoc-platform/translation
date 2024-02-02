@@ -39,7 +39,7 @@ function isRefLink(open: Token, text: Token, close: Token) {
 }
 
 export const link: Renderer.RenderRuleRecord = {
-    link_open: function(this: CustomRenderer<SkeletonRendererState>, tokens: Token[], idx) {
+    link_open: function (this: CustomRenderer<SkeletonRendererState>, tokens: Token[], idx) {
         const open = tokens[idx];
         const text = tokens[idx + 1];
         const close = tokens[idx + 2];

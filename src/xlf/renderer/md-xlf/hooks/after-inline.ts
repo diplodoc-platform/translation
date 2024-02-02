@@ -1,14 +1,13 @@
 import MarkdownIt from 'markdown-it';
-import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
-import {CustomRendererHookParams} from '@diplodoc/markdown-it-custom-renderer';
+import {CustomRenderer, CustomRendererHookParams} from '@diplodoc/markdown-it-custom-renderer';
 
-import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
+import {XLFRenderState} from 'src/xlf/renderer/md-xlf/state';
 import {unescapeSymbols} from 'src/xlf/symbols';
 
 const escapeHTML = new MarkdownIt().utils.escapeHtml;
 
-function afterInline(
-    this: MarkdownRenderer<XLFRendererState>,
+export function afterInline(
+    this: CustomRenderer<XLFRenderState>,
     parameters: CustomRendererHookParams,
 ) {
     if (!parameters.rendered) {
@@ -27,6 +26,3 @@ function afterInline(
 
     return '';
 }
-
-export {afterInline};
-export default {afterInline};

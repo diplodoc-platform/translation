@@ -2,7 +2,7 @@ import {CustomRenderer, CustomRendererHookParams} from '@diplodoc/markdown-it-cu
 
 import {parseInclude} from 'src/include';
 
-function includes(this: CustomRenderer, parameters: CustomRendererHookParams) {
+export function includes(this: CustomRenderer, parameters: CustomRendererHookParams) {
     const {tokens} = parameters;
 
     for (let i = 0; i < tokens.length; i++) {
@@ -14,6 +14,3 @@ function includes(this: CustomRenderer, parameters: CustomRendererHookParams) {
 
     return '';
 }
-
-export {includes};
-export default {includes};

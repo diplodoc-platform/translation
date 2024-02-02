@@ -1,13 +1,13 @@
 import Renderer from 'markdown-it/lib/renderer';
-import {diplodoc} from './diplodoc';
 import {link, initState as linkInitState} from './link';
 import {image, initState as imageInitState} from './image';
 import {table} from './table';
+import {includes} from './includes';
 
 import {token} from 'src/utils';
 
 const rules: Renderer.RenderRuleRecord = {
-    ...diplodoc,
+    ...includes,
     ...link,
     ...image,
     ...table,

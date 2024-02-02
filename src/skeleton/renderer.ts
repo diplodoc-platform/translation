@@ -1,11 +1,11 @@
 import {ok} from 'assert';
 import MarkdownIt from 'markdown-it';
 import {
-    MarkdownRenderer,
-    MarkdownRendererEnv,
-    MarkdownRendererParams,
-    mdRenderer,
-} from '@diplodoc/markdown-it-markdown-renderer';
+    CustomRenderer,
+    CustomRendererHooks,
+    CustomRendererParams,
+    customRenderer,
+} from '@diplodoc/markdown-it-custom-renderer';
 
 // configure with diplodoc plugins
 // @ts-ignore
@@ -26,8 +26,7 @@ import table from '@diplodoc/transform/lib/plugins/table';
 
 import {HooksParams, HooksState, generate as generateHooks} from './hooks';
 import {rules, initState as rulesInitState} from './rules';
-import {mergeHooks} from 'src/utils';
-import {CustomRendererHooks} from '@diplodoc/markdown-it-custom-renderer';
+import {handlers} from './handlers';
 import {TemplateParams, XLF} from 'src/xlf';
 import {LinkState} from 'src/skeleton/rules/link';
 import {ImageState} from 'src/skeleton/rules/image';
@@ -57,7 +56,7 @@ export function render(parameters: RenderParams) {
         source: markdown.split('\n'),
     });
 
-    const state = (md.renderer as MarkdownRenderer<SkeletonRendererState>)
+    const state = (md.renderer as CustomRenderer<SkeletonRendererState>)
         .state as SkeletonRendererState;
 
     const xlf = XLF.generate(parameters, state.segments);
@@ -71,19 +70,14 @@ export function createRenderer(parameters: RenderParams) {
     const md = new MarkdownIt({html: true}) as HooksParams['markdownit'];
 
     const skeletonHooks = generateHooks({markdownit: md, source: markdown});
-    const allHooks: CustomRendererHooks[] = [
-        MarkdownRenderer.defaultHooks,
-        skeletonHooks.hooks,
-    ].concat(parameters.hooks ?? []);
-    const mergedHooks = mergeHooks(...allHooks);
-
-    const mdOptions: MarkdownRendererParams<HooksState> = {
+    const mdOptions: CustomRendererParams<HooksState> = {
         initState: () => ({
             ...skeletonHooks.initState(),
             ...rulesInitState(),
         }),
         rules,
-        hooks: mergedHooks,
+        handlers,
+        hooks: skeletonHooks.hooks,
     };
     const diplodocOptions = {
         lang: lang ?? 'ru',
@@ -92,6 +86,10 @@ export function createRenderer(parameters: RenderParams) {
     };
 
     md.disable('reference');
+    md.disable('escape');
+    md.disable('entity');
+
+    md.normalizeLink = (a: string) => a;
 
     // diplodoc plugins
     md.use(meta, diplodocOptions);
@@ -99,16 +97,16 @@ export function createRenderer(parameters: RenderParams) {
     md.use(cut, diplodocOptions);
     md.use(sup, diplodocOptions);
     md.use(checkbox, diplodocOptions);
-    md.use(anchors, diplodocOptions);
     md.use(monospace, diplodocOptions);
     md.use(imsize, diplodocOptions);
     md.use(file, diplodocOptions);
+    md.use(anchors, diplodocOptions);
     md.use(includes, diplodocOptions);
-    md.use(tabs, diplodocOptions);
+    // md.use(tabs, diplodocOptions);
     md.use(video, diplodocOptions);
     md.use(table, diplodocOptions);
 
-    md.use(mdRenderer, mdOptions);
+    md.use(customRenderer, mdOptions);
 
     return md;
 }

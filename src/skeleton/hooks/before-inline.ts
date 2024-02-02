@@ -16,9 +16,9 @@ export function beforeInline(parameters: CustomRendererHookParams) {
             });
             const text = token('text', {
                 // stupid special case
-                content: (['`', '``', '```'].includes(tokens[idx].content)
+                content: ['`', '``', '```'].includes(tokens[idx].content)
                     ? ' ' + tokens[idx].content + ' '
-                    : tokens[idx].content),
+                    : tokens[idx].content,
             });
             const codeInlineClose = token('code_inline_close', {
                 content: '',

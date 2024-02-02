@@ -1,9 +1,9 @@
-import {MarkdownRendererLifeCycle} from '@diplodoc/markdown-it-markdown-renderer';
-
+import {CustomRendererLifeCycle} from '@diplodoc/markdown-it-custom-renderer';
 import {MetaParams, hook as meta} from './meta';
 import {AfterInlineState, AfterInlineStateParams, afterInline, initState} from './after-inline';
 import {beforeInline} from './before-inline';
-import {includes} from './diplodoc';
+import {image} from './image';
+import {includes} from './includes';
 
 export type HooksState = AfterInlineState;
 export type HooksParams = MetaParams;
@@ -11,9 +11,9 @@ export type HooksParams = MetaParams;
 export function generate(parameters: HooksParams & AfterInlineStateParams) {
     return {
         hooks: {
-            [MarkdownRendererLifeCycle.BeforeRender]: [meta(parameters), includes],
-            [MarkdownRendererLifeCycle.AfterInlineRender]: [afterInline],
-            [MarkdownRendererLifeCycle.BeforeInlineRender]: [beforeInline],
+            [CustomRendererLifeCycle.BeforeRender]: [image, meta(parameters), includes],
+            [CustomRendererLifeCycle.AfterInlineRender]: [afterInline],
+            [CustomRendererLifeCycle.BeforeInlineRender]: [beforeInline],
         },
         initState: initState(parameters),
     };

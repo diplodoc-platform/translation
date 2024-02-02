@@ -59,15 +59,14 @@ function search(where: string, token: Token, from: number): [string, number] {
     let index = where.indexOf(token.content, from);
 
     // console.log(`
-    //     SEARCH: ${token.content}
-    //     WHERE:  ${where.slice(from, from + token.content.length + 10)}
-    //     RESULT: ${index > -1 ? '-'.repeat(index - from) + '^' : index}
+    //     SEARCH: |${token.content}|
+    //     WHERE:  |${where.slice(from, from + token.content.length + 10)}|
+    //     RESULT: |${index > -1 ? '-'.repeat(index - from) + '^' : index}|
     // `);
 
     // for regexps
     if (index === -1) {
-        const content = token.content
-            .replace(/\\\\/g, '\\');
+        const content = token.content.replace(/\\\\/g, '\\');
 
         index = where.indexOf(content, from);
 
@@ -79,8 +78,7 @@ function search(where: string, token: Token, from: number): [string, number] {
 
     // for link text
     if (index === -1) {
-        const content = token.content
-            .replace(/(\[|\])/g, '\\$1');
+        const content = token.content.replace(/(\[|\])/g, '\\$1');
 
         index = where.indexOf(content, from);
 
@@ -94,7 +92,7 @@ function search(where: string, token: Token, from: number): [string, number] {
     if (index === -1) {
         const parts = token.content.split(/ |\n/g);
 
-        const start = index = where.indexOf(parts.shift(), from);
+        const start = (index = where.indexOf(parts.shift(), from));
         while (parts.length && index > -1) {
             const part = parts.shift();
             index = where.indexOf(part, index);

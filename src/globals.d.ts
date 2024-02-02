@@ -5,4 +5,8 @@ declare global {
         skip?: string[];
         reflink?: boolean;
     };
+
+    type Env = {
+        source: string[];
+    };
 }

@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it';
-import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
+import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
 
 export type MetaParams = {
@@ -11,7 +11,7 @@ export type MarkdownItWithMeta = MarkdownIt & {
 };
 
 export function hook(parameters: MetaParams) {
-    return function (this: MarkdownRenderer) {
+    return function (this: CustomRenderer) {
         const meta = parameters.markdownit.meta ?? {};
         const consumer = new Consumer(this.state.result, this.state.cursor, this.state);
 

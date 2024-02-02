@@ -1,5 +1,4 @@
 import MarkdownIt from 'markdown-it';
-import {MarkdownRenderer, MarkdownRendererEnv} from '@diplodoc/markdown-it-markdown-renderer';
 import {
     CustomRendererHooks,
     CustomRendererParams,
@@ -29,9 +28,7 @@ export function render(tokens: Token[], state: XLFRenderState, parameters: XLFRe
     const xlfRenderer = new MarkdownIt({html: true});
     const xlfHooks: {hooks: CustomRendererHooks} = hooks.generate();
 
-    const allHooks: CustomRendererHooks[] = [MarkdownRenderer.defaultHooks, xlfHooks.hooks].concat(
-        parameters.hooks ?? [],
-    );
+    const allHooks: CustomRendererHooks[] = [xlfHooks.hooks].concat(parameters.hooks ?? []);
     const mergedHooks = mergeHooks(...allHooks);
     const xlfOptions: CustomRendererParams<XLFRenderState> = {
         rules: rules(),
@@ -39,8 +36,8 @@ export function render(tokens: Token[], state: XLFRenderState, parameters: XLFRe
         initState: () => state,
     };
 
-    const env: MarkdownRendererEnv = {
-        source: [],
+    const env = {
+        source: [] as string[],
     };
 
     xlfRenderer.use(customRenderer, xlfOptions);
