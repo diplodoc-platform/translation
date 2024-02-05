@@ -126,6 +126,14 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
 
 function validateParams(parameters: GetTranslationsParams) {
     if (parameters.units) {
+        parameters.units.forEach((unit) => {
+            const validation = XMLValidator.validate(unit);
+
+            if (validation !== true) {
+                console.log('PROBLEM', unit)
+                throw validation.err.msg;
+            }
+        })
         return;
     }
 

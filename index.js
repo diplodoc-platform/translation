@@ -70,7 +70,7 @@ function diff(file, hunks) {
     }
 
     if (!files.length || allFiles) {
-        files = glob.sync('**/*.md', {cwd: '../../docs-source/ru'});
+        files = glob.sync('**/*.md', {cwd: '../../docfiles/ru'});
     }
 
     // files = [
@@ -86,7 +86,7 @@ function diff(file, hunks) {
             continue;
         }
 
-        const content = readFileSync(resolve('../../docs-source/ru', file), 'utf8');
+        const content = readFileSync(resolve('../../docfiles/ru', file), 'utf8');
 
         if (!content) {
             continue;
