@@ -8,8 +8,10 @@ module.exports = {
     },
     testEnvironment: 'node',
     // testMatch: ['**/md-xlf/*.test.ts'],
-    // testMatch: ['**/skeleton/*.spec.ts'],
-    // testMatch: ['**/integration/*.spec.ts'],
+    // testMatch: ['**/xlf-md/*.test.ts'],
+    // testMatch: ['**/liquid/*.test.ts'],
+    // testMatch: ['**/skeleton/*.test.ts'],
+    // testMatch: ['**/regression/*.spec.ts'],
     transform: {
         '^.+\\.tsx?$': ['esbuild-jest', {tsconfig: './tsconfig.json'}],
     },

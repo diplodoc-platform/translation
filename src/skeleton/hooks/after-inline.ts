@@ -11,6 +11,7 @@ type HookMap = {
 export type AfterInlineState = {
     result: string;
     cursor: number;
+    gap: number;
     hooks: {
         before: HookMap;
         after: HookMap;

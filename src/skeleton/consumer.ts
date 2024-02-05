@@ -1,13 +1,14 @@
 import type {SkeletonRendererState} from 'src/skeleton/renderer';
 import {ok} from 'assert';
 import {sentenize} from '@diplodoc/sentenizer';
-import MdIt from 'markdown-it';
 import {XLF, XLFRenderState} from 'src/xlf';
+import {token} from 'src/utils';
 
-const md = new MdIt();
-const state = new md.core.State('', md, {});
-const hasContent = (token: Token) => token.content?.trim();
-const br = (token: Token) => token.type === 'softbreak';
+type NonEmptyString = '${.*}';
+
+const hasContent = (token: Token) => token.content;
+const notFake = (token: Token) => !token.fake;
+const br = (token: Token) => ['hardbreak', 'softbreak'].includes(token.type);
 const reflink = (token: Token) => token.reflink;
 const replace = (from: number, to: number, source: string, past: string) => {
     const start = source.slice(0, from);
@@ -15,105 +16,193 @@ const replace = (from: number, to: number, source: string, past: string) => {
 
     return start + past + end;
 };
+const isContentful = (token: Token) => !reflink(token) && token.content?.trim();
+const firstContentful = (tokens: Token[]): [null | Token, number] => {
+    const index = tokens.findIndex(isContentful);
 
-const first = <T>(array: T[]): T => {
-    return array[0];
+    return index > -1 ? [tokens[index], index] : [null, -1];
 };
-const last = <T>(array: T[]): T => {
-    return array[array.length - 1];
+const lastContentful = (tokens: Token[]): [null | Token, number] => {
+    const index = tokens.findLastIndex(isContentful);
+
+    return index > -1 ? [tokens[index], index] : [null, -1];
 };
 
 function dropUselessTokens(tokens: Token[]) {
-    const before: Token[] = [];
-    const after: Token[] = [];
+    const [, first] = firstContentful(tokens);
+    const [, last] = lastContentful(tokens);
 
-    tokens = tokens.slice();
-
-    const isUseless = (token: Token) =>
-        ['anchor'].includes(token.type) || reflink(token) || br(token) || !hasContent(token);
-
-    while (tokens.length && isUseless(first(tokens))) {
-        before.push(tokens.shift() as Token);
+    if (first === -1) {
+        return [tokens, [], []];
     }
 
-    while (tokens.length && isUseless(last(tokens))) {
-        after.unshift(tokens.pop() as Token);
-    }
-
-    return [before, tokens, after];
+    return [tokens.slice(0, first), tokens.slice(first, last + 1), tokens.slice(last + 1)];
 }
 
-function normalize(token: Token) {
-    if (!token.content) {
-        return '';
-    }
+type Gobbler<O = any, I = string | Token | (string | Token)[]> = (content: string, window: [number, number], token: I) => O;
 
-    if (token.type === 'html_inline') {
-        return ' ';
-    }
+type SearchRule = (content: string, from: number, match: string) => [number, number, string];
 
-    return token.content;
+function eruler(content: string, [start, end]: [number, number], tokens: (string | Token)[],  action: Gobbler) {
+    return tokens.reduce(([from, to], token) => {
+        if (!token || typeof token === 'object' && !token.content && !token.skip) {
+            return [from, to];
+        }
+
+        const [_from, _to] = action(content, [to, end], token);
+
+        // assert?
+
+        return [from === -1 ? _from : from, _to];
+    }, [-1, start]);
 }
 
-function search(where: string, token: Token, from: number): [string, number] {
-    let index = where.indexOf(token.content, from);
+const searchCommon: SearchRule = (content, from, match) => {
+    const index = content.indexOf(match, from);
 
-    // console.log(`
-    //     SEARCH: |${token.content}|
-    //     WHERE:  |${where.slice(from, from + token.content.length + 10)}|
-    //     RESULT: |${index > -1 ? '-'.repeat(index - from) + '^' : index}|
-    // `);
+    return [index, index + match.length, match];
+};
 
-    // for regexps
-    if (index === -1) {
-        const content = token.content.replace(/\\\\/g, '\\');
+const searchTrimStart: SearchRule = (content, from, match) => {
+    while (match.startsWith(' ')) {
+        match = match.slice(1);
 
-        index = where.indexOf(content, from);
+        const index = content.indexOf(match, from);
 
         if (index > -1) {
-            token.content = content;
-            return [content, index];
+            return [index, index + match.length, match];
         }
     }
 
-    // for link text
-    if (index === -1) {
-        const content = token.content.replace(/(\[|\])/g, '\\$1');
+    return [-1, -1, ''];
+};
 
-        index = where.indexOf(content, from);
+const searchRegExp: SearchRule = (content, from, match) => {
+    const variant = match.replace(/\\\\/g, '\\');
+    const index = content.indexOf(variant, from);
 
-        if (index > -1) {
-            token.content = content;
-            return [content, index];
-        }
+    return [index, index + variant.length, variant];
+};
+
+const searchLinkText: SearchRule = (content, from, match) => {
+    const variant = match.replace(/(\[|])/g, '\\$1');
+    const index = content.indexOf(variant, from);
+
+    return [index, index + variant.length, variant];
+};
+
+const searchMultilineInlineCode: SearchRule = (content, from, match) => {
+    const parts = match.split(/[\s\n]/g);
+
+    let index;
+    const start = (index = content.indexOf(parts.shift() as string, from));
+    while (parts.length && index > -1) {
+        const part = parts.shift() as string;
+        index = content.indexOf(part, index);
+        index = index === -1 ? index : index + part.length;
     }
 
-    // for multiline inline code
     if (index === -1) {
-        const parts = token.content.split(/ |\n/g);
-
-        const start = (index = where.indexOf(parts.shift(), from));
-        while (parts.length && index > -1) {
-            const part = parts.shift();
-            index = where.indexOf(part, index);
-            index = index === -1 ? index : index + part.length;
-        }
-
-        if (index > -1) {
-            token.content = where.slice(start, index);
-            return [token.content, start];
-        }
+        return [-1, -1, match];
     }
 
-    return [token.content, index];
+    return [start, index, content.slice(start, index)];
+};
+
+const search: Gobbler<[number, number, string], NonEmptyString> =
+    (content, [start, end], match) => {
+        const matches = [searchCommon, searchTrimStart, searchRegExp, searchLinkText, searchMultilineInlineCode];
+
+        ok(match, `search aaaaaaaa empty ${match}`);
+
+        let from = -1, to = -1, variant = match;
+        while (matches.length && from === -1) {
+            start = start === -1 ? 0 : start;
+            [from, to, variant] = (matches.shift() as SearchRule)(content, start, match);
+            // console.log(`
+            //     SEARCH: |${match}|
+            //     WHERE:  |${content.slice(start, end)}|
+            //     RESULT: |${from > -1 ? '-'.repeat(from - start) + '^' : from}|
+            // `);
+        }
+
+        ok(from >= start, `search aaaaaaaa start: ${from} > ${start}`);
+        ok(to <= end, `search aaaaaaaa end: ${to} <= ${end}`);
+
+        return [from, to, variant];
+    };
+
+const skip: Gobbler<[number, number]> =
+    (content, [start, end], token) => {
+        let from = start === -1 ? 0 : start;
+        let to;
+
+        if (Array.isArray(token)) {
+            [from, to] = eruler(content, [from, end], token, skip);
+        } else if (token.skip) {
+            [from, to] = skip(content, [from, end], token.skip);
+            if (token.onskip) {
+                token.onskip(content, from, to);
+            }
+        } else {
+            const match = typeof token === 'string' ? token : token.content;
+
+            [from, to] = match
+                ? search(content, [start, end], match as NonEmptyString)
+                : [from, from];
+        }
+
+        ok(to <= end, `skip aaaaaaaa end: ${to} <= ${end}`);
+
+        return [from, to];
+    };
+
+const gobble: Gobbler<[number, number] | [number, number, string], Token> =
+    (content, [start, end], token) => {
+        if (token.skip) {
+            return skip(content, [start, end], token);
+        } else if (token.content) {
+            return search(content, [start, end], token.content as NonEmptyString);
+        }
+
+        return [-1, -1];
+    };
+
+function trim(part: Token[]) {
+    const [first, iFirst] = firstContentful(part);
+    if (first) {
+        part[iFirst] = token(first.type, {
+            ...first,
+            content: first.content.trimStart(),
+            generated: (first.generated || '') + '|trimStart',
+        });
+    }
+
+    const [last, iLast] = lastContentful(part);
+    if (last) {
+        part[iLast] = token(last.type, {
+            ...last,
+            content: last.content.trimEnd(),
+            generated: (last.generated || '') + '|trimEnd'
+        });
+    }
+
+    return part;
+}
+
+function exclude(content: string, tokens: Token[]) {
+    const part = trim(tokens.filter(hasContent));
+    const [, to] = eruler(content, [0, content.length], part, gobble);
+
+    return content.slice(to);
 }
 
 export class Consumer {
-    private xlfState: XLFRenderState;
-
     gap = 0;
 
     limit = Infinity;
+
+    private xlfState: XLFRenderState;
 
     constructor(
         public content: string,
@@ -124,111 +213,128 @@ export class Consumer {
     }
 
     token(type: string, props: Record<string, any> = {}) {
-        return Object.assign(new state.Token(type, '', 0), props);
+        return token(type, props);
     }
 
-    skip(part: string | null | undefined | Token[]) {
-        if (Array.isArray(part)) {
-            part.forEach((token) => this.skip((token.skip || '') as string));
-        }
+    skip(part: string | null | undefined | (Token | string)[]) {
+        if (part) {
+            const [from, to] = skip(this.content, [this.cursor, this.limit], part);
 
-        if (!part) {
-            return this;
-        }
-
-        const index = this.content.indexOf(part as string, this.cursor);
-        if (index > -1) {
-            this.cursor = index + part.length;
+            if (from > -1) {
+                this.cursor = to;
+            }
         }
 
         return this;
     }
 
     split(tokens: Token[]) {
-        const parts = [];
+        const parts: Token[][] = [];
         let content = '';
-        let part = [];
+        let part: Token[] = [];
+
+        const add = (token: Token | null) => token && (token.content || token.skip) && part.push(token);
+        const release = () => {
+            if (part.length) {
+                parts.push(trim(part.filter(notFake)));
+                part = [];
+                content = '';
+            }
+        };
 
         for (const token of tokens) {
-            if (hasContent(token)) {
-                const segments = sentenize(content + normalize(token));
+            let fake: Token | null = null;
+            if (!hasContent(token)) {
+                part.push(token);
 
-                if (segments.length > 1) {
-                    segments.shift();
-
-                    const restT = this.token(token.type, {
-                        content: token.content,
-                        markup: token.markup,
-                        tag: token.tag,
-                        generated: 'rest',
+                if (br(token)) {
+                    content += ' ';
+                    fake = this.token('text', {
+                        content: ' ',
+                        fake: true,
+                        generated: 'fake',
                     });
-
-                    while (segments.length) {
-                        const firstT = this.token('text', {
-                            generated: 'leaf',
-                        });
-
-                        const segment = segments.shift();
-
-                        firstT.content = restT.content
-                            .split(segment)
-                            .slice(0, -1)
-                            .join(segment)
-                            .trimEnd();
-
-                        restT.content = restT.content.replace(firstT.content, '').trimStart();
-
-                        part.push(firstT);
-                        parts.push(part);
-
-                        part = [];
-                    }
-
-                    if (restT.content) {
-                        part.push(restT);
-                    }
-
-                    content = restT.content;
+                } else if (token.markup && !token.skip) {
+                    content += token.markup;
+                    fake = this.token('text', {
+                        content: token.markup,
+                        fake: true,
+                        generated: 'fake',
+                    });
                 } else {
-                    part.push(token);
-                    content += normalize(token);
+                    continue;
                 }
-            } else if (br(token)) {
-                content += ' ';
-                part.push(token);
-            } else {
-                part.push(token);
             }
+
+            content += token.content || '';
+
+            const segments = sentenize(content);
+
+            // console.log('segments', segments);
+
+            if (segments.length === 1) {
+                add(fake);
+                add(token);
+
+                continue;
+            }
+
+            const [head, full, rest] = [segments.shift(), segments, segments.pop()];
+
+            add(this.token('text', {
+                content: exclude(head, part).trimEnd(),
+                generated: 'head',
+            }));
+            release();
+
+            for (const segment of full) {
+                add(this.token('text', {
+                    content: segment.trim(),
+                    generated: 'leaf',
+                }));
+                release();
+            }
+
+            content = (fake?.content || '') + rest;
+            add(fake)
+            add(this.token(token.type, {
+                ...token,
+                content: rest,
+                generated: 'rest',
+            }));
         }
 
-        if (part.length) {
-            parts.push(part);
-        }
+        release();
 
         return parts;
     }
 
     window(map: [number, number] | null, gap: number) {
-        map = map || [0, this.state.lines.end.length - 1];
+        map = map || [1, this.state.lines.end.length];
 
-        const offset = this.state.lines.start[map[0]] + gap;
-        if (offset > this.cursor) {
-            this.cursor = offset;
-            this.limit = this.state.lines.end[map[1]] + gap;
+        const [start, end] = [
+            this.state.lines.start[map[0] - 1] + gap,
+            this.state.lines.end[map[1] - 1] + gap,
+        ];
+
+        if (start >= this.cursor) {
+            this.cursor = start;
+            this.limit = end;
         }
     }
 
-    process = (tokens: Token | Token[]): [Token[][], string[]] => {
+    process = (tokens: Token | Token[]): {part: Token[]; past: string}[] => {
         tokens = ([] as Token[]).concat(tokens);
 
         const parts = this.split(tokens);
-        const pasts = parts.map(this.consume);
 
-        return [parts, pasts];
+        return parts.map(this.consume).filter(Boolean);
     };
 
     consume = (part: Token[]) => {
+        let past;
         const [before, tokens, after] = dropUselessTokens(part);
+        // console.log({before, tokens, after})
 
         this.handleHooks('before', before);
         this.skip(before);
@@ -240,73 +346,57 @@ export class Consumer {
             });
         }
 
-        const past = `%%%${this.state.skeleton.id}%%%`;
+        if (tokens.length) {
+            past = `%%%${this.state.skeleton.id}%%%`;
 
-        // replace has side effects and can modify tokens content
-        // so we need to generate xlf only after original content replacement
-        this.replace(tokens, past);
+            // replace has side effects and can modify tokens content
+            // so we need to generate xlf only after original content replacement
+            this.replace(tokens, past);
 
-        const inline = this.token('inline', {
-            children: tokens,
-        });
+            const inline = this.token('inline', {
+                children: tokens,
+            });
 
-        const xlf = XLF.render([inline], this.xlfState, {
-            unitId: this.state.skeleton.id++,
-            lang: 'ru',
-        });
+            const xlf = XLF.render([inline], this.xlfState, {
+                unitId: this.state.skeleton.id++,
+                lang: 'ru',
+            });
 
-        this.state.segments.push(xlf);
+            this.state.segments.push(xlf);
+        }
 
         this.handleHooks('before', after);
         this.skip(after);
         this.handleHooks('after', after);
 
-        return past;
+        return past ? {part, past} : null;
     };
 
     replace(tokens: Token[], past: string) {
+        // console.log(tokens);
         if (!tokens.length) {
             return;
         }
 
-        const {start, end} = tokens.reduce(
-            ({start, end}, token: Token) => {
-                if (token.skip) {
-                    ({start, end} = token.skip.reduce(
-                        ({start, end}, skip) => {
-                            const index = this.content.indexOf(skip, end);
+        const [start, end] = eruler(
+            this.content,
+            [this.cursor, this.limit],
+            tokens,
+            (content, [start, end], token) => {
+                const [from, to, match] = gobble(content, [start, end], token);
 
-                            return {
-                                start: start === -1 ? index : start,
-                                end: index + skip.length,
-                            };
-                        },
-                        {start, end},
-                    ));
-                } else if (token.content) {
-                    const [content, index] = search(this.content, token, end);
-
-                    if (index < 0) {
-                        // console.log(this.content);
-                        console.log(token);
-                        console.log(this.content.slice(end, end + 50));
-                        // console.log(end, this.content.length);
-                    }
-
-                    ok(index >= 0, 'aaaaaaaa');
-
-                    start = start === -1 ? index : start;
-                    end = index + content.length;
+                if (match) {
+                    token.content = match;
                 }
 
-                return {start, end};
-            },
-            {start: -1, end: this.cursor},
-        );
+                return [from, to];
+            });
 
+        const gap = -(end - start - past.length);
         this.content = replace(start, end, this.content, past);
         this.cursor = start + past.length;
-        this.gap += -(end - start - past.length);
+        this.limit += gap;
+        this.gap += gap;
     }
 
     handleHooks(phase: 'before' | 'after', tokens: Token | Token[]) {

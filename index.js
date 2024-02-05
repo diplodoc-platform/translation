@@ -74,7 +74,7 @@ function diff(file, hunks) {
     }
 
     // files = [
-    //     'wiki/release-notes/2210.md'
+    //     '_api-ref-grpc/managed-mysql/api-ref/grpc/database_service.md'
     // ];
 
     for (const file of files) {
@@ -120,12 +120,21 @@ function diff(file, hunks) {
                 });
 
                 if (hunks.length) {
-                    if (noskip.includes(file)) {
+                    if (noskip.includes(file) && !interactive) {
                         bad.push(file);
                         diff(file, hunks);
+
+                        // console.log(createPatch(file, content, to, '', '', {
+                        //     ignoreWhitespace: true
+                        // }));
+
                         console.log(files.length, processed, (processed - bad.length) / processed, file);
                     } else {
                         diff(file, hunks);
+                        // console.log(createPatch(file, content, to, '', '', {
+                        //     ignoreWhitespace: true
+                        // }));
+
                         if (interactive) {
                             const {action} = await inquirer.prompt([{
                                 message: `Пропустить дифф?`,

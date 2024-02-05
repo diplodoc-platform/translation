@@ -1,39 +1,48 @@
-import {Token, TokenType} from './token';
+import {TokenType, TokenSubType} from './token';
+import {token} from 'src/utils';
 
 export type Configuration = {
     specification?: Specification;
 };
 
 export type Specification = Array<SpecificationEntry>;
-export type SpecificationEntry = [RegExp, TokenType];
+export type SpecificationEntry = [RegExp, TokenType, TokenSubType] | [RegExp, TokenType];
 
 const specification_: Specification = [
     // Conditions
     // If statement
-    [/^\{%[^\S\r\n]*if[^%}]+?[^\S\r\n]*%}/, 'If'],
+    [/^\{%\s*if[^%}]+?\s*%}/, 'liquid', 'If'],
     // Else statement
-    [/^\{%[^\S\r\n]*else[^\S\r\n]*%\}/, 'Else'],
+    [/^\{%\s*else\s*%\}/, 'liquid', 'Else'],
     // EndIf statement
-    [/^\{%[^\S\r\n]*endif[^\S\r\n]*%\}/, 'EndIf'],
+    [/^\{%\s*endif\s*%\}/, 'liquid', 'EndIf'],
+    // Fake Include
+    [/^\{%\s*include\s*%\}/, 'liquid', 'Include'],
+    // Fake Tabs
+    [/^\{%\s*list tabs\s*%\}/, 'liquid', 'ListTabs'],
+    // Fake Tabs end
+    [/^\{%\s*endlist\s*%\}/, 'liquid', 'EndListTabs'],
     // Function
-    [/^\{\{[^\S\r\n]*[\w.-]+?\(.*?\)[^\S\r\n]*\}\}/, 'Function'],
+    [/^\{\{\s*[\w.-]+?\(.*?\)\s*\}\}/, 'variable', 'Function'],
     // Filter
-    [/^\{\{[^\S\r\n]*[\w.-]+[^\S\r\n]*\|[^\S\r\n]*\w+[^\S\r\n]*\}\}/, 'Filter'],
+    [/^\{\{\s*[\w.-]+\s*\|\s*\w+\s*\}\}/, 'variable', 'Filter'],
     // Variable
-    [/^\{\{[^\S\r\n]*[\w.-]+[^\S\r\n]*\}\}/, 'Variable'],
+    [/^\{\{\s*[\w.-]+\s*\}\}/, 'variable', 'Variable'],
     // ForInLoop
-    [/^\{%[^\S\r\n]*for[^\S\r\n]+[\w.-]+[^\S\r\n]+in[^\S\r\n]+[\w.-]+[^\S\r\n]*%\}/, 'ForInLoop'],
+    [/^\{%\s*for\s+[\w.-]+\s+in\s+[\w.-]+\s*%\}/, 'liquid', 'ForInLoop'],
     // EndForInLoop
-    [/^\{%[^\S\r\n]*endfor[^\S\r\n]*%\}/, 'EndForInLoop'],
-    // Space
-    [/^[^\S\r\n]+/, 'Space'],
+    [/^\{%\s*endfor\s*%\}/, 'liquid', 'EndForInLoop'],
+    // Attributes
+    [/^\{\s*(?:[.#](?!T})[a-z0-9_-]+|[a-z0-9_-]+\s*=\s*[a-z0-9_-]+)\s*\}/i, 'liquid', 'Attributes'],
+    // // Space
+    // [/^[^\S\r\n]+/, 'text'],
     // Newline
-    [/^[\r\n]+/, 'Newline'],
+    [/^[\r\n]+/, 'hardbreak'],
     // Text
     // without grabbing liquid/variable syntax
-    [/^[^\s]+(?={{|{%)/, 'Text'],
+    [/^[\S\s]+?(?={{1,2}|{%)/, 'text'],
     // plain text
-    [/^[^\s]+/, 'Text'],
+    [/^[\S\s]+/, 'text'],
 ];
 
 export type TokenizerGenerator = Generator<Token | null, void, Token | undefined>;
@@ -72,12 +81,14 @@ class Tokenizer implements TokenizerGenerator {
     }
 
     next(): IteratorResult<Token | null> {
-        const token = this.match();
+        const [token, value] = this.match();
         if (!token) {
             return {value: null, done: true};
         }
 
-        this.cursor += token.value.length;
+        token.generated = 'liquid';
+
+        this.cursor += value.length;
 
         return {value: token, done: this.done()};
     }
@@ -90,25 +101,25 @@ class Tokenizer implements TokenizerGenerator {
         return {value: null, done: true};
     }
 
-    private match(this: Tokenizer) {
+    private match(this: Tokenizer): [Token, string] {
         const left = this.input.slice(this.cursor);
 
-        let value;
-
-        for (const [regexp, type] of this.specification) {
-            [value] = regexp.exec(left) ?? [];
-            // eslint-disable-next-line eqeqeq, no-eq-null
+        for (const [regexp, type, subtype] of this.specification) {
+            const [value] = regexp.exec(left) ?? [null];
             if (value == null) {
                 continue;
             }
 
-            return {
-                type,
-                value,
-            };
+            switch (type) {
+                case 'text': return [token(type, {content: value}), value];
+                case 'hardbreak': return [token(type), value];
+                case 'liquid': return [token('liquid', {content: '', skip: value, subtype}), value];
+                case 'variable': return [token('liquid', {content: value, subtype}), value];
+                default: throw new TypeError('Unexpected liquid token');
+            }
         }
 
-        return null;
+        return [];
     }
 
     private done() {

@@ -3,6 +3,7 @@ import {LinkRuleState, link} from './link';
 import {pair} from './pair';
 import {codeInline} from './code-inline';
 import {text} from './text';
+import {liquid} from './liquid';
 import {image} from './image';
 import {video} from './video';
 import {anchor} from './anchor';
@@ -16,7 +17,7 @@ export function rules() {
     return {
         code_block: () => '',
         fence: () => '',
-        hardbreak: () => '',
+        hardbreak: () => '\n',
         softbreak: () => '\n',
         html_block: () => '',
         heading_open: () => '',
@@ -36,9 +37,10 @@ export function rules() {
         ...codeInline,
         ...link,
         ...text,
+        ...liquid,
         ...image,
         ...video,
-        ...anchor,
+        // ...anchor,
         ...file,
         ...htmlInline,
     };

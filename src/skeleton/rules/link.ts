@@ -3,6 +3,7 @@ import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
 import {SkeletonRendererState} from 'src/skeleton/renderer';
 import {token} from 'src/utils';
+import {encode} from 'entities';
 
 export type LinkState = {
     link: {
@@ -68,29 +69,27 @@ export const link: Renderer.RenderRuleRecord = {
         const open = this.state.link.pending.pop();
 
         if (open?.type !== 'link_open') {
-            console.log(open);
             throw new Error('failed to render link token');
         }
 
         this.state.link.map.set(close, open);
 
-        const hrefAttr = open.attrGet('href') || '';
         const titleAttr = open.attrGet('title') || '';
 
         close.skip = close.skip || [];
-        close.skip.push(hrefAttr, titleAttr, ')');
+        close.skip.push(')');
 
         if (titleAttr) {
             const consumer = new Consumer(titleAttr, 0, this.state);
             const title = consumer.token('text', {content: titleAttr});
-            const [parts, pasts] = consumer.process(title);
+            const parts = consumer.process(title);
             open.attrSet('title', consumer.content);
 
-            this.state.hooks.after.add(close, (consumer: Consumer) => {
-                parts.forEach((part, index) => {
-                    consumer.replace(part, pasts[index]);
-                });
+            this.state.hooks.before.add(close, (consumer: Consumer) => {
+                parts.forEach(({part, past}) => consumer.replace(part, past));
             });
+        } else {
+            close.skip.unshift('(');
         }
 
         return '';

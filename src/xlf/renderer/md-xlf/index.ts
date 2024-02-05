@@ -27,12 +27,9 @@ export type DiplodocParams = {
 export function render(tokens: Token[], state: XLFRenderState, parameters: XLFRenderParams) {
     const xlfRenderer = new MarkdownIt({html: true});
     const xlfHooks: {hooks: CustomRendererHooks} = hooks.generate();
-
-    const allHooks: CustomRendererHooks[] = [xlfHooks.hooks].concat(parameters.hooks ?? []);
-    const mergedHooks = mergeHooks(...allHooks);
     const xlfOptions: CustomRendererParams<XLFRenderState> = {
         rules: rules(),
-        hooks: mergedHooks,
+        hooks: xlfHooks.hooks,
         initState: () => state,
     };
 
@@ -41,6 +38,8 @@ export function render(tokens: Token[], state: XLFRenderState, parameters: XLFRe
     };
 
     xlfRenderer.use(customRenderer, xlfOptions);
+
+    // console.log(tokens[0].children);
 
     const source = xlfRenderer.renderer.render(tokens, xlfRenderer.options, env);
 

@@ -124,14 +124,14 @@ describe('renders xlf from markdown', () => {
 
     it('renders liquid conditions wrapped in <x> tags', () => {
         const rendered = render(
-            'Sentence with {% if var == "val" %} val {% else %} other val {% endif %}. {% if var == "val" %} A {% else %} B {% endif %} Point.',
+            'Sentence with {% if var == "val" %} val{% else %} other val{% endif %}. {% if var == "val" %} A{% else %} B{% endif %} Point.',
         );
         expect(rendered).toMatchSnapshot();
     });
 
     it('renders liquid loops wrapped in <x> tags', () => {
         const rendered = render(
-            'Sentence {% for x in xs %} x {% endfor %}. {% for x in xs %} X {% endfor %} cool.',
+            'Sentence {% for x in xs %}x{% endfor %}. {% for x in xs %}X{% endfor %} cool.',
         );
         expect(rendered).toMatchSnapshot();
     });

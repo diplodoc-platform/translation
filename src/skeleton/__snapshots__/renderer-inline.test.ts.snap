@@ -20,7 +20,7 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with inline code that has liquid syntax inside 1`] = `"%%%1%%% %%%2%%%"`;
 
-exports[`inline: skeleton rendering inline: renders hash instead of the sentences with inline html. 1`] = `"%%%1%%%"`;
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with inline html. 1`] = `"%%%1%%% %%%2%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with links in the end 1`] = `"%%%1%%% %%%2%%%"`;
 
@@ -39,7 +39,7 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with liquid functions. 1`] = `"%%%1%%% %%%2%%%"`;
 
-exports[`inline: skeleton rendering inline: renders hash instead of the sentences with liquid loops. 1`] = `"%%%1%%% %%%2%%%"`;
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with liquid loops. 1`] = `"%%%1%%% {% for x in xs %}%%%2%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with liquid variables. 1`] = `"%%%1%%% %%%2%%%"`;
 
@@ -62,4 +62,4 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with variable href link syntax. 1`] = `"%%%2%%% %%%3%%%"`;
 
-exports[`inline: skeleton rendering inline: renders hash instead of the sentences with video syntax. 1`] = `"%%%1%%% %%%2%%%@[youtube](https://youtu.be/rJz4OaURJ6U)"`;
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with video syntax. 1`] = `"%%%1%%% %%%2%%% @[youtube](https://youtu.be/rJz4OaURJ6U)"`;

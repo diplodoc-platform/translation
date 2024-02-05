@@ -174,3 +174,28 @@ test('handles autolinks')`
      * A <http://gitgrimbo.github.io/harviewer/master/>
      * B <https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru>
 `;
+
+test('## Start {#your-ideas}{% else %} end')`
+    ## Start {#your-ideas}{% else %} end
+`;
+
+test('\`{{ var }}\` — one. Two')`
+    \`{{ var }}\` — one. Two
+`;
+
+test('(a **18. B**).')`
+    (a **18. B**).
+`;
+
+test('A ![](link) b. C.')`
+    A ![](link) b. C.
+`;
+
+test('A (B) {#C}\n:   A, b. E')`
+    A (B) {#C}
+    :   A, b. E 
+`;
+
+test('A. B [{#T}](D). C.')`
+    A. B [{#T}](D). C.
+`;

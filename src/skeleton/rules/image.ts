@@ -3,41 +3,31 @@ import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
 import {SkeletonRendererState} from 'src/skeleton/renderer';
 
-export type ImageState = {
-    imageMap: Map<Token, Token>;
-};
-
-const initState = () => ({
-    imageMap: new Map(),
-});
-
-const image: Renderer.RenderRuleRecord = {
+export const image: Renderer.RenderRuleRecord = {
     image_close: function (this: CustomRenderer<SkeletonRendererState>, tokens: Token[], idx) {
         const close = tokens[idx];
-        const srcAttr = close.attrGet('src') || '';
         const titleAttr = close.attrGet('title') || '';
         const heightAttr = close.attrGet('height') || '';
         const widthAttr = close.attrGet('width') || '';
 
         close.skip = close.skip || [];
-        close.skip.push(srcAttr, titleAttr, heightAttr, widthAttr);
+        close.skip.push(widthAttr, heightAttr, ')');
 
         if (titleAttr) {
             const consumer = new Consumer(titleAttr, 0, this.state);
             const title = consumer.token('text', {content: titleAttr});
-            const [parts, pasts] = consumer.process(title);
+            const parts = consumer.process(title);
             close.attrSet('title', consumer.content);
 
-            this.state.hooks.after.add(close, (consumer: Consumer) => {
-                parts.forEach((part, index) => {
-                    consumer.replace(part, pasts[index]);
+            this.state.hooks.before.add(close, (consumer: Consumer) => {
+                parts.forEach(({part, past}) => {
+                    consumer.replace(part, past);
                 });
             });
+        } else {
+            close.skip.unshift('(');
         }
 
         return '';
     },
 };
-
-export {image, initState};
-export default {image, initState};

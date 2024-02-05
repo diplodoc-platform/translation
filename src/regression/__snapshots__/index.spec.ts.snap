@@ -1,5 +1,146 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Start <x ctype=\\"x-liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" /><x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> end</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration ## Start {#your-ideas}{% else %} end 2`] = `"## Start {#your-ideas}{% else %} end"`;
+
+exports[`integration (a **18. B**). 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>(a <x ctype=\\"x-strong_open\\" equiv-text=\\"**\\" />18.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>B<x ctype=\\"x-strong_close\\" equiv-text=\\"**\\" />).</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration (a **18. B**). 2`] = `"(a **18. B**)."`;
+
+exports[`integration \`{{ var }}\` — one. Two 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source><x ctype=\\"x-liquid_Variable\\" equiv-text=\\"{{ var }}\\" /><x ctype=\\"x-code_close\\" equiv-text=\\"\`\\" /> — one.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Two</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration \`{{ var }}\` — one. Two 2`] = `"\`{{ var }}\` — one. Two"`;
+
+exports[`integration A ![](link) b. C. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A <x ctype=\\"x-image_text_part_open\\" equiv-text=\\"![\\" /><x ctype=\\"x-image_text_part_close\\" equiv-text=\\"]\\" /><x ctype=\\"x-image_attributes_part_open\\" equiv-text=\\"(\\" /><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"link\\" /><x ctype=\\"x-image_attributes_part_close\\" equiv-text=\\")\\" /> b.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>C.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration A ![](link) b. C. 2`] = `"A ![](link) b. C."`;
+
+exports[`integration A (B) {#C}
+:   A, b. E 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A (B) <x ctype=\\"x-liquid_Attributes\\" equiv-text=\\"{#C}\\" />
+:   A, b.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>E</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration A (B) {#C}
+:   A, b. E 2`] = `
+"A (B) {#C}
+:   A, b. E"
+`;
+
+exports[`integration A. B [{#T}](D). C. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A. B <x ctype=\\"x-link_reflink\\" equiv-text=\\"[{#T}]\\" /><x ctype=\\"x-link_attributes_part_open\\" equiv-text=\\"(\\" /><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"D\\" /><x ctype=\\"x-link_attributes_part_close\\" equiv-text=\\")\\" />.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>C.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration A. B [{#T}](D). C. 2`] = `"A. B [{#T}](D). C."`;
+
 exports[`integration computes valid sentenses 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -284,7 +425,7 @@ exports[`integration handles multiline tabs title 1`] = `
     <body>
       <trans-unit id=\\"1\\">
         <source>Tab1
-  Tab1-Line2</source>
+Tab1-Line2</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>Tab content</source>

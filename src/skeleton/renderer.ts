@@ -15,18 +15,15 @@ import sup from 'markdown-it-sup';
 import notes from '@diplodoc/transform/lib/plugins/notes';
 import cut from '@diplodoc/transform/lib/plugins/cut';
 import checkbox from '@diplodoc/transform/lib/plugins/checkbox';
-import anchors from '@diplodoc/transform/lib/plugins/anchors';
 import monospace from '@diplodoc/transform/lib/plugins/monospace';
 import imsize from '@diplodoc/transform/lib/plugins/imsize';
 import file from '@diplodoc/transform/lib/plugins/file';
-import includes from '@diplodoc/transform/lib/plugins/includes';
 import tabs from '@diplodoc/transform/lib/plugins/tabs';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 
 import {HooksParams, HooksState, generate as generateHooks} from './hooks';
 import {rules, initState as rulesInitState} from './rules';
-import {handlers} from './handlers';
 import {TemplateParams, XLF} from 'src/xlf';
 import {LinkState} from 'src/skeleton/rules/link';
 import {ImageState} from 'src/skeleton/rules/image';
@@ -75,8 +72,7 @@ export function createRenderer(parameters: RenderParams) {
             ...skeletonHooks.initState(),
             ...rulesInitState(),
         }),
-        rules,
-        handlers,
+        handlers: rules,
         hooks: skeletonHooks.hooks,
     };
     const diplodocOptions = {
@@ -90,6 +86,7 @@ export function createRenderer(parameters: RenderParams) {
     md.disable('entity');
 
     md.normalizeLink = (a: string) => a;
+    md.normalizeLinkText = (a: string) => a;
 
     // diplodoc plugins
     md.use(meta, diplodocOptions);
@@ -100,8 +97,6 @@ export function createRenderer(parameters: RenderParams) {
     md.use(monospace, diplodocOptions);
     md.use(imsize, diplodocOptions);
     md.use(file, diplodocOptions);
-    md.use(anchors, diplodocOptions);
-    md.use(includes, diplodocOptions);
     // md.use(tabs, diplodocOptions);
     md.use(video, diplodocOptions);
     md.use(table, diplodocOptions);

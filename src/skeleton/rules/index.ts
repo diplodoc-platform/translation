@@ -1,13 +1,13 @@
 import Renderer from 'markdown-it/lib/renderer';
 import {link, initState as linkInitState} from './link';
-import {image, initState as imageInitState} from './image';
+import {image} from './image';
 import {table} from './table';
-import {includes} from './includes';
+import {text} from './text';
 
 import {token} from 'src/utils';
 
 const rules: Renderer.RenderRuleRecord = {
-    ...includes,
+    ...text,
     ...link,
     ...image,
     ...table,
@@ -47,7 +47,6 @@ const rules: Renderer.RenderRuleRecord = {
 
 const initState = () => ({
     ...linkInitState(),
-    ...imageInitState(),
 });
 
 export {rules, initState};

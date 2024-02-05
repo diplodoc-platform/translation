@@ -120,14 +120,14 @@ describe('inline: skeleton rendering', () => {
 
     it('inline: renders hash instead of the sentences with liquid conditions.', () => {
         const rendered = render(
-            'Sentence with {% if var == "val" %} val {% else %} other val {% endif %}. {% var == "val" %} A {% else %} B {% endif %} Point.',
+            'Sentence with {% if var == "val" %} val{% else %} other val{% endif %}. {% var == "val" %} A{% else %} B{% endif %} Point.',
         );
         expect(rendered).toMatchSnapshot();
     });
 
     it('inline: renders hash instead of the sentences with liquid loops.', () => {
         const rendered = render(
-            'Sentence {% for x in xs %} x {% endfor %}. {% for x in xs %} X {% endfor %} cool.',
+            'Sentence {% for x in xs %}x{% endfor %}. {% for x in xs %}X{% endfor %} cool.',
         );
         expect(rendered).toMatchSnapshot();
     });

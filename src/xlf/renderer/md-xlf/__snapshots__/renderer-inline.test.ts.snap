@@ -227,10 +227,10 @@ exports[`renders xlf from markdown renders liquid conditions wrapped in <x> tags
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>Sentence with <x ctype=\\"x-liquid_If\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" /> val <x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> other val <x ctype=\\"x-liquid_EndIf\\" equiv-text=\\"{% endif %}\\" />.</source>
+        <source>Sentence with <x ctype=\\"x-liquid_If\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" /> val<x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> other val<x ctype=\\"x-liquid_EndIf\\" equiv-text=\\"{% endif %}\\" />.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source><x ctype=\\"x-liquid_If\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" /> A <x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> B <x ctype=\\"x-liquid_EndIf\\" equiv-text=\\"{% endif %}\\" /> Point.</source>
+        <source>A<x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> B<x ctype=\\"x-liquid_EndIf\\" equiv-text=\\"{% endif %}\\" /> Point.</source>
       </trans-unit>
     </body>
   </file>
@@ -317,10 +317,10 @@ exports[`renders xlf from markdown renders liquid loops wrapped in <x> tags 1`] 
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>Sentence <x ctype=\\"x-liquid_ForInLoop\\" equiv-text=\\"{% for x in xs %}\\" /> x <x ctype=\\"x-liquid_EndForInLoop\\" equiv-text=\\"{% endfor %}\\" />.</source>
+        <source>Sentence <x ctype=\\"x-liquid_ForInLoop\\" equiv-text=\\"{% for x in xs %}\\" />x<x ctype=\\"x-liquid_EndForInLoop\\" equiv-text=\\"{% endfor %}\\" />.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source><x ctype=\\"x-liquid_ForInLoop\\" equiv-text=\\"{% for x in xs %}\\" /> X <x ctype=\\"x-liquid_EndForInLoop\\" equiv-text=\\"{% endfor %}\\" /> cool.</source>
+        <source>X<x ctype=\\"x-liquid_EndForInLoop\\" equiv-text=\\"{% endfor %}\\" /> cool.</source>
       </trans-unit>
     </body>
   </file>
@@ -599,7 +599,7 @@ exports[`renders xlf from markdown renders video wrapped in <x> tag 1`] = `
         <source>Sentence goes here.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>Another sentence </source>
+        <source>Another sentence</source>
       </trans-unit>
     </body>
   </file>

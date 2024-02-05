@@ -1,5 +1,6 @@
 import assert from 'assert';
 import {XLFTagToken, XLFTextToken, XLFToken, isXLFTagToken, isXLFTextToken} from 'src/xlf/token';
+import { Attributes, EndListTabs, ListTabs } from 'src/liquid';
 
 export type XLFMDRendererRuleSet = {
     text: XLFMDRendererRule;
@@ -92,6 +93,9 @@ class XLFMDRenderer {
             file_close: spaced(literal),
 
             // liquid
+            liquid_Include: literal,
+            liquid_ListTabs: literal,
+            liquid_EndListTabs: literal,
             liquid_If: literal,
             liquid_Else: literal,
             liquid_EndIf: literal,
@@ -100,6 +104,7 @@ class XLFMDRenderer {
             liquid_Function: literal,
             liquid_Filter: literal,
             liquid_Variable: literal,
+            liquid_Attributes: literal,
 
             // html
             html_inline: literal,
