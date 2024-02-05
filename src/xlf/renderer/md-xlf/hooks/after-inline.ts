@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it';
-import {CustomRenderer, CustomRendererHookParams} from '@diplodoc/markdown-it-custom-renderer';
+import {CustomRenderer, CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
 
 import {XLFRenderState} from 'src/xlf/renderer/md-xlf/state';
 import {unescapeSymbols} from 'src/xlf/symbols';
@@ -8,7 +8,7 @@ const escapeHTML = new MarkdownIt().utils.escapeHtml;
 
 export function afterInline(
     this: CustomRenderer<XLFRenderState>,
-    parameters: CustomRendererHookParams,
+    parameters: CustomRendererHookParameters,
 ) {
     if (!parameters.rendered) {
         return '';

@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Token from 'markdown-it/lib/token';
-import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
+import {XLFRenderState} from 'src/xlf/renderer/md-xlf/state';
 
 import {generateX} from 'src/xlf/generator';
 
@@ -12,14 +12,14 @@ const image = {
     image_close: imageClose,
 };
 
-function imageOpen(this: CustomRenderer<XLFRendererState>) {
+function imageOpen(this: CustomRenderer<XLFRenderState>) {
     return generateX({
         ctype: 'image_text_part_open',
         equivText: '![',
     });
 }
 
-function imageClose(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
+function imageClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: number) {
     const token = tokens[i];
     let rendered = '';
 

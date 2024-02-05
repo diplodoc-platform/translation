@@ -3,7 +3,7 @@ import Token from 'markdown-it/lib/token';
 
 import {generateX} from 'src/xlf/generator';
 
-const codeInline: Renderer.RenderRuleRecord = {
+export const codeInline: Renderer.RenderRuleRecord = {
     code_inline_open: codeInlineRule('open'),
     code_inline_close: codeInlineRule('close'),
 };
@@ -18,6 +18,3 @@ function codeInlineRule(dir: string) {
         });
     };
 }
-
-export {codeInline};
-export default {codeInline};

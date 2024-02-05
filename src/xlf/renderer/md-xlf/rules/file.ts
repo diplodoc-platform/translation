@@ -2,11 +2,11 @@ import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Renderer from 'markdown-it/lib/renderer';
 import Token from 'markdown-it/lib/token';
 
-import {XLFRendererState} from 'src/xlf/renderer/md-xlf/state';
+import {XLFRenderState} from 'src/xlf/renderer/md-xlf/state';
 
 import {generateX} from 'src/xlf/generator';
 
-const file: Renderer.RenderRuleRecord = {
+export const file: Renderer.RenderRuleRecord = {
     yfm_file: fileRule,
 };
 
@@ -22,7 +22,7 @@ const attributes = new Map<string, string>([
 
 const translatable = new Set(['download']);
 
-function fileRule(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: number) {
+function fileRule(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: number) {
     const {attrs} = tokens[i];
     if (!attrs?.length) {
         throw new Error(`failed to render token: ${tokens[i]}`);
@@ -63,6 +63,3 @@ function fileRule(this: CustomRenderer<XLFRendererState>, tokens: Token[], i: nu
 
     return rendered;
 }
-
-export {file};
-export default {file};

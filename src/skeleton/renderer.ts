@@ -18,7 +18,6 @@ import checkbox from '@diplodoc/transform/lib/plugins/checkbox';
 import monospace from '@diplodoc/transform/lib/plugins/monospace';
 import imsize from '@diplodoc/transform/lib/plugins/imsize';
 import file from '@diplodoc/transform/lib/plugins/file';
-import tabs from '@diplodoc/transform/lib/plugins/tabs';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 
@@ -26,9 +25,8 @@ import {HooksParams, HooksState, generate as generateHooks} from './hooks';
 import {rules, initState as rulesInitState} from './rules';
 import {TemplateParams, XLF} from 'src/xlf';
 import {LinkState} from 'src/skeleton/rules/link';
-import {ImageState} from 'src/skeleton/rules/image';
 
-export type SkeletonRendererState = HooksState & LinkState & ImageState;
+export type SkeletonRendererState = HooksState & LinkState;
 
 export type RenderParams = BaseParams & TemplateParams & DiplodocParams;
 export type BaseParams = {
@@ -72,7 +70,7 @@ export function createRenderer(parameters: RenderParams) {
             ...skeletonHooks.initState(),
             ...rulesInitState(),
         }),
-        handlers: rules,
+        rules: rules,
         hooks: skeletonHooks.hooks,
     };
     const diplodocOptions = {
@@ -97,7 +95,6 @@ export function createRenderer(parameters: RenderParams) {
     md.use(monospace, diplodocOptions);
     md.use(imsize, diplodocOptions);
     md.use(file, diplodocOptions);
-    // md.use(tabs, diplodocOptions);
     md.use(video, diplodocOptions);
     md.use(table, diplodocOptions);
 

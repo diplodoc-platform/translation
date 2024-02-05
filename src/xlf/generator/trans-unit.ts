@@ -6,7 +6,7 @@ export type TransUnitParams = {
     id: number;
 };
 
-function generateTransUnit(parameters: TransUnitParams) {
+export function generateTransUnit(parameters: TransUnitParams) {
     const {source, sourceLangLocale, target, targetLangLocale} = parameters;
 
     let rendered = ``;
@@ -31,6 +31,3 @@ function generateTransUnit(parameters: TransUnitParams) {
 
     return rendered.trim();
 }
-
-export {generateTransUnit};
-export default {generateTransUnit};

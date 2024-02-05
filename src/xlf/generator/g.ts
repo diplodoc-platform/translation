@@ -5,7 +5,7 @@ export type OpenGParams = {
     equivText: string;
 };
 
-function generateOpenG(parameters: OpenGParams): string {
+export function generateOpenG(parameters: OpenGParams): string {
     const {ctype, equivText} = parameters;
     let rendered = `${lt}g`;
 
@@ -22,9 +22,6 @@ function generateOpenG(parameters: OpenGParams): string {
     return rendered;
 }
 
-function generateCloseG(): string {
+export function generateCloseG(): string {
     return `${lt}${sl}g${gt}`;
 }
-
-export {generateOpenG, generateCloseG};
-export default {generateOpenG, generateCloseG};

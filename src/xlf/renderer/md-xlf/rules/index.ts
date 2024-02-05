@@ -6,7 +6,6 @@ import {text} from './text';
 import {liquid} from './liquid';
 import {image} from './image';
 import {video} from './video';
-import {anchor} from './anchor';
 import {file} from './file';
 import {htmlInline} from './html-inline';
 
@@ -40,14 +39,7 @@ export function rules() {
         ...liquid,
         ...image,
         ...video,
-        // ...anchor,
         ...file,
         ...htmlInline,
-    };
-}
-
-export function initState() {
-    return {
-        reflink: false,
     };
 }

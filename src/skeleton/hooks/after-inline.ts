@@ -1,4 +1,4 @@
-import type {CustomRenderer, CustomRendererHookParams} from '@diplodoc/markdown-it-custom-renderer';
+import type {CustomRenderer, CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
 
 type Consume = (consumer: Consumer) => void;
@@ -22,7 +22,7 @@ export type AfterInlineState = {
     };
 };
 
-function afterInline(this: CustomRenderer<AfterInlineState>, parameters: CustomRendererHookParams) {
+function afterInline(this: CustomRenderer<AfterInlineState>, parameters: CustomRendererHookParameters) {
     if (!parameters.rendered) {
         return '';
     }

@@ -3,7 +3,6 @@ import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
 import {SkeletonRendererState} from 'src/skeleton/renderer';
 import {token} from 'src/utils';
-import {encode} from 'entities';
 
 export type LinkState = {
     link: {

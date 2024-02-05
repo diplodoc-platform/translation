@@ -1,6 +1,5 @@
 import assert from 'assert';
 import {XLFTagToken, XLFTextToken, XLFToken, isXLFTagToken, isXLFTextToken} from 'src/xlf/token';
-import { Attributes, EndListTabs, ListTabs } from 'src/liquid';
 
 export type XLFMDRendererRuleSet = {
     text: XLFMDRendererRule;

@@ -139,11 +139,11 @@ const skip: Gobbler<[number, number]> =
 
         if (Array.isArray(token)) {
             [from, to] = eruler(content, [from, end], token, skip);
-        } else if (token.skip) {
+        } else if ((token as Token).skip) {
             [from, to] = skip(content, [from, end], token.skip);
-            if (token.onskip) {
-                token.onskip(content, from, to);
-            }
+            // if ((token as Token).onskip) {
+            //     token.onskip(content, from, to);
+            // }
         } else {
             const match = typeof token === 'string' ? token : token.content;
 

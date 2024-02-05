@@ -1,4 +1,4 @@
-import {TokenType, TokenSubType} from './token';
+import {TokenSubType, TokenType} from './token';
 import {token} from 'src/utils';
 
 export type Configuration = {
@@ -47,7 +47,7 @@ const specification_: Specification = [
 
 export type TokenizerGenerator = Generator<Token | null, void, Token | undefined>;
 
-class Tokenizer implements TokenizerGenerator {
+export class Tokenizer implements TokenizerGenerator {
     private input: string;
     private cursor: number;
     private specification: Specification;
@@ -86,6 +86,7 @@ class Tokenizer implements TokenizerGenerator {
             return {value: null, done: true};
         }
 
+        token.markup = value;
         token.generated = 'liquid';
 
         this.cursor += value.length;
@@ -101,12 +102,12 @@ class Tokenizer implements TokenizerGenerator {
         return {value: null, done: true};
     }
 
-    private match(this: Tokenizer): [Token, string] {
+    private match(this: Tokenizer): [Token, string] | [null] {
         const left = this.input.slice(this.cursor);
 
         for (const [regexp, type, subtype] of this.specification) {
             const [value] = regexp.exec(left) ?? [null];
-            if (value == null) {
+            if (value === null) {
                 continue;
             }
 
@@ -119,13 +120,10 @@ class Tokenizer implements TokenizerGenerator {
             }
         }
 
-        return [];
+        return [null];
     }
 
     private done() {
         return this.cursor === this.input.length;
     }
 }
-
-export {Tokenizer};
-export default {Tokenizer};

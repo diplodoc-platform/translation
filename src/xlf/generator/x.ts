@@ -5,7 +5,7 @@ export type GenerateXParams = {
     equivText: string;
 };
 
-function generateX(parameters: GenerateXParams) {
+export function generateX(parameters: GenerateXParams) {
     const {ctype, equivText} = parameters;
 
     let rendered = `${lt}x`;
@@ -26,6 +26,3 @@ function generateX(parameters: GenerateXParams) {
 
     return rendered;
 }
-
-export {generateX};
-export default {generateX};
