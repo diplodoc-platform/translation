@@ -4,14 +4,14 @@ export type ExtractParams = RenderParams;
 
 export type ExtractOutput = {
     skeleton: string;
-    xlf: string;
+    xliff: string;
     units: string[];
 };
 
 export function extract(parameters: ExtractParams): ExtractOutput {
-    // upon recieving empty markdown give back empty xlf and skeleton
+    // upon recieving empty markdown give back empty xliff and skeleton
     if (!parameters.markdown) {
-        return {xlf: '', units: [], skeleton: ''};
+        return {xliff: '', units: [], skeleton: ''};
     }
 
     // proper defaults for markdown and skeleton ids

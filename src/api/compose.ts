@@ -1,9 +1,9 @@
 import {ok} from 'assert';
-import {getTranslations} from 'src/xlf/translations';
+import {getTranslations} from 'src/xliff/translations';
 
 export type ComposeParams = {
     skeleton: string;
-    xlf?: string;
+    xliff?: string;
     units?: string[];
     useSource?: boolean;
 };
@@ -43,5 +43,5 @@ function validateParams(parameters: ComposeParams) {
         'Unexpected useSource value',
     );
     ok(parameters.skeleton, 'Skeleton is empty');
-    ok(parameters.xlf || parameters.units?.length, 'Source is empty');
+    ok(parameters.xliff || parameters.units?.length, 'Source is empty');
 }

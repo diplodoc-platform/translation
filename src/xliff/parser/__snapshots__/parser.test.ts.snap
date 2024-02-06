@@ -1,0 +1,2869 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parses translation units parses single trans-unit 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение о чем-то",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение о чем-то
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units parses sources when targets are absent with useSource flag enabled 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "source",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение о чем-то",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "source",
+      "end": undefined,
+      "g": <source
+        nodeType="open"
+      >
+        Предложение о чем-то
+      </source>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "source",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Фрагмент Текста",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "source",
+      "end": undefined,
+      "g": <source
+        nodeType="open"
+      >
+        Фрагмент Текста
+      </source>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units parses targets 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение о чем-то",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение о чем-то
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Фрагмент Текста",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Фрагмент Текста
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses autolink wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер один ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "<https://www.google.com>",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_autolink",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер один 
+        <x
+          ctype="x-link_autolink"
+          equiv-text="<https://www.google.com>"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses code wrapped in <x> tag 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-code_open"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-code_close"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-code_open"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        два
+        <x
+          ctype="x-code_close"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses em wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "*",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-em_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "*",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-em_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-em_open"
+          equiv-text="*"
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-em_close"
+          equiv-text="*"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "*",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-em_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "*",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-em_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-em_open"
+          equiv-text="*"
+          nodeType="self-closing"
+        />
+        два
+        <x
+          ctype="x-em_close"
+          equiv-text="*"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses file wrapped <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence with ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{%",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "src=\\"path/to/file\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_src",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "name=\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_name_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "readme.md",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_name_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "referrerpolicy=\\"no-referrer\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_referrerpolicy",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "rel=\\"noopener\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_rel",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "target=\\"_blank\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_target",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "type=\\"text/plain\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_type",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "%}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-file_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence with 
+        <x
+          ctype="x-file_open"
+          equiv-text="{%"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-file_src"
+          equiv-text="src=\\"path/to/file\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-file_name_open"
+          equiv-text="name=\\""
+          nodeType="self-closing"
+        />
+        readme.md
+        <x
+          ctype="x-file_name_close"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-file_referrerpolicy"
+          equiv-text="referrerpolicy=\\"no-referrer\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-file_rel"
+          equiv-text="rel=\\"noopener\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-file_target"
+          equiv-text="target=\\"_blank\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-file_type"
+          equiv-text="type=\\"text/plain\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-file_close"
+          equiv-text="%}"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses heading with anchors wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Heading with anchors",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": " {#anchor1}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-anchor",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": " {#anchor2}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-anchor",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Heading with anchors
+        <x
+          ctype="x-anchor"
+          equiv-text=" {#anchor1}"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-anchor"
+          equiv-text=" {#anchor2}"
+          nodeType="self-closing"
+        />
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses image with all attributes wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "![",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_text_part_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "image",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "]",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_text_part_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "(",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "image.png",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_attributes_src",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_attributes_title_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "hint",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_attributes_title_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "=100x100",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_attributes_size",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": ")",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-image_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence 
+        <x
+          ctype="x-image_text_part_open"
+          equiv-text="!["
+          nodeType="self-closing"
+        />
+        image
+        <x
+          ctype="x-image_text_part_close"
+          equiv-text="]"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-image_attributes_part_open"
+          equiv-text="("
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-image_attributes_src"
+          equiv-text="image.png"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-image_attributes_title_open"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        hint
+        <x
+          ctype="x-image_attributes_title_close"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-image_attributes_size"
+          equiv-text="=100x100"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-image_attributes_part_close"
+          equiv-text=")"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses inline code with liquid wrapped in <x> tag 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{{ ui-key.yacloud.common.label_tcp }}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_Variable",
+      "type": "tag",
+    },
+    Object {
+      "data": " other",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence 
+        <x
+          ctype="x-code_open"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-liquid_Variable"
+          equiv-text="{{ ui-key.yacloud.common.label_tcp }}"
+          nodeType="self-closing"
+        />
+         other
+        <x
+          ctype="x-code_close"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Another sentence ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{{user.name | capitalize}}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_Filter",
+      "type": "tag",
+    },
+    Object {
+      "data": " other",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\`",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-code_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Another sentence 
+        <x
+          ctype="x-code_open"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-liquid_Filter"
+          equiv-text="{{user.name | capitalize}}"
+          nodeType="self-closing"
+        />
+         other
+        <x
+          ctype="x-code_close"
+          equiv-text="\`"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses inline html wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "<br>",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-html_inline",
+      "type": "tag",
+    },
+    Object {
+      "data": "with ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "<b>",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-html_inline",
+      "type": "tag",
+    },
+    Object {
+      "data": "html",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "</b>",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-html_inline",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence
+        <x
+          ctype="x-html_inline"
+          equiv-text="<br>"
+          nodeType="self-closing"
+        />
+        with 
+        <x
+          ctype="x-html_inline"
+          equiv-text="<b>"
+          nodeType="self-closing"
+        />
+        html
+        <x
+          ctype="x-html_inline"
+          equiv-text="</b>"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses link with multiple sentences inside link text and link title 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "[",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link text sentence one!",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        <x
+          ctype="x-link_text_part_open"
+          equiv-text="["
+          nodeType="self-closing"
+        />
+        Link text sentence one!
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link text sentence Two?",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "]",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "(",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "file.md",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link title sentence one.",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Link text sentence Two?
+        <x
+          ctype="x-link_text_part_close"
+          equiv-text="]"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_open"
+          equiv-text="("
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_href"
+          equiv-text="file.md"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_title_open"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        Link title sentence one.
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Link title sentence two!",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": ")",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Link title sentence two!
+        <x
+          ctype="x-link_attributes_title_close"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_close"
+          equiv-text=")"
+          nodeType="self-closing"
+        />
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses links wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "[",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "]",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "(",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "one.md",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "one",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": ")",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-link_text_part_open"
+          equiv-text="["
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-link_text_part_close"
+          equiv-text="]"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_open"
+          equiv-text="("
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_href"
+          equiv-text="one.md"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_title_open"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        one
+        <x
+          ctype="x-link_attributes_title_close"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_close"
+          equiv-text=")"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "[",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "]",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "(",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "two.md",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": ")",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-link_text_part_open"
+          equiv-text="["
+          nodeType="self-closing"
+        />
+        два
+        <x
+          ctype="x-link_text_part_close"
+          equiv-text="]"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_open"
+          equiv-text="("
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_href"
+          equiv-text="two.md"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_close"
+          equiv-text=")"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses liquid conditions wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence with ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{% if var == \\"val\\" %}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_If",
+      "type": "tag",
+    },
+    Object {
+      "data": " val ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{% else %}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_Else",
+      "type": "tag",
+    },
+    Object {
+      "data": " other val ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{% endif %}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_EndIf",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence with 
+        <x
+          ctype="x-liquid_If"
+          equiv-text="{% if var == \\"val\\" %}"
+          nodeType="self-closing"
+        />
+         val 
+        <x
+          ctype="x-liquid_Else"
+          equiv-text="{% else %}"
+          nodeType="self-closing"
+        />
+         other val 
+        <x
+          ctype="x-liquid_EndIf"
+          equiv-text="{% endif %}"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses liquid filters wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence with filter ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{{ users | length }}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_Filter",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence with filter 
+        <x
+          ctype="x-liquid_Filter"
+          equiv-text="{{ users | length }}"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses liquid function wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence with function ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{{ user.name.slice(1, 2) }}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_Function",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence with function 
+        <x
+          ctype="x-liquid_Function"
+          equiv-text="{{ user.name.slice(1, 2) }}"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses liquid loop wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{% for x in xs %}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_ForInLoop",
+      "type": "tag",
+    },
+    Object {
+      "data": " x ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{% endfor %}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_EndForInLoop",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence 
+        <x
+          ctype="x-liquid_ForInLoop"
+          equiv-text="{% for x in xs %}"
+          nodeType="self-closing"
+        />
+         x 
+        <x
+          ctype="x-liquid_EndForInLoop"
+          equiv-text="{% endfor %}"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses liquid variables wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Sentence with ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{{ variable }}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-liquid_Variable",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Sentence with 
+        <x
+          ctype="x-liquid_Variable"
+          equiv-text="{{ variable }}"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses ref links wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "[{#T}]",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_reflink",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "(",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "one.md",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "one",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": ")",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-link_reflink"
+          equiv-text="[{#T}]"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_open"
+          equiv-text="("
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_href"
+          equiv-text="one.md"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_title_open"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        one
+        <x
+          ctype="x-link_attributes_title_close"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_close"
+          equiv-text=")"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "[{#T}]",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_reflink",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "(",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "two.md",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": ")",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-link_reflink"
+          equiv-text="[{#T}]"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_open"
+          equiv-text="("
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_href"
+          equiv-text="two.md"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_close"
+          equiv-text=")"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses s wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "~~",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-s_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "~~",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-s_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-s_open"
+          equiv-text="~~"
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-s_close"
+          equiv-text="~~"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "~~",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-s_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "~~",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-s_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-s_open"
+          equiv-text="~~"
+          nodeType="self-closing"
+        />
+        два
+        <x
+          ctype="x-s_close"
+          equiv-text="~~"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses samp wrapped in <g> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "##",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-samp_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "##",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-samp_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-samp_open"
+          equiv-text="##"
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-samp_close"
+          equiv-text="##"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "##",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-samp_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "##",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-samp_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-samp_open"
+          equiv-text="##"
+          nodeType="self-closing"
+        />
+        два
+        <x
+          ctype="x-samp_close"
+          equiv-text="##"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses strong wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "**",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-strong_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "**",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-strong_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-strong_open"
+          equiv-text="**"
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-strong_close"
+          equiv-text="**"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "**",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-strong_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "**",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-strong_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-strong_open"
+          equiv-text="**"
+          nodeType="self-closing"
+        />
+        два
+        <x
+          ctype="x-strong_close"
+          equiv-text="**"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses sup wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "^",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-sup_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "^",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-sup_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер
+        <x
+          ctype="x-sup_open"
+          equiv-text="^"
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-sup_close"
+          equiv-text="^"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "^",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-sup_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "два",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "^",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-sup_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер
+        <x
+          ctype="x-sup_open"
+          equiv-text="^"
+          nodeType="self-closing"
+        />
+        два
+        <x
+          ctype="x-sup_close"
+          equiv-text="^"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses variable href link wrapped in <x> tags 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Предложение номер ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "[",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "один",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "]",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_text_part_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "(",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_open",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "{{one}}",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_href",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_open",
+      "type": "tag",
+    },
+    Object {
+      "data": "one",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "\\"",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_title_close",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": ")",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-link_attributes_part_close",
+      "type": "tag",
+    },
+    Object {
+      "data": ".",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Предложение номер 
+        <x
+          ctype="x-link_text_part_open"
+          equiv-text="["
+          nodeType="self-closing"
+        />
+        один
+        <x
+          ctype="x-link_text_part_close"
+          equiv-text="]"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_open"
+          equiv-text="("
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_href"
+          equiv-text="{{one}}"
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_title_open"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        one
+        <x
+          ctype="x-link_attributes_title_close"
+          equiv-text="\\""
+          nodeType="self-closing"
+        />
+        <x
+          ctype="x-link_attributes_part_close"
+          equiv-text=")"
+          nodeType="self-closing"
+        />
+        .
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;
+
+exports[`parses translation units with <g> and <x> tags parses video wrapped in x tag 1`] = `
+Array [
+  Array [
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": undefined,
+      "nodeType": "open",
+      "type": "tag",
+    },
+    Object {
+      "data": "Another sentence ",
+      "type": "text",
+    },
+    Object {
+      "begin": undefined,
+      "data": "x",
+      "end": undefined,
+      "equivText": "@[youtube](rJz4OaURJ6U)",
+      "g": undefined,
+      "nodeType": "self-closing",
+      "syntax": "x-video",
+      "type": "tag",
+    },
+    Object {
+      "begin": undefined,
+      "data": "target",
+      "end": undefined,
+      "g": <target
+        nodeType="open"
+      >
+        Another sentence 
+        <x
+          ctype="x-video"
+          equiv-text="@[youtube](rJz4OaURJ6U)"
+          nodeType="self-closing"
+        />
+      </target>,
+      "nodeType": "close",
+      "type": "tag",
+    },
+  ],
+]
+`;

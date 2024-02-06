@@ -24,7 +24,7 @@ import includes from './plugins/includes';
 
 import {HooksParams, HooksState, generate as generateHooks} from './hooks';
 import {rules, initState as rulesInitState} from './rules';
-import {TemplateParams, XLF} from 'src/xlf';
+import {TemplateParams, XLF} from 'src/xliff';
 import {LinkState} from 'src/skeleton/rules/link';
 
 export type SkeletonRendererState = HooksState & LinkState;
@@ -55,9 +55,9 @@ export function render(parameters: RenderParams) {
     const state = (md.renderer as CustomRenderer<SkeletonRendererState>)
         .state as SkeletonRendererState;
 
-    const xlf = XLF.generate(parameters, state.segments);
+    const xliff = XLF.generate(parameters, state.segments);
 
-    return {skeleton: state.result, xlf, units: state.segments};
+    return {skeleton: state.result, xliff, units: state.segments};
 }
 
 export function createRenderer(parameters: RenderParams) {

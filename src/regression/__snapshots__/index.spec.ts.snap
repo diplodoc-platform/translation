@@ -11,7 +11,7 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>Start <x ctype=\\"x-liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" /><x ctype=\\"x-liquid_Else\\" equiv-text=\\"{% else %}\\" /> end</source>
+        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" /><x ctype=\\"liquid_Else\\" equiv-text=\\"{% else %}\\" /> end</source>
       </trans-unit>
     </body>
   </file>
@@ -31,10 +31,10 @@ exports[`integration (a **18. B**). 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>(a <x ctype=\\"x-strong_open\\" equiv-text=\\"**\\" />18.</source>
+        <source>(a <x ctype=\\"strong_open\\" equiv-text=\\"**\\" />18.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>B<x ctype=\\"x-strong_close\\" equiv-text=\\"**\\" />).</source>
+        <source>B<x ctype=\\"strong_close\\" equiv-text=\\"**\\" />).</source>
       </trans-unit>
     </body>
   </file>
@@ -54,7 +54,7 @@ exports[`integration \`{{ var }}\` — one. Two 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source><x ctype=\\"x-liquid_Variable\\" equiv-text=\\"{{ var }}\\" /><x ctype=\\"x-code_close\\" equiv-text=\\"\`\\" /> — one.</source>
+        <source><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\" /><x ctype=\\"code_close\\" equiv-text=\\"\`\\" /> — one.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>Two</source>
@@ -77,7 +77,7 @@ exports[`integration A ![](link) b. C. 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A <x ctype=\\"x-image_text_part_open\\" equiv-text=\\"![\\" /><x ctype=\\"x-image_text_part_close\\" equiv-text=\\"]\\" /><x ctype=\\"x-image_attributes_part_open\\" equiv-text=\\"(\\" /><x ctype=\\"x-image_attributes_src\\" equiv-text=\\"link\\" /><x ctype=\\"x-image_attributes_part_close\\" equiv-text=\\")\\" /> b.</source>
+        <source>A <g ctype=\\"image\\" equivText=\\"![{{text}}](link)\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>C.</source>
@@ -101,7 +101,7 @@ exports[`integration A (B) {#C}
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A (B) <x ctype=\\"x-liquid_Attributes\\" equiv-text=\\"{#C}\\" />
+        <source>A (B) <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#C}\\" />
 :   A, b.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
@@ -129,7 +129,7 @@ exports[`integration A. B [{#T}](D). C. 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A. B <x ctype=\\"x-link_reflink\\" equiv-text=\\"[{#T}]\\" /><x ctype=\\"x-link_attributes_part_open\\" equiv-text=\\"(\\" /><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"D\\" /><x ctype=\\"x-link_attributes_part_close\\" equiv-text=\\")\\" />.</source>
+        <source>A. B <g ctype=\\"link\\" equivText=\\"[{#T}{{text}}](D)\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>C.</source>
@@ -181,10 +181,10 @@ exports[`integration handles autolinks 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A <x ctype=\\"x-link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" /></source>
+        <source>A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" /></source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>B <x ctype=\\"x-link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" /></source>
+        <source>B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" /></source>
       </trans-unit>
     </body>
   </file>
@@ -328,7 +328,7 @@ exports[`integration handles inline code 3 1`] = `
         <source>column_name</source>
       </trans-unit>
       <trans-unit id=\\"6\\">
-        <source>string<x ctype=\\"x-code_close\\" equiv-text=\\"\`\\" /><x ctype=\\"x-html_inline\\" equiv-text=\\"&lt;br&gt;\\" /><x ctype=\\"x-code_open\\" equiv-text=\\"\`\\" />required</source>
+        <source>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\" /><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" /><x ctype=\\"code_open\\" equiv-text=\\"\`\\" />required</source>
       </trans-unit>
       <trans-unit id=\\"7\\">
         <source>Имя колонки для TTL</source>
@@ -356,7 +356,7 @@ exports[`integration handles links in brackets 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>(see <x ctype=\\"x-link_text_part_open\\" equiv-text=\\"[\\" />below for nested schema<x ctype=\\"x-link_text_part_close\\" equiv-text=\\"]\\" /><x ctype=\\"x-link_attributes_part_open\\" equiv-text=\\"(\\" /><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"#nestedblock--timeouts\\" /><x ctype=\\"x-link_attributes_part_close\\" equiv-text=\\")\\" />)</source>
+        <source>(see <g ctype=\\"link\\" equivText=\\"[{{text}}](#nestedblock--timeouts)\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
       </trans-unit>
     </body>
   </file>
@@ -568,7 +568,7 @@ exports[`integration recursive merge tokens 1`] = `
         <source>title</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>Sentense <x ctype=\\"x-link_text_part_open\\" equiv-text=\\"[\\" />link<x ctype=\\"x-link_text_part_close\\" equiv-text=\\"]\\" /><x ctype=\\"x-link_attributes_part_open\\" equiv-text=\\"(\\" /><x ctype=\\"x-link_attributes_href\\" equiv-text=\\"file.md\\" /><x ctype=\\"x-link_attributes_title\\" equiv-text=\\"%%%1%%%\\" /><x ctype=\\"x-link_attributes_part_close\\" equiv-text=\\")\\" />.</source>
+        <source>Sentense <g ctype=\\"link\\" equivText=\\"[{{text}}](file.md &quot;%%%1%%%&quot;)\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%1%%%&quot;)\\">link</g>.</source>
       </trans-unit>
     </body>
   </file>

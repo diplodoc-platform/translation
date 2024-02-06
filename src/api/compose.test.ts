@@ -1,5 +1,5 @@
 import {ComposeParams, compose} from './compose';
-import {XLF} from 'src/xlf';
+import {XLF} from 'src/xliff';
 
 const templateParams = {
     source: {language: 'en', locale: 'US' as const},
@@ -13,13 +13,13 @@ const transUnits = [
     {source: 'Text fragment', target: 'Фрагмент Текста', id: 1},
 ];
 
-const xlf = XLF.generate(templateParams, transUnits.map(XLF.generateTransUnit));
+const xliff = XLF.generate(templateParams, transUnits.map(XLF.generateTransUnit));
 
 describe('smoke', () => {
     it('works', () => {
         const parameters = {
             skeleton: '%%%1%%%',
-            xlf: xlf,
+            xliff: xliff,
         };
 
         compose(parameters);
@@ -30,7 +30,7 @@ describe('validates parameters', () => {
     it('works with valid parameters', () => {
         const parameters = {
             skeleton: '%%%1%%%',
-            xlf: xlf,
+            xliff: xliff,
             useSource: true,
         };
 
@@ -39,13 +39,13 @@ describe('validates parameters', () => {
 
     it('throws on invalid parameters', () => {
         const invalidXLF = {
-            xlf: '',
+            xliff: '',
         };
         const invalidSkeleton = {
-            xlf: xlf,
+            xliff: xliff,
         };
-        const invalidLang = {xlf, skeleton: '', lang: 'xx'};
-        const invalidUseSource = {xlf, useSource: null};
+        const invalidLang = {xliff, skeleton: '', lang: 'xx'};
+        const invalidUseSource = {xliff, useSource: null};
 
         expect(() => compose(invalidSkeleton as ComposeParams)).toThrow();
         expect(() => compose(invalidXLF as ComposeParams)).toThrow();

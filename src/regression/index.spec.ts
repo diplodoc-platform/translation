@@ -37,7 +37,7 @@ const test = (() => {
             describe('integration', () => {
                 const caller = only ? it.only : it;
                 caller(name, () => {
-                    const {xlf, units, skeleton} = extract({
+                    const {xliff, units, skeleton} = extract({
                         markdown,
                         source: {
                             language: 'ru',
@@ -48,11 +48,11 @@ const test = (() => {
                             locale: 'US',
                         },
                     });
-                    const result = compose({xlf, units, skeleton, useSource: true});
+                    const result = compose({xliff, units, skeleton, useSource: true});
 
-                    // console.log(xlf);
+                    // console.log(xliff);
 
-                    expect(xlf).toMatchSnapshot();
+                    expect(xliff).toMatchSnapshot();
                     expect(result).toEqual(markdown);
                     expect(result).toMatchSnapshot();
                 });

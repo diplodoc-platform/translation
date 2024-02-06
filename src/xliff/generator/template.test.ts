@@ -1,11 +1,8 @@
-import {ExtractParams, extract} from './extract';
+import {TemplateParams, generate} from './template';
 
 describe('smoke', () => {
     it('works', () => {
         const parameters = {
-            markdown: '1',
-            markdownPath: 'file.md',
-            skeletonPath: 'file.skl.md',
             source: {
                 language: 'ru',
                 locale: 'RU' as const,
@@ -14,16 +11,17 @@ describe('smoke', () => {
                 language: 'en',
                 locale: 'US' as const,
             },
+            skeletonPath: 'file.skl.md',
+            markdownPath: 'file.md',
         };
 
-        extract(parameters);
+        generate(parameters, []);
     });
 });
 
 describe('validates parameters', () => {
     it('works with valid parameters', () => {
         const parameters = {
-            markdown: '1',
             markdownPath: 'file.md',
             skeletonPath: 'file.skl.md',
             source: {
@@ -36,43 +34,44 @@ describe('validates parameters', () => {
             },
         };
 
-        const {xliff, skeleton} = extract(parameters);
-
-        expect(xliff).not.toBe('');
-        expect(skeleton).not.toBe('');
+        generate(parameters, []);
     });
 
     it('throws on invalid parameters', () => {
         const invalidLocale = {
-            markdown: 'x',
             markdownPath: 'file.md',
             skeletonPath: 'file.skl.md',
             source: {
                 language: 'ru',
-                locale: 'RU' as const,
+                locale: 'XX' as TemplateParams['source']['locale'],
             },
             target: {
-                language: 'us',
-                locale: 'XX' as ExtractParams['target']['locale'],
-            },
-        };
-
-        const invalidLanguage = {
-            markdown: 'x',
-            markdownPath: 'file.md',
-            skeletonPath: 'file.skl.md',
-            source: {
-                language: 'ru',
-                locale: 'RU' as const,
-            },
-            target: {
-                language: 'xx' as ExtractParams['target']['language'],
+                language: 'en',
                 locale: 'US' as const,
             },
         };
 
-        const invalidLang = {
-            markdown: '1',
+        const invalidLanguage = {
+            markdownPath: 'file.md',
+            skeletonPath: 'file.skl.md',
+            source: {
+                language: 'ru',
+                locale: 'RU' as const,
+            },
+            target: {
+                language: 'xx' as TemplateParams['target']['language'],
+                locale: 'US' as const,
+            },
+        };
+
+        expect(() => generate(invalidLanguage, [])).toThrow();
+        expect(() => generate(invalidLocale, [])).toThrow();
+    });
+});
+
+describe('template', () => {
+    it('generates xliff template', () => {
+        const parameters = {
             markdownPath: 'file.md',
             skeletonPath: 'file.skl.md',
             source: {
@@ -83,11 +82,10 @@ describe('validates parameters', () => {
                 language: 'en',
                 locale: 'US' as const,
             },
-            lang: 'xx',
         };
 
-        expect(() => extract(invalidLanguage)).toThrow();
-        expect(() => extract(invalidLocale)).toThrow();
-        expect(() => extract(invalidLang)).toThrow();
+        const template = generate(parameters, []);
+
+        expect(template).toMatchSnapshot();
     });
 });

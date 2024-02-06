@@ -2,7 +2,7 @@ import type {Gobbler, NonEmptyString} from 'src/skeleton/types';
 import type {SkeletonRendererState} from '.';
 import {ok} from 'assert';
 import {sentenize} from '@diplodoc/sentenizer';
-import {XLF, XLFRenderState} from 'src/xlf';
+import {XLF, XLFRenderState} from 'src/xliff';
 import {token} from 'src/utils';
 import {search} from './search';
 
@@ -120,14 +120,14 @@ export class Consumer {
 
     limit = Infinity;
 
-    private xlfState: XLFRenderState;
+    private xliffState: XLFRenderState;
 
     constructor(
         public content: string,
         public cursor: number,
         public state: SkeletonRendererState,
     ) {
-        this.xlfState = XLF.state(this.state);
+        this.xliffState = XLF.state(this.state);
     }
 
     token(type: string, props: Record<string, any> = {}) {
@@ -268,15 +268,15 @@ export class Consumer {
             past = `%%%${this.state.skeleton.id}%%%`;
 
             // replace has side effects and can modify tokens content
-            // so we need to generate xlf only after original content replacement
+            // so we need to generate xliff only after original content replacement
             this.replace(tokens, past);
 
-            const xlf = XLF.render(tokens, this.xlfState, {
+            const xliff = XLF.render(tokens, this.xliffState, {
                 unitId: this.state.skeleton.id++,
                 lang: 'ru',
             });
 
-            this.state.segments.push(xlf);
+            this.state.segments.push(xliff);
         }
 
         this.handleHooks('before', after);
