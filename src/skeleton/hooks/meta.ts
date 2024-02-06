@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it';
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
+import {Tokenizer} from 'src/liquid';
 
 export type MetaParams = {
     markdownit: MarkdownItWithMeta;
@@ -20,13 +21,9 @@ export function hook(parameters: MetaParams) {
         }
 
         traverse(meta, (value, key) => {
+            const tokenizer = new Tokenizer(value);
             consumer.skip(key);
-            consumer.process(
-                consumer.token('text', {
-                    content: value,
-                    generated: 'meta',
-                }),
-            );
+            consumer.process([...tokenizer.tokenize()]);
         });
 
         this.state.result = consumer.content;
