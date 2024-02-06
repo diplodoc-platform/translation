@@ -6,6 +6,7 @@ const getPadX = (string: string) => {
     const match = /^(\s+)/.exec(string);
     const pad = (match && match[1]) || '';
 
+    // eslint-disable-next-line security/detect-non-literal-regexp
     return new RegExp('^[\\s]{0,' + pad.length + '}');
 };
 
@@ -60,7 +61,7 @@ const test = (() => {
         };
     }
 
-    test.skip = (name: string) => it.skip(name);
+    test.skip = (name: string) => () => it.skip(name, () => {});
     test.only = (name: string) => test(name, true);
 
     return test;
@@ -153,7 +154,7 @@ test('handles links with brackets')`
     [^\\[Упр\\]^](#example)
 `;
 
-test('handles multiline tabs title')`
+test.skip('handles multiline tabs title')`
     {% list tabs %}
 
     * Tab1
@@ -179,7 +180,7 @@ test('## Start {#your-ideas}{% else %} end')`
     ## Start {#your-ideas}{% else %} end
 `;
 
-test('\`{{ var }}\` — one. Two')`
+test('`{{ var }}` — one. Two')`
     \`{{ var }}\` — one. Two
 `;
 

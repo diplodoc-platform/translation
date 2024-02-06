@@ -73,9 +73,9 @@ function diff(file, hunks) {
         files = glob.sync('**/*.md', {cwd: '../../docs-source/ru'});
     }
 
-    files = [
-        'wiki/actions.md'
-    ];
+    // files = [
+    //     'wiki/actions.md'
+    // ];
 
     for (const file of files) {
         console.log('PROCESSING', file);
@@ -106,7 +106,7 @@ function diff(file, hunks) {
                 lang: 'ru',
             });
 
-            // console.log(from.xlf)
+            // console.log(from.xliff)
             // console.log(from.skeleton);
 
             const to = compose({

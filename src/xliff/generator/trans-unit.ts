@@ -19,7 +19,9 @@ export function generateTransUnit(parameters: TransUnitParams) {
         }
         rendered += '>';
         rendered += `${target}</target>`;
-    } else {
+    }
+
+    if (source) {
         rendered += '\n';
         rendered += `<source`;
         if (sourceLangLocale?.length) {

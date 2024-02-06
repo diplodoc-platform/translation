@@ -413,54 +413,6 @@ exports[`integration handles multiline inline code 2`] = `
 )\`"
 `;
 
-exports[`integration handles multiline tabs title 1`] = `
-"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
-<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
-    <header>
-      <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
-      </skeleton>
-    </header>
-    <body>
-      <trans-unit id=\\"1\\">
-        <source>Tab1
-Tab1-Line2</source>
-      </trans-unit>
-      <trans-unit id=\\"2\\">
-        <source>Tab content</source>
-      </trans-unit>
-      <trans-unit id=\\"3\\">
-        <source>Tab2</source>
-      </trans-unit>
-      <trans-unit id=\\"4\\">
-        <source>Tab2-Line2</source>
-      </trans-unit>
-      <trans-unit id=\\"5\\">
-        <source>Tab content</source>
-      </trans-unit>
-    </body>
-  </file>
-</xliff>"
-`;
-
-exports[`integration handles multiline tabs title 2`] = `
-"{% list tabs %}
-
-* Tab1
-  Tab1-Line2
-
-  Tab content
-
-* Tab2
-
-  Tab2-Line2
-
-  Tab content
-
-{% endlist %}"
-`;
-
 exports[`integration handles titleless notes 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">

@@ -3,15 +3,12 @@ import Renderer from 'markdown-it/lib/renderer';
 
 import {XLFRenderState} from 'src/xliff/renderer/md-xliff/state';
 import { generateCloseG, generateOpenG, generateX } from 'src/xliff/generator';
-import MarkdownIt from 'markdown-it';
 
 export type LinkRuleState = {
     link: {
         map: Map<Token, Token>;
     };
 };
-
-const decodeURL = new MarkdownIt().utils.lib.mdurl.decode;
 
 export const link: Renderer.RenderRuleRecord = {
     link_auto: linkAuto,

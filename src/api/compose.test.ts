@@ -9,8 +9,8 @@ const templateParams = {
 };
 
 const transUnits = [
-    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 0},
-    {source: 'Text fragment', target: 'Фрагмент Текста', id: 1},
+    {source: 'Sentence about something', target: 'Предложение о чем-то', id: 1},
+    {source: 'Text fragment', target: 'Фрагмент Текста', id: 2},
 ];
 
 const xliff = XLF.generate(templateParams, transUnits.map(XLF.generateTransUnit));
