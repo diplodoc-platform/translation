@@ -1,5 +1,5 @@
 import assert from 'assert';
-import {XLFTagToken, XLFTextToken, XLFToken, isXLFTagToken, isXLFTextToken} from 'src/xlf/token';
+import {XLFTagToken, XLFTextToken, XLFToken, isXLFTagToken, isXLFTextToken} from '../../token';
 
 export type XLFMDRendererRuleSet = {
     text: XLFMDRendererRule;
@@ -21,12 +21,23 @@ const literal = (token: XLFToken): string => {
     return equivText;
 };
 
+const openclose = (token: XLFToken) => {
+    assert(isXLFTagToken(token));
+    token as XLFTagToken;
+
+    if (token.nodeType === 'open') {
+        return token.begin;
+    } else {
+        return token.end;
+    }
+}
+
 const spaced = (actor: (token: XLFToken) => string) => (token: XLFToken) => ' ' + actor(token);
 const quoted = (actor: (token: XLFToken) => string) => (token: XLFToken) =>
     '"' + actor(token) + '"';
 const attr = spaced(quoted(literal));
 
-class XLFMDRenderer {
+export class XLFMDRenderer {
     rules: XLFMDRendererRuleSet;
 
     constructor() {
@@ -34,6 +45,7 @@ class XLFMDRenderer {
             text: this.text.bind(this),
             tag: this.tag.bind(this),
             x: this.x.bind(this),
+            g: this.g.bind(this),
 
             // simple pair syntax
             // strong
@@ -56,6 +68,7 @@ class XLFMDRenderer {
             code_close: literal,
 
             // link
+            link: openclose,
             link_text_part_open: literal,
             link_text_part_close: literal,
             link_attributes_part_open: literal,
@@ -66,6 +79,7 @@ class XLFMDRenderer {
             link_reflink: literal,
 
             // image
+            image: openclose,
             image_text_part_open: literal,
             image_text_part_close: literal,
             image_attributes_part_open: literal,
@@ -139,6 +153,23 @@ class XLFMDRenderer {
         return handler(token);
     }
 
+    g(token: XLFToken): string {
+        assert(isXLFTagToken(token));
+        token as XLFTagToken;
+
+        const syntax = token.syntax;
+        if (!syntax?.length) {
+            throw new Error("can't render g tag without syntax");
+        }
+
+        const handler = this.rules[syntax];
+        if (!handler) {
+            throw new Error(`syntax ${syntax} not implemented`);
+        }
+
+        return handler(token);
+    }
+
     x(token: XLFToken): string {
         assert(isXLFTagToken(token));
         token as XLFTagToken;
@@ -156,6 +187,3 @@ class XLFMDRenderer {
         return handler(token);
     }
 }
-
-export {XLFMDRenderer};
-export default {XLFMDRenderer};

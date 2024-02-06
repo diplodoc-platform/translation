@@ -1,7 +1,7 @@
 import Renderer from 'markdown-it/lib/renderer';
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
-import {SkeletonRendererState} from 'src/skeleton/renderer';
+import {SkeletonRendererState} from '../';
 import {token} from 'src/utils';
 
 export type LinkState = {

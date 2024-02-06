@@ -3,23 +3,17 @@ import {gt, lt, qt, sl} from 'src/xlf/symbols';
 export type OpenGParams = {
     ctype: string;
     equivText: string;
+    'x-begin': string;
+    'x-end': string;
+} & {
+    [prop: string]: string;
 };
 
 export function generateOpenG(parameters: OpenGParams): string {
-    const {ctype, equivText} = parameters;
-    let rendered = `${lt}g`;
+    const props = Object.keys(parameters)
+        .map((key) => `${key}=${qt}${parameters[key]}${qt}`).join(' ');
 
-    if (ctype?.length) {
-        rendered += ` ctype=${qt}x-${ctype}${qt}`;
-    }
-
-    if (equivText?.length) {
-        rendered += ` equiv-text=${qt}${equivText}${qt}`;
-    }
-
-    rendered += `${gt}`;
-
-    return rendered;
+    return `${lt}g ${props}${gt}`;
 }
 
 export function generateCloseG(): string {

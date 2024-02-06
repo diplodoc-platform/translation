@@ -2,6 +2,10 @@ import Renderer from 'markdown-it/lib/renderer';
 import {Tokenizer} from 'src/liquid';
 
 export const text: Renderer.RenderRuleRecord = {
+    text_special: (tokens: Token[], i: number) => {
+        tokens[i].type = 'text';
+        tokens[i].content = '\\' + tokens[i].content;
+    },
     text: function (tokens: Token[], i: number) {
         const token = tokens[i];
 

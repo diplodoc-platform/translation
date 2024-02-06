@@ -70,12 +70,12 @@ function diff(file, hunks) {
     }
 
     if (!files.length || allFiles) {
-        files = glob.sync('**/*.md', {cwd: '../../docfiles/ru'});
+        files = glob.sync('**/*.md', {cwd: '../../docs-source/ru'});
     }
 
-    // files = [
-    //     '_api-ref-grpc/managed-mysql/api-ref/grpc/database_service.md'
-    // ];
+    files = [
+        'wiki/actions.md'
+    ];
 
     for (const file of files) {
         console.log('PROCESSING', file);
@@ -86,7 +86,7 @@ function diff(file, hunks) {
             continue;
         }
 
-        const content = readFileSync(resolve('../../docfiles/ru', file), 'utf8');
+        const content = readFileSync(resolve('../../docs-source/ru', file), 'utf8');
 
         if (!content) {
             continue;
@@ -122,7 +122,7 @@ function diff(file, hunks) {
                 if (hunks.length) {
                     if (noskip.includes(file) && !interactive) {
                         bad.push(file);
-                        diff(file, hunks);
+                        // diff(file, hunks);
 
                         // console.log(createPatch(file, content, to, '', '', {
                         //     ignoreWhitespace: true

@@ -1,7 +1,7 @@
 import Renderer from 'markdown-it/lib/renderer';
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import {Consumer} from 'src/skeleton/consumer';
-import {SkeletonRendererState} from 'src/skeleton/renderer';
+import {SkeletonRendererState} from '../';
 
 export const image: Renderer.RenderRuleRecord = {
     image_close: function (this: CustomRenderer<SkeletonRendererState>, tokens: Token[], idx) {

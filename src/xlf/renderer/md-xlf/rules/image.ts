@@ -1,26 +1,53 @@
 import MarkdownIt from 'markdown-it';
 import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
-import Token from 'markdown-it/lib/token';
 import {XLFRenderState} from 'src/xlf/renderer/md-xlf/state';
 
-import {generateX} from 'src/xlf/generator';
+import { generateCloseG, generateOpenG, generateX } from 'src/xlf/generator';
 
 const decodeURL = new MarkdownIt().utils.lib.mdurl.decode;
 
-const image = {
+export const image = {
     image_open: imageOpen,
     image_close: imageClose,
 };
 
-function imageOpen(this: CustomRenderer<XLFRenderState>) {
-    return generateX({
-        ctype: 'image_text_part_open',
-        equivText: '![',
-    });
+function imageOpen(tokens: Token[], idx: number) {
+    const open = tokens[idx];
+    if (open.g) {
+        const close = open.g;
+        const src = close.attrGet('src');
+        const title = close.attrGet('title');
+        const height = close.attrGet('height');
+        const width = close.attrGet('width');
+
+        const begin = '![';
+        const end = '](' + [
+            src && decodeURL(src),
+            title && '"' + title + '"',
+            size(width, height),
+        ].filter(Boolean).join(' ') + ')';
+
+        return generateOpenG({
+            ctype: 'image',
+            equivText: `${begin}{{text}}${end}`,
+            'x-begin': begin,
+            'x-end': end,
+        });
+    } else {
+        return generateX({
+            ctype: 'image_text_part_open',
+            equivText: '![',
+        });
+    }
 }
 
-function imageClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: number) {
-    const token = tokens[i];
+function imageClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], idx: number) {
+    const close = tokens[idx];
+
+    if (close.g) {
+        return generateCloseG();
+    }
+
     let rendered = '';
 
     rendered += generateX({
@@ -33,7 +60,7 @@ function imageClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: nu
         equivText: '(',
     });
 
-    let src = token.attrGet('src');
+    let src = close.attrGet('src');
     if (src?.length) {
         src = decodeURL(src);
         rendered += generateX({
@@ -42,7 +69,7 @@ function imageClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: nu
         });
     }
 
-    const title = token.attrGet('title');
+    const title = close.attrGet('title');
     if (title?.length) {
         rendered += generateX({
             ctype: 'image_attributes_title',
@@ -50,22 +77,13 @@ function imageClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: nu
         });
     }
 
-    const height = token.attrGet('height');
-    const width = token.attrGet('width');
+    const height = close.attrGet('height');
+    const width = close.attrGet('width');
     if (width?.length || height?.length) {
-        let equivText = '=';
-
-        if (width?.length) {
-            equivText += width;
-        }
-
-        equivText += 'x';
-
-        if (height?.length) {
-            equivText += height;
-        }
-
-        rendered += generateX({ctype: 'image_attributes_size', equivText});
+        rendered += generateX({
+            ctype: 'image_attributes_size',
+            equivText: size(width, height)
+        });
     }
 
     rendered += generateX({
@@ -76,5 +94,22 @@ function imageClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: nu
     return rendered;
 }
 
-export {image};
-export default {image};
+function size(width: string | null, height: string | null) {
+    if (!width?.length && !height?.length) {
+        return '';
+    }
+
+    let equivText = '=';
+
+    if (width?.length) {
+        equivText += width;
+    }
+
+    equivText += 'x';
+
+    if (height?.length) {
+        equivText += height;
+    }
+
+    return equivText;
+}

@@ -1,4 +1,5 @@
 import type {Token as MdToken} from 'markdown-it';
+import type {TokenSubType} from './liquid/token';
 
 declare global {
     type Token = MdToken & {
@@ -6,7 +7,8 @@ declare global {
         reflink?: boolean;
         fake?: boolean;
         generated?: string;
-        subtype?: string;
+        subtype?: TokenSubType;
+        g?: Token;
     };
 
     type Env = {

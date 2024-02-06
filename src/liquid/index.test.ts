@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-loop-func */
-import {Tokenizer} from './tokenizer';
+import {Tokenizer} from '.';
 import {condition, filter, functions, loop, text, variable} from './__fixtures__/liquid';
 
 const fixtures = [...text, ...condition, ...functions, ...filter, ...variable, ...loop];

@@ -56,8 +56,6 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
         return;
     }
 
-    // console.log('node', node.name, isText(node), isTag(node), !selfClosingTags.has(node.name));
-
     if (isText(node)) {
         ref.nodes.push(node);
     }
@@ -83,6 +81,7 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
     if (isTag(node) && !selfClosingTags.has(node.name)) {
         const closeNode = node.cloneNode();
         closeNode.attribs.nodeType = 'close';
+        closeNode.attribs.g = node;
         ref.nodes.push(closeNode);
     }
 }
@@ -101,7 +100,7 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
                 nodeType,
             };
 
-            const [_, syntax] = node?.attribs?.ctype?.split('-') ?? [];
+            const syntax = node?.attribs?.ctype;
             if (syntax?.length) {
                 token.syntax = syntax;
             }
@@ -110,6 +109,10 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
             if (equivText?.length) {
                 token.equivText = equivText;
             }
+
+            token.g = node.attribs.g;
+            token.begin = node?.attribs['x-begin'];
+            token.end = node?.attribs['x-end'];
 
             tokens.push(token);
         } else if (isText(node)) {

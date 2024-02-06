@@ -1,4 +1,4 @@
-import {render as _render} from './renderer';
+import {render as _render} from '.';
 
 const baseRendererParams = {
     source: {

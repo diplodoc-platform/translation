@@ -1,6 +1,6 @@
-import skeleton from 'src/skeleton';
+import {RenderParams, render} from 'src/skeleton';
 
-export type ExtractParams = skeleton.renderer.RenderParams;
+export type ExtractParams = RenderParams;
 
 export type ExtractOutput = {
     skeleton: string;
@@ -25,5 +25,5 @@ export function extract(parameters: ExtractParams): ExtractOutput {
         parameters.skeletonPath = 'markdown.skl.md';
     }
 
-    return skeleton.renderer.render(parameters);
+    return render(parameters);
 }

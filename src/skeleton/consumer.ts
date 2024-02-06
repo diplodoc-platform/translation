@@ -1,10 +1,10 @@
-import type {SkeletonRendererState} from 'src/skeleton/renderer';
+import type {Gobbler, NonEmptyString} from 'src/skeleton/types';
+import type {SkeletonRendererState} from '.';
 import {ok} from 'assert';
 import {sentenize} from '@diplodoc/sentenizer';
 import {XLF, XLFRenderState} from 'src/xlf';
 import {token} from 'src/utils';
-
-type NonEmptyString = '${.*}';
+import {search} from './search';
 
 const hasContent = (token: Token) => token.content;
 const notFake = (token: Token) => !token.fake;
@@ -39,10 +39,6 @@ function dropUselessTokens(tokens: Token[]) {
     return [tokens.slice(0, first), tokens.slice(first, last + 1), tokens.slice(last + 1)];
 }
 
-type Gobbler<O = any, I = string | Token | (string | Token)[]> = (content: string, window: [number, number], token: I) => O;
-
-type SearchRule = (content: string, from: number, match: string) => [number, number, string];
-
 function eruler(content: string, [start, end]: [number, number], tokens: (string | Token)[],  action: Gobbler) {
     return tokens.reduce(([from, to], token) => {
         if (!token || typeof token === 'object' && !token.content && !token.skip) {
@@ -57,81 +53,6 @@ function eruler(content: string, [start, end]: [number, number], tokens: (string
     }, [-1, start]);
 }
 
-const searchCommon: SearchRule = (content, from, match) => {
-    const index = content.indexOf(match, from);
-
-    return [index, index + match.length, match];
-};
-
-const searchTrimStart: SearchRule = (content, from, match) => {
-    while (match.startsWith(' ')) {
-        match = match.slice(1);
-
-        const index = content.indexOf(match, from);
-
-        if (index > -1) {
-            return [index, index + match.length, match];
-        }
-    }
-
-    return [-1, -1, ''];
-};
-
-const searchRegExp: SearchRule = (content, from, match) => {
-    const variant = match.replace(/\\\\/g, '\\');
-    const index = content.indexOf(variant, from);
-
-    return [index, index + variant.length, variant];
-};
-
-const searchLinkText: SearchRule = (content, from, match) => {
-    const variant = match.replace(/(\[|])/g, '\\$1');
-    const index = content.indexOf(variant, from);
-
-    return [index, index + variant.length, variant];
-};
-
-const searchMultilineInlineCode: SearchRule = (content, from, match) => {
-    const parts = match.split(/[\s\n]/g);
-
-    let index;
-    const start = (index = content.indexOf(parts.shift() as string, from));
-    while (parts.length && index > -1) {
-        const part = parts.shift() as string;
-        index = content.indexOf(part, index);
-        index = index === -1 ? index : index + part.length;
-    }
-
-    if (index === -1) {
-        return [-1, -1, match];
-    }
-
-    return [start, index, content.slice(start, index)];
-};
-
-const search: Gobbler<[number, number, string], NonEmptyString> =
-    (content, [start, end], match) => {
-        const matches = [searchCommon, searchTrimStart, searchRegExp, searchLinkText, searchMultilineInlineCode];
-
-        ok(match, `search aaaaaaaa empty ${match}`);
-
-        let from = -1, to = -1, variant = match;
-        while (matches.length && from === -1) {
-            start = start === -1 ? 0 : start;
-            [from, to, variant] = (matches.shift() as SearchRule)(content, start, match);
-            // console.log(`
-            //     SEARCH: |${match}|
-            //     WHERE:  |${content.slice(start, end)}|
-            //     RESULT: |${from > -1 ? '-'.repeat(from - start) + '^' : from}|
-            // `);
-        }
-
-        ok(from >= start, `search aaaaaaaa start: ${from} > ${start}`);
-        ok(to <= end, `search aaaaaaaa end: ${to} <= ${end}`);
-
-        return [from, to, variant];
-    };
-
 const skip: Gobbler<[number, number]> =
     (content, [start, end], token) => {
         let from = start === -1 ? 0 : start;
@@ -140,10 +61,7 @@ const skip: Gobbler<[number, number]> =
         if (Array.isArray(token)) {
             [from, to] = eruler(content, [from, end], token, skip);
         } else if ((token as Token).skip) {
-            [from, to] = skip(content, [from, end], token.skip);
-            // if ((token as Token).onskip) {
-            //     token.onskip(content, from, to);
-            // }
+            [from, to] = skip(content, [from, end], (token as Token).skip);
         } else {
             const match = typeof token === 'string' ? token : token.content;
 
@@ -282,7 +200,7 @@ export class Consumer {
             const [head, full, rest] = [segments.shift(), segments, segments.pop()];
 
             add(this.token('text', {
-                content: exclude(head, part).trimEnd(),
+                content: exclude(head as string, part).trimEnd(),
                 generated: 'head',
             }));
             release();
@@ -353,11 +271,7 @@ export class Consumer {
             // so we need to generate xlf only after original content replacement
             this.replace(tokens, past);
 
-            const inline = this.token('inline', {
-                children: tokens,
-            });
-
-            const xlf = XLF.render([inline], this.xlfState, {
+            const xlf = XLF.render(tokens, this.xlfState, {
                 unitId: this.state.skeleton.id++,
                 lang: 'ru',
             });

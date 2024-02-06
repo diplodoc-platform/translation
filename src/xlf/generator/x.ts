@@ -11,7 +11,7 @@ export function generateX(parameters: GenerateXParams) {
     let rendered = `${lt}x`;
 
     if (ctype?.length) {
-        rendered += ` ctype=${qt}x-${ctype}${qt}`;
+        rendered += ` ctype=${qt}${ctype}${qt}`;
     }
 
     if (equivText?.length) {

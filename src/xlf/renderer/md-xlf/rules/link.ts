@@ -2,13 +2,16 @@ import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
 import Renderer from 'markdown-it/lib/renderer';
 
 import {XLFRenderState} from 'src/xlf/renderer/md-xlf/state';
-import {generateX} from 'src/xlf/generator';
+import { generateCloseG, generateOpenG, generateX } from 'src/xlf/generator';
+import MarkdownIt from 'markdown-it';
 
 export type LinkRuleState = {
     link: {
         map: Map<Token, Token>;
     };
 };
+
+const decodeURL = new MarkdownIt().utils.lib.mdurl.decode;
 
 export const link: Renderer.RenderRuleRecord = {
     link_auto: linkAuto,
@@ -28,18 +31,40 @@ function linkAuto(tokens: Token[], i: number) {
 function linkOpen(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: number) {
     const open = tokens[i];
 
-    if (open.reflink) {
-        return '';
-    }
+    if (open.g) {
+        const title = open.attrGet('title');
+        const href = open.attrGet('href');
 
-    return generateX({
-        ctype: 'link_text_part_open',
-        equivText: '[',
-    });
+        const begin = '[' + (open.reflink ? '{#T}' : '');
+        const end = '](' + [
+            href,
+            title && '"' + title + '"',
+        ].filter(Boolean).join(' ') + ')';
+
+        return generateOpenG({
+            ctype: 'link',
+            equivText: `${begin}{{text}}${end}`,
+            'x-begin': begin,
+            'x-end': end,
+        });
+    } else {
+        if (open.reflink) {
+            return '';
+        }
+
+        return generateX({
+            ctype: 'link_text_part_open',
+            equivText: '[',
+        });
+    }
 }
 
 function linkClose(this: CustomRenderer<XLFRenderState>, tokens: Token[], i: number) {
     const close = tokens[i];
+    if (close.g) {
+        return generateCloseG();
+    }
+
     const open = this.state.link.map.get(close) as Token;
     const title = open.attrGet('title');
     const href = open.attrGet('href');
