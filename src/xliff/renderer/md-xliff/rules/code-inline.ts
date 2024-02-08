@@ -1,5 +1,5 @@
-import Renderer from 'markdown-it/lib/renderer';
-import Token from 'markdown-it/lib/token';
+import type Renderer from 'markdown-it/lib/renderer';
+import type Token from 'markdown-it/lib/token';
 
 import {generateX} from 'src/xliff/generator';
 

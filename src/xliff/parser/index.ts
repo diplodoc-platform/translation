@@ -81,6 +81,7 @@ function inorderNodes(node: ChildNode, ref: {nodes: ChildNode[]}) {
     if (isTag(node) && !selfClosingTags.has(node.name)) {
         const closeNode = node.cloneNode();
         closeNode.attribs.nodeType = 'close';
+        // @ts-ignore
         closeNode.attribs.g = node;
         ref.nodes.push(closeNode);
     }
@@ -98,6 +99,8 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
                 type: 'tag',
                 data: node.name,
                 nodeType,
+                begin: '',
+                end: '',
             };
 
             const syntax = node?.attribs?.ctype;
@@ -110,6 +113,7 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
                 token.equivText = equivText;
             }
 
+            // @ts-ignore
             token.g = node.attribs.g;
             token.begin = node?.attribs['x-begin'];
             token.end = node?.attribs['x-end'];

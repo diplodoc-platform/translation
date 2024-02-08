@@ -1,11 +1,12 @@
+import {ok} from 'assert';
 import languages from '@cospired/i18n-iso-languages';
 import countries from '@shellscape/i18n-iso-countries';
 
 export type TemplateParams = {
     source: LanguageLocale;
     target: LanguageLocale;
-    skeletonPath: string;
-    markdownPath: string;
+    skeletonPath?: string;
+    markdownPath?: string;
 };
 
 export type LanguageLocale = {
@@ -26,9 +27,8 @@ function unit(source: string, index: number) {
 }
 
 export function generate(parameters: TemplateParams, units: string[]) {
-    if (!validParams(parameters)) {
-        throw new Error('invalid parameters');
-    }
+    validateParams(parameters);
+
     const {source, target, skeletonPath, markdownPath} = parameters;
     return `
 <?xml version="1.0" encoding="UTF-8"?>
@@ -49,15 +49,11 @@ export function generate(parameters: TemplateParams, units: string[]) {
     `.trim();
 }
 
-function validParams(parameters: TemplateParams) {
-    const {source, target, skeletonPath, markdownPath} = parameters;
+function validateParams(parameters: TemplateParams) {
+    const {source, target} = parameters;
 
-    const conditions = [
-        ...[source, target].map(validLanguageLocale),
-        ...[skeletonPath, markdownPath].map(Boolean),
-    ];
-
-    return conditions.reduce((a, v) => a && v, true);
+    ok(validLanguageLocale(source), 'Invalid source language locale pair.');
+    ok(validLanguageLocale(target), 'Invalid target language locale pair.');
 }
 
 function validLanguageLocale(parameters: LanguageLocale) {

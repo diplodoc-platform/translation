@@ -76,11 +76,11 @@ export const link: Renderer.RenderRuleRecord = {
         const titleAttr = open.attrGet('title') || '';
 
         close.skip = close.skip || [];
-        close.skip.push(')');
+        (close.skip as string[]).push(')');
 
         if (titleAttr) {
             const consumer = new Consumer(titleAttr, 0, this.state);
-            const title = consumer.token('text', {content: titleAttr});
+            const title = token('text', {content: titleAttr});
             const parts = consumer.process(title);
             open.attrSet('title', consumer.content);
 
@@ -88,7 +88,7 @@ export const link: Renderer.RenderRuleRecord = {
                 parts.forEach(({part, past}) => consumer.replace(part, past));
             });
         } else {
-            close.skip.unshift('(');
+            (close.skip as string[]).unshift('(');
         }
 
         return '';

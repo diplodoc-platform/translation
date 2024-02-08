@@ -6,13 +6,11 @@ import {
 import {token} from 'src/utils';
 
 import {hooks} from './hooks';
-import {rules} from './rules';
+import {rules, XLFRulesState} from './rules';
 
 import {generateTransUnit} from 'src/xliff/generator';
-import {XLFRenderState} from './state';
 
-export {state, XLFRenderState} from './state';
-
+export type XLFRenderState = XLFRulesState;
 export type XLFRenderParams = DiplodocParams & BaseParams;
 export type BaseParams = {
     unitId: number;

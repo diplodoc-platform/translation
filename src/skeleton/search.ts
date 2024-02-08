@@ -56,7 +56,7 @@ const searchMultilineInlineCode: SearchRule = (content, from, match) => {
     return [start, index, content.slice(start, index)];
 };
 
-export const search: Gobbler<[number, number, string], NonEmptyString> =
+export const search: Gobbler<NonEmptyString> =
     (content, [start, end], match) => {
         const matches = [searchCommon, searchTrimStart, searchRegExp, searchLinkText, searchMultilineInlineCode];
 

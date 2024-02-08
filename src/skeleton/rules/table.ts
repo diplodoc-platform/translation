@@ -11,6 +11,8 @@ function escapeMarkupLikeChars(tokens: Token[], idx: number) {
             }
         }
     }
+
+    return '';
 }
 
 export const table: Renderer.RenderRuleRecord = {

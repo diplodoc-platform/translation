@@ -1,8 +1,7 @@
-import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
-import Renderer from 'markdown-it/lib/renderer';
-import Token from 'markdown-it/lib/token';
-
-import {XLFRenderState} from 'src/xliff/renderer/md-xliff/state';
+import type {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
+import type {XLFRenderState} from 'src/xliff/renderer/md-xliff';
+import type Renderer from 'markdown-it/lib/renderer';
+import type Token from 'markdown-it/lib/token';
 
 import {generateX} from 'src/xliff/generator';
 

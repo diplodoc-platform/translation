@@ -4,7 +4,9 @@ import {Tokenizer} from 'src/liquid';
 export const text: Renderer.RenderRuleRecord = {
     text_special: (tokens: Token[], i: number) => {
         tokens[i].type = 'text';
-        tokens[i].content = '\\' + tokens[i].content;
+        tokens[i].content = tokens[i].markup;
+
+        return '';
     },
     text: function (tokens: Token[], i: number) {
         const token = tokens[i];

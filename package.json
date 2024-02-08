@@ -37,7 +37,7 @@
     "test": "jest --verbose --silence=false",
     "test:watch": "jest --watch --verbose --silent=false",
     "build:dev": "node scripts/development.js",
-    "build": "npm run build:clean && node scripts/bundle.js",
+    "build": "npm run build:clean && tsc -p tsconfig.types.json && node scripts/bundle.js",
     "build:clean": "rm -rf lib",
     "lint": "eslint -c .eslintrc.json \"src/**/*.ts*\"",
     "fix": "prettier --write --log-level=silent \"./src/**/*.{ts,tsx}\"",

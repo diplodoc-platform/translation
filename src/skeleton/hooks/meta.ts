@@ -1,37 +1,27 @@
-import MarkdownIt from 'markdown-it';
-import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
+import type {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
+import type {SkeletonRendererState} from '..';
 import {Consumer} from 'src/skeleton/consumer';
 import {Tokenizer} from 'src/liquid';
 
-export type MetaParams = {
-    markdownit: MarkdownItWithMeta;
-};
+export function meta(this: CustomRenderer<SkeletonRendererState>) {
+    const meta = this.state.md.meta ?? {};
+    const consumer = new Consumer(this.state.result, this.state.cursor, this.state);
 
-export type MarkdownItWithMeta = MarkdownIt & {
-    meta: {};
-};
-
-export function hook(parameters: MetaParams) {
-    return function (this: CustomRenderer) {
-        const meta = parameters.markdownit.meta ?? {};
-        const consumer = new Consumer(this.state.result, this.state.cursor, this.state);
-
-        if (!Object.keys(meta).length) {
-            return '';
-        }
-
-        traverse(meta, (value, key) => {
-            const tokenizer = new Tokenizer(value);
-            consumer.skip(key);
-            consumer.process([...tokenizer.tokenize()]);
-        });
-
-        this.state.result = consumer.content;
-        this.state.cursor = consumer.cursor;
-        this.state.gap += consumer.gap;
-
+    if (!Object.keys(meta).length) {
         return '';
-    };
+    }
+
+    traverse(meta, (value, key) => {
+        const tokenizer = new Tokenizer(value);
+        consumer.skip(key);
+        consumer.process([...tokenizer.tokenize()]);
+    });
+
+    this.state.result = consumer.content;
+    this.state.cursor = consumer.cursor;
+    this.state.gap += consumer.gap;
+
+    return '';
 }
 
 type Meta =

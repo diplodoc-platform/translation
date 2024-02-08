@@ -22,7 +22,7 @@ import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 import includes from './plugins/includes';
 
-import {HooksParams, HooksState, generate as generateHooks} from './hooks';
+import { HooksState, hooks, initState as hooksInitState, MarkdownItWithMeta } from './hooks';
 import {rules, initState as rulesInitState} from './rules';
 import {TemplateParams, XLF} from 'src/xliff';
 import {LinkState} from 'src/skeleton/rules/link';
@@ -42,37 +42,21 @@ export type DiplodocParams = {
     notesAutotitle?: boolean;
 };
 
+type Renderer = CustomRenderer<SkeletonRendererState>;
+
 export function render(parameters: RenderParams) {
     validateParams(parameters);
 
-    const {markdown} = parameters;
-    const md = createRenderer(parameters);
-
-    md.render(markdown, {
-        source: markdown.split('\n'),
-    });
-
-    const state = (md.renderer as CustomRenderer<SkeletonRendererState>)
-        .state as SkeletonRendererState;
-
-    const xliff = XLF.generate(parameters, state.segments);
-
-    return {skeleton: state.result, xliff, units: state.segments};
-}
-
-export function createRenderer(parameters: RenderParams) {
     const {markdown, lang} = parameters;
+    const md = new MarkdownIt({html: true}) as MarkdownItWithMeta;
 
-    const md = new MarkdownIt({html: true}) as HooksParams['markdownit'];
-
-    const skeletonHooks = generateHooks({markdownit: md, source: markdown});
-    const mdOptions: CustomRendererParams<HooksState> = {
+    const mdOptions: CustomRendererParams<SkeletonRendererState> = {
         initState: () => ({
-            ...skeletonHooks.initState(),
+            ...hooksInitState(markdown, md),
             ...rulesInitState(),
         }),
-        rules: rules,
-        hooks: skeletonHooks.hooks,
+        rules,
+        hooks,
     };
     const diplodocOptions = {
         lang: lang ?? 'ru',
@@ -81,7 +65,6 @@ export function createRenderer(parameters: RenderParams) {
     };
 
     md.disable('reference');
-    // md.disable('escape');
     md.disable('text_join');
     md.disable('entity');
 
@@ -103,12 +86,18 @@ export function createRenderer(parameters: RenderParams) {
 
     md.use(customRenderer, mdOptions);
 
-    return md;
+    md.render(markdown, {
+        source: markdown.split('\n'),
+    });
+
+    const state = (md.renderer as unknown as Renderer).state;
+    const xliff = XLF.generate(parameters, state.segments);
+
+    return {skeleton: state.result, xliff, units: state.segments};
 }
 
 export function validateParams(parameters: RenderParams) {
-    const {markdown, lang} = parameters;
+    const {markdown} = parameters;
 
     ok(markdown !== undefined, 'Markdown is empty');
-    ok(lang === undefined || lang === 'ru' || lang === 'en', 'Unexpected lang');
 }

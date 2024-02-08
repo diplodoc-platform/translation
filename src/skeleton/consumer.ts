@@ -1,8 +1,8 @@
-import type {Gobbler, NonEmptyString} from 'src/skeleton/types';
-import type {SkeletonRendererState} from '.';
+import type {Gobbler, NonEmptyString} from './types';
+import type { SkeletonRendererState } from '.';
 import {ok} from 'assert';
 import {sentenize} from '@diplodoc/sentenizer';
-import {XLF, XLFRenderState} from 'src/xliff';
+import {XLF} from 'src/xliff';
 import {token} from 'src/utils';
 import {search} from './search';
 
@@ -39,7 +39,7 @@ function dropUselessTokens(tokens: Token[]) {
     return [tokens.slice(0, first), tokens.slice(first, last + 1), tokens.slice(last + 1)];
 }
 
-function eruler(content: string, [start, end]: [number, number], tokens: (string | Token)[],  action: Gobbler) {
+function eruler<T extends string | Token>(content: string, [start, end]: [number, number], tokens: T[],  action: Gobbler<T>) {
     return tokens.reduce(([from, to], token) => {
         if (!token || typeof token === 'object' && !token.content && !token.skip) {
             return [from, to];
@@ -53,7 +53,7 @@ function eruler(content: string, [start, end]: [number, number], tokens: (string
     }, [-1, start]);
 }
 
-const skip: Gobbler<[number, number]> =
+const skip: Gobbler =
     (content, [start, end], token) => {
         let from = start === -1 ? 0 : start;
         let to;
@@ -61,6 +61,7 @@ const skip: Gobbler<[number, number]> =
         if (Array.isArray(token)) {
             [from, to] = eruler(content, [from, end], token, skip);
         } else if ((token as Token).skip) {
+            // @ts-ignore
             [from, to] = skip(content, [from, end], (token as Token).skip);
         } else {
             const match = typeof token === 'string' ? token : token.content;
@@ -75,7 +76,7 @@ const skip: Gobbler<[number, number]> =
         return [from, to];
     };
 
-const gobble: Gobbler<[number, number] | [number, number, string], Token> =
+const gobble: Gobbler<Token> =
     (content, [start, end], token) => {
         if (token.skip) {
             return skip(content, [start, end], token);
@@ -120,15 +121,11 @@ export class Consumer {
 
     limit = Infinity;
 
-    private xliffState: XLFRenderState;
-
     constructor(
         public content: string,
         public cursor: number,
         public state: SkeletonRendererState,
-    ) {
-        this.xliffState = XLF.state(this.state);
-    }
+    ) {}
 
     token(type: string, props: Record<string, any> = {}) {
         return token(type, props);
@@ -146,88 +143,7 @@ export class Consumer {
         return this;
     }
 
-    split(tokens: Token[]) {
-        const parts: Token[][] = [];
-        let content = '';
-        let part: Token[] = [];
-
-        const add = (token: Token | null) => token && (token.content || token.skip) && part.push(token);
-        const release = () => {
-            if (part.length) {
-                parts.push(trim(part.filter(notFake)));
-                part = [];
-                content = '';
-            }
-        };
-
-        for (const token of tokens) {
-            let fake: Token | null = null;
-            if (!hasContent(token)) {
-                part.push(token);
-
-                if (br(token)) {
-                    content += ' ';
-                    fake = this.token('text', {
-                        content: ' ',
-                        fake: true,
-                        generated: 'fake',
-                    });
-                } else if (token.markup && !token.skip) {
-                    content += token.markup;
-                    fake = this.token('text', {
-                        content: token.markup,
-                        fake: true,
-                        generated: 'fake',
-                    });
-                } else {
-                    continue;
-                }
-            }
-
-            content += token.content || '';
-
-            const segments = sentenize(content);
-
-            // console.log('segments', segments);
-
-            if (segments.length === 1) {
-                add(fake);
-                add(token);
-
-                continue;
-            }
-
-            const [head, full, rest] = [segments.shift(), segments, segments.pop()];
-
-            add(this.token('text', {
-                content: exclude(head as string, part).trimEnd(),
-                generated: 'head',
-            }));
-            release();
-
-            for (const segment of full) {
-                add(this.token('text', {
-                    content: segment.trim(),
-                    generated: 'leaf',
-                }));
-                release();
-            }
-
-            content = (fake?.content || '') + rest;
-            add(fake)
-            add(this.token(token.type, {
-                ...token,
-                content: rest,
-                generated: 'rest',
-            }));
-        }
-
-        release();
-
-        return parts;
-    }
-
-    window(map: [number, number] | null, gap: number) {
+    window(map: [number, number] | null | undefined, gap: number) {
         map = map || [1, this.state.lines.end.length];
 
         const [start, end] = [
@@ -241,12 +157,12 @@ export class Consumer {
         }
     }
 
-    process = (tokens: Token | Token[]): {part: Token[]; past: string}[] => {
+    process = (tokens: Token | Token[]) => {
         tokens = ([] as Token[]).concat(tokens);
 
         const parts = this.split(tokens);
 
-        return parts.map(this.consume).filter(Boolean);
+        return parts.map(this.consume).filter(Boolean) as {part: Token[]; past: string}[];
     };
 
     consume = (part: Token[]) => {
@@ -271,7 +187,7 @@ export class Consumer {
             // so we need to generate xliff only after original content replacement
             this.replace(tokens, past);
 
-            const xliff = XLF.render(tokens, this.xliffState, {
+            const xliff = XLF.render(tokens, this.state, {
                 unitId: this.state.skeleton.id++,
                 lang: 'ru',
             });
@@ -313,7 +229,104 @@ export class Consumer {
         this.gap += gap;
     }
 
-    handleHooks(phase: 'before' | 'after', tokens: Token | Token[]) {
+    /**
+     * Split inline tokens sequence on parts,
+     * where each part is equal to one sentense of inline fragment.
+     * Trim useless spaces.
+     *
+     * Some **sentense**. Other sentense.
+     * ^--------------------------------^ inline fragment
+     * ^-1-^ 2^--3---^ 4^5^------6------^ tokens
+     * ^----------------^ ^-------------^ parts
+     */
+    private split(tokens: Token[]) {
+        const parts: Token[][] = [];
+        let content = '';
+        let part: Token[] = [];
+
+        const add = (token: Token | null) => token && (token.content || token.skip) && part.push(token);
+        const release = () => {
+            if (part.length) {
+                parts.push(trim(part.filter(notFake)));
+                part = [];
+                content = '';
+            }
+        };
+
+        for (const token of tokens) {
+            let fake: Token | null = null;
+            if (!hasContent(token)) {
+                part.push(token);
+
+                if (br(token)) {
+                    content += ' ';
+                    fake = this.token('text', {
+                        content: ' ',
+                        fake: true,
+                        generated: 'fake',
+                    });
+
+                    // there was tokens which markup we will skip manually.
+                    // for all other we need to skip it here with help of fake text token.
+                } else if (token.markup && !token.skip) {
+                    content += token.markup;
+                    fake = this.token('text', {
+                        content: token.markup,
+                        fake: true,
+                        generated: 'fake',
+                    });
+                } else {
+                    continue;
+                }
+            }
+
+            content += token.content || '';
+
+            const segments = sentenize(content);
+
+            // console.log('segments', segments);
+
+            if (segments.length === 1) {
+                add(fake);
+                add(token);
+
+                continue;
+            }
+
+            // Here we have at minimum one full segment (head) and one incomplete (rest).
+            // But we can have more that two, if last token consists big text sequence.
+
+            const [head, full, rest] = [segments.shift(), segments, segments.pop()];
+
+            add(this.token('text', {
+                content: exclude(head as string, part).trimEnd(),
+                generated: 'head',
+            }));
+            release();
+
+            for (const segment of full) {
+                add(this.token('text', {
+                    content: segment.trim(),
+                    generated: 'leaf',
+                }));
+                release();
+            }
+
+            content = (fake?.content || '') + rest;
+            add(fake)
+            add(this.token(token.type, {
+                ...token,
+                content: rest,
+                generated: 'rest',
+            }));
+        }
+
+        release();
+
+        return parts;
+    }
+
+    private handleHooks(phase: 'before' | 'after', tokens: Token | Token[]) {
         tokens = ([] as Token[]).concat(tokens);
 
         tokens.forEach((token: Token) => {

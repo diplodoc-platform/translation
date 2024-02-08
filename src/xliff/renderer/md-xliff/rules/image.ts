@@ -1,6 +1,6 @@
+import type {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
+import type {XLFRenderState} from 'src/xliff/renderer/md-xliff';
 import MarkdownIt from 'markdown-it';
-import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
-import {XLFRenderState} from 'src/xliff/renderer/md-xliff/state';
 
 import { generateCloseG, generateOpenG, generateX } from 'src/xliff/generator';
 

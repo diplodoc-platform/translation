@@ -25,18 +25,20 @@ export function trim(string: string | TemplateStringsArray): string {
         pad = getPadX(line);
     }
 
-    lines = lines.map((line) => line.replace(pad, ''));
+    if (pad) {
+        lines = lines.map((line) => line.replace(pad as RegExp, ''));
+    }
 
     return lines.join('\n').trim();
 }
 
 const test = (() => {
-    function test(name: string, only?: boolean) {
+    function test(name: string, call?: 'skip' | 'only') {
         return function (parts: TemplateStringsArray) {
             const markdown = trim(parts.join(''));
 
             describe('integration', () => {
-                const caller = only ? it.only : it;
+                const caller = call ? it[call] : it;
                 caller(name, () => {
                     const {xliff, units, skeleton} = extract({
                         markdown,
@@ -61,8 +63,8 @@ const test = (() => {
         };
     }
 
-    test.skip = (name: string) => () => it.skip(name, () => {});
-    test.only = (name: string) => test(name, true);
+    test.skip = (name: string) => test(name, 'skip');
+    test.only = (name: string) => test(name, 'only');
 
     return test;
 })();

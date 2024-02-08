@@ -1,7 +1,6 @@
+import type {CustomRenderer, CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
+import type {XLFRenderState} from 'src/xliff/renderer/md-xliff';
 import MarkdownIt from 'markdown-it';
-import {CustomRenderer, CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
-
-import {XLFRenderState} from 'src/xliff/renderer/md-xliff/state';
 import {unescapeSymbols} from 'src/xliff/symbols';
 
 const escapeHTML = new MarkdownIt().utils.escapeHtml;
