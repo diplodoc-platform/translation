@@ -77,7 +77,7 @@
   },
   "dependencies": {
     "@cospired/i18n-iso-languages": "^4.1.0",
-    "@diplodoc/markdown-it-custom-renderer": "^0.1.4",
+    "@diplodoc/markdown-it-custom-renderer": "^0.1.5",
     "@diplodoc/sentenizer": "^0.0.4",
     "@diplodoc/transform": "^4.10.0",
     "@shellscape/i18n-iso-countries": "^7.5.0-shellscape.v1",
