@@ -6,7 +6,7 @@ import {
 import {token} from 'src/utils';
 
 import {hooks} from './hooks';
-import {rules, XLFRulesState} from './rules';
+import {XLFRulesState, rules} from './rules';
 
 import {generateTransUnit} from 'src/xliff/generator';
 

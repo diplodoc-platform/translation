@@ -22,7 +22,7 @@ import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 import includes from './plugins/includes';
 
-import { HooksState, hooks, initState as hooksInitState, MarkdownItWithMeta } from './hooks';
+import { HooksState, MarkdownItWithMeta, hooks, initState as hooksInitState } from './hooks';
 import {rules, initState as rulesInitState} from './rules';
 import {TemplateParams, XLF} from 'src/xliff';
 import {LinkState} from 'src/skeleton/rules/link';
