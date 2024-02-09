@@ -1,4 +1,4 @@
-import {ExtractParameters, extract} from './extract';
+import {ExtractParams, extract} from './extract';
 
 describe('smoke', () => {
     it('works', () => {
@@ -36,9 +36,9 @@ describe('validates parameters', () => {
             },
         };
 
-        const {xlf, skeleton} = extract(parameters);
+        const {xliff, skeleton} = extract(parameters);
 
-        expect(xlf).not.toBe('');
+        expect(xliff).not.toBe('');
         expect(skeleton).not.toBe('');
     });
 
@@ -53,7 +53,7 @@ describe('validates parameters', () => {
             },
             target: {
                 language: 'us',
-                locale: 'XX' as ExtractParameters['target']['locale'],
+                locale: 'XX' as ExtractParams['target']['locale'],
             },
         };
 
@@ -66,28 +66,12 @@ describe('validates parameters', () => {
                 locale: 'RU' as const,
             },
             target: {
-                language: 'xx' as ExtractParameters['target']['language'],
+                language: 'xx' as ExtractParams['target']['language'],
                 locale: 'US' as const,
             },
-        };
-
-        const invalidLang = {
-            markdown: '1',
-            markdownPath: 'file.md',
-            skeletonPath: 'file.skl.md',
-            source: {
-                language: 'ru',
-                locale: 'RU' as const,
-            },
-            target: {
-                language: 'en',
-                locale: 'US' as const,
-            },
-            lang: 'xx',
         };
 
         expect(() => extract(invalidLanguage)).toThrow();
         expect(() => extract(invalidLocale)).toThrow();
-        expect(() => extract(invalidLang)).toThrow();
     });
 });

@@ -1,9 +1,22 @@
 import Renderer from 'markdown-it/lib/renderer';
-import {diplodoc} from './diplodoc';
+import {link, initState as linkInitState} from './link';
+import {image} from './image';
+import {table} from './table';
+import {text} from './text';
+import {blockquote} from './blockquote';
+import {code} from './code';
 
 const rules: Renderer.RenderRuleRecord = {
-    ...diplodoc,
+    ...text,
+    ...link,
+    ...image,
+    ...table,
+    ...blockquote,
+    ...code,
 };
 
-export {rules};
-export default {rules};
+const initState = () => ({
+    ...linkInitState(),
+});
+
+export {rules, initState};

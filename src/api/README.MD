@@ -1,6 +1,6 @@
 # api
 
-api that allows xlf and skeleton generation from markdown, and composition of the markdown from xlf and skeleton.
+api that allows xliff and skeleton generation from markdown, and composition of the markdown from xliff and skeleton.
 
 ## Overview
 
@@ -9,8 +9,8 @@ api that allows xlf and skeleton generation from markdown, and composition of th
 
 ## extract
 
-generate xlf and skeleton from markdown
+generate xliff and skeleton from markdown
 
 ## compose
 
-compose markdown from xlf and skeleton
+compose markdown from xliff and skeleton

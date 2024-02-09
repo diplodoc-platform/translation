@@ -3,7 +3,9 @@ export type Token = {
     value: string;
 };
 
-export type TokenType =
+export type TokenType = 'text' | 'hardbreak' | 'liquid' | 'variable';
+
+export type TokenSubType =
     | If
     | Else
     | EndIf
@@ -12,11 +14,14 @@ export type TokenType =
     | Variable
     | ForInLoop
     | EndForInLoop
-    | Text
-    | Space
-    | Newline;
+    | Newline
+    | Include
+    | ListTabs
+    | EndListTabs
+    | Attributes
+    | Literal;
 
-export type Text = 'Text';
+export type Literal = 'Literal';
 export type Space = 'Space';
 export type Newline = 'Newline';
 export type If = 'If';
@@ -27,3 +32,7 @@ export type Filter = 'Filter';
 export type Variable = 'Variable';
 export type ForInLoop = 'ForInLoop';
 export type EndForInLoop = 'EndForInLoop';
+export type Include = 'Include';
+export type ListTabs = 'ListTabs';
+export type EndListTabs = 'EndListTabs';
+export type Attributes = 'Attributes';

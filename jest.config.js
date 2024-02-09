@@ -7,7 +7,11 @@ module.exports = {
         printBasicPrototype: true,
     },
     testEnvironment: 'node',
-    testMatch: ['**/?(*.)+(test).ts?(x)'],
+    // testMatch: ['**/md-xlf/*.test.ts'],
+    // testMatch: ['**/xlf-md/*.test.ts'],
+    // testMatch: ['**/liquid/*.test.ts'],
+    // testMatch: ['**/skeleton/*.test.ts'],
+    // testMatch: ['**/regression/*.spec.ts'],
     transform: {
         '^.+\\.tsx?$': ['esbuild-jest', {tsconfig: './tsconfig.json'}],
     },

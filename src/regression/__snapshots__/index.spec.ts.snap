@@ -1,0 +1,530 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" /><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" /> end</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration ## Start {#your-ideas}{% else %} end 2`] = `"## Start {#your-ideas}{% else %} end"`;
+
+exports[`integration (a **18. B**). 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>(a <x ctype=\\"strong_open\\" equiv-text=\\"**\\" />18.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>B<x ctype=\\"strong_close\\" equiv-text=\\"**\\" />).</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration (a **18. B**). 2`] = `"(a **18. B**)."`;
+
+exports[`integration \`{{ var }}\` — one. Two 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\" /><x ctype=\\"code_close\\" equiv-text=\\"\`\\" /> — one.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Two</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration \`{{ var }}\` — one. Two 2`] = `"\`{{ var }}\` — one. Two"`;
+
+exports[`integration A ![](link) b. C. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A <g ctype=\\"image\\" equivText=\\"![{{text}}](link)\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>C.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration A ![](link) b. C. 2`] = `"A ![](link) b. C."`;
+
+exports[`integration A (B) {#C}
+:   A, b. E 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A (B) <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#C}\\" />
+:   A, b.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>E</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration A (B) {#C}
+:   A, b. E 2`] = `
+"A (B) {#C}
+:   A, b. E"
+`;
+
+exports[`integration A. B [{#T}](D). C. 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A. B <g ctype=\\"link\\" equivText=\\"[{#T}{{text}}](D)\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>C.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration A. B [{#T}](D). C. 2`] = `"A. B [{#T}](D). C."`;
+
+exports[`integration computes valid sentenses 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Записывает или удаляет элементы из таблиц.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Каждый элемент может иметь размер до 400 Кб.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration computes valid sentenses 2`] = `
+"Записывает или удаляет элементы из таблиц.
+Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление. Каждый элемент может иметь размер до 400 Кб."
+`;
+
+exports[`integration handles autolinks 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" /></source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" /></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles autolinks 2`] = `
+"* A <http://gitgrimbo.github.io/harviewer/master/>
+* B <https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru>"
+`;
+
+exports[`integration handles blockquotes 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>1</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>2</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>3</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>4</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>5</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles blockquotes 2`] = `
+"> 1
+> 2
+>
+> > 3
+> > 4
+>
+> 5"
+`;
+
+exports[`integration handles code regexps with escape chars 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Поле</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Описание</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>zone</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles code regexps with escape chars 2`] = `
+"Поле | Описание
+--- | ---
+zone |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`"
+`;
+
+exports[`integration handles inline code 1 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Параметр</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Описание</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>InternalServerError</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>Произошла</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles inline code 1 2`] = `
+"Параметр | Описание
+----- | -----
+\`InternalServerError\` | Произошла"
+`;
+
+exports[`integration handles inline code 3 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Описание значений полей:</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Название поля</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Тип</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>Описание</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>column_name</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\" /><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" /><x ctype=\\"code_open\\" equiv-text=\\"\`\\" />required</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>Имя колонки для TTL</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles inline code 3 2`] = `
+"Описание значений полей:
+| **Название поля** | **Тип** | **Описание** |
+| --- | --- | --- |
+|column_name|\`string\`<br>\`required\`|Имя колонки для TTL|"
+`;
+
+exports[`integration handles links in brackets 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>(see <g ctype=\\"link\\" equivText=\\"[{{text}}](#nestedblock--timeouts)\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles links in brackets 2`] = `"(see [below for nested schema](#nestedblock--timeouts))"`;
+
+exports[`integration handles links with brackets 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>\\\\[Упр\\\\]</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles links with brackets 2`] = `"[^\\\\[Упр\\\\]^](#example)"`;
+
+exports[`integration handles multiline inline code 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>ALL_CONCAT( expression [ , separator ]
+    [ FIXED ... | INCLUDE ... | EXCLUDE ... ]
+    [ BEFORE FILTER BY ... ]
+)</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles multiline inline code 2`] = `
+"\`ALL_CONCAT( expression [ , separator ]
+    [ FIXED ... | INCLUDE ... | EXCLUDE ... ]
+    [ BEFORE FILTER BY ... ]
+)\`"
+`;
+
+exports[`integration handles titleless notes 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles titleless notes 2`] = `
+"{% note info %}
+
+Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.
+
+{% endnote %}"
+`;
+
+exports[`integration link variable leak 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Request</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>method</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>url</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>Path parameters</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>Name</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source>Type</source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source>businessId</source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source>integer&amp;lt;int64&amp;gt;</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source>Description</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration link variable leak 2`] = `
+"## Request
+
+#||| **method** | **url** ||
+
+||
+\`\`\`
+POST
+\`\`\`
+| 
+\`\`\`
+https://api.example.ru/businesses/{businessId}/offer-mappings/update
+\`\`\`
+|||#
+
+### Path parameters
+
+#||| **Name** | **Type** | **Description** ||
+
+|| businessId | integer&lt;int64&gt; | Description |||#"
+`;
+
+exports[`integration recursive merge tokens 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"markdown.skl.md\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>title</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Sentense <g ctype=\\"link\\" equivText=\\"[{{text}}](file.md &quot;%%%1%%%&quot;)\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%1%%%&quot;)\\">link</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration recursive merge tokens 2`] = `"Sentense [link](file.md \\"title\\")."`;

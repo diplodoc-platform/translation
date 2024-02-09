@@ -1,40 +1,25 @@
-import {MarkdownRenderer} from '@diplodoc/markdown-it-markdown-renderer';
-import {CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
-import {replacer} from 'src/skeleton/replacer';
+import type {CustomRenderer, CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
+import type {SkeletonRendererState} from '..';
+import {Consumer} from 'src/skeleton/consumer';
 
-export type AfterInlineState = {
-    skeleton: {
-        id: number;
-    };
-};
 
-function afterInline(
-    this: MarkdownRenderer<AfterInlineState>,
-    parameters: CustomRendererHookParameters,
-) {
+export function afterInline(this: CustomRenderer<SkeletonRendererState>, parameters: CustomRendererHookParameters) {
     if (!parameters.rendered) {
         return '';
     }
 
-    const artifact = parameters.rendered.join('');
-    if (!artifact.length) {
-        return '';
-    }
+    const consumer = new Consumer(this.state.result, this.state.cursor, this.state);
 
-    const replaced = replacer(artifact, this.state);
+    consumer.window(parameters.map, this.state.gap);
+    consumer.process(parameters.tokens);
 
-    parameters.rendered.splice(0, parameters.rendered.length, replaced);
+    this.state.result = consumer.content;
+    this.state.cursor = consumer.cursor;
+    this.state.gap += consumer.gap;
 
     return '';
 }
 
-function initState() {
-    return () => ({
-        skeleton: {
-            id: 1,
-        },
-    });
-}
-
-export {afterInline, initState};
-export default {afterInline, initState};
+export type AfterInlineStateParams = {
+    source: string;
+};
