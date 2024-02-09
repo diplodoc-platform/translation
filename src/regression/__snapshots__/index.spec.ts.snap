@@ -11,7 +11,7 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" /><x ctype=\\"liquid_Else\\" equiv-text=\\"{% else %}\\" /> end</source>
+        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" /><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" /> end</source>
       </trans-unit>
     </body>
   </file>

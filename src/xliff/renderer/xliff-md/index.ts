@@ -106,14 +106,8 @@ export class XLFMDRenderer {
             file_close: spaced(literal),
 
             // liquid
+            liquid_Literal: literal,
             liquid_Include: literal,
-            liquid_ListTabs: literal,
-            liquid_EndListTabs: literal,
-            liquid_If: literal,
-            liquid_Else: literal,
-            liquid_EndIf: literal,
-            liquid_ForInLoop: literal,
-            liquid_EndForInLoop: literal,
             liquid_Function: literal,
             liquid_Filter: literal,
             liquid_Variable: literal,

@@ -11,25 +11,29 @@ export type SpecificationEntry = [RegExp, TokenType, TokenSubType] | [RegExp, To
 const specification_: Specification = [
     // Conditions
     // If statement
-    [/^\{%\s*if[^%}]+?\s*%}/, 'liquid', 'If'],
+    [/^\{%\s*if[^%}]+?\s*%}/, 'liquid', 'Literal'],
     // Else statement
-    [/^\{%\s*else\s*%\}/, 'liquid', 'Else'],
+    [/^\{%\s*else\s*%\}/, 'liquid', 'Literal'],
     // EndIf statement
-    [/^\{%\s*endif\s*%\}/, 'liquid', 'EndIf'],
+    [/^\{%\s*endif\s*%\}/, 'liquid', 'Literal'],
+    // Changelog
+    [/^\{%\s*changelog\s*%\}/, 'liquid', 'Literal'],
+    // EndChangelog
+    [/^\{%\s*endchangelog\s*%\}/, 'liquid', 'Literal'],
     // Fake Tabs
-    [/^\{%\s*list tabs\s*%\}/, 'liquid', 'ListTabs'],
+    [/^\{%\s*list tabs\s*%\}/, 'liquid', 'Literal'],
     // Fake Tabs end
-    [/^\{%\s*endlist\s*%\}/, 'liquid', 'EndListTabs'],
+    [/^\{%\s*endlist\s*%\}/, 'liquid', 'Literal'],
+    // ForInLoop
+    [/^\{%\s*for\s+[\w.-]+\s+in\s+[\w.-]+\s*%\}/, 'liquid', 'Literal'],
+    // EndForInLoop
+    [/^\{%\s*endfor\s*%\}/, 'liquid', 'Literal'],
     // Function
     [/^\{\{\s*[\w.-]+?\(.*?\)\s*\}\}/, 'variable', 'Function'],
     // Filter
     [/^\{\{\s*[\w.-]+\s*\|\s*\w+\s*\}\}/, 'variable', 'Filter'],
     // Variable
     [/^\{\{\s*[\w.-]+\s*\}\}/, 'variable', 'Variable'],
-    // ForInLoop
-    [/^\{%\s*for\s+[\w.-]+\s+in\s+[\w.-]+\s*%\}/, 'liquid', 'ForInLoop'],
-    // EndForInLoop
-    [/^\{%\s*endfor\s*%\}/, 'liquid', 'EndForInLoop'],
     // Attributes
     [/^\{\s*(?:[.#](?!T})[a-z0-9_-]+|[a-z0-9_-]+\s*=\s*[a-z0-9_-]+)\s*\}/i, 'liquid', 'Attributes'],
     // // Space

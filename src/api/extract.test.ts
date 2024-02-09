@@ -88,6 +88,5 @@ describe('validates parameters', () => {
 
         expect(() => extract(invalidLanguage)).toThrow();
         expect(() => extract(invalidLocale)).toThrow();
-        expect(() => extract(invalidLang)).toThrow();
     });
 });

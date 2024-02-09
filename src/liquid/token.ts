@@ -18,8 +18,10 @@ export type TokenSubType =
     | Include
     | ListTabs
     | EndListTabs
-    | Attributes;
+    | Attributes
+    | Literal;
 
+export type Literal = 'Literal';
 export type Space = 'Space';
 export type Newline = 'Newline';
 export type If = 'If';
