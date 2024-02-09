@@ -4,6 +4,7 @@ import {image} from './image';
 import {table} from './table';
 import {text} from './text';
 import {blockquote} from './blockquote';
+import {code} from './code';
 
 const rules: Renderer.RenderRuleRecord = {
     ...text,
@@ -11,6 +12,7 @@ const rules: Renderer.RenderRuleRecord = {
     ...image,
     ...table,
     ...blockquote,
+    ...code,
 };
 
 const initState = () => ({
