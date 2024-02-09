@@ -34,7 +34,7 @@
     "npm": ">=9.*"
   },
   "scripts": {
-    "test": "jest --verbose --silence=false",
+    "test": "jest --verbose --coverage --silence=false",
     "test:watch": "jest --watch --verbose --silent=false",
     "build:dev": "node scripts/development.js",
     "build": "npm run build:clean && tsc -p tsconfig.types.json && node scripts/bundle.js",
