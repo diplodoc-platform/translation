@@ -71,21 +71,6 @@ describe('validates parameters', () => {
             },
         };
 
-        const invalidLang = {
-            markdown: '1',
-            markdownPath: 'file.md',
-            skeletonPath: 'file.skl.md',
-            source: {
-                language: 'ru',
-                locale: 'RU' as const,
-            },
-            target: {
-                language: 'en',
-                locale: 'US' as const,
-            },
-            lang: 'xx',
-        };
-
         expect(() => extract(invalidLanguage)).toThrow();
         expect(() => extract(invalidLocale)).toThrow();
     });
