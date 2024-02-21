@@ -1,15 +1,14 @@
 {
-  "name": "@diplodoc/markdown-translation",
-  "version": "2.0.0-beta-1",
+  "name": "@diplodoc/translation",
+  "version": "1.0.0",
   "description": "markdown translation utilities",
-  "homepage": "https://github.com/diplodoc-platform/markdown-translation",
+  "homepage": "https://github.com/diplodoc-platform/translation",
   "bugs": {
-    "url": "https://github.com/diplodoc-platform/markdown-translation/issues",
-    "email": "morozov.kirill.moki@gmail.com"
+    "url": "https://github.com/diplodoc-platform/translation/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diplodoc-platform/markdown-translation.git"
+    "url": "git+https://github.com/diplodoc-platform/translation.git"
   },
   "keywords": [
     "markdown-it",
@@ -44,9 +43,8 @@
     "prepublishOnly": "npm run build"
   },
   "author": {
-    "name": "moki",
-    "email": "morozov.kirill.moki@gmail.com",
-    "url": "github.com/moki"
+    "name": "diplodoc",
+    "url": "github.com/diplodoc-platform"
   },
   "license": "MIT",
   "devDependencies": {
@@ -76,7 +74,7 @@
   },
   "dependencies": {
     "@cospired/i18n-iso-languages": "^4.1.0",
-    "@diplodoc/sentenizer": "^0.0.5",
+    "@diplodoc/sentenizer": "^0.0.6",
     "@diplodoc/transform": "^4.10.0",
     "@shellscape/i18n-iso-countries": "^7.5.0-shellscape.v1",
     "ajv": "^8.12.0",
