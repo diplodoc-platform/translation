@@ -1,8 +1,8 @@
 import type {UnresolvedRefDetails} from 'json-refs';
-import { dirname, join } from 'node:path';
-import { resolveRefs } from 'json-refs';
-import { omit, walkPath } from './utils';
-import { JSONValue } from 'src/json/index';
+import type {JSONValue} from 'src/json/index';
+import {dirname, join} from 'node:path';
+import {resolveRefs} from 'json-refs';
+import {omit, walkPath} from './utils';
 
 type ResolveRefsContext = {
     location: string;
@@ -80,6 +80,15 @@ export async function resolve(content: object, location: string, parse: Parser) 
             }
         }
     });
+
+    const ref = (key: string) => refs[key as keyof typeof refs];
+    const missed = Object.keys(refs)
+        .filter((key) => ref(key).missing)
+        .map((key) => key + ': ' + (ref(key).error || ref(key).uri));
+
+    if (missed.length) {
+        throw new Error('Can\'t resolve json refs:\n' + missed.join('\n'));
+    }
 
     return roots[location];
 }
