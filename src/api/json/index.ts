@@ -9,8 +9,6 @@ import {hash} from 'src/hash';
 import {fromXLIFF, parse, template} from 'src/xliff';
 import {jsonSchema, openapiSchema30, openapiSchema31, translate} from 'src/json';
 
-export {resolve as resolveJSON} from 'src/json';
-
 type JSONSchema = JSONSchema7 & {$id: string};
 
 type JSONSchemas = {

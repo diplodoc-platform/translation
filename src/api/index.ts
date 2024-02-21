@@ -3,9 +3,7 @@ import type {ComposeOptions as JsonComposeOptions, ExtractOptions as JsonExtract
 import {compose as composeMd, extract as extraactMd } from './md';
 import {compose as composeJson, extract as extraactJson} from './json';
 import {validate} from './validate';
-import { JSONValue } from 'src/json';
-
-export {resolveJSON} from './json';
+import {JSONValue} from 'src/json';
 
 export type ExtractOptions = Parameters<typeof extract>[1];
 
