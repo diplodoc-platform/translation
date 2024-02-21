@@ -1,5 +1,5 @@
 import Token from 'markdown-it/lib/token';
-import {CustomRendererHookParameters} from '@diplodoc/markdown-it-custom-renderer';
+import {CustomRendererHookParameters} from 'src/renderer';
 
 export function image(parameters: CustomRendererHookParameters) {
     const tokens: Token[] = parameters.tokens;
@@ -12,8 +12,7 @@ export function image(parameters: CustomRendererHookParameters) {
 
         const inlines = token.children ?? [];
 
-        let j;
-        for (j = 0; j < inlines.length; j++) {
+        for (let j = 0; j < inlines.length; j++) {
             if (inlines[j].type === 'image') {
                 const openToken = new Token('image_open', 'img', 0);
                 const closeToken = new Token('image_close', 'img', 0);

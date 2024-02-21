@@ -1,8 +1,7 @@
-import {render} from './renderer/md-xliff';
-import {parse} from './parser';
-import {generate, generateTransUnit} from './generator';
+export type {TemplateOptions, TransUnitParams} from './generator';
+export type {ParseOptions} from './parser';
 
-export type {XLFRenderParams, XLFRenderState} from './renderer/md-xliff/';
-export type {TemplateParams, TransUnitParams} from './generator';
-
-export const XLF = {render, parse, generate, generateTransUnit};
+export {render as toXLIFF} from './md-xliff';
+export {render as fromXLIFF} from './xliff-md';
+export {parse} from './parser';
+export {template, transunit} from './generator';

@@ -9,9 +9,17 @@ declare global {
         generated?: string;
         subtype?: TokenSubType;
         g?: Token;
+        open?: Token;
+        erule?: (consumer: Consumer, tokens: Token[], idx: number, pos: [number, number]) => void;
+        beforeDrop?: (consumer: Consumer, prev: Token, next: Token) => void;
     };
 
     type Env = {
         source: string[];
     };
+
+    type FileInfo<T> = {
+        path: string;
+        data: T;
+    }
 }

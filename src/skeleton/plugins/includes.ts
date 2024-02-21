@@ -1,11 +1,13 @@
 import type MdIt from 'markdown-it';
 import type State from 'markdown-it/lib/rules_core/state_core';
+import type StateInline from 'markdown-it/lib/rules_inline/state_inline';
 import {token} from "src/utils";
 
 const INCLUDE_REGEXP = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}$/;
+const INCLUDE_REGEXP_2 = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}/;
 
 export default function(md: MdIt) {
-    const plugin = (state: State) => {
+    const block = (state: State) => {
         const {tokens} = state;
         let i = 0;
 
@@ -35,9 +37,27 @@ export default function(md: MdIt) {
         }
     };
 
-    try {
-        md.core.ruler.before('curly_attributes', 'includes', plugin);
-    } catch (e) {
-        md.core.ruler.push('includes', plugin);
+    const inline = (state: StateInline) => {
+        const ch1 = state.src[state.pos];
+        const ch2 = state.src[state.pos + 1];
+
+        if (ch1 + ch2 === '{%') {
+            const match = INCLUDE_REGEXP_2.exec(state.src.slice(state.pos))
+
+            if (match) {
+                state.pos += match[0].length;
+
+                const token = state.push('liquid', '', 0) as Token;
+                token.skip = match[0];
+                token.subtype = 'Include';
+
+                return true;
+            }
+        }
+
+        return false;
     }
+
+    md.core.ruler.before('linkify', 'includes', block);
+    md.inline.ruler.before('linkify', 'includes', inline);
 }

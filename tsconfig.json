@@ -3,6 +3,7 @@
   "compilerOptions": {
     "downlevelIteration": true,
     "declaration": true,
+    "resolveJsonModule": true,
     "moduleResolution":"nodenext",
     "esModuleInterop": true,
     "skipLibCheck": true,

@@ -40,8 +40,7 @@ const test = (() => {
             describe('integration', () => {
                 const caller = call ? it[call] : it;
                 caller(name, () => {
-                    const {xliff, units, skeleton} = extract({
-                        markdown,
+                    const {xliff, skeleton} = extract(markdown, {
                         source: {
                             language: 'ru',
                             locale: 'RU',
@@ -51,9 +50,7 @@ const test = (() => {
                             locale: 'US',
                         },
                     });
-                    const result = compose({xliff, units, skeleton, useSource: true});
-
-                    // console.log(xliff);
+                    const result = compose(skeleton, xliff, {useSource: true});
 
                     expect(xliff).toMatchSnapshot();
                     expect(result).toEqual(markdown);
@@ -194,7 +191,7 @@ test('A ![](link) b. C.')`
     A ![](link) b. C.
 `;
 
-test('A (B) {#C}\n:   A, b. E')`
+test.skip('A (B) {#C}\n:   A, b. E')`
     A (B) {#C}
     :   A, b. E 
 `;

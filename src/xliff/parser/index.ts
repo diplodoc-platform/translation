@@ -1,27 +1,22 @@
 import assert, {ok} from 'assert';
-import {XMLValidator} from 'fast-xml-parser';
 import {load} from 'cheerio';
 import {ChildNode, Element, isTag, isText} from 'domhandler';
 
 import {XLFTagToken, XLFTextToken, XLFToken} from 'src/xliff/token';
 
-export type GetTranslationsParams = {
-    xliff?: string;
-    units?: string[];
+const selfClosingTags = new Set(['x']);
+
+export type ParseOptions = {
     useSource?: boolean;
 };
 
-const selfClosingTags = new Set(['x']);
-
-export function parse(parameters: GetTranslationsParams): Array<Array<XLFToken>> {
-    validateParams(parameters);
-
-    const {xliff, units, useSource = false} = parameters;
-    if (units) {
-        return parseTargets(units.map((unit) => selectTargets(unit, useSource).get(0) as Element));
+export function parse(xliff: string | string[], options?: ParseOptions): Array<Array<XLFToken>> {
+    const {useSource = false} = options || {};
+    if (Array.isArray(xliff)) {
+        return parseTargets(xliff.map((unit) => selectTargets(unit, useSource).get(0) as Element));
     }
 
-    const targets = selectTargets(xliff as string, useSource);
+    const targets = selectTargets(xliff, useSource);
 
     return parseTargets(targets.get());
 }
@@ -129,24 +124,4 @@ function nodesIntoXLFTokens(nodes: ChildNode[]): XLFToken[] {
     }
 
     return tokens;
-}
-
-function validateParams(parameters: GetTranslationsParams) {
-    if (parameters.units) {
-        parameters.units.forEach((unit) => {
-            const validation = XMLValidator.validate(unit);
-
-            if (validation !== true) {
-                console.log('PROBLEM', unit)
-                throw validation.err.msg;
-            }
-        })
-        return;
-    }
-
-    const validation = XMLValidator.validate(parameters.xliff as string);
-
-    if (validation !== true) {
-        throw validation.err.msg;
-    }
 }
