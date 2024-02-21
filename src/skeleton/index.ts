@@ -1,11 +1,4 @@
-import {ok} from 'assert';
 import MarkdownIt from 'markdown-it';
-import {
-    CustomRenderer,
-    CustomRendererHooks,
-    CustomRendererParams,
-    customRenderer,
-} from '@diplodoc/markdown-it-custom-renderer';
 
 // configure with diplodoc plugins
 // @ts-ignore
@@ -22,44 +15,17 @@ import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 import includes from './plugins/includes';
 
-import { HooksState, MarkdownItWithMeta, hooks, initState as hooksInitState } from './hooks';
-import {rules, initState as rulesInitState} from './rules';
-import {TemplateParams, XLF} from 'src/xliff';
-import {LinkState} from 'src/skeleton/rules/link';
+import {customRenderer} from 'src/renderer';
+import {Hash, hash as _hash} from 'src/hash';
+import {Consumer} from 'src/consumer';
 
-export type SkeletonRendererState = HooksState & LinkState;
+import {hooks} from './hooks';
+import {rules} from './rules';
 
-export type RenderParams = BaseParams & TemplateParams & DiplodocParams;
-export type BaseParams = {
-    markdown: string;
-    markdownPath?: string;
-    skeletonPath?: string;
-    hooks?: CustomRendererHooks;
-};
-
-export type DiplodocParams = {
-    lang?: string;
-    notesAutotitle?: boolean;
-};
-
-type Renderer = CustomRenderer<SkeletonRendererState>;
-
-export function render(parameters: RenderParams) {
-    validateParams(parameters);
-
-    const {markdown, lang} = parameters;
-    const md = new MarkdownIt({html: true}) as MarkdownItWithMeta;
-
-    const mdOptions: CustomRendererParams<SkeletonRendererState> = {
-        initState: () => ({
-            ...hooksInitState(markdown, md),
-            ...rulesInitState(),
-        }),
-        rules,
-        hooks,
-    };
+export function render(markdown: string, hash: Hash = _hash()) {
+    const md = new MarkdownIt({html: true});
+    const state = new Consumer(markdown, 0, hash);
     const diplodocOptions = {
-        lang: lang ?? 'ru',
         notesAutotitle: false,
         path: '',
     };
@@ -84,20 +50,9 @@ export function render(parameters: RenderParams) {
     md.use(video, diplodocOptions);
     md.use(table, diplodocOptions);
 
-    md.use(customRenderer, mdOptions);
+    md.use(customRenderer, {state, rules, hooks});
 
-    md.render(markdown, {
-        source: markdown.split('\n'),
-    });
+    md.render(markdown);
 
-    const state = (md.renderer as unknown as Renderer).state;
-    const xliff = XLF.generate(parameters, state.segments);
-
-    return {skeleton: state.result, xliff, units: state.segments};
-}
-
-export function validateParams(parameters: RenderParams) {
-    const {markdown} = parameters;
-
-    ok(markdown !== undefined, 'Markdown is empty');
+    return state.content;
 }

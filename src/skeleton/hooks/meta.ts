@@ -1,11 +1,15 @@
-import type {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
-import type {SkeletonRendererState} from '..';
-import {Consumer} from 'src/skeleton/consumer';
-import {Tokenizer} from 'src/liquid';
+import type {CustomRenderer} from 'src/renderer';
+import type {Consumer} from 'src/consumer';
+import {Tokenizer} from '../liquid';
+import {token} from 'src/utils';
+import MarkdownIt from 'markdown-it';
 
-export function meta(this: CustomRenderer<SkeletonRendererState>) {
-    const meta = this.state.md.meta ?? {};
-    const consumer = new Consumer(this.state.result, this.state.cursor, this.state);
+type MarkdownItWithMeta = MarkdownIt & {
+    meta: {};
+};
+
+export function meta(this: CustomRenderer<Consumer, MarkdownItWithMeta>) {
+    const meta = this.md.meta ?? {};
 
     if (!Object.keys(meta).length) {
         return '';
@@ -13,13 +17,11 @@ export function meta(this: CustomRenderer<SkeletonRendererState>) {
 
     traverse(meta, (value, key) => {
         const tokenizer = new Tokenizer(value);
-        consumer.skip(key);
-        consumer.process([...tokenizer.tokenize()]);
+        this.state.process([
+            token('fake', {skip: key}),
+            ...tokenizer.tokenize()
+        ]);
     });
-
-    this.state.result = consumer.content;
-    this.state.cursor = consumer.cursor;
-    this.state.gap += consumer.gap;
 
     return '';
 }

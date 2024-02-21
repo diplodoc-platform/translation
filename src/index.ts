@@ -1,2 +1,3 @@
-export {extract, ExtractParams} from './api/extract';
-export {compose, ComposeParams} from './api/compose';
+export {extract, ExtractOptions, compose, ComposeOptions, resolveJSON} from './api';
+
+// export {extract as extractJSON, resolveJSON} from './json';

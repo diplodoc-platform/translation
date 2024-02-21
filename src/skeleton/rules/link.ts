@@ -1,22 +1,7 @@
-import Renderer from 'markdown-it/lib/renderer';
-import {CustomRenderer} from '@diplodoc/markdown-it-custom-renderer';
-import {Consumer} from 'src/skeleton/consumer';
-import {SkeletonRendererState} from '../';
+import type Renderer from 'markdown-it/lib/renderer';
+import type {CustomRenderer} from 'src/renderer';
+import {Consumer} from 'src/consumer';
 import {token} from 'src/utils';
-
-export type LinkState = {
-    link: {
-        pending: Token[];
-        map: Map<Token, Token>;
-    };
-};
-
-export const initState = () => ({
-    link: {
-        pending: [],
-        map: new Map(),
-    },
-});
 
 function isAutolink(token: Token) {
     return token.markup === 'autolink';
@@ -38,11 +23,22 @@ function isRefLink(open: Token, text: Token, close: Token) {
     return text?.content === '{#T}';
 }
 
+function find(type: string, tokens: Token[], idx: number) {
+    while (tokens.length > idx) {
+        if (tokens[idx].type === type) {
+            return tokens[idx];
+        }
+        idx++;
+    }
+
+    return null;
+}
+
 export const link: Renderer.RenderRuleRecord = {
-    link_open: function (this: CustomRenderer<SkeletonRendererState>, tokens: Token[], idx) {
+    link_open: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const open = tokens[idx];
         const text = tokens[idx + 1];
-        const close = tokens[idx + 2];
+        const close = find('link_close', tokens, idx + 1) as Token;
 
         if (isAutolink(open)) {
             const autolink = token('link_auto', {
@@ -54,41 +50,39 @@ export const link: Renderer.RenderRuleRecord = {
             return '';
         }
 
+        open.skip = '[';
+        close.open = open;
+
         if (isRefLink(open, text, close)) {
             open.reflink = true;
             text.reflink = true;
         }
 
-        this.state.link.pending.push(open);
-
         return '';
     },
-    link_close: function (this: CustomRenderer<SkeletonRendererState>, tokens: Token[], idx) {
+    link_close: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const close = tokens[idx];
-        const open = this.state.link.pending.pop();
+        const open = close.open;
 
         if (open?.type !== 'link_open') {
             throw new Error('failed to render link token');
         }
 
-        this.state.link.map.set(close, open);
-
         const titleAttr = open.attrGet('title') || '';
 
-        close.skip = close.skip || [];
-        (close.skip as string[]).push(')');
+        const skip = close.skip = (close.skip || []) as string[];
+        skip.push(')');
 
         if (titleAttr) {
-            const consumer = new Consumer(titleAttr, 0, this.state);
+            const consumer = new Consumer(titleAttr, 0, this.state.hash);
             const title = token('text', {content: titleAttr});
             const parts = consumer.process(title);
             open.attrSet('title', consumer.content);
-
-            this.state.hooks.before.add(close, (consumer: Consumer) => {
-                parts.forEach(({part, past}) => consumer.replace(part, past));
-            });
+            close.beforeDrop = (consumer: Consumer) => {
+                parts.forEach(({part, past}) => consumer.consume(part, past));
+            };
         } else {
-            (close.skip as string[]).unshift('(');
+            skip.unshift('(');
         }
 
         return '';

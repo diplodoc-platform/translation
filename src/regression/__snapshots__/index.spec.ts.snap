@@ -3,10 +3,10 @@
 exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -23,18 +23,18 @@ exports[`integration ## Start {#your-ideas}{% else %} end 2`] = `"## Start {#you
 exports[`integration (a **18. B**). 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>(a <x ctype=\\"strong_open\\" equiv-text=\\"**\\" />18.</source>
+        <source>(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\" />18.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>B<x ctype=\\"strong_close\\" equiv-text=\\"**\\" />).</source>
+        <source>B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" />).</source>
       </trans-unit>
     </body>
   </file>
@@ -46,10 +46,10 @@ exports[`integration (a **18. B**). 2`] = `"(a **18. B**)."`;
 exports[`integration \`{{ var }}\` — one. Two 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -69,10 +69,10 @@ exports[`integration \`{{ var }}\` — one. Two 2`] = `"\`{{ var }}\` — one. T
 exports[`integration A ![](link) b. C. 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -121,10 +121,10 @@ exports[`integration A (B) {#C}
 exports[`integration A. B [{#T}](D). C. 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -144,10 +144,10 @@ exports[`integration A. B [{#T}](D). C. 2`] = `"A. B [{#T}](D). C."`;
 exports[`integration computes valid sentenses 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -173,10 +173,10 @@ exports[`integration computes valid sentenses 2`] = `
 exports[`integration handles autolinks 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -199,10 +199,10 @@ exports[`integration handles autolinks 2`] = `
 exports[`integration handles blockquotes 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -239,10 +239,10 @@ exports[`integration handles blockquotes 2`] = `
 exports[`integration handles code regexps with escape chars 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -272,10 +272,10 @@ zone |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`"
 exports[`integration handles inline code 1 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -305,10 +305,10 @@ exports[`integration handles inline code 1 2`] = `
 exports[`integration handles inline code 3 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -348,10 +348,10 @@ exports[`integration handles inline code 3 2`] = `
 exports[`integration handles links in brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -368,10 +368,10 @@ exports[`integration handles links in brackets 2`] = `"(see [below for nested sc
 exports[`integration handles links with brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -388,10 +388,10 @@ exports[`integration handles links with brackets 2`] = `"[^\\\\[Упр\\\\]^](#e
 exports[`integration handles multiline inline code 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -416,10 +416,10 @@ exports[`integration handles multiline inline code 2`] = `
 exports[`integration handles titleless notes 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -442,10 +442,10 @@ exports[`integration handles titleless notes 2`] = `
 exports[`integration link variable leak 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -509,10 +509,10 @@ https://api.example.ru/businesses/{businessId}/offer-mappings/update
 exports[`integration recursive merge tokens 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
     <header>
       <skeleton>
-        <external-file href=\\"markdown.skl.md\\"></external-file>
+        <external-file href=\\"file.skl\\"></external-file>
       </skeleton>
     </header>
     <body>
@@ -520,7 +520,7 @@ exports[`integration recursive merge tokens 1`] = `
         <source>title</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>Sentense <g ctype=\\"link\\" equivText=\\"[{{text}}](file.md &quot;%%%1%%%&quot;)\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%1%%%&quot;)\\">link</g>.</source>
+        <source>Sentense <g ctype=\\"link\\" equivText=\\"[{{text}}](file.md &quot;%%%0%%%&quot;)\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%0%%%&quot;)\\">link</g>.</source>
       </trans-unit>
     </body>
   </file>
