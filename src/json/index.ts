@@ -1,7 +1,7 @@
 import {resolve} from 'node:path';
 import {readPath} from './utils';
 
-export type JSONValue<T = any> = string | number | boolean | null | Record<string, T> | T[];
+export type JSONValue<T = any> = Record<string, T> | T[];
 
 export {translate} from './translate';
 
