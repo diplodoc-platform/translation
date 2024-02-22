@@ -7,7 +7,7 @@ import {JSONValue} from 'src/json';
 
 export type ExtractOptions = Parameters<typeof extract>[1];
 
-export type ComposeOptions = Parameters<typeof compose>[1];
+export type ComposeOptions = Parameters<typeof compose>[2];
 
 export function extract(content: JSONValue, params: JsonComposeOptions): JsonExtractOutput
 export function extract(content: string, params: MdExtractOptions): MdExtractOutput
@@ -22,9 +22,9 @@ export function extract(content: any, params: any): any {
 extract.md = extraactMd;
 extract.json = extraactJson;
 
-export function compose(skeleton: JSONValue, xliff: string, options: JsonExtractOptions): JSONValue
-export function compose(skeleton: string, xliff: string, options: MdComposeOptions): string
-export function compose(skeleton: any, xliff: string, options: any): any {
+export function compose(skeleton: JSONValue, xliff: string | string[], options: JsonExtractOptions): JSONValue
+export function compose(skeleton: string, xliff: string | string[], options: MdComposeOptions): string
+export function compose(skeleton: any, xliff: string | string[], options: any): any {
     validate('ComposeOptions', options);
 
     const type = typeof skeleton === 'string' ? 'md' : 'json';
