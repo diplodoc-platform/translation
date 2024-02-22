@@ -1,6 +1,6 @@
 {
   "name": "@diplodoc/translation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "markdown translation utilities",
   "homepage": "https://github.com/diplodoc-platform/translation",
   "bugs": {
@@ -28,6 +28,12 @@
   "files": [
     "lib/"
   ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.js",
+      "default": "./lib/index.js"
+    }
+  },
   "engines": {
     "node": ">=18.*",
     "npm": ">=9.*"
