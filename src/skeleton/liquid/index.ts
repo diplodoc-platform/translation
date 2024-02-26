@@ -35,6 +35,7 @@ const specification_: Specification = [
     // Variable
     [/^\{\{\s*[\w.-]+\s*\}\}/, 'variable', 'Variable'],
     // Attributes
+    // eslint-disable-next-line security/detect-unsafe-regex
     [/^\{\s*(?:[.#](?!T})[a-z0-9_-]+|(?:\s?[a-z0-9_-]+\s*=\s*["']?[a-z0-9_-]+)["']?)+\s*\}/i, 'liquid', 'Attributes'],
     // // Space
     // [/^[^\S\r\n]+/, 'text'],
