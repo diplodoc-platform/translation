@@ -2,7 +2,6 @@ import {sentenize} from '@diplodoc/sentenizer';
 import {eruler, firstContentful, gobble, lastContentful} from 'src/consumer/utils';
 import {token} from 'src/utils';
 
-
 const hasContent = (token: Token) => token.content || token.markup && !token.skip;
 
 export function trim(part: Token[]) {
@@ -96,7 +95,7 @@ export function split(tokens: Token[]) {
         content = rest || '';
         add(token(_token.type, {
             ..._token,
-            content: rest,
+            content: content.trim() ? content : _token.content,
             generated: 'rest',
         }));
     }
