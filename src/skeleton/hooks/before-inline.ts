@@ -34,10 +34,11 @@ function find(tokens: Token[], idx: number, step: number) {
 function fixBreak(_break: Token) {
     _break.content = '\n';
     _break.erule = function(consumer, tokens, idx) {
+        const curr = tokens[idx];
         const next = find(tokens, idx, 1);
         const prev = find(tokens, idx, -1);
 
-        let [from, to] = _break.map as [number, number];
+        let [from, to] = curr.map as [number, number];
 
         if (next) {
             const [_from] = gobble(consumer.content, [to, consumer.limit], next, idx);
@@ -51,9 +52,8 @@ function fixBreak(_break: Token) {
             from = prev.map[1];
         }
 
-        _break.content = consumer.content.slice(from, to);
-        _break.map = [from, to];
-        // console.log(prev, _break);
+        curr.content = consumer.content.slice(from, to);
+        curr.map = [from, to];
     }
 }
 
@@ -83,7 +83,7 @@ function splitInlineCode(tokens: Token[], idx: number) {
     const close = token('code_inline_close', {
         content: '',
         markup: tokens[idx].markup,
-        skip: [tokens[idx].markup],
+        skip: tokens[idx].markup,
         erule: (consumer, tokens, idx) => {
             const prev = tokens[idx - 1];
             if (prev && close.map) {

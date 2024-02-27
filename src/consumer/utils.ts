@@ -25,7 +25,7 @@ export const skip: Gobbler =
             [from, to] = eruler(content, [from, end], token, skip);
         } else if ((token as Token).skip) {
             // @ts-ignore
-            [from, to] = skip(content, [from, end], (token as Token).skip);
+            [from, to] = skip(content, [from, end], (token as Token).skip, i);
         } else {
             const match = typeof token === 'string' ? token : (token.content || token.markup);
 
