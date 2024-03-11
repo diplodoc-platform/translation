@@ -1,10 +1,11 @@
 import type {TemplateOptions} from 'src/xliff'
+import type {SkeletonOptions} from 'src/skeleton';
 import {hash} from 'src/hash';
-import {render} from 'src/skeleton';
+import {skeleton} from 'src/skeleton';
 import {fromXLIFF, parse, template} from 'src/xliff';
 import {replace} from 'src/utils';
 
-export type ExtractOptions = TemplateOptions;
+export type ExtractOptions = TemplateOptions & SkeletonOptions;
 
 export type ExtractOutput = {
     skeleton: string;
@@ -24,7 +25,7 @@ export function extract(content: string, options: ExtractOptions): ExtractOutput
     const hashed = hash();
 
     return {
-        skeleton: render(content, hashed),
+        skeleton: skeleton(content, options, hashed),
         xliff: template(hashed.segments, options),
         units: hashed.segments,
     };

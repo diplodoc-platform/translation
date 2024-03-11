@@ -1,3 +1,5 @@
+import type {ConsumerOptions} from 'src/consumer';
+
 import MarkdownIt from 'markdown-it';
 
 // configure with diplodoc plugins
@@ -22,9 +24,11 @@ import {Consumer} from 'src/consumer';
 import {hooks} from './hooks';
 import {rules} from './rules';
 
-export function render(markdown: string, hash: Hash = _hash()) {
+export type SkeletonOptions = ConsumerOptions;
+
+export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: Hash = _hash()) {
     const md = new MarkdownIt({html: true});
-    const state = new Consumer(markdown, 0, hash);
+    const state = new Consumer(markdown, options, hash);
     const diplodocOptions = {
         notesAutotitle: false,
         path: '',

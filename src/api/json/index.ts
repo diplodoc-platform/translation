@@ -2,6 +2,7 @@ import type {JSONSchema7} from 'json-schema';
 import type {OpenAPIV3} from 'openapi-types';
 import type {JSONValue} from 'src/json';
 import type {ParseOptions, TemplateOptions} from 'src/xliff';
+import type {SkeletonOptions} from 'src/skeleton';
 import {ok} from 'node:assert';
 import Ajv from 'ajv';
 
@@ -15,7 +16,7 @@ type JSONSchemas = {
     schemas: JSONSchema[];
 };
 
-export type ExtractOptions = JSONSchemas & TemplateOptions;
+export type ExtractOptions = JSONSchemas & TemplateOptions & SkeletonOptions;
 
 export type ExtractOutput = {
     skeleton: JSONValue;
@@ -25,14 +26,14 @@ export type ExtractOutput = {
 
 export type ComposeOptions = JSONSchemas & ParseOptions;
 
-export function extract(content: JSONValue, {schemas = [], source, target}: ExtractOptions) {
+export function extract(content: JSONValue, {schemas = [], source, target, compact}: ExtractOptions) {
     const mainSchema = getMainSchema(content, schemas);
     const hashed = hash();
     const ajv = setupAjv(schemas);
 
     content = clone(content);
 
-    ajv.addKeyword(translate.extract(hashed));
+    ajv.addKeyword(translate.extract(hashed, {compact}));
     ajv.validate(mainSchema, content);
 
     const xliff = template(hashed.segments, {source, target});

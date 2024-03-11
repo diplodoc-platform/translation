@@ -15,6 +15,10 @@ function countStartIndexes(acc: number[], line: string) {
     return acc;
 }
 
+export type ConsumerOptions = {
+    compact?: boolean;
+};
+
 export class Consumer {
     gap = 0;
 
@@ -22,12 +26,17 @@ export class Consumer {
 
     lines: number[];
 
+    compact: boolean;
+
+    private cursor = 0;
+
     constructor(
         public content: string,
-        public cursor: number,
-        readonly hash: (tokens: Token[]) => string
+        options: ConsumerOptions,
+        public hash: (tokens: Token[]) => string,
     ) {
         this.lines = content.split('\n').reduce(countStartIndexes, [0]);
+        this.compact = Boolean(options.compact);
     }
 
     process = (tokens: Token | Token[], window?: [number, number] | null) => {
@@ -45,8 +54,11 @@ export class Consumer {
     };
 
     consume = (part: Token[], past?: string) => {
-        const [before, tokens, after] = dropUselessTokens(part);
-        // console.log({before, tokens, after})
+        let [before, tokens, after] = dropUselessTokens(part);
+
+        if (!this.compact && tokens.length) {
+            [before, tokens, after] = [[], part, []];
+        }
 
         if (before.length) {
             this.drop(before);

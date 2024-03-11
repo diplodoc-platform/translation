@@ -22,7 +22,7 @@ export const image: Renderer.RenderRuleRecord = {
         skip.push(widthAttr, heightAttr, ')');
 
         if (titleAttr) {
-            const consumer = new Consumer(titleAttr, 0, this.state.hash);
+            const consumer = new Consumer(titleAttr, this.state, this.state.hash);
             const title = token('text', {content: titleAttr});
             const parts = consumer.process(title);
             close.attrSet('title', consumer.content);

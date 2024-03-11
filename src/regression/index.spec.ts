@@ -41,6 +41,7 @@ const test = (() => {
                 const caller = call ? it[call] : it;
                 caller(name, () => {
                     const {xliff, skeleton} = extract(markdown, {
+                        compact: true,
                         source: {
                             language: 'ru',
                             locale: 'RU',

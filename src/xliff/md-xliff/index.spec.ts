@@ -1,11 +1,11 @@
 import {hash} from 'src/hash';
-import {render as _render} from 'src/skeleton';
+import {skeleton} from 'src/skeleton';
 import {template} from 'src/xliff';
 
 function render(markdown: string) {
     const hashed = hash();
 
-    _render(markdown, hashed);
+    skeleton(markdown, {compact: true}, hashed);
 
     return template(hashed.segments, {
         source: {

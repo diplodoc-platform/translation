@@ -13,8 +13,8 @@ export type ExtractOutput<T extends string | JSONValue> = {
     units: string[];
 };
 
-export function extract(content: string, params: MdExtractOptions): ExtractOutput<string>
-export function extract(content: JSONValue, params: JsonExtractOptions): ExtractOutput<JSONValue>
+export function extract(content: string, options: MdExtractOptions): ExtractOutput<string>
+export function extract(content: JSONValue, options: JsonExtractOptions): ExtractOutput<JSONValue>
 export function extract(content: any, options: any): ExtractOutput<any> {
     validate('ExtractOptions', options);
 

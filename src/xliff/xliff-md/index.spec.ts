@@ -5,6 +5,7 @@ import {XLFToken} from 'src/xliff/token';
 
 const tokenize = (markdown: string) => {
     const {xliff} = extract(markdown, {
+        compact: true,
         source: {
             language: 'ru',
             locale: 'RU',

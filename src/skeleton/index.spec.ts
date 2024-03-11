@@ -1,4 +1,8 @@
-import {render} from '.';
+import {skeleton} from '.';
+
+function render(content: string) {
+    return skeleton(content, {compact: true});
+}
 
 describe('inline: skeleton rendering', () => {
     it('inline: renders hash instead of the sentences with plain text.', () => {

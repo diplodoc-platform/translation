@@ -1,8 +1,9 @@
 import type {JSONType, KeywordCxt} from 'ajv';
 import type {Hash} from 'src/hash';
+import type {ConsumerOptions} from 'src/consumer';
 import {_} from 'ajv';
 import {Consumer} from 'src/consumer';
-import {render} from 'src/skeleton';
+import {skeleton} from 'src/skeleton';
 import {replace, token} from 'src/utils';
 
 type Schema = 'md' | 'text';
@@ -20,7 +21,7 @@ function genCode(ontranslate: (text: string, schema: Schema) => string) {
     };
 }
 
-function extract(hash: Hash) {
+function extract(hash: Hash, options: ConsumerOptions) {
     return {
         keyword: 'translate',
         type: ['string', 'object', 'array'] as JSONType[],
@@ -30,12 +31,12 @@ function extract(hash: Hash) {
             }
 
             if (schema === 'text') {
-                const consumer = new Consumer(text, 0, hash);
+                const consumer = new Consumer(text, options, hash);
                 consumer.process(token('text', {content: text}));
 
                 return consumer.content;
             } else if (schema === 'md') {
-                return render(text, hash);
+                return skeleton(text, options, hash);
             }
 
             return text;
