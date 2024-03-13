@@ -1,4 +1,4 @@
-import {resolve} from 'node:path';
+import {join, dirname} from 'node:path';
 import {readPath} from './utils';
 
 export type JSONValue<T = any> = Record<string, T> | T[];
@@ -7,9 +7,10 @@ export {translate} from './translate';
 
 export {resolve} from './resolve';
 
-export const jsonSchema = readPath(resolve(__dirname, './schemas/json-schema.yaml')).data;
+const root = dirname(require.resolve('@diplodoc/translation/package'));
 
-export const openapiSchema30 = readPath(resolve(__dirname, './schemas/openapi-schema-30.yaml')).data;
+export const jsonSchema = readPath(join(root, 'schemas/json-schema.yaml')).data;
 
-export const openapiSchema31 = readPath(resolve(__dirname, './schemas/openapi-schema-31.yaml')).data;
+export const openapiSchema30 = readPath(join(root, 'schemas/openapi-schema-30.yaml')).data;
 
+export const openapiSchema31 = readPath(join(root, 'schemas/openapi-schema-31.yaml')).data;
