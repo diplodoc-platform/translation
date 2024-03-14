@@ -62,6 +62,7 @@ function setupAjv(schemas: JSONSchema7[]) {
         validateSchema: false,
         validateFormats: false,
         strict: false,
+        allErrors: true,
     });
 
     schemas.forEach((schema) => {
