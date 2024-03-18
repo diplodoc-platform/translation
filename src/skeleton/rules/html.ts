@@ -45,8 +45,7 @@ function open(node: Node): Token[] {
     }
 
     return [
-        token('skip', {skip: '<' + node.rawTagName}),
-        token('skip', {skip: '>'})
+        token('html_inline', {skip: '<' + node.rawTagName + ' ' + node.rawAttrs + '>'})
     ];
 }
 
@@ -56,11 +55,18 @@ function close(node: Node): Token[] {
     }
 
     return [
-        token('skip', {skip: '</' + node.rawTagName + '>'})
+        token('html_inline', {skip: '</' + node.rawTagName + '>'})
     ];
 }
 
 export const html: RenderRuleRecord = {
+    html_inline: function(tokens: Token[], idx) {
+        const root = tokens[idx];
+        root.skip = root.content;
+        root.content = '';
+
+        return '';
+    },
     html_block: function(this: CustomRenderer<Consumer>, tokens, idx) {
         const root = parse(tokens[idx].content);
         const process = (parts: Token[]) => this.state.process(parts, tokens[idx].map);
