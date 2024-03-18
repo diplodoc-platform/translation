@@ -17,8 +17,5 @@ module.exports = {
     testPathIgnorePatterns: [
         `.*__fixtures__${path.sep}.*`,
         `.*__helpers__${path.sep}.*`,
-        // tests are broken for now
-        // broken change: inline segmentation
-        'renderer.test.ts',
     ],
 };
