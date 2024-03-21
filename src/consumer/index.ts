@@ -17,7 +17,15 @@ function countStartIndexes(acc: number[], line: string) {
 
 export type ConsumerOptions = {
     compact?: boolean;
+    code?: CodeProcessing;
 };
+
+export enum CodeProcessing {
+    NO = 'no',
+    ALL = 'all',
+    PRECISE = 'precise',
+    ADAPTIVE = 'adaptive',
+}
 
 export class Consumer {
     gap = 0;
@@ -28,6 +36,8 @@ export class Consumer {
 
     compact: boolean;
 
+    code: CodeProcessing | undefined;
+
     private cursor = 0;
 
     constructor(
@@ -37,6 +47,7 @@ export class Consumer {
     ) {
         this.lines = content.split('\n').reduce(countStartIndexes, [0]);
         this.compact = Boolean(options.compact);
+        this.code = options.code;
     }
 
     process = (tokens: Token | Token[], window?: [number, number] | null) => {
