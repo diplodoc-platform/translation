@@ -17,10 +17,8 @@ export function meta(this: CustomRenderer<Consumer, MarkdownItWithMeta>) {
 
     traverse(meta, (value, key) => {
         const tokenizer = new Tokenizer(value);
-        this.state.process([
-            token('fake', {skip: key}),
-            ...tokenizer.tokenize()
-        ]);
+        this.state.process(token('fake', {skip: key}));
+        this.state.process([...tokenizer.tokenize()]);
     });
 
     return '';
