@@ -5,4 +5,5 @@ exports[`trans-unit generator generates trans-unit with provided source, id, tar
 <source>Sentence about something</source>"
 `;
 
-exports[`trans-unit generator generates trans-unit with provided: source, id 1`] = `"<source>Sentence about something</source>"`;
+exports[`trans-unit generator generates trans-unit with provided: source, id 1`] =
+  `"<source>Sentence about something</source>"`;

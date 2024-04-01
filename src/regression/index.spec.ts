@@ -3,68 +3,67 @@
 import {compose, extract} from 'src/api';
 
 const getPadX = (string: string) => {
-    const match = /^(\s+)/.exec(string);
-    const pad = (match && match[1]) || '';
+  const match = /^(\s+)/.exec(string);
+  const pad = (match && match[1]) || '';
 
-    // eslint-disable-next-line security/detect-non-literal-regexp
-    return new RegExp('^[\\s]{0,' + pad.length + '}');
+  return new RegExp('^[\\s]{0,' + pad.length + '}');
 };
 
 export function trim(string: string | TemplateStringsArray): string {
-    let lines = Array.isArray(string) ? (string as string[]) : (string as string).split('\n');
+  let lines = Array.isArray(string) ? (string as string[]) : (string as string).split('\n');
 
-    let pad: RegExp | null = null;
+  let pad: RegExp | null = null;
 
-    while (pad === null) {
-        const line = lines[0] || '';
-        if (!line.trim()) {
-            lines.shift();
-            continue;
-        }
-
-        pad = getPadX(line);
+  while (pad === null) {
+    const line = lines[0] || '';
+    if (!line.trim()) {
+      lines.shift();
+      continue;
     }
 
-    if (pad) {
-        lines = lines.map((line) => line.replace(pad as RegExp, ''));
-    }
+    pad = getPadX(line);
+  }
 
-    return lines.join('\n').trim();
+  if (pad) {
+    lines = lines.map((line) => line.replace(pad as RegExp, ''));
+  }
+
+  return lines.join('\n').trim();
 }
 
 const test = (() => {
-    function test(name: string, call?: 'skip' | 'only') {
-        return function (parts: TemplateStringsArray) {
-            const markdown = trim(parts.join(''));
+  function test(name: string, call?: 'skip' | 'only') {
+    return function (parts: TemplateStringsArray) {
+      const markdown = trim(parts.join(''));
 
-            describe('integration', () => {
-                const caller = call ? it[call] : it;
-                caller(name, () => {
-                    const {xliff, skeleton} = extract(markdown, {
-                        compact: true,
-                        source: {
-                            language: 'ru',
-                            locale: 'RU',
-                        },
-                        target: {
-                            language: 'en',
-                            locale: 'US',
-                        },
-                    });
-                    const result = compose(skeleton, xliff, {useSource: true});
+      describe('integration', () => {
+        const caller = call ? it[call] : it;
+        caller(name, () => {
+          const {xliff, skeleton} = extract(markdown, {
+            compact: true,
+            source: {
+              language: 'ru',
+              locale: 'RU',
+            },
+            target: {
+              language: 'en',
+              locale: 'US',
+            },
+          });
+          const result = compose(skeleton, xliff, {useSource: true});
 
-                    expect(xliff).toMatchSnapshot();
-                    expect(result).toEqual(markdown);
-                    expect(result).toMatchSnapshot();
-                });
-            });
-        };
-    }
+          expect(xliff).toMatchSnapshot();
+          expect(result).toEqual(markdown);
+          expect(result).toMatchSnapshot();
+        });
+      });
+    };
+  }
 
-    test.skip = (name: string) => test(name, 'skip');
-    test.only = (name: string) => test(name, 'only');
+  test.skip = (name: string) => test(name, 'skip');
+  test.only = (name: string) => test(name, 'only');
 
-    return test;
+  return test;
 })();
 
 test('link variable leak')`

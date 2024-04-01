@@ -1,1 +1,1 @@
-module.exports = require('@gravity-ui/prettier-config');
+module.exports = require('@diplodoc/prettier-config')

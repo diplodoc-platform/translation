@@ -165,7 +165,9 @@ exports[`renders xliff from markdown renders image all attributes wrapped in <x>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders link with multiple sentences inside text part and title part wrapped in <x> tags 1`] = `
+exports[
+  `renders xliff from markdown renders link with multiple sentences inside text part and title part wrapped in <x> tags 1`
+] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -258,7 +260,8 @@ exports[`renders xliff from markdown renders liquid filters wrapped in <x> tags 
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders liquid filters wrapped in <x> tags inside tables 1`] = `
+exports[`renders xliff from markdown renders liquid filters wrapped in <x> tags inside tables 1`] =
+  `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -477,7 +480,9 @@ exports[`renders xliff from markdown renders sentences with abbreviations inside
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders sentences with inline code that has liquid syntax inside 1`] = `
+exports[
+  `renders xliff from markdown renders sentences with inline code that has liquid syntax inside 1`
+] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">

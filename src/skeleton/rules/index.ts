@@ -8,11 +8,11 @@ import {code} from './code';
 import {html} from './html';
 
 export const rules: Renderer.RenderRuleRecord = {
-    ...text,
-    ...link,
-    ...image,
-    ...table,
-    ...blockquote,
-    ...code,
-    ...html,
+  ...text,
+  ...link,
+  ...image,
+  ...table,
+  ...blockquote,
+  ...code,
+  ...html,
 };

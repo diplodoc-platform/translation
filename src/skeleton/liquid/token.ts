@@ -1,25 +1,25 @@
 export type Token = {
-    type: TokenType;
-    value: string;
+  type: TokenType;
+  value: string;
 };
 
 export type TokenType = 'text' | 'hardbreak' | 'liquid' | 'variable';
 
 export type TokenSubType =
-    | If
-    | Else
-    | EndIf
-    | Function
-    | Filter
-    | Variable
-    | ForInLoop
-    | EndForInLoop
-    | Newline
-    | Include
-    | ListTabs
-    | EndListTabs
-    | Attributes
-    | Literal;
+  | If
+  | Else
+  | EndIf
+  | Function
+  | Filter
+  | Variable
+  | ForInLoop
+  | EndForInLoop
+  | Newline
+  | Include
+  | ListTabs
+  | EndListTabs
+  | Attributes
+  | Literal;
 
 export type Literal = 'Literal';
 export type Space = 'Space';

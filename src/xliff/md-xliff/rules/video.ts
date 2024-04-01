@@ -5,11 +5,11 @@ import {generateX} from 'src/xliff/generator';
 import {VideoToken} from '@diplodoc/transform/lib/plugins/video/types';
 
 export const video: Renderer.RenderRuleRecord = {
-    video: videoRule,
+  video: videoRule,
 };
 
 function videoRule(tokens: Token[], i: number) {
-    const {service, videoID} = tokens[i] as VideoToken;
+  const {service, videoID} = tokens[i] as VideoToken;
 
-    return generateX({ctype: 'video', equivText: `@[${service}](${videoID})`});
+  return generateX({ctype: 'video', equivText: `@[${service}](${videoID})`});
 }

@@ -1,20 +1,17 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
+  "extends": "@diplodoc/tsconfig",
   "compilerOptions": {
-    "downlevelIteration": true,
-    "declaration": true,
-    "resolveJsonModule": true,
-    "moduleResolution":"nodenext",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    "lib": ["ES2019"],
+    "target": "es6",
     "baseUrl": ".",
     "rootDir": "src",
     "outDir": "lib/",
+    "module": "CommonJS",
     "paths": {
       "src/*": ["src/*"],
       "__tests__/*": ["__tests__/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["./src/playground.ts", "./node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules", "src/playground.ts"]
 }

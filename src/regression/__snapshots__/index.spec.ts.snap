@@ -18,7 +18,8 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
 </xliff>"
 `;
 
-exports[`integration ## Start {#your-ideas}{% else %} end 2`] = `"## Start {#your-ideas}{% else %} end"`;
+exports[`integration ## Start {#your-ideas}{% else %} end 2`] =
+  `"## Start {#your-ideas}{% else %} end"`;
 
 exports[`integration (a **18. B**). 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -89,8 +90,10 @@ exports[`integration A ![](link) b. C. 1`] = `
 
 exports[`integration A ![](link) b. C. 2`] = `"A ![](link) b. C."`;
 
-exports[`integration A (B) {#C}
-:   A, b. E 1`] = `
+exports[
+  `integration A (B) {#C}
+:   A, b. E 1`
+] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"markdown.md\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -112,8 +115,10 @@ exports[`integration A (B) {#C}
 </xliff>"
 `;
 
-exports[`integration A (B) {#C}
-:   A, b. E 2`] = `
+exports[
+  `integration A (B) {#C}
+:   A, b. E 2`
+] = `
 "A (B) {#C}
 :   A, b. E"
 `;
@@ -363,7 +368,8 @@ exports[`integration handles links in brackets 1`] = `
 </xliff>"
 `;
 
-exports[`integration handles links in brackets 2`] = `"(see [below for nested schema](#nestedblock--timeouts))"`;
+exports[`integration handles links in brackets 2`] =
+  `"(see [below for nested schema](#nestedblock--timeouts))"`;
 
 exports[`integration handles links with brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>

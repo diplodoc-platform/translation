@@ -7,7 +7,8 @@ Array [
 ]
 `;
 
-exports[`renders xliff to markdown renders autolink wrapped in <x> tags 1`] = `"Предложение номер один <https://www.google.com>."`;
+exports[`renders xliff to markdown renders autolink wrapped in <x> tags 1`] =
+  `"Предложение номер один <https://www.google.com>."`;
 
 exports[`renders xliff to markdown renders code wrapped in <x> tag 1`] = `
 Array [
@@ -23,9 +24,11 @@ Array [
 ]
 `;
 
-exports[`renders xliff to markdown renders file wrapped in <x> tags 1`] = `"Sentence with {% src=\\"path/to/file\\" name=\\"readme.md\\" referrerpolicy=\\"no-referrer\\" rel=\\"noopener\\" target=\\"_blank\\" type=\\"text/plain\\" %}."`;
+exports[`renders xliff to markdown renders file wrapped in <x> tags 1`] =
+  `"Sentence with {% src=\\"path/to/file\\" name=\\"readme.md\\" referrerpolicy=\\"no-referrer\\" rel=\\"noopener\\" target=\\"_blank\\" type=\\"text/plain\\" %}."`;
 
-exports[`renders xliff to markdown renders heading with anchor wrapped in <x> tags 1`] = `"Heading with anchors"`;
+exports[`renders xliff to markdown renders heading with anchor wrapped in <x> tags 1`] =
+  `"Heading with anchors"`;
 
 exports[`renders xliff to markdown renders image with all attributes wrapped in <x> tags 1`] = `
 Array [
@@ -34,9 +37,12 @@ Array [
 ]
 `;
 
-exports[`renders xliff to markdown renders inline html wrapped in <x> tags 1`] = `"Sentence<br>with <b>html</b>."`;
+exports[`renders xliff to markdown renders inline html wrapped in <x> tags 1`] =
+  `"Sentence<br>with <b>html</b>."`;
 
-exports[`renders xliff to markdown renders link containing multiple sentences wrapped in <x> tags 1`] = `
+exports[
+  `renders xliff to markdown renders link containing multiple sentences wrapped in <x> tags 1`
+] = `
 Array [
   "Link title sentence one.",
   "Link title sentence two!",
@@ -53,15 +59,20 @@ Array [
 ]
 `;
 
-exports[`renders xliff to markdown renders liquid conditions wrapped in <x> tags 1`] = `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}."`;
+exports[`renders xliff to markdown renders liquid conditions wrapped in <x> tags 1`] =
+  `"Sentence with {% if var == \\"val\\" %} val {% else %} other val {% endif %}."`;
 
-exports[`renders xliff to markdown renders liquid filter wrapped in <x> tags 1`] = `"Sentence with filter {{ users | length }}."`;
+exports[`renders xliff to markdown renders liquid filter wrapped in <x> tags 1`] =
+  `"Sentence with filter {{ users | length }}."`;
 
-exports[`renders xliff to markdown renders liquid function wrapped in <x> tags 1`] = `"Sentence with function {{ user.name.slice(1, 2) }}."`;
+exports[`renders xliff to markdown renders liquid function wrapped in <x> tags 1`] =
+  `"Sentence with function {{ user.name.slice(1, 2) }}."`;
 
-exports[`renders xliff to markdown renders liquid loop wrapped in <x> tags 1`] = `"Sentence {% for x in xs %} x {% endfor %}."`;
+exports[`renders xliff to markdown renders liquid loop wrapped in <x> tags 1`] =
+  `"Sentence {% for x in xs %} x {% endfor %}."`;
 
-exports[`renders xliff to markdown renders liquid variables wrapped in <x> tags 1`] = `"Sentence with {{ variable }}."`;
+exports[`renders xliff to markdown renders liquid variables wrapped in <x> tags 1`] =
+  `"Sentence with {{ variable }}."`;
 
 exports[`renders xliff to markdown renders plain text 1`] = `
 Array [

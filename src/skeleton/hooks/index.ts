@@ -5,7 +5,7 @@ import {beforeInline} from './before-inline';
 import {image} from './image';
 
 export const hooks = {
-    [CustomRendererLifeCycle.BeforeRender]: [image, meta],
-    [CustomRendererLifeCycle.AfterInlineRender]: [afterInline],
-    [CustomRendererLifeCycle.BeforeInlineRender]: [beforeInline],
+  [CustomRendererLifeCycle.BeforeRender]: [image, meta],
+  [CustomRendererLifeCycle.AfterInlineRender]: [afterInline],
+  [CustomRendererLifeCycle.BeforeInlineRender]: [beforeInline],
 };
