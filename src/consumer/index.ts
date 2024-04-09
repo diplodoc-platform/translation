@@ -9,7 +9,7 @@ const replace = (from: number, to: number, source: string, past: string) => {
   return start + past + end;
 };
 
-const last = <T>(array: T[], fallback: T): T => array.length ? array[array.length - 1] : fallback;
+const last = <T>(array: T[], fallback: T): T => (array.length ? array[array.length - 1] : fallback);
 
 function countStartIndexes(acc: number[], line: string) {
   acc.push(acc[acc.length - 1] + line.length + 1);
