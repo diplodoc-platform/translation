@@ -86,7 +86,9 @@ export const code: Renderer.RenderRuleRecord = {
       return '';
     }
 
-    this.state.process(token('text', {content: code.content}));
+    this.state.consume([token('skip', {skip: code.markup})]);
+    this.state.consume([token('text', {content: code.content})]);
+    this.state.consume([token('skip', {skip: code.markup})]);
 
     return '';
   },

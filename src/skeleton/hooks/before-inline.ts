@@ -18,6 +18,9 @@ export function beforeInline(parameters: CustomRendererHookParameters) {
   return '';
 }
 
+/**
+ * Find next or prev (depends on step value) valuable token.
+ */
 function find(tokens: Token[], idx: number, step: number) {
   while (tokens.length > idx && idx > 0) {
     idx = idx + step;

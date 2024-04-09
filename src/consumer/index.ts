@@ -9,6 +9,8 @@ const replace = (from: number, to: number, source: string, past: string) => {
   return start + past + end;
 };
 
+const last = <T>(array: T[], fallback: T): T => array.length ? array[array.length - 1] : fallback;
+
 function countStartIndexes(acc: number[], line: string) {
   acc.push(acc[acc.length - 1] + line.length + 1);
 
@@ -30,8 +32,6 @@ export enum CodeProcessing {
 export class Consumer {
   gap = 0;
 
-  limit = Infinity;
-
   lines: number[];
 
   compact: boolean;
@@ -42,7 +42,13 @@ export class Consumer {
 
   hash: (tokens: Token[]) => string;
 
+  get limit() {
+    return last(this.limits, Infinity) + this.gap;
+  }
+
   private cursor = 0;
+
+  private limits: number[] = [];
 
   constructor(content: string, options: ConsumerOptions, hash: (tokens: Token[]) => string) {
     this.lines = content.split('\n').reduce(countStartIndexes, [0]);
@@ -61,10 +67,16 @@ export class Consumer {
 
     const parts = split(tokens);
 
-    return parts.map((part) => this.consume(part)).filter(Boolean) as {
+    const result = parts.map((part) => this.consume(part)).filter(Boolean) as {
       part: Token[];
       past: string;
     }[];
+
+    if (window) {
+      this.unsetWindow();
+    }
+
+    return result;
   };
 
   consume = (part: Token[], past?: string) => {
@@ -94,7 +106,6 @@ export class Consumer {
 
       this.content = replace(start, end, this.content, past);
       this.cursor = start + past.length;
-      this.limit -= end - start - past.length;
       this.gap -= end - start - past.length;
     }
 
@@ -142,14 +153,16 @@ export class Consumer {
     map = map || [0, this.lines.length - 1];
     gap = gap || this.gap;
 
-    const [start, end] = [this.lines[map[0]] + gap, this.lines[map[1]] + gap];
+    const [start, end] = [this.lines[map[0]] + gap, this.lines[map[1]]];
+
+    this.limits.push(end);
 
     if (start >= this.cursor) {
       this.cursor = start;
     }
+  }
 
-    if (end >= this.limit) {
-      this.limit = end;
-    }
+  private unsetWindow() {
+    this.limits.pop();
   }
 }
