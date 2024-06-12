@@ -1,11 +1,11 @@
 import {dirname, join} from 'node:path';
 import {readPath} from './utils';
 
-export type JSONValue<T = any> = Record<string, T> | T[];
+export type {JSONObject} from './types';
 
 export {translate} from './translate';
 
-export {resolve} from './resolve';
+export {linkRefs, unlinkRefs} from './resolve';
 
 const root = dirname(require.resolve('@diplodoc/translation/package'));
 

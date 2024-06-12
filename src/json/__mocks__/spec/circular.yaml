@@ -1,0 +1,3 @@
+c1:
+  items:
+    $ref: ./index.yaml/#/prop6

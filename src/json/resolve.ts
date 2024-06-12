@@ -1,93 +1,152 @@
-import type {UnresolvedRefDetails} from 'json-refs';
-import type {JSONValue} from 'src/json/index';
-import {dirname, join} from 'node:path';
-import {resolveRefs} from 'json-refs';
-import {omit, walkPath} from './utils';
-
-type ResolveRefsContext = {
-  location: string;
-};
-
-type LoaderResponse = {
-  text: string;
-  location: string;
-};
-
-type Callback = (error: Error | null, result?: unknown) => void;
+import type {JSONData, JSONObject, ResolvedRefDetails, UnresolvedRefDetails} from './types';
+import {ok} from 'assert';
+import {dirname, isAbsolute, resolve} from 'node:path';
+import {resolveRefs} from './refs';
+import {isString, walkPath} from './utils';
 
 type UrlDetails = {
   fragment: string;
   path: string;
 };
 
-type Parser = (content: string, path: string) => JSONValue;
+type FileLoader = (path: string) => Promise<JSONData>;
 
-export async function resolve(content: object, location: string, parse: Parser) {
-  const roots: Record<string, object> = {
+const Ref = Symbol('$ref');
+
+export type RefLink = {
+  [Ref]: ResolvedRefDetails & UnresolvedRefDetails;
+};
+
+const keys = (target: Hash) => Object.keys(target);
+const assign = (target: Hash, key: string, value: unknown) => Object.assign(target, {[key]: value});
+const uniq = (array: string[]): string[] => [...new Set(array)];
+
+function normalizeURI(uri: string, root?: string) {
+  let path = uri.split('#')[0];
+
+  if (root) {
+    path = resolve(root, path);
+  }
+
+  return path.replace(/\/$/, '');
+}
+
+export function unlinkRefs(content: JSONObject<RefLink>) {
+  const unlink = <T extends JSONData<RefLink>>(item: T): T => {
+    if (Array.isArray(item)) {
+      // eslint-disable-next-line guard-for-in
+      for (const index in item) {
+        item[index] = unlink(item[index]);
+      }
+    } else if (item && typeof item === 'object') {
+      if (item[Ref]) {
+        return item[Ref].def as unknown as T;
+      }
+
+      for (const key of keys(item)) {
+        assign(item, key, unlink(item[key]));
+      }
+    }
+
+    return item;
+  };
+
+  for (const key of keys(content)) {
+    assign(content, key, unlink(content[key]));
+  }
+}
+
+export async function linkRefs(content: JSONObject, location: string, loader: FileLoader) {
+  ok(isAbsolute(location), 'Location should be absolute path');
+
+  const roots: Record<string, JSONObject> = {
     [location]: content,
   };
-  const register = (location: string, path: string[], info: UnresolvedRefDetails) => {
+  const register = (location: string, path: string[], ref: UnresolvedRefDetails) => {
     const {parent, point, leaf} = walkPath(path, roots[location]);
-
-    const type = info.type;
-    const details = info.uriDetails as UrlDetails;
-    const ref = join(dirname(location), details.path);
+    const details = ref.uriDetails as UrlDetails;
+    const link = normalizeURI(details.path, dirname(location));
     const fragment = details.fragment.slice(1).split('/');
 
+    const root = roots[ref.type === 'relative' ? link : location];
+
+    ok(
+      root,
+      `Unable to resolve ${ref.type} reference ${ref.type === 'relative' ? link : location}`,
+    );
+
+    const branch = walkPath(fragment, root);
+
     Object.defineProperty(parent, point, {
-      get() {
-        const root = {
-          relative: roots[ref],
-          local: roots[location],
-        }[type];
+      value: new Proxy(branch.leaf, {
+        ownKeys(target) {
+          const noref = (key: string | symbol): key is string => isString(key) && key !== '$ref';
+          const keys = [...Reflect.ownKeys(target), ...Reflect.ownKeys(ref.def)].filter(noref);
 
-        if (!root) {
-          throw new Error(`Unable to resolve ${type} reference ${ref || location}`);
-        }
+          return uniq(keys);
+        },
 
-        const branch = walkPath(fragment, root);
+        has(target, key) {
+          return key in target || key in ref.def;
+        },
 
-        const value = {
-          // $$ref: ref,
-          ...omit(leaf, ['$ref']),
-          ...branch.leaf,
-        };
+        get(target: Container, key) {
+          if (key === Ref) {
+            return ref;
+          }
 
-        Object.defineProperty(this, point, {value});
+          if (key in target) {
+            return target[key];
+          } else if (key in leaf) {
+            return (ref.def as Container)[key];
+          }
 
-        return this[point];
-      },
+          return undefined;
+        },
+
+        set(target: Container, key, value) {
+          if (key in target) {
+            target[key] = value;
+          } else if (key in leaf) {
+            (ref.def as Container)[key] = value;
+          } else {
+            target[key] = value;
+          }
+
+          return true;
+        },
+      }),
     });
   };
 
-  const {refs} = await resolveRefs(content, {
+  const work: [string, string[], UnresolvedRefDetails][] = [];
+  const refs = await resolveRefs(content, {
     location,
-    refPostProcessor: function (this: ResolveRefsContext, info, path) {
-      register(this.location, path, info);
-
-      return info;
+    onRef: function (info, path) {
+      work.push([normalizeURI(info.location), path.slice(), info]);
     },
-    loaderOptions: {
-      processContent: (info: LoaderResponse, callback: Callback) => {
-        const {text, location} = info;
+    loader: async (location: string) => {
+      location = normalizeURI(location);
 
-        try {
-          roots[location] = Object.assign(roots[location] || {}, parse(text, location));
-          return callback(null, roots[location]);
-        } catch (error: any) {
-          return callback(error);
-        }
-      },
+      if (!roots[location]) {
+        roots[location] = (await loader(location)) as JSONObject;
+      }
+
+      return roots[location];
     },
   });
 
   const ref = (key: string) => refs[key as keyof typeof refs];
-  const missed = Object.keys(refs)
+  const missed = keys(refs)
     .filter((key) => ref(key).missing)
     .map((key) => key + ': ' + (ref(key).error || ref(key).uri));
 
   if (missed.length) {
     throw new Error("Can't resolve json refs:\n" + missed.join('\n'));
+  }
+
+  for (const [location, path, info] of work.reverse()) {
+    register(location, path, info);
   }
 
   return roots[location];

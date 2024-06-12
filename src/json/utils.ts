@@ -1,5 +1,7 @@
+import type {URIComponents} from 'uri-js';
+import type {JSONData, UnresolvedRefDetails} from './types';
 import {ok} from 'node:assert';
-import {extname, isAbsolute} from 'node:path';
+import {extname, isAbsolute, resolve} from 'node:path';
 import {readFileSync} from 'node:fs';
 import {load} from 'js-yaml';
 
@@ -29,7 +31,7 @@ type WalkContext = {
   point: string;
 };
 
-export function walkPath(path: string[], root: object): WalkContext {
+export function walkPath(path: string[], root: JSONData): WalkContext {
   return path.reduce(
     ({parent, leaf}: WalkContext, point: string) => {
       parent = leaf as object;
@@ -40,4 +42,52 @@ export function walkPath(path: string[], root: object): WalkContext {
     },
     {parent: null, leaf: root, point: ''} as WalkContext,
   );
+}
+
+export function makeAbsolute(location: string) {
+  if (location.indexOf('://') === -1 && !isAbsolute(location)) {
+    return resolve(process.cwd(), location);
+  } else {
+    return location;
+  }
+}
+
+const remoteTypes = ['relative', 'remote'];
+const remoteUriTypes = ['absolute', 'uri'];
+const localUriTypes = ['same-document'];
+
+export function isRemoteUri(uriDetails: URIComponents) {
+  return remoteUriTypes.indexOf(uriDetails.reference || '') > -1;
+}
+
+export function isLocalUri(uriDetails: URIComponents) {
+  return localUriTypes.indexOf(uriDetails.reference || '') > -1;
+}
+
+export function refType(refDetails: UnresolvedRefDetails) {
+  if (isRemoteUri(refDetails.uriDetails)) {
+    return 'remote';
+  }
+
+  if (isLocalUri(refDetails.uriDetails)) {
+    return 'local';
+  }
+
+  return refDetails.uriDetails.reference || '';
+}
+
+export function isRemoteRef(refDetails: UnresolvedRefDetails) {
+  return remoteTypes.indexOf(refType(refDetails)) > -1;
+}
+
+export function isValidRef(refDetails: UnresolvedRefDetails) {
+  return refDetails.error === undefined && refDetails.type !== 'invalid';
+}
+
+export function isObject(object: any): object is Container {
+  return object && typeof object === 'object';
+}
+
+export function isString(string: any): string is string {
+  return typeof string === 'string';
 }

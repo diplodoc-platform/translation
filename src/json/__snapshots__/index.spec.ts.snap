@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`json integration should resolve simple refs: __mocks__/spec/circular.yaml 1`] = `
+"c1:
+  items:
+    $ref: ./index.yaml/#/prop6
+"
+`;
+
+exports[`json integration should resolve simple refs: __mocks__/spec/deep.yaml 1`] = `
+"f1:
+  value: $$$4$$$
+"
+`;
+
+exports[`json integration should resolve simple refs: __mocks__/spec/index.yaml 1`] = `
+"prop1:
+  $ref: ./inner.yaml/#/r1
+prop2:
+  data: 2
+  $ref: ./inner.yaml/#/r1
+prop3:
+  $ref: '#/defs/d1'
+prop4:
+  $ref: '#/defs/d2'
+prop5:
+  $ref: ./inner.yaml/#/r3
+prop6:
+  $ref: ./circular.yaml/#/c1
+prop7:
+  $ref: '#/prop7'
+defs:
+  d1:
+    value: $$$2$$$
+  d2:
+    $ref: ./inner.yaml/#/r2
+"
+`;
+
+exports[`json integration should resolve simple refs: __mocks__/spec/inner.yaml 1`] = `
+"r1:
+  value: $$$1$$$
+  prop:
+    $ref: '#/r1'
+r2:
+  value: $$$3$$$
+r3:
+  $ref: ./deep.yaml/#/f1
+"
+`;

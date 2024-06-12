@@ -2,6 +2,10 @@ import type {Token as MdToken} from 'markdown-it';
 import type {TokenSubType} from './liquid/token';
 
 declare global {
+  type Hash<T = any> = Record<string, T>;
+
+  type Container<T = any> = Record<string | symbol, T>;
+
   type Token = MdToken & {
     skip?: string[] | string;
     reflink?: boolean;
