@@ -1,0 +1,9 @@
+r1:
+  value: 10
+  prop:
+    $ref: '#/r1'
+r2:
+  value: 11
+
+r3:
+  $ref: './deep.yaml/#/f1'

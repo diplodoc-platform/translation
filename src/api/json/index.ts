@@ -1,6 +1,6 @@
 import type {JSONSchema7} from 'json-schema';
 import type {OpenAPIV3} from 'openapi-types';
-import type {JSONValue} from 'src/json';
+import type {JSONObject} from 'src/json';
 import type {ParseOptions, TemplateOptions} from 'src/xliff';
 import type {SkeletonOptions} from 'src/skeleton';
 import {ok} from 'node:assert';
@@ -19,7 +19,7 @@ type JSONSchemas = {
 export type ExtractOptions = JSONSchemas & TemplateOptions & SkeletonOptions;
 
 export type ExtractOutput = {
-  skeleton: JSONValue;
+  skeleton: JSONObject;
   xliff: string;
   units: string[];
 };
@@ -27,9 +27,9 @@ export type ExtractOutput = {
 export type ComposeOptions = JSONSchemas & ParseOptions;
 
 export function extract(
-  content: JSONValue,
+  content: JSONObject,
   {schemas = [], source, target, compact}: ExtractOptions,
-) {
+): ExtractOutput {
   const mainSchema = getMainSchema(content, schemas);
   const hashed = hash();
   const ajv = setupAjv(schemas);
@@ -45,7 +45,7 @@ export function extract(
 }
 
 export function compose(
-  skeleton: JSONValue,
+  skeleton: JSONObject,
   xliff: string | string[],
   {schemas = [], useSource = false}: ComposeOptions,
 ) {
@@ -80,10 +80,10 @@ function setupAjv(schemas: JSONSchema7[]) {
   return ajv;
 }
 
-function getMainSchema(content: JSONValue, schemas: JSONSchema[]) {
+function getMainSchema(content: JSONObject, schemas: JSONSchema[]) {
   const schemaMap = zip(schemas, '$id');
 
-  const _schema = (content as JSONSchema).$schema;
+  const _schema = (content as unknown as JSONSchema).$schema;
   if (typeof _schema === 'string') {
     if (_schema === jsonSchema.$id) {
       return jsonSchema;
@@ -96,7 +96,7 @@ function getMainSchema(content: JSONValue, schemas: JSONSchema[]) {
     return schema;
   }
 
-  let _openapi = (content as OpenAPIV3.Document).openapi;
+  let _openapi = (content as unknown as OpenAPIV3.Document).openapi;
   if (typeof _openapi === 'string' || typeof _openapi === 'number') {
     _openapi = String(_openapi);
 
@@ -111,7 +111,7 @@ function getMainSchema(content: JSONValue, schemas: JSONSchema[]) {
   return schemas[0];
 }
 
-function clone(json: JSONValue): JSONValue {
+function clone(json: JSONObject): JSONObject {
   return JSON.parse(JSON.stringify(json));
 }
 

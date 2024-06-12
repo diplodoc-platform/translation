@@ -3,21 +3,25 @@ import type {
   ComposeOptions as JsonComposeOptions,
   ExtractOptions as JsonExtractOptions,
 } from './json';
+import type {JSONObject} from 'src/json';
 import {compose as composeMd, extract as extraactMd} from './md';
 import {compose as composeJson, extract as extraactJson} from './json';
 import {validate} from './validate';
-import {JSONValue} from 'src/json';
 
 export type ExtractOptions = JsonExtractOptions | MdExtractOptions;
 
-export type ExtractOutput<T extends string | JSONValue> = {
+export type ExtractOutput<T extends string | JSONObject> = {
   skeleton: T;
   xliff: string;
   units: string[];
 };
 
 export function extract(content: string, options: MdExtractOptions): ExtractOutput<string>;
-export function extract(content: JSONValue, options: JsonExtractOptions): ExtractOutput<JSONValue>;
+export function extract(
+  content: JSONObject,
+  options: JsonExtractOptions,
+): ExtractOutput<JSONObject>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function extract(content: any, options: any): ExtractOutput<any> {
   validate('ExtractOptions', options);
 
@@ -37,10 +41,10 @@ export function compose(
   options: MdComposeOptions,
 ): string;
 export function compose(
-  skeleton: JSONValue,
+  skeleton: JSONObject,
   xliff: string | string[],
   options: JsonComposeOptions,
-): JSONValue;
+): JSONObject;
 export function compose(skeleton: any, xliff: string | string[], options: any): any {
   validate('ComposeOptions', options);
 
