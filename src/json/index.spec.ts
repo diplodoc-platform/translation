@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {join, relative} from 'node:path';
 import {dump, load} from 'js-yaml';
 import {linkRefs, unlinkRefs} from './refs';
+import {normalizePath} from './utils';
 
 describe('json', () => {
   describe('integration', () => {
@@ -33,7 +34,7 @@ describe('json', () => {
 
         const relLocation = relative(__dirname, location);
 
-        expect(dump(specs[location])).toMatchSnapshot(relLocation);
+        expect(dump(specs[location])).toMatchSnapshot(normalizePath(relLocation));
       }
     });
   });

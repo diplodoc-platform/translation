@@ -1,7 +1,7 @@
 import type {FileLoader, JSONData, JSONObject, LinkedJSONObject} from '../types';
 import {ok} from 'node:assert';
 import {isAbsolute} from 'node:path';
-import {isObject, keys, last} from '../utils';
+import {isObject, keys, last, normalizePath} from '../utils';
 import {isRefLike} from './utils';
 import {RefDetails} from './ref';
 import {Ref, proxy} from './proxy';
@@ -34,7 +34,6 @@ export async function unlinkRefs(content: LinkedJSONObject): Promise<JSONObject>
  * @param content - The structure to find JSON References within.
  * @param location - Absolute path to provided structure for relative refs resolving.
  * @param loader - File loader for relative refs resolving.
- * There is no internal cache, so you need to cache resolved files manually in loader.
  *
  * @returns mutated array/object with resolved refs
  */
@@ -45,6 +44,19 @@ export async function linkRefs(
 ): Promise<LinkedJSONObject> {
   ok(isObject(content), 'Content should be a json object');
   ok(isAbsolute(location), 'Location should be absolute path');
+
+  location = normalizePath(location);
+  loader = ((loader, cache) => async (path: string) => {
+    path = normalizePath(path);
+
+    if (!cache[path]) {
+      cache[path] = await loader(path);
+    }
+
+    return cache[path];
+  })(loader, {
+    [location]: content,
+  });
 
   return walk(content, [], [location], async (item, ancestors, locations) => {
     if (ancestors.includes(item as JSONObject)) {
