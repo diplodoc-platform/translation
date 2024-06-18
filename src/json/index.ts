@@ -1,11 +1,11 @@
 import {dirname, join} from 'node:path';
 import {readPath} from './utils';
 
-export type {JSONObject} from './types';
+export type {JSONObject, LinkedJSONObject} from './types';
 
 export {translate} from './translate';
 
-export {linkRefs, unlinkRefs} from './resolve';
+export {linkRefs, unlinkRefs} from './refs';
 
 const root = dirname(require.resolve('@diplodoc/translation/package'));
 
