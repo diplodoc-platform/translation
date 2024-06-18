@@ -1,8 +1,8 @@
-import type {JSONObject} from './types';
+import type {JSONObject, LinkedJSONObject} from './types';
 import {readFile} from 'node:fs/promises';
 import {join, relative} from 'node:path';
 import {dump, load} from 'js-yaml';
-import {RefLink, linkRefs, unlinkRefs} from './resolve';
+import {linkRefs, unlinkRefs} from './refs';
 
 describe('json', () => {
   describe('integration', () => {
@@ -29,7 +29,7 @@ describe('json', () => {
       spec.prop5.value = '$$$4$$$';
 
       for (const location of Object.keys(specs)) {
-        unlinkRefs(specs[location] as JSONObject<RefLink>);
+        await unlinkRefs(specs[location] as LinkedJSONObject);
 
         const relLocation = relative(__dirname, location);
 

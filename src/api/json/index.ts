@@ -34,8 +34,6 @@ export function extract(
   const hashed = hash();
   const ajv = setupAjv(schemas);
 
-  content = clone(content);
-
   ajv.addKeyword(translate.extract(hashed, {compact}));
   ajv.validate(mainSchema, content);
 
@@ -52,8 +50,6 @@ export function compose(
   const mainSchema = getMainSchema(skeleton, schemas);
   const units = parse(xliff, {useSource}).map(fromXLIFF);
   const ajv = setupAjv(schemas);
-
-  skeleton = clone(skeleton);
 
   ajv.addKeyword(translate.compose(units));
   ajv.validate(mainSchema, skeleton);
@@ -109,10 +105,6 @@ function getMainSchema(content: JSONObject, schemas: JSONSchema[]) {
   }
 
   return schemas[0];
-}
-
-function clone(json: JSONObject): JSONObject {
-  return JSON.parse(JSON.stringify(json));
 }
 
 function zip<F extends string, T extends {[K in F]: string}>(

@@ -24,7 +24,7 @@
     "skeleton"
   ],
   "main": "./lib/index.js",
-  "types": "./lib/index.d.js",
+  "types": "./lib/index.d.ts",
   "files": [
     "lib/",
     "schemas/"
@@ -90,10 +90,8 @@
     "cheerio": "^1.0.0-rc.12",
     "domhandler": "^5.0.3",
     "fast-xml-parser": "^4.1.3",
-    "graphlib": "^2.1.8",
     "js-yaml": "^4.1.0",
     "json-schema": "^0.4.0",
-    "lodash": "^4.17.21",
     "markdown-it-meta": "0.0.1",
     "markdown-it-sup": "^1.0.0",
     "node-html-parser": "^6.1.12",
