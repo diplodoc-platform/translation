@@ -3,6 +3,16 @@ import {isString, uniq} from '../utils';
 
 export const Ref = Symbol('Ref');
 
+/**
+ * Creates a special proxy which stores information about original ref definition
+ * and resolved ref.
+ * Allows to mutate data in ref and ref definition.
+ *
+ * @param ref - Resolved reference.
+ * @param def - Reference definition.
+ *
+ * @returns Merged proxy object.
+ */
 export function proxy(ref: JSONObject, def: RefDefinition) {
   return new Proxy(ref, {
     ownKeys(target) {
