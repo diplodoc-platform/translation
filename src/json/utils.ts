@@ -1,7 +1,8 @@
 import {ok} from 'node:assert';
-import {extname, isAbsolute, resolve} from 'node:path';
+import {extname, isAbsolute, normalize, resolve} from 'node:path';
 import {readFileSync} from 'node:fs';
 import {load} from 'js-yaml';
+import {parseURI} from 'src/json/refs/utils';
 
 export function readPath(path: string) {
   ok(isAbsolute(path), 'FileInfo path should be absolute');
@@ -12,7 +13,17 @@ export function readPath(path: string) {
   return {path, data};
 }
 
-export function absolute(location: string, root?: string) {
+export function normalizePath(path: string) {
+  const uri = parseURI(normalize(path).replace(/\\/g, '/'));
+
+  if (uri.fragment) {
+    return (uri.path || '') + '#' + uri.fragment;
+  }
+
+  return (uri.path || '').replace(/\/$/, '');
+}
+
+export function absolutePath(location: string, root?: string) {
   if (location.indexOf('://') === -1 && !isAbsolute(location)) {
     return resolve(root || process.cwd(), location);
   } else {
