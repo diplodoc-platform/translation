@@ -8,6 +8,14 @@ import {Ref, proxy} from './proxy';
 
 const SKIP = Symbol('SKIP');
 
+/**
+ * Replaces parts of resolved by linkRefs JSON tree with original ref definitions.
+ * Mutates original data.
+ *
+ * @param content - The structure to find JSON References within.
+ *
+ * @returns mutated array/object with resolved refs
+ */
 export async function unlinkRefs(content: LinkedJSONObject): Promise<JSONObject> {
   return walk(content, [], [], (item) => {
     if (isObject(item) && (item as Container)[Ref]) {
@@ -18,11 +26,24 @@ export async function unlinkRefs(content: LinkedJSONObject): Promise<JSONObject>
   }) as Promise<JSONObject>;
 }
 
+/**
+ * Resolves JSON References defined within the provided object.
+ * Mutates original data.
+ * Skips circular references.
+ *
+ * @param content - The structure to find JSON References within.
+ * @param location - Absolute path to provided structure for relative refs resolving.
+ * @param loader - File loader for relative refs resolving.
+ * There is no internal cache, so you need to cache resolved files manually in loader.
+ *
+ * @returns mutated array/object with resolved refs
+ */
 export async function linkRefs(
   content: JSONObject,
   location: string,
   loader: FileLoader,
 ): Promise<LinkedJSONObject> {
+  ok(isObject(content), 'Content should be a json object');
   ok(isAbsolute(location), 'Location should be absolute path');
 
   return walk(content, [], [location], async (item, ancestors, locations) => {
