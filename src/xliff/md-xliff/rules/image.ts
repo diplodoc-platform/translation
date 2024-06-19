@@ -29,8 +29,8 @@ function imageOpen(tokens: Token[], idx: number) {
     return generateOpenG({
       ctype: 'image',
       equivText: `${begin}{{text}}${end}`,
-      'x-begin': begin,
-      'x-end': end,
+      xBegin: begin,
+      xEnd: end,
     });
   } else {
     return generateX({

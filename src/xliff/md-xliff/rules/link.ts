@@ -30,8 +30,8 @@ function linkOpen(tokens: Token[], i: number) {
     return generateOpenG({
       ctype: 'link',
       equivText: `${begin}{{text}}${end}`,
-      'x-begin': begin,
-      'x-end': end,
+      xBegin: begin,
+      xEnd: end,
     });
   } else {
     if (open.reflink) {

@@ -10,8 +10,8 @@ const open = (ctype: string) => (tokens: Token[], i: number) => {
     return generateOpenG({
       ctype,
       equivText: `${markup}{{text}}${markup}`,
-      'x-begin': markup,
-      'x-end': markup,
+      xBegin: markup,
+      xEnd: markup,
     });
   }
 
