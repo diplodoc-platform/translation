@@ -11,7 +11,10 @@ export type OpenGParams = {
 };
 
 export function generateOpenG(parameters: OpenGParams): string {
+  parameters = {...parameters, ...id()};
+
   const props = Object.keys(parameters)
+    .sort()
     .map((key) => `${snakeCase(key)}=${qt}${parameters[key]}${qt}`)
     .join(' ');
 
@@ -20,4 +23,9 @@ export function generateOpenG(parameters: OpenGParams): string {
 
 export function generateCloseG(): string {
   return `${lt}${sl}g${gt}`;
+}
+
+let ID = 1;
+function id() {
+  return {id: 'g-' + ID++};
 }

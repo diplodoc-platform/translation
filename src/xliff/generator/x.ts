@@ -9,9 +9,17 @@ export type GenerateXParams = {
 };
 
 export function generateX(parameters: GenerateXParams) {
-  const props = Object.keys(parameters)
-      .map((key) => `${snakeCase(key)}=${qt}${parameters[key]}${qt}`)
-      .join(' ');
+  parameters = {...parameters, ...id()};
 
-  return `${lt}x${props.length ? ' ' + props : ''}${sl + gt}`;
+  const props = Object.keys(parameters)
+    .sort()
+    .map((key) => `${snakeCase(key)}=${qt}${parameters[key]}${qt}`)
+    .join(' ');
+
+  return `${lt}x ${props}${sl + gt}`;
+}
+
+let ID = 1;
+function id() {
+  return {id: 'x-' + ID++};
 }
