@@ -1,7 +1,10 @@
 import type {JSONObject, RefDefinition} from '../types';
-import {isString, uniq} from '../utils';
+import {isObject, isString, uniq} from '../utils';
+import {RefLink} from '../types';
 
 export const Ref = Symbol('Ref');
+
+export const Enabled = Symbol('Enabled');
 
 /**
  * Creates a special proxy which stores information about original ref definition
@@ -14,8 +17,14 @@ export const Ref = Symbol('Ref');
  * @returns Merged proxy object.
  */
 export function proxy(ref: JSONObject, def: RefDefinition) {
+  let enabled = true;
+
   return new Proxy(ref, {
     ownKeys(target) {
+      if (!enabled) {
+        return Reflect.ownKeys(def);
+      }
+
       const noref = (key: string | symbol): key is string => isString(key) && key !== '$ref';
       const keys = [...Reflect.ownKeys(target), ...Reflect.ownKeys(def)].filter(noref);
 
@@ -41,7 +50,9 @@ export function proxy(ref: JSONObject, def: RefDefinition) {
     },
 
     set(target: Container, key, value) {
-      if (key in target) {
+      if (key === Enabled) {
+        enabled = value;
+      } else if (key in target) {
         target[key] = value;
       } else if (key in def) {
         (def as Container)[key] = value;
@@ -52,4 +63,12 @@ export function proxy(ref: JSONObject, def: RefDefinition) {
       return true;
     },
   });
+}
+
+export function isProxy(item: any): item is RefLink {
+  return isObject(item) && Boolean(item[Ref]);
+}
+
+export function disable(proxy: Container) {
+  proxy[Enabled] = false;
 }

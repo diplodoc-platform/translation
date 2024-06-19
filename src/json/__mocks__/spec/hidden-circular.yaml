@@ -1,0 +1,14 @@
+components:
+  schemas:
+    A:
+      type: object
+      properties:
+        B:
+          $ref: '#/components/schemas/C'
+    C:
+      type: object
+      properties:
+        D:
+          type: array
+          items:
+            $ref: '#/components/schemas/A'
