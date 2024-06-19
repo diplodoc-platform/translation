@@ -29,6 +29,8 @@ describe('json', () => {
       spec.prop4.value = '$$$3$$$'; // @ts-ignore
       spec.prop5.value = '$$$4$$$';
 
+      expect(() => JSON.stringify(spec)).not.toThrow();
+
       for (const location of Object.keys(specs)) {
         await unlinkRefs(specs[location] as LinkedJSONObject);
 
@@ -36,6 +38,29 @@ describe('json', () => {
 
         expect(dump(specs[location])).toMatchSnapshot(normalizePath(relLocation));
       }
+    });
+
+    it('should handle hidden circular', async () => {
+      const location = '__mocks__/spec/hidden-circular.yaml';
+      const absLocation = join(__dirname, location);
+      const specs: Record<string, JSONObject> = {};
+      const loader = async (location: string): Promise<JSONObject> => {
+        if (!specs[location]) {
+          specs[location] = load(await readFile(location, 'utf8')) as JSONObject;
+        }
+
+        return specs[location];
+      };
+
+      const spec = await loader(absLocation);
+
+      await linkRefs(spec, absLocation, loader);
+
+      expect(() => JSON.stringify(spec)).not.toThrow();
+
+      await unlinkRefs(spec as LinkedJSONObject);
+
+      expect(dump(spec)).toMatchSnapshot(normalizePath(location));
     });
   });
 });

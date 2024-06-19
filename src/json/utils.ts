@@ -47,6 +47,6 @@ export function uniq<T = string>(array: T[]): T[] {
   return [...new Set(array)];
 }
 
-export function last<T>(array: T[]) {
-  return array[array.length - 1];
+export function tail<T>(array: T[], offset = 0) {
+  return array[array.length - 1 - offset];
 }

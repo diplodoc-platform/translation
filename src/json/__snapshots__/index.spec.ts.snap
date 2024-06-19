@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`json integration should handle hidden circular: __mocks__/spec/hidden-circular.yaml 1`] = `
+"components:
+  schemas:
+    A:
+      type: object
+      properties:
+        B:
+          $ref: '#/components/schemas/C'
+    C:
+      type: object
+      properties:
+        D:
+          type: array
+          items:
+            $ref: '#/components/schemas/A'
+"
+`;
+
 exports[`json integration should resolve simple refs: __mocks__/spec/circular.yaml 1`] = `
 "c1:
   items:
