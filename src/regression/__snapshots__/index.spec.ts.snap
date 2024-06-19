@@ -11,7 +11,7 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\"/><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\"/> end</source>
+        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" id=\\"x-6\\"/><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-7\\"/> end</source>
       </trans-unit>
     </body>
   </file>
@@ -31,10 +31,10 @@ exports[`integration (a **18. B**). 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\"/>18.</source>
+        <source>(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\" id=\\"x-10\\"/>18.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>B<x ctype=\\"bold_close\\" equiv-text=\\"**\\"/>).</source>
+        <source>B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"x-11\\"/>).</source>
       </trans-unit>
     </body>
   </file>
@@ -54,7 +54,7 @@ exports[`integration \`{{ var }}\` — one. Two 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\"/><x ctype=\\"code_close\\" equiv-text=\\"\`\\"/> — one.</source>
+        <source><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\" id=\\"x-8\\"/><x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-9\\"/> — one.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>Two</source>
@@ -77,7 +77,7 @@ exports[`integration A ![](link) b. C. 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](link)\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
+        <source>A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](link)\\" id=\\"g-3\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>C.</source>
@@ -129,7 +129,7 @@ exports[`integration A. B [{#T}](D). C. 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A. B <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
+        <source>A. B <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-4\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>C.</source>
@@ -181,10 +181,10 @@ exports[`integration handles autolinks 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\"/></source>
+        <source>A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" id=\\"x-4\\"/></source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\"/></source>
+        <source>B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"x-5\\"/></source>
       </trans-unit>
     </body>
   </file>
@@ -328,7 +328,7 @@ exports[`integration handles inline code 3 1`] = `
         <source>column_name</source>
       </trans-unit>
       <trans-unit id=\\"6\\">
-        <source>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\"/><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\"/><x ctype=\\"code_open\\" equiv-text=\\"\`\\"/>required</source>
+        <source>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-1\\"/><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"x-2\\"/><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-3\\"/>required</source>
       </trans-unit>
       <trans-unit id=\\"7\\">
         <source>Имя колонки для TTL</source>
@@ -356,7 +356,7 @@ exports[`integration handles links in brackets 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>(see <g ctype=\\"link\\" equiv-text=\\"[{{text}}](#nestedblock--timeouts)\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
+        <source>(see <g ctype=\\"link\\" equiv-text=\\"[{{text}}](#nestedblock--timeouts)\\" id=\\"g-2\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
       </trans-unit>
     </body>
   </file>
@@ -528,7 +528,7 @@ exports[`integration recursive merge tokens 1`] = `
         <source>title</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>Sentense <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md &quot;%%%0%%%&quot;)\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%0%%%&quot;)\\">link</g>.</source>
+        <source>Sentense <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md &quot;%%%0%%%&quot;)\\" id=\\"g-1\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%0%%%&quot;)\\">link</g>.</source>
       </trans-unit>
     </body>
   </file>
