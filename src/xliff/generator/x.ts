@@ -1,28 +1,17 @@
 import {gt, lt, qt, sl} from 'src/xliff/symbols';
+import {snakeCase} from './utils';
 
 export type GenerateXParams = {
   ctype: string;
   equivText: string;
+} & {
+  [prop: string]: string;
 };
 
 export function generateX(parameters: GenerateXParams) {
-  const {ctype, equivText} = parameters;
+  const props = Object.keys(parameters)
+      .map((key) => `${snakeCase(key)}=${qt}${parameters[key]}${qt}`)
+      .join(' ');
 
-  let rendered = `${lt}x`;
-
-  if (ctype?.length) {
-    rendered += ` ctype=${qt}${ctype}${qt}`;
-  }
-
-  if (equivText?.length) {
-    rendered += ` equiv-text=${qt}${equivText}${qt}`;
-  }
-
-  if (ctype?.length || equivText?.length) {
-    rendered += ' ';
-  }
-
-  rendered += sl + gt;
-
-  return rendered;
+  return `${lt}x${props.length ? ' ' + props : ''}${sl + gt}`;
 }
