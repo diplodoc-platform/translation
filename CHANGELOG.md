@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/diplodoc-platform/translation/compare/v1.3.0...v1.3.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* Fix circular refs for ajv ([0f86389](https://github.com/diplodoc-platform/translation/commit/0f86389efa7627513f234e377594c0268290e6c4))
+
 ## [1.3.0](https://github.com/diplodoc-platform/translation/compare/v1.2.1...v1.3.0) (2024-06-19)
 
 
