@@ -92,10 +92,17 @@ export class Consumer {
       this.cursor = start > -1 ? end : this.cursor;
     }
 
-    if (tokens.length === 1 && tokens[0].type !== 'text') {
-      tokens[0] = token('text', {
-        content: tokens[0].content,
-      });
+    if (tokens.length === 1) {
+      // If single contentful token is something like liquid variable
+      // then this token is useless for translation.
+      if (tokens[0].type === 'liquid') {
+        after = tokens.concat(after);
+        tokens = [];
+      } else if (tokens[0].type !== 'text') {
+        tokens[0] = token('text', {
+          content: tokens[0].content,
+        });
+      }
     }
 
     if (tokens.length) {

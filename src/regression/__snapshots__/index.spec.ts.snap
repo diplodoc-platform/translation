@@ -11,7 +11,7 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" id=\\"x-6\\"/><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-7\\"/> end</source>
+        <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" id=\\"g-test\\"/><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"g-test\\"/> end</source>
       </trans-unit>
     </body>
   </file>
@@ -31,10 +31,10 @@ exports[`integration (a **18. B**). 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\" id=\\"x-10\\"/>18.</source>
+        <source>(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\" id=\\"g-test\\"/>18.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"x-11\\"/>).</source>
+        <source>B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"g-test\\"/>).</source>
       </trans-unit>
     </body>
   </file>
@@ -54,7 +54,7 @@ exports[`integration \`{{ var }}\` — one. Two 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\" id=\\"x-8\\"/><x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-9\\"/> — one.</source>
+        <source><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\" id=\\"g-test\\"/><x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/> — one.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>Two</source>
@@ -77,7 +77,7 @@ exports[`integration A ![](link) b. C. 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](link)\\" id=\\"g-3\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
+        <source>A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](link)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>C.</source>
@@ -129,7 +129,7 @@ exports[`integration A. B [{#T}](D). C. 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A. B <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-4\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
+        <source>A. B <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-test\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source>C.</source>
@@ -181,10 +181,10 @@ exports[`integration handles autolinks 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" id=\\"x-4\\"/></source>
+        <source>A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" id=\\"g-test\\"/></source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"x-5\\"/></source>
+        <source>B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"g-test\\"/></source>
       </trans-unit>
     </body>
   </file>
@@ -269,6 +269,61 @@ exports[`integration handles code regexps with escape chars 2`] = `
 zone |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`"
 `;
 
+exports[`integration handles empty images 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles empty links 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles image with empty title at the end of segment 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](./some/image.png)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](./some/image.png)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>B.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles image with empty title at the end of segment 2`] = `"A ![](./some/image.png). B."`;
+
 exports[`integration handles inline code 1 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -328,7 +383,7 @@ exports[`integration handles inline code 3 1`] = `
         <source>column_name</source>
       </trans-unit>
       <trans-unit id=\\"6\\">
-        <source>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-1\\"/><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"x-2\\"/><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-3\\"/>required</source>
+        <source>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"g-test\\"/><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>required</source>
       </trans-unit>
       <trans-unit id=\\"7\\">
         <source>Имя колонки для TTL</source>
@@ -345,6 +400,29 @@ exports[`integration handles inline code 3 2`] = `
 |column_name|\`string\`<br>\`required\`|Имя колонки для TTL|"
 `;
 
+exports[`integration handles link with empty title at the end of segment 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>A <g ctype=\\"link\\" equiv-text=\\"[{{text}}](./some/link)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>B.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles link with empty title at the end of segment 2`] = `"A [](./some/link). B."`;
+
 exports[`integration handles links in brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -356,7 +434,7 @@ exports[`integration handles links in brackets 1`] = `
     </header>
     <body>
       <trans-unit id=\\"1\\">
-        <source>(see <g ctype=\\"link\\" equiv-text=\\"[{{text}}](#nestedblock--timeouts)\\" id=\\"g-2\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
+        <source>(see <g ctype=\\"link\\" equiv-text=\\"[{{text}}](#nestedblock--timeouts)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
       </trans-unit>
     </body>
   </file>
@@ -411,6 +489,22 @@ exports[`integration handles multiline inline code 2`] = `
     [ FIXED ... | INCLUDE ... | EXCLUDE ... ]
     [ BEFORE FILTER BY ... ]
 )\`"
+`;
+
+exports[`integration handles single variable as content 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      
+    </body>
+  </file>
+</xliff>"
 `;
 
 exports[`integration handles titleless notes 1`] = `
@@ -528,7 +622,7 @@ exports[`integration recursive merge tokens 1`] = `
         <source>title</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source>Sentense <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md &quot;%%%0%%%&quot;)\\" id=\\"g-1\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%0%%%&quot;)\\">link</g>.</source>
+        <source>Sentense <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md &quot;%%%0%%%&quot;)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%0%%%&quot;)\\">link</g>.</source>
       </trans-unit>
     </body>
   </file>

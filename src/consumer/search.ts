@@ -1,5 +1,6 @@
 import type {Gobbler, NonEmptyString} from 'src/skeleton/types';
 import {ok} from 'assert';
+import {mtre} from 'src/symbols';
 
 type SearchRule = (content: string, from: number, match: string) => [number, number, string];
 
@@ -64,7 +65,10 @@ export const search: Gobbler<NonEmptyString> = (content, [start, end], match) =>
     searchMultilineInlineCode,
   ];
 
-  ok(match, `search aaaaaaaa empty ${match}`);
+  match = match.replace(mtre, '') as NonEmptyString;
+  if (!match) {
+    return [start, start, ''];
+  }
 
   let from = -1,
     to = -1,

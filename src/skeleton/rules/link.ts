@@ -2,6 +2,7 @@ import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
 import {Consumer} from 'src/consumer';
 import {token} from 'src/utils';
+import {mt} from 'src/symbols';
 
 function isAutolink(token: Token) {
   return token.markup === 'autolink';
@@ -37,7 +38,6 @@ function find(type: string, tokens: Token[], idx: number) {
 export const link: Renderer.RenderRuleRecord = {
   link_open: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
     const open = tokens[idx];
-    const text = tokens[idx + 1];
     const close = find('link_close', tokens, idx + 1) as Token;
 
     if (isAutolink(open)) {
@@ -49,6 +49,15 @@ export const link: Renderer.RenderRuleRecord = {
 
       return '';
     }
+
+    // Fake content is important for segmentation.
+    // It forces to properly split same strings
+    // "A [](./empty/link). B."
+    if (close === tokens[idx + 1]) {
+      tokens.splice(idx + 1, 0, token('text', {content: mt}));
+    }
+
+    const text = tokens[idx + 1];
 
     open.skip = '[';
     close.open = open;

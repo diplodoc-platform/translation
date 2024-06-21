@@ -1,6 +1,7 @@
 import type {Gobbler, NonEmptyString} from 'src/skeleton/types';
 import {ok} from 'node:assert';
 import {search} from 'src/consumer/search';
+import {mtre} from 'src/symbols';
 
 export function eruler<T extends string | Token>(
   content: string,
@@ -55,7 +56,7 @@ export const gobble: Gobbler<Token> = (content, [start, end], token, i) => {
 };
 
 const reflink = (token: Token) => token.reflink;
-const isContentful = (token: Token) => !reflink(token) && token.content?.trim();
+const isContentful = (token: Token) => !reflink(token) && token.content.replace(mtre, '')?.trim();
 
 export const firstContentful = (tokens: Token[]): [null | Token, number] => {
   const index = tokens.findIndex(isContentful);

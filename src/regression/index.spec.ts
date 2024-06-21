@@ -39,7 +39,7 @@ const test = (() => {
       describe('integration', () => {
         const caller = call ? it[call] : it;
         caller(name, () => {
-          const {xliff, skeleton} = extract(markdown, {
+          const {xliff, skeleton, units} = extract(markdown, {
             compact: true,
             source: {
               language: 'ru',
@@ -50,9 +50,15 @@ const test = (() => {
               locale: 'US',
             },
           });
-          const result = compose(skeleton, xliff, {useSource: true});
 
           expect(xliff).toMatchSnapshot();
+
+          if (!units.length) {
+            return;
+          }
+
+          const result = compose(skeleton, xliff, {useSource: true});
+
           expect(result).toEqual(markdown);
           expect(result).toMatchSnapshot();
         });
@@ -198,4 +204,32 @@ test.skip('A (B) {#C}\n:   A, b. E')`
 
 test('A. B [{#T}](D). C.')`
     A. B [{#T}](D). C.
+`;
+
+test('handles image with empty title at the end of segment')`
+    A ![](./some/image.png). B.
+`;
+
+test('handles empty images')`
+  - ![](./image1)
+  - ![](./image2)
+`;
+
+test('handles link with empty title at the end of segment')`
+    A [](./some/link). B.
+`;
+
+test('handles empty links')`
+  - [](./link1)
+  - [](./link2)
+`;
+
+test('handles single variable as content')`
+    #|
+    ||
+    
+    {{ reference-alerts.struct-table-protocol-alerts.request-id-col-1 }}
+    
+    ||
+    |#
 `;

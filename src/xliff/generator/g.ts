@@ -1,4 +1,4 @@
-import {gt, lt, qt, sl} from 'src/xliff/symbols';
+import {gt, lt, qt, sl} from 'src/symbols';
 import {snakeCase} from './utils';
 
 export type OpenGParams = {
@@ -27,5 +27,9 @@ export function generateCloseG(): string {
 
 let ID = 1;
 function id() {
+  if (process.env.TEST) {
+    return {id: 'g-test'};
+  }
+
   return {id: 'g-' + ID++};
 }

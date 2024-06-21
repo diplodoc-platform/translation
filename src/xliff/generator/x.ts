@@ -1,4 +1,4 @@
-import {gt, lt, qt, sl} from 'src/xliff/symbols';
+import {gt, lt, qt, sl} from 'src/symbols';
 import {snakeCase} from './utils';
 
 export type GenerateXParams = {
@@ -21,5 +21,9 @@ export function generateX(parameters: GenerateXParams) {
 
 let ID = 1;
 function id() {
+  if (process.env.TEST) {
+    return {id: 'g-test'};
+  }
+
   return {id: 'x-' + ID++};
 }

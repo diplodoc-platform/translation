@@ -1,6 +1,6 @@
 import type {CustomRendererHookParameters} from 'src/renderer';
 import MarkdownIt from 'markdown-it';
-import {unescapeSymbols} from 'src/xliff/symbols';
+import {unescapeSymbols} from 'src/symbols';
 
 const escapeHTML = new MarkdownIt().utils.escapeHtml;
 
