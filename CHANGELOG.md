@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.2](https://github.com/diplodoc-platform/translation/compare/v1.3.1...v1.3.2) (2024-06-24)
+
+
+### Bug Fixes
+
+* Fix some segmentation errors ([09979dd](https://github.com/diplodoc-platform/translation/commit/09979dd237e3a7e3c7d9eb6d2db032ba73c53241))
+* Fix tests ([696011c](https://github.com/diplodoc-platform/translation/commit/696011cd96b82975f54d958e6d2370746303e36e))
+
 ## [1.3.1](https://github.com/diplodoc-platform/translation/compare/v1.3.0...v1.3.1) (2024-06-20)
 
 
