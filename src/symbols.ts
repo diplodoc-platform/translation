@@ -4,7 +4,8 @@ const gt = crypto.randomUUID();
 const lt = crypto.randomUUID();
 const sl = crypto.randomUUID();
 const qt = crypto.randomUUID();
-const mt = crypto.randomUUID();
+// Should start with upper case to force new sentences on segmentation.
+const mt = 'A' + crypto.randomUUID() + 'z';
 
 const gtre = new RegExp(`${gt}`, 'gmu');
 const ltre = new RegExp(`${lt}`, 'gmu');
