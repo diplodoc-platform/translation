@@ -42,8 +42,8 @@
     "npm": ">=9.*"
   },
   "scripts": {
-    "test": "TEST=1 jest --verbose --coverage --silence=false",
-    "test:watch": "TEST=1 jest --watch --verbose --silent=false",
+    "test": "jest --verbose --coverage --silence=false",
+    "test:watch": "jest --watch --verbose --silent=false",
     "build:dev": "node scripts/development.js",
     "build": "npm run build:clean && tsc -p tsconfig.types.json && node scripts/bundle.js",
     "build:clean": "rm -rf lib",

@@ -21,7 +21,7 @@ export function generateX(parameters: GenerateXParams) {
 
 let ID = 1;
 function id() {
-  if (process.env.TEST) {
+  if (process.env.JEST_WORKER_ID) {
     return {id: 'g-test'};
   }
 
