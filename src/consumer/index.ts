@@ -62,7 +62,7 @@ export class Consumer {
     return {
       start: this.line(this.cursor - this.gap),
       end: this.line(this.limit - this.gap),
-    }
+    };
   }
 
   /**
@@ -152,24 +152,24 @@ export class Consumer {
   private erule(tokens: Token[]) {
     try {
       return eruler(
-          this.content,
-          [this.cursor, this.limit],
-          tokens,
-          (content, [start, end], token, i) => {
-            const [from, to, match] = gobble(content, [start, end], token, i);
+        this.content,
+        [this.cursor, this.limit],
+        tokens,
+        (content, [start, end], token, i) => {
+          const [from, to, match] = gobble(content, [start, end], token, i);
 
-            token.map = [from, to];
+          token.map = [from, to];
 
-            if (match) {
-              token.content = match;
-            }
+          if (match) {
+            token.content = match;
+          }
 
-            if (token.erule) {
-              token.erule(this, tokens, i, [from, to]);
-            }
+          if (token.erule) {
+            token.erule(this, tokens, i, [from, to]);
+          }
 
-            return [from, to];
-          },
+          return [from, to];
+        },
       );
     } catch (error) {
       if (error instanceof CriticalProcessingError) {

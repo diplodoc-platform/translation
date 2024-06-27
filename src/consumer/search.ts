@@ -79,7 +79,7 @@ export const search: Gobbler<NonEmptyString> = (content, [start, end], match) =>
   }
 
   if (from < start || to > end) {
-    throw new CriticalProcessingError({start, end}, content, match)
+    throw new CriticalProcessingError({start, end}, content, match);
   }
 
   return [from, to, variant];
