@@ -28,3 +28,69 @@ export function replace(source: string, units: string[]): [string, boolean] {
 
   return [result, matched];
 }
+
+const getPadLeft = (string: string) => {
+  const match = /^\n*([^\n\S]+)\S+/m.exec(string);
+
+  return match ? match[1].length : null;
+};
+
+const getPadRight = (string: string, pad: number | null) => {
+  const match = /\n([^\n\S]+?)$/g.exec(string);
+
+  return match ? match[1].length - (pad || 0) : 0;
+};
+
+const joinVars = (strings: string[], vars: string[]) => {
+  const result = [];
+
+  while (strings.length) {
+    result.push(strings.shift());
+
+    if (vars.length) {
+      result.push(vars.shift());
+    }
+  }
+
+  return result;
+}
+
+export function trim(string: TemplateStringsArray | string[] | string, ...vars: any[]): string {
+  let result = '';
+
+  string = joinVars(([] as string[]).concat(string as string[]), vars) as string[];
+
+  let pad: number | null = null;
+  for (let index = 0; index < string.length; index++) {
+    const isVar = Boolean(index % 2);
+
+    let content = String(string[index]);
+
+    if (isVar) {
+      content = trim(content);
+      content = offset(content, getPadRight(string[index - 1], pad));
+      result += content;
+    } else {
+      while (content.length) {
+        const newline = content.indexOf('\n') + 1;
+        if (newline > 0) {
+          if (pad === null) {
+            pad = getPadLeft(content.slice(newline));
+          }
+
+          result += content.slice(0, newline);
+          content = content.slice(newline + (pad || 0));
+        } else {
+          result += content;
+          content = '';
+        }
+      }
+    }
+  }
+
+  return result.trim();
+}
+
+function offset(string: string, pad: number) {
+  return string.replace(/^/gm, ' '.repeat(pad)).slice(pad);
+}

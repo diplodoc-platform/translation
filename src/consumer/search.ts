@@ -1,6 +1,6 @@
 import type {Gobbler, NonEmptyString} from 'src/skeleton/types';
-import {ok} from 'assert';
 import {mtre} from 'src/symbols';
+import {CriticalProcessingError} from './error';
 
 type SearchRule = (content: string, from: number, match: string) => [number, number, string];
 
@@ -76,15 +76,11 @@ export const search: Gobbler<NonEmptyString> = (content, [start, end], match) =>
   while (matches.length && from === -1) {
     start = start === -1 ? 0 : start;
     [from, to, variant] = (matches.shift() as SearchRule)(content, start, match);
-    // console.log(`
-    //     SEARCH: |${match}|
-    //     WHERE:  |${content.slice(start, end)}|
-    //     RESULT: |${from > -1 ? '-'.repeat(from - start) + '^' : from}|
-    // `);
   }
 
-  ok(from >= start, `search aaaaaaaa start: ${from} > ${start}`);
-  ok(to <= end, `search aaaaaaaa end: ${to} <= ${end}`);
+  if (from < start || to > end) {
+    throw new CriticalProcessingError({start, end}, content, match)
+  }
 
   return [from, to, variant];
 };

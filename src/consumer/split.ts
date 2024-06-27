@@ -1,5 +1,5 @@
 import {sentenize} from '@diplodoc/sentenizer';
-import {eruler, firstContentful, gobble, lastContentful} from 'src/consumer/utils';
+import {eruler, firstContentful, gobble, lastContentful} from './utils';
 import {token} from 'src/utils';
 
 const hasContent = (token: Token) => token.content || (token.markup && !token.skip);
