@@ -1,6 +1,7 @@
 import {token} from 'src/utils';
 import {dropUselessTokens, eruler, gobble} from './utils';
 import {split} from './split';
+import {CriticalProcessingError} from './error';
 
 const replace = (from: number, to: number, source: string, past: string) => {
   const start = source.slice(0, from);
@@ -36,16 +37,38 @@ export class Consumer {
 
   compact: boolean;
 
+  /**
+   * Original content
+   */
+  readonly source: string;
+
   content: string;
 
   code: CodeProcessing | undefined;
 
   hash: (tokens: Token[]) => string;
 
+  /**
+   * Current window end.
+   */
   get limit() {
     return last(this.limits, Infinity) + this.gap;
   }
 
+  /**
+   * Current window lines range mapped to sourcelines.
+   */
+  get range() {
+    return {
+      start: this.line(this.cursor - this.gap),
+      end: this.line(this.limit - this.gap),
+    }
+  }
+
+  /**
+   * Current consumer position.
+   * Also current window start.
+   */
   private cursor = 0;
 
   private limits: number[] = [];
@@ -54,6 +77,7 @@ export class Consumer {
     this.lines = content.split('\n').reduce(countStartIndexes, [0]);
     this.compact = Boolean(options.compact);
     this.code = options.code;
+    this.source = content;
     this.content = content;
     this.hash = hash;
   }
@@ -126,26 +150,34 @@ export class Consumer {
   };
 
   private erule(tokens: Token[]) {
-    return eruler(
-      this.content,
-      [this.cursor, this.limit],
-      tokens,
-      (content, [start, end], token, i) => {
-        const [from, to, match] = gobble(content, [start, end], token, i);
+    try {
+      return eruler(
+          this.content,
+          [this.cursor, this.limit],
+          tokens,
+          (content, [start, end], token, i) => {
+            const [from, to, match] = gobble(content, [start, end], token, i);
 
-        token.map = [from, to];
+            token.map = [from, to];
 
-        if (match) {
-          token.content = match;
-        }
+            if (match) {
+              token.content = match;
+            }
 
-        if (token.erule) {
-          token.erule(this, tokens, i, [from, to]);
-        }
+            if (token.erule) {
+              token.erule(this, tokens, i, [from, to]);
+            }
 
-        return [from, to];
-      },
-    );
+            return [from, to];
+          },
+      );
+    } catch (error) {
+      if (error instanceof CriticalProcessingError) {
+        error.fill(this);
+      }
+
+      throw error;
+    }
   }
 
   private drop(tokens: Token[]) {
@@ -171,5 +203,14 @@ export class Consumer {
 
   private unsetWindow() {
     this.limits.pop();
+  }
+
+  private line(pos: number) {
+    let index = 0;
+    let line = this.lines[index];
+    while (pos > line && index < this.lines.length) {
+      line = this.lines[++index];
+    }
+    return index;
   }
 }
