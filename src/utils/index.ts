@@ -53,7 +53,7 @@ const joinVars = (strings: string[], vars: string[]) => {
   }
 
   return result;
-}
+};
 
 export function trim(string: TemplateStringsArray | string[] | string, ...vars: any[]): string {
   let result = '';
