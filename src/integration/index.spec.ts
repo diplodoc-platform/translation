@@ -1,35 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 
 import {compose, extract} from 'src/api';
-
-const getPadX = (string: string) => {
-  const match = /^(\s+)/.exec(string);
-  const pad = (match && match[1]) || '';
-
-  return new RegExp('^[\\s]{0,' + pad.length + '}');
-};
-
-export function trim(string: string | TemplateStringsArray): string {
-  let lines = Array.isArray(string) ? (string as string[]) : (string as string).split('\n');
-
-  let pad: RegExp | null = null;
-
-  while (pad === null) {
-    const line = lines[0] || '';
-    if (!line.trim()) {
-      lines.shift();
-      continue;
-    }
-
-    pad = getPadX(line);
-  }
-
-  if (pad) {
-    lines = lines.map((line) => line.replace(pad as RegExp, ''));
-  }
-
-  return lines.join('\n').trim();
-}
+import {trim} from 'src/utils';
 
 const test = (() => {
   function test(name: string, call?: 'skip' | 'only') {
@@ -232,4 +204,17 @@ test('handles single variable as content')`
     
     ||
     |#
+`;
+
+test('handles self closing html tags')`
+  # Header
+
+  A a.
+  B b.
+  
+  <keyword keyref="responce"/>
+  
+  ## End of text
+  
+  C!
 `;
