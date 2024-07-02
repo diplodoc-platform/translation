@@ -1,5 +1,6 @@
 import {TokenSubType, TokenType} from './token';
 import {token} from 'src/utils';
+import {vr, vrre} from 'src/symbols';
 
 export type Configuration = {
   specification?: Specification;
@@ -53,13 +54,31 @@ const specification_: Specification = [
 
 export type TokenizerGenerator = Generator<Token | null, void, Token | undefined>;
 
-export class Tokenizer implements TokenizerGenerator {
+let variableId = 0;
+const vars: Record<string, string> = {};
+
+export class Liquid implements TokenizerGenerator {
+
+  static escape(content: string) {
+    return content.replace(/\{\{\s*[\w.-]+\s*\}\}/g, (match) => {
+      const id = `${vr}-${variableId++}-v`;
+      vars[id] = match;
+      return id;
+    });
+  }
+
+  static unescape(content: string) {
+    return content.replace(vrre, (match) => {
+      return vars[match];
+    });
+  }
+
   private input: string;
   private cursor: number;
   private specification: Specification;
 
   constructor(input: string, configuration: Configuration = {}) {
-    this.input = input;
+    this.input = Liquid.unescape(input);
     this.cursor = 0;
 
     const {specification = specification_} = configuration;
@@ -108,7 +127,7 @@ export class Tokenizer implements TokenizerGenerator {
     return {value: null, done: true};
   }
 
-  private match(this: Tokenizer): [Token, string] | [null] {
+  private match(this: Liquid): [Token, string] | [null] {
     const left = this.input.slice(this.cursor);
 
     for (const [regexp, type, subtype] of this.specification) {

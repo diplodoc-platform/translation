@@ -1,5 +1,5 @@
 import Renderer from 'markdown-it/lib/renderer';
-import {Tokenizer} from '../liquid';
+import {Liquid} from '../liquid';
 
 export const text: Renderer.RenderRuleRecord = {
   text_special: (tokens: Token[], i: number) => {
@@ -12,7 +12,7 @@ export const text: Renderer.RenderRuleRecord = {
     const token = tokens[i];
 
     if (token?.generated !== 'liquid' && token.content) {
-      const tokenizer = new Tokenizer(token.content);
+      const tokenizer = new Liquid(token.content);
       const liquidTokens = tokenizer.tokenize();
 
       if (liquidTokens.length > 1 || liquidTokens[0].type !== 'text') {
