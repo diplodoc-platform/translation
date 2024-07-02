@@ -1,6 +1,7 @@
 import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
 import {Consumer} from 'src/consumer';
+import {Liquid} from 'src/skeleton/liquid';
 import {token} from 'src/utils';
 import {mt} from 'src/symbols';
 
@@ -42,7 +43,7 @@ export const link: Renderer.RenderRuleRecord = {
 
     if (isAutolink(open)) {
       const autolink = token('link_auto', {
-        content: '<' + tokens[idx + 1].content + '>',
+        content: '<' + Liquid.unescape(tokens[idx + 1].content) + '>',
       });
 
       tokens.splice(idx, 3, autolink);
@@ -67,6 +68,8 @@ export const link: Renderer.RenderRuleRecord = {
       text.reflink = true;
     }
 
+    open.attrSet('href', Liquid.unescape(open.attrGet('href') || ''));
+
     return '';
   },
   link_close: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
@@ -77,15 +80,17 @@ export const link: Renderer.RenderRuleRecord = {
       throw new Error('failed to render link token');
     }
 
-    const titleAttr = open.attrGet('title') || '';
+    const titleAttr = Liquid.unescape(open.attrGet('title') || '');
 
     const skip = (close.skip = (close.skip || []) as string[]);
     skip.push(')');
 
     if (titleAttr) {
       const consumer = new Consumer(titleAttr, this.state, this.state.hash);
-      const title = token('text', {content: titleAttr});
-      const parts = consumer.process(title);
+      const tokenizer = new Liquid(titleAttr);
+      const tokens = tokenizer.tokenize();
+      const parts = consumer.process(tokens);
+
       open.attrSet('title', consumer.content);
       close.beforeDrop = (consumer: Consumer) => {
         parts.forEach(({part, past}) => consumer.consume(part, past));

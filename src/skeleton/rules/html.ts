@@ -79,7 +79,7 @@ function open(node: Node): Token[] {
     return [];
   }
 
-  return [token('html_inline', {skip: '<' + node.rawTagName + ' ' + node.rawAttrs + '>'})];
+  return [token('html_inline', {skip: ['<', node.rawTagName, node.rawAttrs, '>']})];
 }
 
 function close(node: Node): Token[] {
@@ -87,7 +87,7 @@ function close(node: Node): Token[] {
     return [];
   }
 
-  return [token('html_inline', {skip: '</' + node.rawTagName + '>'})];
+  return [token('html_inline', {skip: ['</', node.rawTagName, '>']})];
 }
 
 export const html: RenderRuleRecord = {

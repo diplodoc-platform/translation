@@ -1,6 +1,6 @@
 import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
-import {Tokenizer} from '../liquid';
+import {Liquid} from '../liquid';
 import {token} from 'src/utils';
 import MarkdownIt from 'markdown-it';
 
@@ -16,7 +16,7 @@ export function meta(this: CustomRenderer<Consumer, MarkdownItWithMeta>) {
   }
 
   traverse(meta, (value, key) => {
-    const tokenizer = new Tokenizer(value);
+    const tokenizer = new Liquid(value);
     this.state.process(token('fake', {skip: key}));
     this.state.process([...tokenizer.tokenize()]);
   });

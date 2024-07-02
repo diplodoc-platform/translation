@@ -72,14 +72,17 @@ export function trim(string: TemplateStringsArray | string[] | string, ...vars: 
       result += content;
     } else {
       while (content.length) {
-        const newline = content.indexOf('\n') + 1;
-        if (newline > 0) {
+        const currNewline = content.indexOf('\n') + 1;
+        const nextNewline = content.indexOf('\n', currNewline) + 1;
+        if (currNewline > 0) {
           if (pad === null) {
-            pad = getPadLeft(content.slice(newline));
+            pad = getPadLeft(content.slice(currNewline));
           }
 
-          result += content.slice(0, newline);
-          content = content.slice(newline + (pad || 0));
+          const currPad = pad !== null && nextNewline - currNewline >= pad ? pad : 0;
+
+          result += content.slice(0, currNewline);
+          content = content.slice(currNewline + currPad);
         } else {
           result += content;
           content = '';

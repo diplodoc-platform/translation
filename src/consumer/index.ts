@@ -110,11 +110,7 @@ export class Consumer {
       [before, tokens, after] = [[], part, []];
     }
 
-    if (before.length) {
-      this.drop(before);
-      const [start, end] = this.erule(before);
-      this.cursor = start > -1 ? end : this.cursor;
-    }
+    this.drop(before);
 
     if (tokens.length === 1) {
       // If single contentful token is something like liquid variable
@@ -140,11 +136,7 @@ export class Consumer {
       this.gap -= end - start - past.length;
     }
 
-    if (after.length) {
-      this.drop(after);
-      const [start, end] = this.erule(after);
-      this.cursor = start > -1 ? end : this.cursor;
-    }
+    this.drop(after);
 
     return past ? {part, past} : null;
   };
@@ -181,11 +173,22 @@ export class Consumer {
   }
 
   private drop(tokens: Token[]) {
+    if (!tokens.length) {
+      return;
+    }
+
+    const gap = this.gap;
+    const [start, end] = this.erule(tokens);
+
     tokens.forEach((token, i) => {
       if (token.beforeDrop) {
         token.beforeDrop(this, tokens[i - 1] || null, tokens[i + 1] || null);
       }
     });
+
+    const dgap = gap - this.gap;
+
+    this.cursor = start > -1 ? end - dgap : this.cursor;
   }
 
   private setWindow(map: [number, number] | null | undefined, gap?: number) {
