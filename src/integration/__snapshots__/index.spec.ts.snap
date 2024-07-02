@@ -10,7 +10,7 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" id=\\"g-test\\"/><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"g-test\\"/> end</source>
       </trans-unit>
     </body>
@@ -32,10 +32,10 @@ exports[`integration (a **18. B**). 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\" id=\\"g-test\\"/>18.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"g-test\\"/>).</source>
       </trans-unit>
     </body>
@@ -57,10 +57,10 @@ exports[`integration \`{{ var }}\` — one. Two 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\" id=\\"g-test\\"/><x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/> — one.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>Two</source>
       </trans-unit>
     </body>
@@ -82,10 +82,10 @@ exports[`integration A ![](link) b. C. 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](link)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>C.</source>
       </trans-unit>
     </body>
@@ -136,10 +136,10 @@ exports[`integration A. B [{#T}](D). C. 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>A. B <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-test\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>C.</source>
       </trans-unit>
     </body>
@@ -161,13 +161,13 @@ exports[`integration computes valid sentenses 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Записывает или удаляет элементы из таблиц.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление.</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>Каждый элемент может иметь размер до 400 Кб.</source>
       </trans-unit>
     </body>
@@ -195,10 +195,10 @@ exports[`integration handles autolinks 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" id=\\"g-test\\"/></source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"g-test\\"/></source>
       </trans-unit>
     </body>
@@ -226,19 +226,19 @@ exports[`integration handles blockquotes 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>1</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>2</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>3</source>
       </trans-unit>
-      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"3\\">
         <source>4</source>
       </trans-unit>
-      <trans-unit id=\\"5\\">
+      <trans-unit id=\\"4\\">
         <source>5</source>
       </trans-unit>
     </body>
@@ -276,16 +276,16 @@ exports[`integration handles code regexps with escape chars 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Поле</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>Описание</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>zone</source>
       </trans-unit>
-      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"3\\">
         <source>[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.</source>
       </trans-unit>
     </body>
@@ -357,10 +357,10 @@ exports[`integration handles image with empty title at the end of segment 1`] = 
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](./some/image.png)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](./some/image.png)\\"></g>.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>B.</source>
       </trans-unit>
     </body>
@@ -382,13 +382,13 @@ exports[`integration handles image with variables in title 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>And what?</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>Image</source>
       </trans-unit>
     </body>
@@ -410,16 +410,16 @@ exports[`integration handles inline code 1 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Параметр</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>Описание</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>InternalServerError</source>
       </trans-unit>
-      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"3\\">
         <source>Произошла</source>
       </trans-unit>
     </body>
@@ -449,25 +449,25 @@ exports[`integration handles inline code 3 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Описание значений полей:</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>Название поля</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>Тип</source>
       </trans-unit>
-      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"3\\">
         <source>Описание</source>
       </trans-unit>
-      <trans-unit id=\\"5\\">
+      <trans-unit id=\\"4\\">
         <source>column_name</source>
       </trans-unit>
-      <trans-unit id=\\"6\\">
+      <trans-unit id=\\"5\\">
         <source>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"g-test\\"/><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>required</source>
       </trans-unit>
-      <trans-unit id=\\"7\\">
+      <trans-unit id=\\"6\\">
         <source>Имя колонки для TTL</source>
       </trans-unit>
     </body>
@@ -499,7 +499,7 @@ exports[`integration handles inline includes 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>:   <x ctype=\\"liquid_Include\\" equiv-text=\\"{% include [test](./test.md) %}\\" id=\\"g-test\\"/><x ctype=\\"lb\\" equiv-text=\\"
 \\" id=\\"g-test\\"/>OK</source>
       </trans-unit>
@@ -525,10 +525,10 @@ exports[`integration handles link with empty title at the end of segment 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>A <g ctype=\\"link\\" equiv-text=\\"[{{text}}](./some/link)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\"></g>.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>B.</source>
       </trans-unit>
     </body>
@@ -550,16 +550,16 @@ exports[`integration handles link with image with variables in title 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>And what?</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>![Image](index-mini.md &quot;Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
       </trans-unit>
-      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"3\\">
         <source>And what?&quot; x100)</source>
       </trans-unit>
     </body>
@@ -581,13 +581,13 @@ exports[`integration handles link with variables in title 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>And what?</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>Link</source>
       </trans-unit>
     </body>
@@ -609,7 +609,7 @@ exports[`integration handles links in brackets 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>(see <g ctype=\\"link\\" equiv-text=\\"[{{text}}](#nestedblock--timeouts)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
       </trans-unit>
     </body>
@@ -631,7 +631,7 @@ exports[`integration handles links with brackets 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>\\\\[Упр\\\\]</source>
       </trans-unit>
     </body>
@@ -653,7 +653,7 @@ exports[`integration handles multiline inline code 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>ALL_CONCAT( expression [ , separator ]
     [ FIXED ... | INCLUDE ... | EXCLUDE ... ]
     [ BEFORE FILTER BY ... ]
@@ -683,19 +683,19 @@ exports[`integration handles self closing html tags 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Header</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>A a.</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>B b.</source>
       </trans-unit>
-      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"3\\">
         <source>End of text</source>
       </trans-unit>
-      <trans-unit id=\\"5\\">
+      <trans-unit id=\\"4\\">
         <source>C!</source>
       </trans-unit>
     </body>
@@ -765,7 +765,7 @@ exports[`integration handles titleless notes 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.</source>
       </trans-unit>
     </body>
@@ -799,42 +799,42 @@ exports[`integration link variable leak 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>Request</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>method</source>
       </trans-unit>
-      <trans-unit id=\\"3\\">
+      <trans-unit id=\\"2\\">
         <source>url</source>
       </trans-unit>
-      <trans-unit id=\\"4\\">
+      <trans-unit id=\\"3\\">
         <source>POST
 </source>
       </trans-unit>
-      <trans-unit id=\\"5\\">
+      <trans-unit id=\\"4\\">
         <source>https://api.example.ru/businesses/{businessId}/offer-mappings/update
 </source>
       </trans-unit>
-      <trans-unit id=\\"6\\">
+      <trans-unit id=\\"5\\">
         <source>Path parameters</source>
       </trans-unit>
-      <trans-unit id=\\"7\\">
+      <trans-unit id=\\"6\\">
         <source>Name</source>
       </trans-unit>
-      <trans-unit id=\\"8\\">
+      <trans-unit id=\\"7\\">
         <source>Type</source>
       </trans-unit>
-      <trans-unit id=\\"9\\">
+      <trans-unit id=\\"8\\">
         <source>Description</source>
       </trans-unit>
-      <trans-unit id=\\"10\\">
+      <trans-unit id=\\"9\\">
         <source>businessId</source>
       </trans-unit>
-      <trans-unit id=\\"11\\">
+      <trans-unit id=\\"10\\">
         <source>integer&amp;lt;int64&amp;gt;</source>
       </trans-unit>
-      <trans-unit id=\\"12\\">
+      <trans-unit id=\\"11\\">
         <source>Description</source>
       </trans-unit>
     </body>
@@ -894,10 +894,10 @@ exports[`integration recursive merge tokens 1`] = `
       </skeleton>
     </header>
     <body>
-      <trans-unit id=\\"1\\">
+      <trans-unit id=\\"0\\">
         <source>title</source>
       </trans-unit>
-      <trans-unit id=\\"2\\">
+      <trans-unit id=\\"1\\">
         <source>Sentense <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md &quot;%%%0%%%&quot;)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%0%%%&quot;)\\">link</g>.</source>
       </trans-unit>
     </body>

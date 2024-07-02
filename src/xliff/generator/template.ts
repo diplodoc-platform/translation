@@ -17,7 +17,7 @@ export type Language = (typeof languagesList)[number];
 
 function unit(source: string, index: number) {
   return `
-      <trans-unit id="${index + 1}">
+      <trans-unit id="${index}">
         ${source}
       </trans-unit>    
     `.trim();
