@@ -111,7 +111,9 @@ export class Liquid implements TokenizerGenerator {
       return {value: null, done: true};
     }
 
-    token.markup = value;
+    if (token.type !== 'text') {
+      token.markup = value;
+    }
     token.generated = 'liquid';
 
     this.cursor += value.length;

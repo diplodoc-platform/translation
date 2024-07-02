@@ -224,3 +224,15 @@ test('handles inline includes')`
   :   {% include [test](./test.md) %}
   OK
 `;
+
+test('handles link with variables in title')`
+  [Link](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
+`;
+
+test('handles image with variables in title')`
+  ![Image](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
+`;
+
+test('handles link with image with variables in title')`
+  [![Image](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?" x100)](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
+`;

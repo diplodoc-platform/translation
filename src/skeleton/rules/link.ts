@@ -80,15 +80,17 @@ export const link: Renderer.RenderRuleRecord = {
       throw new Error('failed to render link token');
     }
 
-    const titleAttr = open.attrGet('title') || '';
+    const titleAttr = Liquid.unescape(open.attrGet('title') || '');
 
     const skip = (close.skip = (close.skip || []) as string[]);
     skip.push(')');
 
     if (titleAttr) {
       const consumer = new Consumer(titleAttr, this.state, this.state.hash);
-      const title = token('text', {content: titleAttr});
-      const parts = consumer.process(title);
+      const tokenizer = new Liquid(titleAttr);
+      const tokens = tokenizer.tokenize();
+      const parts = consumer.process(tokens);
+
       open.attrSet('title', consumer.content);
       close.beforeDrop = (consumer: Consumer) => {
         parts.forEach(({part, past}) => consumer.consume(part, past));
