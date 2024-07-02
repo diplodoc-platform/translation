@@ -24,6 +24,7 @@ const test = (() => {
           });
 
           expect(xliff).toMatchSnapshot();
+          expect(skeleton).toMatchSnapshot();
 
           if (!units.length) {
             return;
@@ -217,4 +218,9 @@ test('handles self closing html tags')`
   ## End of text
   
   C!
+`;
+
+test('handles inline includes')`
+  :   {% include [test](./test.md) %}
+  OK
 `;

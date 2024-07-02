@@ -18,7 +18,9 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
 </xliff>"
 `;
 
-exports[`integration ## Start {#your-ideas}{% else %} end 2`] = `"## Start {#your-ideas}{% else %} end"`;
+exports[`integration ## Start {#your-ideas}{% else %} end 2`] = `"## %%%0%%%"`;
+
+exports[`integration ## Start {#your-ideas}{% else %} end 3`] = `"## Start {#your-ideas}{% else %} end"`;
 
 exports[`integration (a **18. B**). 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -41,7 +43,9 @@ exports[`integration (a **18. B**). 1`] = `
 </xliff>"
 `;
 
-exports[`integration (a **18. B**). 2`] = `"(a **18. B**)."`;
+exports[`integration (a **18. B**). 2`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration (a **18. B**). 3`] = `"(a **18. B**)."`;
 
 exports[`integration \`{{ var }}\` — one. Two 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -64,7 +68,9 @@ exports[`integration \`{{ var }}\` — one. Two 1`] = `
 </xliff>"
 `;
 
-exports[`integration \`{{ var }}\` — one. Two 2`] = `"\`{{ var }}\` — one. Two"`;
+exports[`integration \`{{ var }}\` — one. Two 2`] = `"\`%%%0%%% %%%1%%%"`;
+
+exports[`integration \`{{ var }}\` — one. Two 3`] = `"\`{{ var }}\` — one. Two"`;
 
 exports[`integration A ![](link) b. C. 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -87,7 +93,9 @@ exports[`integration A ![](link) b. C. 1`] = `
 </xliff>"
 `;
 
-exports[`integration A ![](link) b. C. 2`] = `"A ![](link) b. C."`;
+exports[`integration A ![](link) b. C. 2`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration A ![](link) b. C. 3`] = `"A ![](link) b. C."`;
 
 exports[`integration A (B) {#C}
 :   A, b. E 1`] = `
@@ -139,7 +147,9 @@ exports[`integration A. B [{#T}](D). C. 1`] = `
 </xliff>"
 `;
 
-exports[`integration A. B [{#T}](D). C. 2`] = `"A. B [{#T}](D). C."`;
+exports[`integration A. B [{#T}](D). C. 2`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration A. B [{#T}](D). C. 3`] = `"A. B [{#T}](D). C."`;
 
 exports[`integration computes valid sentenses 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -166,6 +176,11 @@ exports[`integration computes valid sentenses 1`] = `
 `;
 
 exports[`integration computes valid sentenses 2`] = `
+"%%%0%%%
+%%%1%%% %%%2%%%"
+`;
+
+exports[`integration computes valid sentenses 3`] = `
 "Записывает или удаляет элементы из таблиц.
 Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление. Каждый элемент может иметь размер до 400 Кб."
 `;
@@ -192,6 +207,11 @@ exports[`integration handles autolinks 1`] = `
 `;
 
 exports[`integration handles autolinks 2`] = `
+"* %%%0%%%
+* %%%1%%%"
+`;
+
+exports[`integration handles autolinks 3`] = `
 "* A <http://gitgrimbo.github.io/harviewer/master/>
 * B <https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru>"
 `;
@@ -227,6 +247,16 @@ exports[`integration handles blockquotes 1`] = `
 `;
 
 exports[`integration handles blockquotes 2`] = `
+"> %%%0%%%
+> %%%1%%%
+>
+> > %%%2%%%
+> > %%%3%%%
+>
+> %%%4%%%"
+`;
+
+exports[`integration handles blockquotes 3`] = `
 "> 1
 > 2
 >
@@ -264,6 +294,12 @@ exports[`integration handles code regexps with escape chars 1`] = `
 `;
 
 exports[`integration handles code regexps with escape chars 2`] = `
+"%%%0%%% | %%%1%%%
+--- | ---
+%%%2%%% |  \`\`%%%3%%%\`\`"
+`;
+
+exports[`integration handles code regexps with escape chars 3`] = `
 "Поле | Описание
 --- | ---
 zone |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`"
@@ -285,6 +321,11 @@ exports[`integration handles empty images 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles empty images 2`] = `
+"- ![](./image1)
+- ![](./image2)"
+`;
+
 exports[`integration handles empty links 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -299,6 +340,11 @@ exports[`integration handles empty links 1`] = `
     </body>
   </file>
 </xliff>"
+`;
+
+exports[`integration handles empty links 2`] = `
+"- [](./link1)
+- [](./link2)"
 `;
 
 exports[`integration handles image with empty title at the end of segment 1`] = `
@@ -322,7 +368,9 @@ exports[`integration handles image with empty title at the end of segment 1`] = 
 </xliff>"
 `;
 
-exports[`integration handles image with empty title at the end of segment 2`] = `"A ![](./some/image.png). B."`;
+exports[`integration handles image with empty title at the end of segment 2`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration handles image with empty title at the end of segment 3`] = `"A ![](./some/image.png). B."`;
 
 exports[`integration handles inline code 1 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -352,6 +400,12 @@ exports[`integration handles inline code 1 1`] = `
 `;
 
 exports[`integration handles inline code 1 2`] = `
+"%%%0%%% | %%%1%%%
+----- | -----
+\`%%%2%%%\` | %%%3%%%"
+`;
+
+exports[`integration handles inline code 1 3`] = `
 "Параметр | Описание
 ----- | -----
 \`InternalServerError\` | Произошла"
@@ -394,10 +448,43 @@ exports[`integration handles inline code 3 1`] = `
 `;
 
 exports[`integration handles inline code 3 2`] = `
+"%%%0%%%
+| **%%%1%%%** | **%%%2%%%** | **%%%3%%%** |
+| --- | --- | --- |
+|%%%4%%%|\`%%%5%%%\`|%%%6%%%|"
+`;
+
+exports[`integration handles inline code 3 3`] = `
 "Описание значений полей:
 | **Название поля** | **Тип** | **Описание** |
 | --- | --- | --- |
 |column_name|\`string\`<br>\`required\`|Имя колонки для TTL|"
+`;
+
+exports[`integration handles inline includes 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>:   <x ctype=\\"liquid_Include\\" equiv-text=\\"{% include [test](./test.md) %}\\" id=\\"g-test\\"/><x ctype=\\"lb\\" equiv-text=\\"
+\\" id=\\"g-test\\"/>OK</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles inline includes 2`] = `"%%%0%%%"`;
+
+exports[`integration handles inline includes 3`] = `
+":   {% include [test](./test.md) %}
+OK"
 `;
 
 exports[`integration handles link with empty title at the end of segment 1`] = `
@@ -421,7 +508,9 @@ exports[`integration handles link with empty title at the end of segment 1`] = `
 </xliff>"
 `;
 
-exports[`integration handles link with empty title at the end of segment 2`] = `"A [](./some/link). B."`;
+exports[`integration handles link with empty title at the end of segment 2`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration handles link with empty title at the end of segment 3`] = `"A [](./some/link). B."`;
 
 exports[`integration handles links in brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -441,7 +530,9 @@ exports[`integration handles links in brackets 1`] = `
 </xliff>"
 `;
 
-exports[`integration handles links in brackets 2`] = `"(see [below for nested schema](#nestedblock--timeouts))"`;
+exports[`integration handles links in brackets 2`] = `"%%%0%%%"`;
+
+exports[`integration handles links in brackets 3`] = `"(see [below for nested schema](#nestedblock--timeouts))"`;
 
 exports[`integration handles links with brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -461,7 +552,9 @@ exports[`integration handles links with brackets 1`] = `
 </xliff>"
 `;
 
-exports[`integration handles links with brackets 2`] = `"[^\\\\[Упр\\\\]^](#example)"`;
+exports[`integration handles links with brackets 2`] = `"[^%%%0%%%^](#example)"`;
+
+exports[`integration handles links with brackets 3`] = `"[^\\\\[Упр\\\\]^](#example)"`;
 
 exports[`integration handles multiline inline code 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
@@ -484,11 +577,67 @@ exports[`integration handles multiline inline code 1`] = `
 </xliff>"
 `;
 
-exports[`integration handles multiline inline code 2`] = `
+exports[`integration handles multiline inline code 2`] = `"\`%%%0%%%\`"`;
+
+exports[`integration handles multiline inline code 3`] = `
 "\`ALL_CONCAT( expression [ , separator ]
     [ FIXED ... | INCLUDE ... | EXCLUDE ... ]
     [ BEFORE FILTER BY ... ]
 )\`"
+`;
+
+exports[`integration handles self closing html tags 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Header</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>A a.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>B b.</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>End of text</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source>C!</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles self closing html tags 2`] = `
+"# %%%0%%%
+ %%%1%%%
+%%%2%%%
+
+<keyword keyref=\\"responce\\"/>
+
+## %%%3%%%
+
+%%%4%%%"
+`;
+
+exports[`integration handles self closing html tags 3`] = `
+"# Header
+ A a.
+B b.
+
+<keyword keyref=\\"responce\\"/>
+
+## End of text
+
+C!"
 `;
 
 exports[`integration handles single variable as content 1`] = `
@@ -505,6 +654,16 @@ exports[`integration handles single variable as content 1`] = `
     </body>
   </file>
 </xliff>"
+`;
+
+exports[`integration handles single variable as content 2`] = `
+"#|
+||
+
+{{ reference-alerts.struct-table-protocol-alerts.request-id-col-1 }}
+
+||
+|#"
 `;
 
 exports[`integration handles titleless notes 1`] = `
@@ -587,6 +746,26 @@ exports[`integration link variable leak 1`] = `
 `;
 
 exports[`integration link variable leak 2`] = `
+"## %%%0%%%
+
+#||| **%%%1%%%** | **%%%2%%%** ||
+
+||
+\`\`\`
+%%%3%%%\`\`\`
+| 
+\`\`\`
+%%%4%%%\`\`\`
+|||#
+
+### %%%5%%%
+
+#||| **%%%6%%%** | **%%%7%%%** | **%%%8%%%** ||
+
+|| %%%9%%% | %%%10%%% | %%%11%%% |||#"
+`;
+
+exports[`integration link variable leak 3`] = `
 "## Request
 
 #||| **method** | **url** ||
@@ -629,4 +808,6 @@ exports[`integration recursive merge tokens 1`] = `
 </xliff>"
 `;
 
-exports[`integration recursive merge tokens 2`] = `"Sentense [link](file.md \\"title\\")."`;
+exports[`integration recursive merge tokens 2`] = `"%%%1%%%"`;
+
+exports[`integration recursive merge tokens 3`] = `"Sentense [link](file.md \\"title\\")."`;
