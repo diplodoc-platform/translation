@@ -5,12 +5,11 @@ import {trim} from 'src/utils';
 
 const test = (() => {
   function test(name: string, call?: 'skip' | 'only') {
-    return function (parts: TemplateStringsArray) {
-      const markdown = trim(parts.join(''));
-
+    return function (parts: TemplateStringsArray, ...vars: string[]) {
       describe('integration', () => {
         const caller = call ? it[call] : it;
         caller(name, () => {
+          const markdown = trim(parts, vars);
           const {xliff, skeleton, units} = extract(markdown, {
             compact: true,
             source: {
