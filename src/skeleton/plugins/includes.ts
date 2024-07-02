@@ -26,6 +26,7 @@ export default function (md: MdIt) {
           token('liquid', {
             content: '',
             skip: contentToken.content,
+            markup: contentToken.content,
             subtype: 'Include',
           }),
         ];
@@ -49,6 +50,7 @@ export default function (md: MdIt) {
 
         const token = state.push('liquid', '', 0) as Token;
         token.skip = match[0];
+        token.markup = match[0];
         token.subtype = 'Include';
 
         return true;
