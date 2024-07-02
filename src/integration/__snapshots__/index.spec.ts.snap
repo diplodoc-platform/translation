@@ -705,7 +705,8 @@ exports[`integration handles self closing html tags 1`] = `
 
 exports[`integration handles self closing html tags 2`] = `
 "# %%%0%%%
- %%%1%%%
+
+%%%1%%%
 %%%2%%%
 
 <keyword keyref=\\"responce\\"/>
@@ -717,7 +718,8 @@ exports[`integration handles self closing html tags 2`] = `
 
 exports[`integration handles self closing html tags 3`] = `
 "# Header
- A a.
+
+A a.
 B b.
 
 <keyword keyref=\\"responce\\"/>
@@ -772,6 +774,14 @@ exports[`integration handles titleless notes 1`] = `
 `;
 
 exports[`integration handles titleless notes 2`] = `
+"{% note info %}
+
+%%%0%%%
+
+{% endnote %}"
+`;
+
+exports[`integration handles titleless notes 3`] = `
 "{% note info %}
 
 Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.
