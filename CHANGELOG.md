@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/diplodoc-platform/translation/compare/v1.3.3...v1.3.4) (2024-07-02)
+
+
+### Bug Fixes
+
+* Improve error messaging ([bc919a0](https://github.com/diplodoc-platform/translation/commit/bc919a0fae67245fcb0d0e3c90ffd9c53e9f3dbf))
+
 ## [1.3.3](https://github.com/diplodoc-platform/translation/compare/v1.3.2...v1.3.3) (2024-06-24)
 
 
