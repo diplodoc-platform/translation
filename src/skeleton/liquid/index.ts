@@ -58,7 +58,6 @@ let variableId = 0;
 const vars: Record<string, string> = {};
 
 export class Liquid implements TokenizerGenerator {
-
   static escape(content: string) {
     return content.replace(/\{\{\s*[\w.-]+\s*\}\}/g, (match) => {
       const id = `${vr}-${variableId++}-v`;

@@ -82,9 +82,7 @@ describe('inline: skeleton rendering', () => {
   });
 
   it('inline: renders hash instead of the sentences with variable image syntax.', () => {
-    const rendered = render(
-        'Sentence ![image]({{one}}). Sentence ![image]({{ two }}).',
-    );
+    const rendered = render('Sentence ![image]({{one}}). Sentence ![image]({{ two }}).');
     expect(rendered).toMatchSnapshot();
   });
 
