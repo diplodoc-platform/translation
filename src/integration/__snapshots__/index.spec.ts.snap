@@ -372,6 +372,34 @@ exports[`integration handles image with empty title at the end of segment 2`] = 
 
 exports[`integration handles image with empty title at the end of segment 3`] = `"A ![](./some/image.png). B."`;
 
+exports[`integration handles image with variables in title 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Image</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles image with variables in title 2`] = `"![%%%2%%%](index-mini.md \\"%%%0%%% %%%1%%%\\")"`;
+
+exports[`integration handles image with variables in title 3`] = `"![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")"`;
+
 exports[`integration handles inline code 1 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -511,6 +539,65 @@ exports[`integration handles link with empty title at the end of segment 1`] = `
 exports[`integration handles link with empty title at the end of segment 2`] = `"%%%0%%% %%%1%%%"`;
 
 exports[`integration handles link with empty title at the end of segment 3`] = `"A [](./some/link). B."`;
+
+exports[`integration handles link with image with variables in title 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>![Image](index-mini.md &quot;Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source>And what?&quot; x100)</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles link with image with variables in title 2`] = `"[%%%2%%% %%%3%%%](index-mini.md \\"%%%0%%% %%%1%%%\\")"`;
+
+exports[`integration handles link with image with variables in title 3`] = `"[![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\" x100)](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")"`;
+
+exports[`integration handles link with variables in title 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"1\\">
+        <source>Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source>Link</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles link with variables in title 2`] = `"[%%%2%%%](index-mini.md \\"%%%0%%% %%%1%%%\\")"`;
+
+exports[`integration handles link with variables in title 3`] = `"[Link](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")"`;
 
 exports[`integration handles links in brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
