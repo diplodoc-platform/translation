@@ -1,6 +1,7 @@
 import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
 import {Consumer} from 'src/consumer';
+import {Liquid} from 'src/skeleton/liquid';
 import {token} from 'src/utils';
 
 export const image: Renderer.RenderRuleRecord = {
@@ -32,6 +33,8 @@ export const image: Renderer.RenderRuleRecord = {
     } else {
       skip.unshift('(');
     }
+
+    close.attrSet('src', Liquid.unescape(close.attrGet('src') || ''));
 
     return '';
   },

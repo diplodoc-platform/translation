@@ -62,4 +62,6 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with variable href link syntax. 1`] = `"%%%1%%% %%%2%%%"`;
 
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with variable image syntax. 1`] = `"%%%0%%% %%%1%%%"`;
+
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with video syntax. 1`] = `"%%%0%%% %%%1%%% @[youtube](https://youtu.be/rJz4OaURJ6U)"`;

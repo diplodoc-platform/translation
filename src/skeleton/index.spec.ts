@@ -69,7 +69,7 @@ describe('inline: skeleton rendering', () => {
 
   it('inline: renders hash instead of the sentences with variable href link syntax.', () => {
     const rendered = render(
-      'Предложение номер [один]({{one}} "title"). Предложение номер [два]({{two}}).',
+      'Предложение номер [один]({{one}} "title"). Предложение номер [два]({{ two }}).',
     );
     expect(rendered).toMatchSnapshot();
   });
@@ -77,6 +77,13 @@ describe('inline: skeleton rendering', () => {
   it('inline: renders hash instead of the sentences with image syntax.', () => {
     const rendered = render(
       'Sentence ![image](_images/image.png "текст_подсказки" =100x100). Sentence ![image](_images/image.png "текст_подсказки" =x100). Sentence ![image](_images/image.png "текст_подсказки" =100x). Sentence ![image](_images/image.png =100x100). Sentence ![image](_images/image.png). []().',
+    );
+    expect(rendered).toMatchSnapshot();
+  });
+
+  it('inline: renders hash instead of the sentences with variable image syntax.', () => {
+    const rendered = render(
+        'Sentence ![image]({{one}}). Sentence ![image]({{ two }}).',
     );
     expect(rendered).toMatchSnapshot();
   });

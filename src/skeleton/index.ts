@@ -20,6 +20,7 @@ import includes from './plugins/includes';
 import {customRenderer} from 'src/renderer';
 import {Hash, hash as _hash} from 'src/hash';
 import {Consumer} from 'src/consumer';
+import {Liquid} from 'src/skeleton/liquid';
 
 import {hooks} from './hooks';
 import {rules} from './rules';
@@ -56,7 +57,12 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
 
   md.use(customRenderer, {state, rules, hooks});
 
-  md.render(markdown);
+  // This is a very tricky step.
+  // We register on consumer unescaped version of markdown,
+  // and there we parse tokens on escaped version.
+  // This allow to search original token content in consumer.
+  // But in future this may cause a problems in other matching scenarios.
+  md.render(Liquid.escape(markdown));
 
   return state.content;
 }

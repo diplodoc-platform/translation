@@ -1,6 +1,7 @@
 import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
 import {Consumer} from 'src/consumer';
+import {Liquid} from 'src/skeleton/liquid';
 import {token} from 'src/utils';
 import {mt} from 'src/symbols';
 
@@ -42,7 +43,7 @@ export const link: Renderer.RenderRuleRecord = {
 
     if (isAutolink(open)) {
       const autolink = token('link_auto', {
-        content: '<' + tokens[idx + 1].content + '>',
+        content: '<' + Liquid.unescape(tokens[idx + 1].content) + '>',
       });
 
       tokens.splice(idx, 3, autolink);
@@ -66,6 +67,8 @@ export const link: Renderer.RenderRuleRecord = {
       open.reflink = true;
       text.reflink = true;
     }
+
+    open.attrSet('href', Liquid.unescape(open.attrGet('href') || ''));
 
     return '';
   },
