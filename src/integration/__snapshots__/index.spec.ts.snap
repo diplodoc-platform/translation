@@ -305,6 +305,34 @@ exports[`integration handles code regexps with escape chars 3`] = `
 zone |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`"
 `;
 
+exports[`integration handles empty image in list 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source>A<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"g-test\\"/>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles empty image in list 2`] = `
+"1. **%%%0%%%
+ ![](../_assets/stat-segment.png)"
+`;
+
+exports[`integration handles empty image in list 3`] = `
+"1. **A**.
+ ![](../_assets/stat-segment.png)"
+`;
+
 exports[`integration handles empty images 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -324,6 +352,34 @@ exports[`integration handles empty images 1`] = `
 exports[`integration handles empty images 2`] = `
 "- ![](./image1)
 - ![](./image2)"
+`;
+
+exports[`integration handles empty link in list 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source>A<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"g-test\\"/>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles empty link in list 2`] = `
+"1. **%%%0%%%
+ [](../empty/link)"
+`;
+
+exports[`integration handles empty link in list 3`] = `
+"1. **A**.
+ [](../empty/link)"
 `;
 
 exports[`integration handles empty links 1`] = `

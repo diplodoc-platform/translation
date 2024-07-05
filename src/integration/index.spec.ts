@@ -235,3 +235,13 @@ test('handles image with variables in title')`
 test('handles link with image with variables in title')`
   [![Image](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?" x100)](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
 `;
+
+test('handles empty link in list')`
+  1. **A**.
+   [](../empty/link)
+`;
+
+test('handles empty image in list')`
+  1. **A**.
+   ![](../_assets/stat-segment.png)
+`;

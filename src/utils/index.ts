@@ -7,6 +7,17 @@ export function token(type: string, props: Record<string, any> = {}) {
   return Object.assign(new state.Token(type, '', 0), props);
 }
 
+export function find(type: string, tokens: Token[], idx: number) {
+  while (tokens.length > idx) {
+    if (tokens[idx].type === type) {
+      return tokens[idx];
+    }
+    idx++;
+  }
+
+  return null;
+}
+
 export function replace(source: string, units: string[]): [string, boolean] {
   let matched = false;
 
