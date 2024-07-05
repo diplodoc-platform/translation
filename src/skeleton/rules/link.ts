@@ -2,7 +2,7 @@ import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
 import {Consumer} from 'src/consumer';
 import {Liquid} from 'src/skeleton/liquid';
-import {token} from 'src/utils';
+import {token, find} from 'src/utils';
 import {mt} from 'src/symbols';
 
 function isAutolink(token: Token) {
@@ -23,17 +23,6 @@ function isRefLink(open: Token, text: Token, close: Token) {
   }
 
   return text?.content === '{#T}';
-}
-
-function find(type: string, tokens: Token[], idx: number) {
-  while (tokens.length > idx) {
-    if (tokens[idx].type === type) {
-      return tokens[idx];
-    }
-    idx++;
-  }
-
-  return null;
 }
 
 export const link: Renderer.RenderRuleRecord = {

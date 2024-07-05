@@ -1,6 +1,7 @@
 import {sentenize} from '@diplodoc/sentenizer';
 import {eruler, firstContentful, gobble, lastContentful} from './utils';
 import {token} from 'src/utils';
+import {mtre} from 'src/symbols';
 
 const hasContent = (token: Token) => token.content || (token.markup && !token.skip);
 
@@ -97,14 +98,16 @@ export function split(tokens: Token[]) {
       release();
     }
 
-    content = rest || '';
-    add(
-      token(_token.type, {
-        ..._token,
-        content: content.trim() ? content : _token.content,
-        generated: 'rest',
-      }),
-    );
+    content = (rest || '').replace(mtre, '');
+    if (content) {
+      add(
+          token(_token.type, {
+            ..._token,
+            content: content.trim() ? content : _token.content,
+            generated: 'rest',
+          }),
+      );
+    }
   }
 
   release();

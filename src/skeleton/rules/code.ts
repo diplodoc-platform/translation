@@ -49,7 +49,7 @@ function parseInfo(info: string | null): [string, Record<string, string | boolea
     } else if (parts[i + 1] === '=') {
       value = parts[i + 2];
       i += 2;
-    } else if (parts[i + 1].startsWith('=')) {
+    } else if (parts[i + 1] && parts[i + 1].startsWith('=')) {
       value = parts[i + 1].slice(1).trim();
       i += 1;
     } else {
