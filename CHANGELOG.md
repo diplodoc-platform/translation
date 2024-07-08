@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.4](https://github.com/diplodoc-platform/translation/compare/v1.3.3...v1.3.4) (2024-07-08)
+
+
+### Bug Fixes
+
+* Fix autoclosing html tags ([6752993](https://github.com/diplodoc-platform/translation/commit/67529930603985e465767040bc7e3196f253f2d3))
+* Fix inline includes handling ([90781fc](https://github.com/diplodoc-platform/translation/commit/90781fc59be6311ec4570242200c45c5e94f3b30))
+* Fix sparsed variables handling in links ([978c77d](https://github.com/diplodoc-platform/translation/commit/978c77dd8b511517a39621a657016c55a4bb4dbc))
+* Handle empty images in lists ([fbba2b1](https://github.com/diplodoc-platform/translation/commit/fbba2b166b881a5a3f096467edcf52d218b03d8d))
+* Handle terms ([3fca249](https://github.com/diplodoc-platform/translation/commit/3fca249f2dcae1f6abb82d00c396f444261ea01a))
+* Handle variables in link and image titles ([04ff589](https://github.com/diplodoc-platform/translation/commit/04ff5894551f36c1830f2883475ab76669489556))
+* Improve error messaging ([bc919a0](https://github.com/diplodoc-platform/translation/commit/bc919a0fae67245fcb0d0e3c90ffd9c53e9f3dbf))
+* Remove useless composite units from json translation ([806b3a1](https://github.com/diplodoc-platform/translation/commit/806b3a1c51608568311b878c87548e2fc440a7d7))
+
 ## [1.3.3](https://github.com/diplodoc-platform/translation/compare/v1.3.2...v1.3.3) (2024-06-24)
 
 
