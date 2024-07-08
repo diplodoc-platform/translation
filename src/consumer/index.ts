@@ -178,6 +178,7 @@ export class Consumer {
     }
 
     const gap = this.gap;
+    const cursor = this.cursor;
     const [start, end] = this.erule(tokens);
 
     tokens.forEach((token, i) => {
@@ -188,14 +189,14 @@ export class Consumer {
 
     const dgap = gap - this.gap;
 
-    this.cursor = start > -1 ? end - dgap : this.cursor;
+    this.cursor = start > -1 ? end - dgap : cursor - dgap;
   }
 
   private setWindow(map: [number, number] | null | undefined, gap?: number) {
     map = map || [0, this.lines.length - 1];
     gap = gap || this.gap;
 
-    const [start, end] = [this.lines[map[0]] + gap, this.lines[map[1]]];
+    const [start, end] = [this.lines[map[0]] + gap, this.lines[map[1] + 1] || Infinity];
 
     this.limits.push(end);
 
