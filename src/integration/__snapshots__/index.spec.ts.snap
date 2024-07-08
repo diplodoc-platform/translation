@@ -811,6 +811,44 @@ exports[`integration handles single variable as content 2`] = `
 |#"
 `;
 
+exports[`integration handles terms 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source>Some <x ctype=\\"link_text_part_open\\" equiv-text=\\"[\\" id=\\"g-test\\"/>term</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source>Some multiline term.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Here.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles terms 2`] = `
+"%%%0%%%](*term)
+
+[*term]: %%%1%%%
+%%%2%%%"
+`;
+
+exports[`integration handles terms 3`] = `
+"Some [term](*term)
+
+[*term]: Some multiline term.
+Here."
+`;
+
 exports[`integration handles titleless notes 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
@@ -843,6 +881,46 @@ exports[`integration handles titleless notes 3`] = `
 Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.
 
 {% endnote %}"
+`;
+
+exports[`integration handles wrond ordered terms 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source>Some <x ctype=\\"link_text_part_open\\" equiv-text=\\"[\\" id=\\"g-test\\"/>term</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source>Some multiline term.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source>Here.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles wrond ordered terms 2`] = `
+"%%%0%%%](*term)
+
+[*term]: 
+    %%%1%%%
+    %%%2%%%"
+`;
+
+exports[`integration handles wrond ordered terms 3`] = `
+"Some [term](*term)
+
+[*term]: 
+    Some multiline term.
+    Here."
 `;
 
 exports[`integration link variable leak 1`] = `

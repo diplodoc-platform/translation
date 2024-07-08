@@ -245,3 +245,18 @@ test('handles empty image in list')`
   1. **A**.
    ![](../_assets/stat-segment.png)
 `;
+
+test('handles terms')`
+  Some [term](*term)
+
+  [*term]: Some multiline term.
+  Here.
+`;
+
+test('handles wrond ordered terms')`
+  Some [term](*term)
+
+  [*term]: 
+      Some multiline term.
+      Here.
+`;
