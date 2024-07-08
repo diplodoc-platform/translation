@@ -16,6 +16,7 @@ import file from '@diplodoc/transform/lib/plugins/file';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 import includes from './plugins/includes';
+import term from './plugins/term';
 
 import {customRenderer} from 'src/renderer';
 import {Hash, hash as _hash} from 'src/hash';
@@ -54,6 +55,7 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
   md.use(file, diplodocOptions);
   md.use(video, diplodocOptions);
   md.use(table, diplodocOptions);
+  md.use(term, diplodocOptions);
 
   md.use(customRenderer, {state, rules, hooks});
 
