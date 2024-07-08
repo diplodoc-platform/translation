@@ -101,11 +101,11 @@ export function split(tokens: Token[]) {
     content = (rest || '').replace(mtre, '');
     if (content) {
       add(
-          token(_token.type, {
-            ..._token,
-            content: content.trim() ? content : _token.content,
-            generated: 'rest',
-          }),
+        token(_token.type, {
+          ..._token,
+          content: content.trim() ? content : _token.content,
+          generated: 'rest',
+        }),
       );
     }
   }

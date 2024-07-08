@@ -19,10 +19,10 @@ export function image(parameters: CustomRendererHookParameters) {
         const openToken = new Token('image_open', 'img', 0);
         const closeToken = new Token('image_close', 'img', 0);
         const fakeContent: Token[] = !inlines[j]?.children?.length
-            // Fake content is important for segmentation.
+          ? // Fake content is important for segmentation.
             // It forces to properly split same strings
             // "A ![](./empty/image). B."
-          ? [token('text', {content: mt})]
+            [token('text', {content: mt})]
           : [];
         const content = inlines[j].children as Token[];
         closeToken.attrs = inlines[j].attrs;

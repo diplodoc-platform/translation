@@ -2,7 +2,7 @@ import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
 import {Consumer} from 'src/consumer';
 import {Liquid} from 'src/skeleton/liquid';
-import {token, find} from 'src/utils';
+import {find, token} from 'src/utils';
 import {mt} from 'src/symbols';
 
 function isAutolink(token: Token) {
