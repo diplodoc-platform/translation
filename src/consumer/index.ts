@@ -3,6 +3,8 @@ import {dropUselessTokens, eruler, gobble} from './utils';
 import {split} from './split';
 import {CriticalProcessingError} from './error';
 
+export {CriticalProcessingError};
+
 const replace = (from: number, to: number, source: string, past: string) => {
   const start = source.slice(0, from);
   const end = source.slice(to);
