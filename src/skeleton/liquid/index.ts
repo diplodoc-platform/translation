@@ -13,6 +13,8 @@ const specification_: Specification = [
   // Conditions
   // If statement
   [/^\{%\s*if[^%}]+?\s*%}/, 'liquid', 'Literal'],
+  // EnsIf statement
+  [/^\{%\s*elsif[^%}]+?\s*%\}/, 'liquid', 'Literal'],
   // Else statement
   [/^\{%\s*else\s*%\}/, 'liquid', 'Literal'],
   // EndIf statement
