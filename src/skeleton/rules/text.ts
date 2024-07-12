@@ -11,13 +11,12 @@ export const text: Renderer.RenderRuleRecord = {
   text: function (tokens: Token[], i: number) {
     const token = tokens[i];
 
-    if (token?.generated !== 'liquid' && token.content) {
-      const tokenizer = new Liquid(token.content);
-      const liquidTokens = tokenizer.tokenize();
+    if (token.reflink) {
+      return '';
+    }
 
-      if (liquidTokens.length > 1 || liquidTokens[0].type !== 'text') {
-        tokens.splice(i, 1, ...liquidTokens);
-      }
+    if (token?.generated !== 'liquid' && token.content) {
+      tokens.splice(i, 1, ...new Liquid(token.content).tokenize());
     }
 
     return '';
