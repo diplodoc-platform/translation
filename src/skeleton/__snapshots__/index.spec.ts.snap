@@ -12,6 +12,12 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with code syntax. 1`] = `"%%%0%%% %%%1%%%"`;
 
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with deflist 1`] = `
+"%%%0%%%
+
+:   %%%1%%%"
+`;
+
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with em syntax. 1`] = `"%%%0%%% %%%1%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with file syntax. 1`] = `"%%%0%%% %%%1%%%"`;

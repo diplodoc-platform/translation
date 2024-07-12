@@ -7,6 +7,8 @@ import MarkdownIt from 'markdown-it';
 import meta from 'markdown-it-meta';
 // @ts-ignore
 import sup from 'markdown-it-sup';
+// @ts-expect-error
+import deflist from 'markdown-it-deflist';
 import notes from '@diplodoc/transform/lib/plugins/notes';
 import cut from '@diplodoc/transform/lib/plugins/cut';
 import checkbox from '@diplodoc/transform/lib/plugins/checkbox';
@@ -49,6 +51,7 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
   md.use(notes, diplodocOptions);
   md.use(cut, diplodocOptions);
   md.use(sup, diplodocOptions);
+  md.use(deflist, diplodocOptions);
   md.use(checkbox, diplodocOptions);
   md.use(monospace, diplodocOptions);
   md.use(imsize, diplodocOptions);

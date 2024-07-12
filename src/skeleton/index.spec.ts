@@ -172,4 +172,9 @@ describe('inline: skeleton rendering', () => {
     );
     expect(rendered).toMatchSnapshot();
   });
+
+  it('inline: renders hash instead of the sentences with deflist', () => {
+    const rendered = render('Term\n\n:   Definition.');
+    expect(rendered).toMatchSnapshot();
+  });
 });
