@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.1](https://github.com/diplodoc-platform/translation/compare/v1.4.0...v1.4.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* Handle deflist ([1d1af38](https://github.com/diplodoc-platform/translation/commit/1d1af38b316493528eaa409d6cb3e4cdb0017ebb))
+* Handle liquid elsif ([25420b7](https://github.com/diplodoc-platform/translation/commit/25420b7d34f5f6a3815886c1c89c68f2d6ba24c1))
+* Handle liquid inside html ([a7db697](https://github.com/diplodoc-platform/translation/commit/a7db69739bd3b41f1a0abedf536023220a2425fa))
+
 ## [1.4.0](https://github.com/diplodoc-platform/translation/compare/v1.3.4...v1.4.0) (2024-07-09)
 
 
