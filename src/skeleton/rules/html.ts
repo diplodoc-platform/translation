@@ -3,6 +3,7 @@ import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
 import type {HTMLElement, Node, TextNode} from 'node-html-parser';
 import {NodeType, parse} from 'node-html-parser';
+import {Liquid} from 'src/skeleton/liquid';
 import {token} from 'src/utils';
 
 function isText(node: Node): node is TextNode {
@@ -138,7 +139,7 @@ export const html: RenderRuleRecord = {
 
     function handleInline(node: Node): Token[] {
       if (isText(node)) {
-        return [token('text', {content: node.innerText})];
+        return new Liquid(node.innerText).tokenize();
       }
 
       if (!node.childNodes.length) {
