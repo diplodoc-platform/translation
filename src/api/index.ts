@@ -5,8 +5,11 @@ import type {
 } from './json';
 import type {JSONObject} from 'src/json';
 import {compose as composeMd, extract as extraactMd} from './md';
+import {compose as composeMdExp, extract as extractMdExp} from './mdExp';
 import {compose as composeJson, extract as extraactJson} from './json';
 import {validate} from './validate';
+
+const USE_EXP = true;
 
 export type ExtractOptions = JsonExtractOptions | MdExtractOptions;
 
@@ -30,7 +33,7 @@ export function extract(content: any, options: any): ExtractOutput<any> {
   return extract[type](content, options);
 }
 
-extract.md = extraactMd;
+extract.md = USE_EXP ? extractMdExp : extraactMd;
 extract.json = extraactJson;
 
 export type ComposeOptions = JsonComposeOptions | MdComposeOptions;
@@ -53,5 +56,5 @@ export function compose(skeleton: any, xliff: string | string[], options: any): 
   return compose[type](skeleton, xliff, options);
 }
 
-compose.md = composeMd;
+compose.md = USE_EXP ? composeMdExp : composeMd;
 compose.json = composeJson;
