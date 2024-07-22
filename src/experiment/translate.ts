@@ -32,7 +32,7 @@ export function translate(xliffData: string, skeletonData: string, options?: Com
     }
 
     let translated = findNodeByName(node, useSource ? 'source' : 'target');
-    if (!translated) {
+    if (!translated && !useSource) {
       translated = findNodeByName(node, 'source');
     }
     if (!translated) {

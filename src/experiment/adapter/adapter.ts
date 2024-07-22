@@ -3,8 +3,6 @@ import {transform} from 'src/experiment/transform';
 import {translate} from 'src/experiment/translate';
 
 export function extract(content: string, options: ExtractOptions): ExtractOutput<string> {
-  Boolean(options);
-
   const {xliff, skeleton} = transform(content);
 
   xliff.setFile('file.ext');
