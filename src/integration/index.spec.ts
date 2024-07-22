@@ -20,6 +20,7 @@ const test = (() => {
               language: 'en',
               locale: 'US',
             },
+            useExperimentalParser: true,
           });
 
           expect(xliff).toMatchSnapshot();
@@ -29,7 +30,10 @@ const test = (() => {
             return;
           }
 
-          const result = compose(skeleton, xliff, {useSource: true});
+          const result = compose(skeleton, xliff, {
+            useSource: true,
+            useExperimentalParser: true,
+          });
 
           expect(result).toEqual(markdown);
           expect(result).toMatchSnapshot();
