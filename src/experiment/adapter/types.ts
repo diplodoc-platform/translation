@@ -32,3 +32,12 @@ export type ExtractOutput = {
 export type ComposeOptions = Experiment & {
   useSource?: boolean;
 };
+
+export interface ComposeOutput {
+  document: string;
+  variables: Record<string, string>;
+  externalFile?: string;
+  originalFile: string;
+  sourceLanguage: string;
+  targetLanguage: string;
+}

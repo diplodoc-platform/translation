@@ -20,7 +20,18 @@ exports[`integration ## Start {#your-ideas}{% else %} end 1`] = `
 
 exports[`integration ## Start {#your-ideas}{% else %} end 2`] = `"## %%%1%%%"`;
 
-exports[`integration ## Start {#your-ideas}{% else %} end 3`] = `"## Start {#your-ideas}{% else %} end"`;
+exports[`integration ## Start {#your-ideas}{% else %} end 3`] = `
+Object {
+  "document": "## Start {#your-ideas}{% else %} end",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Start {#your-ideas}{% else %} end",
+  },
+}
+`;
 
 exports[`integration (a **18. B**). 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -42,7 +53,18 @@ exports[`integration (a **18. B**). 1`] = `
 
 exports[`integration (a **18. B**). 2`] = `"%%%1%%%"`;
 
-exports[`integration (a **18. B**). 3`] = `"(a **18. B**)."`;
+exports[`integration (a **18. B**). 3`] = `
+Object {
+  "document": "(a **18. B**).",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "(a **18. B**).",
+  },
+}
+`;
 
 exports[`integration \`{{ var }}\` — one. Two 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -67,7 +89,19 @@ exports[`integration \`{{ var }}\` — one. Two 1`] = `
 
 exports[`integration \`{{ var }}\` — one. Two 2`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
-exports[`integration \`{{ var }}\` — one. Two 3`] = `"\`{{ var }}\` — one. Two"`;
+exports[`integration \`{{ var }}\` — one. Two 3`] = `
+Object {
+  "document": "\`{{ var }}\` — one. Two",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "\`{{ var }}\` — one.",
+    "2_s-3": "Two",
+  },
+}
+`;
 
 exports[`integration A ![](link) b. C. 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -92,7 +126,19 @@ exports[`integration A ![](link) b. C. 1`] = `
 
 exports[`integration A ![](link) b. C. 2`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
-exports[`integration A ![](link) b. C. 3`] = `"A ![](link) b. C."`;
+exports[`integration A ![](link) b. C. 3`] = `
+Object {
+  "document": "A ![](link) b. C.",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "A ![](link) b.",
+    "2_s-3": "C.",
+  },
+}
+`;
 
 exports[`integration A. B [{#T}](D). C. 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -117,7 +163,19 @@ exports[`integration A. B [{#T}](D). C. 1`] = `
 
 exports[`integration A. B [{#T}](D). C. 2`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
-exports[`integration A. B [{#T}](D). C. 3`] = `"A. B [{#T}](D). C."`;
+exports[`integration A. B [{#T}](D). C. 3`] = `
+Object {
+  "document": "A. B [{#T}](D). C.",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "A. B [{#T}](D).",
+    "2_s-3": "C.",
+  },
+}
+`;
 
 exports[`integration computes valid sentenses 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -149,8 +207,19 @@ exports[`integration computes valid sentenses 2`] = `
 `;
 
 exports[`integration computes valid sentenses 3`] = `
-"Записывает или удаляет элементы из таблиц.
-Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление. Каждый элемент может иметь размер до 400 Кб."
+Object {
+  "document": "Записывает или удаляет элементы из таблиц.
+Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление. Каждый элемент может иметь размер до 400 Кб.",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "Записывает или удаляет элементы из таблиц.",
+    "2_s-3": "Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление.",
+    "3_s-5": "Каждый элемент может иметь размер до 400 Кб.",
+  },
+}
 `;
 
 exports[`integration handles autolinks 1`] = `
@@ -180,8 +249,18 @@ exports[`integration handles autolinks 2`] = `
 `;
 
 exports[`integration handles autolinks 3`] = `
-"* A <http://gitgrimbo.github.io/harviewer/master/>
-* B <https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru>"
+Object {
+  "document": "* A <http://gitgrimbo.github.io/harviewer/master/>
+* B <https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru>",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "A <http://gitgrimbo.github.io/harviewer/master/>",
+    "2": "B <https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru>",
+  },
+}
 `;
 
 exports[`integration handles blockquotes 1`] = `
@@ -240,9 +319,20 @@ exports[`integration handles code regexps with escape chars 2`] = `
 `;
 
 exports[`integration handles code regexps with escape chars 3`] = `
-"Поле | Описание
+Object {
+  "document": "Поле | Описание
 --- | ---
-zone |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`"
+zone |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Поле",
+    "2": "Описание",
+    "3": "zone",
+  },
+}
 `;
 
 exports[`integration handles empty image in list 1`] = `
@@ -269,8 +359,17 @@ exports[`integration handles empty image in list 2`] = `
 `;
 
 exports[`integration handles empty image in list 3`] = `
-"1. **A**.
- ![](../_assets/stat-segment.png)"
+Object {
+  "document": "1. **A**.
+ ![](../_assets/stat-segment.png)",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "**A**.",
+  },
+}
 `;
 
 exports[`integration handles empty images 1`] = `
@@ -317,8 +416,17 @@ exports[`integration handles empty link in list 2`] = `
 `;
 
 exports[`integration handles empty link in list 3`] = `
-"1. **A**.
- [](../empty/link)"
+Object {
+  "document": "1. **A**.
+ [](../empty/link)",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "**A**.",
+  },
+}
 `;
 
 exports[`integration handles empty links 1`] = `
@@ -364,7 +472,19 @@ exports[`integration handles image with empty title at the end of segment 1`] = 
 
 exports[`integration handles image with empty title at the end of segment 2`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
-exports[`integration handles image with empty title at the end of segment 3`] = `"A ![](./some/image.png). B."`;
+exports[`integration handles image with empty title at the end of segment 3`] = `
+Object {
+  "document": "A ![](./some/image.png). B.",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "A ![](./some/image.png).",
+    "2_s-3": "B.",
+  },
+}
+`;
 
 exports[`integration handles image with variables in title 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -386,7 +506,18 @@ exports[`integration handles image with variables in title 1`] = `
 
 exports[`integration handles image with variables in title 2`] = `"%%%1%%%"`;
 
-exports[`integration handles image with variables in title 3`] = `"![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")"`;
+exports[`integration handles image with variables in title 3`] = `
+Object {
+  "document": "![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")",
+  },
+}
+`;
 
 exports[`integration handles inline code 1 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -419,9 +550,20 @@ exports[`integration handles inline code 1 2`] = `
 `;
 
 exports[`integration handles inline code 1 3`] = `
-"Параметр | Описание
+Object {
+  "document": "Параметр | Описание
 ----- | -----
-\`InternalServerError\` | Произошла"
+\`InternalServerError\` | Произошла",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Параметр",
+    "2": "Описание",
+    "3": "Произошла",
+  },
+}
 `;
 
 exports[`integration handles inline code 3 1`] = `
@@ -465,10 +607,24 @@ exports[`integration handles inline code 3 2`] = `
 `;
 
 exports[`integration handles inline code 3 3`] = `
-"Описание значений полей:
+Object {
+  "document": "Описание значений полей:
 | **Название поля** | **Тип** | **Описание** |
 | --- | --- | --- |
-|column_name|\`string\`<br>\`required\`|Имя колонки для TTL|"
+|column_name|\`string\`<br>\`required\`|Имя колонки для TTL|",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Описание значений полей:",
+    "2": "**Название поля**",
+    "3": "**Тип**",
+    "4": "**Описание**",
+    "5": "column_name",
+    "6": "Имя колонки для TTL",
+  },
+}
 `;
 
 exports[`integration handles inline includes 1`] = `
@@ -492,8 +648,18 @@ exports[`integration handles inline includes 1`] = `
 exports[`integration handles inline includes 2`] = `"%%%1%%%"`;
 
 exports[`integration handles inline includes 3`] = `
-":   {% include [test](./test.md) %}
-OK"
+Object {
+  "document": ":   {% include [test](./test.md) %}
+OK",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": ":   {% include [test](./test.md) %}
+OK",
+  },
+}
 `;
 
 exports[`integration handles link with empty title at the end of segment 1`] = `
@@ -519,7 +685,19 @@ exports[`integration handles link with empty title at the end of segment 1`] = `
 
 exports[`integration handles link with empty title at the end of segment 2`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
-exports[`integration handles link with empty title at the end of segment 3`] = `"A [](./some/link). B."`;
+exports[`integration handles link with empty title at the end of segment 3`] = `
+Object {
+  "document": "A [](./some/link). B.",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1_s-1": "A [](./some/link).",
+    "2_s-3": "B.",
+  },
+}
+`;
 
 exports[`integration handles link with image with variables in title 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -541,7 +719,18 @@ exports[`integration handles link with image with variables in title 1`] = `
 
 exports[`integration handles link with image with variables in title 2`] = `"%%%1%%%"`;
 
-exports[`integration handles link with image with variables in title 3`] = `"[![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\" x100)](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")"`;
+exports[`integration handles link with image with variables in title 3`] = `
+Object {
+  "document": "[![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\" x100)](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "[![Image](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\" x100)](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")",
+  },
+}
+`;
 
 exports[`integration handles link with variables in title 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -563,7 +752,18 @@ exports[`integration handles link with variables in title 1`] = `
 
 exports[`integration handles link with variables in title 2`] = `"%%%1%%%"`;
 
-exports[`integration handles link with variables in title 3`] = `"[Link](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")"`;
+exports[`integration handles link with variables in title 3`] = `
+Object {
+  "document": "[Link](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "[Link](index-mini.md \\"Title {{product-name-short.station-mini-old}}. And what?\\")",
+  },
+}
+`;
 
 exports[`integration handles links in brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -585,7 +785,18 @@ exports[`integration handles links in brackets 1`] = `
 
 exports[`integration handles links in brackets 2`] = `"%%%1%%%"`;
 
-exports[`integration handles links in brackets 3`] = `"(see [below for nested schema](#nestedblock--timeouts))"`;
+exports[`integration handles links in brackets 3`] = `
+Object {
+  "document": "(see [below for nested schema](#nestedblock--timeouts))",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "(see [below for nested schema](#nestedblock--timeouts))",
+  },
+}
+`;
 
 exports[`integration handles links with brackets 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -607,7 +818,18 @@ exports[`integration handles links with brackets 1`] = `
 
 exports[`integration handles links with brackets 2`] = `"%%%1%%%"`;
 
-exports[`integration handles links with brackets 3`] = `"[^\\\\[Упр\\\\]^](#example)"`;
+exports[`integration handles links with brackets 3`] = `
+Object {
+  "document": "[^\\\\[Упр\\\\]^](#example)",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "[^\\\\[Упр\\\\]^](#example)",
+  },
+}
+`;
 
 exports[`integration handles multiline inline code 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -675,7 +897,8 @@ exports[`integration handles self closing html tags 2`] = `
 `;
 
 exports[`integration handles self closing html tags 3`] = `
-"# Header
+Object {
+  "document": "# Header
 
 A a.
 B b.
@@ -684,7 +907,19 @@ B b.
 
 ## End of text
 
-C!"
+C!",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Header",
+    "2_s-1": "A a.",
+    "3_s-3": "B b.",
+    "4": "End of text",
+    "5": "C!",
+  },
+}
 `;
 
 exports[`integration handles single variable as content 1`] = `
@@ -744,10 +979,21 @@ exports[`integration handles terms 2`] = `
 `;
 
 exports[`integration handles terms 3`] = `
-"Some [term](*term)
+Object {
+  "document": "Some [term](*term)
 
 [*term]: Some multiline term.
-Here."
+Here.",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Some [term](*term)",
+    "2_s-1": "Some multiline term.",
+    "3_s-3": "Here.",
+  },
+}
 `;
 
 exports[`integration handles titleless notes 1`] = `
@@ -777,11 +1023,20 @@ exports[`integration handles titleless notes 2`] = `
 `;
 
 exports[`integration handles titleless notes 3`] = `
-"{% note info %}
+Object {
+  "document": "{% note info %}
 
 Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.
 
-{% endnote %}"
+{% endnote %}",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.",
+  },
+}
 `;
 
 exports[`integration handles wrond ordered terms 1`] = `
@@ -817,11 +1072,22 @@ exports[`integration handles wrond ordered terms 2`] = `
 `;
 
 exports[`integration handles wrond ordered terms 3`] = `
-"Some [term](*term)
+Object {
+  "document": "Some [term](*term)
 
 [*term]: 
     Some multiline term.
-    Here."
+    Here.",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Some [term](*term)",
+    "2_s-1": "Some multiline term.",
+    "3_s-3": "Here.",
+  },
+}
 `;
 
 exports[`integration link variable leak 1`] = `
@@ -892,7 +1158,8 @@ https://api.example.ru/businesses/{businessId}/offer-mappings/update
 `;
 
 exports[`integration link variable leak 3`] = `
-"## Request
+Object {
+  "document": "## Request
 
 #||| **method** | **url** ||
 
@@ -910,7 +1177,24 @@ https://api.example.ru/businesses/{businessId}/offer-mappings/update
 
 #||| **Name** | **Type** | **Description** ||
 
-|| businessId | integer&lt;int64&gt; | Description |||#"
+|| businessId | integer&lt;int64&gt; | Description |||#",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Request",
+    "10": "Description",
+    "2": "**method**",
+    "3": "**url**",
+    "4": "Path parameters",
+    "5": "**Name**",
+    "6": "**Type**",
+    "7": "**Description**",
+    "8": "businessId",
+    "9": "integer&lt;int64&gt;",
+  },
+}
 `;
 
 exports[`integration recursive merge tokens 1`] = `
@@ -933,4 +1217,15 @@ exports[`integration recursive merge tokens 1`] = `
 
 exports[`integration recursive merge tokens 2`] = `"%%%1%%%"`;
 
-exports[`integration recursive merge tokens 3`] = `"Sentense [link](file.md \\"title\\")."`;
+exports[`integration recursive merge tokens 3`] = `
+Object {
+  "document": "Sentense [link](file.md \\"title\\").",
+  "externalFile": "file.skl",
+  "originalFile": "file.ext",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "variables": Object {
+    "1": "Sentense [link](file.md \\"title\\").",
+  },
+}
+`;

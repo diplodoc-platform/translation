@@ -1,4 +1,4 @@
-import {ComposeOptions, ExtractOptions, ExtractOutput} from 'src/experiment/adapter/types';
+import {ComposeOptions, ComposeOutput, ExtractOptions, ExtractOutput} from 'src/experiment/adapter/types';
 import {transform} from 'src/experiment/transform';
 import {translate} from 'src/experiment/translate';
 
@@ -20,14 +20,9 @@ export function extract(content: string, options: ExtractOptions): ExtractOutput
 
 export function compose(
   skeleton: string,
-  xliff: string | string[],
+  xliff: string,
   options: ComposeOptions,
-): string {
-  if (typeof xliff !== 'string') {
-    throw new Error('Unavailable input');
-  }
+): ComposeOutput {
 
-  const {document} = translate(xliff, skeleton, options);
-
-  return document;
+  return translate(xliff, skeleton, options);
 }

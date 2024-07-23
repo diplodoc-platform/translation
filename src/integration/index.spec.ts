@@ -38,7 +38,7 @@ const test = (() => {
             useExperimentalParser: true,
           });
 
-          expect(result).toEqual(markdown);
+          expect(result.document).toEqual(markdown);
           expect(result).toMatchSnapshot();
         });
       });
