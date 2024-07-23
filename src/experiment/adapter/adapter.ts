@@ -2,7 +2,7 @@ import {ComposeOptions, ExtractOptions, ExtractOutput} from 'src/experiment/adap
 import {transform} from 'src/experiment/transform';
 import {translate} from 'src/experiment/translate';
 
-export function extract(content: string, options: ExtractOptions): ExtractOutput<string> {
+export function extract(content: string, options: ExtractOptions): ExtractOutput {
   const {xliff, skeleton} = transform(content);
 
   xliff.setFile('file.ext');
@@ -12,8 +12,7 @@ export function extract(content: string, options: ExtractOptions): ExtractOutput
 
   return {
     skeleton,
-    xliff: xliff.toString(),
-    units: xliff.transUnits.map((unit) => unit.toString()),
+    xliff,
   };
 }
 
