@@ -7,6 +7,7 @@ import type {JSONObject} from 'src/json';
 import {compose as composeMd, extract as extraactMd} from './md';
 import {
   ComposeOptions as MdExpComposeOptions,
+  ComposeOutput as MdExpComposeOutput,
   ExtractOptions as MdExpExtractOptions,
   ExtractOutput as MdExpExtractOutput,
   compose as composeMdExp,
@@ -45,7 +46,7 @@ extract.json = extraactJson;
 
 export type ComposeOptions = JsonComposeOptions | MdComposeOptions;
 
-export function compose(skeleton: string, xliff: string, options: MdExpComposeOptions): string;
+export function compose(skeleton: string, xliff: string, options: MdExpComposeOptions): MdExpComposeOutput;
 export function compose(
   skeleton: string,
   xliff: string | string[],
@@ -56,7 +57,7 @@ export function compose(
   xliff: string | string[],
   options: JsonComposeOptions,
 ): JSONObject;
-export function compose(skeleton: any, xliff: string | string[], options: any): any {
+export function compose(skeleton: any, xliff: any, options: any): any {
   validate('ComposeOptions', options);
 
   const type =
