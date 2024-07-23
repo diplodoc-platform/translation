@@ -46,7 +46,11 @@ extract.json = extraactJson;
 
 export type ComposeOptions = JsonComposeOptions | MdComposeOptions;
 
-export function compose(skeleton: string, xliff: string, options: MdExpComposeOptions): MdExpComposeOutput;
+export function compose(
+  skeleton: string,
+  xliff: string,
+  options: MdExpComposeOptions,
+): MdExpComposeOutput;
 export function compose(
   skeleton: string,
   xliff: string | string[],
