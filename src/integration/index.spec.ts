@@ -11,6 +11,8 @@ const test = (() => {
         caller(name, () => {
           const markdown = trim(parts, vars);
           const {xliff, skeleton} = extract(markdown, {
+            originalFile: 'file.ext',
+            skeletonFile: 'file.skl',
             source: {
               language: 'ru',
               locale: 'RU',

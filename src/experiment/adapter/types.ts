@@ -14,6 +14,8 @@ export type LanguageLocale = {
 export type TemplateOptions = {
   source: LanguageLocale;
   target: LanguageLocale;
+  originalFile: string;
+  skeletonFile?: string;
 };
 
 interface Experiment {

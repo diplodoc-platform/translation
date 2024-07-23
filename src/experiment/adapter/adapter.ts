@@ -5,10 +5,12 @@ import {translate} from 'src/experiment/translate';
 export function extract(content: string, options: ExtractOptions): ExtractOutput {
   const {xliff, skeleton} = transform(content);
 
-  xliff.setFile('file.ext');
-  xliff.setSkeletonFile('file.skl');
+  xliff.setFile(options.originalFile);
   xliff.setSourceLanguage(`${options.source.language}-${options.source.locale}`);
   xliff.setTargetLanguage(`${options.target.language}-${options.target.locale}`);
+  if (options.skeletonFile) {
+    xliff.setSkeletonFile(options.skeletonFile);
+  }
 
   return {
     skeleton,
