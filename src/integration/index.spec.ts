@@ -33,13 +33,13 @@ const test = (() => {
             return;
           }
 
-          const result = compose(skeleton, xliffString, {
+          const {document} = compose(skeleton, xliffString, {
             useSource: true,
             useExperimentalParser: true,
           });
 
-          expect(result.document).toEqual(markdown);
-          expect(result).toMatchSnapshot();
+          expect(document).toEqual(markdown);
+          expect(document).toMatchSnapshot();
         });
       });
     };
