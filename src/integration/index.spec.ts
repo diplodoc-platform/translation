@@ -10,8 +10,7 @@ const test = (() => {
         const caller = call ? it[call] : it;
         caller(name, () => {
           const markdown = trim(parts, vars);
-          const {xliff, skeleton, units} = extract(markdown, {
-            compact: true,
+          const {xliff, skeleton} = extract(markdown, {
             source: {
               language: 'ru',
               locale: 'RU',
@@ -23,14 +22,16 @@ const test = (() => {
             useExperimentalParser: true,
           });
 
-          expect(xliff).toMatchSnapshot();
+          const xliffString = xliff.toString();
+
+          expect(xliffString).toMatchSnapshot();
           expect(skeleton).toMatchSnapshot();
 
-          if (!units.length) {
+          if (!xliff.transUnits.length) {
             return;
           }
 
-          const result = compose(skeleton, xliff, {
+          const result = compose(skeleton, xliffString, {
             useSource: true,
             useExperimentalParser: true,
           });
