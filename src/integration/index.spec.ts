@@ -8,8 +8,33 @@ const test = (() => {
     return function (parts: TemplateStringsArray, ...vars: string[]) {
       describe('integration', () => {
         const caller = call ? it[call] : it;
-        caller(name, () => {
-          const markdown = trim(parts, vars);
+        const markdown = trim(parts, vars);
+
+        function main() {
+          const {xliff, skeleton, units} = extract(markdown, {
+            compact: false,
+            source: {
+              language: 'ru',
+              locale: 'RU',
+            },
+            target: {
+              language: 'en',
+              locale: 'US',
+            },
+          });
+
+          if (!units.length) {
+            return [xliff, skeleton];
+          }
+
+          const result = compose(skeleton, xliff, {useSource: true});
+
+          expect(result).toEqual(markdown);
+
+          return [xliff, skeleton, result];
+        }
+
+        function expr() {
           const {xliff, skeleton} = extract(markdown, {
             originalFile: 'file.ext',
             skeletonFile: 'file.skl',
@@ -26,11 +51,8 @@ const test = (() => {
 
           const xliffString = xliff.toString();
 
-          expect(xliffString).toMatchSnapshot();
-          expect(skeleton).toMatchSnapshot();
-
           if (!xliff.transUnits.length) {
-            return;
+            return [xliff, skeleton];
           }
 
           const {document} = compose(skeleton, xliffString, {
@@ -39,7 +61,20 @@ const test = (() => {
           });
 
           expect(document).toEqual(markdown);
-          expect(document).toMatchSnapshot();
+
+          return [xliff.toString(), skeleton, document];
+        }
+
+        caller(name, () => {
+          const [xliff1, skeleton1, result1] = main();
+          const [xliff2, skeleton2, result2] = expr();
+
+          expect(xliff1).toMatchSnapshot('xliff main');
+          expect(xliff2).toMatchSnapshot('xliff expr');
+          expect(skeleton1).toMatchSnapshot('skeleton main');
+          expect(skeleton2).toMatchSnapshot('skeleton expr');
+          expect(result1).toMatchSnapshot('result main');
+          expect(result2).toMatchSnapshot('result expr');
         });
       });
     };
