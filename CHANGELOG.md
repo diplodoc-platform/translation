@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/diplodoc-platform/translation/compare/v1.4.1...v1.4.2) (2024-08-14)
+
+
+### Bug Fixes
+
+* Fix html translation bugs ([b59a105](https://github.com/diplodoc-platform/translation/commit/b59a1057fab70dd96830fb0e2b19bd7c74c17e95))
+
 ## [1.4.1](https://github.com/diplodoc-platform/translation/compare/v1.4.0...v1.4.1) (2024-07-12)
 
 
