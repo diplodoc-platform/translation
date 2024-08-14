@@ -44,8 +44,7 @@
   "scripts": {
     "test": "jest --verbose --coverage --silence=false",
     "test:watch": "jest --watch --verbose --silent=false",
-    "build:dev": "node scripts/development.js",
-    "build": "npm run build:clean && tsc -p tsconfig.types.json && node scripts/bundle.js",
+    "build": "npm run build:clean && tsc -p tsconfig.types.json && node esbuild/build.js",
     "build:clean": "rm -rf lib",
     "prepublishOnly": "npm run build",
     "lint": "lint update && lint",
