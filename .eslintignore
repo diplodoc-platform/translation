@@ -1,5 +1,4 @@
 node_modules
 /lib
-/src/playground.ts
 
 *.snap

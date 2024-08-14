@@ -8,10 +8,8 @@
     "outDir": "lib/",
     "module": "CommonJS",
     "paths": {
-      "src/*": ["src/*"],
-      "__tests__/*": ["__tests__/*"]
+      "src/*": ["src/*"]
     }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "src/playground.ts"]
+  "include": ["src"]
 }
