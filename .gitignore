@@ -294,3 +294,14 @@ dist
 
 # build
 lib/*
+
+.idea
+.vscode
+.history
+.DS_Store
+node_modules
+/lib
+/dist
+/build
+/cache
+/coverage
