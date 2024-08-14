@@ -6,6 +6,6 @@ export const htmlInline: Renderer.RenderRuleRecord = {
   html_inline: function (tokens: Token[], i: number) {
     const {skip, type} = tokens[i];
 
-    return generateX({ctype: type, equivText: (skip as string) || ''});
+    return generateX({ctype: type, equivText: (skip || '').toString()});
   },
 };

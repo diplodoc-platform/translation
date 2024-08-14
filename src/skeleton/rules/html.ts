@@ -1,9 +1,9 @@
 import type {RenderRuleRecord} from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
-import type {Consumer} from 'src/consumer';
 import type {HTMLElement, Node, TextNode} from 'node-html-parser';
 import {NodeType, parse} from 'node-html-parser';
 import {Liquid} from 'src/skeleton/liquid';
+import {Consumer} from 'src/consumer';
 import {token} from 'src/utils';
 
 function isText(node: Node): node is TextNode {
@@ -80,7 +80,11 @@ function open(node: Node): Token[] {
     return [];
   }
 
-  return [token('html_inline', {skip: ['<', node.rawTagName, node.rawAttrs, '>']})];
+  const skip = ['<', node.rawTagName, node.rawAttrs, '>'];
+
+  skip.toString = () => '<' + skip[1] + (skip[2].length ? ' ' + skip[2] : '') + '>';
+
+  return [token('html_inline', {skip, tag: node.rawTagName, role: 'open'})];
 }
 
 function close(node: Node): Token[] {
@@ -88,20 +92,28 @@ function close(node: Node): Token[] {
     return [];
   }
 
-  return [token('html_inline', {skip: ['</', node.rawTagName, '>']})];
+  const skip = ['</', node.rawTagName, '>'];
+
+  skip.toString = () => '</' + skip[1] + '>';
+
+  return [token('html_inline', {skip, tag: node.rawTagName, role: 'close'})];
 }
 
 export const html: RenderRuleRecord = {
-  html_inline: function (tokens: Token[], idx) {
+  html_inline: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
     const root = tokens[idx];
-    root.skip = root.content;
+    root.skip = Liquid.unescape(root.content);
     root.content = '';
 
     return '';
   },
   html_block: function (this: CustomRenderer<Consumer>, tokens, idx) {
+    tokens[idx].content = Liquid.unescape(tokens[idx].content);
     const root = parse(tokens[idx].content);
     const process = (parts: Token[]) => this.state.process(parts, tokens[idx].map);
+    const compact = this.state.compact;
+
+    this.state.compact = true;
 
     function handleContainer(node: Node) {
       if (isIgnore(node)) {
@@ -113,11 +125,10 @@ export const html: RenderRuleRecord = {
         return;
       }
 
-      const box = node as HTMLElement;
-      process(open(box));
+      process(open(node as HTMLElement));
 
       let inline = [];
-      for (const child of box.childNodes) {
+      for (const child of node.childNodes) {
         if (isInline(child)) {
           inline.push(...handleInline(child));
         }
@@ -154,6 +165,8 @@ export const html: RenderRuleRecord = {
     }
 
     root.childNodes.forEach(handleContainer);
+
+    this.state.compact = compact;
 
     return '';
   },

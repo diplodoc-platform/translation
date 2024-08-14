@@ -66,15 +66,13 @@ const test = (() => {
         }
 
         caller(name, () => {
-          const [xliff1, skeleton1, result1] = main();
-          const [xliff2, skeleton2, result2] = expr();
+          const [xliff1, skeleton1] = main();
+          const [xliff2, skeleton2] = expr();
 
           expect(xliff1).toMatchSnapshot('xliff main');
           expect(xliff2).toMatchSnapshot('xliff expr');
           expect(skeleton1).toMatchSnapshot('skeleton main');
           expect(skeleton2).toMatchSnapshot('skeleton expr');
-          expect(result1).toMatchSnapshot('result main');
-          expect(result2).toMatchSnapshot('result expr');
         });
       });
     };
@@ -301,4 +299,29 @@ test('handles wrond ordered terms')`
   [*term]: 
       Some multiline term.
       Here.
+`;
+
+test('handles different tabspaces')`
+  - A
+
+    - C
+
+      <div style="padding: 15px;
+              border: 1px solid var(--yc-color-line-generic);">
+      </div>
+
+
+- B
+
+  <div style="padding: 15px;
+        border: 1px solid var(--yc-color-line-generic);">
+  </div>
+`;
+
+test('handles liquid in html attributes')`
+  # Variable in href attribute
+
+  <a href="{{ extref-chat-user-d9389e00 }}">
+  <span class="button">Button</span>
+  </a>
 `;

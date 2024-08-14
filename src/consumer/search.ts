@@ -39,7 +39,7 @@ const searchLinkText: SearchRule = (content, from, match) => {
 };
 
 const searchMultilineInlineCode: SearchRule = (content, from, match) => {
-  const parts = match.split(/[\s\n]/g);
+  const parts = match.split(/[\s\n]/g).filter(Boolean);
 
   let index;
   const start = (index = content.indexOf(parts.shift() as string, from));
@@ -76,10 +76,15 @@ export const search: Gobbler<NonEmptyString> = (content, [start, end], match) =>
   while (matches.length && from === -1) {
     start = start === -1 ? 0 : start;
     [from, to, variant] = (matches.shift() as SearchRule)(content, start, match);
+
+    if (to > end) {
+      from = -1;
+      to = -1;
+    }
   }
 
-  if (from < start || to > end) {
-    throw new CriticalProcessingError({start, end}, content, match);
+  if (from === -1 || to === -1) {
+    throw new CriticalProcessingError({start, end}, content.slice(start - 5, end + 5), match);
   }
 
   return [from, to, variant];

@@ -82,7 +82,7 @@ export function split(tokens: Token[]) {
 
     add(
       token('text', {
-        content: exclude(head as string, part).trimEnd(),
+        content: exclude((head + '\n') as string, part).trimEnd(),
         generated: 'head',
       }),
     );
