@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 const gt = crypto.randomUUID();
 const lt = crypto.randomUUID();
@@ -16,12 +16,12 @@ const mtre = new RegExp(`${mt}`, 'gmu');
 const vrre = new RegExp(`${vr}-\\d+-v`, 'gmu');
 
 function unescapeSymbols(str: string): string {
-  return str
-    .replace(gtre, '>')
-    .replace(ltre, '<')
-    .replace(qtre, '"')
-    .replace(slre, '/')
-    .replace(mtre, '');
+    return str
+        .replace(gtre, '>')
+        .replace(ltre, '<')
+        .replace(qtre, '"')
+        .replace(slre, '/')
+        .replace(mtre, '');
 }
 
 export {lt, gt, sl, qt, mt, vr, gtre, ltre, qtre, slre, mtre, vrre, unescapeSymbols};

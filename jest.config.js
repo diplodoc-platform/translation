@@ -12,8 +12,5 @@ module.exports = {
     moduleNameMapper: {
         '^src/(.*)': '<rootDir>/src/$1',
     },
-    testPathIgnorePatterns: [
-        `.*__fixtures__${path.sep}.*`,
-        `.*__helpers__${path.sep}.*`,
-    ],
+    testPathIgnorePatterns: [`.*__fixtures__${path.sep}.*`, `.*__helpers__${path.sep}.*`],
 };

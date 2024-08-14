@@ -3,23 +3,23 @@ import {escapeXmlText} from '../utils';
 import {BaseElement} from './BaseElement';
 
 export class TextElement extends BaseElement {
-  text: string;
+    text: string;
 
-  constructor(text: string) {
-    super();
+    constructor(text: string) {
+        super();
 
-    this.text = text;
-  }
+        this.text = text;
+    }
 
-  setAttr() {
-    throw new Error('Unavailable method');
-  }
+    setAttr() {
+        throw new Error('Unavailable method');
+    }
 
-  appendElement() {
-    throw new Error('Unavailable method');
-  }
+    appendElement() {
+        throw new Error('Unavailable method');
+    }
 
-  toString() {
-    return escapeXmlText(this.text);
-  }
+    toString() {
+        return escapeXmlText(this.text);
+    }
 }

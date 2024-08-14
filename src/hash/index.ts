@@ -3,17 +3,17 @@ import {toXLIFF} from 'src/xliff';
 export type Hash = ReturnType<typeof hash>;
 
 export function hash() {
-  const segments = new Array<string>();
-  const res = function (tokens: Token[]) {
-    const unitId = segments.length;
-    const xliff = toXLIFF(tokens, unitId);
+    const segments = new Array<string>();
+    const res = function (tokens: Token[]) {
+        const unitId = segments.length;
+        const xliff = toXLIFF(tokens, unitId);
 
-    segments.push(xliff);
+        segments.push(xliff);
 
-    return '%%%' + unitId + '%%%';
-  };
+        return '%%%' + unitId + '%%%';
+    };
 
-  res.segments = segments;
+    res.segments = segments;
 
-  return res;
+    return res;
 }

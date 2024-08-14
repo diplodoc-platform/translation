@@ -12,4 +12,3 @@ esbuild.build({
     // eslint-disable-next-line new-cap
     plugins: [TsconfigPathsPlugin({tsconfig: './tsconfig.json'})],
 });
-

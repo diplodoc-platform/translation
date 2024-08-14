@@ -1,5 +1,7 @@
 import type {JSONObject, RefDefinition} from '../types';
+
 import * as URI from 'uri-js';
+
 import {isObject, isString} from '../utils';
 
 /**
@@ -14,13 +16,13 @@ import {isObject, isString} from '../utils';
  * @see {@link https://tools.ietf.org/html/rfc6901#section-3}
  */
 function decodePath(path: string[]) {
-  return path.map((seg) => {
-    if (!isString(seg)) {
-      seg = JSON.stringify(seg);
-    }
+    return path.map((seg) => {
+        if (!isString(seg)) {
+            seg = JSON.stringify(seg);
+        }
 
-    return seg.replace(/~1/g, '/').replace(/~0/g, '~');
-  });
+        return seg.replace(/~1/g, '/').replace(/~0/g, '~');
+    });
 }
 
 /**
@@ -35,13 +37,13 @@ function decodePath(path: string[]) {
  * @see {@link https://tools.ietf.org/html/rfc6901#section-3}
  */
 function encodePath(path: string[]) {
-  return path.map((seg) => {
-    if (!isString(seg)) {
-      seg = JSON.stringify(seg);
-    }
+    return path.map((seg) => {
+        if (!isString(seg)) {
+            seg = JSON.stringify(seg);
+        }
 
-    return seg.replace(/~/g, '~0').replace(/\//g, '~1');
-  });
+        return seg.replace(/~/g, '~0').replace(/\//g, '~1');
+    });
 }
 
 /**
@@ -62,19 +64,19 @@ function encodePath(path: string[]) {
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isPtr(ptr: any) {
-  if (!isString(ptr)) {
-    throw new Error('ptr is not a String');
-  }
+    if (!isString(ptr)) {
+        throw new Error('ptr is not a String');
+    }
 
-  if (!ptr) {
-    return;
-  }
+    if (!ptr) {
+        return;
+    }
 
-  if (!ptr.match(/^#?\/|^#$/)) {
-    throw new Error('ptr must start with a / or #/');
-  } else if (ptr.match(/~(?:[^01]|$)/g)) {
-    throw new Error('ptr has invalid token(s)');
-  }
+    if (!ptr.match(/^#?\/|^#$/)) {
+        throw new Error('ptr must start with a / or #/');
+    } else if (ptr.match(/~(?:[^01]|$)/g)) {
+        throw new Error('ptr has invalid token(s)');
+    }
 }
 
 /**
@@ -87,19 +89,19 @@ export function isPtr(ptr: any) {
  * @throws if the provided `ptr` argument is not a JSON Pointer
  */
 export function pathFromPtr(ptr: string): string[] {
-  try {
-    isPtr(ptr);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    throw new Error('ptr must be a JSON Pointer: ' + error.message);
-  }
+    try {
+        isPtr(ptr);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+        throw new Error('ptr must be a JSON Pointer: ' + error.message);
+    }
 
-  const segments = ptr.split('/');
+    const segments = ptr.split('/');
 
-  // Remove the first segment
-  segments.shift();
+    // Remove the first segment
+    segments.shift();
 
-  return decodePath(segments);
+    return decodePath(segments);
 }
 
 /**
@@ -115,41 +117,43 @@ export function pathFromPtr(ptr: string): string[] {
  * @throws if the `path` argument is not an array
  */
 export function pathToPtr(path: string[], hashPrefix?: boolean): string {
-  if (!Array.isArray(path)) {
-    throw new Error('path must be an Array');
-  }
+    if (!Array.isArray(path)) {
+        throw new Error('path must be an Array');
+    }
 
-  // Encode each segment and return
-  return (
-    (hashPrefix === false ? '' : '#') + (path.length > 0 ? '/' : '') + encodePath(path).join('/')
-  );
+    // Encode each segment and return
+    return (
+        (hashPrefix === false ? '' : '#') +
+        (path.length > 0 ? '/' : '') +
+        encodePath(path).join('/')
+    );
 }
 
 export function parseURI(uri: string) {
-  const result = URI.parse(uri);
+    const result = URI.parse(uri);
 
-  if (result.error) {
-    throw new Error(result.error);
-  }
+    if (result.error) {
+        throw new Error(result.error);
+    }
 
-  return result;
+    return result;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isRefLike(obj: any): obj is RefDefinition {
-  return isObject(obj) && isString(obj.$ref);
+    return isObject(obj) && isString(obj.$ref);
 }
 
 export function get(obj: JSONObject, path: string[]) {
-  let value = obj;
+    let value = obj;
 
-  for (const seg of path) {
-    if (seg in value) {
-      value = value[seg] as JSONObject;
-    } else {
-      throw Error('JSON Pointer points to missing location: ' + pathToPtr(path));
+    for (const seg of path) {
+        if (seg in value) {
+            value = value[seg] as JSONObject;
+        } else {
+            throw Error('JSON Pointer points to missing location: ' + pathToPtr(path));
+        }
     }
-  }
 
-  return value;
+    return value;
 }

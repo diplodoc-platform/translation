@@ -1,6 +1,6 @@
 export type Token = {
-  type: TokenType;
-  value: string;
+    type: TokenType;
+    value: string;
 };
 
 export type TokenType = 'text' | 'hardbreak' | 'liquid' | 'variable';

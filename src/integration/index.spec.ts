@@ -4,84 +4,84 @@ import {compose, extract} from 'src/api';
 import {trim} from 'src/utils';
 
 const test = (() => {
-  function test(name: string, call?: 'skip' | 'only') {
-    return function (parts: TemplateStringsArray, ...vars: string[]) {
-      describe('integration', () => {
-        const caller = call ? it[call] : it;
-        const markdown = trim(parts, vars);
+    function test(name: string, call?: 'skip' | 'only') {
+        return function (parts: TemplateStringsArray, ...vars: string[]) {
+            describe('integration', () => {
+                const caller = call ? it[call] : it;
+                const markdown = trim(parts, vars);
 
-        function main() {
-          const {xliff, skeleton, units} = extract(markdown, {
-            compact: false,
-            source: {
-              language: 'ru',
-              locale: 'RU',
-            },
-            target: {
-              language: 'en',
-              locale: 'US',
-            },
-          });
+                function main() {
+                    const {xliff, skeleton, units} = extract(markdown, {
+                        compact: false,
+                        source: {
+                            language: 'ru',
+                            locale: 'RU',
+                        },
+                        target: {
+                            language: 'en',
+                            locale: 'US',
+                        },
+                    });
 
-          if (!units.length) {
-            return [xliff, skeleton];
-          }
+                    if (!units.length) {
+                        return [xliff, skeleton];
+                    }
 
-          const result = compose(skeleton, xliff, {useSource: true});
+                    const result = compose(skeleton, xliff, {useSource: true});
 
-          expect(result).toEqual(markdown);
+                    expect(result).toEqual(markdown);
 
-          return [xliff, skeleton, result];
-        }
+                    return [xliff, skeleton, result];
+                }
 
-        function expr() {
-          const {xliff, skeleton} = extract(markdown, {
-            originalFile: 'file.ext',
-            skeletonFile: 'file.skl',
-            source: {
-              language: 'ru',
-              locale: 'RU',
-            },
-            target: {
-              language: 'en',
-              locale: 'US',
-            },
-            useExperimentalParser: true,
-          });
+                function expr() {
+                    const {xliff, skeleton} = extract(markdown, {
+                        originalFile: 'file.ext',
+                        skeletonFile: 'file.skl',
+                        source: {
+                            language: 'ru',
+                            locale: 'RU',
+                        },
+                        target: {
+                            language: 'en',
+                            locale: 'US',
+                        },
+                        useExperimentalParser: true,
+                    });
 
-          const xliffString = xliff.toString();
+                    const xliffString = xliff.toString();
 
-          if (!xliff.transUnits.length) {
-            return [xliff, skeleton];
-          }
+                    if (!xliff.transUnits.length) {
+                        return [xliff, skeleton];
+                    }
 
-          const {document} = compose(skeleton, xliffString, {
-            useSource: true,
-            useExperimentalParser: true,
-          });
+                    const {document} = compose(skeleton, xliffString, {
+                        useSource: true,
+                        useExperimentalParser: true,
+                    });
 
-          expect(document).toEqual(markdown);
+                    expect(document).toEqual(markdown);
 
-          return [xliff.toString(), skeleton, document];
-        }
+                    return [xliff.toString(), skeleton, document];
+                }
 
-        caller(name, () => {
-          const [xliff1, skeleton1] = main();
-          const [xliff2, skeleton2] = expr();
+                caller(name, () => {
+                    const [xliff1, skeleton1] = main();
+                    const [xliff2, skeleton2] = expr();
 
-          expect(xliff1).toMatchSnapshot('xliff main');
-          expect(xliff2).toMatchSnapshot('xliff expr');
-          expect(skeleton1).toMatchSnapshot('skeleton main');
-          expect(skeleton2).toMatchSnapshot('skeleton expr');
-        });
-      });
-    };
-  }
+                    expect(xliff1).toMatchSnapshot('xliff main');
+                    expect(xliff2).toMatchSnapshot('xliff expr');
+                    expect(skeleton1).toMatchSnapshot('skeleton main');
+                    expect(skeleton2).toMatchSnapshot('skeleton expr');
+                });
+            });
+        };
+    }
 
-  test.skip = (name: string) => test(name, 'skip');
-  test.only = (name: string) => test(name, 'only');
+    test.skip = (name: string) => test(name, 'skip');
+    test.only = (name: string) => test(name, 'only');
 
-  return test;
+    return test;
 })();
 
 test('link variable leak')`

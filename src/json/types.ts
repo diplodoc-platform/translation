@@ -1,24 +1,24 @@
 import type {Ref} from './refs/proxy';
 
 export type JSONData<T = unknown> =
-  | string
-  | number
-  | boolean
-  | JSONData<T>[]
-  | ({
-      [prop: string]: JSONData<T>;
-    } & T);
+    | string
+    | number
+    | boolean
+    | JSONData<T>[]
+    | ({
+          [prop: string]: JSONData<T>;
+      } & T);
 
 export type JSONObject<T = unknown> = {
-  [prop: string]: JSONData<T>;
+    [prop: string]: JSONData<T>;
 };
 
 export interface RefDefinition {
-  $ref: string;
+    $ref: string;
 }
 
 export type RefLink = {
-  [Ref]: RefDefinition;
+    [Ref]: RefDefinition;
 };
 
 export type LinkedJSONObject = JSONObject<RefLink>;

@@ -1,6 +1,6 @@
 export enum FragmentType {
-  Variable = 'variable',
-  Operator = 'operator',
+    Variable = 'variable',
+    Operator = 'operator',
 }
 
 export const VARS_RE = /{{2}([. \w-|(),]+)}{2}/;

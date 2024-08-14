@@ -1,23 +1,24 @@
 import type {Consumer} from './index';
+
 import {trim} from 'src/utils';
 
 type Position = {start: number; end: number};
 
 export class CriticalProcessingError extends Error {
-  source: Position;
+    source: Position;
 
-  content: string;
+    content: string;
 
-  match: string;
+    match: string;
 
-  get info() {
-    const {
-      source: {start, end},
-      content,
-      match,
-    } = this;
+    get info() {
+        const {
+            source: {start, end},
+            content,
+            match,
+        } = this;
 
-    return trim`
+        return trim`
           Target fragment:
           \u001b[38;2;150;150;150m
             ${short(match)}
@@ -27,31 +28,31 @@ export class CriticalProcessingError extends Error {
             ${short(content)}
           \u001b[0m    
         `;
-  }
+    }
 
-  constructor(source: Position, content: string, match: string) {
-    super('Unable to extract valid tokens for text segment.');
+    constructor(source: Position, content: string, match: string) {
+        super('Unable to extract valid tokens for text segment.');
 
-    this.source = source;
-    this.content = content;
-    this.match = match;
-  }
+        this.source = source;
+        this.content = content;
+        this.match = match;
+    }
 
-  fill(ctx: Consumer) {
-    const {start, end} = (this.source = ctx.range);
-    this.content = ctx.source.slice(ctx.lines[start], ctx.lines[end]);
-  }
+    fill(ctx: Consumer) {
+        const {start, end} = (this.source = ctx.range);
+        this.content = ctx.source.slice(ctx.lines[start], ctx.lines[end]);
+    }
 }
 
 function short(content: string) {
-  const lines = content.split('\n');
+    const lines = content.split('\n');
 
-  if (lines.length < 10) {
-    return lines.join('\n');
-  }
+    if (lines.length < 10) {
+        return lines.join('\n');
+    }
 
-  return lines
-    .slice(0, 5)
-    .concat(`...(more ${lines.length - 5} lines)`)
-    .join('\n');
+    return lines
+        .slice(0, 5)
+        .concat(`...(more ${lines.length - 5} lines)`)
+        .join('\n');
 }

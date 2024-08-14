@@ -1,11 +1,11 @@
 import {BaseElement} from './BaseElement';
 
 export class SourceElement extends BaseElement {
-  tag = 'source';
+    tag = 'source';
 
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.setAttr('xml:space', 'preserve');
-  }
+        this.setAttr('xml:space', 'preserve');
+    }
 }

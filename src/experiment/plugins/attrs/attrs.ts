@@ -6,5 +6,5 @@ const leftDelimiter = '{#';
 const rightDelimiter = '}';
 
 export function attrsPlugin(md: MarkdownIt) {
-  md.use(attrs, {leftDelimiter, rightDelimiter});
+    md.use(attrs, {leftDelimiter, rightDelimiter});
 }

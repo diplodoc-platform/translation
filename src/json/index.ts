@@ -1,4 +1,5 @@
 import {dirname, join} from 'node:path';
+
 import {readPath} from './utils';
 
 export type {JSONObject, LinkedJSONObject} from './types';
