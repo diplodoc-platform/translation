@@ -48,14 +48,14 @@ const SHOW_MAP = false;
 const SHOW_RAW_MAP = false;
 const SHOW_VARS = false;
 
-interface Options {
+export interface TransformOptions {
     showTokens?: boolean;
     showMap?: boolean;
     showRawMap?: boolean;
     showVars?: boolean;
 }
 
-export function transform(content: string, options?: Options) {
+export function transform(content: string, options?: TransformOptions) {
     const {
         showTokens = SHOW_TOKENS,
         showMap = SHOW_MAP,
