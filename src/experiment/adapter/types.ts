@@ -2,6 +2,7 @@ import countries from '@shellscape/i18n-iso-countries';
 import languages from '@cospired/i18n-iso-languages';
 
 import {Xliff} from 'src/experiment/xliff/xliff';
+import {TransformOptions} from 'src/experiment/transform';
 
 const languagesList = languages.langs();
 
@@ -23,7 +24,7 @@ interface Experiment {
     useExperimentalParser: true;
 }
 
-export type ExtractOptions = Experiment & TemplateOptions;
+export type ExtractOptions = Experiment & TemplateOptions & TransformOptions;
 
 export type ExtractOutput = {
     skeleton: string;

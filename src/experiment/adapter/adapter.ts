@@ -8,7 +8,12 @@ import {transform} from 'src/experiment/transform';
 import {translate} from 'src/experiment/translate';
 
 export function extract(content: string, options: ExtractOptions): ExtractOutput {
-    const {xliff, skeleton} = transform(content);
+    const {xliff, skeleton} = transform(content, {
+        showTokens: options.showTokens,
+        showMap: options.showMap,
+        showRawMap: options.showRawMap,
+        showVars: options.showVars,
+    });
 
     xliff.setFile(options.originalFile);
     xliff.setSourceLanguage(`${options.source.language}-${options.source.locale}`);
