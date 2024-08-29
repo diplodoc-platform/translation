@@ -31,7 +31,16 @@ export function trim(part: Token[]) {
 
 function exclude(content: string, tokens: Token[]) {
     const part = trim(tokens.filter(hasContent));
-    const [, to] = eruler(content, [0, content.length], part, gobble);
+    let from = 0,
+        to = 0;
+
+    eruler(content, [0, content.length], part, (...args) => {
+        if (to < content.length) {
+            [from, to] = gobble(...args);
+        }
+
+        return [from, to];
+    });
 
     return content.slice(to);
 }

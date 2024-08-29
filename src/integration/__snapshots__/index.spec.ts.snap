@@ -277,6 +277,53 @@ exports[`integration computes valid sentenses: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles &nbsp; in lists: skeleton expr 1`] = `"- %%%1%%%"`;
+
+exports[`integration handles &nbsp; in lists: skeleton main 1`] = `
+"- %%%0%%%
+    %%%1%%%"
+`;
+
+exports[`integration handles &nbsp; in lists: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Some text<x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />   <x equiv-text=\\"\\" id=\\"t4--1\\" ctype=\\"lb\\" />    Some other text</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles &nbsp; in lists: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source>Some text<x ctype=\\"lb\\" equiv-text=\\"
+  \\" id=\\"g-test\\"/> </source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source>Some other text</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles autolinks: skeleton expr 1`] = `
 "* %%%1%%%
 * %%%2%%%"

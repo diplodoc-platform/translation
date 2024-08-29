@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable no-irregular-whitespace */
 
 import {compose, extract} from 'src/api';
 import {trim} from 'src/utils';
@@ -324,4 +325,10 @@ test('handles liquid in html attributes')`
   <a href="{{ extref-chat-user-d9389e00 }}">
   <span class="button">Button</span>
   </a>
+`;
+
+test('handles &nbsp; in lists')`
+  - Some text
+     
+      Some other text
 `;
