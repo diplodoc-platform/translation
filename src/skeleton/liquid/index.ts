@@ -25,7 +25,7 @@ const specification_: Specification = [
     // EndChangelog
     [/^\{%\s*endchangelog\s*%\}/, 'liquid', 'Literal'],
     // Fake Tabs
-    [/^\{%\s*list tabs\s*%\}/, 'liquid', 'Literal'],
+    [/^\{%\s*list tabs\s*[^%}]*%\}/, 'liquid', 'Literal'],
     // Fake Tabs end
     [/^\{%\s*endlist\s*%\}/, 'liquid', 'Literal'],
     // ForInLoop
