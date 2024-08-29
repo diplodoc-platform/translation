@@ -20,13 +20,13 @@ export class CriticalProcessingError extends Error {
 
         return trim`
           Target fragment:
-          \u001b[38;2;150;150;150m
+          "\u001b[38;2;150;150;150m
             ${short(match)}
-          \u001b[0m  
+          \u001b[0m"  
           not found in lines range from line ${start} to ${end}:
-          \u001b[38;2;150;150;150m
+          "\u001b[38;2;150;150;150m
             ${short(content)}
-          \u001b[0m    
+          \u001b[0m"    
         `;
     }
 
@@ -41,6 +41,7 @@ export class CriticalProcessingError extends Error {
     fill(ctx: Consumer) {
         const {start, end} = (this.source = ctx.range);
         this.content = ctx.source.slice(ctx.lines[start], ctx.lines[end]);
+        this.source = {start, end};
     }
 }
 

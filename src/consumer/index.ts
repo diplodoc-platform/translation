@@ -92,18 +92,26 @@ export class Consumer {
             this.setWindow(window);
         }
 
-        const parts = split(tokens);
+        try {
+            const parts = split(tokens);
 
-        const result = parts.map((part) => this.consume(part)).filter(Boolean) as {
-            part: Token[];
-            past: string;
-        }[];
+            const result = parts.map((part) => this.consume(part)).filter(Boolean) as {
+                part: Token[];
+                past: string;
+            }[];
 
-        if (window) {
-            this.unsetWindow();
+            if (window) {
+                this.unsetWindow();
+            }
+
+            return result;
+        } catch (error) {
+            if (error instanceof CriticalProcessingError) {
+                error.fill(this);
+            }
+
+            throw error;
         }
-
-        return result;
     };
 
     consume = (part: Token[], past?: string) => {

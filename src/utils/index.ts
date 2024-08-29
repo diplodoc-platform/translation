@@ -83,10 +83,14 @@ export function trim(string: TemplateStringsArray | string[] | string, ...vars: 
             content = offset(content, getPadRight(string[index - 1], pad));
             result += content;
         } else {
+            let multiline = false;
             while (content.length) {
                 const currNewline = content.indexOf('\n') + 1;
                 const nextNewline = content.indexOf('\n', currNewline) + 1;
+
                 if (currNewline > 0) {
+                    multiline = true;
+
                     if (pad === null) {
                         pad = getPadLeft(content.slice(currNewline));
                     }
@@ -96,7 +100,7 @@ export function trim(string: TemplateStringsArray | string[] | string, ...vars: 
                     result += content.slice(0, currNewline);
                     content = content.slice(currNewline + currPad);
                 } else {
-                    result += content;
+                    result += content.slice(multiline ? pad || 0 : 0);
                     content = '';
                 }
             }
