@@ -102,7 +102,7 @@ export function transform(content: string, options?: TransformOptions) {
         .use(yfmTable)
         .use(textJoinFix)
         .use(term)
-        .disable(['entity']);
+        .disable(['entity', 'html_block']);
 
     const allTokens = mdIt.parse(mdData, {});
 
