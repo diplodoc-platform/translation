@@ -21,6 +21,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение о чем-то
       </target>,
@@ -31,9 +32,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units parses sources when targets are absent with useSource flag enabled 1`
-] = `
+exports[`parses translation units parses sources when targets are absent with useSource flag enabled 1`] = `
 Array [
   Array [
     Object {
@@ -54,6 +53,7 @@ Array [
       "end": undefined,
       "g": <source
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение о чем-то
       </source>,
@@ -80,6 +80,7 @@ Array [
       "end": undefined,
       "g": <source
         nodeType="open"
+        xml:space="preserve"
       >
         Фрагмент Текста
       </source>,
@@ -111,6 +112,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение о чем-то
       </target>,
@@ -137,6 +139,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Фрагмент Текста
       </target>,
@@ -182,6 +185,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер один 
         <x
@@ -247,6 +251,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -313,6 +318,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -384,6 +390,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -450,6 +457,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -591,6 +599,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence with 
         <x
@@ -648,9 +657,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses heading with anchors wrapped in <x> tags 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses heading with anchors wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -691,6 +698,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Heading with anchors
         <x
@@ -711,9 +719,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses image with all attributes wrapped in <x> tags 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses image with all attributes wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -826,6 +832,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence 
         <x
@@ -879,9 +886,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses inline code with liquid wrapped in <x> tag 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses inline code with liquid wrapped in <x> tag 1`] = `
 Array [
   Array [
     Object {
@@ -940,6 +945,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence 
         <x
@@ -1021,6 +1027,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Another sentence 
         <x
@@ -1048,8 +1055,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses inline html wrapped in <x> tags 1`] =
-  `
+exports[`parses translation units with <g> and <x> tags parses inline html wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1112,6 +1118,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence
         <x
@@ -1140,9 +1147,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses link with multiple sentences inside link text and link title 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses link with multiple sentences inside link text and link title 1`] = `
 Array [
   Array [
     Object {
@@ -1173,6 +1178,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         <x
           ctype="x-link_text_part_open"
@@ -1248,6 +1254,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Link text sentence Two?
         <x
@@ -1315,6 +1322,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Link title sentence two!
         <x
@@ -1438,6 +1446,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -1560,6 +1569,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -1597,9 +1607,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses liquid conditions wrapped in <x> tags 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses liquid conditions wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1662,6 +1670,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence with 
         <x
@@ -1690,9 +1699,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses liquid filters wrapped in <x> tags 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses liquid filters wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1727,6 +1734,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence with filter 
         <x
@@ -1743,9 +1751,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses liquid function wrapped in <x> tags 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses liquid function wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1780,6 +1786,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence with function 
         <x
@@ -1796,8 +1803,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses liquid loop wrapped in <x> tags 1`] =
-  `
+exports[`parses translation units with <g> and <x> tags parses liquid loop wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1846,6 +1852,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence 
         <x
@@ -1868,9 +1875,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses liquid variables wrapped in <x> tags 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses liquid variables wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1905,6 +1910,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Sentence with 
         <x
@@ -2010,6 +2016,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2112,6 +2119,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2192,6 +2200,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2258,6 +2267,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2329,6 +2339,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2395,6 +2406,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2466,6 +2478,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2532,6 +2545,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2603,6 +2617,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер
         <x
@@ -2669,6 +2684,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер
         <x
@@ -2691,9 +2707,7 @@ Array [
 ]
 `;
 
-exports[
-  `parses translation units with <g> and <x> tags parses variable href link wrapped in <x> tags 1`
-] = `
+exports[`parses translation units with <g> and <x> tags parses variable href link wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -2796,6 +2810,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Предложение номер 
         <x
@@ -2875,6 +2890,7 @@ Array [
       "end": undefined,
       "g": <target
         nodeType="open"
+        xml:space="preserve"
       >
         Another sentence 
         <x

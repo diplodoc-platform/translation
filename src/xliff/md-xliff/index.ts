@@ -7,10 +7,10 @@ import {transunit} from 'src/xliff/generator';
 import {hooks} from './hooks';
 import {rules} from './rules';
 
-export function render(tokens: Token[], unitId: number) {
+export function render(tokens: Token[], unitId: number, compact = false) {
     const xliffRenderer = new MarkdownIt({html: true});
 
-    xliffRenderer.use(customRenderer, {rules, hooks});
+    xliffRenderer.use(customRenderer, {rules, hooks, compact});
 
     const source = xliffRenderer.renderer.render(
         [
@@ -24,6 +24,7 @@ export function render(tokens: Token[], unitId: number) {
 
     return transunit({
         source,
+        compact,
         id: unitId,
     });
 }
