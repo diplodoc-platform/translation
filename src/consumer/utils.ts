@@ -1,7 +1,5 @@
 import type {Gobbler, NonEmptyString} from 'src/skeleton/types';
 
-import {ok} from 'node:assert';
-
 import {search} from 'src/consumer/search';
 import {mtre} from 'src/symbols';
 
@@ -46,8 +44,6 @@ export const skip: Gobbler = (content, [start, end], token, i) => {
             ? search(content, [start, end], match as NonEmptyString, i)
             : [from, from];
     }
-
-    ok(to <= end, `skip aaaaaaaa end: ${to} <= ${end}`);
 
     return [from, to];
 };
