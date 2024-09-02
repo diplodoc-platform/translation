@@ -107,6 +107,10 @@ export const html: RenderRuleRecord = {
         root.skip = Liquid.unescape(root.content);
         root.content = '';
 
+        if (root.skip.match(/<br\/?>/)) {
+            root.linebreak = true;
+        }
+
         return '';
     },
     html_block: function (this: CustomRenderer<Consumer>, tokens, idx) {

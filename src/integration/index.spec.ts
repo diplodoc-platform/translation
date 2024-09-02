@@ -332,3 +332,10 @@ test('handles &nbsp; in lists')`
      
       Some other text
 `;
+
+test('handles html line breaks')`
+    ![](../image.png)
+    |
+    [**Moes** | Matter](https://link.html?sku_id=12000038372920468)<br/><br/>Moes Matter
+    |
+`;

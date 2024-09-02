@@ -744,6 +744,55 @@ exports[`integration handles empty links: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles html line breaks: skeleton expr 1`] = `"%%%1_s-1%%%<br/>%%%2_s-3%%%"`;
+
+exports[`integration handles html line breaks: skeleton main 1`] = `"%%%0%%%<br/>%%%1%%%"`;
+
+exports[`integration handles html line breaks: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\"><x equiv-text=\\"![](../image.png)\\" id=\\"e1\\" x-type=\\"image\\" /><x equiv-text=\\"\\" id=\\"t1--1\\" ctype=\\"lb\\" />|<x equiv-text=\\"\\" id=\\"t3--1\\" ctype=\\"lb\\" /><g equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"e4\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e5\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g><x equiv-text=\\"&lt;br/&gt;\\" id=\\"e8\\" x-type=\\"html_inline\\" /></source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">Moes Matter<x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />|</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles html line breaks: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](../image.png)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](../image.png)\\"></g><x ctype=\\"lb\\" equiv-text=\\"
+\\" id=\\"g-test\\"/>|<x ctype=\\"lb\\" equiv-text=\\"
+\\" id=\\"g-test\\"/><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br/&gt;\\" id=\\"g-test\\"/></source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Moes Matter<x ctype=\\"lb\\" equiv-text=\\"
+\\" id=\\"g-test\\"/>|</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles image with empty title at the end of segment: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
 exports[`integration handles image with empty title at the end of segment: skeleton main 1`] = `"%%%0%%% %%%1%%%"`;

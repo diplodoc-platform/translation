@@ -78,6 +78,10 @@ export function split(tokens: Token[]) {
             content += _token.content || _token.markup || '';
         }
 
+        if (_token.linebreak) {
+            content += '\n';
+        }
+
         const segments = sentenize(content);
 
         if (segments.length < 2) {

@@ -10,6 +10,7 @@ declare global {
 
     type Token = MdToken & {
         skip?: string[] | string;
+        linebreak?: boolean;
         reflink?: boolean;
         fake?: boolean;
         generated?: string;
