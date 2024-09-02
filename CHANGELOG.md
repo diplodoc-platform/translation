@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.4.3](https://github.com/diplodoc-platform/translation/compare/v1.4.2...v1.4.3) (2024-09-02)
+
+
+### Bug Fixes
+
+* Add xml:space="preserve" ([e5cca65](https://github.com/diplodoc-platform/translation/commit/e5cca6526a6a81fde26d9b2c857a4a8534d2c5af))
+* Extends `tabs` markup regexp ([9a624c1](https://github.com/diplodoc-platform/translation/commit/9a624c164e276111a132c7f5efc9dcb924613b08))
+* Handle linebreaks on &lt;br&gt; ([5797c0b](https://github.com/diplodoc-platform/translation/commit/5797c0b99117d08b91e654ef533eeedaf0601e01))
+* Handle nbsp in lists ([72a5861](https://github.com/diplodoc-platform/translation/commit/72a58619aecbf9be5df605f8cc806358b85cb155))
+* Improve error reporting ([56572eb](https://github.com/diplodoc-platform/translation/commit/56572eb05a8baf0b03320d990ce59d521764c472))
+
 ## [1.4.2](https://github.com/diplodoc-platform/translation/compare/v1.4.1...v1.4.2) (2024-08-14)
 
 
