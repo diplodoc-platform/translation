@@ -226,7 +226,10 @@ exports[`integration computes valid sentenses: skeleton expr 1`] = `
 %%%2_s-3%%% %%%3_s-5%%%"
 `;
 
-exports[`integration computes valid sentenses: skeleton main 1`] = `"%%%0%%%%%%1%%% %%%2%%%"`;
+exports[`integration computes valid sentenses: skeleton main 1`] = `
+"%%%0%%%
+%%%1%%% %%%2%%%"
+`;
 
 exports[`integration computes valid sentenses: xliff expr 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -263,8 +266,7 @@ exports[`integration computes valid sentenses: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Записывает или удаляет элементы из таблиц.<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">Записывает или удаляет элементы из таблиц.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
         <source xml:space=\\"preserve\\">Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление.</source>
@@ -281,6 +283,7 @@ exports[`integration handles &nbsp; in lists: skeleton expr 1`] = `"- %%%1%%%"`;
 
 exports[`integration handles &nbsp; in lists: skeleton main 1`] = `
 "- %%%0%%%
+   
     %%%1%%%"
 `;
 
@@ -313,8 +316,7 @@ exports[`integration handles &nbsp; in lists: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Some text<x ctype=\\"lb\\" equiv-text=\\"
-  \\" id=\\"g-test\\"/> </source>
+        <source xml:space=\\"preserve\\">Some text</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
         <source xml:space=\\"preserve\\">Some other text</source>
@@ -387,9 +389,11 @@ exports[`integration handles blockquotes: skeleton expr 1`] = `
 `;
 
 exports[`integration handles blockquotes: skeleton main 1`] = `
-"> %%%0%%%> %%%1%%%
+"> %%%0%%%
+> %%%1%%%
 >
-> > %%%2%%%> > %%%3%%%
+> > %%%2%%%
+> > %%%3%%%
 >
 > %%%4%%%"
 `;
@@ -416,15 +420,13 @@ exports[`integration handles blockquotes: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">1<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">1</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
         <source xml:space=\\"preserve\\">2</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\">3<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">3</source>
       </trans-unit>
       <trans-unit id=\\"3\\">
         <source xml:space=\\"preserve\\">4</source>
@@ -587,7 +589,10 @@ exports[`integration handles empty image in list: skeleton expr 1`] = `
  ![](../_assets/stat-segment.png)"
 `;
 
-exports[`integration handles empty image in list: skeleton main 1`] = `"1. %%%0%%% ![](../_assets/stat-segment.png)"`;
+exports[`integration handles empty image in list: skeleton main 1`] = `
+"1. %%%0%%%
+ ![](../_assets/stat-segment.png)"
+`;
 
 exports[`integration handles empty image in list: xliff expr 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -618,8 +623,7 @@ exports[`integration handles empty image in list: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.</source>
       </trans-unit>
     </body>
   </file>
@@ -744,9 +748,63 @@ exports[`integration handles empty links: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles heading anchors: skeleton expr 1`] = `
+"# %%%1%%%
+
+## %%%2%%%"
+`;
+
+exports[`integration handles heading anchors: skeleton main 1`] = `
+"# %%%0%%%
+
+## %%%1%%% {#heading_2}"
+`;
+
+exports[`integration handles heading anchors: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Заголовок 1</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">Заголовок 2 <x equiv-text=\\"{#heading_2}\\" id=\\"e1\\" x-type=\\"attr_anchor\\" /></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles heading anchors: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Заголовок 1</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Заголовок 2</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles html line breaks: skeleton expr 1`] = `"%%%1_s-1%%%<br/>%%%2_s-3%%%"`;
 
-exports[`integration handles html line breaks: skeleton main 1`] = `"%%%0%%%<br/>%%%1%%%"`;
+exports[`integration handles html line breaks: skeleton main 1`] = `"%%%0%%%<br/><br/>%%%1%%%"`;
 
 exports[`integration handles html line breaks: xliff expr 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -782,7 +840,7 @@ exports[`integration handles html line breaks: xliff main 1`] = `
       <trans-unit id=\\"0\\">
         <source xml:space=\\"preserve\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](../image.png)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](../image.png)\\"></g><x ctype=\\"lb\\" equiv-text=\\"
 \\" id=\\"g-test\\"/>|<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br/&gt;\\" id=\\"g-test\\"/></source>
+\\" id=\\"g-test\\"/><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g></source>
       </trans-unit>
       <trans-unit id=\\"1\\">
         <source xml:space=\\"preserve\\">Moes Matter<x ctype=\\"lb\\" equiv-text=\\"
@@ -1120,7 +1178,7 @@ exports[`integration handles link with empty title at the end of segment: xliff 
 
 exports[`integration handles link with image with variables in title: skeleton expr 1`] = `"%%%1%%%"`;
 
-exports[`integration handles link with image with variables in title: skeleton main 1`] = `"%%%2%%% %%%3%%%"`;
+exports[`integration handles link with image with variables in title: skeleton main 1`] = `"%%%4%%%"`;
 
 exports[`integration handles link with image with variables in title: xliff expr 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -1133,7 +1191,7 @@ exports[`integration handles link with image with variables in title: xliff expr
         </header>
         <body>
             <trans-unit id=\\"1\\">
-                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}})\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\")\\">![Image](index-mini.md &quot;Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e2\\" x-type=\\"liquid_variable\\" />. And what?&quot; x100)<g equiv-text=\\"](index-mini.md &quot;{{text}}&quot;\\" id=\\"e3\\" x-type=\\"link_title\\" x-begin=\\"](index-mini.md &quot;\\" x-end=\\"&quot;\\">Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e4\\" x-type=\\"liquid_variable\\" />. And what?</g></g></source>
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}})\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\")\\"><g equiv-text=\\"![{{text}} =x100)\\" id=\\"e2\\" ctype=\\"image\\" x-type=\\"image\\" x-begin=\\"![\\" x-end=\\" =x100)\\"><x equiv-text=\\"Image\\" id=\\"e3\\" x-type=\\"image_name\\" /><g equiv-text=\\"](index-mini.md &quot;{{text}}&quot;\\" id=\\"e4\\" x-type=\\"image_title\\" x-begin=\\"](index-mini.md &quot;\\" x-end=\\"&quot;\\">Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e5\\" x-type=\\"liquid_variable\\" />. And what?</g></g><g equiv-text=\\"](index-mini.md &quot;{{text}}&quot;\\" id=\\"e8\\" x-type=\\"link_title\\" x-begin=\\"](index-mini.md &quot;\\" x-end=\\"&quot;\\">Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e9\\" x-type=\\"liquid_variable\\" />. And what?</g></g></source>
             </trans-unit>
         </body>
     </file>
@@ -1157,10 +1215,13 @@ exports[`integration handles link with image with variables in title: xliff main
         <source xml:space=\\"preserve\\">And what?</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\"><x ctype=\\"link_text_part_open\\" equiv-text=\\"[\\" id=\\"g-test\\"/>![Image](index-mini.md &quot;Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"g-test\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"3\\">
-        <source xml:space=\\"preserve\\">And what?&quot; x100)<x ctype=\\"link_text_part_close\\" equiv-text=\\"]\\" id=\\"g-test\\"/><x ctype=\\"link_attributes_part_open\\" equiv-text=\\"(\\" id=\\"g-test\\"/><x ctype=\\"link_attributes_href\\" equiv-text=\\"index-mini.md\\" id=\\"g-test\\"/><x ctype=\\"link_attributes_title\\" equiv-text=\\"%%%0%%% %%%1%%%\\" id=\\"g-test\\"/><x ctype=\\"link_attributes_part_close\\" equiv-text=\\")\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](index-mini.md &quot;%%%2%%% %%%3%%%&quot;)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](index-mini.md &quot;%%%2%%% %%%3%%%&quot;)\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](index-mini.md &quot;%%%0%%% %%%1%%%&quot; =x100)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](index-mini.md &quot;%%%0%%% %%%1%%%&quot; =x100)\\">Image</g></g></source>
       </trans-unit>
     </body>
   </file>
@@ -1406,7 +1467,8 @@ exports[`integration handles self closing html tags: skeleton expr 1`] = `
 exports[`integration handles self closing html tags: skeleton main 1`] = `
 "# %%%0%%%
 
-%%%1%%%%%%2%%%
+%%%1%%%
+%%%2%%%
 
 <keyword keyref=\\"responce\\"/>
 
@@ -1459,8 +1521,7 @@ exports[`integration handles self closing html tags: xliff main 1`] = `
         <source xml:space=\\"preserve\\">Header</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">A a.<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">A a.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source xml:space=\\"preserve\\">B b.</source>
@@ -1533,7 +1594,8 @@ exports[`integration handles terms: skeleton expr 1`] = `
 exports[`integration handles terms: skeleton main 1`] = `
 "%%%0%%%
 
-[*term]: %%%1%%%%%%2%%%"
+[*term]: %%%1%%%
+%%%2%%%"
 `;
 
 exports[`integration handles terms: xliff expr 1`] = `
@@ -1574,8 +1636,7 @@ exports[`integration handles terms: xliff main 1`] = `
         <source xml:space=\\"preserve\\">Some <g ctype=\\"link\\" equiv-text=\\"[{{text}}](*term)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](*term)\\">term</g></source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Some multiline term.<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">Some multiline term.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source xml:space=\\"preserve\\">Here.</source>
@@ -1649,7 +1710,8 @@ exports[`integration handles wrond ordered terms: skeleton main 1`] = `
 "%%%0%%%
 
 [*term]: 
-    %%%1%%%    %%%2%%%"
+    %%%1%%%
+    %%%2%%%"
 `;
 
 exports[`integration handles wrond ordered terms: xliff expr 1`] = `
@@ -1690,8 +1752,7 @@ exports[`integration handles wrond ordered terms: xliff main 1`] = `
         <source xml:space=\\"preserve\\">Some <g ctype=\\"link\\" equiv-text=\\"[{{text}}](*term)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](*term)\\">term</g></source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Some multiline term.<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">Some multiline term.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source xml:space=\\"preserve\\">Here.</source>

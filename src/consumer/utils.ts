@@ -62,28 +62,152 @@ export const gobble: Gobbler<Token> = (content, [start, end], token, i) => {
     return [-1, -1];
 };
 
-const reflink = (token: Token) => token.reflink;
-const isContentful = (token: Token) => !reflink(token) && token.content.replace(mtre, '')?.trim();
+function isContentful(token: Token) {
+    return Boolean(token.content.replace(mtre, '')?.trim());
+}
 
-export const firstContentful = (tokens: Token[]): [null | Token, number] => {
-    const index = tokens.findIndex(isContentful);
+function isTranslatable(token: Token) {
+    return Boolean(isContentful(token) && token.type !== 'liquid');
+}
 
-    return index > -1 ? [tokens[index], index] : [null, -1];
-};
-export const lastContentful = (tokens: Token[]): [null | Token, number] => {
-    // @ts-ignore
-    const index = tokens.findLastIndex(isContentful);
+export function dropUselessTokens(tokens: Token[], accurate = false) {
+    if (accurate) {
+        const grouped = groupUselessTokens(tokens);
 
-    return index > -1 ? [tokens[index], index] : [null, -1];
-};
-
-export function dropUselessTokens(tokens: Token[]) {
-    const [, first] = firstContentful(tokens);
-    const [, last] = lastContentful(tokens);
-
-    if (first === -1) {
-        return [tokens, [], []];
+        if (grouped) {
+            return splitByContent(grouped, isTranslatable);
+        }
     }
 
-    return [tokens.slice(0, first), tokens.slice(first, last + 1), tokens.slice(last + 1)];
+    return splitByContent(tokens, isTranslatable);
+}
+
+type TokenGroup = {
+    role: string;
+    type: string;
+    child: (Token | TokenGroup)[];
+    parent?: TokenGroup;
+};
+
+export function head(tokens: (TokenGroup | Token)[], value?: TokenGroup | Token) {
+    if (value) {
+        tokens[0] = value;
+    }
+
+    return tokens[0];
+}
+
+export function tail(tokens: (TokenGroup | Token)[], value?: TokenGroup | Token) {
+    if (value) {
+        tokens[tokens.length - 1] = value;
+    }
+
+    return tokens[tokens.length - 1];
+}
+
+function matchGroup(token: Token) {
+    const match = /(.*?)_(open|close)/.exec(token.type);
+
+    return match
+        ? {
+              type: match[1],
+              kind: match[2],
+          }
+        : null;
+}
+
+function isGroup(token: Token | TokenGroup): token is TokenGroup {
+    return 'role' in token && token.role === 'group';
+}
+
+function groupUselessTokens(tokens: Token[]): (Token | TokenGroup)[] | null {
+    const tree = {role: 'group', type: 'root', child: []};
+
+    let group: TokenGroup = tree;
+    for (const token of tokens) {
+        const match = matchGroup(token);
+        if (match) {
+            if (match.kind === 'open') {
+                group.child.push(
+                    (group = {
+                        role: 'group',
+                        type: match.type,
+                        child: [token],
+                        parent: group,
+                    }),
+                );
+            } else if (group.type === match.type) {
+                group.child.push(token);
+                group = group.parent as TokenGroup;
+            } else {
+                return null;
+            }
+        } else {
+            group.child.push(token);
+        }
+    }
+
+    return tree.child;
+}
+
+export function splitByContent(grouped: (Token | TokenGroup)[], hasContent = isContentful) {
+    const before: Token[] = [];
+    const content: Token[] = [];
+    const after: Token[] = [];
+
+    let contentful = false;
+    let action = shift;
+    // shift -> pop -> end
+    while (action) {
+        action = action();
+    }
+
+    return contentful ? [before, content, after] : [before.concat(content), [], after];
+
+    // consumes all useless tokens before content
+    function shift() {
+        const token = head(grouped);
+        if (!token || isGroup(token) || isContentful(token)) {
+            return pop;
+        }
+
+        before.push(grouped.shift() as Token);
+
+        return shift;
+    }
+
+    // consumes all useless tokens after content
+    function pop() {
+        const token = tail(grouped);
+        if (!token || isGroup(token) || isContentful(token)) {
+            return end;
+        }
+
+        after.unshift(grouped.pop() as Token);
+
+        return pop;
+    }
+
+    // ungroup grouped content
+    // counts if content is really useful
+    function end() {
+        const token = grouped.shift();
+        if (!token) {
+            return;
+        }
+
+        if (isGroup(token)) {
+            grouped.unshift(...token.child);
+
+            return end;
+        }
+
+        if (hasContent(token)) {
+            contentful = true;
+        }
+
+        content.push(token as Token);
+
+        return end;
+    }
 }

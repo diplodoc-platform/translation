@@ -274,7 +274,7 @@ test('handles image with variables in title')`
 `;
 
 test('handles link with image with variables in title')`
-  [![Image](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?" x100)](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
+  [![Image](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?" =x100)](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
 `;
 
 test('handles empty link in list')`
@@ -338,4 +338,10 @@ test('handles html line breaks')`
     |
     [**Moes** | Matter](https://link.html?sku_id=12000038372920468)<br/><br/>Moes Matter
     |
+`;
+
+test('handles heading anchors')`
+    # Заголовок 1
+
+    ## Заголовок 2 {#heading_2}
 `;

@@ -3,30 +3,38 @@ import {sentenize} from '@diplodoc/sentenizer';
 import {token} from 'src/utils';
 import {mtre} from 'src/symbols';
 
-import {eruler, firstContentful, gobble, lastContentful} from './utils';
+import {eruler, gobble, head, splitByContent, tail} from './utils';
 
 const hasContent = (token: Token) => token.content || (token.markup && !token.skip);
 
 export function trim(part: Token[]) {
-    const [first, iFirst] = firstContentful(part);
-    if (first) {
-        part[iFirst] = token(first.type, {
+    const [before, tokens, after] = splitByContent(part);
+
+    if (!tokens.length) {
+        return part;
+    }
+
+    const first = head(tokens) as Token;
+    head(
+        tokens,
+        token(first.type, {
             ...first,
             content: first.content.trimStart(),
             generated: (first.generated || '') + '|trimStart',
-        });
-    }
+        }),
+    );
 
-    const [last, iLast] = lastContentful(part);
-    if (last) {
-        part[iLast] = token(last.type, {
+    const last = tail(tokens) as Token;
+    tail(
+        tokens,
+        token(last.type, {
             ...last,
             content: last.content.trimEnd(),
             generated: (last.generated || '') + '|trimEnd',
-        });
-    }
+        }),
+    );
 
-    return part;
+    return [...before, ...tokens, ...after];
 }
 
 function exclude(content: string, tokens: Token[]) {

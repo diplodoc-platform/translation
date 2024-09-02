@@ -1,5 +1,3 @@
-import {token} from 'src/utils';
-
 import {dropUselessTokens, eruler, gobble} from './utils';
 import {split} from './split';
 import {CriticalProcessingError} from './error';
@@ -115,26 +113,9 @@ export class Consumer {
     };
 
     consume = (part: Token[], past?: string) => {
-        let [before, tokens, after] = dropUselessTokens(part);
-
-        if (!this.compact && tokens.length) {
-            [before, tokens, after] = [[], part, []];
-        }
+        const [before, tokens, after] = dropUselessTokens(part, !this.compact);
 
         this.drop(before);
-
-        if (tokens.length === 1) {
-            // If single contentful token is something like liquid variable
-            // then this token is useless for translation.
-            if (tokens[0].type === 'liquid') {
-                after = tokens.concat(after);
-                tokens = [];
-            } else if (tokens[0].type !== 'text') {
-                tokens[0] = token('text', {
-                    content: tokens[0].content,
-                });
-            }
-        }
 
         if (tokens.length) {
             // erule has side effects and can modify tokens content
