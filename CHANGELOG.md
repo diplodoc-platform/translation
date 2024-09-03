@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.4](https://github.com/diplodoc-platform/translation/compare/v1.4.3...v1.4.4) (2024-09-03)
+
+
+### Bug Fixes
+
+* Fix heading anchors handling ([ef064de](https://github.com/diplodoc-platform/translation/commit/ef064de97a703cbda9542a6175cd3921690b6610))
+
 ## [1.4.3](https://github.com/diplodoc-platform/translation/compare/v1.4.2...v1.4.3) (2024-09-02)
 
 
