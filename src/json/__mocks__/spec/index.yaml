@@ -13,6 +13,9 @@ prop6:
   $ref: ./circular.yaml/#/c1
 prop7:
   $ref: '#/prop7'
+prop8:
+  prop:
+    $ref: '#/prop8'
 
 defs:
   d1:
