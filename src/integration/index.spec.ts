@@ -37,6 +37,7 @@ const test = (() => {
 
                 function expr() {
                     const {xliff, skeleton} = extract(markdown, {
+                        compact: false,
                         originalFile: 'file.ext',
                         skeletonFile: 'file.skl',
                         source: {

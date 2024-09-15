@@ -1,18 +1,27 @@
 import yaml from 'js-yaml';
-import xmlParser, {XmlParserElementChildNode, XmlParserElementNode} from 'xml-parser-xo';
-
-import {ComposeOptions} from 'src/experiment/adapter/types';
+import xmlParser, {
+    XmlParserElementChildNode,
+    XmlParserElementNode,
+    XmlParserResult,
+} from 'xml-parser-xo';
 
 import {YamlQuotingTypeQuote} from './constants';
 import {unescapeXmlText} from './xliff/utils';
 
 /* eslint-disable no-console */
 
-export function translate(xliffData: string, skeletonData: string, options?: ComposeOptions) {
-    const {useSource} = options ?? {};
-    const xliff = xmlParser(xliffData, {
-        strictMode: true,
-    });
+export type TranslateOptions = {
+    useSource?: boolean;
+    parsedXliff?: XmlParserResult;
+};
+
+export function translate(xliffData: string, skeletonData: string, options?: TranslateOptions) {
+    const {useSource, parsedXliff} = options ?? {};
+    const xliff =
+        parsedXliff ??
+        xmlParser(xliffData, {
+            strictMode: true,
+        });
 
     const externalFileElement = findNodeByNamePath(xliff.root, [
         'header',
@@ -128,7 +137,7 @@ function nodeToString(node: XmlParserElementChildNode): string {
     throw new Error(`Unsupported node type: ${node.type}`);
 }
 
-function getAttr(node: XmlParserElementNode, attr: string) {
+export function getAttr(node: XmlParserElementNode, attr: string) {
     let value = node.attributes[attr];
     if (typeof value !== 'undefined') {
         value = unescapeXmlText(value);
@@ -155,7 +164,7 @@ function findNodeByName(rooNode: XmlParserElementChildNode, name: string) {
     return next(rooNode);
 }
 
-function findNodeByNamePath(node: XmlParserElementChildNode, names: string[]) {
+export function findNodeByNamePath(node: XmlParserElementChildNode, names: string[]) {
     let lastResult: XmlParserElementNode | undefined;
     let cursor: XmlParserElementChildNode = node;
     for (let i = 0, len = names.length; i < len; i++) {

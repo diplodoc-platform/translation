@@ -9,6 +9,7 @@ import {translate} from 'src/experiment/translate';
 
 export function extract(content: string, options: ExtractOptions): ExtractOutput {
     const {xliff, skeleton} = transform(content, {
+        compact: options.compact,
         showTokens: options.showTokens,
         showMap: options.showMap,
         showRawMap: options.showRawMap,
