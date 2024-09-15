@@ -13,7 +13,7 @@ export class GElement extends BaseElement {
 
     toString() {
         return super.toString({
-            'equiv-text': this.equivText,
+            'equiv-text': this.compact ? undefined : this.equivText,
         });
     }
 }

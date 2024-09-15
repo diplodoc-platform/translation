@@ -38,7 +38,7 @@ import {
     tokenizeYaml,
     variableReplace,
 } from './utils';
-import {applySegmentation} from './utils/segmentation';
+import {applySegmentation, trimInlineToken} from './utils/segmentation';
 import {buildXliff, markTokens, prepareInlineToken} from './xliff/builder';
 
 /* eslint-disable no-console */
@@ -49,6 +49,7 @@ const SHOW_RAW_MAP = false;
 const SHOW_VARS = false;
 
 export interface TransformOptions {
+    compact?: boolean;
     showTokens?: boolean;
     showMap?: boolean;
     showRawMap?: boolean;
@@ -61,6 +62,7 @@ export function transform(content: string, options?: TransformOptions) {
         showMap = SHOW_MAP,
         showRawMap = SHOW_RAW_MAP,
         showVars = SHOW_VARS,
+        compact,
     } = options || {};
 
     let mdData = content;
@@ -172,21 +174,47 @@ export function transform(content: string, options?: TransformOptions) {
         return false;
     });
 
-    const replaceParts: ReplacePart[] = [];
-
-    const typeAction = {
-        inline(token: Token) {
-            const extraToken = getExtraToken(tokenExtraMap, token);
+    eachTokens(allTokens, (token) => {
+        if (token.type === 'inline') {
             if (!token.children) return false;
 
-            const {yamlToken} = extraToken;
+            const {yamlToken} = getExtraToken(tokenExtraMap, token);
             const targetToken = yamlToken ?? token;
             const data = yamlToken ? yamlToken.content : mdData;
 
             targetToken.children = prepareInlineToken(targetToken, tokenExtraMap, data);
+            return true;
+        }
+        return false;
+    });
+
+    eachTokens(allTokens, (token, _idx, tokens) => {
+        if (token.type === 'inline' && !token.attrGet('yaml')) {
+            const trimmedTokens = trimInlineToken(mdData, token, tokenExtraMap);
+            if (trimmedTokens.length > 1) {
+                const pos = tokens.indexOf(token);
+                if (pos === -1) {
+                    throw new Error('Token not found for trimming');
+                }
+                tokens.splice(pos, 1, ...trimmedTokens);
+            }
+            return true;
+        }
+        return false;
+    });
+
+    const replaceParts: ReplacePart[] = [];
+
+    const typeAction = {
+        inline(token: Token) {
+            if (!token.children) return false;
+
+            const extraToken = getExtraToken(tokenExtraMap, token);
+            const {yamlToken} = extraToken;
+            const targetToken = yamlToken ?? token;
 
             const hasText = someTokens(
-                targetToken.children,
+                targetToken.children ?? [],
                 (tokenLocal) => tokenLocal.type === 'text' && !passSymbols.test(tokenLocal.content),
             );
 
@@ -195,7 +223,7 @@ export function transform(content: string, options?: TransformOptions) {
                 const id = `${replaceParts.length + 1}${postfix}`;
                 replaceParts.push({...extraToken, token, id});
 
-                markTokens(targetToken.children, tokenExtraMap);
+                markTokens(targetToken.children ?? [], tokenExtraMap);
             }
             return true;
         },
@@ -233,7 +261,7 @@ export function transform(content: string, options?: TransformOptions) {
         });
     }
 
-    const xliff = buildXliff(replaceParts, tokenExtraMap, mdData);
+    const xliff = buildXliff(replaceParts, tokenExtraMap, mdData, compact);
 
     return {skeleton: outMd, variables: variableTextMap, xliff};
 }

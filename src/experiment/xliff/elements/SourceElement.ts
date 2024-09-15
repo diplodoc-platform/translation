@@ -3,9 +3,11 @@ import {BaseElement} from './BaseElement';
 export class SourceElement extends BaseElement {
     tag = 'source';
 
-    constructor() {
+    constructor({compact} = {compact: false}) {
         super();
-
-        this.setAttr('xml:space', 'preserve');
+        this.compact = compact;
+        if (!this.compact) {
+            this.setAttr('xml:space', 'preserve');
+        }
     }
 }

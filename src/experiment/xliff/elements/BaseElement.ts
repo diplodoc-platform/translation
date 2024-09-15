@@ -3,6 +3,7 @@ import {attributesToString} from '../utils';
 export class BaseElement {
     declare tag: string;
     children: BaseElement[] = [];
+    compact?: boolean;
 
     attrs: Record<string, string> = {};
 

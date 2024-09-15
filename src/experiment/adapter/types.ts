@@ -3,6 +3,7 @@ import languages from '@cospired/i18n-iso-languages';
 
 import {Xliff} from 'src/experiment/xliff/xliff';
 import {TransformOptions} from 'src/experiment/transform';
+import {TranslateOptions} from 'src/experiment/translate';
 
 const languagesList = languages.langs();
 
@@ -31,9 +32,7 @@ export type ExtractOutput = {
     xliff: Xliff;
 };
 
-export type ComposeOptions = Experiment & {
-    useSource?: boolean;
-};
+export type ComposeOptions = Experiment & TranslateOptions;
 
 export interface ComposeOutput {
     document: string;

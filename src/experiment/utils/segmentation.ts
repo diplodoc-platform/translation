@@ -87,7 +87,92 @@ export function applySegmentation(
     return inlineTokens;
 }
 
-function splitInlineToken(
+export function trimInlineToken(mdData: string, inlineToken: Token, tokenExtraMap: TokenExtraMap) {
+    const result = [];
+    let children;
+    let remainingPart = inlineToken;
+
+    const inheritPostfix = function (newToken: Token, prevToken: Token) {
+        const idPostfix = prevToken.attrGet('idPostfix');
+        if (idPostfix) {
+            newToken.attrSet('idPostfix', idPostfix);
+        }
+    };
+
+    const canTrimToken = (token: Token) => {
+        return ['html_inline', 'attr_anchor', 'softbreak', 'liquid_operator'].includes(token.type);
+    };
+
+    children = (remainingPart.children ?? []).slice(0);
+    let leftPoint: number | undefined;
+    for (let i = 0, len = children.length; i < len; i++) {
+        const token = children[i];
+        if (canTrimToken(token)) {
+            const extraToken = getExtraToken(tokenExtraMap, token);
+            leftPoint = extraToken.end;
+        } else {
+            if (token.type === 'text' && leftPoint) {
+                const offset = token.content.length - token.content.trimStart().length;
+                if (offset > 0) {
+                    leftPoint += offset;
+                }
+            }
+            break;
+        }
+    }
+    if (leftPoint) {
+        const [leftInlineToken, rightInlineToken] = splitInlineToken(
+            mdData,
+            remainingPart,
+            leftPoint,
+            tokenExtraMap,
+        );
+        if (leftInlineToken.content.length) {
+            result.push(leftInlineToken);
+        }
+        inheritPostfix(rightInlineToken, inlineToken);
+        remainingPart = rightInlineToken;
+    }
+
+    children = (remainingPart.children ?? []).slice(0);
+    let rightPoint: number | undefined;
+    for (let i = children.length - 1; i >= 0; i--) {
+        const token = children[i];
+        if (canTrimToken(token)) {
+            const extraToken = getExtraToken(tokenExtraMap, token);
+            rightPoint = extraToken.start;
+        } else {
+            if (token.type === 'text' && rightPoint) {
+                const offset = token.content.length - token.content.trimEnd().length;
+                if (offset > 0) {
+                    rightPoint -= offset;
+                }
+            }
+            break;
+        }
+    }
+    if (rightPoint) {
+        const [leftInlineToken, rightInlineToken] = splitInlineToken(
+            mdData,
+            remainingPart,
+            rightPoint,
+            tokenExtraMap,
+        );
+        if (leftInlineToken.content.length) {
+            inheritPostfix(leftInlineToken, remainingPart);
+            result.push(leftInlineToken);
+        }
+        remainingPart = rightInlineToken;
+    }
+
+    if (remainingPart.content.length) {
+        result.push(remainingPart);
+    }
+
+    return result;
+}
+
+export function splitInlineToken(
     mdData: string,
     inlineToken: Token,
     point: number,

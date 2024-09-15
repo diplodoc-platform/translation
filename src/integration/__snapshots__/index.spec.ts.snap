@@ -400,6 +400,7 @@ exports[`integration handles blockquotes: skeleton main 1`] = `
 
 exports[`integration handles blockquotes: xliff expr 1`] = `
 Xliff {
+  "compact": false,
   "datatype": "markdown",
   "file": "file.ext",
   "skeletonFile": "file.skl",
@@ -642,6 +643,7 @@ exports[`integration handles empty images: skeleton main 1`] = `
 
 exports[`integration handles empty images: xliff expr 1`] = `
 Xliff {
+  "compact": false,
   "datatype": "markdown",
   "file": "file.ext",
   "skeletonFile": "file.skl",
@@ -723,6 +725,7 @@ exports[`integration handles empty links: skeleton main 1`] = `
 
 exports[`integration handles empty links: xliff expr 1`] = `
 Xliff {
+  "compact": false,
   "datatype": "markdown",
   "file": "file.ext",
   "skeletonFile": "file.skl",
@@ -751,7 +754,7 @@ exports[`integration handles empty links: xliff main 1`] = `
 exports[`integration handles heading anchors: skeleton expr 1`] = `
 "# %%%1%%%
 
-## %%%2%%%"
+## %%%2%%% {#heading_2}"
 `;
 
 exports[`integration handles heading anchors: skeleton main 1`] = `
@@ -774,7 +777,7 @@ exports[`integration handles heading anchors: xliff expr 1`] = `
                 <source xml:space=\\"preserve\\">Заголовок 1</source>
             </trans-unit>
             <trans-unit id=\\"2\\">
-                <source xml:space=\\"preserve\\">Заголовок 2 <x equiv-text=\\"{#heading_2}\\" id=\\"e1\\" x-type=\\"attr_anchor\\" /></source>
+                <source xml:space=\\"preserve\\">Заголовок 2</source>
             </trans-unit>
         </body>
     </file>
@@ -802,7 +805,7 @@ exports[`integration handles heading anchors: xliff main 1`] = `
 </xliff>"
 `;
 
-exports[`integration handles html line breaks: skeleton expr 1`] = `"%%%1_s-1%%%<br/>%%%2_s-3%%%"`;
+exports[`integration handles html line breaks: skeleton expr 1`] = `"%%%1_s-1%%%<br/><br/>%%%2_s-3%%%"`;
 
 exports[`integration handles html line breaks: skeleton main 1`] = `"%%%0%%%<br/><br/>%%%1%%%"`;
 
@@ -817,7 +820,7 @@ exports[`integration handles html line breaks: xliff expr 1`] = `
         </header>
         <body>
             <trans-unit id=\\"1_s-1\\">
-                <source xml:space=\\"preserve\\"><x equiv-text=\\"![](../image.png)\\" id=\\"e1\\" x-type=\\"image\\" /><x equiv-text=\\"\\" id=\\"t1--1\\" ctype=\\"lb\\" />|<x equiv-text=\\"\\" id=\\"t3--1\\" ctype=\\"lb\\" /><g equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"e4\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e5\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g><x equiv-text=\\"&lt;br/&gt;\\" id=\\"e8\\" x-type=\\"html_inline\\" /></source>
+                <source xml:space=\\"preserve\\"><x equiv-text=\\"![](../image.png)\\" id=\\"e1\\" x-type=\\"image\\" /><x equiv-text=\\"\\" id=\\"t1--1\\" ctype=\\"lb\\" />|<x equiv-text=\\"\\" id=\\"t3--1\\" ctype=\\"lb\\" /><g equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"e4\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e5\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g></source>
             </trans-unit>
             <trans-unit id=\\"2_s-3\\">
                 <source xml:space=\\"preserve\\">Moes Matter<x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />|</source>
@@ -1357,7 +1360,9 @@ exports[`integration handles links with brackets: xliff main 1`] = `
 exports[`integration handles liquid in html attributes: skeleton expr 1`] = `
 "# %%%1%%%
 
-%%%2%%%"
+<a href=\\"{{ extref-chat-user-d9389e00 }}\\">
+<span class=\\"button\\">%%%2%%%</span>
+</a>"
 `;
 
 exports[`integration handles liquid in html attributes: skeleton main 1`] = `
@@ -1382,7 +1387,7 @@ exports[`integration handles liquid in html attributes: xliff expr 1`] = `
                 <source xml:space=\\"preserve\\">Variable in href attribute</source>
             </trans-unit>
             <trans-unit id=\\"2\\">
-                <source xml:space=\\"preserve\\"><x equiv-text=\\"&lt;a href=&quot;{{ extref-chat-user-d9389e00 }}&quot;&gt;\\" id=\\"e1\\" x-type=\\"html_inline\\" /><x equiv-text=\\"\\" id=\\"t1--1\\" ctype=\\"lb\\" /><x equiv-text=\\"&lt;span class=&quot;button&quot;&gt;\\" id=\\"e3\\" x-type=\\"html_inline\\" />Button<x equiv-text=\\"&lt;/span&gt;\\" id=\\"e4\\" x-type=\\"html_inline\\" /><x equiv-text=\\"\\" id=\\"t3--1\\" ctype=\\"lb\\" /><x equiv-text=\\"&lt;/a&gt;\\" id=\\"e6\\" x-type=\\"html_inline\\" /></source>
+                <source xml:space=\\"preserve\\">Button</source>
             </trans-unit>
         </body>
     </file>
@@ -1421,6 +1426,7 @@ exports[`integration handles multiline inline code: skeleton main 1`] = `"%%%0%%
 
 exports[`integration handles multiline inline code: xliff expr 1`] = `
 Xliff {
+  "compact": false,
   "datatype": "markdown",
   "file": "file.ext",
   "skeletonFile": "file.skl",
@@ -1559,6 +1565,7 @@ exports[`integration handles single variable as content: skeleton main 1`] = `
 
 exports[`integration handles single variable as content: xliff expr 1`] = `
 Xliff {
+  "compact": false,
   "datatype": "markdown",
   "file": "file.ext",
   "skeletonFile": "file.skl",

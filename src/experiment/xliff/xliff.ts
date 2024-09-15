@@ -5,6 +5,7 @@ import {attributesToString} from './utils';
 
 interface XliffProps {
     datatype?: string;
+    compact?: boolean;
 }
 
 export class Xliff {
@@ -13,11 +14,13 @@ export class Xliff {
     sourceLanguage = '';
     datatype: string;
     skeletonFile?: string;
+    compact?: boolean;
 
     transUnits: TransUnitElement[] = [];
 
-    constructor({datatype = 'markdown'}: XliffProps = {}) {
+    constructor({datatype = 'markdown', compact}: XliffProps = {}) {
         this.datatype = datatype;
+        this.compact = compact;
     }
 
     setFile(path: string) {
@@ -54,20 +57,22 @@ export class Xliff {
         const data = `<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file${attributesToString({
-      original: this.file,
+      original: this.compact ? undefined : this.file,
       'source-language': this.sourceLanguage,
       'target-language': this.targetLanguage,
       datatype: this.datatype,
   })}>
-    <header>
-      ${
-          this.skeletonFile
-              ? `<skeleton>
-        <external-file${attributesToString({href: this.skeletonFile})}></external-file>
-      </skeleton>`
-              : ''
-      }
-    </header>
+    ${
+        this.compact
+            ? ''
+            : `<header>${
+                  this.skeletonFile
+                      ? `<skeleton>
+    <external-file${attributesToString({href: this.skeletonFile})}></external-file>
+</skeleton>`
+                      : ''
+              }</header>`
+    }
     <body>
     ${this.transUnits.map((unit) => unit.toString()).join('\n')}
     </body>

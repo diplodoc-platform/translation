@@ -21,16 +21,17 @@ export const buildXliff = (
     replaceParts: ReplacePart[],
     tokenExtraMap: TokenExtraMap,
     mdData: string,
+    compact = false,
 ) => {
-    const xliff = new Xliff();
+    const xliff = new Xliff({compact});
 
     replaceParts.forEach(({token, id, yamlToken}) => {
         let transUnit;
         if (yamlToken) {
             const data = yamlToken.content;
-            transUnit = buildTransUnit(id, yamlToken, tokenExtraMap, data);
+            transUnit = buildTransUnit(id, yamlToken, tokenExtraMap, data, compact);
         } else {
-            transUnit = buildTransUnit(id, token, tokenExtraMap, mdData);
+            transUnit = buildTransUnit(id, token, tokenExtraMap, mdData, compact);
         }
         xliff.appendTransUnit(transUnit);
     });
@@ -43,10 +44,11 @@ function buildTransUnit(
     inlineToken: Token,
     tokenExtraMap: TokenExtraMap,
     mdData: string,
+    compact: boolean,
 ) {
     const transUnit = new TransUnitElement(transUnitId);
 
-    const source = new SourceElement();
+    const source = new SourceElement({compact});
     transUnit.appendElement(source);
 
     let level = 0;
@@ -64,10 +66,15 @@ function buildTransUnit(
             const [, name, state] = typeM;
             if (state === 'open') {
                 const element = new GElement(id, raw);
-                if (name in tokenNameCType) {
-                    element.setAttr('ctype', tokenNameCType[name as keyof typeof tokenNameCType]);
+                if (!compact) {
+                    if (name in tokenNameCType) {
+                        element.setAttr(
+                            'ctype',
+                            tokenNameCType[name as keyof typeof tokenNameCType],
+                        );
+                    }
+                    element.setAttr('x-type', name);
                 }
-                element.setAttr('x-type', name);
                 element.setAttr('x-begin', raw);
 
                 levelToken.push(element);
@@ -96,7 +103,9 @@ function buildTransUnit(
             });
         } else if (raw.length > 0) {
             const element = new XElement(id, raw);
-            element.setAttr('x-type', token.type);
+            if (!compact) {
+                element.setAttr('x-type', token.type);
+            }
             parentElement.appendElement(element);
         }
     });
