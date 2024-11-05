@@ -6,6 +6,7 @@ import type {SkeletonOptions} from 'src/skeleton';
 
 import {ok} from 'node:assert';
 import Ajv from 'ajv';
+import ajvKeywords from 'ajv-keywords';
 
 import {hash} from 'src/hash';
 import {fromXLIFF, parse, template} from 'src/xliff';
@@ -17,7 +18,16 @@ type JSONSchemas = {
     schemas: JSONSchema[];
 };
 
-export type ExtractOptions = JSONSchemas & TemplateOptions & SkeletonOptions;
+export type AjvOptions = {
+    keywords?: string[];
+    extendWithSchemas?: JSONSchema[];
+};
+
+export type AjvConfig = {
+    ajvOptions?: AjvOptions;
+};
+
+export type ExtractOptions = JSONSchemas & TemplateOptions & SkeletonOptions & AjvConfig;
 
 export type ExtractOutput = {
     skeleton: JSONObject;
@@ -25,15 +35,15 @@ export type ExtractOutput = {
     units: string[];
 };
 
-export type ComposeOptions = JSONSchemas & ParseOptions;
+export type ComposeOptions = JSONSchemas & ParseOptions & AjvConfig;
 
 export function extract(
     content: JSONObject,
-    {schemas = [], source, target, compact}: ExtractOptions,
+    {schemas = [], source, target, compact, ajvOptions}: ExtractOptions,
 ): ExtractOutput {
     const mainSchema = getMainSchema(content, schemas);
     const hashed = hash();
-    const ajv = setupAjv(schemas);
+    const ajv = setupAjv(schemas, ajvOptions);
 
     ajv.addKeyword(translate.extract(hashed, {compact}));
     ajv.validate(mainSchema, content);
@@ -46,11 +56,11 @@ export function extract(
 export function compose(
     skeleton: JSONObject,
     xliff: string | string[],
-    {schemas = [], useSource = false}: ComposeOptions,
+    {schemas = [], useSource = false, ajvOptions}: ComposeOptions,
 ) {
     const mainSchema = getMainSchema(skeleton, schemas);
     const units = parse(xliff, {useSource}).map(fromXLIFF);
-    const ajv = setupAjv(schemas);
+    const ajv = setupAjv(schemas, ajvOptions);
 
     ajv.addKeyword(translate.compose(units));
     ajv.validate(mainSchema, skeleton);
@@ -58,8 +68,9 @@ export function compose(
     return skeleton;
 }
 
-function setupAjv(schemas: JSONSchema7[]) {
-    schemas = schemas.concat([jsonSchema]);
+function setupAjv(schemas: JSONSchema7[], ajvOptions: AjvOptions = {}) {
+    const {keywords, extendWithSchemas = [jsonSchema]} = ajvOptions;
+    schemas = schemas.concat(extendWithSchemas);
 
     const ajv = new Ajv({
         strictSchema: false,
@@ -67,7 +78,12 @@ function setupAjv(schemas: JSONSchema7[]) {
         validateFormats: false,
         strict: false,
         allErrors: true,
+        $data: true,
     });
+
+    if (keywords) {
+        ajvKeywords(ajv, keywords);
+    }
 
     schemas.forEach((schema) => {
         ajv.removeSchema(schema);
