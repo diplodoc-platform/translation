@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/diplodoc-platform/translation/compare/v1.4.4...v1.5.0) (2024-11-13)
+
+
+### Features
+
+* extend setupAjv options ([8044163](https://github.com/diplodoc-platform/translation/commit/8044163c8ff9d541cf7d0388d5b96c692d231969))
+
 ## [1.4.4](https://github.com/diplodoc-platform/translation/compare/v1.4.3...v1.4.4) (2024-09-03)
 
 
