@@ -98,10 +98,6 @@ export class Consumer {
                 past: string;
             }[];
 
-            if (window) {
-                this.unsetWindow();
-            }
-
             return result;
         } catch (error) {
             if (error instanceof CriticalProcessingError) {
@@ -109,6 +105,10 @@ export class Consumer {
             }
 
             throw error;
+        } finally {
+            if (window) {
+                this.unsetWindow();
+            }
         }
     };
 
