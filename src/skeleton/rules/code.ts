@@ -3,6 +3,7 @@ import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
 
 import {CodeProcessing} from 'src/consumer';
+import {Liquid} from 'src/skeleton/liquid';
 import {token} from 'src/utils';
 
 function* sh(content: string) {
@@ -76,20 +77,21 @@ export const code: Renderer.RenderRuleRecord = {
             return '';
         }
 
-        if (
-            match &&
-            [CodeProcessing.PRECISE, CodeProcessing.ADAPTIVE].includes(mode as CodeProcessing)
-        ) {
-            for (const token of match(code.content)) {
-                this.state.process(token);
+        if ([CodeProcessing.PRECISE, CodeProcessing.ADAPTIVE].includes(mode as CodeProcessing)) {
+            if (match) {
+                for (const token of match(code.content)) {
+                    this.state.process(token);
+                }
+
+                return '';
+            } else if (lang === 'text') {
+                this.state.consume([token('skip', {skip: code.markup})]);
+                this.state.consume(new Liquid(code.content).tokenize());
+                this.state.consume([token('skip', {skip: code.markup})]);
+
+                return '';
             }
-
-            return '';
         }
-
-        this.state.consume([token('skip', {skip: code.markup})]);
-        this.state.consume([token('text', {content: code.content})]);
-        this.state.consume([token('skip', {skip: code.markup})]);
 
         return '';
     },
