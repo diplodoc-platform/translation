@@ -504,37 +504,37 @@ exports[`integration handles code regexps with escape chars: xliff main 1`] = `
 `;
 
 exports[`integration handles different tabspaces: skeleton expr 1`] = `
-"- %%%1%%%
+"  - %%%1%%%
 
-  - %%%2%%%
+    - %%%2%%%
 
-    <div style=\\"padding: 15px;
-            border: 1px solid var(--yc-color-line-generic);\\">
-    </div>
+      <div style=\\"padding: 15px;
+              border: 1px solid var(--yc-color-line-generic);\\">
+      </div>
 
 
-%%%3%%%
+- %%%3%%%
 
-<div style=\\"padding: 15px;
-      border: 1px solid var(--yc-color-line-generic);\\">
-</div>"
+  <div style=\\"padding: 15px;
+        border: 1px solid var(--yc-color-line-generic);\\">
+  </div>"
 `;
 
 exports[`integration handles different tabspaces: skeleton main 1`] = `
-"- %%%0%%%
+"  - %%%0%%%
 
-  - %%%1%%%
+    - %%%1%%%
 
-    <div style=\\"padding: 15px;
-            border: 1px solid var(--yc-color-line-generic);\\">
-    </div>
+      <div style=\\"padding: 15px;
+              border: 1px solid var(--yc-color-line-generic);\\">
+      </div>
 
 
-%%%2%%%
+- %%%2%%%
 
-<div style=\\"padding: 15px;
-      border: 1px solid var(--yc-color-line-generic);\\">
-</div>"
+  <div style=\\"padding: 15px;
+        border: 1px solid var(--yc-color-line-generic);\\">
+  </div>"
 `;
 
 exports[`integration handles different tabspaces: xliff expr 1`] = `
@@ -579,6 +579,49 @@ exports[`integration handles different tabspaces: xliff main 1`] = `
       </trans-unit>
       <trans-unit id=\\"2\\">
         <source xml:space=\\"preserve\\">B</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles dot in paired markup: skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration handles dot in paired markup: skeleton main 1`] = `"**%%%0%%% %%%1%%%**"`;
+
+exports[`integration handles dot in paired markup: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Шаг 1. Воспроизведите ошибку</g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles dot in paired markup: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Шаг 1.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Воспроизведите ошибку</source>
       </trans-unit>
     </body>
   </file>
@@ -674,7 +717,10 @@ exports[`integration handles empty link in list: skeleton expr 1`] = `
  [](../empty/link)"
 `;
 
-exports[`integration handles empty link in list: skeleton main 1`] = `"1. %%%0%%%](../empty/link)"`;
+exports[`integration handles empty link in list: skeleton main 1`] = `
+"1. %%%0%%%
+ [](../empty/link)"
+`;
 
 exports[`integration handles empty link in list: xliff expr 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
@@ -705,8 +751,7 @@ exports[`integration handles empty link in list: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.<x ctype=\\"lb\\" equiv-text=\\"
- \\" id=\\"g-test\\"/><x ctype=\\"link_text_part_open\\" equiv-text=\\"[\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.</source>
       </trans-unit>
     </body>
   </file>

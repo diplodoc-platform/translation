@@ -347,3 +347,7 @@ test('handles heading anchors')`
 
     ## Заголовок 2 {#heading_2}
 `;
+
+test('handles dot in paired markup')`
+    **Шаг 1. Воспроизведите ошибку**
+`;
