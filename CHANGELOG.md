@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.5.1](https://github.com/diplodoc-platform/translation/compare/v1.5.0...v1.5.1) (2024-12-02)
+
+
+### Bug Fixes
+
+* fix code translation ([0378772](https://github.com/diplodoc-platform/translation/commit/0378772b1a41cd35c06395e9d48e9244198d07fb))
+* fix window close after error ([5c3978d](https://github.com/diplodoc-platform/translation/commit/5c3978db2134641460c8d97cd91927aeae399c07))
+* Handle multiple segments in paired markup ([0faf216](https://github.com/diplodoc-platform/translation/commit/0faf2164e3a95f51276c5e8412aaa3b40cfe9d84))
+* Handle unclosed paired markup ([1979afe](https://github.com/diplodoc-platform/translation/commit/1979afeaec10549e501a65ceef94e0a653ea4591))
+
 ## [1.5.0](https://github.com/diplodoc-platform/translation/compare/v1.4.4...v1.5.0) (2024-11-13)
 
 
