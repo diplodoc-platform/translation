@@ -83,6 +83,7 @@ type TokenGroup = {
     type: string;
     child: (Token | TokenGroup)[];
     parent?: TokenGroup;
+    closed: boolean;
 };
 
 export function head(tokens: (TokenGroup | Token)[], value?: TokenGroup | Token) {
@@ -117,7 +118,7 @@ function isGroup(token: Token | TokenGroup): token is TokenGroup {
 }
 
 function groupUselessTokens(tokens: Token[]): (Token | TokenGroup)[] | null {
-    const tree = {role: 'group', type: 'root', child: []};
+    const tree = {role: 'group', type: 'root', child: [], closed: true};
 
     let group: TokenGroup = tree;
     for (const token of tokens) {
@@ -130,16 +131,31 @@ function groupUselessTokens(tokens: Token[]): (Token | TokenGroup)[] | null {
                         type: match.type,
                         child: [token],
                         parent: group,
+                        closed: false,
                     }),
                 );
             } else if (group.type === match.type) {
                 group.child.push(token);
+                group.closed = true;
                 group = group.parent as TokenGroup;
             } else {
                 return null;
             }
         } else {
             group.child.push(token);
+        }
+    }
+
+    if (!group.closed) {
+        while (group && group.parent) {
+            const parent = group.parent;
+
+            // remove opened group from parent
+            parent.child.pop();
+            // push opened group content directly to parent
+            parent.child.push(...group.child);
+
+            group = parent;
         }
     }
 
