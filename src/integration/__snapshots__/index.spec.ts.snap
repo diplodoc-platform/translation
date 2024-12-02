@@ -1798,17 +1798,19 @@ exports[`integration link variable leak: skeleton main 1`] = `
 
 ||
 \`\`\`
-%%%3%%%\`\`\`
+POST
+\`\`\`
 | 
 \`\`\`
-%%%4%%%\`\`\`
+https://api.example.ru/businesses/{businessId}/offer-mappings/update
+\`\`\`
 |||#
 
-### %%%5%%%
+### %%%3%%%
 
-#||| %%%6%%% | %%%7%%% | %%%8%%% ||
+#||| %%%4%%% | %%%5%%% | %%%6%%% ||
 
-|| %%%9%%% | %%%10%%% | %%%11%%% |||#"
+|| %%%7%%% | %%%8%%% | %%%9%%% |||#"
 `;
 
 exports[`integration link variable leak: xliff expr 1`] = `
@@ -1876,32 +1878,24 @@ exports[`integration link variable leak: xliff main 1`] = `
         <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">url</g></source>
       </trans-unit>
       <trans-unit id=\\"3\\">
-        <source xml:space=\\"preserve\\">POST
-</source>
-      </trans-unit>
-      <trans-unit id=\\"4\\">
-        <source xml:space=\\"preserve\\">https://api.example.ru/businesses/{businessId}/offer-mappings/update
-</source>
-      </trans-unit>
-      <trans-unit id=\\"5\\">
         <source xml:space=\\"preserve\\">Path parameters</source>
       </trans-unit>
-      <trans-unit id=\\"6\\">
+      <trans-unit id=\\"4\\">
         <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Name</g></source>
       </trans-unit>
-      <trans-unit id=\\"7\\">
+      <trans-unit id=\\"5\\">
         <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Type</g></source>
       </trans-unit>
-      <trans-unit id=\\"8\\">
+      <trans-unit id=\\"6\\">
         <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Description</g></source>
       </trans-unit>
-      <trans-unit id=\\"9\\">
+      <trans-unit id=\\"7\\">
         <source xml:space=\\"preserve\\">businessId</source>
       </trans-unit>
-      <trans-unit id=\\"10\\">
+      <trans-unit id=\\"8\\">
         <source xml:space=\\"preserve\\">integer&amp;lt;int64&amp;gt;</source>
       </trans-unit>
-      <trans-unit id=\\"11\\">
+      <trans-unit id=\\"9\\">
         <source xml:space=\\"preserve\\">Description</source>
       </trans-unit>
     </body>
