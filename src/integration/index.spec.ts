@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-irregular-whitespace */
 
+import {dedent} from 'ts-dedent';
+
 import {compose, extract} from 'src/api';
-import {trim} from 'src/utils';
 
 const test = (() => {
     function test(name: string, call?: 'skip' | 'only') {
         return function (parts: TemplateStringsArray, ...vars: string[]) {
             describe('integration', () => {
                 const caller = call ? it[call] : it;
-                const markdown = trim(parts, vars);
+                const markdown = vars.length ? dedent(parts, vars) : dedent(parts);
 
                 function main() {
                     const {xliff, skeleton, units} = extract(markdown, {

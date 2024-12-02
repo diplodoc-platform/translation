@@ -1,6 +1,6 @@
 import type {Consumer} from './index';
 
-import {trim} from 'src/utils';
+import {dedent} from 'ts-dedent';
 
 type Position = {start: number; end: number};
 
@@ -18,7 +18,7 @@ export class CriticalProcessingError extends Error {
             match,
         } = this;
 
-        return trim`
+        return dedent`
           Target fragment:
           "\u001b[38;2;150;150;150m
             ${short(match)}
