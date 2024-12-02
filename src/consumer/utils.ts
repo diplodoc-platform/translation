@@ -151,6 +151,8 @@ export function splitByContent(grouped: (Token | TokenGroup)[], hasContent = isC
     const content: Token[] = [];
     const after: Token[] = [];
 
+    grouped = grouped.slice();
+
     let contentful = false;
     let action = shift;
     // shift -> pop -> end
