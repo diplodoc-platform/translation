@@ -16,6 +16,7 @@ import {
 } from './mdExp';
 import {compose as composeJson, extract as extraactJson} from './json';
 import {validate} from './validate';
+export type {AjvOptions} from './json';
 
 const type = (content: string | JSONObject, experimental: boolean) => {
     if (typeof content === 'string') {

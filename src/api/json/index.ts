@@ -43,7 +43,7 @@ export function extract(
 ): ExtractOutput {
     const mainSchema = getMainSchema(content, schemas);
     const hashed = hash();
-    const ajv = setupAjv(schemas, ajvOptions);
+    const ajv = setupAjv(schemas, ajvOptions, mainSchema);
 
     ajv.addKeyword(translate.extract(hashed, {compact}));
     ajv.validate(mainSchema, content);
@@ -60,7 +60,7 @@ export function compose(
 ) {
     const mainSchema = getMainSchema(skeleton, schemas);
     const units = parse(xliff, {useSource}).map(fromXLIFF);
-    const ajv = setupAjv(schemas, ajvOptions);
+    const ajv = setupAjv(schemas, ajvOptions, mainSchema);
 
     ajv.addKeyword(translate.compose(units));
     ajv.validate(mainSchema, skeleton);
@@ -68,7 +68,7 @@ export function compose(
     return skeleton;
 }
 
-function setupAjv(schemas: JSONSchema7[], ajvOptions: AjvOptions = {}) {
+function setupAjv(schemas: JSONSchema7[], ajvOptions: AjvOptions = {}, mainSchema: JSONSchema7) {
     const {keywords, extendWithSchemas = [jsonSchema]} = ajvOptions;
     schemas = schemas.concat(extendWithSchemas);
 
@@ -87,14 +87,17 @@ function setupAjv(schemas: JSONSchema7[], ajvOptions: AjvOptions = {}) {
 
     schemas.forEach((schema) => {
         ajv.removeSchema(schema);
-        ajv.addSchema(schema);
+
+        if (schema.$id !== mainSchema.$id) {
+            ajv.addSchema(schema);
+        }
     });
 
     return ajv;
 }
 
 function getMainSchema(content: JSONObject, schemas: JSONSchema[]) {
-    const schemaMap = zip(schemas, '$id');
+    const schemaMap = zip([openapiSchema31, openapiSchema30, ...schemas], '$id');
 
     const _schema = (content as unknown as JSONSchema).$schema;
     if (typeof _schema === 'string') {
@@ -109,15 +112,31 @@ function getMainSchema(content: JSONObject, schemas: JSONSchema[]) {
         return schema;
     }
 
-    let _openapi = (content as unknown as OpenAPIV3.Document).openapi;
+    const _openapi = (content as unknown as OpenAPIV3.Document).openapi;
     if (typeof _openapi === 'string' || typeof _openapi === 'number') {
-        _openapi = String(_openapi);
+        return getOpenAPISchema(resolveOpenAPIVersion(_openapi), schemaMap);
+    }
 
-        switch (true) {
-            case _openapi.startsWith('3.1'):
-                return openapiSchema31;
-            case _openapi.startsWith('3'):
-                return openapiSchema30;
+    return schemas[0];
+}
+
+function resolveOpenAPIVersion(version: string) {
+    switch (true) {
+        case version.startsWith('3.1'):
+            return '3.1';
+        case version.startsWith('3'):
+            return '3.0';
+        default:
+            return '3.0';
+    }
+}
+
+function getOpenAPISchema(version: string, schemas: Record<string, JSONSchema>) {
+    const schemaMapKeys = Object.keys(schemas);
+
+    for (const key of schemaMapKeys) {
+        if (key.includes(version)) {
+            return schemas[key];
         }
     }
 
