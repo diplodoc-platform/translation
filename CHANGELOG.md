@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/diplodoc-platform/translation/compare/v1.5.1...v1.6.0) (2025-01-29)
+
+
+### Features
+
+* add optional schema list param ([e77bf49](https://github.com/diplodoc-platform/translation/commit/e77bf4920280f4ab82534d3c1501587c5503aaa3))
+
 ## [1.5.1](https://github.com/diplodoc-platform/translation/compare/v1.5.0...v1.5.1) (2024-12-02)
 
 
