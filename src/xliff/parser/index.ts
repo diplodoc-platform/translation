@@ -38,7 +38,10 @@ function parseTargets(targets: Element[]) {
         inorderNodes(target, ref);
 
         const tokens = nodesIntoXLFTokens(ref.nodes);
-        parsed.push(tokens);
+
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const idx = Number((target.parent! as Element).attribs.id);
+        parsed[idx] = tokens;
 
         ref.nodes = [];
     }
