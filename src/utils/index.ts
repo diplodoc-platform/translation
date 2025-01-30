@@ -26,7 +26,7 @@ export function replace(source: string, units: string[]): [string, boolean] {
         id = Number(id);
 
         if (!units[id]) {
-            throw new Error('Translation token not found.');
+            throw new Error(`Translation token not found. Token id: ${id}`);
         }
 
         let [value, submatch] = replace(units[id], units);
