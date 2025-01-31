@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.0](https://github.com/diplodoc-platform/translation/compare/v1.6.0...v1.7.0) (2025-01-31)
+
+
+### Features
+
+* add verbose error text on token not found exception ([9b98a03](https://github.com/diplodoc-platform/translation/commit/9b98a030aae58dba424a69f845cf1326c38cf425))
+* make trans-unit id mapping ([00ce500](https://github.com/diplodoc-platform/translation/commit/00ce50064ecfbdb92157c4dcd46fc538c4d9de1d))
+
 ## [1.6.0](https://github.com/diplodoc-platform/translation/compare/v1.5.1...v1.6.0) (2025-01-29)
 
 
