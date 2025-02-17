@@ -1354,6 +1354,95 @@ exports[`integration handles inline includes: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles link after abbreviation: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration handles link after abbreviation: skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration handles link after abbreviation: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Sentence first ex.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link.md)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">link</g> second sentence.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles link after abbreviation: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence first ex. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link.md)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">link</g> second sentence.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles link after sentence ending: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration handles link after sentence ending: skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration handles link after sentence ending: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Sentence first.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link.md)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">Second</g> sentence.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles link after sentence ending: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence first.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](link.md)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">Second</g> sentence.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles link with empty title at the end of segment: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
 exports[`integration handles link with empty title at the end of segment: skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
