@@ -7,6 +7,38 @@ import {eruler, gobble, head, splitByContent, tail} from './utils';
 
 const hasContent = (token: Token) => token.content || (token.markup && !token.skip);
 
+const normalizePart = (tokens: Token[]) => {
+    const stack: number[] = [];
+
+    for (const [idx, token] of tokens.entries()) {
+        if (idx !== 0 && token.type === 'link_open') {
+            stack.push(idx);
+        }
+
+        if (token.type === 'link_close') {
+            stack.pop();
+        }
+    }
+
+    if (!stack.length) {
+        return {
+            currentPart: tokens,
+            nextPart: [],
+        };
+    }
+
+    const nextPart: Token[] = [];
+
+    for (const idx of stack) {
+        nextPart.push(...tokens.splice(idx, 1));
+    }
+
+    return {
+        currentPart: tokens,
+        nextPart,
+    };
+};
+
 export function trim(part: Token[]) {
     const [before, tokens, after] = splitByContent(part);
 
@@ -75,8 +107,9 @@ export function split(tokens: Token[]) {
         token && (token.content || token.skip || token.markup) && part.push(token);
     const release = () => {
         if (part.length) {
-            parts.push(trim(part));
-            part = [];
+            const {currentPart, nextPart} = normalizePart(part);
+            parts.push(trim(currentPart));
+            part = nextPart;
             content = '';
         }
     };
