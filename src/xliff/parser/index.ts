@@ -40,8 +40,13 @@ function parseTargets(targets: Element[]) {
         const tokens = nodesIntoXLFTokens(ref.nodes);
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const idx = Number((target.parent! as Element).attribs.id);
-        parsed[idx] = tokens;
+        const idx = Number((target.parent! as Element)?.attribs?.id);
+
+        if (idx) {
+            parsed[idx] = tokens;
+        } else {
+            parsed.push(tokens);
+        }
 
         ref.nodes = [];
     }
