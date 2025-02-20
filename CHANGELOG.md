@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/diplodoc-platform/translation/compare/v1.7.0...v1.7.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* parents without attribs ([2b415d7](https://github.com/diplodoc-platform/translation/commit/2b415d7050a60ac2e5847f438f29dea0106e455b))
+
 ## [1.7.0](https://github.com/diplodoc-platform/translation/compare/v1.6.0...v1.7.0) (2025-01-31)
 
 
