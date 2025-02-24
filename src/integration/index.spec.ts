@@ -267,6 +267,14 @@ test('handles inline includes')`
   OK
 `;
 
+test('handles link after sentence ending')`
+    Sentence first. [Second](link.md) sentence.
+`;
+
+test('handles link after abbreviation')`
+    Sentence first ex. [link](link.md) second sentence.
+`;
+
 test('handles link with variables in title')`
   [Link](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
 `;
