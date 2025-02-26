@@ -77,21 +77,25 @@ export const code: Renderer.RenderRuleRecord = {
             return '';
         }
 
-        if ([CodeProcessing.PRECISE, CodeProcessing.ADAPTIVE].includes(mode as CodeProcessing)) {
-            if (match) {
-                for (const token of match(code.content)) {
-                    this.state.process(token);
-                }
-
-                return '';
-            } else if (lang === 'text') {
-                this.state.consume([token('skip', {skip: code.markup})]);
-                this.state.consume(new Liquid(code.content).tokenize());
-                this.state.consume([token('skip', {skip: code.markup})]);
-
-                return '';
+        if (match) {
+            for (const token of match(code.content)) {
+                this.state.process(token);
             }
+
+            return '';
         }
+
+        if (lang === 'text') {
+            this.state.consume([token('skip', {skip: code.markup})]);
+            this.state.consume(new Liquid(code.content).tokenize());
+            this.state.consume([token('skip', {skip: code.markup})]);
+
+            return '';
+        }
+
+        this.state.consume([token('skip', {skip: code.markup})]);
+        this.state.consume([token('text', {content: code.content})]);
+        this.state.consume([token('skip', {skip: code.markup})]);
 
         return '';
     },

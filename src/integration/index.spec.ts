@@ -351,3 +351,44 @@ test('handles heading anchors')`
 test('handles dot in paired markup')`
     **Шаг 1. Воспроизведите ошибку**
 `;
+
+test('handles default code block as text')`
+    Кодблок без указания языка
+
+    \`\`\`
+    Такой вот простенький кодблок
+    \`\`\`
+
+`;
+
+test('handles text code block')`
+    Кодблок text
+
+    \`\`\`text
+    Такой вот простенький кодблок
+    \`\`\`
+`;
+
+test('handles bash code block')`
+    Кодблок bash
+
+    \`\`\`bash
+    curl -H "Authorization: OAuth <ваш-OAuth-токен>" -X GET https://courier.yandex.ru/api/v1/test
+    \`\`\`
+`;
+
+test('handles translate=no code block')`
+    Кодблок не переводить
+
+    \`\`\`bash translate=no
+    curl -H "Authorization: OAuth <ваш-OAuth-токен>" -X GET https://courier.yandex.ru/api/v1/test
+    \`\`\`
+`;
+
+test('handles {} and <> braces in code block')`
+    Кодблок с фигурными скобками
+
+    \`\`\`bash
+    curl https://oauth.yandex.{{domain}}/authorize?response_type=token&client_id=<идентификатор приложения>
+    \`\`\`
+`;

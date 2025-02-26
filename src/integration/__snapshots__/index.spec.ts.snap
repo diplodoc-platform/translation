@@ -326,6 +326,64 @@ exports[`integration handles &nbsp; in lists: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles {} and <> braces in code block: skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`bash
+%%%2_code%%%
+\`\`\`"
+`;
+
+exports[`integration handles {} and <> braces in code block: skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`bash
+curl https://oauth.yandex.{{domain}}/authorize?response_type=token&client_id=<%%%1%%%>
+\`\`\`"
+`;
+
+exports[`integration handles {} and <> braces in code block: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок с фигурными скобками</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">curl https://oauth.yandex.<g equiv-text=\\"{{{{text}}}}\\" id=\\"e1\\" x-type=\\"xliff_special\\" x-begin=\\"{{\\" x-end=\\"}}\\">domain</g>/authorize?response_type=token&amp;client_id=&lt;идентификатор приложения&gt;</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles {} and <> braces in code block: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок с фигурными скобками</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">идентификатор приложения</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles autolinks: skeleton expr 1`] = `
 "* %%%1%%%
 * %%%2%%%"
@@ -372,6 +430,64 @@ exports[`integration handles autolinks: xliff main 1`] = `
       </trans-unit>
       <trans-unit id=\\"1\\">
         <source xml:space=\\"preserve\\">B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"g-test\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles bash code block: skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`bash
+%%%2_code%%%
+\`\`\`"
+`;
+
+exports[`integration handles bash code block: skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`bash
+curl -H \\"Authorization: OAuth <%%%1%%%>\\" -X GET https://courier.yandex.ru/api/v1/test
+\`\`\`"
+`;
+
+exports[`integration handles bash code block: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок bash</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">curl -H &quot;Authorization: OAuth &lt;ваш-OAuth-токен&gt;&quot; -X GET https://courier.yandex.ru/api/v1/test</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles bash code block: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок bash</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">ваш-OAuth-токен</source>
       </trans-unit>
     </body>
   </file>
@@ -497,6 +613,66 @@ exports[`integration handles code regexps with escape chars: xliff main 1`] = `
       </trans-unit>
       <trans-unit id=\\"3\\">
         <source xml:space=\\"preserve\\"><x ctype=\\"code_open\\" equiv-text=\\"\`\`\\" id=\\"g-test\\"/>[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.<x ctype=\\"code_close\\" equiv-text=\\"\`\`\\" id=\\"g-test\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles default code block as text: skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`
+%%%2_code%%%
+\`\`\`
+"
+`;
+
+exports[`integration handles default code block as text: skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`
+%%%1%%%\`\`\`
+"
+`;
+
+exports[`integration handles default code block as text: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок без указания языка</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">Такой вот простенький кодблок</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles default code block as text: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок без указания языка</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Такой вот простенький кодблок
+</source>
       </trans-unit>
     </body>
   </file>
@@ -1698,6 +1874,64 @@ exports[`integration handles terms: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles text code block: skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`text
+%%%2_code%%%
+\`\`\`"
+`;
+
+exports[`integration handles text code block: skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`text
+%%%1%%%\`\`\`"
+`;
+
+exports[`integration handles text code block: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок text</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">Такой вот простенький кодблок</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles text code block: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок text</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Такой вот простенький кодблок
+</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles titleless notes: skeleton expr 1`] = `
 "{% note info %}
 
@@ -1744,6 +1978,61 @@ exports[`integration handles titleless notes: xliff main 1`] = `
     <body>
       <trans-unit id=\\"0\\">
         <source xml:space=\\"preserve\\">Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles translate=no code block: skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`bash translate=no
+%%%2_code%%%
+\`\`\`"
+`;
+
+exports[`integration handles translate=no code block: skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`bash translate=no
+curl -H \\"Authorization: OAuth <ваш-OAuth-токен>\\" -X GET https://courier.yandex.ru/api/v1/test
+\`\`\`"
+`;
+
+exports[`integration handles translate=no code block: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок не переводить</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">curl -H &quot;Authorization: OAuth &lt;ваш-OAuth-токен&gt;&quot; -X GET https://courier.yandex.ru/api/v1/test</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles translate=no code block: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок не переводить</source>
       </trans-unit>
     </body>
   </file>
@@ -1843,19 +2132,17 @@ exports[`integration link variable leak: skeleton main 1`] = `
 
 ||
 \`\`\`
-POST
-\`\`\`
+%%%3%%%\`\`\`
 | 
 \`\`\`
-https://api.example.ru/businesses/{businessId}/offer-mappings/update
-\`\`\`
+%%%4%%%\`\`\`
 |||#
 
-### %%%3%%%
+### %%%5%%%
 
-#||| %%%4%%% | %%%5%%% | %%%6%%% ||
+#||| %%%6%%% | %%%7%%% | %%%8%%% ||
 
-|| %%%7%%% | %%%8%%% | %%%9%%% |||#"
+|| %%%9%%% | %%%10%%% | %%%11%%% |||#"
 `;
 
 exports[`integration link variable leak: xliff expr 1`] = `
@@ -1923,24 +2210,32 @@ exports[`integration link variable leak: xliff main 1`] = `
         <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">url</g></source>
       </trans-unit>
       <trans-unit id=\\"3\\">
-        <source xml:space=\\"preserve\\">Path parameters</source>
+        <source xml:space=\\"preserve\\">POST
+</source>
       </trans-unit>
       <trans-unit id=\\"4\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Name</g></source>
+        <source xml:space=\\"preserve\\">https://api.example.ru/businesses/{businessId}/offer-mappings/update
+</source>
       </trans-unit>
       <trans-unit id=\\"5\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Type</g></source>
+        <source xml:space=\\"preserve\\">Path parameters</source>
       </trans-unit>
       <trans-unit id=\\"6\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Description</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Name</g></source>
       </trans-unit>
       <trans-unit id=\\"7\\">
-        <source xml:space=\\"preserve\\">businessId</source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Type</g></source>
       </trans-unit>
       <trans-unit id=\\"8\\">
-        <source xml:space=\\"preserve\\">integer&amp;lt;int64&amp;gt;</source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Description</g></source>
       </trans-unit>
       <trans-unit id=\\"9\\">
+        <source xml:space=\\"preserve\\">businessId</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source xml:space=\\"preserve\\">integer&amp;lt;int64&amp;gt;</source>
+      </trans-unit>
+      <trans-unit id=\\"11\\">
         <source xml:space=\\"preserve\\">Description</source>
       </trans-unit>
     </body>
