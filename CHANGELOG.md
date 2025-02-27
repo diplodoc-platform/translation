@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.2](https://github.com/diplodoc-platform/translation/compare/v1.7.1...v1.7.2) (2025-02-27)
+
+
+### Bug Fixes
+
+* add code block to xliff ([ca0b07b](https://github.com/diplodoc-platform/translation/commit/ca0b07b3de6bf9553900861204d636c70250f9f9))
+
 ## [1.7.1](https://github.com/diplodoc-platform/translation/compare/v1.7.0...v1.7.1) (2025-02-20)
 
 
