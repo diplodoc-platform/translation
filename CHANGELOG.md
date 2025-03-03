@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.4](https://github.com/diplodoc-platform/translation/compare/v1.7.3...v1.7.4) (2025-03-03)
+
+
+### Bug Fixes
+
+* Move diplodoc/lint to dev deps ([d451d58](https://github.com/diplodoc-platform/translation/commit/d451d58c3b463ee3ed17b6f1d4abf8b8a839bb51))
+
 ## [1.7.3](https://github.com/diplodoc-platform/translation/compare/v1.7.2...v1.7.3) (2025-03-03)
 
 
