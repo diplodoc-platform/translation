@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.3](https://github.com/diplodoc-platform/translation/compare/v1.7.2...v1.7.3) (2025-03-03)
+
+
+### Bug Fixes
+
+* fix link breaks between sentences ([703a132](https://github.com/diplodoc-platform/translation/commit/703a132ded5cf23bc43a285fa8811fa96a7755eb))
+
 ## [1.7.2](https://github.com/diplodoc-platform/translation/compare/v1.7.1...v1.7.2) (2025-02-27)
 
 
