@@ -234,6 +234,10 @@ test('handles link with empty title at the end of segment')`
     A [](./some/link). B.
 `;
 
+test('handles link with empty title and &nbsp before')`
+    A [](./some/link). B.
+`;
+
 test('handles empty links')`
   - [](./link1)
   - [](./link2)

@@ -57,11 +57,12 @@ export function trim(part: Token[]) {
     );
 
     const last = tail(tokens) as Token;
+    const trimEndRegExp = /[ \t\r\n]+$/;
     tail(
         tokens,
         token(last.type, {
             ...last,
-            content: last.content.trimEnd(),
+            content: last.content.replace(trimEndRegExp, ''),
             generated: (last.generated || '') + '|trimEnd',
         }),
     );
