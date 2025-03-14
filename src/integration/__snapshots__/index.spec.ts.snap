@@ -1443,6 +1443,52 @@ exports[`integration handles link after sentence ending: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles link with empty title and &nbsp before: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration handles link with empty title and &nbsp before: skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration handles link with empty title and &nbsp before: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">A <g equiv-text=\\"[{{text}}](./some/link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\" />.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">B.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles link with empty title and &nbsp before: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A <g ctype=\\"link\\" equiv-text=\\"[{{text}}](./some/link)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles link with empty title at the end of segment: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
 exports[`integration handles link with empty title at the end of segment: skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
