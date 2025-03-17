@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.5](https://github.com/diplodoc-platform/translation/compare/v1.7.4...v1.7.5) (2025-03-17)
+
+
+### Bug Fixes
+
+* fix nbsp case with empty image link ([f32b8cc](https://github.com/diplodoc-platform/translation/commit/f32b8cc3156e0cb68e1d5eff8fb7447379520c84))
+
 ## [1.7.4](https://github.com/diplodoc-platform/translation/compare/v1.7.3...v1.7.4) (2025-03-03)
 
 
