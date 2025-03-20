@@ -400,3 +400,25 @@ test('handles {} and <> braces in code block')`
     curl https://oauth.yandex.{{domain}}/authorize?response_type=token&client_id=<идентификатор приложения>
     \`\`\`
 `;
+
+test('handles standalone {#T} link')`
+    A.
+
+    [{#T}](D)
+
+    B.
+`;
+
+test('handles {#T} link in sentence')`
+    A.
+
+    B. [{#T}](D). C.
+
+    D.
+`;
+
+test('handles {#T} link within one paragraph')`
+    A.
+    B. [{#T}](D). C.
+    D.
+`;
