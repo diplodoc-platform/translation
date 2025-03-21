@@ -59,7 +59,7 @@ export const gobble: Gobbler<Token> = (content, [start, end], token, i) => {
 };
 
 function isContentful(token: Token) {
-    return Boolean(token.content.replace(mtre, '')?.trim());
+    return Boolean(token.content.replace(mtre, '')?.trim()) && token.content !== '{#T}';
 }
 
 function isTranslatable(token: Token) {
