@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.6](https://github.com/diplodoc-platform/translation/compare/v1.7.5...v1.7.6) (2025-03-31)
+
+
+### Bug Fixes
+
+* fix auto translate compose error ([67d0ce1](https://github.com/diplodoc-platform/translation/commit/67d0ce13d96ab24907db7679899d262fe73ad546))
+
 ## [1.7.5](https://github.com/diplodoc-platform/translation/compare/v1.7.4...v1.7.5) (2025-03-17)
 
 
