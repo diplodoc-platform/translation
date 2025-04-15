@@ -7,37 +7,37 @@ import {eruler, gobble, head, splitByContent, tail} from './utils';
 
 const hasContent = (token: Token) => token.content || (token.markup && !token.skip);
 
-const normalizePart = (tokens: Token[]) => {
-    const stack: number[] = [];
+// const normalizePart = (tokens: Token[]) => {
+//     const stack: number[] = [];
 
-    for (const [idx, token] of tokens.entries()) {
-        if (idx !== 0 && token.type === 'link_open') {
-            stack.push(idx);
-        }
+//     for (const [idx, token] of tokens.entries()) {
+//         if (idx !== 0 && token.type === 'link_open') {
+//             stack.push(idx);
+//         }
 
-        if (token.type === 'link_close') {
-            stack.pop();
-        }
-    }
+//         if (token.type === 'link_close') {
+//             stack.pop();
+//         }
+//     }
 
-    if (!stack.length) {
-        return {
-            currentPart: tokens,
-            nextPart: [],
-        };
-    }
+//     if (!stack.length) {
+//         return {
+//             currentPart: tokens,
+//             nextPart: [],
+//         };
+//     }
 
-    const nextPart: Token[] = [];
+//     const nextPart: Token[] = [];
 
-    for (const idx of stack) {
-        nextPart.push(...tokens.splice(idx, 1));
-    }
+//     for (const idx of stack) {
+//         nextPart.push(...tokens.splice(idx, 1));
+//     }
 
-    return {
-        currentPart: tokens,
-        nextPart,
-    };
-};
+//     return {
+//         currentPart: tokens,
+//         nextPart,
+//     };
+// };
 
 export function trim(part: Token[]) {
     const [before, tokens, after] = splitByContent(part);
@@ -99,23 +99,78 @@ function exclude(content: string, tokens: Token[]) {
  * So sentense one contains tokens from 1 to 4 and part of 5.
  * Sentense two contains only part of 5 token.
  */
+// eslint-disable-next-line complexity
+function isAutoTitleLink(tokens: Token[], token: Token, idx: number) {
+    return (
+        (token?.type === 'link_open' && tokens[idx + 1]?.reflink) ||
+        (token?.type === 'link_close' && tokens[idx - 1]?.reflink)
+    );
+}
+
+// eslint-disable-next-line complexity
 export function split(tokens: Token[]) {
     const parts: Token[][] = [];
     let content = '';
     let part: Token[] = [];
+    let isInsideLink = false;
+    let linkTokens: Token[] = [];
 
     const add = (token: Token | null) =>
         token && (token.content || token.skip || token.markup) && part.push(token);
+
     const release = () => {
         if (part.length) {
-            const {currentPart, nextPart} = normalizePart(part);
-            parts.push(trim(currentPart));
-            part = nextPart;
+            parts.push(trim(part));
+            part = [];
             content = '';
         }
     };
 
-    for (const _token of tokens) {
+    const releaseLink = () => {
+        if (linkTokens.length) {
+            parts.push(trim(linkTokens));
+            linkTokens = [];
+            content = '';
+        }
+    };
+
+    for (const [idx, _token] of tokens.entries()) {
+        const prevToken = tokens[idx - 1];
+
+        if (
+            _token.content === '.' &&
+            prevToken.type === 'link_close' &&
+            !isAutoTitleLink(tokens, prevToken, idx - 1)
+        ) {
+            const lastPart = parts[parts.length - 1];
+
+            if (lastPart) {
+                lastPart.push(_token);
+            }
+
+            continue;
+        }
+
+        if (_token.type === 'link_open' && !isAutoTitleLink(tokens, _token, idx)) {
+            isInsideLink = true;
+            linkTokens.push(_token);
+
+            continue;
+        }
+
+        if (_token.type === 'link_close' && !isAutoTitleLink(tokens, _token, idx)) {
+            isInsideLink = false;
+            linkTokens.push(_token);
+            release();
+            releaseLink();
+            continue;
+        }
+
+        if (isInsideLink) {
+            linkTokens.push(_token);
+            continue;
+        }
+
         if (hasContent(_token)) {
             content += _token.content || _token.markup || '';
         }
@@ -128,22 +183,35 @@ export function split(tokens: Token[]) {
 
         if (segments.length < 2) {
             add(_token);
-
             continue;
         }
 
-        // Here we have at minimum one full segment (head) and one incomplete (rest).
-        // But we can have more that two, if last token consists big text sequence.
-
         const [head, full, rest] = [segments.shift(), segments, segments.pop()];
 
-        add(
-            token('text', {
-                content: exclude((head + '\n') as string, part).trimEnd(),
-                generated: 'head',
-            }),
-        );
-        release();
+        if (
+            head === '.' &&
+            prevToken?.type === 'link_close' &&
+            !isAutoTitleLink(tokens, prevToken, idx - 1)
+        ) {
+            const lastPart = parts[parts.length - 1];
+
+            if (lastPart) {
+                lastPart.push(
+                    token('text', {
+                        content: exclude((head + '\n') as string, part).trimEnd(),
+                        generated: 'rest',
+                    }),
+                );
+            }
+        } else {
+            add(
+                token('text', {
+                    content: exclude((head + '\n') as string, part).trimEnd(),
+                    generated: 'head',
+                }),
+            );
+            release();
+        }
 
         for (const segment of full) {
             add(
@@ -168,6 +236,7 @@ export function split(tokens: Token[]) {
     }
 
     release();
+    releaseLink();
 
     return parts;
 }
