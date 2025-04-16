@@ -279,6 +279,14 @@ test('handles link after abbreviation')`
     Sentence first ex. [link](link.md) second sentence.
 `;
 
+test('handles sentence within link')`
+    [Link. link.](link.md). Second sentence.
+`;
+
+test('handles sentence within link with text before')`
+    Sentence first [link. link.](link.md). Second sentence.
+`;
+
 test('handles link with variables in title')`
   [Link](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
 `;
