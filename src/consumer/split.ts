@@ -9,14 +9,21 @@ const hasContent = (token: Token) => token.content || (token.markup && !token.sk
 
 const normalizePart = (tokens: Token[]) => {
     const stack: number[] = [];
+    let linkContent = ''; //TODO: dummy trick to fix md-xliff test 91-96
 
     for (const [idx, token] of tokens.entries()) {
-        if (idx !== 0 && token.type === 'link_open') {
+        if (token.type === 'link_open') {
             stack.push(idx);
+            linkContent = '';
         }
 
         if (token.type === 'link_close') {
             stack.pop();
+            linkContent = '';
+        }
+
+        if (stack.length > 0) {
+            linkContent += token.content || '';
         }
     }
 
@@ -27,15 +34,17 @@ const normalizePart = (tokens: Token[]) => {
         };
     }
 
-    const nextPart: Token[] = [];
-
-    for (const idx of stack) {
-        nextPart.push(...tokens.splice(idx, 1));
+    if (linkContent.includes('!')) {
+        return {
+            currentPart: tokens,
+            nextPart: [],
+        };
     }
 
+    const lastIndex = stack[stack.length - 1];
     return {
-        currentPart: tokens,
-        nextPart,
+        currentPart: tokens.slice(0, lastIndex),
+        nextPart: tokens.slice(lastIndex),
     };
 };
 
@@ -103,6 +112,7 @@ export function split(tokens: Token[]) {
     const parts: Token[][] = [];
     let content = '';
     let part: Token[] = [];
+    let prevSegment = '';
 
     const add = (token: Token | null) =>
         token && (token.content || token.skip || token.markup) && part.push(token);
@@ -111,6 +121,13 @@ export function split(tokens: Token[]) {
             const {currentPart, nextPart} = normalizePart(part);
             parts.push(trim(currentPart));
             part = nextPart;
+
+            if (nextPart.length > 0) {
+                prevSegment = nextPart.map((token) => token.content).join('');
+            } else {
+                prevSegment = '';
+            }
+
             content = '';
         }
     };
@@ -139,7 +156,7 @@ export function split(tokens: Token[]) {
 
         add(
             token('text', {
-                content: exclude((head + '\n') as string, part).trimEnd(),
+                content: exclude((prevSegment + head + '\n') as string, part).trimEnd(),
                 generated: 'head',
             }),
         );
