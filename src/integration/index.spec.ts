@@ -405,6 +405,10 @@ test('handles translate=no code block')`
     \`\`\`
 `;
 
+test('handles condition blocks with html insertions')`
+    {% if show-comments == "true" %}<sli><image href="images/events-error.png" align="center"/> — lorem ipsum test;</sli>{% endif %}
+`;
+
 test('handles {} and <> braces in code block')`
     Кодблок с фигурными скобками
 

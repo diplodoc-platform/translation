@@ -40,6 +40,7 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
     md.disable('reference');
     md.disable('text_join');
     md.disable('entity');
+    md.disable('code');
 
     md.normalizeLink = (a: string) => a;
     md.normalizeLinkText = (a: string) => a;
