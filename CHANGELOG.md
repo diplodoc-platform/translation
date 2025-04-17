@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.7](https://github.com/diplodoc-platform/translation/compare/v1.7.6...v1.7.7) (2025-04-17)
+
+
+### Bug Fixes
+
+* temp ([0ddf340](https://github.com/diplodoc-platform/translation/commit/0ddf340df212da3d2814ad3f789d2dc7cc88bc02))
+
 ## [1.7.6](https://github.com/diplodoc-platform/translation/compare/v1.7.5...v1.7.6) (2025-03-31)
 
 
