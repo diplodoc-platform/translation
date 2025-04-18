@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.8](https://github.com/diplodoc-platform/translation/compare/v1.7.7...v1.7.8) (2025-04-18)
+
+
+### Bug Fixes
+
+* segmentation inside links ([f016add](https://github.com/diplodoc-platform/translation/commit/f016addf6a68cd9118a87e7c783b6836ec5cab5a))
+
 ## [1.7.7](https://github.com/diplodoc-platform/translation/compare/v1.7.6...v1.7.7) (2025-04-17)
 
 
