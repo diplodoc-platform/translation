@@ -26,6 +26,7 @@ import term from './plugins/term';
 import includes from './plugins/includes';
 import {hooks} from './hooks';
 import {rules} from './rules';
+import customCodeRule from './plugins/customCodeRule';
 
 export type SkeletonOptions = ConsumerOptions;
 
@@ -45,6 +46,7 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
     md.normalizeLinkText = (a: string) => a;
 
     // diplodoc plugins
+    md.use(customCodeRule, diplodocOptions);
     md.use(meta, diplodocOptions);
     md.use(includes, diplodocOptions);
     md.use(notes, diplodocOptions);

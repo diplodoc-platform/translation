@@ -734,6 +734,46 @@ exports[`integration handles code regexps with escape chars: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles condition blocks with html insertions: skeleton expr 1`] = `"{% if show-comments == \\"true\\" %}<sli><image href=\\"images/events-error.png\\" align=\\"center\\"/> %%%1%%%</sli>{% endif %}"`;
+
+exports[`integration handles condition blocks with html insertions: skeleton main 1`] = `"{% if show-comments == \\"true\\" %}<sli><image href=\\"images/events-error.png\\" align=\\"center\\"/> %%%0%%%</sli>{% endif %}"`;
+
+exports[`integration handles condition blocks with html insertions: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">— lorem ipsum test;</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles condition blocks with html insertions: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">— lorem ipsum test;</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles default code block as text: skeleton expr 1`] = `
 "%%%1%%%
 
