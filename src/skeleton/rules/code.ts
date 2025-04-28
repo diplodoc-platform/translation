@@ -25,6 +25,17 @@ function* sh(content: string) {
     }
 }
 
+function* genericCodeHandler(content: string) {
+    const anglePattern = /<(.*?)>/g;
+
+    let match;
+    while ((match = anglePattern.exec(content))) {
+        yield token('fake', {skip: '<'});
+        yield token('text', {content: match[1]});
+        yield token('fake', {skip: '>'});
+    }
+}
+
 const fences: Record<string, (content: string) => Generator<Token>> = {
     bash: sh,
     shell: sh,
@@ -71,13 +82,16 @@ export const code: Renderer.RenderRuleRecord = {
 
         const defaultMode = this.state.compact ? CodeProcessing.PRECISE : CodeProcessing.ALL;
         const mode = options.translate || this.state.code || defaultMode;
-        const match = fences[lang];
+        const match = fences[lang] || genericCodeHandler;
 
         if (mode === CodeProcessing.NO) {
             return '';
         }
 
-        if (match) {
+        if (
+            [CodeProcessing.PRECISE, CodeProcessing.ADAPTIVE].includes(mode as CodeProcessing) &&
+            match
+        ) {
             for (const token of match(code.content)) {
                 this.state.process(token);
             }
@@ -85,16 +99,8 @@ export const code: Renderer.RenderRuleRecord = {
             return '';
         }
 
-        if (lang === 'text') {
-            this.state.consume([token('skip', {skip: code.markup})]);
-            this.state.consume(new Liquid(code.content).tokenize());
-            this.state.consume([token('skip', {skip: code.markup})]);
-
-            return '';
-        }
-
         this.state.consume([token('skip', {skip: code.markup})]);
-        this.state.consume([token('text', {content: code.content})]);
+        this.state.consume(new Liquid(code.content).tokenize());
         this.state.consume([token('skip', {skip: code.markup})]);
 
         return '';
