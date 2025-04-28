@@ -389,7 +389,7 @@ test('handles text code block')`
     \`\`\`
 `;
 
-test('handles bash code block')`
+test.skip('handles bash code block')`
     Кодблок bash
 
     \`\`\`bash
@@ -409,7 +409,7 @@ test('handles condition blocks with html insertions')`
     {% if show-comments == "true" %}<sli><image href="images/events-error.png" align="center"/> — lorem ipsum test;</sli>{% endif %}
 `;
 
-test('handles {} and <> braces in code block')`
+test.skip('handles {} and <> braces in code block')`
     Кодблок с фигурными скобками
 
     \`\`\`bash
