@@ -25,6 +25,17 @@ function* sh(content: string) {
     }
 }
 
+function* genericCodeHandler(content: string) {
+    const anglePattern = /<(.*?)>/g;
+
+    let match;
+    while ((match = anglePattern.exec(content))) {
+        yield token('fake', {skip: '<'});
+        yield token('text', {content: match[1]});
+        yield token('fake', {skip: '>'});
+    }
+}
+
 const fences: Record<string, (content: string) => Generator<Token>> = {
     bash: sh,
     shell: sh,
@@ -91,12 +102,12 @@ export const code: Renderer.RenderRuleRecord = {
             this.state.consume([token('skip', {skip: code.markup})]);
 
             return '';
+        } else {
+            for (const token of genericCodeHandler(code.content)) {
+                this.state.process(token);
+            }
+
+            return '';
         }
-
-        this.state.consume([token('skip', {skip: code.markup})]);
-        this.state.consume([token('text', {content: code.content})]);
-        this.state.consume([token('skip', {skip: code.markup})]);
-
-        return '';
     },
 };

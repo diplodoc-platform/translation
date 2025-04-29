@@ -1190,6 +1190,54 @@ exports[`integration handles html line breaks: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles http case code block: skeleton expr 1`] = `
+"\`\`\`http
+%%%1_code%%%
+\`\`\`"
+`;
+
+exports[`integration handles http case code block: skeleton main 1`] = `
+"\`\`\`http
+https://oauth.yandex.{{domain}}/authorize?response_type=token&client_id=<%%%0%%%>
+\`\`\`"
+`;
+
+exports[`integration handles http case code block: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_code\\">
+                <source xml:space=\\"preserve\\">https://oauth.yandex.<g equiv-text=\\"{{{{text}}}}\\" id=\\"e1\\" x-type=\\"xliff_special\\" x-begin=\\"{{\\" x-end=\\"}}\\">domain</g>/authorize?response_type=token&amp;client_id=&lt;идентификатор приложения&gt;</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles http case code block: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">идентификатор приложения</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles image with empty title at the end of segment: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
 exports[`integration handles image with empty title at the end of segment: skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
@@ -1463,6 +1511,54 @@ exports[`integration handles inline includes: xliff main 1`] = `
       <trans-unit id=\\"0\\">
         <source xml:space=\\"preserve\\">:   <x ctype=\\"liquid_Include\\" equiv-text=\\"{% include [test](./test.md) %}\\" id=\\"g-test\\"/><x ctype=\\"lb\\" equiv-text=\\"
 \\" id=\\"g-test\\"/>OK</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles javascript case code block: skeleton expr 1`] = `
+"\`\`\`javascript
+%%%1_code%%%
+\`\`\`"
+`;
+
+exports[`integration handles javascript case code block: skeleton main 1`] = `
+"\`\`\`javascript
+    console.log(\\"<%%%0%%%>\\");
+\`\`\`"
+`;
+
+exports[`integration handles javascript case code block: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_code\\">
+                <source xml:space=\\"preserve\\">    console.log(&quot;&lt;Вставьте свой текст&gt;&quot;);</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration handles javascript case code block: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Вставьте свой текст</source>
       </trans-unit>
     </body>
   </file>

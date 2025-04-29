@@ -405,6 +405,18 @@ test('handles translate=no code block')`
     \`\`\`
 `;
 
+test('handles http case code block')`
+    \`\`\`http
+    https://oauth.yandex.{{domain}}/authorize?response_type=token&client_id=<идентификатор приложения>
+    \`\`\`
+`;
+
+test('handles javascript case code block')`
+    \`\`\`javascript
+        console.log("<Вставьте свой текст>");
+    \`\`\`
+`;
+
 test('handles {} and <> braces in code block')`
     Кодблок с фигурными скобками
 
