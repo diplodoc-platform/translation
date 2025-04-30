@@ -71,8 +71,13 @@ export const link: Renderer.RenderRuleRecord = {
         }
 
         const titleAttr = Liquid.unescape(open.attrGet('title') || '');
-
+        const hrefAttr = Liquid.unescape(open.attrGet('href') || '');
         const skip = (close.skip = (close.skip || []) as string[]);
+
+        if (hrefAttr) {
+            skip.push(hrefAttr);
+        }
+
         skip.push(')');
 
         if (titleAttr) {
