@@ -434,3 +434,7 @@ test('handles {#T} link within one paragraph')`
     B. [{#T}](D). C.
     D.
 `;
+
+test('handle links with braces inside')`
+    [Подробнее](https://ru.test.org/wiki/Аукцион_Викри#Механизм_Викри-Кларка-Гровса_(VCG_auction)_в_интернет-рекламе)
+`;
