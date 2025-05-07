@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.9](https://github.com/diplodoc-platform/translation/compare/v1.7.8...v1.7.9) (2025-05-07)
+
+
+### Bug Fixes
+
+* translate html insertion inside code_block ([d36e717](https://github.com/diplodoc-platform/translation/commit/d36e7171575cf591b1256895b73e885f85cb57f1))
+
 ## [1.7.8](https://github.com/diplodoc-platform/translation/compare/v1.7.7...v1.7.8) (2025-04-18)
 
 
