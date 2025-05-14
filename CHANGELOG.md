@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.10](https://github.com/diplodoc-platform/translation/compare/v1.7.9...v1.7.10) (2025-05-14)
+
+
+### Bug Fixes
+
+* link with nested braces ([2fa54f9](https://github.com/diplodoc-platform/translation/commit/2fa54f98d4a43186020c4e74b51308f17659b210))
+
 ## [1.7.9](https://github.com/diplodoc-platform/translation/compare/v1.7.8...v1.7.9) (2025-05-07)
 
 
