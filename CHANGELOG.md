@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.11](https://github.com/diplodoc-platform/translation/compare/v1.7.10...v1.7.11) (2025-05-16)
+
+
+### Bug Fixes
+
+* fix code block translation ([5327496](https://github.com/diplodoc-platform/translation/commit/53274963d248efb5de83b37e1edeb73b65d98fd9))
+
 ## [1.7.10](https://github.com/diplodoc-platform/translation/compare/v1.7.9...v1.7.10) (2025-05-14)
 
 
