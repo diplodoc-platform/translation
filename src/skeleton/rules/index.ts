@@ -7,6 +7,7 @@ import {text} from './text';
 import {blockquote} from './blockquote';
 import {code} from './code';
 import {html} from './html';
+import {list} from './list';
 
 export const rules: Renderer.RenderRuleRecord = {
     ...text,
@@ -16,4 +17,5 @@ export const rules: Renderer.RenderRuleRecord = {
     ...blockquote,
     ...code,
     ...html,
+    ...list,
 };

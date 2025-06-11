@@ -279,6 +279,80 @@ exports[`integration computes valid sentenses: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration duplicate code block on diferent level: skeleton expr 1`] = `
+"- %%%1%%%
+
+    \`\`\`html
+    <p>first block</p>
+    <b>second block</b>
+    \`\`\`
+
+\`\`\`html
+<!-- Some text -->
+<p>first block</p>
+<b>second block</b>
+
+\`\`\`"
+`;
+
+exports[`integration duplicate code block on diferent level: skeleton main 1`] = `
+"- %%%0%%%
+
+    \`\`\`html
+    %%%1%%%
+    \`\`\`
+
+\`\`\`html
+%%%2%%%\`\`\`"
+`;
+
+exports[`integration duplicate code block on diferent level: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">List item</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration duplicate code block on diferent level: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">List item</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">&lt;p&gt;first block&lt;/p&gt;
+    &lt;b&gt;second block&lt;/b&gt;</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">&lt;!-- Some text --&gt;
+&lt;p&gt;first block&lt;/p&gt;
+&lt;b&gt;second block&lt;/b&gt;
+
+</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handle links with braces inside: skeleton expr 1`] = `"%%%1%%%"`;
 
 exports[`integration handle links with braces inside: skeleton main 1`] = `"%%%0%%%"`;
@@ -481,8 +555,6 @@ exports[`integration handles {#T} link within one paragraph: xliff main 1`] = `
 </xliff>"
 `;
 
-
-
 exports[`integration handles autolinks: skeleton expr 1`] = `
 "* %%%1%%%
 * %%%2%%%"
@@ -534,8 +606,6 @@ exports[`integration handles autolinks: xliff main 1`] = `
   </file>
 </xliff>"
 `;
-
-
 
 exports[`integration handles blockquotes: skeleton expr 1`] = `
 "> 1
@@ -1158,8 +1228,6 @@ exports[`integration handles html line breaks: xliff main 1`] = `
 </xliff>"
 `;
 
-
-
 exports[`integration handles image with empty title at the end of segment: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
 exports[`integration handles image with empty title at the end of segment: skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
@@ -1438,8 +1506,6 @@ exports[`integration handles inline includes: xliff main 1`] = `
   </file>
 </xliff>"
 `;
-
-
 
 exports[`integration handles link after abbreviation: skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
 
