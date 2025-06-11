@@ -18,6 +18,8 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 :   %%%1%%%"
 `;
 
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with duplicate text into inline code 1`] = `"%%%0%%%\`"`;
+
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with em syntax. 1`] = `"%%%0%%% %%%1%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with file syntax. 1`] = `"%%%0%%% %%%1%%%"`;
@@ -61,6 +63,8 @@ exports[`inline: skeleton rendering inline: renders hash instead of the sentence
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with s syntax. 1`] = `"%%%0%%% %%%1%%%"`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with samp syntax. 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`inline: skeleton rendering inline: renders hash instead of the sentences with sentences in inline code 1`] = `"%%%0%%%\` %%%1%%% %%%2%%% "`;
 
 exports[`inline: skeleton rendering inline: renders hash instead of the sentences with strong syntax. 1`] = `"%%%0%%% %%%1%%%"`;
 

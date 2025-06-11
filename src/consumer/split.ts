@@ -132,6 +132,8 @@ export function split(tokens: Token[]) {
         }
     };
 
+    let nonSentenseCount = 0;
+
     for (const _token of tokens) {
         if (hasContent(_token)) {
             content += _token.content || _token.markup || '';
@@ -143,8 +145,15 @@ export function split(tokens: Token[]) {
 
         const segments = sentenize(content);
 
-        if (segments.length < 2) {
+        if (segments.length < 2 + nonSentenseCount) {
             add(_token);
+
+            continue;
+        }
+
+        if (_token.isInlineCode) {
+            add(_token);
+            nonSentenseCount = segments.length - 1;
 
             continue;
         }
@@ -152,7 +161,11 @@ export function split(tokens: Token[]) {
         // Here we have at minimum one full segment (head) and one incomplete (rest).
         // But we can have more that two, if last token consists big text sequence.
 
-        const [head, full, rest] = [segments.shift(), segments, segments.pop()];
+        const [head, full, rest] = [
+            segments.splice(0, nonSentenseCount + 1),
+            segments,
+            segments.pop(),
+        ];
 
         add(
             token('text', {
@@ -182,6 +195,7 @@ export function split(tokens: Token[]) {
                 }),
             );
         }
+        nonSentenseCount = 0;
     }
 
     release();

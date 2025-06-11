@@ -17,7 +17,10 @@ export const text: Renderer.RenderRuleRecord = {
         }
 
         if (token?.generated !== 'liquid' && token.content) {
-            tokens.splice(i, 1, ...new Liquid(token.content).tokenize());
+            const newTokens = new Liquid(token.content)
+                .tokenize()
+                .map((t) => ({...t, isInlineCode: token.isInlineCode}) as Token);
+            tokens.splice(i, 1, ...newTokens);
         }
 
         return '';
