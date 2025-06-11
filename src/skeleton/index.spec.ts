@@ -177,4 +177,18 @@ describe('inline: skeleton rendering', () => {
         const rendered = render('Term\n\n:   Definition.');
         expect(rendered).toMatchSnapshot();
     });
+
+    it('inline: renders hash instead of the sentences with duplicate text into inline code', () => {
+        const rendered = render(
+            'Sentence with `token` and `Second token. Level 1, Second token. Level 2.`',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('inline: renders hash instead of the sentences with sentences in inline code', () => {
+        const rendered = render(
+            'Sentence with `token` and finish sentence. `Second sentence. Third token.` Another sentence. And sentence `at the end` of line. ',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
 });

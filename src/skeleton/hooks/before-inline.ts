@@ -82,6 +82,7 @@ function splitInlineCode(tokens: Token[], idx: number) {
         content: ['`', '``', '```'].includes(tokens[idx].content)
             ? ' ' + tokens[idx].content + ' '
             : tokens[idx].content,
+        isInlineCode: true,
     });
 
     const close = token('code_inline_close', {

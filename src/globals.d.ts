@@ -14,6 +14,7 @@ declare global {
         reflink?: boolean;
         fake?: boolean;
         generated?: string;
+        isInlineCode?: boolean;
         subtype?: TokenSubType;
         g?: Token;
         open?: Token;
