@@ -83,7 +83,11 @@ export class Consumer {
         this.hash = hash;
     }
 
-    process = (tokens: Token | Token[], window?: [number, number] | null) => {
+    process = (
+        tokens: Token | Token[],
+        window?: [number, number] | null,
+        onlySetWindow = false,
+    ) => {
         tokens = ([] as Token[]).concat(tokens);
 
         if (window) {
@@ -91,6 +95,14 @@ export class Consumer {
         }
 
         try {
+            if (onlySetWindow) {
+                const result = [this.consume(tokens)] as {
+                    part: Token[];
+                    past: string;
+                }[];
+                return result;
+            }
+
             const parts = split(tokens);
 
             const result = parts.map((part) => this.consume(part)).filter(Boolean) as {

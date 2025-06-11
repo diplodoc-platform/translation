@@ -100,7 +100,7 @@ export const code: Renderer.RenderRuleRecord = {
         }
 
         this.state.consume([token('skip', {skip: code.markup})]);
-        this.state.consume(new Liquid(code.content).tokenize());
+        this.state.process(new Liquid(code.content).tokenize(), code.map, true);
         this.state.consume([token('skip', {skip: code.markup})]);
 
         return '';
