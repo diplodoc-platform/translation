@@ -132,6 +132,9 @@ export function split(tokens: Token[]) {
         }
     };
 
+    const stackInlineCodes = [];
+    let nonSentenseCount = 0;
+
     for (const _token of tokens) {
         if (hasContent(_token)) {
             content += _token.content || _token.markup || '';
@@ -141,10 +144,24 @@ export function split(tokens: Token[]) {
             content += '\n';
         }
 
+        if (_token.type === 'code_inline_open') {
+            stackInlineCodes.push(tokens.indexOf(_token));
+        }
+        if (_token.type === 'code_inline_close') {
+            stackInlineCodes.pop();
+        }
+
         const segments = sentenize(content);
 
-        if (segments.length < 2) {
+        if (segments.length < 2 + nonSentenseCount) {
             add(_token);
+
+            continue;
+        }
+
+        if (stackInlineCodes.length > 0) {
+            add(_token);
+            nonSentenseCount = segments.length - 1;
 
             continue;
         }
@@ -182,6 +199,7 @@ export function split(tokens: Token[]) {
                 }),
             );
         }
+        nonSentenseCount = 0;
     }
 
     release();
