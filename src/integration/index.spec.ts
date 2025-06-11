@@ -442,3 +442,19 @@ test('handles {#T} link within one paragraph')`
 test('handle links with braces inside')`
     [Подробнее](https://ru.test.org/wiki/Аукцион_Викри#Механизм_Викри-Кларка-Гровса_(VCG_auction)_в_интернет-рекламе)
 `;
+
+test('duplicate code block on diferent level')`
+- List item
+
+    \`\`\`html
+    <p>first block</p>
+    <b>second block</b>
+    \`\`\`
+
+\`\`\`html
+<!-- Some text -->
+<p>first block</p>
+<b>second block</b>
+
+\`\`\`
+`;
