@@ -166,6 +166,13 @@ export function split(tokens: Token[]) {
             continue;
         }
 
+        if (nonSentenseCount > 0) {
+            add(_token);
+            nonSentenseCount = 0;
+
+            continue;
+        }
+
         // Here we have at minimum one full segment (head) and one incomplete (rest).
         // But we can have more that two, if last token consists big text sequence.
 
