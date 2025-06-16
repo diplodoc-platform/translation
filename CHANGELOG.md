@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.12](https://github.com/diplodoc-platform/translation/compare/v1.7.11...v1.7.12) (2025-06-16)
+
+
+### Bug Fixes
+
+* another solve ([2ffbbd2](https://github.com/diplodoc-platform/translation/commit/2ffbbd2289eec69e4724cd51664ba37e794b7444))
+* set search window for code block ([2ffbbd2](https://github.com/diplodoc-platform/translation/commit/2ffbbd2289eec69e4724cd51664ba37e794b7444))
+
 ## [1.7.11](https://github.com/diplodoc-platform/translation/compare/v1.7.10...v1.7.11) (2025-05-16)
 
 
