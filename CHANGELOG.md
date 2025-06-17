@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.13](https://github.com/diplodoc-platform/translation/compare/v1.7.12...v1.7.13) (2025-06-17)
+
+
+### Bug Fixes
+
+* ignore sentense in inline codeblock ([4fa7966](https://github.com/diplodoc-platform/translation/commit/4fa7966d1d668b959873a6218bdc6156352d3634))
+
 ## [1.7.12](https://github.com/diplodoc-platform/translation/compare/v1.7.11...v1.7.12) (2025-06-16)
 
 
