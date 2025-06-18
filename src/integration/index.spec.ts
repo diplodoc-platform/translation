@@ -271,6 +271,18 @@ test('handles inline includes')`
   OK
 `;
 
+test('handles includes with variables')`
+{% include [test {{product-name}}](./test.md) %}
+`;
+
+test('handles includes with notitle')`
+{% include notitle [test](./test.md) %}
+`;
+
+test('handles includes with variables and 2 sentence')`
+{% include [Sentence first. Sentence second {{product-name}}](./test.md) %}
+`;
+
 test('handles link after sentence ending')`
     Sentence first. [Second](link.md) sentence.
 `;

@@ -4,6 +4,8 @@ import type StateInline from 'markdown-it/lib/rules_inline/state_inline';
 
 import {token} from 'src/utils';
 
+import {Liquid} from '../liquid';
+
 const INCLUDE_REGEXP = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}$/;
 const INCLUDE_REGEXP_2 = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}/;
 
@@ -17,20 +19,30 @@ export default function (md: MdIt) {
             const contentToken = tokens[i + 1];
             const closeToken = tokens[i + 2];
 
+            const match = contentToken?.content?.match(INCLUDE_REGEXP);
+
             if (
                 openToken.type === 'paragraph_open' &&
                 contentToken.type === 'inline' &&
-                contentToken.content.match(INCLUDE_REGEXP) &&
+                match &&
                 closeToken.type === 'paragraph_close'
             ) {
-                contentToken.children = [
-                    token('liquid', {
-                        content: '',
-                        skip: contentToken.content,
-                        markup: contentToken.content,
-                        subtype: 'Include',
-                    }),
-                ];
+                let titleTokens = [];
+                if (match[2]) {
+                    const tokenizer = new Liquid(match[2]);
+                    titleTokens = tokenizer.tokenize() as Token[];
+                } else {
+                    titleTokens = [
+                        token('liquid', {
+                            content: '',
+                            skip: contentToken.content,
+                            markup: contentToken.content,
+                            subtype: 'Include',
+                        }),
+                    ];
+                }
+
+                contentToken.children = [...titleTokens];
 
                 i += 3;
             } else {
