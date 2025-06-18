@@ -470,3 +470,55 @@ test('duplicate code block on diferent level')`
 
 \`\`\`
 `;
+
+test('inline: space with code 8192')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8193')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8194')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8195')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8196')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8197')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8198')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8199')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8200')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8201')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8202')`
+Предложение номер один [title](link). [title](link) Предложение номер два.
+`;
+
+test('inline: space with code 8239')`
+Предложение номер один [title](link). [title](link) предложение номер два.
+`;
+
+test('inline: space with code 8287')`
+Предложение номер один [title](link). [title](link) предложение номер два.
+`;
