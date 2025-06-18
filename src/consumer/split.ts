@@ -66,7 +66,14 @@ export function trim(part: Token[]) {
     );
 
     const last = tail(tokens) as Token;
-    const trimEndRegExp = /[ \t\r\n]+$/;
+    // https://prostring.work/ru/char-block-info/40/type/12
+    const someTypesSpaces = [
+        8192, 8193, 8194, 8195, 8196, 8197, 8198, 8199, 8200, 8201, 8202, 8239, 8287,
+    ]
+        .map((code) => String.fromCharCode(code))
+        .join('');
+
+    const trimEndRegExp = new RegExp(`[${someTypesSpaces} \t\r\n]+$`);
     tail(
         tokens,
         token(last.type, {
