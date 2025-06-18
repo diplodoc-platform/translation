@@ -9,6 +9,7 @@ esbuild.build({
     platform: 'node',
     target: 'node14',
     bundle: true,
+    sourcemap: true,
     // eslint-disable-next-line new-cap
     plugins: [TsconfigPathsPlugin({tsconfig: './tsconfig.json'})],
 });
