@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.14](https://github.com/diplodoc-platform/translation/compare/v1.7.13...v1.7.14) (2025-06-18)
+
+
+### Bug Fixes
+
+* support vars in include title ([caebc10](https://github.com/diplodoc-platform/translation/commit/caebc1061d10293f1f0a85ca07d7f87331174e93))
+
 ## [1.7.13](https://github.com/diplodoc-platform/translation/compare/v1.7.12...v1.7.13) (2025-06-17)
 
 
