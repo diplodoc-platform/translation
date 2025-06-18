@@ -1320,6 +1320,111 @@ exports[`integration handles image with variables in title: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration handles includes with notitle: skeleton expr 1`] = `"{% include notitle [test](./test.md) %}"`;
+
+exports[`integration handles includes with notitle: skeleton main 1`] = `"{% include notitle [%%%0%%%](./test.md) %}"`;
+
+exports[`integration handles includes with notitle: xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration handles includes with notitle: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">test</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles includes with variables and 2 sentence: skeleton expr 1`] = `"{% include [Sentence first. Sentence second {{product-name}}](./test.md) %}"`;
+
+exports[`integration handles includes with variables and 2 sentence: skeleton main 1`] = `"{% include [%%%0%%% %%%1%%%](./test.md) %}"`;
+
+exports[`integration handles includes with variables and 2 sentence: xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration handles includes with variables and 2 sentence: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence first.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Sentence second <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name}}\\" id=\\"g-test\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration handles includes with variables: skeleton expr 1`] = `"{% include [test {{product-name}}](./test.md) %}"`;
+
+exports[`integration handles includes with variables: skeleton main 1`] = `"{% include [%%%0%%%](./test.md) %}"`;
+
+exports[`integration handles includes with variables: xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration handles includes with variables: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">test <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name}}\\" id=\\"g-test\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration handles inline code 1: skeleton expr 1`] = `
 "%%%1%%% | %%%2%%%
 ----- | -----
