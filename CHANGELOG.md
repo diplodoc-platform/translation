@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.15](https://github.com/diplodoc-platform/translation/compare/v1.7.14...v1.7.15) (2025-06-19)
+
+
+### Bug Fixes
+
+* add sourcemap in build config ([23220fc](https://github.com/diplodoc-platform/translation/commit/23220fc9b1155b376d85f8c279e90d239474b5ed))
+* trim by all types spaces ([b60d418](https://github.com/diplodoc-platform/translation/commit/b60d418212e9c0fefa71bab09cc474cfc47cc567))
+
 ## [1.7.14](https://github.com/diplodoc-platform/translation/compare/v1.7.13...v1.7.14) (2025-06-18)
 
 
