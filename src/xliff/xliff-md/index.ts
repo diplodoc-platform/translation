@@ -139,6 +139,9 @@ export class XLFMDRenderer {
 
             // html
             html_inline: literal,
+
+            // no-translate
+            no_translate_inline: literal,
         };
     }
 

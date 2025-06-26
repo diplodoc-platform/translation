@@ -3339,6 +3339,165 @@ exports[`integration link variable leak: xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration no-translate directive with block: skeleton expr 1`] = `
+"%%%1%%% 
+
+%%%2%%%
+### %%%3%%%
+%%%4_s-1%%%
+%%%5_s-3%%%
+:::"
+`;
+
+exports[`integration no-translate directive with block: skeleton main 1`] = `
+"%%%0%%% 
+
+:::no-translate
+### No-translate header
+Should not be translated.
+Can use **markup** inside.
+:::"
+`;
+
+exports[`integration no-translate directive with block: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">This will be translated</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">:::no-translate</source>
+            </trans-unit>
+            <trans-unit id=\\"3\\">
+                <source xml:space=\\"preserve\\">No-translate header</source>
+            </trans-unit>
+            <trans-unit id=\\"4_s-1\\">
+                <source xml:space=\\"preserve\\">Should not be translated.</source>
+            </trans-unit>
+            <trans-unit id=\\"5_s-3\\">
+                <source xml:space=\\"preserve\\">Can use <g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">markup</g> inside.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration no-translate directive with block: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">This will be translated</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration no-translate directive with inline: skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration no-translate directive with inline: skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration no-translate directive with inline: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Use :no-translate[<g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">GET /api/v1/users</g>] to list users and :no-translate[POST /api/v1/users] to create.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration no-translate directive with inline: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Use <x ctype=\\"no_translate_inline\\" equiv-text=\\":no-translate[**GET /api/v1/users**]\\" id=\\"g-test\\"/> to list users and <x ctype=\\"no_translate_inline\\" equiv-text=\\":no-translate[POST /api/v1/users]\\" id=\\"g-test\\"/> to create.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration no-translate directive with leaf: skeleton expr 1`] = `
+"%%%1%%% 
+
+%%%2%%%"
+`;
+
+exports[`integration no-translate directive with leaf: skeleton main 1`] = `
+"%%%0%%% 
+
+::no-translate [some inline content will no be translated]"
+`;
+
+exports[`integration no-translate directive with leaf: xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">This will be translated</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">::no-translate [some inline content will no be translated]</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration no-translate directive with leaf: xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">This will be translated</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration recursive merge tokens: skeleton expr 1`] = `"%%%1%%%"`;
 
 exports[`integration recursive merge tokens: skeleton main 1`] = `"%%%1%%%"`;
