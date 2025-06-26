@@ -8,6 +8,7 @@ import {blockquote} from './blockquote';
 import {code} from './code';
 import {html} from './html';
 import {list} from './list';
+import {noTranslate} from './no-translate';
 
 export const rules: Renderer.RenderRuleRecord = {
     ...text,
@@ -18,4 +19,5 @@ export const rules: Renderer.RenderRuleRecord = {
     ...code,
     ...html,
     ...list,
+    ...noTranslate,
 };

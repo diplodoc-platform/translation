@@ -21,6 +21,7 @@ import {customRenderer} from 'src/renderer';
 import {Hash, hash as _hash} from 'src/hash';
 import {Consumer} from 'src/consumer';
 import {Liquid} from 'src/skeleton/liquid';
+import {noTranslate} from 'src/directives/no-translate';
 
 import term from './plugins/term';
 import includes from './plugins/includes';
@@ -46,6 +47,7 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
     md.normalizeLinkText = (a: string) => a;
 
     // diplodoc plugins
+    md.use(noTranslate(), diplodocOptions);
     md.use(meta, diplodocOptions);
     md.use(includes, diplodocOptions);
     md.use(notes, diplodocOptions);
