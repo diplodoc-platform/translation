@@ -522,3 +522,23 @@ test('inline: space with code 8239')`
 test('inline: space with code 8287')`
 Предложение номер один [title](link). [title](link) предложение номер два.
 `;
+
+test('no-translate directive with block')`
+This will be translated 
+
+:::no-translate
+### No-translate header
+Should not be translated.
+Can use **markup** inside.
+:::
+`;
+
+test('no-translate directive with leaf')`
+This will be translated 
+
+::no-translate [some inline content will no be translated]
+`;
+
+test('no-translate directive with inline')`
+Use :no-translate[**GET /api/v1/users**] to list users and :no-translate[POST /api/v1/users] to create.
+`;
