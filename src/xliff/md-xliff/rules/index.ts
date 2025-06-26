@@ -9,6 +9,7 @@ import {image} from './image';
 import {video} from './video';
 import {file} from './file';
 import {htmlInline} from './html-inline';
+import {noTranslate} from './no-translate';
 
 // blocks(container and leaf) create group
 export const rules = {
@@ -27,6 +28,7 @@ export const rules = {
     blockquote_close: () => '',
     list_item_open: () => '',
     list_item_close: () => '',
+    ...noTranslate,
     ...diplodocRules,
     ...breaks,
     ...pair,
