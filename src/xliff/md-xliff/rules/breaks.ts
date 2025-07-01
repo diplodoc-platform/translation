@@ -5,7 +5,7 @@ function generateBreak(tokens: Token[], i: number) {
 
     return generateX({
         ctype: `lb`,
-        equivText: _break.content || '\n',
+        equivText: (_break.content || '\n').replace(/\n/g, '&#10;'),
     });
 }
 

@@ -22,6 +22,19 @@ const literal = (token: XLFToken): string => {
     return equivText;
 };
 
+const literallb = (token: XLFToken): string => {
+    assert(isXLFTagToken(token));
+    token as XLFTagToken;
+
+    const equivText = token.equivText?.replace(/&#10;/g, '\n');
+    assert(
+        equivText?.length,
+        'literal tag should contain original markup inside equiv-text attritbute',
+    );
+
+    return equivText;
+};
+
 const openclose = (token: XLFToken) => {
     assert(isXLFTagToken(token));
     token as XLFTagToken;
@@ -76,7 +89,7 @@ export class XLFMDRenderer {
             code_open: literal,
             code_close: literal,
 
-            lb: literal,
+            lb: literallb,
 
             // link
             link: openclose,
