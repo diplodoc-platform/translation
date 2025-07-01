@@ -546,9 +546,7 @@ exports[`integration handles {#T} link within one paragraph: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">A.<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/>B. <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-test\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>. C.<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/>D.</source>
+        <source xml:space=\\"preserve\\">A.<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"g-test\\"/>B. <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-test\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>. C.<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"g-test\\"/>D.</source>
       </trans-unit>
     </body>
   </file>
@@ -1215,13 +1213,10 @@ exports[`integration handles html line breaks: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](../image.png)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](../image.png)\\"></g><x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/>|<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](../image.png)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](../image.png)\\"></g><x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"g-test\\"/>|<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"g-test\\"/><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g></source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Moes Matter<x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/>|</source>
+        <source xml:space=\\"preserve\\">Moes Matter<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"g-test\\"/>|</source>
       </trans-unit>
     </body>
   </file>
@@ -1604,8 +1599,7 @@ exports[`integration handles inline includes: xliff main 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">:   <x ctype=\\"liquid_Include\\" equiv-text=\\"{% include [test](./test.md) %}\\" id=\\"g-test\\"/><x ctype=\\"lb\\" equiv-text=\\"
-\\" id=\\"g-test\\"/>OK</source>
+        <source xml:space=\\"preserve\\">:   <x ctype=\\"liquid_Include\\" equiv-text=\\"{% include [test](./test.md) %}\\" id=\\"g-test\\"/><x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"g-test\\"/>OK</source>
       </trans-unit>
     </body>
   </file>
