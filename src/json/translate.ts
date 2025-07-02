@@ -28,7 +28,7 @@ function extract(hash: Hash, options: ConsumerOptions) {
         keyword: 'translate',
         type: ['string', 'object', 'array'] as JSONType[],
         code: genCode((text, schema) => {
-            if (text.match(/^(\s*%%%\d+%%%\s*)+$/)) {
+            if (text.match(/^((-\s)?\s*%%%\d+%%%\s*)+$/gm)) {
                 return text;
             }
 
