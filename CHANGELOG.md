@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.16](https://github.com/diplodoc-platform/translation/compare/v1.7.15...v1.7.16) (2025-07-02)
+
+
+### Bug Fixes
+
+* add no-translate directive, rules ([4ab6913](https://github.com/diplodoc-platform/translation/commit/4ab6913577ad65ee0044489a18383b9237979434))
+* escape linebreak in xliff attribute ([1ae2893](https://github.com/diplodoc-platform/translation/commit/1ae2893a451f843a427033a000998a4a6d46e668))
+
 ## [1.7.15](https://github.com/diplodoc-platform/translation/compare/v1.7.14...v1.7.15) (2025-06-19)
 
 
