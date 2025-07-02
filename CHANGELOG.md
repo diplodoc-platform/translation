@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.17](https://github.com/diplodoc-platform/translation/compare/v1.7.16...v1.7.17) (2025-07-02)
+
+
+### Bug Fixes
+
+* change regexp for search list xliff tokens ([874c9e6](https://github.com/diplodoc-platform/translation/commit/874c9e680734799a28ef40408dd8fa94ef2c8070))
+
 ## [1.7.16](https://github.com/diplodoc-platform/translation/compare/v1.7.15...v1.7.16) (2025-07-02)
 
 
