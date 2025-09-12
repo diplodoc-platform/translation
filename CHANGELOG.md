@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.18](https://github.com/diplodoc-platform/translation/compare/v1.7.17...v1.7.18) (2025-09-12)
+
+
+### Bug Fixes
+
+* update version actions, node 22 ([4bef86a](https://github.com/diplodoc-platform/translation/commit/4bef86ad704ad8e2fb60623e8ac52561783446e8))
+
 ## [1.7.17](https://github.com/diplodoc-platform/translation/compare/v1.7.16...v1.7.17) (2025-07-02)
 
 
