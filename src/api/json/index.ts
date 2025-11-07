@@ -7,10 +7,12 @@ import type {SkeletonOptions} from 'src/skeleton';
 import {ok} from 'node:assert';
 import Ajv from 'ajv';
 import ajvKeywords from 'ajv-keywords';
+import {cloneDeepWith} from 'lodash';
 
 import {hash} from 'src/hash';
 import {fromXLIFF, parse, template} from 'src/xliff';
 import {jsonSchema, openapiSchema30, openapiSchema31, translate} from 'src/json';
+import {replace} from 'src/utils';
 
 type JSONSchema = JSONSchema7 & {$id: string};
 
@@ -56,16 +58,18 @@ export function extract(
 export function compose(
     skeleton: JSONObject,
     xliff: string | string[],
-    {schemas = [], useSource = false, ajvOptions}: ComposeOptions,
+    {useSource = false}: ComposeOptions,
 ) {
-    const mainSchema = getMainSchema(skeleton, schemas);
     const units = parse(xliff, {useSource}).map(fromXLIFF);
-    const ajv = setupAjv(schemas, ajvOptions, mainSchema);
 
-    ajv.addKeyword(translate.compose(units));
-    ajv.validate(mainSchema, skeleton);
+    const processedSkeleton = cloneDeepWith(skeleton, (value) => {
+        if (typeof value === 'string' && value.includes('%%%')) {
+            return replace(value, units)[0];
+        }
+        return;
+    });
 
-    return skeleton;
+    return processedSkeleton;
 }
 
 function setupAjv(schemas: JSONSchema7[], ajvOptions: AjvOptions = {}, mainSchema: JSONSchema7) {
