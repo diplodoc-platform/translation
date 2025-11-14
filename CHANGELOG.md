@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.19](https://github.com/diplodoc-platform/translation/compare/v1.7.18...v1.7.19) (2025-11-14)
+
+
+### Bug Fixes
+
+* json compose ([7e17382](https://github.com/diplodoc-platform/translation/commit/7e17382aeb2b4f3da6846807f755d20f9ab3268b))
+
 ## [1.7.18](https://github.com/diplodoc-platform/translation/compare/v1.7.17...v1.7.18) (2025-09-12)
 
 
