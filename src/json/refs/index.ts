@@ -5,7 +5,7 @@ import {isAbsolute} from 'node:path';
 
 import {isObject, keys, normalizePath, tail} from '../utils';
 
-import {isRefLike} from './utils';
+import {isExternalRefLike, isRefLike} from './utils';
 import {RefDetails} from './ref';
 import {WalkerContext} from './context';
 import {Ref, disable, isProxy, proxy} from './proxy';
@@ -28,6 +28,42 @@ export async function unlinkRefs(content: LinkedJSONObject): Promise<JSONObject>
 
         return item;
     }) as Promise<JSONObject>;
+}
+
+/**
+ * Returns list of external ref files with openapi spec.
+ *
+ * @param content - The structure to find JSON References within.
+ * @param location - Absolute path to provided structure for relative refs resolving.
+ *
+ * @returns record of external ref and spec.
+ */
+export async function getRefSchemas(content: JSONObject, location: string) {
+    ok(isObject(content), 'Content should be a json object');
+    ok(isAbsolute(location), 'Location should be absolute path');
+
+    const refSchemas: Record<string, {openapi: string}> = {}
+
+    location = normalizePath(location);
+
+    await walk(content, new WalkerContext(location), async (item, context) => {
+        const isOpenApiSchema = content.openapi || false;
+        if (!context.shouldVisit(item as JSONObject)) {
+            return SKIP;
+        }
+
+        if (!isRefLike(item)) {
+            return item;
+        }
+
+        if (isExternalRefLike(item) && isOpenApiSchema) {
+            refSchemas[item.$ref.split('#')[0]] = {openapi: content.openapi as string};
+        }
+
+        return item;
+    });
+
+    return refSchemas;
 }
 
 /**
@@ -110,7 +146,7 @@ async function unlinkCycles(content: JSONObject) {
 
 type Walker<Result> = (item: JSONData, context: WalkerContext) => Result | Promise<Result>;
 
-async function walk(item: JSONData, context: WalkerContext, fn: Walker<JSONData | typeof SKIP>) {
+export async function walk(item: JSONData, context: WalkerContext, fn: Walker<JSONData | typeof SKIP>) {
     if (!Array.isArray(item) && !isObject(item)) {
         return item;
     }

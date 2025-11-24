@@ -6,7 +6,9 @@ export type {JSONObject, LinkedJSONObject} from './types';
 
 export {translate} from './translate';
 
-export {linkRefs, unlinkRefs} from './refs';
+export {linkRefs, unlinkRefs, walk, getRefSchemas} from './refs';
+
+export {WalkerContext} from './refs/context';
 
 const root = dirname(require.resolve('@diplodoc/translation/package'));
 

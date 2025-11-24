@@ -144,6 +144,19 @@ export function isRefLike(obj: any): obj is RefDefinition {
     return isObject(obj) && isString(obj.$ref);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function isExternalRefLike(obj: any): obj is RefDefinition {
+    if (!isObject(obj) || !isString(obj.$ref)) {
+        return false;
+    }
+    
+    const ref = obj.$ref;
+    
+    const hashIndex = ref.indexOf('#');
+    
+    return hashIndex > 0;
+}
+
 export function get(obj: JSONObject, path: string[]) {
     let value = obj;
 
