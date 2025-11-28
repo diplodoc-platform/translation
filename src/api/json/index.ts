@@ -29,7 +29,11 @@ export type AjvConfig = {
     ajvOptions?: AjvOptions;
 };
 
-export type ExtractOptions = JSONSchemas & TemplateOptions & SkeletonOptions & AjvConfig;
+export type OpenApiRefSchema = {
+    refSchema?: string;
+}
+
+export type ExtractOptions = JSONSchemas & TemplateOptions & SkeletonOptions & AjvConfig & OpenApiRefSchema;
 
 export type ExtractOutput = {
     skeleton: JSONObject;
@@ -41,9 +45,9 @@ export type ComposeOptions = JSONSchemas & ParseOptions & AjvConfig;
 
 export function extract(
     content: JSONObject,
-    {schemas = [], source, target, compact, ajvOptions}: ExtractOptions,
+    {schemas = [], source, target, compact, ajvOptions, refSchema}: ExtractOptions,
 ): ExtractOutput {
-    const mainSchema = getMainSchema(content, schemas);
+    const mainSchema = getMainSchema(content, schemas, refSchema);
     const hashed = hash();
     const ajv = setupAjv(schemas, ajvOptions, mainSchema);
 
@@ -100,8 +104,12 @@ function setupAjv(schemas: JSONSchema7[], ajvOptions: AjvOptions = {}, mainSchem
     return ajv;
 }
 
-function getMainSchema(content: JSONObject, schemas: JSONSchema[]) {
+function getMainSchema(content: JSONObject, schemas: JSONSchema[], refSchema?: string) {
     const schemaMap = zip([openapiSchema31, openapiSchema30, ...schemas], '$id');
+
+    if (refSchema) {
+         return getOpenAPISchema(resolveOpenAPIVersion(refSchema), schemaMap);
+    }
 
     const _schema = (content as unknown as JSONSchema).$schema;
     if (typeof _schema === 'string') {
