@@ -65,6 +65,7 @@
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/diff": "^5.0.9",
     "@types/js-yaml": "^4.0.8",
+    "@types/json-schema": "^7.0.15",
     "@types/lodash": "^4.17.5",
     "@types/markdown-it": "^13.0.9",
     "@types/node": "^22.19.7",
