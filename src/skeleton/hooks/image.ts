@@ -1,6 +1,7 @@
+import type {CustomRendererHookParameters} from 'src/renderer';
+
 import Token from 'markdown-it/lib/token';
 
-import {CustomRendererHookParameters} from 'src/renderer';
 import {token} from 'src/utils';
 import {mt} from 'src/symbols';
 

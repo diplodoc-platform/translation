@@ -1,5 +1,5 @@
-import MarkdownIt from 'markdown-it';
-import {RuleCore} from 'markdown-it/lib/parser_core';
+import type MarkdownIt from 'markdown-it';
+import type {RuleCore} from 'markdown-it/lib/parser_core';
 
 const tokenize: RuleCore = function (state) {
     const tokens = state.tokens;

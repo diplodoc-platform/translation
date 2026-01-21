@@ -1,5 +1,6 @@
-import MarkdownIt from 'markdown-it';
-import {RuleCore} from 'markdown-it/lib/parser_core';
+import type MarkdownIt from 'markdown-it';
+import type {RuleCore} from 'markdown-it/lib/parser_core';
+
 import Token from 'markdown-it/lib/token';
 
 /* eslint-disable no-param-reassign */

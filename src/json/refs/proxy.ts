@@ -1,7 +1,6 @@
-import type {JSONObject, RefDefinition} from '../types';
+import type {JSONObject, RefDefinition, RefLink} from '../types';
 
 import {isObject, isString, uniq} from '../utils';
-import {RefLink} from '../types';
 
 export const Ref = Symbol('Ref');
 

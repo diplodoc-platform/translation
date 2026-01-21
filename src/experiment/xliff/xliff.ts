@@ -1,6 +1,7 @@
+import type {TransUnitElement} from './elements/TransUnitElement';
+
 import xmlFormat from 'xml-formatter';
 
-import {TransUnitElement} from './elements/TransUnitElement';
 import {attributesToString} from './utils';
 
 interface XliffProps {

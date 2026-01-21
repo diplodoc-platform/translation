@@ -1,6 +1,9 @@
+import type {ContainerDirectiveParams, LeafBlockDirectiveParams} from '@diplodoc/directive';
+import type MarkdownIt from 'markdown-it';
+import type StateBlock from 'markdown-it/lib/rules_block/state_block';
+import type StateInline from 'markdown-it/lib/rules_inline/state_inline';
+
 import {
-    ContainerDirectiveParams,
-    LeafBlockDirectiveParams,
     directiveParser,
     registerContainerDirective,
     registerInlineDirective,
@@ -8,9 +11,6 @@ import {
     tokenizeBlockContent,
     tokenizeInlineContent,
 } from '@diplodoc/directive';
-import MarkdownIt from 'markdown-it';
-import StateBlock from 'markdown-it/lib/rules_block/state_block';
-import StateInline from 'markdown-it/lib/rules_inline/state_inline';
 
 interface NoTranslateOptions {
     mode?: 'render' | 'translate';

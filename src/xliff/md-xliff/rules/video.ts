@@ -1,7 +1,6 @@
 import type Renderer from 'markdown-it/lib/renderer';
 import type Token from 'markdown-it/lib/token';
-
-import {VideoToken} from '@diplodoc/transform/lib/plugins/video/types';
+import type {VideoToken} from '@diplodoc/transform/lib/plugins/video/types';
 
 import {generateX} from 'src/xliff/generator';
 

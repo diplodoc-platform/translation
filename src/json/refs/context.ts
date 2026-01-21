@@ -1,4 +1,4 @@
-import {JSONObject} from 'src/json';
+import type {JSONObject} from 'src/json';
 
 export class WalkerContext {
     readonly ancestors: JSONObject[] = [];

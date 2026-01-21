@@ -1,5 +1,6 @@
+import type countries from '@shellscape/i18n-iso-countries';
+
 import languages from '@cospired/i18n-iso-languages';
-import countries from '@shellscape/i18n-iso-countries';
 
 export type TemplateOptions = {
     source: LanguageLocale;
@@ -11,9 +12,9 @@ export type LanguageLocale = {
     locale: countries.Alpha2Code;
 };
 
-const languagesList = languages.langs();
+const _languagesList = languages.langs();
 
-export type Language = (typeof languagesList)[number];
+export type Language = (typeof _languagesList)[number];
 
 function unit(source: string, index: number) {
     return `

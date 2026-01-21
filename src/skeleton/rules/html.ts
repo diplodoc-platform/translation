@@ -1,11 +1,11 @@
 import type {RenderRuleRecord} from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
 import type {HTMLElement, Node, TextNode} from 'node-html-parser';
+import type {Consumer} from 'src/consumer';
 
 import {NodeType, parse} from 'node-html-parser';
 
 import {Liquid} from 'src/skeleton/liquid';
-import {Consumer} from 'src/consumer';
 import {token} from 'src/utils';
 
 function isText(node: Node): node is TextNode {

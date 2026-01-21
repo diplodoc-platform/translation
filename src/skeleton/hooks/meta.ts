@@ -1,7 +1,6 @@
 import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
-
-import MarkdownIt from 'markdown-it';
+import type MarkdownIt from 'markdown-it';
 
 import {token} from 'src/utils';
 

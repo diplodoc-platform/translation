@@ -1,7 +1,10 @@
+import type {Token} from 'markdown-it';
+import type {ExtraToken, ReplacePart} from './types';
+
 import deflist from '@diplodoc/transform/lib/plugins/deflist';
 import imsize from '@diplodoc/transform/lib/plugins/imsize';
 import yfmTable from '@diplodoc/transform/lib/plugins/table';
-import markdownit, {Token} from 'markdown-it';
+import markdownit from 'markdown-it';
 
 import {passSymbols} from './constants';
 import {anchor} from './plugins/anchor';
@@ -21,7 +24,6 @@ import {term} from './plugins/term';
 import {textJoinFix} from './plugins/textJoinFix';
 import {video} from './plugins/video';
 import {tokenSearch} from './tokenSearch';
-import {ExtraToken, ReplacePart} from './types';
 import {
     eachTokens,
     extractFenceLines,

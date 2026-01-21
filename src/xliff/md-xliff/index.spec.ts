@@ -1,3 +1,5 @@
+import {describe, expect, it} from 'vitest';
+
 import {hash} from 'src/hash';
 import {skeleton} from 'src/skeleton';
 import {template} from 'src/xliff';

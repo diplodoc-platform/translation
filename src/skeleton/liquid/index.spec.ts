@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-loop-func */
+import {describe, expect, it, test} from 'vitest';
+
 import {condition, filter, functions, loop, text, variable} from './__fixtures__/liquid';
 
 import {Liquid} from '.';

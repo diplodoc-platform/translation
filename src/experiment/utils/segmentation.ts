@@ -1,8 +1,8 @@
+import type {TokenExtraMap} from '../types';
+
 import {sentenize} from '@diplodoc/sentenizer';
 import {capitalize, uniq} from 'lodash';
 import Token from 'markdown-it/lib/token';
-
-import {TokenExtraMap} from '../types';
 
 import {getExtraToken, toJsonF} from './common';
 

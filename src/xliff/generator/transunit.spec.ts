@@ -1,3 +1,5 @@
+import {describe, expect, it} from 'vitest';
+
 import {transunit} from './transunit';
 
 describe('trans-unit generator', () => {

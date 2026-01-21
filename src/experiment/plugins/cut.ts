@@ -1,5 +1,6 @@
-import MarkdownIt from 'markdown-it';
-import ParserInline from 'markdown-it/lib/parser_inline';
+import type MarkdownIt from 'markdown-it';
+import type ParserInline from 'markdown-it/lib/parser_inline';
+
 import Token from 'markdown-it/lib/token';
 
 /* eslint-disable no-param-reassign */

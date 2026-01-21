@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`renders xliff from markdown renders autolink wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders autolink wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -11,17 +11,17 @@ exports[`renders xliff from markdown renders autolink wrapped in <x> tags 1`] = 
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер один <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://www.google.com&gt;\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер один <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://www.google.com&gt;\\" id=\\"x-5\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер два <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://www.youtube.com&gt;\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер два <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://www.youtube.com&gt;\\" id=\\"x-6\\"/>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders code wrapped in <x> tag 1`] = `
+exports[`renders xliff from markdown > renders code wrapped in <x> tag 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -32,17 +32,17 @@ exports[`renders xliff from markdown renders code wrapped in <x> tag 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>один<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-1\\"/>один<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-2\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>два<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-3\\"/>два<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-4\\"/>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders em wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders em wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -53,17 +53,17 @@ exports[`renders xliff from markdown renders em wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"italic\\" equiv-text=\\"*{{text}}*\\" id=\\"g-test\\" x-begin=\\"*\\" x-end=\\"*\\">один</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"italic\\" equiv-text=\\"*{{text}}*\\" id=\\"g-3\\" x-begin=\\"*\\" x-end=\\"*\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"italic\\" equiv-text=\\"*{{text}}*\\" id=\\"g-test\\" x-begin=\\"*\\" x-end=\\"*\\">два</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"italic\\" equiv-text=\\"*{{text}}*\\" id=\\"g-4\\" x-begin=\\"*\\" x-end=\\"*\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders file wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders file wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -74,14 +74,14 @@ exports[`renders xliff from markdown renders file wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"file_open\\" equiv-text=\\"{%\\" id=\\"g-test\\"/><x ctype=\\"file_src\\" equiv-text=\\"src=&quot;path/to/file&quot;\\" id=\\"g-test\\"/><x ctype=\\"file_name_open\\" equiv-text=\\"name=&quot;\\" id=\\"g-test\\"/>readme.md<x ctype=\\"file_name_close\\" equiv-text=\\"&quot;\\" id=\\"g-test\\"/><x ctype=\\"file_referrerpolicy\\" equiv-text=\\"referrerpolicy=&quot;no-referrer&quot;\\" id=\\"g-test\\"/><x ctype=\\"file_rel\\" equiv-text=\\"rel=&quot;noopener&quot;\\" id=\\"g-test\\"/><x ctype=\\"file_target\\" equiv-text=\\"target=&quot;_blank&quot;\\" id=\\"g-test\\"/><x ctype=\\"file_type\\" equiv-text=\\"type=&quot;text/plain&quot;\\" id=\\"g-test\\"/><x ctype=\\"file_close\\" equiv-text=\\"%}\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"file_open\\" equiv-text=\\"{%\\" id=\\"x-7\\"/><x ctype=\\"file_src\\" equiv-text=\\"src=&quot;path/to/file&quot;\\" id=\\"x-8\\"/><x ctype=\\"file_name_open\\" equiv-text=\\"name=&quot;\\" id=\\"x-9\\"/>readme.md<x ctype=\\"file_name_close\\" equiv-text=\\"&quot;\\" id=\\"x-10\\"/><x ctype=\\"file_referrerpolicy\\" equiv-text=\\"referrerpolicy=&quot;no-referrer&quot;\\" id=\\"x-11\\"/><x ctype=\\"file_rel\\" equiv-text=\\"rel=&quot;noopener&quot;\\" id=\\"x-12\\"/><x ctype=\\"file_target\\" equiv-text=\\"target=&quot;_blank&quot;\\" id=\\"x-13\\"/><x ctype=\\"file_type\\" equiv-text=\\"type=&quot;text/plain&quot;\\" id=\\"x-14\\"/><x ctype=\\"file_close\\" equiv-text=\\"%}\\" id=\\"x-15\\"/>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders heading with anchors wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders heading with anchors wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -99,7 +99,7 @@ exports[`renders xliff from markdown renders heading with anchors wrapped in <x>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders html wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders html wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -110,14 +110,14 @@ exports[`renders xliff from markdown renders html wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence<x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"g-test\\"/>with <x ctype=\\"html_inline\\" equiv-text=\\"&lt;b&gt;\\" id=\\"g-test\\"/>html<x ctype=\\"html_inline\\" equiv-text=\\"&lt;/b&gt;\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence<x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"x-30\\"/>with <x ctype=\\"html_inline\\" equiv-text=\\"&lt;b&gt;\\" id=\\"x-31\\"/>html<x ctype=\\"html_inline\\" equiv-text=\\"&lt;/b&gt;\\" id=\\"x-32\\"/>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders image all attributes wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders image all attributes wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -140,32 +140,32 @@ exports[`renders xliff from markdown renders image all attributes wrapped in <x>
         <source xml:space=\\"preserve\\">hint</source>
       </trans-unit>
       <trans-unit id=\\"4\\">
-        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%0%%%&quot; =100x100)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%0%%%&quot; =100x100)\\">image</g>.</source>
+        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%0%%%&quot; =100x100)\\" id=\\"g-17\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%0%%%&quot; =100x100)\\">image</g>.</source>
       </trans-unit>
       <trans-unit id=\\"5\\">
-        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%1%%%&quot; =x100)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%1%%%&quot; =x100)\\">image</g>.</source>
+        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%1%%%&quot; =x100)\\" id=\\"g-18\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%1%%%&quot; =x100)\\">image</g>.</source>
       </trans-unit>
       <trans-unit id=\\"6\\">
-        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%2%%%&quot; =100x)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%2%%%&quot; =100x)\\">image</g>.</source>
+        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%2%%%&quot; =100x)\\" id=\\"g-19\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%2%%%&quot; =100x)\\">image</g>.</source>
       </trans-unit>
       <trans-unit id=\\"7\\">
-        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png =100x100)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](image.png =100x100)\\">image</g>.</source>
+        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png =100x100)\\" id=\\"g-20\\" x-begin=\\"![\\" x-end=\\"](image.png =100x100)\\">image</g>.</source>
       </trans-unit>
       <trans-unit id=\\"8\\">
-        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%3%%%&quot;)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%3%%%&quot;)\\">image</g>.</source>
+        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png &quot;%%%3%%%&quot;)\\" id=\\"g-21\\" x-begin=\\"![\\" x-end=\\"](image.png &quot;%%%3%%%&quot;)\\">image</g>.</source>
       </trans-unit>
       <trans-unit id=\\"9\\">
-        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png)\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"](image.png)\\">image</g>.</source>
+        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}](image.png)\\" id=\\"g-22\\" x-begin=\\"![\\" x-end=\\"](image.png)\\">image</g>.</source>
       </trans-unit>
       <trans-unit id=\\"10\\">
-        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}]()\\" id=\\"g-test\\" x-begin=\\"![\\" x-end=\\"]()\\"></g>.</source>
+        <source xml:space=\\"preserve\\">Sentence <g ctype=\\"image\\" equiv-text=\\"![{{text}}]()\\" id=\\"g-23\\" x-begin=\\"![\\" x-end=\\"]()\\"></g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders link with multiple sentences inside text part and title part wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders link with multiple sentences inside text part and title part wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -192,7 +192,7 @@ exports[`renders xliff from markdown renders link with multiple sentences inside
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders links wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders links wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -206,17 +206,17 @@ exports[`renders xliff from markdown renders links wrapped in <x> tags 1`] = `
         <source xml:space=\\"preserve\\">one</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}](one.md &quot;%%%0%%%&quot;)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](one.md &quot;%%%0%%%&quot;)\\">один</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}](one.md &quot;%%%0%%%&quot;)\\" id=\\"g-11\\" x-begin=\\"[\\" x-end=\\"](one.md &quot;%%%0%%%&quot;)\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}](two.md)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](two.md)\\">два</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}](two.md)\\" id=\\"g-12\\" x-begin=\\"[\\" x-end=\\"](two.md)\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders liquid conditions wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders liquid conditions wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -227,17 +227,17 @@ exports[`renders xliff from markdown renders liquid conditions wrapped in <x> ta
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" id=\\"g-test\\"/> val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"g-test\\"/> other val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" id=\\"x-16\\"/> val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-17\\"/> other val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"x-18\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">A<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"g-test\\"/> B<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"g-test\\"/> Point.</source>
+        <source xml:space=\\"preserve\\">A<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-19\\"/> B<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"x-20\\"/> Point.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders liquid filters wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders liquid filters wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -248,17 +248,17 @@ exports[`renders xliff from markdown renders liquid filters wrapped in <x> tags 
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with filter <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ users | length }}\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with filter <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ users | length }}\\" id=\\"x-26\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user | capitalize}}\\" id=\\"g-test\\"/> starts with filter.</source>
+        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user | capitalize}}\\" id=\\"x-27\\"/> starts with filter.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders liquid filters wrapped in <x> tags inside tables 1`] = `
+exports[`renders xliff from markdown > renders liquid filters wrapped in <x> tags inside tables 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -275,17 +275,17 @@ exports[`renders xliff from markdown renders liquid filters wrapped in <x> tags 
         <source xml:space=\\"preserve\\">Heading two</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ variable | length }}\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ variable | length }}\\" id=\\"x-33\\"/></source>
       </trans-unit>
       <trans-unit id=\\"3\\">
-        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"g-test\\"/></source>
+        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"x-34\\"/></source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders liquid functions wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders liquid functions wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -296,17 +296,17 @@ exports[`renders xliff from markdown renders liquid functions wrapped in <x> tag
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with function <x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with function <x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"x-24\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"g-test\\"/> starts with function.</source>
+        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"x-25\\"/> starts with function.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders liquid loops wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders liquid loops wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -317,17 +317,17 @@ exports[`renders xliff from markdown renders liquid loops wrapped in <x> tags 1`
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% for x in xs %}\\" id=\\"g-test\\"/>x<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% for x in xs %}\\" id=\\"x-21\\"/>x<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"x-22\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">X<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"g-test\\"/> cool.</source>
+        <source xml:space=\\"preserve\\">X<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"x-23\\"/> cool.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders liquid variables wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders liquid variables wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -338,38 +338,17 @@ exports[`renders xliff from markdown renders liquid variables wrapped in <x> tag
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"x-28\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{variable}}\\" id=\\"g-test\\"/> sentence.</source>
+        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{variable}}\\" id=\\"x-29\\"/> sentence.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders plain text 1`] = `
-"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
-<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
-  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
-    <header>
-      <skeleton>
-        <external-file href=\\"file.skl\\"></external-file>
-      </skeleton>
-    </header>
-    <body>
-      <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер один.</source>
-      </trans-unit>
-      <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер два.</source>
-      </trans-unit>
-    </body>
-  </file>
-</xliff>"
-`;
-
-exports[`renders xliff from markdown renders plain text sentences separated by newline 1`] = `
+exports[`renders xliff from markdown > renders plain text 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -390,7 +369,28 @@ exports[`renders xliff from markdown renders plain text sentences separated by n
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders ref links wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders plain text sentences separated by newline 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`renders xliff from markdown > renders ref links wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -404,17 +404,17 @@ exports[`renders xliff from markdown renders ref links wrapped in <x> tags 1`] =
         <source xml:space=\\"preserve\\">one</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](one.md &quot;%%%0%%%&quot;)\\" id=\\"g-test\\" x-begin=\\"[{#T}\\" x-end=\\"](one.md &quot;%%%0%%%&quot;)\\"></g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](one.md &quot;%%%0%%%&quot;)\\" id=\\"g-13\\" x-begin=\\"[{#T}\\" x-end=\\"](one.md &quot;%%%0%%%&quot;)\\"></g>.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](two.md)\\" id=\\"g-test\\" x-begin=\\"[{#T}\\" x-end=\\"](two.md)\\"></g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](two.md)\\" id=\\"g-14\\" x-begin=\\"[{#T}\\" x-end=\\"](two.md)\\"></g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders s wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders s wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -425,17 +425,17 @@ exports[`renders xliff from markdown renders s wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"strikethrough\\" equiv-text=\\"~~{{text}}~~\\" id=\\"g-test\\" x-begin=\\"~~\\" x-end=\\"~~\\">один</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"strikethrough\\" equiv-text=\\"~~{{text}}~~\\" id=\\"g-5\\" x-begin=\\"~~\\" x-end=\\"~~\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"strikethrough\\" equiv-text=\\"~~{{text}}~~\\" id=\\"g-test\\" x-begin=\\"~~\\" x-end=\\"~~\\">два</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"strikethrough\\" equiv-text=\\"~~{{text}}~~\\" id=\\"g-6\\" x-begin=\\"~~\\" x-end=\\"~~\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders samp wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders samp wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -446,17 +446,17 @@ exports[`renders xliff from markdown renders samp wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"monospace\\" equiv-text=\\"##{{text}}##\\" id=\\"g-test\\" x-begin=\\"##\\" x-end=\\"##\\">один</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"monospace\\" equiv-text=\\"##{{text}}##\\" id=\\"g-9\\" x-begin=\\"##\\" x-end=\\"##\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"monospace\\" equiv-text=\\"##{{text}}##\\" id=\\"g-test\\" x-begin=\\"##\\" x-end=\\"##\\">два</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"monospace\\" equiv-text=\\"##{{text}}##\\" id=\\"g-10\\" x-begin=\\"##\\" x-end=\\"##\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders sentences with abbreviations inside parenthesis 1`] = `
+exports[`renders xliff from markdown > renders sentences with abbreviations inside parenthesis 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -467,7 +467,7 @@ exports[`renders xliff from markdown renders sentences with abbreviations inside
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence (см. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](file.md)\\">link</g>) continues.</source>
+        <source xml:space=\\"preserve\\">Sentence (см. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md)\\" id=\\"g-24\\" x-begin=\\"[\\" x-end=\\"](file.md)\\">link</g>) continues.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
         <source xml:space=\\"preserve\\">Another sentence.</source>
@@ -477,7 +477,7 @@ exports[`renders xliff from markdown renders sentences with abbreviations inside
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders sentences with inline code that has liquid syntax inside 1`] = `
+exports[`renders xliff from markdown > renders sentences with inline code that has liquid syntax inside 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -488,17 +488,17 @@ exports[`renders xliff from markdown renders sentences with inline code that has
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"g-test\\"/><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ ui-key.yacloud.common.label_tcp }}\\" id=\\"g-test\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-35\\"/><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ ui-key.yacloud.common.label_tcp }}\\" id=\\"x-36\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-37\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Another sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"g-test\\"/><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user.name | capitalize}}\\" id=\\"g-test\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"g-test\\"/>.</source>
+        <source xml:space=\\"preserve\\">Another sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-38\\"/><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user.name | capitalize}}\\" id=\\"x-39\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-40\\"/>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders sentences with links in the end 1`] = `
+exports[`renders xliff from markdown > renders sentences with links in the end 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -509,17 +509,17 @@ exports[`renders xliff from markdown renders sentences with links in the end 1`]
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Инструкция содержит информацию о создании и настройке <g ctype=\\"link\\" equiv-text=\\"[{{text}}](concepts/desktops-and-groups.md)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](concepts/desktops-and-groups.md)\\">группы рабочих столов</g>.</source>
+        <source xml:space=\\"preserve\\">Инструкция содержит информацию о создании и настройке <g ctype=\\"link\\" equiv-text=\\"[{{text}}](concepts/desktops-and-groups.md)\\" id=\\"g-25\\" x-begin=\\"[\\" x-end=\\"](concepts/desktops-and-groups.md)\\">группы рабочих столов</g>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Если вы получили от администратора ссылку на <g ctype=\\"link\\" equiv-text=\\"[{{text}}](concepts/showcase.md)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"](concepts/showcase.md)\\">витрину пользовательских рабочих столов</g>, перейдите к подразделу <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](#get-credentials)\\" id=\\"g-test\\" x-begin=\\"[{#T}\\" x-end=\\"](#get-credentials)\\"></g>.</source>
+        <source xml:space=\\"preserve\\">Если вы получили от администратора ссылку на <g ctype=\\"link\\" equiv-text=\\"[{{text}}](concepts/showcase.md)\\" id=\\"g-26\\" x-begin=\\"[\\" x-end=\\"](concepts/showcase.md)\\">витрину пользовательских рабочих столов</g>, перейдите к подразделу <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](#get-credentials)\\" id=\\"g-27\\" x-begin=\\"[{#T}\\" x-end=\\"](#get-credentials)\\"></g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders strong wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders strong wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -530,17 +530,17 @@ exports[`renders xliff from markdown renders strong wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">один</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-test\\" x-begin=\\"**\\" x-end=\\"**\\">два</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-2\\" x-begin=\\"**\\" x-end=\\"**\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders sup wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders sup wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -551,17 +551,17 @@ exports[`renders xliff from markdown renders sup wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Предложение номер<g ctype=\\"sup\\" equiv-text=\\"^{{text}}^\\" id=\\"g-test\\" x-begin=\\"^\\" x-end=\\"^\\">один</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер<g ctype=\\"sup\\" equiv-text=\\"^{{text}}^\\" id=\\"g-7\\" x-begin=\\"^\\" x-end=\\"^\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер<g ctype=\\"sup\\" equiv-text=\\"^{{text}}^\\" id=\\"g-test\\" x-begin=\\"^\\" x-end=\\"^\\">два</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер<g ctype=\\"sup\\" equiv-text=\\"^{{text}}^\\" id=\\"g-8\\" x-begin=\\"^\\" x-end=\\"^\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders variable href link wrapped in <x> tags 1`] = `
+exports[`renders xliff from markdown > renders variable href link wrapped in <x> tags 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
@@ -575,17 +575,17 @@ exports[`renders xliff from markdown renders variable href link wrapped in <x> t
         <source xml:space=\\"preserve\\">one</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}]({{one}} &quot;%%%0%%%&quot;)\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"]({{one}} &quot;%%%0%%%&quot;)\\">один</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}]({{one}} &quot;%%%0%%%&quot;)\\" id=\\"g-15\\" x-begin=\\"[\\" x-end=\\"]({{one}} &quot;%%%0%%%&quot;)\\">один</g>.</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}]({{two}})\\" id=\\"g-test\\" x-begin=\\"[\\" x-end=\\"]({{two}})\\">два</g>.</source>
+        <source xml:space=\\"preserve\\">Предложение номер <g ctype=\\"link\\" equiv-text=\\"[{{text}}]({{two}})\\" id=\\"g-16\\" x-begin=\\"[\\" x-end=\\"]({{two}})\\">два</g>.</source>
       </trans-unit>
     </body>
   </file>
 </xliff>"
 `;
 
-exports[`renders xliff from markdown renders video wrapped in <x> tag 1`] = `
+exports[`renders xliff from markdown > renders video wrapped in <x> tag 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
   <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">

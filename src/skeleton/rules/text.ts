@@ -1,4 +1,4 @@
-import Renderer from 'markdown-it/lib/renderer';
+import type Renderer from 'markdown-it/lib/renderer';
 
 import {Liquid} from '../liquid';
 

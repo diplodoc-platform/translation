@@ -1,7 +1,9 @@
-import markdownit, {Token} from 'markdown-it';
+import type {Token} from 'markdown-it';
+import type {LinePosition, TokenExtraMap} from './types';
+
+import markdownit from 'markdown-it';
 import StateInline from 'markdown-it/lib/rules_inline/state_inline';
 
-import {LinePosition, TokenExtraMap} from './types';
 import {toJsonF} from './utils';
 
 /* eslint-disable no-console */

@@ -1,4 +1,4 @@
-# 📝 markdown-translation
+# @diplodoc/translation
 
 ## 📚 Sections
 
@@ -24,7 +24,7 @@ Are you tired of copying and pasting your markdown content into translation tool
 
 Say no more! 👌
 
-With markdown-translation, you can easily generate a skeleton and xlf for CATs, and translate your content on the go! 🚀
+With `@diplodoc/translation`, you can generate skeleton/XLIFF for CAT tools and compose translated Markdown back.
 
 ## 🌟 Project Overview
 
@@ -34,7 +34,7 @@ Extract text from markdown files 📄 and generate a skeleton/XLF file. 🧑‍�
 
 Compose the extracted text with the translations from the XLF file to create the translated markdown file. 🌎📄💬
 
-Say goodbye to manual translation work and streamline your workflow with markdown-translation! 🤖💪
+Say goodbye to manual translation work and streamline your workflow with `@diplodoc/translation`.
 
 ## 🎯 Purpose and Scope
 
@@ -46,14 +46,14 @@ Say goodbye to manual translation work and streamline your workflow with markdow
 
 🕵️‍♀️ How? By parsing and rendering xlf and skeleton, of course! So sit back, relax, and let this library handle all your markdown translation needs.
 
-🧑‍💻 Say goodbye to those pesky issues and hello to efficient and accurate translations with markdown-translation!
+Say goodbye to those pesky issues and hello to efficient and accurate translations with `@diplodoc/translation`.
 
 ## 🚀 Getting Started
 
 ### 💻 Installation
 
 ```
-npm install @diplodoc/markdown-translation
+npm install @diplodoc/translation
 ```
 
 ### 📖 API
@@ -116,7 +116,7 @@ Extract skeleton and xlf from markdown
 #### 👀 Example
 
 ```typescript
-import {extract} from '@diplodoc/markdown-translation';
+import {extract} from '@diplodoc/translation';
 
 const markdown = `# Heading 1
 
@@ -167,7 +167,7 @@ Compose skeleton and xlf into translated markdown
 #### 👀 Example
 
 ```typescript
-import {compose} from '@diplodoc/markdown-translation';
+import {compose} from '@diplodoc/translation';
 
 const skeleton = `%%%1%%%
 %%%2%%%

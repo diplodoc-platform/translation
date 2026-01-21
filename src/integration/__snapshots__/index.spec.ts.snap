@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`integration ## Start {#your-ideas}{% else %} end: skeleton expr 1`] = `"## %%%1%%%"`;
 
@@ -77,6 +77,3547 @@ exports[`integration (a **18. B**).: xliff main 1`] = `
       </trans-unit>
       <trans-unit id=\\"1\\">
         <source xml:space=\\"preserve\\">B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"g-test\\"/>).</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > ## Start {#your-ideas}{% else %} end > skeleton expr 1`] = `"## %%%1%%%"`;
+
+exports[`integration > ## Start {#your-ideas}{% else %} end > skeleton main 1`] = `"## %%%0%%%"`;
+
+exports[`integration > ## Start {#your-ideas}{% else %} end > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Start {#<x equiv-text=\\"your-ideas\\" id=\\"e1\\" x-type=\\"header_id\\" />}<x equiv-text=\\"{% else %}\\" id=\\"e2\\" x-type=\\"liquid_operator\\" /> end</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > ## Start {#your-ideas}{% else %} end > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Start <x ctype=\\"liquid_Attributes\\" equiv-text=\\"{#your-ideas}\\" id=\\"x-14\\"/><x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-15\\"/> end</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > (a **18. B**). > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > (a **18. B**). > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > (a **18. B**). > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">(a <g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">18. B</g>).</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > (a **18. B**). > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\" id=\\"x-19\\"/>18.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"x-20\\"/>).</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > \`{{ var }}\` — one. Two > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > \`{{ var }}\` — one. Two > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > \`{{ var }}\` — one. Two > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\"><x equiv-text=\\"\`{{ var }}\`\\" id=\\"e1\\" x-type=\\"code_inline\\" /> — one.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">Two</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > \`{{ var }}\` — one. Two > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-16\\"/><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ var }}\\" id=\\"x-17\\"/><x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-18\\"/> — one.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Two</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > A ![](link) b. C. > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > A ![](link) b. C. > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > A ![](link) b. C. > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">A <x equiv-text=\\"![](link)\\" id=\\"e1\\" x-type=\\"image\\" /> b.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">C.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > A ![](link) b. C. > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](link)\\" id=\\"g-13\\" x-begin=\\"![\\" x-end=\\"](link)\\"></g> b.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">C.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > A. B [{#T}](D). C. > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > A. B [{#T}](D). C. > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > A. B [{#T}](D). C. > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">A. B <g equiv-text=\\"[{{text}}](D)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](D)\\"><x equiv-text=\\"{#T}\\" id=\\"e2\\" x-type=\\"link_template\\" /></g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">C.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > A. B [{#T}](D). C. > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A. B <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-14\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">C.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > computes valid sentenses > skeleton expr 1`] = `
+"%%%1_s-1%%%
+%%%2_s-3%%% %%%3_s-5%%%"
+`;
+
+exports[`integration > computes valid sentenses > skeleton main 1`] = `
+"%%%0%%%
+%%%1%%% %%%2%%%"
+`;
+
+exports[`integration > computes valid sentenses > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Записывает или удаляет элементы из таблиц.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление.</source>
+            </trans-unit>
+            <trans-unit id=\\"3_s-5\\">
+                <source xml:space=\\"preserve\\">Каждый элемент может иметь размер до 400 Кб.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > computes valid sentenses > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Записывает или удаляет элементы из таблиц.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Один вызов может записать до 16 Мб данных, что может включать до 25 запросов на размещение или удаление.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">Каждый элемент может иметь размер до 400 Кб.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > duplicate code block on diferent level > skeleton expr 1`] = `
+"- %%%1%%%
+
+    \`\`\`html
+    <p>first block</p>
+    <b>second block</b>
+    \`\`\`
+
+\`\`\`html
+<!-- Some text -->
+<p>first block</p>
+<b>second block</b>
+
+\`\`\`"
+`;
+
+exports[`integration > duplicate code block on diferent level > skeleton main 1`] = `
+"- %%%0%%%
+
+    \`\`\`html
+    %%%1%%%
+    \`\`\`
+
+\`\`\`html
+%%%2%%%\`\`\`"
+`;
+
+exports[`integration > duplicate code block on diferent level > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">List item</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > duplicate code block on diferent level > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">List item</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">&lt;p&gt;first block&lt;/p&gt;
+    &lt;b&gt;second block&lt;/b&gt;</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">&lt;!-- Some text --&gt;
+&lt;p&gt;first block&lt;/p&gt;
+&lt;b&gt;second block&lt;/b&gt;
+
+</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handle links with braces inside > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handle links with braces inside > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handle links with braces inside > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](https://ru.test.org/wiki/Аукцион_Викри#Механизм_Викри-Кларка-Гровса_(VCG_auction)_в_интернет-рекламе)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](https://ru.test.org/wiki/Аукцион_Викри#Механизм_Викри-Кларка-Гровса_(VCG_auction)_в_интернет-рекламе)\\">Подробнее</g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handle links with braces inside > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://ru.test.org/wiki/Аукцион_Викри#Механизм_Викри-Кларка-Гровса_(VCG_auction)_в_интернет-рекламе)\\" id=\\"g-35\\" x-begin=\\"[\\" x-end=\\"](https://ru.test.org/wiki/Аукцион_Викри#Механизм_Викри-Кларка-Гровса_(VCG_auction)_в_интернет-рекламе)\\">Подробнее</g></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles &nbsp; in lists > skeleton expr 1`] = `"- %%%1%%%"`;
+
+exports[`integration > handles &nbsp; in lists > skeleton main 1`] = `
+"- %%%0%%%
+   
+    %%%1%%%"
+`;
+
+exports[`integration > handles &nbsp; in lists > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Some text<x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />   <x equiv-text=\\"\\" id=\\"t4--1\\" ctype=\\"lb\\" />    Some other text</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles &nbsp; in lists > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Some text</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Some other text</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles {#T} link in sentence > skeleton expr 1`] = `
+"%%%1%%%
+
+%%%2_s-1%%% %%%3_s-3%%%
+
+%%%4%%%"
+`;
+
+exports[`integration > handles {#T} link in sentence > skeleton main 1`] = `
+"%%%0%%%
+
+%%%1%%% %%%2%%%
+
+%%%3%%%"
+`;
+
+exports[`integration > handles {#T} link in sentence > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">A.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-1\\">
+                <source xml:space=\\"preserve\\">B. <g equiv-text=\\"[{{text}}](D)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](D)\\"><x equiv-text=\\"{#T}\\" id=\\"e2\\" x-type=\\"link_template\\" /></g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"3_s-3\\">
+                <source xml:space=\\"preserve\\">C.</source>
+            </trans-unit>
+            <trans-unit id=\\"4\\">
+                <source xml:space=\\"preserve\\">D.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles {#T} link in sentence > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B. <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-33\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">C.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\">D.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles {#T} link within one paragraph > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles {#T} link within one paragraph > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handles {#T} link within one paragraph > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">A.<x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />B. <g equiv-text=\\"[{{text}}](D)\\" id=\\"e2\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](D)\\"><x equiv-text=\\"{#T}\\" id=\\"e3\\" x-type=\\"link_template\\" /></g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">C.<x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />D.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles {#T} link within one paragraph > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A.<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-32\\"/>B. <g ctype=\\"link\\" equiv-text=\\"[{#T}{{text}}](D)\\" id=\\"g-34\\" x-begin=\\"[{#T}\\" x-end=\\"](D)\\"></g>. C.<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-33\\"/>D.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles autolinks > skeleton expr 1`] = `
+"* %%%1%%%
+* %%%2%%%"
+`;
+
+exports[`integration > handles autolinks > skeleton main 1`] = `
+"* %%%0%%%
+* %%%1%%%"
+`;
+
+exports[`integration > handles autolinks > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">A <g equiv-text=\\"&lt;{{text}}&gt;\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"&lt;\\" x-end=\\"&gt;\\">http://gitgrimbo.github.io/harviewer/master/</g></source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">B <g equiv-text=\\"&lt;{{text}}&gt;\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"&lt;\\" x-end=\\"&gt;\\">https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru</g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles autolinks > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" id=\\"x-12\\"/></source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"x-13\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles blockquotes > skeleton expr 1`] = `
+"> 1
+> 2
+>
+> > 3
+> > 4
+>
+> 5"
+`;
+
+exports[`integration > handles blockquotes > skeleton main 1`] = `
+"> %%%0%%%
+> %%%1%%%
+>
+> > %%%2%%%
+> > %%%3%%%
+>
+> %%%4%%%"
+`;
+
+exports[`integration > handles blockquotes > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles blockquotes > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">1</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">2</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">3</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\">4</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source xml:space=\\"preserve\\">5</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles code regexps with escape chars > skeleton expr 1`] = `
+"%%%1%%% | %%%2%%%
+--- | ---
+%%%3%%% |  \`\`[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.\`\`"
+`;
+
+exports[`integration > handles code regexps with escape chars > skeleton main 1`] = `
+"%%%0%%% | %%%1%%%
+--- | ---
+%%%2%%% |  %%%3%%%"
+`;
+
+exports[`integration > handles code regexps with escape chars > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Поле</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">Описание</source>
+            </trans-unit>
+            <trans-unit id=\\"3\\">
+                <source xml:space=\\"preserve\\">zone</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles code regexps with escape chars > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Поле</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Описание</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">zone</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\"><x ctype=\\"code_open\\" equiv-text=\\"\`\`\\" id=\\"x-10\\"/>[.]\\\\|[a-z0-9][-a-z0-9.]*\\\\.<x ctype=\\"code_close\\" equiv-text=\\"\`\`\\" id=\\"x-11\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles condition blocks with html insertions > skeleton expr 1`] = `"{% if show-comments == \\"true\\" %}<sli><image href=\\"images/events-error.png\\" align=\\"center\\"/> %%%1%%%</sli>{% endif %}"`;
+
+exports[`integration > handles condition blocks with html insertions > skeleton main 1`] = `"{% if show-comments == \\"true\\" %}<sli><image href=\\"images/events-error.png\\" align=\\"center\\"/> %%%0%%%</sli>{% endif %}"`;
+
+exports[`integration > handles condition blocks with html insertions > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">— lorem ipsum test;</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles condition blocks with html insertions > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">— lorem ipsum test;</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles default code block as text > skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`
+%%%2_code%%%
+\`\`\`
+"
+`;
+
+exports[`integration > handles default code block as text > skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`
+%%%1%%%\`\`\`
+"
+`;
+
+exports[`integration > handles default code block as text > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок без указания языка</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">Такой вот простенький кодблок</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles default code block as text > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок без указания языка</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Такой вот простенький кодблок
+</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles different tabspaces > skeleton expr 1`] = `
+"  - %%%1%%%
+
+    - %%%2%%%
+
+      <div style=\\"padding: 15px;
+              border: 1px solid var(--yc-color-line-generic);\\">
+      </div>
+
+
+- %%%3%%%
+
+  <div style=\\"padding: 15px;
+        border: 1px solid var(--yc-color-line-generic);\\">
+  </div>"
+`;
+
+exports[`integration > handles different tabspaces > skeleton main 1`] = `
+"  - %%%0%%%
+
+    - %%%1%%%
+
+      <div style=\\"padding: 15px;
+              border: 1px solid var(--yc-color-line-generic);\\">
+      </div>
+
+
+- %%%2%%%
+
+  <div style=\\"padding: 15px;
+        border: 1px solid var(--yc-color-line-generic);\\">
+  </div>"
+`;
+
+exports[`integration > handles different tabspaces > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">A</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">C</source>
+            </trans-unit>
+            <trans-unit id=\\"3\\">
+                <source xml:space=\\"preserve\\">B</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles different tabspaces > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">C</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">B</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles dot in paired markup > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles dot in paired markup > skeleton main 1`] = `"**%%%0%%% %%%1%%%**"`;
+
+exports[`integration > handles dot in paired markup > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Шаг 1. Воспроизведите ошибку</g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles dot in paired markup > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Шаг 1.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Воспроизведите ошибку</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles empty image in list > skeleton expr 1`] = `
+"1. %%%1_s-1%%%
+ ![](../_assets/stat-segment.png)"
+`;
+
+exports[`integration > handles empty image in list > skeleton main 1`] = `
+"1. %%%0%%%
+ ![](../_assets/stat-segment.png)"
+`;
+
+exports[`integration > handles empty image in list > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles empty image in list > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-27\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles empty images > skeleton expr 1`] = `
+"- ![](./image1)
+- ![](./image2)"
+`;
+
+exports[`integration > handles empty images > skeleton main 1`] = `
+"- ![](./image1)
+- ![](./image2)"
+`;
+
+exports[`integration > handles empty images > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles empty images > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles empty link in list > skeleton expr 1`] = `
+"1. %%%1_s-1%%%
+ [](../empty/link)"
+`;
+
+exports[`integration > handles empty link in list > skeleton main 1`] = `
+"1. %%%0%%%
+ [](../empty/link)"
+`;
+
+exports[`integration > handles empty link in list > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles empty link in list > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-26\\" x-begin=\\"**\\" x-end=\\"**\\">A</g>.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles empty links > skeleton expr 1`] = `
+"- [](./link1)
+- [](./link2)"
+`;
+
+exports[`integration > handles empty links > skeleton main 1`] = `
+"- [](./link1)
+- [](./link2)"
+`;
+
+exports[`integration > handles empty links > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles empty links > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles heading anchors > skeleton expr 1`] = `
+"# %%%1%%%
+
+## %%%2%%% {#heading_2}"
+`;
+
+exports[`integration > handles heading anchors > skeleton main 1`] = `
+"# %%%0%%%
+
+## %%%1%%% {#heading_2}"
+`;
+
+exports[`integration > handles heading anchors > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Заголовок 1</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">Заголовок 2</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles heading anchors > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Заголовок 1</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Заголовок 2</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles html line breaks > skeleton expr 1`] = `"%%%1_s-1%%%<br/><br/>%%%2_s-3%%%"`;
+
+exports[`integration > handles html line breaks > skeleton main 1`] = `"%%%0%%%<br/><br/>%%%1%%%"`;
+
+exports[`integration > handles html line breaks > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\"><x equiv-text=\\"![](../image.png)\\" id=\\"e1\\" x-type=\\"image\\" /><x equiv-text=\\"\\" id=\\"t1--1\\" ctype=\\"lb\\" />|<x equiv-text=\\"\\" id=\\"t3--1\\" ctype=\\"lb\\" /><g equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"e4\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e5\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g></source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">Moes Matter<x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />|</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles html line breaks > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](../image.png)\\" id=\\"g-30\\" x-begin=\\"![\\" x-end=\\"](../image.png)\\"></g><x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-29\\"/>|<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-30\\"/><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"g-31\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-32\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g></source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Moes Matter<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-31\\"/>|</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles image with empty title at the end of segment > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles image with empty title at the end of segment > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > handles image with empty title at the end of segment > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">A <x equiv-text=\\"![](./some/image.png)\\" id=\\"e1\\" x-type=\\"image\\" />.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">B.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles image with empty title at the end of segment > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A <g ctype=\\"image\\" equiv-text=\\"![{{text}}](./some/image.png)\\" id=\\"g-15\\" x-begin=\\"![\\" x-end=\\"](./some/image.png)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles image with variables in title > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles image with variables in title > skeleton main 1`] = `"%%%2%%%"`;
+
+exports[`integration > handles image with variables in title > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"![{{text}})\\" id=\\"e1\\" ctype=\\"image\\" x-type=\\"image\\" x-begin=\\"![\\" x-end=\\")\\"><x equiv-text=\\"Image\\" id=\\"e2\\" x-type=\\"image_name\\" /><g equiv-text=\\"](index-mini.md &quot;{{text}}&quot;\\" id=\\"e3\\" x-type=\\"image_title\\" x-begin=\\"](index-mini.md &quot;\\" x-end=\\"&quot;\\">Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e4\\" x-type=\\"liquid_variable\\" />. And what?</g></g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles image with variables in title > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"x-26\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](index-mini.md &quot;%%%0%%% %%%1%%%&quot;)\\" id=\\"g-23\\" x-begin=\\"![\\" x-end=\\"](index-mini.md &quot;%%%0%%% %%%1%%%&quot;)\\">Image</g></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles includes with notitle > skeleton expr 1`] = `"{% include notitle [test](./test.md) %}"`;
+
+exports[`integration > handles includes with notitle > skeleton main 1`] = `"{% include notitle [%%%0%%%](./test.md) %}"`;
+
+exports[`integration > handles includes with notitle > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles includes with notitle > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">test</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles includes with variables > skeleton expr 1`] = `"{% include [test {{product-name}}](./test.md) %}"`;
+
+exports[`integration > handles includes with variables > skeleton main 1`] = `"{% include [%%%0%%%](./test.md) %}"`;
+
+exports[`integration > handles includes with variables > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles includes with variables > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">test <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name}}\\" id=\\"x-23\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles includes with variables and 2 sentence > skeleton expr 1`] = `"{% include [Sentence first. Sentence second {{product-name}}](./test.md) %}"`;
+
+exports[`integration > handles includes with variables and 2 sentence > skeleton main 1`] = `"{% include [%%%0%%% %%%1%%%](./test.md) %}"`;
+
+exports[`integration > handles includes with variables and 2 sentence > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles includes with variables and 2 sentence > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence first.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Sentence second <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name}}\\" id=\\"x-24\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles inline code 1 > skeleton expr 1`] = `
+"%%%1%%% | %%%2%%%
+----- | -----
+\`InternalServerError\` | %%%3%%%"
+`;
+
+exports[`integration > handles inline code 1 > skeleton main 1`] = `
+"%%%0%%% | %%%1%%%
+----- | -----
+%%%2%%% | %%%3%%%"
+`;
+
+exports[`integration > handles inline code 1 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Параметр</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">Описание</source>
+            </trans-unit>
+            <trans-unit id=\\"3\\">
+                <source xml:space=\\"preserve\\">Произошла</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles inline code 1 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Параметр</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Описание</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\"><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-1\\"/>InternalServerError<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-2\\"/></source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\">Произошла</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles inline code 3 > skeleton expr 1`] = `
+"%%%1%%%
+| %%%2%%% | %%%3%%% | %%%4%%% |
+| --- | --- | --- |
+|%%%5%%%|\`string\`<br>\`required\`|%%%6%%%|"
+`;
+
+exports[`integration > handles inline code 3 > skeleton main 1`] = `
+"%%%0%%%
+| %%%1%%% | %%%2%%% | %%%3%%% |
+| --- | --- | --- |
+|%%%4%%%|%%%5%%%|%%%6%%%|"
+`;
+
+exports[`integration > handles inline code 3 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Описание значений полей:</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Название поля</g></source>
+            </trans-unit>
+            <trans-unit id=\\"3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Тип</g></source>
+            </trans-unit>
+            <trans-unit id=\\"4\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Описание</g></source>
+            </trans-unit>
+            <trans-unit id=\\"5\\">
+                <source xml:space=\\"preserve\\">column_name</source>
+            </trans-unit>
+            <trans-unit id=\\"6\\">
+                <source xml:space=\\"preserve\\">Имя колонки для TTL</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles inline code 3 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Описание значений полей:</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-7\\" x-begin=\\"**\\" x-end=\\"**\\">Название поля</g></source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-8\\" x-begin=\\"**\\" x-end=\\"**\\">Тип</g></source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-9\\" x-begin=\\"**\\" x-end=\\"**\\">Описание</g></source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source xml:space=\\"preserve\\">column_name</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source xml:space=\\"preserve\\"><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-3\\"/>string<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-4\\"/><x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"x-5\\"/><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-6\\"/>required<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-7\\"/></source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source xml:space=\\"preserve\\">Имя колонки для TTL</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles inline includes > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles inline includes > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handles inline includes > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">:   <x equiv-text=\\"{% include [test](./test.md) %}\\" id=\\"e1\\" x-type=\\"liquid_operator\\" /><x equiv-text=\\"\\" id=\\"t2--1\\" ctype=\\"lb\\" />OK</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles inline includes > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">:   <x ctype=\\"liquid_Include\\" equiv-text=\\"{% include [test](./test.md) %}\\" id=\\"x-21\\"/><x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-22\\"/>OK</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles link after abbreviation > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles link after abbreviation > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handles link after abbreviation > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Sentence first ex.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link.md)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">link</g> second sentence.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles link after abbreviation > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence first ex. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link.md)\\" id=\\"g-19\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">link</g> second sentence.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles link after sentence ending > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles link after sentence ending > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > handles link after sentence ending > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Sentence first.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link.md)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">Second</g> sentence.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles link after sentence ending > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence first.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](link.md)\\" id=\\"g-18\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">Second</g> sentence.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with empty title and &nbsp before > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles link with empty title and &nbsp before > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > handles link with empty title and &nbsp before > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">A <g equiv-text=\\"[{{text}}](./some/link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\" />.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">B.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with empty title and &nbsp before > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A <g ctype=\\"link\\" equiv-text=\\"[{{text}}](./some/link)\\" id=\\"g-17\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with empty title at the end of segment > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles link with empty title at the end of segment > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > handles link with empty title at the end of segment > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">A <g equiv-text=\\"[{{text}}](./some/link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\" />.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">B.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with empty title at the end of segment > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A <g ctype=\\"link\\" equiv-text=\\"[{{text}}](./some/link)\\" id=\\"g-16\\" x-begin=\\"[\\" x-end=\\"](./some/link)\\"></g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with image with variables in title > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles link with image with variables in title > skeleton main 1`] = `"%%%4%%%"`;
+
+exports[`integration > handles link with image with variables in title > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}})\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\")\\"><g equiv-text=\\"![{{text}} =x100)\\" id=\\"e2\\" ctype=\\"image\\" x-type=\\"image\\" x-begin=\\"![\\" x-end=\\" =x100)\\"><x equiv-text=\\"Image\\" id=\\"e3\\" x-type=\\"image_name\\" /><g equiv-text=\\"](index-mini.md &quot;{{text}}&quot;\\" id=\\"e4\\" x-type=\\"image_title\\" x-begin=\\"](index-mini.md &quot;\\" x-end=\\"&quot;\\">Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e5\\" x-type=\\"liquid_variable\\" />. And what?</g></g><g equiv-text=\\"](index-mini.md &quot;{{text}}&quot;\\" id=\\"e8\\" x-type=\\"link_title\\" x-begin=\\"](index-mini.md &quot;\\" x-end=\\"&quot;\\">Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e9\\" x-type=\\"liquid_variable\\" />. And what?</g></g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with image with variables in title > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"x-27\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"x-28\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\">And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](index-mini.md &quot;%%%2%%% %%%3%%%&quot;)\\" id=\\"g-24\\" x-begin=\\"[\\" x-end=\\"](index-mini.md &quot;%%%2%%% %%%3%%%&quot;)\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](index-mini.md &quot;%%%0%%% %%%1%%%&quot; =x100)\\" id=\\"g-25\\" x-begin=\\"![\\" x-end=\\"](index-mini.md &quot;%%%0%%% %%%1%%%&quot; =x100)\\">Image</g></g></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with variables in title > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles link with variables in title > skeleton main 1`] = `"%%%2%%%"`;
+
+exports[`integration > handles link with variables in title > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}})\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\")\\">Link<g equiv-text=\\"](index-mini.md &quot;{{text}}&quot;\\" id=\\"e2\\" x-type=\\"link_title\\" x-begin=\\"](index-mini.md &quot;\\" x-end=\\"&quot;\\">Title <x equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"e3\\" x-type=\\"liquid_variable\\" />. And what?</g></g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles link with variables in title > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"x-25\\"/>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">And what?</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](index-mini.md &quot;%%%0%%% %%%1%%%&quot;)\\" id=\\"g-22\\" x-begin=\\"[\\" x-end=\\"](index-mini.md &quot;%%%0%%% %%%1%%%&quot;)\\">Link</g></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles links in brackets > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles links in brackets > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handles links in brackets > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">(see <g equiv-text=\\"[{{text}}](#nestedblock--timeouts)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles links in brackets > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">(see <g ctype=\\"link\\" equiv-text=\\"[{{text}}](#nestedblock--timeouts)\\" id=\\"g-10\\" x-begin=\\"[\\" x-end=\\"](#nestedblock--timeouts)\\">below for nested schema</g>)</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles links with brackets > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles links with brackets > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handles links with brackets > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](#example)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](#example)\\"><g equiv-text=\\"^{{text}}^\\" id=\\"e2\\" x-type=\\"sup\\" x-begin=\\"^\\" x-end=\\"^\\">\\\\[Упр\\\\]</g></g></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles links with brackets > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](#example)\\" id=\\"g-11\\" x-begin=\\"[\\" x-end=\\"](#example)\\"><g ctype=\\"sup\\" equiv-text=\\"^{{text}}^\\" id=\\"g-12\\" x-begin=\\"^\\" x-end=\\"^\\">\\\\[Упр\\\\]</g></g></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles liquid in html attributes > skeleton expr 1`] = `
+"# %%%1%%%
+
+<a href=\\"{{ extref-chat-user-d9389e00 }}\\">
+<span class=\\"button\\">%%%2%%%</span>
+</a>"
+`;
+
+exports[`integration > handles liquid in html attributes > skeleton main 1`] = `
+"# %%%0%%%
+
+<a href=\\"{{ extref-chat-user-d9389e00 }}\\">
+<span class=\\"button\\">%%%1%%%</span>
+</a>"
+`;
+
+exports[`integration > handles liquid in html attributes > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Variable in href attribute</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">Button</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles liquid in html attributes > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Variable in href attribute</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Button</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles multiline inline code > skeleton expr 1`] = `
+"\`ALL_CONCAT( expression [ , separator ]
+    [ FIXED ... | INCLUDE ... | EXCLUDE ... ]
+    [ BEFORE FILTER BY ... ]
+)\`"
+`;
+
+exports[`integration > handles multiline inline code > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handles multiline inline code > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles multiline inline code > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-8\\"/>ALL_CONCAT( expression [ , separator ]
+    [ FIXED ... | INCLUDE ... | EXCLUDE ... ]
+    [ BEFORE FILTER BY ... ]
+)<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-9\\"/></source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles self closing html tags > skeleton expr 1`] = `
+"# %%%1%%%
+
+%%%2_s-1%%%
+%%%3_s-3%%%
+
+<keyword keyref=\\"responce\\"/>
+
+## %%%4%%%
+
+%%%5%%%"
+`;
+
+exports[`integration > handles self closing html tags > skeleton main 1`] = `
+"# %%%0%%%
+
+%%%1%%%
+%%%2%%%
+
+<keyword keyref=\\"responce\\"/>
+
+## %%%3%%%
+
+%%%4%%%"
+`;
+
+exports[`integration > handles self closing html tags > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Header</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-1\\">
+                <source xml:space=\\"preserve\\">A a.</source>
+            </trans-unit>
+            <trans-unit id=\\"3_s-3\\">
+                <source xml:space=\\"preserve\\">B b.</source>
+            </trans-unit>
+            <trans-unit id=\\"4\\">
+                <source xml:space=\\"preserve\\">End of text</source>
+            </trans-unit>
+            <trans-unit id=\\"5\\">
+                <source xml:space=\\"preserve\\">C!</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles self closing html tags > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Header</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">A a.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">B b.</source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\">End of text</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source xml:space=\\"preserve\\">C!</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles sentence within link > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles sentence within link > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > handles sentence within link > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link.md)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">Link. link.</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">Second sentence.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles sentence within link > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"link\\" equiv-text=\\"[{{text}}](link.md)\\" id=\\"g-20\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">Link. link.</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Second sentence.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles sentence within link with text before > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > handles sentence within link with text before > skeleton main 1`] = `"%%%0%%% %%%1%%%"`;
+
+exports[`integration > handles sentence within link with text before > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Sentence first <g equiv-text=\\"[{{text}}](link.md)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">link. link.</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\">Second sentence.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles sentence within link with text before > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence first <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link.md)\\" id=\\"g-21\\" x-begin=\\"[\\" x-end=\\"](link.md)\\">link. link.</g>.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Second sentence.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles single variable as content > skeleton expr 1`] = `
+"#|
+||
+
+{{ reference-alerts.struct-table-protocol-alerts.request-id-col-1 }}
+
+||
+|#"
+`;
+
+exports[`integration > handles single variable as content > skeleton main 1`] = `
+"#|
+||
+
+{{ reference-alerts.struct-table-protocol-alerts.request-id-col-1 }}
+
+||
+|#"
+`;
+
+exports[`integration > handles single variable as content > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles single variable as content > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles standalone {#T} link > skeleton expr 1`] = `
+"%%%1%%%
+
+[{#T}](D)
+
+%%%2%%%"
+`;
+
+exports[`integration > handles standalone {#T} link > skeleton main 1`] = `
+"%%%0%%%
+
+[{#T}](D)
+
+%%%1%%%"
+`;
+
+exports[`integration > handles standalone {#T} link > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">A.</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">B.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles standalone {#T} link > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">A.</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">B.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles terms > skeleton expr 1`] = `
+"%%%1%%%
+
+[*term]: %%%2_s-1%%%
+%%%3_s-3%%%"
+`;
+
+exports[`integration > handles terms > skeleton main 1`] = `
+"%%%0%%%
+
+[*term]: %%%1%%%
+%%%2%%%"
+`;
+
+exports[`integration > handles terms > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Some <g equiv-text=\\"[{{text}}](*term)\\" id=\\"e1\\" x-type=\\"term_link\\" x-begin=\\"[\\" x-end=\\"](*term)\\">term</g></source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-1\\">
+                <source xml:space=\\"preserve\\">Some multiline term.</source>
+            </trans-unit>
+            <trans-unit id=\\"3_s-3\\">
+                <source xml:space=\\"preserve\\">Here.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles terms > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Some <g ctype=\\"link\\" equiv-text=\\"[{{text}}](*term)\\" id=\\"g-28\\" x-begin=\\"[\\" x-end=\\"](*term)\\">term</g></source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Some multiline term.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">Here.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles text code block > skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`text
+%%%2_code%%%
+\`\`\`"
+`;
+
+exports[`integration > handles text code block > skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`text
+%%%1%%%\`\`\`"
+`;
+
+exports[`integration > handles text code block > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок text</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">Такой вот простенький кодблок</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles text code block > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок text</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Такой вот простенький кодблок
+</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles titleless notes > skeleton expr 1`] = `
+"{% note info %}
+
+%%%1%%%
+
+{% endnote %}"
+`;
+
+exports[`integration > handles titleless notes > skeleton main 1`] = `
+"{% note info %}
+
+%%%0%%%
+
+{% endnote %}"
+`;
+
+exports[`integration > handles titleless notes > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles titleless notes > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Для работы в режиме совместимости с Amazon DynamoDB используйте бессерверную (Serverless) конфигурацию БД.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block > skeleton expr 1`] = `
+"%%%1%%%
+
+\`\`\`bash translate=no
+%%%2_code%%%
+\`\`\`"
+`;
+
+exports[`integration > handles translate=no code block > skeleton main 1`] = `
+"%%%0%%%
+
+\`\`\`bash translate=no
+curl -H \\"Authorization: OAuth <ваш-OAuth-токен>\\" -X GET https://courier.yandex.ru/api/v1/test
+\`\`\`"
+`;
+
+exports[`integration > handles translate=no code block > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Кодблок не переводить</source>
+            </trans-unit>
+            <trans-unit id=\\"2_code\\">
+                <source xml:space=\\"preserve\\">curl -H &quot;Authorization: OAuth &lt;ваш-OAuth-токен&gt;&quot; -X GET https://courier.yandex.ru/api/v1/test</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Кодблок не переводить</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles wrond ordered terms > skeleton expr 1`] = `
+"%%%1%%%
+
+[*term]: 
+    %%%2_s-1%%%
+    %%%3_s-3%%%"
+`;
+
+exports[`integration > handles wrond ordered terms > skeleton main 1`] = `
+"%%%0%%%
+
+[*term]: 
+    %%%1%%%
+    %%%2%%%"
+`;
+
+exports[`integration > handles wrond ordered terms > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Some <g equiv-text=\\"[{{text}}](*term)\\" id=\\"e1\\" x-type=\\"term_link\\" x-begin=\\"[\\" x-end=\\"](*term)\\">term</g></source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-1\\">
+                <source xml:space=\\"preserve\\">Some multiline term.</source>
+            </trans-unit>
+            <trans-unit id=\\"3_s-3\\">
+                <source xml:space=\\"preserve\\">Here.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles wrond ordered terms > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Some <g ctype=\\"link\\" equiv-text=\\"[{{text}}](*term)\\" id=\\"g-29\\" x-begin=\\"[\\" x-end=\\"](*term)\\">term</g></source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Some multiline term.</source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\">Here.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8192 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8192 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8192 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8192 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-36\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-37\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8193 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8193 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8193 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8193 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-38\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-39\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8194 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8194 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8194 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8194 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-40\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-41\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8195 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8195 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8195 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8195 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-42\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-43\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8196 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8196 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8196 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8196 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-44\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-45\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8197 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8197 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8197 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8197 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-46\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-47\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8198 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8198 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8198 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8198 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-48\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-49\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8199 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8199 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8199 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8199 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-50\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-51\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8200 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8200 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8200 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8200 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-52\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-53\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8201 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8201 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8201 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8201 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-54\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-55\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8202 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8202 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8202 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8202 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-56\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-57\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> Предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8239 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8239 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8239 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8239 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-58\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-59\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8287 > skeleton expr 1`] = `"%%%1_s-1%%% %%%2_s-3%%%"`;
+
+exports[`integration > inline: space with code 8287 > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > inline: space with code 8287 > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1_s-1\\">
+                <source xml:space=\\"preserve\\">Предложение номер один <g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>.</source>
+            </trans-unit>
+            <trans-unit id=\\"2_s-3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"[{{text}}](link)\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> предложение номер два.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > inline: space with code 8287 > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Предложение номер один <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-60\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g>. <g ctype=\\"link\\" equiv-text=\\"[{{text}}](link)\\" id=\\"g-61\\" x-begin=\\"[\\" x-end=\\"](link)\\">title</g> предложение номер два.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > link variable leak > skeleton expr 1`] = `
+"## %%%1%%%
+
+#||| %%%2%%% | %%%3%%% ||
+
+||
+\`\`\`
+POST
+\`\`\`
+| 
+\`\`\`
+https://api.example.ru/businesses/{businessId}/offer-mappings/update
+\`\`\`
+|||#
+
+### %%%4%%%
+
+#||| %%%5%%% | %%%6%%% | %%%7%%% ||
+
+|| %%%8%%% | %%%9%%% | %%%10%%% |||#"
+`;
+
+exports[`integration > link variable leak > skeleton main 1`] = `
+"## %%%0%%%
+
+#||| %%%1%%% | %%%2%%% ||
+
+||
+\`\`\`
+%%%3%%%\`\`\`
+| 
+\`\`\`
+%%%4%%%\`\`\`
+|||#
+
+### %%%5%%%
+
+#||| %%%6%%% | %%%7%%% | %%%8%%% ||
+
+|| %%%9%%% | %%%10%%% | %%%11%%% |||#"
+`;
+
+exports[`integration > link variable leak > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Request</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">method</g></source>
+            </trans-unit>
+            <trans-unit id=\\"3\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">url</g></source>
+            </trans-unit>
+            <trans-unit id=\\"4\\">
+                <source xml:space=\\"preserve\\">Path parameters</source>
+            </trans-unit>
+            <trans-unit id=\\"5\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Name</g></source>
+            </trans-unit>
+            <trans-unit id=\\"6\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Type</g></source>
+            </trans-unit>
+            <trans-unit id=\\"7\\">
+                <source xml:space=\\"preserve\\"><g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">Description</g></source>
+            </trans-unit>
+            <trans-unit id=\\"8\\">
+                <source xml:space=\\"preserve\\">businessId</source>
+            </trans-unit>
+            <trans-unit id=\\"9\\">
+                <source xml:space=\\"preserve\\">integer&amp;lt;int64&amp;gt;</source>
+            </trans-unit>
+            <trans-unit id=\\"10\\">
+                <source xml:space=\\"preserve\\">Description</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > link variable leak > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Request</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">method</g></source>
+      </trans-unit>
+      <trans-unit id=\\"2\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-2\\" x-begin=\\"**\\" x-end=\\"**\\">url</g></source>
+      </trans-unit>
+      <trans-unit id=\\"3\\">
+        <source xml:space=\\"preserve\\">POST
+</source>
+      </trans-unit>
+      <trans-unit id=\\"4\\">
+        <source xml:space=\\"preserve\\">https://api.example.ru/businesses/{businessId}/offer-mappings/update
+</source>
+      </trans-unit>
+      <trans-unit id=\\"5\\">
+        <source xml:space=\\"preserve\\">Path parameters</source>
+      </trans-unit>
+      <trans-unit id=\\"6\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-3\\" x-begin=\\"**\\" x-end=\\"**\\">Name</g></source>
+      </trans-unit>
+      <trans-unit id=\\"7\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-4\\" x-begin=\\"**\\" x-end=\\"**\\">Type</g></source>
+      </trans-unit>
+      <trans-unit id=\\"8\\">
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-5\\" x-begin=\\"**\\" x-end=\\"**\\">Description</g></source>
+      </trans-unit>
+      <trans-unit id=\\"9\\">
+        <source xml:space=\\"preserve\\">businessId</source>
+      </trans-unit>
+      <trans-unit id=\\"10\\">
+        <source xml:space=\\"preserve\\">integer&amp;lt;int64&amp;gt;</source>
+      </trans-unit>
+      <trans-unit id=\\"11\\">
+        <source xml:space=\\"preserve\\">Description</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > no-translate directive with block > skeleton expr 1`] = `
+"%%%1%%% 
+
+%%%2%%%
+### %%%3%%%
+%%%4_s-1%%%
+%%%5_s-3%%%
+:::"
+`;
+
+exports[`integration > no-translate directive with block > skeleton main 1`] = `
+"%%%0%%% 
+
+:::no-translate
+### No-translate header
+Should not be translated.
+Can use **markup** inside.
+:::"
+`;
+
+exports[`integration > no-translate directive with block > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">This will be translated</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">:::no-translate</source>
+            </trans-unit>
+            <trans-unit id=\\"3\\">
+                <source xml:space=\\"preserve\\">No-translate header</source>
+            </trans-unit>
+            <trans-unit id=\\"4_s-1\\">
+                <source xml:space=\\"preserve\\">Should not be translated.</source>
+            </trans-unit>
+            <trans-unit id=\\"5_s-3\\">
+                <source xml:space=\\"preserve\\">Can use <g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">markup</g> inside.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > no-translate directive with block > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">This will be translated</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > no-translate directive with inline > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > no-translate directive with inline > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > no-translate directive with inline > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Use :no-translate[<g equiv-text=\\"**{{text}}**\\" id=\\"e1\\" ctype=\\"bold\\" x-type=\\"strong\\" x-begin=\\"**\\" x-end=\\"**\\">GET /api/v1/users</g>] to list users and :no-translate[POST /api/v1/users] to create.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > no-translate directive with inline > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Use <x ctype=\\"no_translate_inline\\" equiv-text=\\":no-translate[**GET /api/v1/users**]\\" id=\\"x-34\\"/> to list users and <x ctype=\\"no_translate_inline\\" equiv-text=\\":no-translate[POST /api/v1/users]\\" id=\\"x-35\\"/> to create.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > no-translate directive with leaf > skeleton expr 1`] = `
+"%%%1%%% 
+
+%%%2%%%"
+`;
+
+exports[`integration > no-translate directive with leaf > skeleton main 1`] = `
+"%%%0%%% 
+
+::no-translate [some inline content will no be translated]"
+`;
+
+exports[`integration > no-translate directive with leaf > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">This will be translated</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">::no-translate [some inline content will no be translated]</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > no-translate directive with leaf > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">This will be translated</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > recursive merge tokens > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > recursive merge tokens > skeleton main 1`] = `"%%%1%%%"`;
+
+exports[`integration > recursive merge tokens > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Sentense <g equiv-text=\\"[{{text}})\\" id=\\"e1\\" ctype=\\"link\\" x-type=\\"link\\" x-begin=\\"[\\" x-end=\\")\\">link<g equiv-text=\\"](file.md &quot;{{text}}&quot;\\" id=\\"e2\\" x-type=\\"link_title\\" x-begin=\\"](file.md &quot;\\" x-end=\\"&quot;\\">title</g></g>.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > recursive merge tokens > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">title</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">Sentense <g ctype=\\"link\\" equiv-text=\\"[{{text}}](file.md &quot;%%%0%%%&quot;)\\" id=\\"g-6\\" x-begin=\\"[\\" x-end=\\"](file.md &quot;%%%0%%%&quot;)\\">link</g>.</source>
       </trans-unit>
     </body>
   </file>

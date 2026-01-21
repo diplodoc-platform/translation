@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`parses translation units parses single trans-unit 1`] = `
+exports[`parses translation units > parses single trans-unit 1`] = `
 Array [
   Array [
     Object {
@@ -32,7 +32,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units parses sources when targets are absent with useSource flag enabled 1`] = `
+exports[`parses translation units > parses sources when targets are absent with useSource flag enabled 1`] = `
 Array [
   Array [
     Object {
@@ -91,7 +91,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units parses targets 1`] = `
+exports[`parses translation units > parses targets 1`] = `
 Array [
   Array [
     Object {
@@ -150,7 +150,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses autolink wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses autolink wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -202,7 +202,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses code wrapped in <x> tag 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses code wrapped in <x> tag 1`] = `
 Array [
   Array [
     Object {
@@ -341,7 +341,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses em wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses em wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -480,7 +480,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses file wrapped <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses file wrapped <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -657,7 +657,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses heading with anchors wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses heading with anchors wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -719,7 +719,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses image with all attributes wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses image with all attributes wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -886,7 +886,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses inline code with liquid wrapped in <x> tag 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses inline code with liquid wrapped in <x> tag 1`] = `
 Array [
   Array [
     Object {
@@ -1055,7 +1055,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses inline html wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses inline html wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1147,7 +1147,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses link with multiple sentences inside link text and link title 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses link with multiple sentences inside link text and link title 1`] = `
 Array [
   Array [
     Object {
@@ -1343,7 +1343,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses links wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses links wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1607,7 +1607,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses liquid conditions wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses liquid conditions wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1699,7 +1699,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses liquid filters wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses liquid filters wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1751,7 +1751,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses liquid function wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses liquid function wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1803,7 +1803,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses liquid loop wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses liquid loop wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1875,7 +1875,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses liquid variables wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses liquid variables wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -1927,7 +1927,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses ref links wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses ref links wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -2151,7 +2151,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses s wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses s wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -2290,7 +2290,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses samp wrapped in <g> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses samp wrapped in <g> tags 1`] = `
 Array [
   Array [
     Object {
@@ -2429,7 +2429,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses strong wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses strong wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -2568,7 +2568,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses sup wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses sup wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -2707,7 +2707,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses variable href link wrapped in <x> tags 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses variable href link wrapped in <x> tags 1`] = `
 Array [
   Array [
     Object {
@@ -2859,7 +2859,7 @@ Array [
 ]
 `;
 
-exports[`parses translation units with <g> and <x> tags parses video wrapped in x tag 1`] = `
+exports[`parses translation units with <g> and <x> tags > parses video wrapped in x tag 1`] = `
 Array [
   Array [
     Object {

@@ -4,16 +4,15 @@ import type {
     ExtractOptions as JsonExtractOptions,
 } from './json';
 import type {JSONObject} from 'src/json';
-
-import {compose as composeMd, extract as extraactMd} from './md';
-import {
+import type {
     ComposeOptions as MdExpComposeOptions,
     ComposeOutput as MdExpComposeOutput,
     ExtractOptions as MdExpExtractOptions,
     ExtractOutput as MdExpExtractOutput,
-    compose as composeMdExp,
-    extract as extractMdExp,
 } from './mdExp';
+
+import {compose as composeMd, extract as extraactMd} from './md';
+import {compose as composeMdExp, extract as extractMdExp} from './mdExp';
 import {compose as composeJson, extract as extraactJson} from './json';
 import {validate} from './validate';
 export type {AjvOptions} from './json';

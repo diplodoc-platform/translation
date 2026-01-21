@@ -1,7 +1,7 @@
 import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
+import type {Consumer} from 'src/consumer';
 
-import {Consumer} from 'src/consumer';
 import {find} from 'src/utils';
 
 export const list: Renderer.RenderRuleRecord = {

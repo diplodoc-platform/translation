@@ -1,4 +1,4 @@
-import {Fixtures} from './fixture';
+import type {Fixtures} from './fixture';
 
 const variable: Fixtures = [
     {

@@ -1,9 +1,7 @@
+import type {XmlParserElementChildNode, XmlParserElementNode, XmlParserResult} from 'xml-parser-xo';
+
 import yaml from 'js-yaml';
-import xmlParser, {
-    XmlParserElementChildNode,
-    XmlParserElementNode,
-    XmlParserResult,
-} from 'xml-parser-xo';
+import xmlParser from 'xml-parser-xo';
 
 import {YamlQuotingTypeQuote} from './constants';
 import {unescapeXmlText} from './xliff/utils';

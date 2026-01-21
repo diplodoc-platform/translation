@@ -1,4 +1,4 @@
-import Renderer from 'markdown-it/lib/renderer';
+import type Renderer from 'markdown-it/lib/renderer';
 
 function escapeMarkupLikeChars(tokens: Token[], idx: number) {
     const inline = tokens[idx + 1];

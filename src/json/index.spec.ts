@@ -1,5 +1,6 @@
 import type {JSONObject, LinkedJSONObject} from './types';
 
+import {describe, expect, it} from 'vitest';
 import {readFile} from 'node:fs/promises';
 import {join, relative} from 'node:path';
 import {dump, load} from 'js-yaml';

@@ -1,7 +1,7 @@
+import type {TokenSubType, TokenType} from './token';
+
 import {token} from 'src/utils';
 import {vr, vrre} from 'src/symbols';
-
-import {TokenSubType, TokenType} from './token';
 
 export type Configuration = {
     specification?: Specification;

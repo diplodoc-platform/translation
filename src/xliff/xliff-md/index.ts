@@ -1,6 +1,16 @@
+import type {XLFTagToken, XLFTextToken, XLFToken} from '../token';
+
 import assert from 'assert';
 
-import {XLFTagToken, XLFTextToken, XLFToken, isXLFTagToken, isXLFTextToken} from '../token';
+import {isXLFTagToken, isXLFTextToken} from '../token';
+
+function assertTagToken(token: XLFToken): asserts token is XLFTagToken {
+    assert(isXLFTagToken(token));
+}
+
+function assertTextToken(token: XLFToken): asserts token is XLFTextToken {
+    assert(isXLFTextToken(token));
+}
 
 export type XLFMDRendererRuleSet = {
     text: XLFMDRendererRule;
@@ -10,8 +20,7 @@ export type XLFMDRendererRuleSet = {
 export type XLFMDRendererRule = (token: XLFToken) => string;
 
 const literal = (token: XLFToken): string => {
-    assert(isXLFTagToken(token));
-    token as XLFTagToken;
+    assertTagToken(token);
 
     const {equivText} = token;
     assert(
@@ -23,8 +32,7 @@ const literal = (token: XLFToken): string => {
 };
 
 const literallb = (token: XLFToken): string => {
-    assert(isXLFTagToken(token));
-    token as XLFTagToken;
+    assertTagToken(token);
 
     const equivText = token.equivText?.replace(/&#10;/g, '\n');
     assert(
@@ -36,8 +44,7 @@ const literallb = (token: XLFToken): string => {
 };
 
 const openclose = (token: XLFToken) => {
-    assert(isXLFTagToken(token));
-    token as XLFTagToken;
+    assertTagToken(token);
 
     if (token.nodeType === 'open') {
         return token.begin;
@@ -159,8 +166,7 @@ export class XLFMDRenderer {
     }
 
     text(token: XLFToken): string {
-        assert(isXLFTextToken(token));
-        token as XLFTextToken;
+        assertTextToken(token);
 
         return token.data;
     }
@@ -175,8 +181,7 @@ export class XLFMDRenderer {
     }
 
     g(token: XLFToken): string {
-        assert(isXLFTagToken(token));
-        token as XLFTagToken;
+        assertTagToken(token);
 
         const syntax = token.syntax;
         if (!syntax?.length) {
@@ -192,8 +197,7 @@ export class XLFMDRenderer {
     }
 
     x(token: XLFToken): string {
-        assert(isXLFTagToken(token));
-        token as XLFTagToken;
+        assertTagToken(token);
 
         const syntax = token.syntax;
         if (!syntax?.length) {

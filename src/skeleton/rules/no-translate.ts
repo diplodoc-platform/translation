@@ -1,7 +1,7 @@
 import type Renderer from 'markdown-it/lib/renderer';
 import type {CustomRenderer} from 'src/renderer';
+import type {Consumer} from 'src/consumer';
 
-import {Consumer} from 'src/consumer';
 import {Liquid} from 'src/skeleton/liquid';
 
 export const noTranslate: Renderer.RenderRuleRecord = {

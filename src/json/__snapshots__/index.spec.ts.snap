@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`json integration should handle hidden circular: __mocks__/spec/hidden-circular.yaml 1`] = `
+exports[`json > integration > should handle hidden circular > __mocks__/spec/hidden-circular.yaml 1`] = `
 "components:
   schemas:
     A:
@@ -18,20 +18,20 @@ exports[`json integration should handle hidden circular: __mocks__/spec/hidden-c
 "
 `;
 
-exports[`json integration should resolve simple refs: __mocks__/spec/circular.yaml 1`] = `
+exports[`json > integration > should resolve simple refs > __mocks__/spec/circular.yaml 1`] = `
 "c1:
   items:
     $ref: ./index.yaml/#/prop6
 "
 `;
 
-exports[`json integration should resolve simple refs: __mocks__/spec/deep.yaml 1`] = `
+exports[`json > integration > should resolve simple refs > __mocks__/spec/deep.yaml 1`] = `
 "f1:
   value: $$$4$$$
 "
 `;
 
-exports[`json integration should resolve simple refs: __mocks__/spec/index.yaml 1`] = `
+exports[`json > integration > should resolve simple refs > __mocks__/spec/index.yaml 1`] = `
 "prop1:
   $ref: ./inner.yaml/#/r1
 prop2:
@@ -55,7 +55,7 @@ defs:
 "
 `;
 
-exports[`json integration should resolve simple refs: __mocks__/spec/inner.yaml 1`] = `
+exports[`json > integration > should resolve simple refs > __mocks__/spec/inner.yaml 1`] = `
 "r1:
   value: $$$1$$$
   prop:

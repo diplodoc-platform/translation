@@ -1,8 +1,9 @@
+import type {ChildNode, Element} from 'domhandler';
+import type {XLFTagToken, XLFTextToken, XLFToken} from 'src/xliff/token';
+
 import assert, {ok} from 'assert';
 import {load} from 'cheerio';
-import {ChildNode, Element, isTag, isText} from 'domhandler';
-
-import {XLFTagToken, XLFTextToken, XLFToken} from 'src/xliff/token';
+import {isTag, isText} from 'domhandler';
 
 const selfClosingTags = new Set(['x']);
 

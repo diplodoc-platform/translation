@@ -1,6 +1,8 @@
-import MarkdownIt, {Options} from 'markdown-it';
+import type {Options} from 'markdown-it';
+import type MarkdownIt from 'markdown-it';
+import type Token from 'markdown-it/lib/token';
+
 import Renderer from 'markdown-it/lib/renderer';
-import Token from 'markdown-it/lib/token';
 
 export enum CustomRendererLifeCycle {
     BeforeRender,

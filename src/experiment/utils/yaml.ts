@@ -1,3 +1,5 @@
+import type {TokenExtraMap} from '../types';
+
 import yaml from 'js-yaml';
 import markdownit from 'markdown-it';
 import Token from 'markdown-it/lib/token';
@@ -5,7 +7,6 @@ import Token from 'markdown-it/lib/token';
 import {liquidOperator} from '../plugins/liquid/liquidOperator';
 import {liquidVariable} from '../plugins/liquid/liquidVariable';
 import {childrenTokenSearch} from '../tokenSearch';
-import {TokenExtraMap} from '../types';
 
 const mdYaml = markdownit().use(liquidVariable).use(liquidOperator);
 mdYaml.inline.ruler.enableOnly(['liquidOperator', 'liquidVariable']);

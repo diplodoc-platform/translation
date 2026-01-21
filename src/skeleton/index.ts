@@ -1,4 +1,5 @@
 import type {ConsumerOptions} from 'src/consumer';
+import type {Hash} from 'src/hash';
 
 import MarkdownIt from 'markdown-it';
 // configure with diplodoc plugins
@@ -18,7 +19,7 @@ import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
 
 import {customRenderer} from 'src/renderer';
-import {Hash, hash as _hash} from 'src/hash';
+import {hash as _hash} from 'src/hash';
 import {Consumer} from 'src/consumer';
 import {Liquid} from 'src/skeleton/liquid';
 import {noTranslate} from 'src/directives/no-translate';

@@ -1,6 +1,7 @@
+import type {ReplacePart, TokenExtraMap} from '../types';
+
 import Token from 'markdown-it/lib/token';
 
-import {ReplacePart, TokenExtraMap} from '../types';
 import {floatToken, getExtraToken, hasTextChildren, safeSlice, toJsonF} from '../utils';
 
 import {GElement} from './elements/GElement';

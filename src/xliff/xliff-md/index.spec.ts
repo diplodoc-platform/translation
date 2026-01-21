@@ -1,6 +1,9 @@
+import type {XLFToken} from 'src/xliff/token';
+
+import {describe, expect, it} from 'vitest';
+
 import {parse} from 'src/xliff';
 import {extract} from 'src/api';
-import {XLFToken} from 'src/xliff/token';
 
 import {render as _render} from './index';
 

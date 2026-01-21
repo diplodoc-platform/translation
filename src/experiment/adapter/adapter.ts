@@ -1,9 +1,10 @@
-import {
+import type {
     ComposeOptions,
     ComposeOutput,
     ExtractOptions,
     ExtractOutput,
 } from 'src/experiment/adapter/types';
+
 import {transform} from 'src/experiment/transform';
 import {translate} from 'src/experiment/translate';
 

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`liquid tokenizer syntax conditions-1 1`] = `
+exports[`liquid tokenizer syntax > conditions-1 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -89,7 +89,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax conditions-2 1`] = `
+exports[`liquid tokenizer syntax > conditions-2 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -162,7 +162,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax conditions-3 1`] = `
+exports[`liquid tokenizer syntax > conditions-3 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -311,7 +311,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax filter-1 1`] = `
+exports[`liquid tokenizer syntax > filter-1 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -365,7 +365,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax filter-2 1`] = `
+exports[`liquid tokenizer syntax > filter-2 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -419,7 +419,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax filter-3 1`] = `
+exports[`liquid tokenizer syntax > filter-3 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -473,7 +473,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax filter-4 1`] = `
+exports[`liquid tokenizer syntax > filter-4 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -527,7 +527,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax functions-1 1`] = `
+exports[`liquid tokenizer syntax > functions-1 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -581,7 +581,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax functions-2 1`] = `
+exports[`liquid tokenizer syntax > functions-2 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -635,7 +635,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax functions-3 1`] = `
+exports[`liquid tokenizer syntax > functions-3 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -673,7 +673,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax functions-4 1`] = `
+exports[`liquid tokenizer syntax > functions-4 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -711,7 +711,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax loop-1 1`] = `
+exports[`liquid tokenizer syntax > loop-1 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -768,7 +768,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax loop-2 1`] = `
+exports[`liquid tokenizer syntax > loop-2 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -825,7 +825,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax loop-3 1`] = `
+exports[`liquid tokenizer syntax > loop-3 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -882,7 +882,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax loop-4 1`] = `
+exports[`liquid tokenizer syntax > loop-4 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -976,7 +976,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax text-1 1`] = `
+exports[`liquid tokenizer syntax > text-1 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -997,7 +997,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax text-2 1`] = `
+exports[`liquid tokenizer syntax > text-2 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -1018,7 +1018,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax variable-1 1`] = `
+exports[`liquid tokenizer syntax > variable-1 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -1072,7 +1072,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax variable-2 1`] = `
+exports[`liquid tokenizer syntax > variable-2 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -1126,7 +1126,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax variable-3 1`] = `
+exports[`liquid tokenizer syntax > variable-3 1`] = `
 Array [
   Token {
     "attrs": null,
@@ -1180,7 +1180,7 @@ Array [
 ]
 `;
 
-exports[`liquid tokenizer syntax variable-4 1`] = `
+exports[`liquid tokenizer syntax > variable-4 1`] = `
 Array [
   Token {
     "attrs": null,

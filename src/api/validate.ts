@@ -1,5 +1,7 @@
+import type {ErrorObject} from 'ajv';
+
 import {isAbsolute} from 'node:path';
-import Ajv, {ErrorObject} from 'ajv';
+import Ajv from 'ajv';
 import languages from '@cospired/i18n-iso-languages';
 import countries from '@shellscape/i18n-iso-countries';
 import {XMLValidator} from 'fast-xml-parser';

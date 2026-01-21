@@ -1,8 +1,9 @@
-import MarkdownIt, {Token} from 'markdown-it';
-import ParserBlock from 'markdown-it/lib/parser_block';
-import Core from 'markdown-it/lib/parser_core';
-import StateBlock from 'markdown-it/lib/rules_block/state_block';
-import StateCore from 'markdown-it/lib/rules_core/state_core';
+import type {Token} from 'markdown-it';
+import type MarkdownIt from 'markdown-it';
+import type ParserBlock from 'markdown-it/lib/parser_block';
+import type Core from 'markdown-it/lib/parser_core';
+import type StateBlock from 'markdown-it/lib/rules_block/state_block';
+import type StateCore from 'markdown-it/lib/rules_core/state_core';
 
 const getTermDefinitions = (md: MarkdownIt) => {
     const termDefinitions: ParserBlock.RuleBlock = function (

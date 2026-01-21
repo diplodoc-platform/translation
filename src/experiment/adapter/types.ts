@@ -1,13 +1,13 @@
-import countries from '@shellscape/i18n-iso-countries';
+import type countries from '@shellscape/i18n-iso-countries';
+import type {Xliff} from 'src/experiment/xliff/xliff';
+import type {TransformOptions} from 'src/experiment/transform';
+import type {TranslateOptions} from 'src/experiment/translate';
+
 import languages from '@cospired/i18n-iso-languages';
 
-import {Xliff} from 'src/experiment/xliff/xliff';
-import {TransformOptions} from 'src/experiment/transform';
-import {TranslateOptions} from 'src/experiment/translate';
+const _languagesList = languages.langs();
 
-const languagesList = languages.langs();
-
-export type Language = (typeof languagesList)[number];
+export type Language = (typeof _languagesList)[number];
 
 export type LanguageLocale = {
     language: Language;

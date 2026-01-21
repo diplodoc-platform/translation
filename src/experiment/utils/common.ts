@@ -1,4 +1,5 @@
 import type MarkdownIt from 'markdown-it';
+import type {TokenExtraMap} from '../types';
 
 import markdownit from 'markdown-it';
 import Token from 'markdown-it/lib/token';
@@ -7,7 +8,6 @@ import {passTranslation} from '../constants';
 import {liquidOperator} from '../plugins/liquid/liquidOperator';
 import {xliffSpecial} from '../plugins/xliffSpecial';
 import {childrenTokenSearch} from '../tokenSearch';
-import {TokenExtraMap} from '../types';
 
 /* eslint-disable no-console */
 

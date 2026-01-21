@@ -7,7 +7,7 @@ esbuild.build({
     packages: 'external',
     outdir: 'lib',
     platform: 'node',
-    target: 'node14',
+    target: 'node22',
     bundle: true,
     sourcemap: true,
     // eslint-disable-next-line new-cap

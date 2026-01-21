@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-irregular-whitespace */
 
+import {describe, expect, it} from 'vitest';
 import {dedent} from 'ts-dedent';
 
 import {compose, extract} from 'src/api';

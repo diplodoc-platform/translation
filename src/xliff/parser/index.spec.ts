@@ -1,4 +1,8 @@
-import {TransUnitParams, template, transunit} from 'src/xliff';
+import type {TransUnitParams} from 'src/xliff';
+
+import {describe, expect, it} from 'vitest';
+
+import {template, transunit} from 'src/xliff';
 
 import {parse} from './index';
 

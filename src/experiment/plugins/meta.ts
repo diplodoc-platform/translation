@@ -1,7 +1,8 @@
+import type markdownIt from 'markdown-it';
+import type ParserBlock from 'markdown-it/lib/parser_block';
+import type StateBlock from 'markdown-it/lib/rules_block/state_block';
+
 import yaml from 'js-yaml';
-import markdownIt from 'markdown-it';
-import ParserBlock from 'markdown-it/lib/parser_block';
-import StateBlock from 'markdown-it/lib/rules_block/state_block';
 import Token from 'markdown-it/lib/token';
 
 import {YamlQuoteQuotingType} from '../constants';
