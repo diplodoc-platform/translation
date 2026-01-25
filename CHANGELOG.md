@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.20](https://github.com/diplodoc-platform/translation/compare/v1.7.19...v1.7.20) (2026-01-25)
+
+
+### Bug Fixes
+
+* **translation:** add json-schema types for typecheck ([64df582](https://github.com/diplodoc-platform/translation/commit/64df58272e45cf2bcd74d27c20afae0a6689ffec))
+
 ## [1.7.19](https://github.com/diplodoc-platform/translation/compare/v1.7.18...v1.7.19) (2025-11-14)
 
 
