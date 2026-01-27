@@ -31,6 +31,46 @@ export async function unlinkRefs(content: LinkedJSONObject): Promise<JSONObject>
 }
 
 /**
+ * Collect all external references within main openapi content.
+ *
+ * @param content - The structure to find references within.
+ * @param loader - loader functions that returns content.
+ * @param location - file locaction
+ * @param processed - set of processed references
+ * @param externalRefs - resultin list of references
+ *
+ * @returns list of referrences
+ */
+export async function collectExternalRefs(
+    content: JSONObject,
+    loader: FileLoader,
+    location?: string,
+    processed = new Set<string>(),
+    externalRefs: string[] = [],
+): Promise<string[]> {
+    await walk(content, new WalkerContext(location), async (item) => {
+        if (!isRefLike(item)) {
+            return item;
+        }
+
+        if (isExternalRef(item.$ref) && !processed.has(item.$ref)) {
+            const parsedRef = parseExternalRef(item.$ref);
+
+            externalRefs.push(parsedRef.file);
+            processed.add(item.$ref);
+
+            const refContent = await loader(parsedRef.file);
+
+            collectExternalRefs(refContent, loader, item.$ref, processed, externalRefs);
+        }
+
+        return item;
+    });
+
+    return externalRefs;
+}
+
+/**
  * Resolves JSON References defined within the provided object.
  * Mutates original data.
  * Skips circular references.
@@ -86,6 +126,42 @@ export async function linkRefs(content: JSONObject, location: string, loader: Fi
     await unlinkCycles(content);
 
     return content;
+}
+
+interface ParsedRef {
+    file: string;
+    path: string[];
+}
+
+/**
+ * Parsing reference
+ * @param ref - External reference like 'common.yaml#/components/schemas/ExternalChildRef'
+ *
+ * @returns object with file path and path within object
+ */
+function parseExternalRef(ref: string): ParsedRef {
+    const [file, path] = ref.split('#');
+    const pathParts = path ? path.split('/').filter((p) => p) : [];
+
+    return {file, path: pathParts};
+}
+
+/**
+ * Checking if reference is external
+ * @param ref - any string
+ *
+ * @returns boolean
+ */
+function isExternalRef(ref: string | undefined | null): boolean {
+    if (!ref || typeof ref !== 'string') {
+        return false;
+    }
+
+    if (ref.startsWith('#')) {
+        return false;
+    }
+
+    return true;
 }
 
 async function unlinkCycles(content: JSONObject) {
