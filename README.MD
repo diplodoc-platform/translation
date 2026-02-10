@@ -1,3 +1,10 @@
+[![NPM version](https://img.shields.io/npm/v/@diplodoc/translation.svg?style=flat)](https://www.npmjs.org/package/@diplodoc/translation)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=diplodoc-platform_translation&metric=alert_status)](https://sonarcloud.io/summary/overall?id=diplodoc-platform_translation)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=diplodoc-platform_translation&metric=coverage)](https://sonarcloud.io/summary/overall?id=diplodoc-platform_translation)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=diplodoc-platform_translation&metric=sqale_rating)](https://sonarcloud.io/summary/overall?id=diplodoc-platform_translation)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=diplodoc-platform_translation&metric=reliability_rating)](https://sonarcloud.io/summary/overall?id=diplodoc-platform_translation)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=diplodoc-platform_translation&metric=security_rating)](https://sonarcloud.io/summary/overall?id=diplodoc-platform_translation)
+
 # @diplodoc/translation
 
 ## 📚 Sections

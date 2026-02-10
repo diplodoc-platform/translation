@@ -19,5 +19,12 @@ export default defineConfig({
             escapeString: true,
             printBasicPrototype: true,
         },
+        coverage: {
+            all: true,
+            provider: 'v8',
+            include: ['src/**'],
+            excludeAfterRemap: true,
+            reporter: ['text', 'json', 'html', 'lcov'],
+        },
     },
 });

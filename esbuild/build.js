@@ -1,4 +1,4 @@
-const esbuild = require('esbuild');
+const esbuild = require('@diplodoc/lint/esbuild');
 const {TsconfigPathsPlugin} = require('@esbuild-plugins/tsconfig-paths');
 
 esbuild.build({
