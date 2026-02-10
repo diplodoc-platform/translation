@@ -44,6 +44,7 @@
   "scripts": {
     "test": "vitest run --config vitest.config.mjs",
     "test:watch": "vitest --config vitest.config.mjs",
+    "test:coverage": "vitest run --config vitest.config.mjs --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "npm run build:clean && tsc -p tsconfig.types.json && node esbuild/build.js",
     "build:clean": "node scripts/clean.mjs",
@@ -60,7 +61,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
-    "@diplodoc/lint": "^1.9.2",
+    "@diplodoc/lint": "^1.13.2",
     "@diplodoc/tsconfig": "^1.0.2",
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/diff": "^5.0.9",
@@ -70,7 +71,6 @@
     "@types/markdown-it": "^13.0.9",
     "@types/node": "^22.19.7",
     "colors": "^1.4.0",
-    "esbuild": "^0.27.2",
     "markdown-it": "^13.0.2",
     "typescript": "^5.6.3",
     "vitest": "^3.2.4"
