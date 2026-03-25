@@ -1,5 +1,81 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`image inside link > renders sentence with clickable image and surrounding text (known truncation issue) 1`] = `"%%%1%%% [![%%%2%%%"`;
+
+exports[`image inside link > renders sentence with clickable image with {width=Npx} and surrounding text (known truncation issue) 1`] = `"%%%1%%% [![%%%2%%%"`;
+
+exports[`image inside link > renders standalone clickable image with =WxH syntax 1`] = `"[![%%%1%%%](../_images/mountain.jpg \\"%%%0%%%\\" =100x200)](https://yandex.com/images/search?text=mountain)"`;
+
+exports[`image inside link > renders standalone clickable image with {width=Npx} syntax 1`] = `"[![%%%1%%%](../_images/mountain.jpg \\"%%%0%%%\\"){width=100px}](https://yandex.com/images/search?text=mountain)"`;
+
+exports[`image inside link > renders standalone clickable image without alt text 1`] = `"[![](../_images/mountain.jpg)](https://yandex.com/)"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders image with {width=Npx} without alt text 1`] = `"![]({{ img-entity-search }}){width=700px}{.border-yes}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders image with alt text and {width=Npx} 1`] = `"![%%%0%%%](image.png){width=700px}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders inline image with {width=Npx} inside sentence 1`] = `"%%%0%%% ![]({{ img-example }}){width=700px}{.border-yes} %%%1%%%"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders liquid condition with single image with {width=Npx} 1`] = `"{% if tld == \\"kz\\" %}![]({{ img }}){width=700px}{.border-yes}{% endif %}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders multiple images with {width=Npx} in same paragraph 1`] = `"%%%0%%% ![](img1.png){width=300px} %%%1%%% ![](img2.png){width=500px} %%%2%%%"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders standalone image with {height=Npx} 1`] = `"![](image.png){height=400px}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders standalone image with {width=Npx} 1`] = `"![](image.png){width=700px}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders standalone image with {width=Npx} and {height=Npx} 1`] = `"![](image.png){width=700px}{height=400px}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders standalone image with {width=Npx}{.class} 1`] = `"![](image.png){width=700px}{.border-yes}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders standalone image with Liquid variable src and {width=Npx} 1`] = `"![]({{ img-warning }}){width=700px}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders standalone image with Liquid variable src, {width=Npx} and {.class} 1`] = `"![]({{ img-warning }}){width=700px}{.border-yes}"`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders text with two images in separate liquid conditions (the kz pattern) 1`] = `
+"%%%0%%%
+
+{% if tld == \\"ru\\" or tld == \\"uz\\" or tld == \\"com\\" or tld == \\"tr\\" %}![]({{ img-snippet }}){width=700px}{.border-yes}{% endif %}{% if tld == \\"kz\\" %}![]({{ img-snippet }}){width=700px}{.border-yes}{% endif %}
+
+%%%1%%%"
+`;
+
+exports[`image: markdown-it-attrs {width=Npx} syntax > renders two images in separate liquid conditions on same line 1`] = `"{% if tld == \\"ru\\" or tld == \\"uz\\" %}![]({{ img }}){width=700px}{.border-yes}{% endif %}{% if tld == \\"kz\\" %}![]({{ img }}){width=700px}{.border-yes}{% endif %}"`;
+
+exports[`image: standard =WxH size syntax > renders inline image with =WxH inside sentence 1`] = `"%%%0%%%"`;
+
+exports[`image: standard =WxH size syntax > renders inline image with Liquid variable src and =WxH 1`] = `"%%%0%%%"`;
+
+exports[`image: standard =WxH size syntax > renders standalone image with =Wx (width only) 1`] = `"![%%%0%%%](image.png =100x)"`;
+
+exports[`image: standard =WxH size syntax > renders standalone image with =WxH (both dimensions) 1`] = `"![%%%0%%%](image.png =100x200)"`;
+
+exports[`image: standard =WxH size syntax > renders standalone image with =xH (height only) 1`] = `"![%%%0%%%](image.png =x200)"`;
+
+exports[`image: standard =WxH size syntax > renders standalone image with title and =WxH 1`] = `"![%%%1%%%](image.png \\"%%%0%%%\\" =100x200)"`;
+
+exports[`image: standard =WxH size syntax > renders standalone image with title and =xH 1`] = `"![%%%1%%%](image.png \\"%%%0%%%\\" =x200)"`;
+
+exports[`image: standard =WxH size syntax > renders standalone image without size 1`] = `"![%%%0%%%](image.png)"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone SVG with title and inline via markdown-it-attrs 1`] = `"![%%%1%%%](test.svg){title=\\"%%%0%%%\\" inline=true}"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with alt as full sentence 1`] = `"![%%%0%%%](image.png)"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with alt as full sentence and title 1`] = `"![%%%1%%%](image.png \\"%%%0%%%\\")"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with empty alt and title present 1`] = `"![](image.png \\"%%%0%%%\\")"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with title and {width=Npx} syntax 1`] = `"![%%%1%%%](image.png \\"%%%0%%%\\"){width=700px}"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with title as Liquid variable 1`] = `"![%%%0%%%](image.png \\"{{ tooltip_var }}\\")"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with title as full sentence 1`] = `"![%%%2%%%](image.png \\"%%%0%%% %%%1%%%\\")"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with title only (no size) 1`] = `"![%%%1%%%](image.png \\"%%%0%%%\\")"`;
+
+exports[`image: translatable attributes (title and alt) > renders standalone image with title via markdown-it-attrs {title="..."} syntax 1`] = `"![%%%1%%%](image.png){title=\\"%%%0%%%\\"}"`;
+
 exports[`inline: skeleton rendering > inline: renders hash instead of the sentences with abbreviations inside parenthesis 1`] = `"%%%0%%% %%%1%%%"`;
 
 exports[`inline: skeleton rendering > inline: renders hash instead of the sentences with anchor heading syntax. 1`] = `

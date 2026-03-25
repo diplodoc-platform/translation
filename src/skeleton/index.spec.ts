@@ -194,3 +194,203 @@ describe('inline: skeleton rendering', () => {
         expect(rendered).toMatchSnapshot();
     });
 });
+
+describe('image: standard =WxH size syntax', () => {
+    it('renders standalone image without size', () => {
+        expect(render('![alt](image.png)')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with =WxH (both dimensions)', () => {
+        expect(render('![alt](image.png =100x200)')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with =Wx (width only)', () => {
+        expect(render('![alt](image.png =100x)')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with =xH (height only)', () => {
+        expect(render('![alt](image.png =x200)')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with title and =WxH', () => {
+        expect(render('![alt](image.png "tooltip" =100x200)')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with title and =xH', () => {
+        expect(render('![alt](image.png "tooltip" =x200)')).toMatchSnapshot();
+    });
+
+    it('renders inline image with =WxH inside sentence', () => {
+        expect(
+            render('First sentence. ![alt](image.png =100x200) Second sentence.'),
+        ).toMatchSnapshot();
+    });
+
+    it('renders inline image with Liquid variable src and =WxH', () => {
+        expect(
+            render('First sentence. ![alt]({{ img-var }} =100x200) Second sentence.'),
+        ).toMatchSnapshot();
+    });
+});
+
+describe('image: markdown-it-attrs {width=Npx} syntax', () => {
+    it('renders standalone image with {width=Npx}', () => {
+        expect(render('![](image.png){width=700px}')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with {width=Npx}{.class}', () => {
+        expect(render('![](image.png){width=700px}{.border-yes}')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with Liquid variable src and {width=Npx}', () => {
+        expect(render('![]({{ img-warning }}){width=700px}')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with Liquid variable src, {width=Npx} and {.class}', () => {
+        expect(render('![]({{ img-warning }}){width=700px}{.border-yes}')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with {height=Npx}', () => {
+        expect(render('![](image.png){height=400px}')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with {width=Npx} and {height=Npx}', () => {
+        expect(render('![](image.png){width=700px}{height=400px}')).toMatchSnapshot();
+    });
+
+    it('renders inline image with {width=Npx} inside sentence', () => {
+        expect(
+            render(
+                'First sentence. ![]({{ img-example }}){width=700px}{.border-yes} Second sentence.',
+            ),
+        ).toMatchSnapshot();
+    });
+
+    it('renders multiple images with {width=Npx} in same paragraph', () => {
+        expect(
+            render(
+                'First sentence. ![](img1.png){width=300px} Second sentence. ![](img2.png){width=500px} Third sentence.',
+            ),
+        ).toMatchSnapshot();
+    });
+
+    it('renders liquid condition with single image with {width=Npx}', () => {
+        expect(
+            render('{% if tld == "kz" %}![]({{ img }}){width=700px}{.border-yes}{% endif %}'),
+        ).toMatchSnapshot();
+    });
+
+    it('renders two images in separate liquid conditions on same line', () => {
+        expect(
+            render(
+                '{% if tld == "ru" or tld == "uz" %}![]({{ img }}){width=700px}{.border-yes}{% endif %}' +
+                    '{% if tld == "kz" %}![]({{ img }}){width=700px}{.border-yes}{% endif %}',
+            ),
+        ).toMatchSnapshot();
+    });
+
+    it('renders text with two images in separate liquid conditions (the kz pattern)', () => {
+        expect(
+            render(
+                'Text before.\n\n' +
+                    '{% if tld == "ru" or tld == "uz" or tld == "com" or tld == "tr" %}' +
+                    '![]({{ img-snippet }}){width=700px}{.border-yes}' +
+                    '{% endif %}' +
+                    '{% if tld == "kz" %}' +
+                    '![]({{ img-snippet }}){width=700px}{.border-yes}' +
+                    '{% endif %}\n\n' +
+                    'Text after.',
+            ),
+        ).toMatchSnapshot();
+    });
+
+    it('renders image with {width=Npx} without alt text', () => {
+        expect(render('![]({{ img-entity-search }}){width=700px}{.border-yes}')).toMatchSnapshot();
+    });
+
+    it('renders image with alt text and {width=Npx}', () => {
+        expect(render('![image description](image.png){width=700px}')).toMatchSnapshot();
+    });
+});
+
+describe('image inside link', () => {
+    // Standalone clickable images: alt text and title are correctly extracted
+    it('renders standalone clickable image with =WxH syntax', () => {
+        expect(
+            render(
+                '[![An old rock in the desert](../_images/mountain.jpg "Mountain" =100x200)](https://yandex.com/images/search?text=mountain)',
+            ),
+        ).toMatchSnapshot();
+    });
+
+    it('renders standalone clickable image with {width=Npx} syntax', () => {
+        expect(
+            render(
+                '[![An old rock in the desert](../_images/mountain.jpg "Mountain"){width=100px}](https://yandex.com/images/search?text=mountain)',
+            ),
+        ).toMatchSnapshot();
+    });
+
+    it('renders standalone clickable image without alt text', () => {
+        expect(render('[![](../_images/mountain.jpg)](https://yandex.com/)')).toMatchSnapshot();
+    });
+
+    // TODO: known issue — when an image with alt text is embedded inside a sentence,
+    // the consumer incorrectly truncates content after the alt text hash.
+    // This is a pre-existing bug unrelated to the image skip fix.
+    it('renders sentence with clickable image and surrounding text (known truncation issue)', () => {
+        expect(
+            render(
+                'First sentence. [![An old rock in the desert](../_images/mountain.jpg "Mountain" =100x200)](https://yandex.com/) Second sentence.',
+            ),
+        ).toMatchSnapshot();
+    });
+
+    it('renders sentence with clickable image with {width=Npx} and surrounding text (known truncation issue)', () => {
+        expect(
+            render(
+                'First sentence. [![An old rock in the desert](../_images/mountain.jpg "Mountain"){width=100px}](https://yandex.com/) Second sentence.',
+            ),
+        ).toMatchSnapshot();
+    });
+});
+
+describe('image: translatable attributes (title and alt)', () => {
+    it('renders standalone image with title only (no size)', () => {
+        expect(render('![alt text](image.png "A tooltip text")')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with title and {width=Npx} syntax', () => {
+        expect(render('![alt](image.png "tooltip"){width=700px}')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with title as full sentence', () => {
+        expect(render('![alt](image.png "First sentence. Second sentence.")')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with title as Liquid variable', () => {
+        expect(render('![alt](image.png "{{ tooltip_var }}")')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with empty alt and title present', () => {
+        expect(render('![](image.png "tooltip")')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with alt as full sentence', () => {
+        expect(render('![A mountain in the desert.](image.png)')).toMatchSnapshot();
+    });
+
+    it('renders standalone image with alt as full sentence and title', () => {
+        expect(
+            render('![A mountain in the desert.](image.png "A tooltip sentence.")'),
+        ).toMatchSnapshot();
+    });
+
+    it('renders standalone image with title via markdown-it-attrs {title="..."} syntax', () => {
+        expect(render('![alt](image.png){title="A tooltip text"}')).toMatchSnapshot();
+    });
+
+    it('renders standalone SVG with title and inline via markdown-it-attrs', () => {
+        expect(render('![alt](test.svg){title="New Title" inline=true}')).toMatchSnapshot();
+    });
+});
