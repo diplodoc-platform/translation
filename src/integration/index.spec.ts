@@ -308,6 +308,18 @@ test('handles image with variables in title')`
   ![Image](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
 `;
 
+test('handles image title with single quotes in attrs')`
+  ![alt](image.png){title='tooltip'}
+`;
+
+test('handles image title when not first attr')`
+  ![alt](test.svg){inline=true title="text"}
+`;
+
+test('handles image title with escaped quotes in attrs')`
+  ![alt](image.png){title="say \"hello\""}
+`;
+
 test('handles link with image with variables in title')`
   [![Image](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?" =x100)](index-mini.md "Title {{product-name-short.station-mini-old}}. And what?")
 `;
@@ -542,4 +554,12 @@ This will be translated
 
 test('no-translate directive with inline')`
 Use :no-translate[**GET /api/v1/users**] to list users and :no-translate[POST /api/v1/users] to create.
+`;
+
+test('image with title via markdown-it-attrs syntax')`
+![alt text](image.png){title="A tooltip text"}
+`;
+
+test('image with title and extra attrs via markdown-it-attrs syntax')`
+![alt](test.svg){title="New Title" inline=true}
 `;

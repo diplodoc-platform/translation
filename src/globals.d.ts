@@ -20,6 +20,8 @@ declare global {
         open?: Token;
         erule?: (consumer: Consumer, tokens: Token[], idx: number, pos: [number, number]) => void;
         beforeDrop?: (consumer: Consumer, prev: Token, next: Token) => void;
+        titleAttrsValue?: string;
+        titleSuffixToken?: Token;
     };
 
     type Env = {
