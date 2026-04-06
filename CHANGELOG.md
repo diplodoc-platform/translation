@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.20](https://github.com/diplodoc-platform/translation/compare/v1.7.19...v1.7.20) (2026-04-06)
+
+
+### Bug Fixes
+
+* img md attributes parsing ([45e065b](https://github.com/diplodoc-platform/translation/commit/45e065b4cf3c3bc7fb2e1dec27f6d635d9a1d25f))
+* **translation:** add json-schema types for typecheck ([64df582](https://github.com/diplodoc-platform/translation/commit/64df58272e45cf2bcd74d27c20afae0a6689ffec))
+* update hooks ([2606585](https://github.com/diplodoc-platform/translation/commit/26065858cc96a39f1f48ee16b0ee01f22ed3b640))
+
 ## [1.7.19](https://github.com/diplodoc-platform/translation/compare/v1.7.18...v1.7.19) (2025-11-14)
 
 
