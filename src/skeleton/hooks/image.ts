@@ -5,7 +5,8 @@ import MdToken from 'markdown-it/lib/token';
 import {token} from 'src/utils';
 import {mt} from 'src/symbols';
 
-const TITLE_ATTRS_RE = /^(\{[^}]*?title=(["']))((?:[^\\]|\\.)*?)\2([^}]*\})/;
+const TITLE_ATTRS_DOUBLE_RE = /^(\{[^}]*?title=")([^"\\]*(?:\\.[^"\\]*)*)("[^}]*\})/;
+const TITLE_ATTRS_SINGLE_RE = /^(\{[^}]*?title=')([^'\\]*(?:\\.[^'\\]*)*)('[^}]*\})/;
 
 export function image(parameters: CustomRendererHookParameters) {
     const tokens: Token[] = parameters.tokens;
@@ -34,9 +35,11 @@ export function image(parameters: CustomRendererHookParameters) {
                 // Check if next sibling is a {title="..."} attrs text token
                 const nextInline = inlines[j + 1];
                 if (nextInline && nextInline.type === 'text') {
-                    const attrsMatch = TITLE_ATTRS_RE.exec(nextInline.content);
+                    const attrsMatch =
+                        TITLE_ATTRS_DOUBLE_RE.exec(nextInline.content) ??
+                        TITLE_ATTRS_SINGLE_RE.exec(nextInline.content);
                     if (attrsMatch) {
-                        const [fullMatch, prefix, , titleValue, suffix] = attrsMatch;
+                        const [fullMatch, prefix, titleValue, suffix] = attrsMatch;
                         const remaining = nextInline.content.slice(fullMatch.length);
 
                         const suffixToken = token('liquid', {
