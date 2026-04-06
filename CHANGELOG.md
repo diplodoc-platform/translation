@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.21](https://github.com/diplodoc-platform/translation/compare/v1.7.20...v1.7.21) (2026-04-06)
+
+
+### Bug Fixes
+
+* bump node ([a7f7601](https://github.com/diplodoc-platform/translation/commit/a7f76019009108160d5f97857a0ae5e027e5c12e))
+
 ## [1.7.20](https://github.com/diplodoc-platform/translation/compare/v1.7.19...v1.7.20) (2026-04-06)
 
 
