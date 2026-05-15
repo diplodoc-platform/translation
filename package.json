@@ -49,10 +49,10 @@
     "build": "npm run build:clean && tsc -p tsconfig.types.json && node esbuild/build.js",
     "build:clean": "node scripts/clean.mjs",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
-    "lint": "lint update && lint",
-    "lint:fix": "lint update && lint fix",
-    "pre-commit": "lint update && lint-staged",
-    "prepare": "husky"
+    "lint": "lint",
+    "lint:fix": "lint fix",
+    "pre-commit": "lint-staged",
+    "prepare": "husky || true"
   },
   "author": {
     "name": "diplodoc",
@@ -61,7 +61,6 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
-    "@diplodoc/lint": "^1.13.2",
     "@diplodoc/tsconfig": "^1.0.2",
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/diff": "^5.0.9",
@@ -74,7 +73,8 @@
     "colors": "^1.4.0",
     "markdown-it": "^13.0.2",
     "typescript": "^5.6.3",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "@diplodoc/infra": "1.0.0"
   },
   "peerDependencies": {
     "markdown-it": "^13.0.2"
