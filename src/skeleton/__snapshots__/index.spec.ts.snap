@@ -1,5 +1,93 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`code_inline: translate=no fence inside list items > does not treat single-backtick inline code with translate=no literal as fence 1`] = `
+"- %%%0%%%
+
+  %%%1%%%
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > does not treat single-line tildes as fence 1`] = `"%%%0%%%"`;
+
+exports[`code_inline: translate=no fence inside list items > does not treat single-line triple-backtick code as fence 1`] = `"%%%0%%%"`;
+
+exports[`code_inline: translate=no fence inside list items > does not treat triple-backtick code as fence when surrounded by text 1`] = `
+"- %%%0%%%
+
+      %%%1%%%
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > preserves multi-line triple-backtick code with translate=no in list item 1`] = `
+"- %%%0%%%
+
+      \`\`\`text translate=no
+      SECRET
+      \`\`\`
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > preserves tilde-fence with translate=no in list item 1`] = `
+"- %%%0%%%
+
+      ~~~text translate=no
+      SECRET
+      ~~~
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > preserves tilde-fence with translate=no in nested list 1`] = `
+"- %%%0%%%
+
+  - %%%1%%%
+
+        ~~~text translate=no
+        NESTED
+        ~~~
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > preserves translate=no code in deeply indented list item 1`] = `
+"- %%%0%%%
+
+              \`\`\`text translate=no
+              DEEP
+              \`\`\`
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > preserves translate=no code in nested list 1`] = `
+"- %%%0%%%
+
+  - %%%1%%%
+
+        \`\`\`text translate=no
+        NESTED
+        \`\`\`
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > translates fence-like code with translate=yes 1`] = `
+"- %%%0%%%
+
+      %%%1%%%
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > translates multi-line triple-backtick code WITHOUT translate=no in list item 1`] = `
+"- %%%0%%%
+
+      %%%1%%%
+"
+`;
+
+exports[`code_inline: translate=no fence inside list items > translates tilde-fence without translate=no in list item 1`] = `
+"- %%%0%%%
+
+      %%%1%%%
+"
+`;
+
 exports[`image inside link > renders sentence with clickable image and surrounding text (known truncation issue) 1`] = `"%%%1%%% [![%%%2%%%"`;
 
 exports[`image inside link > renders sentence with clickable image with {width=Npx} and surrounding text (known truncation issue) 1`] = `"%%%1%%% [![%%%2%%%"`;

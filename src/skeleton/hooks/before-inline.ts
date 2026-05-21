@@ -3,8 +3,18 @@ import type {CustomRendererHookParameters} from 'src/renderer';
 import {token} from 'src/utils';
 import {gobble} from 'src/consumer/utils';
 
-export function beforeInline(parameters: CustomRendererHookParameters) {
+type InlineHookParameters = CustomRendererHookParameters & {
+    inline?: Token;
+};
+
+export function beforeInline(parameters: InlineHookParameters) {
     const tokens = parameters.tokens as Token[];
+    const inline = parameters.inline;
+
+    if (inline && isNoTranslateFence(inline)) {
+        tokens.length = 0;
+        return '';
+    }
 
     for (let idx = 0; idx < tokens.length; idx++) {
         if (tokens[idx].type === 'code_inline') {
@@ -101,4 +111,40 @@ function splitInlineCode(tokens: Token[], idx: number) {
     } as Partial<Token>);
 
     tokens.splice(idx, 1, open, text, close);
+}
+
+function isNoTranslateFence(inline: Token) {
+    const source = inline.content;
+    const newlineIdx = source.indexOf('\n');
+    if (newlineIdx === -1) {
+        return false;
+    }
+
+    const firstLine = source.slice(0, newlineIdx);
+    const lastLine = source.slice(source.lastIndexOf('\n') + 1).trim();
+
+    const fenceChar = firstLine[0];
+    if (fenceChar !== '`' && fenceChar !== '~') {
+        return false;
+    }
+
+    let markupLen = 0;
+    while (markupLen < firstLine.length && firstLine[markupLen] === fenceChar) {
+        markupLen++;
+    }
+    if (markupLen < 3) {
+        return false;
+    }
+
+    if (lastLine.length < markupLen) {
+        return false;
+    }
+    for (const ch of lastLine) {
+        if (ch !== fenceChar) {
+            return false;
+        }
+    }
+
+    const info = firstLine.slice(markupLen);
+    return /\btranslate\s*=\s*no\b/.test(info);
 }

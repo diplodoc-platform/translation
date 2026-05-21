@@ -195,6 +195,84 @@ describe('inline: skeleton rendering', () => {
     });
 });
 
+describe('code_inline: translate=no fence inside list items', () => {
+    const render = (markdown: string) => skeleton(markdown, {compact: false});
+
+    it('preserves multi-line triple-backtick code with translate=no in list item', () => {
+        const rendered = render(
+            '- bullet\n\n      ```text translate=no\n      SECRET\n      ```\n',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('preserves translate=no code in deeply indented list item', () => {
+        const rendered = render(
+            '- bullet\n\n              ```text translate=no\n              DEEP\n              ```\n',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('preserves translate=no code in nested list', () => {
+        const rendered = render(
+            '- outer\n\n  - nested\n\n        ```text translate=no\n        NESTED\n        ```\n',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('translates multi-line triple-backtick code WITHOUT translate=no in list item', () => {
+        const rendered = render('- bullet\n\n      ```text\n      content\n      ```\n');
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('does not treat triple-backtick code as fence when surrounded by text', () => {
+        const rendered = render(
+            '- bullet\n\n      hello ```text translate=no\n      SECRET\n      ``` world\n',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('does not treat single-line triple-backtick code as fence', () => {
+        const rendered = render('Sentence with ``` triple ``` here.');
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('does not treat single-backtick inline code with translate=no literal as fence', () => {
+        const rendered = render('- bullet\n\n  Use `key=translate=no` here.\n');
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('translates fence-like code with translate=yes', () => {
+        const rendered = render(
+            '- bullet\n\n      ```text translate=yes\n      VISIBLE\n      ```\n',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('preserves tilde-fence with translate=no in list item', () => {
+        const rendered = render(
+            '- bullet\n\n      ~~~text translate=no\n      SECRET\n      ~~~\n',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('preserves tilde-fence with translate=no in nested list', () => {
+        const rendered = render(
+            '- outer\n\n  - nested\n\n        ~~~text translate=no\n        NESTED\n        ~~~\n',
+        );
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('translates tilde-fence without translate=no in list item', () => {
+        const rendered = render('- bullet\n\n      ~~~text\n      content\n      ~~~\n');
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('does not treat single-line tildes as fence', () => {
+        const rendered = render('A line with ~~~ inside text.');
+        expect(rendered).toMatchSnapshot();
+    });
+});
+
 describe('image: standard =WxH size syntax', () => {
     it('renders standalone image without size', () => {
         expect(render('![alt](image.png)')).toMatchSnapshot();
