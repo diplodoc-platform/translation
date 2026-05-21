@@ -430,6 +430,50 @@ test('handles translate=no code block')`
     \`\`\`
 `;
 
+test('handles translate=no code block inside list item')`
+    - bullet
+
+          \`\`\`text translate=no
+          SECRET
+          \`\`\`
+`;
+
+test('handles translate=no code block inside list item with extra indent')`
+    - bullet
+
+                  \`\`\`text translate=no
+                  DEEP SECRET
+                  \`\`\`
+`;
+
+test('handles translate=no code block inside nested list item')`
+    - outer
+
+      - nested
+
+            \`\`\`text translate=no
+            NESTED SECRET
+            \`\`\`
+`;
+
+test('handles translate=no tilde fence inside list item')`
+    - bullet
+
+          ~~~text translate=no
+          TILDE SECRET
+          ~~~
+`;
+
+test('handles translate=no tilde fence inside nested list item')`
+    - outer
+
+      - nested
+
+            ~~~text translate=no
+            TILDE NESTED
+            ~~~
+`;
+
 test('handles condition blocks with html insertions')`
     {% if show-comments == "true" %}<sli><image href="images/events-error.png" align="center"/> — lorem ipsum test;</sli>{% endif %}
 `;

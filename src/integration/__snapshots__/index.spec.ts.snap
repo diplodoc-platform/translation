@@ -2503,6 +2503,46 @@ exports[`integration > handles single variable as content > xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration > handles single-line triple-backtick inline code > skeleton expr 1`] = `"%%%1%%%"`;
+
+exports[`integration > handles single-line triple-backtick inline code > skeleton main 1`] = `"%%%0%%%"`;
+
+exports[`integration > handles single-line triple-backtick inline code > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Sentence with <x equiv-text=\\"\`\`\` literal \`\`\`\\" id=\\"e1\\" x-type=\\"code_inline\\" /> here.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles single-line triple-backtick inline code > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"code_open\\" equiv-text=\\"\`\`\` \\" id=\\"x-36\\"/>literal<x ctype=\\"code_close\\" equiv-text=\\" \`\`\`\\" id=\\"x-37\\"/> here.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration > handles standalone {#T} link > skeleton expr 1`] = `
 "%%%1%%%
 
@@ -2782,6 +2822,286 @@ exports[`integration > handles translate=no code block > xliff main 1`] = `
     <body>
       <trans-unit id=\\"0\\">
         <source xml:space=\\"preserve\\">Кодблок не переводить</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block inside list item > skeleton expr 1`] = `
+"- %%%1%%%
+
+      \`\`\`text translate=no
+      SECRET
+      \`\`\`"
+`;
+
+exports[`integration > handles translate=no code block inside list item > skeleton main 1`] = `
+"- %%%0%%%
+
+      \`\`\`text translate=no
+      SECRET
+      \`\`\`"
+`;
+
+exports[`integration > handles translate=no code block inside list item > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">bullet</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block inside list item > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">bullet</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block inside list item with extra indent > skeleton expr 1`] = `
+"- %%%1%%%
+
+              \`\`\`text translate=no
+              DEEP SECRET
+              \`\`\`"
+`;
+
+exports[`integration > handles translate=no code block inside list item with extra indent > skeleton main 1`] = `
+"- %%%0%%%
+
+              \`\`\`text translate=no
+              DEEP SECRET
+              \`\`\`"
+`;
+
+exports[`integration > handles translate=no code block inside list item with extra indent > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">bullet</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block inside list item with extra indent > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">bullet</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block inside nested list item > skeleton expr 1`] = `
+"- %%%1%%%
+
+  - %%%2%%%
+
+        \`\`\`text translate=no
+        NESTED SECRET
+        \`\`\`"
+`;
+
+exports[`integration > handles translate=no code block inside nested list item > skeleton main 1`] = `
+"- %%%0%%%
+
+  - %%%1%%%
+
+        \`\`\`text translate=no
+        NESTED SECRET
+        \`\`\`"
+`;
+
+exports[`integration > handles translate=no code block inside nested list item > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">outer</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">nested</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no code block inside nested list item > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">outer</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">nested</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no tilde fence inside list item > skeleton expr 1`] = `
+"- %%%1%%%
+
+      ~~~text translate=no
+      TILDE SECRET
+      ~~~"
+`;
+
+exports[`integration > handles translate=no tilde fence inside list item > skeleton main 1`] = `
+"- %%%0%%%
+
+      ~~~text translate=no
+      TILDE SECRET
+      ~~~"
+`;
+
+exports[`integration > handles translate=no tilde fence inside list item > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">bullet</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no tilde fence inside list item > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">bullet</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no tilde fence inside nested list item > skeleton expr 1`] = `
+"- %%%1%%%
+
+  - %%%2%%%
+
+        ~~~text translate=no
+        TILDE NESTED
+        ~~~"
+`;
+
+exports[`integration > handles translate=no tilde fence inside nested list item > skeleton main 1`] = `
+"- %%%0%%%
+
+  - %%%1%%%
+
+        ~~~text translate=no
+        TILDE NESTED
+        ~~~"
+`;
+
+exports[`integration > handles translate=no tilde fence inside nested list item > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">outer</source>
+            </trans-unit>
+            <trans-unit id=\\"2\\">
+                <source xml:space=\\"preserve\\">nested</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > handles translate=no tilde fence inside nested list item > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">outer</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">nested</source>
       </trans-unit>
     </body>
   </file>
