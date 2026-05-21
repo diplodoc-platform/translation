@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.22](https://github.com/diplodoc-platform/translation/compare/v1.7.21...v1.7.22) (2026-05-21)
+
+
+### Bug Fixes
+
+* translate=no for nested code blocks ([24dd656](https://github.com/diplodoc-platform/translation/commit/24dd6563bbc8cdc77bb3e053b17da26ff59f27cb))
+
 ## [1.7.21](https://github.com/diplodoc-platform/translation/compare/v1.7.20...v1.7.21) (2026-04-06)
 
 
