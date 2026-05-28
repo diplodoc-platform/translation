@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.7.24](https://github.com/diplodoc-platform/translation/compare/v1.7.23...v1.7.24) (2026-05-28)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/directive@0.3.4 ([#249](https://github.com/diplodoc-platform/translation/issues/249)) ([6b3b621](https://github.com/diplodoc-platform/translation/commit/6b3b6211bea29557ee5744664f993e5159ee8c23))
+* **deps:** Update @diplodoc/sentenizer@0.0.10 ([#250](https://github.com/diplodoc-platform/translation/issues/250)) ([9ca446a](https://github.com/diplodoc-platform/translation/commit/9ca446ab9c0921b13b586cd87bf0a747fbaf8910))
+* **deps:** Update @diplodoc/transform@4.75.4 ([#252](https://github.com/diplodoc-platform/translation/issues/252)) ([9df48d8](https://github.com/diplodoc-platform/translation/commit/9df48d8def8c85fd9537afddda3407c22c457d18))
+
 ## [1.7.23](https://github.com/diplodoc-platform/translation/compare/v1.7.22...v1.7.23) (2026-05-28)
 
 
