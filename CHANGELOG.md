@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.23](https://github.com/diplodoc-platform/translation/compare/v1.7.22...v1.7.23) (2026-05-28)
+
+
+### Bug Fixes
+
+* **deps:** updated node to 24 ([#247](https://github.com/diplodoc-platform/translation/issues/247)) ([8308fef](https://github.com/diplodoc-platform/translation/commit/8308fef65005207c9b32920453141c5b8c06bba4))
+
 ## [1.7.22](https://github.com/diplodoc-platform/translation/compare/v1.7.21...v1.7.22) (2026-05-21)
 
 
