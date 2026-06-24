@@ -41,7 +41,8 @@ const searchLinkText: SearchRule = (content, from, match) => {
 };
 
 const searchMultilineInlineCode: SearchRule = (content, from, match) => {
-    const parts = match.split(/[\s\n]/g).filter(Boolean);
+    const trailingWhitespace = /\s*$/.exec(match)?.[0] ?? '';
+    const parts = match.split(/\s/g).filter(Boolean);
 
     let index;
     const start = (index = content.indexOf(parts.shift() as string, from));
@@ -53,6 +54,20 @@ const searchMultilineInlineCode: SearchRule = (content, from, match) => {
 
     if (index === -1) {
         return [-1, -1, match];
+    }
+
+    for (const char of trailingWhitespace) {
+        if (char === '\n' && trailingWhitespace.endsWith('\n')) break;
+        if (content[index] === char) {
+            index++;
+        }
+    }
+
+    const lastTW = trailingWhitespace.at(-1);
+    if (lastTW === ' ' || lastTW === '\t') {
+        while (content[index] === ' ' || content[index] === '\t') {
+            index++;
+        }
     }
 
     return [start, index, content.slice(start, index)];
