@@ -304,6 +304,138 @@ exports[`integration > A. B [{#T}](D). C. > xliff main 1`] = `
 </xliff>"
 `;
 
+exports[`integration > code block in list tab with nested braces > skeleton expr 1`] = `
+"- %%%1%%%
+
+    \`\`\`javascript
+    {
+        \\"items\\": [
+            {
+            \\"id\\": (string),
+            \\"value\\": (number)
+            }
+        ]
+    }
+    \`\`\`"
+`;
+
+exports[`integration > code block in list tab with nested braces > skeleton main 1`] = `
+"- %%%0%%%
+
+    \`\`\`javascript
+    %%%1%%%
+    \`\`\`"
+`;
+
+exports[`integration > code block in list tab with nested braces > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Label</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > code block in list tab with nested braces > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Label</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">{
+        &quot;items&quot;: [
+            {
+            &quot;id&quot;: (string),
+            &quot;value&quot;: (number)
+            }
+        ]
+    }</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
+exports[`integration > code block in list tab with space before brace > skeleton expr 1`] = `
+"- %%%1%%%
+
+    \`\`\`kotlin
+    class MainActivity : AppCompatActivity() {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+        }
+    }
+    \`\`\`"
+`;
+
+exports[`integration > code block in list tab with space before brace > skeleton main 1`] = `
+"- %%%0%%%
+
+    \`\`\`kotlin
+    %%%1%%%
+    \`\`\`"
+`;
+
+exports[`integration > code block in list tab with space before brace > xliff expr 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+    <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+        <header>
+            <skeleton>
+                <external-file href=\\"file.skl\\"></external-file>
+            </skeleton>
+        </header>
+        <body>
+            <trans-unit id=\\"1\\">
+                <source xml:space=\\"preserve\\">Label</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>"
+`;
+
+exports[`integration > code block in list tab with space before brace > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      <trans-unit id=\\"0\\">
+        <source xml:space=\\"preserve\\">Label</source>
+      </trans-unit>
+      <trans-unit id=\\"1\\">
+        <source xml:space=\\"preserve\\">class MainActivity : AppCompatActivity() {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+        }
+    }</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration > computes valid sentenses > skeleton expr 1`] = `
 "%%%1_s-1%%%
 %%%2_s-3%%% %%%3_s-5%%%"

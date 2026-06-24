@@ -528,6 +528,33 @@ test('duplicate code block on diferent level')`
 \`\`\`
 `;
 
+test('code block in list tab with nested braces')`
+- Label
+
+    \`\`\`javascript
+    {
+        "items": [
+            {
+            "id": (string),
+            "value": (number)
+            }
+        ]
+    }
+    \`\`\`
+`;
+
+test('code block in list tab with space before brace')`
+- Label
+
+    \`\`\`kotlin
+    class MainActivity : AppCompatActivity() {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+        }
+    }
+    \`\`\`
+`;
+
 test('inline: space with code 8192')`
 Предложение номер один [title](link). [title](link) Предложение номер два.
 `;
