@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.25](https://github.com/diplodoc-platform/translation/compare/v1.7.24...v1.7.25) (2026-06-26)
+
+
+### Bug Fixes
+
+* code block spaces ([4821132](https://github.com/diplodoc-platform/translation/commit/482113249783d014e79385e7939370319a655c52))
+
 ## [1.7.24](https://github.com/diplodoc-platform/translation/compare/v1.7.23...v1.7.24) (2026-05-28)
 
 
