@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.26](https://github.com/diplodoc-platform/translation/compare/v1.7.25...v1.7.26) (2026-07-02)
+
+
+### Bug Fixes
+
+* README.MD ([eea159e](https://github.com/diplodoc-platform/translation/commit/eea159e7a3d42380a0ffa59fe67f377786e66e5d))
+
 ## [1.7.25](https://github.com/diplodoc-platform/translation/compare/v1.7.24...v1.7.25) (2026-06-26)
 
 
