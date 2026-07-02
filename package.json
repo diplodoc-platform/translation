@@ -52,7 +52,8 @@
     "lint": "lint",
     "lint:fix": "lint fix",
     "pre-commit": "lint-staged",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "lock": "npm install --no-workspaces --package-lock-only --ignore-scripts"
   },
   "author": {
     "name": "diplodoc",
@@ -61,7 +62,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
-    "@diplodoc/infra": "2.0.7",
+    "@diplodoc/infra": "2.1.0",
     "@diplodoc/tsconfig": "^1.0.2",
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/diff": "^5.0.9",
