@@ -82,6 +82,7 @@ function extract(parameters: ExtractParameters): ExtractOutput;
 | `target`       | `LanguageLocale` | The target language and locale.                           |
 | `skeletonPath` | `string`         | The path where you will put the skeleton file.         |
 | `markdownPath` | `string`         | The path from where the markdown file were read.         |
+| `filter`       | `boolean`        | Filter none translatable files.                            |
 
 #### 📚 Types
 
