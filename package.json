@@ -63,7 +63,6 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.24.7",
     "@diplodoc/infra": "2.2.0",
-    "@diplodoc/tsconfig": "^1.0.2",
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/diff": "^5.0.9",
     "@types/js-yaml": "^4.0.8",

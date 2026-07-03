@@ -1,5 +1,5 @@
 {
-  "extends": "@diplodoc/tsconfig",
+  "extends": "@diplodoc/infra/tsconfig.json",
   "compilerOptions": {
     "lib": ["es2022"],
     "target": "es2022",
