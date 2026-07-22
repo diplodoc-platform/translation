@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.27](https://github.com/diplodoc-platform/translation/compare/v1.7.26...v1.7.27) (2026-07-22)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/transform@4.77.3 ([#266](https://github.com/diplodoc-platform/translation/issues/266)) ([db2ff0c](https://github.com/diplodoc-platform/translation/commit/db2ff0cc27038d6cf3ea8872ef47a15b37975447))
+
 ## [1.7.26](https://github.com/diplodoc-platform/translation/compare/v1.7.25...v1.7.26) (2026-07-02)
 
 
