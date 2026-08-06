@@ -3,13 +3,13 @@
   "compilerOptions": {
     "lib": ["es2022"],
     "target": "es2022",
-    "baseUrl": ".",
     "rootDir": "src",
     "outDir": "lib/",
-    "module": "CommonJS",
+    "module": "node16",
     "paths": {
-      "src/*": ["src/*"]
-    }
+      "src/*": ["./src/*"]
+    },
+    "moduleResolution": "node16"
   },
   "include": ["src"],
   "exclude": ["node_modules", "lib"]
