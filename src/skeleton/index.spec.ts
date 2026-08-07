@@ -601,6 +601,38 @@ blocks:
         expect(rendered.match(/text: '%%%\d+%%%'/g)).toHaveLength(2);
     });
 
+    it('does not inject translations into scalars ending with the value', () => {
+        const tricky = `::: page-constructor
+blocks:
+  - type: 'header-block'
+    background:
+      image:
+        src: '/img/promo-Начать'
+    title: 'Начать'
+:::
+`;
+        const rendered = render(tricky);
+
+        expect(rendered).toContain("src: '/img/promo-Начать'");
+        expect(rendered).toMatch(/title: '%%%\d+%%%'\n/);
+    });
+
+    it('does not translate equal text in non-translatable fields', () => {
+        const twins = `::: page-constructor
+blocks:
+  - type: 'filter-block'
+    tags:
+      - 'Начать'
+    title: 'Начать'
+:::
+`;
+        const rendered = render(twins);
+
+        // The filter-block schema marks only the title as translatable.
+        expect(rendered).toContain("- 'Начать'");
+        expect(rendered).toMatch(/title: '%%%\d+%%%'\n/);
+    });
+
     it('does not touch page-constructor examples inside code fences', () => {
         const fenced =
             "```yaml\n::: page-constructor\nblocks:\n  - type: 'header-block'\n    title: 'Заголовок'\n:::\n```\n";

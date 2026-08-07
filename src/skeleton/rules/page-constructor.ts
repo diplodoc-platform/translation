@@ -4,16 +4,16 @@ import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
 
 import Ajv from 'ajv';
-import {load} from 'js-yaml';
+import {isScalar, parseDocument} from 'yaml';
 import {pageConstructorSchemaJson} from '@diplodoc/ajv';
 
-import {genCode} from 'src/json/translate';
 import {token} from 'src/utils';
 import {Liquid} from 'src/skeleton/liquid';
 
 // The validator is compiled once (the schema is large), so the collected
-// translatable strings are exchanged through this module-level buffer.
-let collected: string[] = [];
+// translatable paths are exchanged through this module-level buffer.
+// Keyed by instance path: anyOf branches may visit the same node twice.
+let collected = new Map<string, string>();
 let validator: ValidateFunction | null = null;
 
 function getValidator() {
@@ -30,17 +30,18 @@ function getValidator() {
         ajv.addKeyword({
             keyword: 'translate',
             type: ['string', 'object', 'array'],
-            code: genCode((text) => {
-                if (/^%%%\d+%%%$/.test(text)) {
-                    return text;
+            validate: function (
+                _schema: unknown,
+                value: unknown,
+                _parent?: unknown,
+                ctx?: {instancePath: string},
+            ) {
+                if (typeof value === 'string' && value.trim() && ctx) {
+                    collected.set(ctx.instancePath, value);
                 }
 
-                collected.push(text);
-
-                // Mark the value as processed to guard against repeated
-                // evaluation of the same data node (anyOf/oneOf branches).
-                return `%%%${collected.length - 1}%%%`;
-            }),
+                return true;
+            },
         });
 
         validator = ajv.compile(pageConstructorSchemaJson);
@@ -51,99 +52,44 @@ function getValidator() {
 
 type Anchor = {
     at: number;
+    end: number;
     text: string;
 };
 
-/**
- * A claimed occurrence must look like a whole YAML scalar, not a fragment
- * of another value: on its line it may only be preceded by a key separator,
- * a list dash or the line start (plus an opening quote and indentation).
- */
-function isScalarStart(yaml: string, index: number): boolean {
-    let i = index - 1;
-    if (yaml[i] === "'" || yaml[i] === '"') {
-        i--;
-    }
-    while (i >= 0 && (yaml[i] === ' ' || yaml[i] === '\t')) {
-        i--;
-    }
-
-    return i < 0 || yaml[i] === ':' || yaml[i] === '-' || yaml[i] === '\n';
+function unescapePointer(segment: string): string {
+    return segment.replace(/~1/g, '/').replace(/~0/g, '~');
 }
 
 /**
- * The scalar counterpart of `isScalarStart`: after the occurrence (and an
- * optional closing quote) only a line break, a flow terminator or a comment
- * may follow. Rejects occurrences that are prefixes of longer values.
+ * Resolves collected instance paths into exact character ranges of the
+ * scalar nodes inside the yaml source. Position-based addressing cannot
+ * confuse a value with an equal or overlapping text in another field.
+ * Aliased nodes resolve into their anchor and are translated once.
  */
-function isScalarEnd(yaml: string, index: number): boolean {
-    let i = index;
-    if (yaml[i] === "'" || yaml[i] === '"') {
-        i++;
-    }
-    while (i < yaml.length && (yaml[i] === ' ' || yaml[i] === '\t')) {
-        i++;
-    }
+function resolveAnchors(
+    doc: ReturnType<typeof parseDocument>,
+    paths: Map<string, string>,
+): Anchor[] {
+    const seen = new Set<number>();
+    const anchors: Anchor[] = [];
 
-    return i >= yaml.length || '\n\r,]}#'.includes(yaml[i]);
-}
-
-/**
- * Finds the first occurrence of the value that is not inside an already
- * claimed range and looks like a whole scalar. Returns -1 when the value
- * has no verbatim occurrence (folded scalars, escaped quoting).
- */
-function claimOccurrence(yaml: string, text: string, claimed: [number, number][]): number {
-    let from = 0;
-    while (from <= yaml.length - text.length) {
-        const at = yaml.indexOf(text, from);
-        if (at === -1) {
-            return -1;
-        }
-        from = at + 1;
-
-        const end = at + text.length;
-        if (claimed.some(([start, stop]) => at < stop && end > start)) {
-            continue;
-        }
-        if (!isScalarStart(yaml, at) || !isScalarEnd(yaml, end)) {
+    for (const [pointer, text] of paths) {
+        const path = pointer.split('/').slice(1).map(unescapePointer);
+        const node = doc.getIn(path, true);
+        if (!isScalar(node) || node.value !== text || !node.range) {
             continue;
         }
 
-        return at;
-    }
-
-    return -1;
-}
-
-/**
- * Assigns every value its own occurrence in the block. Longer values claim
- * first, so a value that is a substring of another one (title: 'Product'
- * next to description: 'Product Pro') cannot steal the longer value's
- * position and corrupt it. Repeated values claim consecutive occurrences.
- */
-function claimAnchors(yaml: string, strings: string[]): {anchored: Anchor[]; loose: string[]} {
-    const claimed: [number, number][] = [];
-    const anchored: Anchor[] = [];
-    const loose: string[] = [];
-
-    const byLength = strings
-        .map((text, index) => ({text, index}))
-        .sort((a, b) => b.text.length - a.text.length || a.index - b.index);
-
-    for (const {text} of byLength) {
-        const at = claimOccurrence(yaml, text, claimed);
-        if (at === -1) {
-            loose.push(text);
-        } else {
-            claimed.push([at, at + text.length]);
-            anchored.push({at, text});
+        const [at, end] = node.range;
+        if (seen.has(at)) {
+            continue;
         }
+        seen.add(at);
+
+        anchors.push({at, end, text});
     }
 
-    anchored.sort((a, b) => a.at - b.at);
-
-    return {anchored, loose};
+    return anchors.sort((a, b) => a.at - b.at);
 }
 
 function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
@@ -151,41 +97,34 @@ function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
         return;
     }
 
-    let data: unknown;
-    try {
-        data = load(yaml);
-    } catch {
+    const doc = parseDocument(yaml);
+    if (doc.errors.length) {
         // Broken YAML is left in the skeleton as is.
         return;
     }
 
+    const data = doc.toJS();
     if (!data || typeof data !== 'object') {
         return;
     }
 
-    collected = [];
+    collected = new Map();
     try {
-        getValidator()(data as object);
+        getValidator()(data);
     } catch {
         // Best effort: values collected before the failure are still processed.
     }
 
-    const strings = collected;
-    collected = [];
+    const paths = collected;
+    collected = new Map();
 
-    const {anchored, loose} = claimAnchors(
-        yaml,
-        strings.filter((text) => text.trim() && !text.includes('\n')),
-    );
-
-    // Anchored values are processed in their textual order (the consumer
-    // matches strictly forward), each within the window of its own line,
-    // so the consumer cannot match a fragment of a neighboring value.
-    // The token map points at the block content, so line offsets inside
-    // the yaml translate directly into document lines.
-    let line = map ? map[0] : 0;
+    // Anchors are processed in their textual order (the consumer matches
+    // strictly forward), each within the window of its own lines, so the
+    // consumer cannot cross into neighboring scalars. The token map points
+    // at the block content, so yaml offsets translate into document lines.
+    let line = 0;
     let scanned = 0;
-    for (const {at, text} of anchored) {
+    for (const {at, end, text} of resolveAnchors(doc, paths)) {
         while (scanned < at) {
             if (yaml[scanned] === '\n') {
                 line++;
@@ -193,21 +132,21 @@ function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
             scanned++;
         }
 
-        try {
-            consumer.process(token('text', {content: text}), map ? [line, line] : map);
-        } catch {
-            // The value was not found in the source block. It stays untranslated.
+        let endLine = line;
+        for (let i = at; i < end && i < yaml.length; i++) {
+            if (yaml[i] === '\n') {
+                endLine++;
+            }
         }
-    }
 
-    // Values without a verbatim occurrence (folded scalars) are matched
-    // last across the whole block, best effort: the consumer cursor is
-    // already past the anchored values, so only trailing ones can match.
-    for (const text of loose) {
         try {
-            consumer.process(token('text', {content: text}), map);
+            consumer.process(
+                token('text', {content: text}),
+                map ? [map[0] + line, map[0] + endLine] : map,
+            );
         } catch {
-            // The value was not found in the source block. It stays untranslated.
+            // The value cannot be matched in the source block (escaped
+            // quoting, literal block scalars). It stays untranslated.
         }
     }
 }
