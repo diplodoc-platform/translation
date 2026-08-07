@@ -25,6 +25,10 @@ function getValidator() {
             strict: false,
             allErrors: true,
             $data: true,
+            // Skipping codegen optimization compiles the large schema ~2.5x
+            // faster; the validator runs once per block, so its own speed
+            // does not matter.
+            code: {optimize: false},
         });
 
         ajv.addKeyword({
