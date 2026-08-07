@@ -31,7 +31,7 @@ function getValidator() {
             keyword: 'translate',
             type: ['string', 'object', 'array'],
             code: genCode((text) => {
-                if (text.match(/^((-\s)?\s*%%%\d+%%%\s*)+$/gm)) {
+                if (/^%%%\d+%%%$/.test(text)) {
                     return text;
                 }
 
@@ -49,57 +49,60 @@ function getValidator() {
     return validator;
 }
 
+function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
+    if (!yaml.trim()) {
+        return;
+    }
+
+    let data: unknown;
+    try {
+        data = load(yaml);
+    } catch {
+        // Broken YAML is left in the skeleton as is.
+        return;
+    }
+
+    if (!data || typeof data !== 'object') {
+        return;
+    }
+
+    collected = [];
+    try {
+        getValidator()(data as object);
+    } catch {
+        // Best effort: values collected before the failure are still processed.
+    }
+
+    const strings = collected;
+    collected = [];
+
+    // The schema walks data in its own order, while the consumer
+    // matches strictly forward. Sort values by their position in
+    // the block to keep the cursor monotonic. Values without a
+    // verbatim occurrence (folded scalars) are matched last.
+    const positioned = strings
+        .filter((text) => !text.includes('\n'))
+        .map((text) => {
+            const at = yaml.indexOf(text);
+            return [at === -1 ? Infinity : at, text] as [number, string];
+        })
+        .sort((a, b) => a[0] - b[0]);
+
+    for (const [, text] of positioned) {
+        try {
+            consumer.process(token('text', {content: text}), map);
+        } catch {
+            // The value was not found in the source block
+            // (quoting, escaping). It stays untranslated.
+        }
+    }
+}
+
 export const pageConstructor: Renderer.RenderRuleRecord = {
     page_constructor: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const {content, map} = tokens[idx];
-        const yaml = Liquid.unescape(content || '');
 
-        if (!yaml.trim()) {
-            return '';
-        }
-
-        let data: unknown;
-        try {
-            data = load(yaml);
-        } catch {
-            // Broken YAML is left in the skeleton as is.
-            return '';
-        }
-
-        if (!data || typeof data !== 'object') {
-            return '';
-        }
-
-        collected = [];
-        try {
-            getValidator()(data as object);
-        } catch {
-            // Best effort: values collected before the failure are still processed.
-        }
-
-        const strings = collected;
-        collected = [];
-
-        // The schema walks data in its own order, while the consumer
-        // matches strictly forward. Sort values by their position in
-        // the block to keep the cursor monotonic. Values without a
-        // verbatim occurrence (folded scalars) are matched last.
-        const positioned = strings
-            .filter((text) => !text.includes('\n'))
-            .map((text) => {
-                const at = yaml.indexOf(text);
-                return [at === -1 ? Infinity : at, text] as [number, string];
-            })
-            .sort((a, b) => a[0] - b[0]);
-
-        for (const [, text] of positioned) {
-            try {
-                this.state.process(token('text', {content: text}), map);
-            } catch {
-                // The value was not found in the source block
-                // (quoting, escaping). It stays untranslated.
-            }
-        }
+        processBlock(this.state, Liquid.unescape(content || ''), map);
 
         return '';
     },
