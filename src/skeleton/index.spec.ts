@@ -1,4 +1,4 @@
-import {describe, expect, it} from 'vitest';
+import {beforeAll, describe, expect, it} from 'vitest';
 
 import {compose, extract} from 'src/api';
 import {hash} from 'src/hash';
@@ -477,6 +477,13 @@ describe('image: translatable attributes (title and alt)', () => {
 });
 
 describe('page-constructor: yaml-aware extraction', () => {
+    // The one-time schema compilation is a setup cost, not a test cost:
+    // warmed up here so every test below runs within the default timeout
+    // even under coverage instrumentation.
+    beforeAll(() => {
+        render('::: page-constructor\nblocks: []\n:::\n');
+    }, 30000);
+
     const block = `Текст до блока.
 
 ::: page-constructor
@@ -492,8 +499,6 @@ blocks:
 Текст после блока.
 `;
 
-    // The first test pays the one-time page-constructor schema compilation,
-    // which needs a longer timeout under coverage instrumentation.
     it('replaces translatable values with hashes and keeps yaml structure', () => {
         const rendered = render(block);
 
@@ -504,7 +509,7 @@ blocks:
         expect(rendered).not.toContain('Наш продукт');
         expect(rendered).not.toContain('Начать');
         expect(rendered).toMatchSnapshot();
-    }, 30000);
+    });
 
     it('does not expose yaml structure in units', () => {
         const hashed = hash();
