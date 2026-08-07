@@ -1,5 +1,8 @@
 import {describe, expect, it} from 'vitest';
 
+import {compose, extract} from 'src/api';
+import {hash} from 'src/hash';
+
 import {skeleton} from '.';
 
 function render(content: string) {
@@ -470,5 +473,98 @@ describe('image: translatable attributes (title and alt)', () => {
 
     it('renders standalone SVG with title and inline via markdown-it-attrs', () => {
         expect(render('![alt](test.svg){title="New Title" inline=true}')).toMatchSnapshot();
+    });
+});
+
+describe('page-constructor: yaml-aware extraction', () => {
+    const block = `Текст до блока.
+
+::: page-constructor
+blocks:
+  - type: 'header-block'
+    title: 'Наш продукт'
+    description: 'Описание продукта'
+    buttons:
+      - text: 'Начать'
+        url: '/start'
+:::
+
+Текст после блока.
+`;
+
+    it('replaces translatable values with hashes and keeps yaml structure', () => {
+        const rendered = render(block);
+
+        expect(rendered).toContain("type: 'header-block'");
+        expect(rendered).toContain("url: '/start'");
+        expect(rendered).toContain("title: '%%%");
+        expect(rendered).toContain("description: '%%%");
+        expect(rendered).not.toContain('Наш продукт');
+        expect(rendered).not.toContain('Начать');
+        expect(rendered).toMatchSnapshot();
+    });
+
+    it('does not expose yaml structure in units', () => {
+        const hashed = hash();
+        skeleton(block, {compact: true}, hashed);
+
+        const leaking = hashed.segments.filter(
+            (unit) => unit.includes(':::') || unit.includes('type:') || unit.includes('url:'),
+        );
+
+        expect(leaking).toEqual([]);
+        expect(hashed.segments).toMatchSnapshot();
+    });
+
+    it('keeps a block with broken yaml as is', () => {
+        const broken = `::: page-constructor
+blocks:
+  - title: 'Заголовок
+   bad: [indentation
+:::
+`;
+        expect(render(broken)).toBe(broken);
+    });
+
+    it('extracts folded scalars and keeps literal scalars untranslated', () => {
+        const multiline = `::: page-constructor
+blocks:
+  - type: 'header-block'
+    title: 'Заголовок'
+    description: >-
+      Первая строка
+      вторая строка
+    text: |
+      Первый абзац
+
+      Второй абзац
+:::
+`;
+        const rendered = render(multiline);
+
+        expect(rendered).toContain("title: '%%%");
+        // The folded scalar value is a single line, so it is matched
+        // across the source lines and translated.
+        expect(rendered).not.toContain('Первая строка');
+        // The literal scalar value contains newlines and cannot be
+        // matched verbatim, so it stays as is.
+        expect(rendered).toContain('Первый абзац');
+        expect(rendered).toContain('Второй абзац');
+    });
+
+    it('does not touch page-constructor examples inside code fences', () => {
+        const fenced =
+            "```yaml\n::: page-constructor\nblocks:\n  - type: 'header-block'\n    title: 'Заголовок'\n:::\n```\n";
+        expect(render(fenced)).toBe(fenced);
+    });
+
+    it('roundtrips through extract and compose', () => {
+        const {units, skeleton: skl} = extract(block, {
+            compact: true,
+            source: {language: 'ru', locale: 'RU'},
+            target: {language: 'en', locale: 'US'},
+        });
+
+        expect(compose(skl, units, {useSource: true})).toBe(block);
     });
 });

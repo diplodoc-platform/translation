@@ -239,3 +239,30 @@ exports[`inline: skeleton rendering > inline: renders hash instead of the senten
 exports[`inline: skeleton rendering > inline: renders hash instead of the sentences with variable image syntax. 1`] = `"%%%0%%% %%%1%%%"`;
 
 exports[`inline: skeleton rendering > inline: renders hash instead of the sentences with video syntax. 1`] = `"%%%0%%% %%%1%%% @[youtube](https://youtu.be/rJz4OaURJ6U)"`;
+
+exports[`page-constructor: yaml-aware extraction > does not expose yaml structure in units 1`] = `
+Array [
+  "<source xml:space=\\"preserve\\">Текст до блока.</source>",
+  "<source xml:space=\\"preserve\\">Наш продукт</source>",
+  "<source xml:space=\\"preserve\\">Описание продукта</source>",
+  "<source xml:space=\\"preserve\\">Начать</source>",
+  "<source xml:space=\\"preserve\\">Текст после блока.</source>",
+]
+`;
+
+exports[`page-constructor: yaml-aware extraction > replaces translatable values with hashes and keeps yaml structure 1`] = `
+"%%%0%%%
+
+::: page-constructor
+blocks:
+  - type: 'header-block'
+    title: '%%%1%%%'
+    description: '%%%2%%%'
+    buttons:
+      - text: '%%%3%%%'
+        url: '/start'
+:::
+
+%%%4%%%
+"
+`;
