@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.7.30](https://github.com/diplodoc-platform/translation/compare/v1.7.29...v1.7.30) (2026-08-07)
+
+
+### Bug Fixes
+
+* address sonar findings in page-constructor rule ([653050f](https://github.com/diplodoc-platform/translation/commit/653050fac5e0fb6238e15236a4307f27539cdfe5))
+* anchor page-constructor values by exact node positions ([cc15bd7](https://github.com/diplodoc-platform/translation/commit/cc15bd7a6c2cfb45087413807a6e6d7011a80d13))
+* anchor page-constructor values to their own occurrences ([0b6a041](https://github.com/diplodoc-platform/translation/commit/0b6a04142ed74877ec0fabd4628f57d50f8f42ac))
+* extract page-constructor blocks schema-aware instead of as raw markdown ([12266fb](https://github.com/diplodoc-platform/translation/commit/12266fbdcef0669200fc81c2ba4e0c775c675b64))
+
+
+### Performance Improvements
+
+* compile the page-constructor schema without codegen optimization ([21a0aff](https://github.com/diplodoc-platform/translation/commit/21a0aff612fb1dc1571ce872c4ffb3ddb002e3b5))
+
 ## [1.7.29](https://github.com/diplodoc-platform/translation/compare/v1.7.28...v1.7.29) (2026-08-07)
 
 
