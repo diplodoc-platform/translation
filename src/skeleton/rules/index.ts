@@ -9,6 +9,7 @@ import {code} from './code';
 import {html} from './html';
 import {list} from './list';
 import {noTranslate} from './no-translate';
+import {pageConstructor} from './page-constructor';
 
 export const rules: Renderer.RenderRuleRecord = {
     ...text,
@@ -20,4 +21,5 @@ export const rules: Renderer.RenderRuleRecord = {
     ...html,
     ...list,
     ...noTranslate,
+    ...pageConstructor,
 };

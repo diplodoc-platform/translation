@@ -10,7 +10,7 @@ import {replace, token} from 'src/utils';
 
 type Schema = 'md' | 'text';
 
-function genCode(ontranslate: (text: string, schema: Schema) => string) {
+export function genCode(ontranslate: (text: string, schema: Schema) => string) {
     return function (cxt: KeywordCxt) {
         const {gen, data, it, schema} = cxt;
         const {parentData, parentDataProperty} = it;

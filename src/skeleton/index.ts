@@ -26,6 +26,7 @@ import {noTranslate} from 'src/directives/no-translate';
 
 import term from './plugins/term';
 import includes from './plugins/includes';
+import {pageConstructor} from './plugins/page-constructor';
 import {hooks} from './hooks';
 import {rules} from './rules';
 
@@ -49,6 +50,7 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
 
     // diplodoc plugins
     md.use(noTranslate(), diplodocOptions);
+    md.use(pageConstructor(), diplodocOptions);
     md.use(meta, diplodocOptions);
     md.use(includes, diplodocOptions);
     md.use(notes, diplodocOptions);
