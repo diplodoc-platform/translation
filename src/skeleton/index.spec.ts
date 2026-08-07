@@ -552,6 +552,55 @@ blocks:
         expect(rendered).toContain('Второй абзац');
     });
 
+    it('anchors values that are substrings of other values', () => {
+        const collision = `::: page-constructor
+blocks:
+  - type: 'header-block'
+    description: 'Наш продукт Про'
+    title: 'Наш продукт'
+:::
+`;
+        const rendered = render(collision);
+
+        expect(rendered).toMatch(/description: '%%%\d+%%%'\n/);
+        expect(rendered).toMatch(/title: '%%%\d+%%%'\n/);
+        expect(rendered).not.toContain('Наш продукт');
+    });
+
+    it('does not match values inside non-translatable scalars', () => {
+        const tricky = `::: page-constructor
+blocks:
+  - type: 'header-block'
+    background:
+      image:
+        src: '/images/Начать'
+    title: 'Начать'
+:::
+`;
+        const rendered = render(tricky);
+
+        expect(rendered).toContain("src: '/images/Начать'");
+        expect(rendered).toMatch(/title: '%%%\d+%%%'\n/);
+    });
+
+    it('anchors repeated values to consecutive occurrences', () => {
+        const repeated = `::: page-constructor
+blocks:
+  - type: 'card-layout-block'
+    title: 'Карточки'
+    children:
+      - type: 'basic-card'
+        text: 'Подробнее'
+      - type: 'basic-card'
+        text: 'Подробнее'
+:::
+`;
+        const rendered = render(repeated);
+
+        expect(rendered).not.toContain('Подробнее');
+        expect(rendered.match(/text: '%%%\d+%%%'/g)).toHaveLength(2);
+    });
+
     it('does not touch page-constructor examples inside code fences', () => {
         const fenced =
             "```yaml\n::: page-constructor\nblocks:\n  - type: 'header-block'\n    title: 'Заголовок'\n:::\n```\n";
