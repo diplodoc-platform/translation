@@ -492,6 +492,8 @@ blocks:
 Текст после блока.
 `;
 
+    // The first test pays the one-time page-constructor schema compilation,
+    // which needs a longer timeout under coverage instrumentation.
     it('replaces translatable values with hashes and keeps yaml structure', () => {
         const rendered = render(block);
 
@@ -502,7 +504,7 @@ blocks:
         expect(rendered).not.toContain('Наш продукт');
         expect(rendered).not.toContain('Начать');
         expect(rendered).toMatchSnapshot();
-    });
+    }, 30000);
 
     it('does not expose yaml structure in units', () => {
         const hashed = hash();
