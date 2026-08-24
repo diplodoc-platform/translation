@@ -15,6 +15,7 @@ import {compose as composeMd, extract as extraactMd} from './md';
 import {compose as composeMdExp, extract as extractMdExp} from './mdExp';
 import {compose as composeJson, extract as extraactJson} from './json';
 import {validate} from './validate';
+import {resetGIds, resetXIds} from 'src/xliff/generator';
 export type {AjvOptions} from './json';
 
 const type = (content: string | JSONObject, experimental: boolean) => {
@@ -42,6 +43,13 @@ export function extract(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function extract(content: any, options: any): ExtractOutput<any> | MdExpExtractOutput {
     validate('ExtractOptions', options);
+
+    // Placeholder ids (g-N/x-N) are part of unit texts and therefore of
+    // translation cache and seed keys. Restart them per document so the
+    // same content always extracts to the same units regardless of how
+    // many files were processed earlier in this process.
+    resetGIds();
+    resetXIds();
 
     return extract[type(content, options.useExperimentalParser)](content, options);
 }
