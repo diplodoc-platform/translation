@@ -27,6 +27,12 @@ export function generateCloseG(): string {
 }
 
 let ID = 1;
+
+/** Resets the `g-N` id sequence (see resetXIds for the rationale). */
+export function resetGIds() {
+    ID = 1;
+}
+
 function id() {
     if (process.env.JEST_WORKER_ID) {
         return {id: 'g-test'};
