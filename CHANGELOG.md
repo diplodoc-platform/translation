@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.31](https://github.com/diplodoc-platform/translation/compare/v1.7.30...v1.7.31) (2026-08-25)
+
+
+### Bug Fixes
+
+* reset placeholder id sequences per extracted document ([b8131c1](https://github.com/diplodoc-platform/translation/commit/b8131c12f2b3347dcf626b2db22d2c979481911f))
+* satisfy import/order in api/index.ts ([d69b930](https://github.com/diplodoc-platform/translation/commit/d69b9305d004410f1ad91778f99f508500c536c5))
+
 ## [1.7.30](https://github.com/diplodoc-platform/translation/compare/v1.7.29...v1.7.30) (2026-08-07)
 
 
