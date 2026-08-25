@@ -11,11 +11,12 @@ import type {
     ExtractOutput as MdExpExtractOutput,
 } from './mdExp';
 
+import {resetGIds, resetXIds} from 'src/xliff/generator';
+
 import {compose as composeMd, extract as extraactMd} from './md';
 import {compose as composeMdExp, extract as extractMdExp} from './mdExp';
 import {compose as composeJson, extract as extraactJson} from './json';
 import {validate} from './validate';
-import {resetGIds, resetXIds} from 'src/xliff/generator';
 export type {AjvOptions} from './json';
 
 const type = (content: string | JSONObject, experimental: boolean) => {
