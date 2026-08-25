@@ -28,7 +28,7 @@ export function generateCloseG(): string {
 
 let ID = 1;
 
-/** Resets the `g-N` id sequence (see resetXIds for the rationale). */
+// Resets the `g-N` id sequence (see resetXIds for the rationale).
 export function resetGIds() {
     ID = 1;
 }
