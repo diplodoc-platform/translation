@@ -198,6 +198,43 @@ describe('inline: skeleton rendering', () => {
     });
 });
 
+describe('visibility directive', () => {
+    const markdown = `Common text.
+
+:::visibility agents
+Agent instructions.
+:::
+
+:::visibility humans
+Human instructions.
+:::
+`;
+
+    it('preserves directive markup and extracts both audience bodies', () => {
+        const {skeleton: result, units} = extract(markdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(result).toContain(':::visibility agents');
+        expect(result).toContain(':::visibility humans');
+        expect(units.join('\n')).toContain('Agent instructions.');
+        expect(units.join('\n')).toContain('Human instructions.');
+        expect(units.join('\n')).not.toContain(':::visibility');
+    });
+
+    it('roundtrips without changing directive markup', () => {
+        const {skeleton: result, units} = extract(markdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+});
+
 describe('code_inline: translate=no fence inside list items', () => {
     const render = (markdown: string) => skeleton(markdown, {compact: false});
 

@@ -17,6 +17,7 @@ import imsize from '@diplodoc/transform/lib/plugins/imsize';
 import file from '@diplodoc/transform/lib/plugins/file';
 import video from '@diplodoc/transform/lib/plugins/video';
 import table from '@diplodoc/transform/lib/plugins/table';
+import {visibility} from '@diplodoc/transform/lib/plugins/visibility';
 
 import {customRenderer} from 'src/renderer';
 import {hash as _hash} from 'src/hash';
@@ -50,6 +51,7 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
 
     // diplodoc plugins
     md.use(noTranslate(), diplodocOptions);
+    md.use(visibility({audience: 'preserve'}), diplodocOptions);
     md.use(pageConstructor(), diplodocOptions);
     md.use(meta, diplodocOptions);
     md.use(includes, diplodocOptions);
