@@ -201,11 +201,11 @@ describe('inline: skeleton rendering', () => {
 describe('visibility directive', () => {
     const markdown = `Common text.
 
-:::visibility agents
+:::visibility agent
 Agent instructions.
 :::
 
-:::visibility humans
+:::visibility human
 Human instructions.
 :::
 `;
@@ -217,8 +217,8 @@ Human instructions.
             target: {language: 'ru', locale: 'RU'},
         });
 
-        expect(result).toContain(':::visibility agents');
-        expect(result).toContain(':::visibility humans');
+        expect(result).toContain(':::visibility agent');
+        expect(result).toContain(':::visibility human');
         expect(units.join('\n')).toContain('Agent instructions.');
         expect(units.join('\n')).toContain('Human instructions.');
         expect(units.join('\n')).not.toContain(':::visibility');
