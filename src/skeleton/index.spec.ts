@@ -233,6 +233,22 @@ Human instructions.
 
         expect(compose(result, units, {useSource: true})).toBe(markdown);
     });
+
+    it('keeps text translatable when the audience value is invalid', () => {
+        const invalidMarkdown = `:::visibility robots
+Text that still needs translation.
+:::
+`;
+        const {skeleton: result, units} = extract(invalidMarkdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(result).toContain(':::visibility robots');
+        expect(units.join('\n')).toContain('Text that still needs translation.');
+        expect(compose(result, units, {useSource: true})).toBe(invalidMarkdown);
+    });
 });
 
 describe('code_inline: translate=no fence inside list items', () => {
