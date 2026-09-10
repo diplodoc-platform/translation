@@ -198,6 +198,59 @@ describe('inline: skeleton rendering', () => {
     });
 });
 
+describe('visibility directive', () => {
+    const markdown = `Common text.
+
+:::visibility agent
+Agent instructions.
+:::
+
+:::visibility human
+Human instructions.
+:::
+`;
+
+    it('preserves directive markup and extracts both audience bodies', () => {
+        const {skeleton: result, units} = extract(markdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(result).toContain(':::visibility agent');
+        expect(result).toContain(':::visibility human');
+        expect(units.join('\n')).toContain('Agent instructions.');
+        expect(units.join('\n')).toContain('Human instructions.');
+        expect(units.join('\n')).not.toContain(':::visibility');
+    });
+
+    it('roundtrips without changing directive markup', () => {
+        const {skeleton: result, units} = extract(markdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('keeps text translatable when the audience value is invalid', () => {
+        const invalidMarkdown = `:::visibility robots
+Text that still needs translation.
+:::
+`;
+        const {skeleton: result, units} = extract(invalidMarkdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(result).toContain(':::visibility robots');
+        expect(units.join('\n')).toContain('Text that still needs translation.');
+        expect(compose(result, units, {useSource: true})).toBe(invalidMarkdown);
+    });
+});
+
 describe('code_inline: translate=no fence inside list items', () => {
     const render = (markdown: string) => skeleton(markdown, {compact: false});
 
