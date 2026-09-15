@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.0](https://github.com/diplodoc-platform/translation/compare/v1.7.32...v1.8.0) (2026-09-15)
+
+
+### Features
+
+* preserve audience visibility blocks DOCSTOOLS-6553 ([fd98759](https://github.com/diplodoc-platform/translation/commit/fd9875934afb6ae4afde8854ca00dce4b9a86033))
+
+
+### Bug Fixes
+
+* **translation:** preserve invalid visibility content DOCSTOOLS-6553 ([f1bd976](https://github.com/diplodoc-platform/translation/commit/f1bd976a4b5dba62c3e60c2ab9f2676532e827f0))
+
 ## [1.7.32](https://github.com/diplodoc-platform/translation/compare/v1.7.31...v1.7.32) (2026-08-27)
 
 
