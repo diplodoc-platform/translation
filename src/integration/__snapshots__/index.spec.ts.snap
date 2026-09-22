@@ -159,7 +159,7 @@ exports[`integration > (a **18. B**). > xliff main 1`] = `
         <source xml:space=\\"preserve\\">(a <x ctype=\\"bold_open\\" equiv-text=\\"**\\" id=\\"x-1\\"/>18.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"x-2\\"/>).</source>
+        <source xml:space=\\"preserve\\">B<x ctype=\\"bold_close\\" equiv-text=\\"**\\" id=\\"x-1\\"/>).</source>
       </trans-unit>
     </body>
   </file>
@@ -813,7 +813,7 @@ exports[`integration > handles autolinks > xliff main 1`] = `
         <source xml:space=\\"preserve\\">A <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;http://gitgrimbo.github.io/harviewer/master/&gt;\\" id=\\"x-1\\"/></source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"x-2\\"/></source>
+        <source xml:space=\\"preserve\\">B <x ctype=\\"link_autolink\\" equiv-text=\\"&lt;https://toolbox.googleapps.com/apps/har_analyzer/?lang=ru&gt;\\" id=\\"x-1\\"/></source>
       </trans-unit>
     </body>
   </file>
@@ -1431,7 +1431,7 @@ exports[`integration > handles html line breaks > xliff main 1`] = `
         <source xml:space=\\"preserve\\"><g ctype=\\"image\\" equiv-text=\\"![{{text}}](../image.png)\\" id=\\"g-1\\" x-begin=\\"![\\" x-end=\\"](../image.png)\\"></g><x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-1\\"/>|<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-2\\"/><g ctype=\\"link\\" equiv-text=\\"[{{text}}](https://link.html?sku_id=12000038372920468)\\" id=\\"g-2\\" x-begin=\\"[\\" x-end=\\"](https://link.html?sku_id=12000038372920468)\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-3\\" x-begin=\\"**\\" x-end=\\"**\\">Moes</g> | Matter</g></source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Moes Matter<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-3\\"/>|</source>
+        <source xml:space=\\"preserve\\">Moes Matter<x ctype=\\"lb\\" equiv-text=\\"&amp;#10;\\" id=\\"x-1\\"/>|</source>
       </trans-unit>
     </body>
   </file>
@@ -1891,10 +1891,10 @@ exports[`integration > handles inline code 3 > xliff main 1`] = `
         <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">Название поля</g></source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-2\\" x-begin=\\"**\\" x-end=\\"**\\">Тип</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">Тип</g></source>
       </trans-unit>
       <trans-unit id=\\"3\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-3\\" x-begin=\\"**\\" x-end=\\"**\\">Описание</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">Описание</g></source>
       </trans-unit>
       <trans-unit id=\\"4\\">
         <source xml:space=\\"preserve\\">column_name</source>
@@ -2170,7 +2170,7 @@ exports[`integration > handles link with image with variables in title > xliff m
         <source xml:space=\\"preserve\\">And what?</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\">Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"x-2\\"/>.</source>
+        <source xml:space=\\"preserve\\">Title <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{product-name-short.station-mini-old}}\\" id=\\"x-1\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"3\\">
         <source xml:space=\\"preserve\\">And what?</source>
@@ -4053,7 +4053,7 @@ exports[`integration > link variable leak > xliff main 1`] = `
         <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">method</g></source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-2\\" x-begin=\\"**\\" x-end=\\"**\\">url</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">url</g></source>
       </trans-unit>
       <trans-unit id=\\"3\\">
         <source xml:space=\\"preserve\\">POST
@@ -4067,13 +4067,13 @@ exports[`integration > link variable leak > xliff main 1`] = `
         <source xml:space=\\"preserve\\">Path parameters</source>
       </trans-unit>
       <trans-unit id=\\"6\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-3\\" x-begin=\\"**\\" x-end=\\"**\\">Name</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">Name</g></source>
       </trans-unit>
       <trans-unit id=\\"7\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-4\\" x-begin=\\"**\\" x-end=\\"**\\">Type</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">Type</g></source>
       </trans-unit>
       <trans-unit id=\\"8\\">
-        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-5\\" x-begin=\\"**\\" x-end=\\"**\\">Description</g></source>
+        <source xml:space=\\"preserve\\"><g ctype=\\"bold\\" equiv-text=\\"**{{text}}**\\" id=\\"g-1\\" x-begin=\\"**\\" x-end=\\"**\\">Description</g></source>
       </trans-unit>
       <trans-unit id=\\"9\\">
         <source xml:space=\\"preserve\\">businessId</source>
