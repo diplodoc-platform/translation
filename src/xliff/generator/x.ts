@@ -25,8 +25,8 @@ let ID = 1;
 // Resets the `x-N` id sequence.
 //
 // Ids participate in unit texts (hence in translation cache and seed keys),
-// so they must restart for every extracted document - a process-global
-// counter makes unit texts depend on how many files were processed before.
+// so they must restart for every rendered unit - a counter shared by units
+// makes a unit text depend on the markup extracted before it.
 export function resetXIds() {
     ID = 1;
 }

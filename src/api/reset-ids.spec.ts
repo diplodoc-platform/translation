@@ -49,4 +49,21 @@ describe('extract placeholder ids', () => {
         expect(ids.length).toBeGreaterThan(0);
         expect(ids).toContain('id="g-1"');
     });
+
+    it('restarts the id sequence for every unit', () => {
+        // Ids are part of the unit text, so numbering them through the
+        // document makes every unit depend on the markup above it: adding
+        // one link on top shifts the ids of the whole rest of the file and
+        // misses the cache for units that did not change.
+        const paragraph = 'Ещё одна ссылка: [пример](./example.md) с `кодом` внутри.';
+
+        const alone = extract(paragraph, OPTIONS);
+        const below = extract(
+            ['Вставка со [ссылкой](./new.md) и `кодом`.', '', paragraph].join('\n'),
+            OPTIONS,
+        );
+
+        expect(below.units).toHaveLength(2);
+        expect(below.units[1]).toEqual(alone.units[0]);
+    });
 });
