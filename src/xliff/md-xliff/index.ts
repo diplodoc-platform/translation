@@ -7,14 +7,17 @@ import {resetGIds, resetXIds, transunit} from 'src/xliff/generator';
 import {hooks} from './hooks';
 import {rules} from './rules';
 
-export function render(tokens: Token[], unitId: number, compact = false) {
+export function render(tokens: Token[], unitId: number, compact = false, unitLocalIds = false) {
     // Placeholder ids are part of the unit text, and unit texts are used as
-    // translation cache and seed keys. Numbering them through the document
-    // would make every unit depend on the markup above it: one link added on
-    // top shifts the ids of the whole rest of the file, so unchanged units
-    // miss the cache and get translated again.
-    resetGIds();
-    resetXIds();
+    // translation cache and seed keys. Numbered through the document, every
+    // unit depends on the markup above it: one link added on top shifts the
+    // ids of the whole rest of the file, so unchanged units miss the cache
+    // and get translated again. Restarting per unit is opt-in, so that the
+    // XLIFF handed to external tools keeps its document-wide ids.
+    if (unitLocalIds) {
+        resetGIds();
+        resetXIds();
+    }
 
     const xliffRenderer = new MarkdownIt({html: true});
 

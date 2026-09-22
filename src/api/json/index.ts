@@ -3,6 +3,7 @@ import type {OpenAPIV3} from 'openapi-types';
 import type {JSONObject} from 'src/json';
 import type {ParseOptions, TemplateOptions} from 'src/xliff';
 import type {SkeletonOptions} from 'src/skeleton';
+import type {IdOptions} from 'src/hash';
 
 import {ok} from 'node:assert';
 import Ajv from 'ajv';
@@ -29,7 +30,11 @@ export type AjvConfig = {
     ajvOptions?: AjvOptions;
 };
 
-export type ExtractOptions = JSONSchemas & TemplateOptions & SkeletonOptions & AjvConfig;
+export type ExtractOptions = JSONSchemas &
+    TemplateOptions &
+    SkeletonOptions &
+    AjvConfig &
+    IdOptions;
 
 export type ExtractOutput = {
     skeleton: JSONObject;
@@ -41,10 +46,10 @@ export type ComposeOptions = JSONSchemas & ParseOptions & AjvConfig;
 
 export function extract(
     content: JSONObject,
-    {schemas = [], source, target, compact, ajvOptions}: ExtractOptions,
+    {schemas = [], source, target, compact, ajvOptions, unitLocalIds}: ExtractOptions,
 ): ExtractOutput {
     const mainSchema = getMainSchema(content, schemas);
-    const hashed = hash();
+    const hashed = hash({unitLocalIds});
     const ajv = setupAjv(schemas, ajvOptions, mainSchema);
 
     ajv.addKeyword(translate.extract(hashed, {compact}));
