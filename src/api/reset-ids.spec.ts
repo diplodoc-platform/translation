@@ -1,4 +1,4 @@
-import {afterEach, beforeEach, describe, expect, it} from 'vitest';
+import {describe, expect, it} from 'vitest';
 
 import {extract} from 'src/api';
 
@@ -15,21 +15,6 @@ const OPTIONS = {
 } as const;
 
 describe('extract placeholder ids', () => {
-    // The JEST_WORKER_ID short-circuit replaces real ids with a constant,
-    // hiding the numbering from tests - disable it for this suite.
-    let jestWorkerId: string | undefined;
-
-    beforeEach(() => {
-        jestWorkerId = process.env.JEST_WORKER_ID;
-        delete process.env.JEST_WORKER_ID;
-    });
-
-    afterEach(() => {
-        if (jestWorkerId !== undefined) {
-            process.env.JEST_WORKER_ID = jestWorkerId;
-        }
-    });
-
     it('produces identical units for repeated extracts of the same content', () => {
         // Unit texts are used as translation cache and seed keys: a
         // process-global id counter would make the second extract produce
@@ -65,5 +50,18 @@ describe('extract placeholder ids', () => {
 
         expect(below.units).toHaveLength(2);
         expect(below.units[1]).toEqual(alone.units[0]);
+    });
+
+    it('keeps ids unique inside a unit', () => {
+        // Restarting the sequence per unit must not go further: a nested
+        // render of the same unit would hand out the same id twice.
+        const {units} = extract(MARKDOWN, OPTIONS);
+
+        for (const unit of units) {
+            const ids = unit.match(/id="[^"]+"/g) ?? [];
+
+            expect(ids.length).toBeGreaterThan(1);
+            expect(new Set(ids).size).toBe(ids.length);
+        }
     });
 });
