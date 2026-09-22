@@ -11,6 +11,8 @@ import type {
     ExtractOutput as MdExpExtractOutput,
 } from './mdExp';
 
+import {resetGIds, resetXIds} from 'src/xliff/generator';
+
 import {compose as composeMd, extract as extraactMd} from './md';
 import {compose as composeMdExp, extract as extractMdExp} from './mdExp';
 import {compose as composeJson, extract as extraactJson} from './json';
@@ -42,6 +44,14 @@ export function extract(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function extract(content: any, options: any): ExtractOutput<any> | MdExpExtractOutput {
     validate('ExtractOptions', options);
+
+    // Placeholder ids (g-N/x-N) are part of unit texts and therefore of
+    // translation cache and seed keys. Restart them per document so the
+    // same content always extracts to the same units regardless of how
+    // many files were processed earlier in this process. The `unitLocalIds`
+    // option additionally restarts them for every unit.
+    resetGIds();
+    resetXIds();
 
     return extract[type(content, options.useExperimentalParser)](content, options);
 }

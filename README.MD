@@ -85,6 +85,7 @@ function extract(parameters: ExtractParameters): ExtractOutput;
 | `filter`       | `boolean`        | Filter none translatable files.                            |
 | `compact`      | `boolean`        | Compact XLIFF without `<g>` wrappers. Code blocks are processed precisely instead of as a whole. |
 | `code`         | `string`         | How fenced code is processed, see below.                   |
+| `unitLocalIds` | `boolean`        | Restart placeholder ids (`g-N`/`x-N`) for every unit instead of numbering them through the document, so a unit's text does not depend on the markup above it. Use when unit texts serve as translation cache keys. Off by default. |
 
 #### 🧱 Code blocks
 
