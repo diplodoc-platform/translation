@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.9.0](https://github.com/diplodoc-platform/translation/compare/v1.8.0...v1.9.0) (2026-09-22)
+
+
+### Features
+
+* adaptive code mode with comments of any language and mermaid labels DOCSTOOLS-6809 ([b803077](https://github.com/diplodoc-platform/translation/commit/b803077ffcf57d977f978af38a95b965f25e5225))
+
+
+### Bug Fixes
+
+* drop the per-document id reset now covered by the per-unit one ([a756652](https://github.com/diplodoc-platform/translation/commit/a7566524d07aa632d0191adc76b6cf276727f8d2))
+* make unit-local placeholder ids an extract option ([aa82131](https://github.com/diplodoc-platform/translation/commit/aa82131e22500ced1e62f9e6c425ca84f48be534))
+* restart placeholder ids for every unit ([df69603](https://github.com/diplodoc-platform/translation/commit/df69603b48968747b8f394d347d3055256c09cd5))
+
 ## [1.8.0](https://github.com/diplodoc-platform/translation/compare/v1.7.32...v1.8.0) (2026-09-15)
 
 
