@@ -57,6 +57,8 @@ const validateExtractOptions = ajv.compile({
             },
             required: ['language', 'locale'],
         },
+        compact: {type: 'boolean'},
+        code: {enum: ['no', 'all', 'precise', 'adaptive']},
     },
     required: ['source', 'target'],
 });

@@ -83,6 +83,21 @@ function extract(parameters: ExtractParameters): ExtractOutput;
 | `skeletonPath` | `string`         | The path where you will put the skeleton file.         |
 | `markdownPath` | `string`         | The path from where the markdown file were read.         |
 | `filter`       | `boolean`        | Filter none translatable files.                            |
+| `compact`      | `boolean`        | Compact XLIFF without `<g>` wrappers. Code blocks are processed precisely instead of as a whole. |
+| `code`         | `string`         | How fenced code is processed, see below.                   |
+
+#### 🧱 Code blocks
+
+The `code` parameter selects how much of a fenced code block is translatable:
+
+| Mode       | What goes to translation                                                                                   |
+| ---------- | ---------------------------------------------------------------------------------------------------------- |
+| `no`       | Nothing, the block is copied as is.                                                                        |
+| `all`      | The whole block. Default without `compact`.                                                                |
+| `precise`  | `<placeholders>` of any block and comments of `bash`/`shell`/`sh` blocks. Default with `compact`.         |
+| `adaptive` | Everything of `precise` plus line comments of other languages (`#`, `//`, `--`) and labels of `mermaid` diagrams. Commented-out code, tool directives and separators stay as is. |
+
+A single block overrides the mode with its info string: ` ```yaml translate=adaptive `.
 
 #### 📚 Types
 
