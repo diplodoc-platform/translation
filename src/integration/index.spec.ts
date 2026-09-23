@@ -280,6 +280,12 @@ test('handles includes with notitle')`
 {% include notitle [test](./test.md) %}
 `;
 
+test('handles consecutive includes with variables')`
+{% include [test {{product-name}}](./a.md) %}
+{% include [other](./b.md) %}
+{% include [third {{product-name}}](./c.md) %}
+`;
+
 test('handles includes with variables and 2 sentence')`
 {% include [Sentence first. Sentence second {{product-name}}](./test.md) %}
 `;
