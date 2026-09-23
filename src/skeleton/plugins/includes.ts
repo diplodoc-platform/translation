@@ -61,9 +61,12 @@ export default function (md: MdIt) {
             if (match) {
                 state.pos += match[0].length;
 
+                // The source is parsed with escaped variables,
+                // but the consumer searches the original content.
+                const markup = Liquid.unescape(match[0]);
                 const token = state.push('liquid', '', 0) as Token;
-                token.skip = match[0];
-                token.markup = match[0];
+                token.skip = markup;
+                token.markup = markup;
                 token.subtype = 'Include';
 
                 return true;

@@ -985,6 +985,46 @@ exports[`integration > handles condition blocks with html insertions > xliff mai
 </xliff>"
 `;
 
+exports[`integration > handles consecutive includes with variables > skeleton expr 1`] = `
+"{% include [test {{product-name}}](./a.md) %}
+{% include [other](./b.md) %}
+{% include [third {{product-name}}](./c.md) %}"
+`;
+
+exports[`integration > handles consecutive includes with variables > skeleton main 1`] = `
+"{% include [test {{product-name}}](./a.md) %}
+{% include [other](./b.md) %}
+{% include [third {{product-name}}](./c.md) %}"
+`;
+
+exports[`integration > handles consecutive includes with variables > xliff expr 1`] = `
+Xliff {
+  "compact": false,
+  "datatype": "markdown",
+  "file": "file.ext",
+  "skeletonFile": "file.skl",
+  "sourceLanguage": "ru-RU",
+  "targetLanguage": "en-US",
+  "transUnits": Array [],
+}
+`;
+
+exports[`integration > handles consecutive includes with variables > xliff main 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<xliff xmlns=\\"urn:oasis:names:tc:xliff:document:1.2\\" version=\\"1.2\\">
+  <file original=\\"file.ext\\" source-language=\\"ru-RU\\" target-language=\\"en-US\\" datatype=\\"markdown\\">
+    <header>
+      <skeleton>
+        <external-file href=\\"file.skl\\"></external-file>
+      </skeleton>
+    </header>
+    <body>
+      
+    </body>
+  </file>
+</xliff>"
+`;
+
 exports[`integration > handles default code block as text > skeleton expr 1`] = `
 "%%%1%%%
 
