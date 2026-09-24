@@ -102,6 +102,36 @@ function exclude(content: string, tokens: Token[]) {
     return content.slice(to);
 }
 
+/**
+ * Dotted abbreviation (`e.g.`, `i.e.`, `т.е.`) or a short one that a code
+ * span usually follows (`vs.`, `cf.`, `см.`) at the end of the text.
+ */
+const ABBREVIATION_END = /(?:^|[\s(])(?:(?:\p{L}\.){2,}|(?:vs|cf|incl|approx|см|напр|ср)\.)\s*$/iu;
+
+/**
+ * Tells whether an inline code span opening right after the content starts
+ * a new sentence. Sentences are cut on the text, where the span does not
+ * show its backticks, and an identifier in code usually starts in lower
+ * case, which the sentenizer takes for the same sentence going on:
+ *
+ * ```
+ * Read-only mode persists. `yt-admin exit` command should be used.
+ * ```
+ *
+ * A capital letter in place of the span asks it whether a sentence would
+ * start there. The sentenizer would say yes after `e.g.` as well, which is
+ * right for a capitalized word and wrong for the code span it introduces.
+ */
+function startsSentence(content: string, nonSentenseCount: number) {
+    if (ABBREVIATION_END.test(content)) {
+        return false;
+    }
+
+    const segments = sentenize(content + 'X');
+
+    return segments.length === nonSentenseCount + 2 && segments[segments.length - 1].trim() === 'X';
+}
+
 /*
  * Split inline tokens sequence on parts,
  * where each part is equal to one sentense of inline fragment.
@@ -115,7 +145,7 @@ function exclude(content: string, tokens: Token[]) {
  * So sentense one contains tokens from 1 to 4 and part of 5.
  * Sentense two contains only part of 5 token.
  */
-export function split(tokens: Token[]) {
+export function split(tokens: Token[], compact = false) {
     const parts: Token[][] = [];
     let content = '';
     let part: Token[] = [];
@@ -142,6 +172,16 @@ export function split(tokens: Token[]) {
     let nonSentenseCount = 0;
 
     for (const _token of tokens) {
+        if (
+            compact &&
+            _token.type === 'code_inline_open' &&
+            content.trim() &&
+            startsSentence(content, nonSentenseCount)
+        ) {
+            release();
+            nonSentenseCount = 0;
+        }
+
         if (hasContent(_token)) {
             content += _token.content || _token.markup || '';
         }

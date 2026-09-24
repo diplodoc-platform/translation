@@ -75,7 +75,87 @@ export function dropUselessTokens(tokens: Token[], accurate = false) {
         }
     }
 
-    return splitByContent(tokens, isTranslatable);
+    return keepPairedEdges(splitByContent(tokens, isTranslatable));
+}
+
+/**
+ * Index of the partner of every opening and closing markup token of the
+ * sequence, -1 for a token without one.
+ */
+function partners(tokens: Token[]) {
+    const result = tokens.map(() => -1);
+    const stack: {type: string; index: number}[] = [];
+
+    tokens.forEach((token, index) => {
+        const match = matchGroup(token);
+
+        if (!match) {
+            return;
+        }
+
+        if (match.kind === 'open') {
+            stack.push({type: match.type, index});
+            return;
+        }
+
+        const opener = stack.map((entry) => entry.type).lastIndexOf(match.type);
+
+        if (opener >= 0) {
+            const [{index: partner}] = stack.splice(opener, 1);
+
+            result[index] = partner;
+            result[partner] = index;
+        }
+    });
+
+    return result;
+}
+
+/**
+ * Keeps inside the fragment the markup that opens at its edge but closes
+ * inside it, and the other way round.
+ *
+ * Compact extraction drops every token without text around the fragment
+ * into the skeleton. That is right for markup wrapping the whole fragment
+ * and for markup crossing its edge, but a code span or emphasis that only
+ * starts the fragment would lose its opening marker to the skeleton:
+ *
+ * ```
+ * `list_node` type has been deprecated.
+ *   skeleton: `%%%0%%%
+ *   unit:     list_node<x ctype="code_close" .../> type has been deprecated.
+ * ```
+ *
+ * A translation that moves the span away from the start of the sentence
+ * then composes into `` `Тип list_node` устарел ``, and an existing one
+ * that keeps the span inside can not be reused for the fragment at all.
+ */
+function keepPairedEdges([before, content, after]: Token[][]): Token[][] {
+    if (!content.length || (!before.length && !after.length)) {
+        return [before, content, after];
+    }
+
+    const sequence = [...before, ...content, ...after];
+    const partner = partners(sequence);
+    const start = before.length;
+    const end = start + content.length;
+    const inside = (index: number) => index >= start && index < end;
+
+    let from = start;
+    for (let index = start - 1; index >= 0; index--) {
+        if (inside(partner[index])) {
+            from = index;
+        }
+    }
+
+    let to = end;
+    for (let index = end; index < sequence.length; index++) {
+        if (inside(partner[index])) {
+            to = index + 1;
+        }
+    }
+
+    return [sequence.slice(0, from), sequence.slice(from, to), sequence.slice(to)];
 }
 
 type TokenGroup = {

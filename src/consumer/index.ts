@@ -91,7 +91,7 @@ export class Consumer {
         }
 
         try {
-            const parts = split(tokens);
+            const parts = split(tokens, this.compact);
 
             const result = parts.map((part) => this.consume(part)).filter(Boolean) as {
                 part: Token[];

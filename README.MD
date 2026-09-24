@@ -83,7 +83,7 @@ function extract(parameters: ExtractParameters): ExtractOutput;
 | `skeletonPath` | `string`         | The path where you will put the skeleton file.         |
 | `markdownPath` | `string`         | The path from where the markdown file were read.         |
 | `filter`       | `boolean`        | Filter none translatable files.                            |
-| `compact`      | `boolean`        | Compact XLIFF without `<g>` wrappers. Code blocks are processed precisely instead of as a whole. |
+| `compact`      | `boolean`        | Compact XLIFF without `<g>` wrappers. Code blocks are processed precisely instead of as a whole. Markup wrapping a whole sentence goes to the skeleton, markup that only starts or ends it stays in the unit; a sentence may start with inline code. |
 | `code`         | `string`         | How fenced code is processed, see below.                   |
 | `unitLocalIds` | `boolean`        | Restart placeholder ids (`g-N`/`x-N`) for every unit instead of numbering them through the document, so a unit's text does not depend on the markup above it. Use when unit texts serve as translation cache keys. Off by default. |
 
