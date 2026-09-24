@@ -33,6 +33,8 @@ export type ExtractOutput<T extends string | JSONObject> = {
     skeleton: T;
     xliff: string;
     units: string[];
+    /** Problems that left a part of the content untranslated, one line each. Markdown only. */
+    warnings?: string[];
 };
 
 export function extract(content: string, options: MdExpExtractOptions): MdExpExtractOutput;

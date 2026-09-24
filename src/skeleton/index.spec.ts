@@ -1001,6 +1001,38 @@ blocks:
         expect(compose(skl, units, {useSource: true})).toBe(conditional);
     });
 
+    it('warns about a block it cannot parse', () => {
+        const broken = `Текст до блока.
+
+::: page-constructor
+blocks:
+  - type: 'basic-card'
+    title: {% if distr == 'saas' %}Формы{% endif %}
+:::
+`;
+        const {skeleton: skl, warnings} = extract(broken, {
+            compact: true,
+            source: {language: 'ru', locale: 'RU'},
+            target: {language: 'en', locale: 'US'},
+        });
+
+        expect(skl).toContain("title: {% if distr == 'saas' %}Формы{% endif %}");
+        expect(warnings).toEqual([
+            'page-constructor block at line 3 is left untranslated: ' +
+                'Plain value cannot start with directive indicator character % (line 6)',
+        ]);
+    });
+
+    it('does not warn about blocks it parses', () => {
+        const {warnings} = extract(conditional, {
+            compact: true,
+            source: {language: 'ru', locale: 'RU'},
+            target: {language: 'en', locale: 'US'},
+        });
+
+        expect(warnings).toEqual([]);
+    });
+
     it('does not touch page-constructor examples inside code fences', () => {
         const fenced =
             "```yaml\n::: page-constructor\nblocks:\n  - type: 'header-block'\n    title: 'Заголовок'\n:::\n```\n";

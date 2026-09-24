@@ -1,5 +1,6 @@
 import type Renderer from 'markdown-it/lib/renderer';
 import type {ValidateFunction} from 'ajv';
+import type {YAMLError} from 'yaml';
 import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
 
@@ -138,6 +139,22 @@ function parseYaml(yaml: string) {
     return doc;
 }
 
+/**
+ * A single line: tools downstream read warnings line by line.
+ */
+function parseErrorWarning(yaml: string, map: Token['map'], error: YAMLError) {
+    const reason = error.message.split('\n')[0].replace(/ at line \d+, column \d+:?$/, '');
+    if (!map) {
+        return `page-constructor block is left untranslated: ${reason}`;
+    }
+
+    // The content starts on the line after the directive, so the zero-based
+    // first content line is the one-based line of the directive.
+    const line = map[0] + yaml.slice(0, error.pos[0]).split('\n').length;
+
+    return `page-constructor block at line ${map[0]} is left untranslated: ${reason} (line ${line})`;
+}
+
 function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
     if (!yaml.trim()) {
         return;
@@ -146,6 +163,7 @@ function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
     const doc = parseYaml(yaml);
     if (doc.errors.length) {
         // Broken YAML is left in the skeleton as is.
+        consumer.warnings.push(parseErrorWarning(yaml, map, doc.errors[0]));
         return;
     }
 
