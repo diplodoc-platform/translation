@@ -103,19 +103,51 @@ function exclude(content: string, tokens: Token[]) {
 }
 
 /**
- * Dotted abbreviation (`e.g.`, `i.e.`, `т.е.`) or a short one that a code
- * span usually follows (`vs.`, `cf.`, `см.`) at the end of the text.
- * `etc.` is here as well: the sentenizer keeps `и т. д.` in the sentence,
- * and a translation would otherwise split where the source does not.
+ * Abbreviation at the end of the text that a code span may follow within
+ * the sentence: letters with dots (`e.g.`, `i.e.`, `т.е.`, `т. е.`) or a
+ * known short one (`etc.`, `vs.`, `Fig.`, `см.`, `табл.`). The sentenizer
+ * keeps some of them in the sentence (`и т. д.`) and splits after others,
+ * so the source and its translation would get a different number of units.
  */
-const ABBREVIATION_END =
-    /(?:^|[\s(])(?:(?:\p{L}\.){2,}|(?:etc|vs|cf|incl|approx|см|напр|ср|др)\.)\s*$/iu;
+const ABBREVIATION_END = new RegExp(
+    String.raw`(?:^|[\s(])(?:(?:\p{L}\.\s?){2,}|(?:${[
+        'etc',
+        'vs',
+        'cf',
+        'incl',
+        'approx',
+        'fig',
+        'figs',
+        'eq',
+        'sec',
+        'ch',
+        'p',
+        'pp',
+        'ex',
+        'см',
+        'напр',
+        'ср',
+        'др',
+        'рис',
+        'табл',
+        'стр',
+        'гл',
+    ].join('|')})\.)\s*$`,
+    'iu',
+);
+
+/**
+ * Text holding a sentence: a letter or a digit, not only punctuation after
+ * a `{#T}` link, whose title is filled in at build time.
+ */
+const SENTENCE_TEXT = /[\p{L}\p{N}]/u;
 
 /**
  * Tells whether an inline code span opening right after the content starts
- * a new sentence. Sentences are cut on the text, where the span does not
- * show its backticks, and an identifier in code usually starts in lower
- * case, which the sentenizer takes for the same sentence going on:
+ * a new sentence, in compact extraction only. Sentences are cut on the
+ * text, where the span does not show its backticks, and an identifier in
+ * code usually starts in lower case, which the sentenizer takes for the
+ * same sentence going on:
  *
  * ```
  * Read-only mode persists. `yt-admin exit` command should be used.
@@ -125,14 +157,19 @@ const ABBREVIATION_END =
  * start there. The sentenizer would say yes after `e.g.` as well, which is
  * right for a capitalized word and wrong for the code span it introduces.
  */
-function startsSentence(content: string, nonSentenseCount: number) {
-    if (ABBREVIATION_END.test(content)) {
+function startsSentence(token: Token, content: string, nonSentenseCount: number, compact: boolean) {
+    if (
+        !compact ||
+        token.type !== 'code_inline_open' ||
+        !SENTENCE_TEXT.test(content.replaceAll('{#T}', '')) ||
+        ABBREVIATION_END.test(content)
+    ) {
         return false;
     }
 
     const segments = sentenize(content + 'X');
 
-    return segments.length === nonSentenseCount + 2 && segments[segments.length - 1].trim() === 'X';
+    return segments.length === nonSentenseCount + 2 && segments.at(-1)?.trim() === 'X';
 }
 
 /*
@@ -175,12 +212,7 @@ export function split(tokens: Token[], compact = false) {
     let nonSentenseCount = 0;
 
     for (const _token of tokens) {
-        if (
-            compact &&
-            _token.type === 'code_inline_open' &&
-            content.trim() &&
-            startsSentence(content, nonSentenseCount)
-        ) {
+        if (startsSentence(_token, content, nonSentenseCount, compact)) {
             release();
             nonSentenseCount = 0;
         }

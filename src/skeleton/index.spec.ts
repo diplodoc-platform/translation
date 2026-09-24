@@ -324,6 +324,16 @@ describe('compact: markup at the edge of a sentence', () => {
         expect(compose(result, units, {useSource: true})).toBe(markdown);
     });
 
+    it('keeps the output without compact when a part starts with an unpaired closing token', () => {
+        const {skeleton: result, xliff} = extract('**A. [B](url)** C.\n', {
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(result).toBe('**%%%0%%% [%%%1%%%\n');
+        expect(xliff).toContain('ctype="link_text_part_close"');
+    });
+
     it('keeps markup at the edge in the skeleton without compact when markup is unbalanced', () => {
         const markdown = '_[Header](#header) — shows the name.  \n[Tabs](#tabs) — links._\n';
         const {skeleton: result, xliff} = extract(markdown, {
@@ -407,6 +417,44 @@ describe('compact: markup and sentences around inline code', () => {
 
         expect({skeleton: result, units: units.map(readable)}).toMatchSnapshot();
         expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it.each([
+        ['a link', 'See [docs](x.md "Title")', '](x.md "'],
+        ['an image', 'See ![img](x.png "Title")', '](x.png "'],
+    ])('keeps %s with a title ending the sentence in the skeleton', (_, text, kept) => {
+        const units = (markdown: string) =>
+            extract(markdown, {
+                compact: true,
+                unitLocalIds: true,
+                source: {language: 'en', locale: 'US'},
+                target: {language: 'ru', locale: 'RU'},
+            });
+        const alone = units(text + '\n');
+        const below = units('- One more item above.\n- ' + text + '\n');
+
+        // The title is a unit of its own; inside the sentence unit its
+        // placeholder would number the unit by the units above it.
+        expect(alone.skeleton).toContain(kept);
+        expect(alone.units.at(-1)).not.toContain('%%%');
+        expect(below.units.at(-1)).toBe(alone.units.at(-1));
+        expect(compose(alone.skeleton, alone.units, {useSource: true})).toBe(text + '\n');
+    });
+
+    it('does not make a unit of the full stop after a {#T} link', () => {
+        const markdown = '[{#T}](./x). `code` next.\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(units).toHaveLength(1);
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it.each([
+        'See Fig. `bar` and p. `baz` here.',
+        'То есть т. е. `x` и т.е. `y`, в табл. `w`.',
+        'Rows, etc. `trimmed_row_count` is absolute.',
+    ])('does not start a sentence at inline code after an abbreviation: %j', (text) => {
+        expect(extractCompact(text + '\n').units).toHaveLength(1);
     });
 
     it('composes a translation that moves inline code off the start of the sentence', () => {

@@ -381,9 +381,9 @@ Object {
 }
 `;
 
-exports[`image inside link > renders sentence with clickable image and surrounding text (known truncation issue) 1`] = `"%%%1%%% %%%2%%%"`;
+exports[`image inside link > renders sentence with clickable image and surrounding text (known truncation issue) 1`] = `"%%%1%%% [![%%%2%%%"`;
 
-exports[`image inside link > renders sentence with clickable image with {width=Npx} and surrounding text (known truncation issue) 1`] = `"%%%1%%% %%%2%%%"`;
+exports[`image inside link > renders sentence with clickable image with {width=Npx} and surrounding text (known truncation issue) 1`] = `"%%%1%%% [![%%%2%%%"`;
 
 exports[`image inside link > renders standalone clickable image with =WxH syntax 1`] = `"[![%%%1%%%](../_images/mountain.jpg \\"%%%0%%%\\" =100x200)](https://yandex.com/images/search?text=mountain)"`;
 

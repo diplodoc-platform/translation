@@ -144,16 +144,21 @@ function keepPairedEdges([before, content, after]: Token[][]): Token[][] {
     const start = before.length;
     const end = start + content.length;
     const inside = (index: number) => index >= start && index < end;
+    // A link or an image with a title carries the title unit in its closing
+    // token and consumes it on drop. Inside the unit the title placeholder
+    // would number the unit by the units above it, so such markup stays out.
+    const pinned = (index: number) =>
+        Boolean(sequence[index].beforeDrop || sequence[partner[index]]?.beforeDrop);
 
     let from = start;
-    for (let index = start - 1; index >= 0; index--) {
+    for (let index = start - 1; index >= 0 && !pinned(index); index--) {
         if (inside(partner[index])) {
             from = index;
         }
     }
 
     let to = end;
-    for (let index = end; index < sequence.length; index++) {
+    for (let index = end; index < sequence.length && !pinned(index); index++) {
         if (inside(partner[index])) {
             to = index + 1;
         }
