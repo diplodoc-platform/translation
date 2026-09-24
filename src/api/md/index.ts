@@ -13,6 +13,8 @@ export type ExtractOutput = {
     skeleton: string;
     xliff: string;
     units: string[];
+    /** Problems that left a part of the content untranslated, one line each. */
+    warnings: string[];
 };
 
 export type ComposeOptions = {
@@ -21,15 +23,17 @@ export type ComposeOptions = {
 
 export function extract(content: string, options: ExtractOptions): ExtractOutput {
     if (!content) {
-        return {xliff: '', units: [], skeleton: ''};
+        return {xliff: '', units: [], skeleton: '', warnings: []};
     }
 
     const hashed = hash({unitLocalIds: options.unitLocalIds});
+    const warnings: string[] = [];
 
     return {
-        skeleton: skeleton(content, options, hashed),
+        skeleton: skeleton(content, options, hashed, warnings),
         xliff: template(hashed.segments, options),
         units: hashed.segments,
+        warnings,
     };
 }
 

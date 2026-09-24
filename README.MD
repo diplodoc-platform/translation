@@ -115,6 +115,7 @@ A single block overrides the mode with its info string: ` ```yaml translate=adap
 | ---------- | -------- | --------------------------------------------------------- |
 | `skeleton` | `string` | The extracted skeleton string.                            |
 | `xlf`      | `string` | The extracted XLF string.                                 |
+| `warnings` | `string[]` | Parts of the markdown left untranslated without failing the extraction, one line each. For example, a `page-constructor` block whose YAML cannot be parsed. |
 
 #### 🔤 compose ✨
 

@@ -33,7 +33,16 @@ import {rules} from './rules';
 
 export type SkeletonOptions = ConsumerOptions;
 
-export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: Hash = _hash()) {
+/**
+ * `warnings` receives problems that left a part of the content untranslated
+ * without failing the extraction.
+ */
+export function skeleton(
+    markdown: string,
+    options: SkeletonOptions = {},
+    hash: Hash = _hash(),
+    warnings: string[] = [],
+) {
     const md = new MarkdownIt({html: true});
     const state = new Consumer(markdown, options, hash);
     const diplodocOptions = {
@@ -75,6 +84,8 @@ export function skeleton(markdown: string, options: SkeletonOptions = {}, hash: 
     // This allow to search original token content in consumer.
     // But in future this may cause a problems in other matching scenarios.
     md.render(Liquid.escape(markdown));
+
+    warnings.push(...state.warnings);
 
     return state.content;
 }

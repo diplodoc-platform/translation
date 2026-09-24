@@ -50,6 +50,12 @@ export class Consumer {
     hash: (tokens: Token[]) => string;
 
     /**
+     * Problems that left a part of the content untranslated
+     * without failing the extraction.
+     */
+    warnings: string[] = [];
+
+    /**
      * Current window end.
      */
     get limit() {
