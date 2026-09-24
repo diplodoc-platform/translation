@@ -339,6 +339,90 @@ describe('compact: markup at the edge of a sentence', () => {
     });
 });
 
+describe('compact: markup and sentences around inline code', () => {
+    const extractCompact = (markdown: string) =>
+        extract(markdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+    // Placeholders read as braces, so a snapshot shows where each marker went.
+    const readable = (unit: string) =>
+        unit
+            .replace(/<source[^>]*>|<\/source>/g, '')
+            .replace(/<x ctype="(\w+)"[^>]*\/>/g, '{$1}')
+            .replace(/<g ctype="(\w+)"[^>]*>/g, '{$1:')
+            .replace(/<\/g>/g, '}');
+
+    const cases = [
+        // markup at one edge of a sentence stays in the unit
+        'Ends with `code`',
+        '`a` both `b`',
+        '**`nested`** starts here.',
+        '**Bold with `code` inside** wraps all.',
+        '*em* starts, **bold** ends **here**',
+        '[Link](https://x.y) at start.',
+        'At end [link](https://x.y)',
+        '[**Bold link**](https://x.y) start.',
+        '![image](img.png) starts a sentence.',
+        '~~strike~~ at start.',
+        '`code` then **bold** then `code`',
+        '`{{ var }}` in code at start.',
+        // markup around the whole sentence or across its edge stays in the skeleton
+        '`only code`',
+        '**Bold with `code` inside.**',
+        '**First bold. Second bold** plain.',
+        'Plain. **Bold one. Bold two.** Plain again.',
+        '<span>html</span> at start.',
+        // a sentence starts at inline code
+        'Text with `code`. `Next` sentence starts with code.',
+        'Done! `next` starts. Why? `this` too.',
+        'Предложение. `код` в начале второго.',
+        'Line one.\n`code` on next line.',
+        'Sentence. `Only code.`',
+        'Ends with period `inside code.` Then text.',
+        // and does not where no sentence ends
+        'See e.g. `foo` and i.e. `bar`, vs. `baz`.',
+        'См. `foo` и т.е. `bar`.',
+        'Code `a. b` has period inside. Next.',
+        'Colon: `code` here.',
+        'Starts with `code` only at start.',
+    ];
+
+    it.each(cases)('%j', (text) => {
+        const markdown = text + '\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect({skeleton: result, units: units.map(readable)}).toMatchSnapshot();
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('composes a translation that moves inline code off the start of the sentence', () => {
+        const {skeleton: result, units} = extractCompact(
+            '- `list_node` type has been deprecated.\n',
+        );
+        const [open, close] = units[0].match(/<x ctype="code_(?:open|close)"[^>]*\/>/g) || [];
+        const translation = `<target xml:space="preserve">Тип ${open}list_node${close} устарел.</target>`;
+
+        expect(compose(result, [translation], {useSource: false})).toBe(
+            '- Тип `list_node` устарел.\n',
+        );
+    });
+
+    it('composes a translation that moves a link off the start of the sentence', () => {
+        const {skeleton: result, units} = extractCompact(
+            '[Documentation](https://x.y/en/) is here.\n',
+        );
+        const link = /<g[^>]*>.*<\/g>/.exec(units[0])?.[0].replace('Documentation', 'документация');
+        const translation = `<target xml:space="preserve">Здесь ${link}.</target>`;
+
+        expect(compose(result, [translation], {useSource: false})).toBe(
+            'Здесь [документация](https://x.y/en/).\n',
+        );
+    });
+});
+
 describe('code_inline: translate=no fence inside list items', () => {
     const render = (markdown: string) => skeleton(markdown, {compact: false});
 
