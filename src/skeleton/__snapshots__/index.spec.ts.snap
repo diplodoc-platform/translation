@@ -88,6 +88,299 @@ exports[`code_inline: translate=no fence inside list items > translates tilde-fe
 "
 `;
 
+exports[`compact: markup and sentences around inline code > "![image](img.png) starts a sentence." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{image:image} starts a sentence.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "**\`nested\`** starts here." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{bold:{code_open}nested{code_close}} starts here.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "**Bold with \`code\` inside** wraps all." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{bold:Bold with {code_open}code{code_close} inside} wraps all.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "**Bold with \`code\` inside.**" 1`] = `
+Object {
+  "skeleton": "**%%%0%%%**
+",
+  "units": Array [
+    "Bold with {code_open}code{code_close} inside.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "**First bold. Second bold** plain." 1`] = `
+Object {
+  "skeleton": "**%%%0%%% %%%1%%%
+",
+  "units": Array [
+    "First bold.",
+    "Second bold{bold_close} plain.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "*em* starts, **bold** ends **here**" 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{italic:em} starts, {bold:bold} ends {bold:here}",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "<span>html</span> at start." 1`] = `
+Object {
+  "skeleton": "<span>%%%0%%%
+",
+  "units": Array [
+    "html{html_inline} at start.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "[**Bold link**](https://x.y) start." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{link:{bold:Bold link}} start.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "[Link](https://x.y) at start." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{link:Link} at start.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "\`{{ var }}\` in code at start." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{code_open}{liquid_Variable}{code_close} in code at start.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "\`a\` both \`b\`" 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{code_open}a{code_close} both {code_open}b{code_close}",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "\`code\` then **bold** then \`code\`" 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{code_open}code{code_close} then {bold:bold} then {code_open}code{code_close}",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "\`only code\`" 1`] = `
+Object {
+  "skeleton": "\`%%%0%%%\`
+",
+  "units": Array [
+    "only code",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "~~strike~~ at start." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "{strikethrough:strike} at start.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "At end [link](https://x.y)" 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "At end {link:link}",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Code \`a. b\` has period inside. Next." 1`] = `
+Object {
+  "skeleton": "%%%0%%% %%%1%%%
+",
+  "units": Array [
+    "Code {code_open}a. b{code_close} has period inside.",
+    "Next.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Colon: \`code\` here." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "Colon: {code_open}code{code_close} here.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Done! \`next\` starts. Why? \`this\` too." 1`] = `
+Object {
+  "skeleton": "%%%0%%% %%%1%%% %%%2%%% %%%3%%%
+",
+  "units": Array [
+    "Done!",
+    "{code_open}next{code_close} starts.",
+    "Why?",
+    "{code_open}this{code_close} too.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Ends with \`code\`" 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "Ends with {code_open}code{code_close}",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Ends with period \`inside code.\` Then text." 1`] = `
+Object {
+  "skeleton": "%%%0%%% %%%1%%%
+",
+  "units": Array [
+    "Ends with period {code_open}inside code.{code_close}",
+    "Then text.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Line one.\\n\`code\` on next line." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+%%%1%%%
+",
+  "units": Array [
+    "Line one.",
+    "{code_open}code{code_close} on next line.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Plain. **Bold one. Bold two.** Plain again." 1`] = `
+Object {
+  "skeleton": "%%%0%%% %%%1%%% %%%2%%%
+",
+  "units": Array [
+    "Plain.",
+    "{bold_open}Bold one.",
+    "Bold two.{bold_close} Plain again.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "See e.g. \`foo\` and i.e. \`bar\`, vs. \`baz\`." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "See e.g. {code_open}foo{code_close} and i.e. {code_open}bar{code_close}, vs. {code_open}baz{code_close}.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Sentence. \`Only code.\`" 1`] = `
+Object {
+  "skeleton": "%%%0%%% \`%%%1%%%\`
+",
+  "units": Array [
+    "Sentence.",
+    "Only code.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Starts with \`code\` only at start." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "Starts with {code_open}code{code_close} only at start.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Text with \`code\`. \`Next\` sentence starts with code." 1`] = `
+Object {
+  "skeleton": "%%%0%%% %%%1%%%
+",
+  "units": Array [
+    "Text with {code_open}code{code_close}.",
+    "{code_open}Next{code_close} sentence starts with code.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "Предложение. \`код\` в начале второго." 1`] = `
+Object {
+  "skeleton": "%%%0%%% %%%1%%%
+",
+  "units": Array [
+    "Предложение.",
+    "{code_open}код{code_close} в начале второго.",
+  ],
+}
+`;
+
+exports[`compact: markup and sentences around inline code > "См. \`foo\` и т.е. \`bar\`." 1`] = `
+Object {
+  "skeleton": "%%%0%%%
+",
+  "units": Array [
+    "См. {code_open}foo{code_close} и т.е. {code_open}bar{code_close}.",
+  ],
+}
+`;
+
 exports[`image inside link > renders sentence with clickable image and surrounding text (known truncation issue) 1`] = `"%%%1%%% %%%2%%%"`;
 
 exports[`image inside link > renders sentence with clickable image with {width=Npx} and surrounding text (known truncation issue) 1`] = `"%%%1%%% %%%2%%%"`;
