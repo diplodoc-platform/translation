@@ -96,12 +96,54 @@ function resolveAnchors(
     return anchors.sort((a, b) => a.at - b.at);
 }
 
+// A liquid tag alone on its line, like `{% if distr == "saas" %}` between cards.
+const LIQUID_LINE = /^[ \t]*\{%.*%\}\s*$/;
+
+/**
+ * The build applies liquid conditions before the page constructor parses
+ * its yaml, so conditions between list items break the parsing here.
+ * Tag lines the parser fails on are turned into comments of the same
+ * length: offsets and lines stay in place, so values are still found in
+ * the source, and the tags stay in the skeleton. A blank line would not
+ * do: its spaces continue a block scalar right above it. A tag line inside
+ * a block scalar is a part of its text and does not fail the parser, so it
+ * is left as is.
+ */
+function parseYaml(yaml: string) {
+    let doc = parseDocument(yaml);
+
+    while (doc.errors.length) {
+        let commented = yaml;
+        for (const {pos} of doc.errors) {
+            const start = yaml.lastIndexOf('\n', pos[0] - 1) + 1;
+            const end = yaml.indexOf('\n', pos[0]);
+            const line = yaml.slice(start, end === -1 ? yaml.length : end);
+
+            if (LIQUID_LINE.test(line)) {
+                commented =
+                    commented.slice(0, start) +
+                    line.replace(/\{%.*%\}/, (tag) => '#' + ' '.repeat(tag.length - 1)) +
+                    commented.slice(start + line.length);
+            }
+        }
+
+        if (commented === yaml) {
+            break;
+        }
+
+        yaml = commented;
+        doc = parseDocument(yaml);
+    }
+
+    return doc;
+}
+
 function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
     if (!yaml.trim()) {
         return;
     }
 
-    const doc = parseDocument(yaml);
+    const doc = parseYaml(yaml);
     if (doc.errors.length) {
         // Broken YAML is left in the skeleton as is.
         return;
@@ -143,11 +185,19 @@ function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
             }
         }
 
+        // Liquid tags in a single-line value (a folded scalar included) are
+        // split out like in the markdown text, so they stay in the skeleton
+        // instead of the unit. A multi-line value is matched as plain text
+        // sentence by sentence: split tokens would have to match the scalar
+        // indentation as is. Other values keep their variables in the text,
+        // as their units always had.
+        const tokens =
+            text.includes('{%') && !text.includes('\n')
+                ? new Liquid(text).tokenize()
+                : token('text', {content: text});
+
         try {
-            consumer.process(
-                token('text', {content: text}),
-                map ? [map[0] + line, map[0] + endLine] : map,
-            );
+            consumer.process(tokens, map ? [map[0] + line, map[0] + endLine] : map);
         } catch {
             // The value cannot be matched in the source block (escaped
             // quoting, literal block scalars). It stays untranslated.
