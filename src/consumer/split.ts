@@ -142,6 +142,13 @@ function startsSentence(token: Token, content: string, nonSentenseCount: number,
     return segments.length === nonSentenseCount + 2 && segments.at(-1)?.trim() === PROBE;
 }
 
+/** The text of the sentence so far with the token added. */
+function extend(content: string, token: Token) {
+    const text = hasContent(token) ? token.content || token.markup || '' : '';
+
+    return content + text + (token.linebreak ? '\n' : '');
+}
+
 /*
  * Split inline tokens sequence on parts,
  * where each part is equal to one sentense of inline fragment.
@@ -187,13 +194,7 @@ export function split(tokens: Token[], compact = false) {
             nonSentenseCount = 0;
         }
 
-        if (hasContent(_token)) {
-            content += _token.content || _token.markup || '';
-        }
-
-        if (_token.linebreak) {
-            content += '\n';
-        }
+        content = extend(content, _token);
 
         const segments = sentenize(content);
 
