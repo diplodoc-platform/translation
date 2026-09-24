@@ -75,7 +75,11 @@ export function dropUselessTokens(tokens: Token[], accurate = false) {
         }
     }
 
-    return keepPairedEdges(splitByContent(tokens, isTranslatable));
+    const parts = splitByContent(tokens, isTranslatable);
+
+    // Accurate extraction falls back here on unbalanced markup: its output
+    // (XLIFF for external tools) stays as it was.
+    return accurate ? parts : keepPairedEdges(parts);
 }
 
 /**

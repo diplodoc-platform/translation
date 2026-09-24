@@ -105,8 +105,11 @@ function exclude(content: string, tokens: Token[]) {
 /**
  * Dotted abbreviation (`e.g.`, `i.e.`, `т.е.`) or a short one that a code
  * span usually follows (`vs.`, `cf.`, `см.`) at the end of the text.
+ * `etc.` is here as well: the sentenizer keeps `и т. д.` in the sentence,
+ * and a translation would otherwise split where the source does not.
  */
-const ABBREVIATION_END = /(?:^|[\s(])(?:(?:\p{L}\.){2,}|(?:vs|cf|incl|approx|см|напр|ср)\.)\s*$/iu;
+const ABBREVIATION_END =
+    /(?:^|[\s(])(?:(?:\p{L}\.){2,}|(?:etc|vs|cf|incl|approx|см|напр|ср|др)\.)\s*$/iu;
 
 /**
  * Tells whether an inline code span opening right after the content starts
