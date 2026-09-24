@@ -324,6 +324,17 @@ describe('compact: markup at the edge of a sentence', () => {
         expect(compose(result, units, {useSource: true})).toBe(markdown);
     });
 
+    it('keeps markup at the edge in the skeleton without compact when markup is unbalanced', () => {
+        const markdown = '_[Header](#header) — shows the name.  \n[Tabs](#tabs) — links._\n';
+        const {skeleton: result, xliff} = extract(markdown, {
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+        expect(result).toContain('[%%%');
+        expect(xliff).toContain('ctype="link_text_part_close"');
+    });
+
     it('does not start a new sentence at inline code without compact', () => {
         const markdown = 'Read-only mode persists. `yt-admin exit` command should be used.\n';
 
