@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.1](https://github.com/diplodoc-platform/translation/compare/v1.9.0...v1.9.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* ask the sentenizer about abbreviations before inline code DOCSTOOLS-6830 ([41c307f](https://github.com/diplodoc-platform/translation/commit/41c307fc72815a12bc54eb4a1172aa9c556bbbe0))
+* cover markup and sentence breaks around inline code in compact mode with tests DOCSTOOLS-6830 ([e164aa5](https://github.com/diplodoc-platform/translation/commit/e164aa5d449fe191794954a3531e98f0f833fa29))
+* keep edge markup inside compact units and split before inline code DOCSTOOLS-6830 ([5968959](https://github.com/diplodoc-platform/translation/commit/5968959959e9cc40cf087b36932b83bfc1e07d1b))
+* keep non-compact output unchanged and treat etc. as an abbreviation DOCSTOOLS-6830 ([6dd50d7](https://github.com/diplodoc-platform/translation/commit/6dd50d7236c73abde842a9a23db90a7b52365a1d))
+* keep title links in the skeleton and tighten sentence breaks before code DOCSTOOLS-6830 ([321f792](https://github.com/diplodoc-platform/translation/commit/321f792d1475ec73b46799fd2c8e4dc8214d0f94))
+* unescape variables in inline include markup ([d2c2ed0](https://github.com/diplodoc-platform/translation/commit/d2c2ed0b5d43a13921ec052992fad907a1e3edb8))
+
 ## [1.9.0](https://github.com/diplodoc-platform/translation/compare/v1.8.0...v1.9.0) (2026-09-22)
 
 
