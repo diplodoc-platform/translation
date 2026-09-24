@@ -251,6 +251,94 @@ Text that still needs translation.
     });
 });
 
+describe('compact: markup at the edge of a sentence', () => {
+    const extractCompact = (markdown: string) =>
+        extract(markdown, {
+            compact: true,
+            source: {language: 'en', locale: 'US'},
+            target: {language: 'ru', locale: 'RU'},
+        });
+
+    it('keeps inline code that starts a sentence inside the unit', () => {
+        const markdown = '- `list_node` type has been deprecated.\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result).toBe('- %%%0%%%\n');
+        expect(units[0]).toContain(
+            '<x ctype="code_open" equiv-text="`" id="x-1"/>list_node<x ctype="code_close" equiv-text="`" id="x-2"/> type',
+        );
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('keeps inline code that ends a sentence inside the unit', () => {
+        const markdown = 'Moved to `spyt.connect`\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result).toBe('%%%0%%%\n');
+        expect(units[0]).toMatch(/spyt\.connect<x ctype="code_close"[^>]*\/><\/source>/);
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('keeps emphasis that starts a sentence inside the unit', () => {
+        const markdown = '**Release date:** 2026-08-25\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result).toBe('%%%0%%%\n');
+        expect(units[0]).toContain('<g ctype="bold"');
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('still moves markup wrapping the whole sentence into the skeleton', () => {
+        const markdown = '**Whole bold sentence.**\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result).toBe('**%%%0%%%**\n');
+        expect(units[0]).not.toContain('ctype="bold"');
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('starts a new sentence at inline code after a full stop', () => {
+        const markdown =
+            '- Read-only mode persists. `yt-admin exit` command should be used to leave it.\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result).toBe('- %%%0%%% %%%1%%%\n');
+        expect(units[0]).toContain('>Read-only mode persists.</source>');
+        expect(units[1]).toContain('>yt-admin exit<');
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('keeps inline code inside a sentence where no sentence ends', () => {
+        const markdown = 'Use the `yt-admin exit` command, then `yt-admin enter` again.\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result).toBe('%%%0%%%\n');
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('does not start a new sentence at inline code after an abbreviation', () => {
+        const markdown = 'Migrate to a new naming scheme (e.g. `job` -> `yt-job`).\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result).toBe('%%%0%%%\n');
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('does not start a new sentence at inline code without compact', () => {
+        const markdown = 'Read-only mode persists. `yt-admin exit` command should be used.\n';
+
+        expect(skeleton(markdown, {compact: false})).toBe('%%%0%%%\n');
+    });
+
+    it('still moves markup crossing the sentence edge into the skeleton', () => {
+        const markdown = '**First bold. Second bold** plain.\n';
+        const {skeleton: result, units} = extractCompact(markdown);
+
+        expect(result.startsWith('**%%%0%%%')).toBe(true);
+        expect(compose(result, units, {useSource: true})).toBe(markdown);
+    });
+});
+
 describe('code_inline: translate=no fence inside list items', () => {
     const render = (markdown: string) => skeleton(markdown, {compact: false});
 
