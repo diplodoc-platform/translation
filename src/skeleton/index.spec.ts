@@ -924,6 +924,83 @@ blocks:
         expect(rendered).toMatch(/title: '%%%\d+%%%'\n/);
     });
 
+    const conditional = `::: page-constructor
+blocks:
+  - type: 'card-layout-block'
+    children:
+      - type: 'basic-card'
+        title: 'Яндекс Формы'
+        text: 'Создавайте задачи из ответов.'
+
+        {% if distr != "on-prem" %}
+      - type: 'basic-card'
+        title: 'Почта'
+        text: 'Создавайте задачи из писем.'
+        {% else %}
+      - type: 'basic-card'
+        title: 'Репозитории'
+        text: 'Привязывайте мерж-реквесты.'
+        {% endif %}
+:::
+`;
+
+    it('extracts values around liquid conditions on their own lines', () => {
+        const rendered = render(conditional);
+
+        for (const text of ['Яндекс Формы', 'Почта', 'Репозитории', 'Привязывайте']) {
+            expect(rendered).not.toContain(text);
+        }
+        expect(rendered).toContain('\n        {% if distr != "on-prem" %}\n');
+        expect(rendered).toContain('\n        {% else %}\n');
+        expect(rendered).toContain('\n        {% endif %}\n');
+        expect(rendered.match(/(title|text): '%%%\d+%%%'/g)).toHaveLength(6);
+    });
+
+    it('keeps liquid conditions inside a block scalar in the skeleton', () => {
+        const scalar = `::: page-constructor
+blocks:
+  - type: 'card-layout-block'
+    children:
+      - type: 'basic-card'
+        title: 'Уведомления'
+        text: >-
+          {% if distr != 'on-prem' %}
+          Получайте уведомления в мессенджере.
+          {% else %}
+          Получайте уведомления в браузере.
+          {% endif %}
+
+        {% if distr == 'saas' %}
+      - type: 'basic-card'
+        title: 'Плагины'
+        {% endif %}
+:::
+`;
+        const hashed = hash();
+        const rendered = skeleton(scalar, {compact: true}, hashed);
+
+        expect(rendered).not.toContain('Плагины');
+        expect(rendered).toMatch(
+            new RegExp(
+                "text: >-\\n          \\{% if distr != 'on-prem' %\\}\\n          %%%\\d+%%%\\n" +
+                    '          \\{% else %\\}\\n          %%%\\d+%%%\\n          \\{% endif %\\}\\n',
+            ),
+        );
+        expect(rendered).toContain("\n        {% if distr == 'saas' %}\n");
+        expect(hashed.segments.filter((unit) => unit.includes('{%'))).toEqual([]);
+    });
+
+    it('roundtrips a block with liquid conditions', () => {
+        const {units, skeleton: skl} = extract(conditional, {
+            compact: true,
+            source: {language: 'ru', locale: 'RU'},
+            target: {language: 'en', locale: 'US'},
+        });
+
+        expect(units).toHaveLength(6);
+        expect(compose(skl, units, {useSource: true})).toBe(conditional);
+    });
+
     it('does not touch page-constructor examples inside code fences', () => {
         const fenced =
             "```yaml\n::: page-constructor\nblocks:\n  - type: 'header-block'\n    title: 'Заголовок'\n:::\n```\n";
