@@ -1033,6 +1033,157 @@ blocks:
         expect(warnings).toEqual([]);
     });
 
+    // The forms below are taken from the docs that use conditions inside
+    // page-constructor blocks (Tracker, Forms, Wiki, Yandex 360).
+    const ruEn = {
+        compact: true,
+        source: {language: 'ru', locale: 'RU'},
+        target: {language: 'en', locale: 'US'},
+    };
+    const tagLines = (text: string) => text.split('\n').filter((line) => line.includes('{%'));
+
+    it('extracts cards wrapped in conditions at any indentation', () => {
+        const indented = `::: page-constructor
+blocks:
+  - type: 'card-layout-block'
+    children:
+
+{% if distr == 'saas' %}
+
+      - type: 'basic-card'
+        title: 'MSI для Диска'
+        text: 'Установите Диск на компьютеры сотрудников.'
+
+{% endif %}
+
+{% if distr == 'on-prem' and release >= '3.0' %}
+
+      - type: 'basic-card'
+        title: 'Программа Диска для компьютера'
+        {% endif%}
+      {% if distr == 'saas' or distr == 'on-prem' and release >= '2.0' %}
+      - type: 'basic-card'
+        title: 'Импорт из Miro'
+      {% endif %}
+
+    resetPaddings: true
+
+{% if audience == 'b2b' %}
+  - type: 'header-block'
+    title: 'Для организаций'
+{% endif %}
+
+animated: false
+:::
+`;
+        const {units, skeleton: skl, warnings} = extract(indented, ruEn);
+
+        for (const text of ['MSI', 'Установите', 'Программа', 'Импорт', 'Для организаций']) {
+            expect(skl).not.toContain(text);
+        }
+        expect(tagLines(skl)).toEqual(tagLines(indented));
+        expect(skl).toContain('    resetPaddings: true\n');
+        expect(units).toHaveLength(5);
+        expect(warnings).toEqual([]);
+        expect(compose(skl, units, {useSource: true})).toBe(indented);
+    });
+
+    it('keeps extracting markdown from a literal scalar next to conditions', () => {
+        const markdown = `::: page-constructor
+blocks:
+  - type: 'content-layout-block'
+    textContent:
+      title: 'Где видны отзывы'
+      text: |
+        Такие отзывы могут отображаться:
+
+        - На странице сайта.
+
+          {% include [Информация о сайте](../_includes/site-information.md) %}
+
+        {% list tabs %}
+
+        - В результатах поиска
+
+          Отзывы видны под сниппетом.
+
+        {% endlist %}
+
+  {% if distr == 'saas' %}
+  - type: 'header-block'
+    title: 'Отзывы'
+  {% endif %}
+:::
+`;
+        const {units, skeleton: skl} = extract(markdown, ruEn);
+
+        for (const text of ['Где видны', 'Такие отзывы', 'На странице', 'Отзывы видны']) {
+            expect(skl).not.toContain(text);
+        }
+        expect(skl).toMatch(/title: '%%%\d+%%%'\n {2}\{% endif %\}\n/);
+        expect(skl).toContain("\n  {% if distr == 'saas' %}\n");
+        expect(compose(skl, units, {useSource: true})).toBe(markdown);
+    });
+
+    it('turns conditions inside a single-line value into placeholders', () => {
+        const inline = `::: page-constructor
+blocks:
+  - type: 'header-block'
+    title: "Программа Яндекс Диск {% if distr == 'saas' %}4.0 {% endif %}для Windows"
+    description: Инструкции помогут создать новую доску{% if distr == 'saas' %} или импортировать ее{% endif %}.
+:::
+`;
+        const {units, skeleton: skl} = extract(inline, ruEn);
+
+        expect(units).toHaveLength(2);
+        expect(units[0]).toContain(
+            `<x ctype="liquid_Literal" equiv-text="{% if distr == 'saas' %}" id="x-1"/>4.0 ` +
+                `<x ctype="liquid_Literal" equiv-text="{% endif %}" id="x-2"/>для Windows`,
+        );
+        expect(units[1]).toContain('<x ctype="liquid_Literal"');
+        expect(units.join('')).not.toMatch(/\{%.*%\}(?![^<]*"\/>)/);
+        expect(compose(skl, units, {useSource: true})).toBe(inline);
+    });
+
+    it('warns about every block it cannot parse and extracts the others', () => {
+        const mixed = `::: page-constructor
+blocks:
+  - type: 'card-layout-block'
+    children:
+      - type: 'basic-card'
+        title: 'Создать очередь'
+        {% if distr == 'saas' %}
+      - type: 'basic-card'
+        title: 'Подключить почту'
+        {% endif %}
+:::
+
+::: page-constructor
+blocks:
+  - type: 'basic-card'
+    text: {% if distr == 'saas' %}Если системной очереди недостаточно{% else %}Создайте очередь по шаблону{% endif %}
+:::
+
+::: page-constructor
+blocks:
+  - type: 'basic-card'
+    title: 'Работа с файлами{% if distr == 'saas' %} на Диске{% endif %}'
+:::
+`;
+        const {skeleton: skl, warnings} = extract(mixed, ruEn);
+
+        expect(skl).not.toContain('Создать очередь');
+        expect(skl).not.toContain('Подключить почту');
+        expect(skl).toContain('Если системной очереди недостаточно');
+        expect(skl).toContain('Работа с файлами');
+        expect(warnings).toEqual([
+            'page-constructor block at line 13 is left untranslated: ' +
+                'Plain value cannot start with directive indicator character % (line 16)',
+            'page-constructor block at line 19 is left untranslated: ' +
+                'Unexpected scalar at node end (line 22)',
+        ]);
+    });
+
     it('does not touch page-constructor examples inside code fences', () => {
         const fenced =
             "```yaml\n::: page-constructor\nblocks:\n  - type: 'header-block'\n    title: 'Заголовок'\n:::\n```\n";
