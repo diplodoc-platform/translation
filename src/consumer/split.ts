@@ -102,39 +102,8 @@ function exclude(content: string, tokens: Token[]) {
     return content.slice(to);
 }
 
-/**
- * Abbreviation at the end of the text that a code span may follow within
- * the sentence: letters with dots (`e.g.`, `i.e.`, `т.е.`, `т. е.`) or a
- * known short one (`etc.`, `vs.`, `Fig.`, `см.`, `табл.`). The sentenizer
- * keeps some of them in the sentence (`и т. д.`) and splits after others,
- * so the source and its translation would get a different number of units.
- */
-const ABBREVIATION_END = new RegExp(
-    String.raw`(?:^|[\s(])(?:(?:\p{L}\.\s?){2,}|(?:${[
-        'etc',
-        'vs',
-        'cf',
-        'incl',
-        'approx',
-        'fig',
-        'figs',
-        'eq',
-        'sec',
-        'ch',
-        'p',
-        'pp',
-        'ex',
-        'см',
-        'напр',
-        'ср',
-        'др',
-        'рис',
-        'табл',
-        'стр',
-        'гл',
-    ].join('|')})\.)\s*$`,
-    'iu',
-);
+/** Stands in for a code span when asking the sentenizer, see `startsSentence`. */
+const PROBE = 'XX';
 
 /**
  * Text holding a sentence: a letter or a digit, not only punctuation after
@@ -153,23 +122,24 @@ const SENTENCE_TEXT = /[\p{L}\p{N}]/u;
  * Read-only mode persists. `yt-admin exit` command should be used.
  * ```
  *
- * A capital letter in place of the span asks it whether a sentence would
- * start there. The sentenizer would say yes after `e.g.` as well, which is
- * right for a capitalized word and wrong for the code span it introduces.
+ * A word in capitals in place of the span asks it whether a sentence would
+ * start there. The sentenizer keeps an abbreviation of its dictionaries in
+ * the sentence before a word in capitals (`e.g.`, `т. е.`, `etc.`, `см.`),
+ * while before a capitalized word it splits after some of them: a code
+ * span after an abbreviation is still the same sentence.
  */
 function startsSentence(token: Token, content: string, nonSentenseCount: number, compact: boolean) {
     if (
         !compact ||
         token.type !== 'code_inline_open' ||
-        !SENTENCE_TEXT.test(content.replaceAll('{#T}', '')) ||
-        ABBREVIATION_END.test(content)
+        !SENTENCE_TEXT.test(content.replaceAll('{#T}', ''))
     ) {
         return false;
     }
 
-    const segments = sentenize(content + 'X');
+    const segments = sentenize(content + PROBE);
 
-    return segments.length === nonSentenseCount + 2 && segments.at(-1)?.trim() === 'X';
+    return segments.length === nonSentenseCount + 2 && segments.at(-1)?.trim() === PROBE;
 }
 
 /*
