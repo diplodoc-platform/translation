@@ -1039,7 +1039,7 @@ blocks:
         compact: true,
         source: {language: 'ru', locale: 'RU'},
         target: {language: 'en', locale: 'US'},
-    };
+    } as const;
     const tagLines = (text: string) => text.split('\n').filter((line) => line.includes('{%'));
 
     it('extracts cards wrapped in conditions at any indentation', () => {
