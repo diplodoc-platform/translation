@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.10.0](https://github.com/diplodoc-platform/translation/compare/v1.9.1...v1.10.0) (2026-09-25)
+
+
+### Features
+
+* report page-constructor blocks left untranslated in extract warnings DOCSTOOLS-6834 ([1301890](https://github.com/diplodoc-platform/translation/commit/1301890ebc096e4ee500c199b4da5a9940f685be))
+
+
+### Bug Fixes
+
+* extract page-constructor blocks with liquid conditions between items DOCSTOOLS-6834 ([5e181f0](https://github.com/diplodoc-platform/translation/commit/5e181f031dafe52fc7cb71ea6717ee52fb4d99de))
+* type page-constructor condition test options as literals ([9f92d92](https://github.com/diplodoc-platform/translation/commit/9f92d927ec488bf09398c86df6d15b47c8e7e7e3))
+
 ## [1.9.1](https://github.com/diplodoc-platform/translation/compare/v1.9.0...v1.9.1) (2026-09-24)
 
 
