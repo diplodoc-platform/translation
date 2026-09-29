@@ -1,3 +1,5 @@
+import {Liquid} from 'src/skeleton/liquid';
+
 /**
  * Split a standalone wide-table attribute into its protected edges and title.
  * @param content Standalone attribute source.
@@ -26,7 +28,7 @@ export function tableTitleParts(content: string): [string, string, string] | und
         }
         cursor = value?.end ?? cursor;
         if (attribute[1] === 'title') {
-            if (result || value?.quoted === undefined) {
+            if (result || value?.quoted === undefined || unsafeTitle(value.quoted)) {
                 return undefined;
             }
             const start = cursor - value.quoted.length - 1;
@@ -43,35 +45,39 @@ export function tableTitleParts(content: string): [string, string, string] | und
  * @returns End offset and quoted contents, or undefined for invalid values.
  */
 function attributeValue(content: string, offset: number) {
-    const quoted: Record<string, RegExp> = {
-        '"': /"((?:\\.|[^"\\])*)"/y,
-        "'": /'((?:\\.|[^'\\])*)'/y,
-    };
-    const pattern = quoted[content[offset]] ?? /(?:\{\{\s*[\w.-]+\s*\}\}|[^\s{}"'=])+/y;
+    // markdown-it-attrs only quotes values with double quotes. Backslashes
+    // are literal characters, not an escape mechanism.
+    const pattern =
+        content[offset] === '"' ? /"([^"]*)"/y : /(?:\{\{\s*[\w.-]+\s*\}\}|[^\s{}"'=])+/y;
     pattern.lastIndex = offset;
     const match = pattern.exec(content);
     return match ? {end: pattern.lastIndex, quoted: match[1]} : undefined;
 }
 
 /**
- * Preserve existing escapes, but do not let translated text close the attribute.
+ * Check delimiters the downstream attribute parser cannot represent literally.
  * @param text Fully composed title text.
- * @param quote Original attribute delimiter.
- * @returns Title text safe for the original delimiter.
+ * @returns Whether the title would close the value or attribute prematurely.
  */
-export function escapeTableTitle(text: string, quote: string): string {
-    return text.replace(/(?:\\[\s\S]|["'])|(?:\\$)/g, (part) =>
-        part === quote || part === '\\' ? '\\' + part : part,
+function unsafeTitle(text: string): boolean {
+    // Variables are substituted before YFM rendering, not literal braces.
+    // Use the extraction tokenizer so filters/functions are protected too.
+    return (
+        /[\r\n]/.test(text) ||
+        new Liquid(text).tokenize().some((token) => {
+            if (['Variable', 'Filter', 'Function'].includes(token.subtype)) return false;
+            return /["}]/.test(token.content || token.markup || '');
+        })
     );
 }
 
 /**
- * Apply quote escaping only to replacements inside known Markdown title values.
+ * Locate title values in the raw skeleton, retaining container offsets.
  * @param source Markdown skeleton with translation placeholders.
- * @returns Context-aware replacement renderer.
+ * @returns Half-open title ranges.
  */
-export function tableTitleEscaper(source: string) {
-    const titles: {start: number; end: number; quote: string}[] = [];
+function titleRanges(source: string) {
+    const titles: {start: number; end: number}[] = [];
     if (source.includes('{wide-content')) {
         for (const line of source.matchAll(/^.*$/gm)) {
             // Markdown strips container prefixes and trailing spaces before
@@ -83,14 +89,53 @@ export function tableTitleEscaper(source: string) {
             }
             const parts = tableTitleParts(line[0].slice(from).trimEnd());
             if (parts) {
-                const [prefix, title, suffix] = parts;
+                const [prefix, title] = parts;
                 const start = line.index + from + prefix.length;
-                titles.push({start, end: start + title.length, quote: suffix[0]});
+                titles.push({start, end: start + title.length});
             }
         }
     }
+    return titles;
+}
+
+/**
+ * Identify units that need title-specific validation, including nested units.
+ * @param source Markdown skeleton.
+ * @param units Extracted XLIFF source units.
+ * @returns One group of unit indices per title value.
+ */
+export function tableTitleUnitIds(source: string, units: string[]): number[][] {
+    const visit = (text: string, ids: Set<number>) => {
+        for (const match of text.matchAll(/%%%(\d+)%%%/g)) {
+            const id = Number(match[1]);
+            if (!ids.has(id)) {
+                ids.add(id);
+                visit(units[id] || '', ids);
+            }
+        }
+    };
+    return titleRanges(source)
+        .map(({start, end}) => {
+            const ids = new Set<number>();
+            visit(source.slice(start, end), ids);
+            return [...ids];
+        })
+        .filter((ids) => ids.length);
+}
+
+/**
+ * Reject unrepresentable translated titles; never pretend backslashes escape YFM.
+ * @param source Markdown skeleton.
+ * @returns Context-aware replacement validator.
+ */
+export function tableTitleValidator(source: string) {
+    const titles = titleRanges(source);
     return (value: string, offset: number) => {
-        const title = titles.find(({start, end}) => offset >= start && offset < end);
-        return title ? escapeTableTitle(value, title.quote) : value;
+        if (titles.some(({start, end}) => offset >= start && offset < end) && unsafeTitle(value)) {
+            throw new Error(
+                'Invalid wide-table title: double quotes, closing braces and line breaks cannot be represented in YFM attributes.',
+            );
+        }
+        return value;
     };
 }

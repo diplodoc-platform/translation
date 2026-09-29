@@ -35,6 +35,8 @@ export type ExtractOutput<T extends string | JSONObject> = {
     units: string[];
     /** Problems that left a part of the content untranslated, one line each. Markdown only. */
     warnings?: string[];
+    /** Markdown units inside wide-table titles; absent for other formats. */
+    tableTitles?: number[][];
 };
 
 export function extract(content: string, options: MdExpExtractOptions): MdExpExtractOutput;
