@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.1](https://github.com/diplodoc-platform/translation/compare/v1.10.0...v1.10.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* extract and safely compose wide-table titles ([53ac464](https://github.com/diplodoc-platform/translation/commit/53ac4644f7b1d24cfe541ada2d2004eebd5d9353))
+* validate wide-table titles against YFM attribute syntax ([8582c84](https://github.com/diplodoc-platform/translation/commit/8582c842acde633d998b5600797f46c69812fe8e))
+
 ## [1.10.0](https://github.com/diplodoc-platform/translation/compare/v1.9.1...v1.10.0) (2026-09-25)
 
 
