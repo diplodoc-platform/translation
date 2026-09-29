@@ -6,6 +6,7 @@ import {hash} from 'src/hash';
 import {skeleton} from 'src/skeleton';
 import {fromXLIFF, parse, template} from 'src/xliff';
 import {replace} from 'src/utils';
+import {tableTitleEscaper} from 'src/utils/table-title';
 
 export type ExtractOptions = TemplateOptions & SkeletonOptions & IdOptions;
 
@@ -40,5 +41,5 @@ export function extract(content: string, options: ExtractOptions): ExtractOutput
 export function compose(skeleton: string, xliff: string | string[], {useSource = false}) {
     const units = parse(xliff, {useSource}).map(fromXLIFF);
 
-    return replace(skeleton, units)[0];
+    return replace(skeleton, units, tableTitleEscaper(skeleton))[0];
 }
