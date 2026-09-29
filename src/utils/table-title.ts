@@ -10,8 +10,7 @@ export function tableTitleParts(content: string): [string, string, string] | und
     }
     // Scan complete attributes: `title=` inside another value and `data-title`
     // are not human-readable title fields.
-    const attributes =
-        /[ \t]+([.#]?[\w-]+)(?:[ \t]*=[ \t]*(?:"((?:\\.|[^"\\])*)"|'((?:\\.|[^'\\])*)'|((?:\{\{\s*[\w.-]+\s*\}\}|[^\s{}"'=])+)))?/y;
+    const attributes = /[ \t]+([.#]?[\w-]+)([ \t]*=[ \t]*)?/y;
     let cursor = opening[0].length;
     let result: [string, string, string] | undefined;
     while (content.slice(cursor, -1).trim()) {
@@ -21,16 +20,37 @@ export function tableTitleParts(content: string): [string, string, string] | und
             return undefined;
         }
         cursor = attributes.lastIndex;
+        const value = attribute[2] ? attributeValue(content, cursor) : undefined;
+        if (attribute[2] && !value) {
+            return undefined;
+        }
+        cursor = value?.end ?? cursor;
         if (attribute[1] === 'title') {
-            const value = attribute[2] ?? attribute[3];
-            if (result || value === undefined) {
+            if (result || value?.quoted === undefined) {
                 return undefined;
             }
-            const start = cursor - value.length - 1;
-            result = [content.slice(0, start), value, content.slice(cursor - 1)];
+            const start = cursor - value.quoted.length - 1;
+            result = [content.slice(0, start), value.quoted, content.slice(cursor - 1)];
         }
     }
     return result;
+}
+
+/**
+ * Scan a single value separately from the attribute name and assignment.
+ * @param content Standalone attribute source.
+ * @param offset Start of the value.
+ * @returns End offset and quoted contents, or undefined for invalid values.
+ */
+function attributeValue(content: string, offset: number) {
+    const quoted: Record<string, RegExp> = {
+        '"': /"((?:\\.|[^"\\])*)"/y,
+        "'": /'((?:\\.|[^'\\])*)'/y,
+    };
+    const pattern = quoted[content[offset]] ?? /(?:\{\{\s*[\w.-]+\s*\}\}|[^\s{}"'=])+/y;
+    pattern.lastIndex = offset;
+    const match = pattern.exec(content);
+    return match ? {end: pattern.lastIndex, quoted: match[1]} : undefined;
 }
 
 /**
@@ -40,7 +60,7 @@ export function tableTitleParts(content: string): [string, string, string] | und
  * @returns Title text safe for the original delimiter.
  */
 export function escapeTableTitle(text: string, quote: string): string {
-    return text.replace(/\\[\s\S]|["']|\\$/g, (part) =>
+    return text.replace(/(?:\\[\s\S]|["'])|(?:\\$)/g, (part) =>
         part === quote || part === '\\' ? '\\' + part : part,
     );
 }
