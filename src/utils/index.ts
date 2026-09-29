@@ -18,10 +18,14 @@ export function find(type: string, tokens: Token[], idx: number) {
     return null;
 }
 
-export function replace(source: string, units: string[]): [string, boolean] {
+export function replace(
+    source: string,
+    units: string[],
+    render: (value: string, offset: number) => string = (value) => value,
+): [string, boolean] {
     let matched = false;
 
-    const result = source.replace(/%%%(\d+)%%%/g, (_, id: string | number) => {
+    const result = source.replace(/%%%(\d+)%%%/g, (_, id: string | number, offset: number) => {
         matched = true;
         id = Number(id);
 
@@ -34,7 +38,7 @@ export function replace(source: string, units: string[]): [string, boolean] {
             [value, submatch] = replace(value, units);
         }
 
-        return value;
+        return render(value, offset);
     });
 
     return [result, matched];
