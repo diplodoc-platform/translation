@@ -74,7 +74,7 @@
     "colors": "^1.4.0",
     "markdown-it": "^13.0.2",
     "typescript": "6.0.3",
-    "vitest": "^3.2.4"
+    "vitest": "^5.0.2"
   },
   "peerDependencies": {
     "markdown-it": "^13.0.2"
