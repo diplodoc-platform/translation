@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.3](https://github.com/diplodoc-platform/translation/compare/v1.10.2...v1.10.3) (2026-11-09)
+
+
+### Bug Fixes
+
+* **deps:** align patched transitive dependencies and pin policy ([7ca7223](https://github.com/diplodoc-platform/translation/commit/7ca72239d1e65a35c6ce2e2c43df128129f99c3c))
+* **deps:** pin a consistent runtime baseline for candidate train ([f121a96](https://github.com/diplodoc-platform/translation/commit/f121a96c097ab6bc1a788587c60746d5bd8d35ab))
+
 ## [1.10.2](https://github.com/diplodoc-platform/translation/compare/v1.10.1...v1.10.2) (2026-10-28)
 
 
