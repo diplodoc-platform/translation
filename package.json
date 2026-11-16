@@ -81,7 +81,7 @@
   },
   "dependencies": {
     "@cospired/i18n-iso-languages": "^4.1.0",
-    "@diplodoc/ajv": "^0.11.0",
+    "@diplodoc/ajv": "^0.12.0",
     "@diplodoc/directive": "^0.4.0",
     "@diplodoc/sentenizer": "^0.0.12",
     "@diplodoc/transform": "^4.78.12",
