@@ -1,5 +1,6 @@
 import type Renderer from 'markdown-it/lib/renderer';
 
+import {file} from './file';
 import {link} from './link';
 import {image} from './image';
 import {table} from './table';
@@ -13,6 +14,7 @@ import {pageConstructor} from './page-constructor';
 
 export const rules: Renderer.RenderRuleRecord = {
     ...text,
+    ...file,
     ...link,
     ...image,
     ...table,

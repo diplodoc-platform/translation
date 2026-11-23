@@ -88,6 +88,39 @@ const test = (() => {
     return test;
 })();
 
+describe('file names with Liquid variables', () => {
+    const options = {
+        source: {language: 'ru', locale: 'RU'},
+        target: {language: 'en', locale: 'US'},
+    } as const;
+
+    it.each([false, true])('translates the name independently of src (compact: %s)', (compact) => {
+        const markdown =
+            'Скачать инструкцию для разработчика (TXT): {% file src="../../_assets/instructions/economy-developer-{{locale}}.txt" name="economy-developer-{{locale}}.txt" type="text/plain; charset=utf-8" %}';
+        const {xliff, skeleton} = extract(markdown, {...options, compact});
+
+        expect(xliff).toContain('ctype="liquid_Variable" equiv-text="{{locale}}"');
+        expect(compose(skeleton, xliff, {useSource: true})).toBe(markdown);
+
+        const translated = xliff.replace(
+            /<source([^>]*)>([\s\S]*?)<\/source>/g,
+            (source, attrs: string, text: string) =>
+                source +
+                `<target${attrs}>${text.replace('>economy-developer-', '>guide-')}</target>`,
+        );
+        expect(compose(skeleton, translated, {})).toBe(
+            markdown.replace('name="economy-developer-', 'name="guide-'),
+        );
+    });
+
+    it('preserves quoted markup, attribute order and repeated variables', () => {
+        const markdown = `See {% file name='{{ locale }}-{{ locale }}.txt'  src='manual-{{ locale }}.txt' %} and {% file src="other.txt" name="{{locale}}" %}.`;
+        const {xliff, skeleton} = extract(markdown, options);
+
+        expect(compose(skeleton, xliff, {useSource: true})).toBe(markdown);
+    });
+});
+
 test('link variable leak')`
     ## Request
     

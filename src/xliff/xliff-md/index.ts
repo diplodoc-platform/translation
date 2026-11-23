@@ -126,6 +126,7 @@ export class XLFMDRenderer {
             anchor: literal,
 
             // file
+            file_markup: literal,
             file_open: literal,
             file_src: spaced(literal),
             file_name_open: spaced(literal),
