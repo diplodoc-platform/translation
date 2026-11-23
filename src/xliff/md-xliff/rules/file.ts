@@ -5,7 +5,13 @@ import {generateX} from 'src/xliff/generator';
 
 export const file: Renderer.RenderRuleRecord = {
     yfm_file: fileRule,
+    file_open: fileMarkup,
+    file_close: fileMarkup,
 };
+
+function fileMarkup(tokens: Token[], i: number) {
+    return generateX({ctype: 'file_markup', equivText: tokens[i].markup});
+}
 
 const attributes = new Map<string, string>([
     ['href', 'src'],

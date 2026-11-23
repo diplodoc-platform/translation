@@ -74,7 +74,7 @@ exports[`renders xliff from markdown > renders file wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"file_open\\" equiv-text=\\"{%\\" id=\\"x-7\\"/><x ctype=\\"file_src\\" equiv-text=\\"src=&quot;path/to/file&quot;\\" id=\\"x-8\\"/><x ctype=\\"file_name_open\\" equiv-text=\\"name=&quot;\\" id=\\"x-9\\"/>readme.md<x ctype=\\"file_name_close\\" equiv-text=\\"&quot;\\" id=\\"x-10\\"/><x ctype=\\"file_referrerpolicy\\" equiv-text=\\"referrerpolicy=&quot;no-referrer&quot;\\" id=\\"x-11\\"/><x ctype=\\"file_rel\\" equiv-text=\\"rel=&quot;noopener&quot;\\" id=\\"x-12\\"/><x ctype=\\"file_target\\" equiv-text=\\"target=&quot;_blank&quot;\\" id=\\"x-13\\"/><x ctype=\\"file_type\\" equiv-text=\\"type=&quot;text/plain&quot;\\" id=\\"x-14\\"/><x ctype=\\"file_close\\" equiv-text=\\"%}\\" id=\\"x-15\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"file_markup\\" equiv-text=\\"{% file src=&quot;path/to/file&quot; name=&quot;\\" id=\\"x-7\\"/>readme.md<x ctype=\\"file_markup\\" equiv-text=\\"&quot; referrerpolicy=&quot;no-referrer&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot; type=&quot;text/plain&quot; %}\\" id=\\"x-8\\"/>.</source>
       </trans-unit>
     </body>
   </file>
@@ -110,7 +110,7 @@ exports[`renders xliff from markdown > renders html wrapped in <x> tags 1`] = `
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence<x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"x-30\\"/>with <x ctype=\\"html_inline\\" equiv-text=\\"&lt;b&gt;\\" id=\\"x-31\\"/>html<x ctype=\\"html_inline\\" equiv-text=\\"&lt;/b&gt;\\" id=\\"x-32\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence<x ctype=\\"html_inline\\" equiv-text=\\"&lt;br&gt;\\" id=\\"x-23\\"/>with <x ctype=\\"html_inline\\" equiv-text=\\"&lt;b&gt;\\" id=\\"x-24\\"/>html<x ctype=\\"html_inline\\" equiv-text=\\"&lt;/b&gt;\\" id=\\"x-25\\"/>.</source>
       </trans-unit>
     </body>
   </file>
@@ -227,10 +227,10 @@ exports[`renders xliff from markdown > renders liquid conditions wrapped in <x> 
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" id=\\"x-16\\"/> val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-17\\"/> other val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"x-18\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% if var == &quot;val&quot; %}\\" id=\\"x-9\\"/> val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-10\\"/> other val<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"x-11\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">A<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-19\\"/> B<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"x-20\\"/> Point.</source>
+        <source xml:space=\\"preserve\\">A<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% else %}\\" id=\\"x-12\\"/> B<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endif %}\\" id=\\"x-13\\"/> Point.</source>
       </trans-unit>
     </body>
   </file>
@@ -248,10 +248,10 @@ exports[`renders xliff from markdown > renders liquid filters wrapped in <x> tag
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with filter <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ users | length }}\\" id=\\"x-26\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with filter <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ users | length }}\\" id=\\"x-19\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user | capitalize}}\\" id=\\"x-27\\"/> starts with filter.</source>
+        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user | capitalize}}\\" id=\\"x-20\\"/> starts with filter.</source>
       </trans-unit>
     </body>
   </file>
@@ -275,10 +275,10 @@ exports[`renders xliff from markdown > renders liquid filters wrapped in <x> tag
         <source xml:space=\\"preserve\\">Heading two</source>
       </trans-unit>
       <trans-unit id=\\"2\\">
-        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ variable | length }}\\" id=\\"x-33\\"/></source>
+        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Filter\\" equiv-text=\\"{{ variable | length }}\\" id=\\"x-26\\"/></source>
       </trans-unit>
       <trans-unit id=\\"3\\">
-        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"x-34\\"/></source>
+        <source xml:space=\\"preserve\\">Cell with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"x-27\\"/></source>
       </trans-unit>
     </body>
   </file>
@@ -296,10 +296,10 @@ exports[`renders xliff from markdown > renders liquid functions wrapped in <x> t
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with function <x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"x-24\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with function <x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"x-17\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"x-25\\"/> starts with function.</source>
+        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Function\\" equiv-text=\\"{{ user.name.slice(1, 2) }}\\" id=\\"x-18\\"/> starts with function.</source>
       </trans-unit>
     </body>
   </file>
@@ -317,10 +317,10 @@ exports[`renders xliff from markdown > renders liquid loops wrapped in <x> tags 
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% for x in xs %}\\" id=\\"x-21\\"/>x<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"x-22\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"liquid_Literal\\" equiv-text=\\"{% for x in xs %}\\" id=\\"x-14\\"/>x<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"x-15\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">X<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"x-23\\"/> cool.</source>
+        <source xml:space=\\"preserve\\">X<x ctype=\\"liquid_Literal\\" equiv-text=\\"{% endfor %}\\" id=\\"x-16\\"/> cool.</source>
       </trans-unit>
     </body>
   </file>
@@ -338,10 +338,10 @@ exports[`renders xliff from markdown > renders liquid variables wrapped in <x> t
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"x-28\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence with <x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ variable }}\\" id=\\"x-21\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{variable}}\\" id=\\"x-29\\"/> sentence.</source>
+        <source xml:space=\\"preserve\\"><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{variable}}\\" id=\\"x-22\\"/> sentence.</source>
       </trans-unit>
     </body>
   </file>
@@ -488,10 +488,10 @@ exports[`renders xliff from markdown > renders sentences with inline code that h
     </header>
     <body>
       <trans-unit id=\\"0\\">
-        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-35\\"/><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ ui-key.yacloud.common.label_tcp }}\\" id=\\"x-36\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-37\\"/>.</source>
+        <source xml:space=\\"preserve\\">Sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-28\\"/><x ctype=\\"liquid_Variable\\" equiv-text=\\"{{ ui-key.yacloud.common.label_tcp }}\\" id=\\"x-29\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-30\\"/>.</source>
       </trans-unit>
       <trans-unit id=\\"1\\">
-        <source xml:space=\\"preserve\\">Another sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-38\\"/><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user.name | capitalize}}\\" id=\\"x-39\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-40\\"/>.</source>
+        <source xml:space=\\"preserve\\">Another sentence <x ctype=\\"code_open\\" equiv-text=\\"\`\\" id=\\"x-31\\"/><x ctype=\\"liquid_Filter\\" equiv-text=\\"{{user.name | capitalize}}\\" id=\\"x-32\\"/> other<x ctype=\\"code_close\\" equiv-text=\\"\`\\" id=\\"x-33\\"/>.</source>
       </trans-unit>
     </body>
   </file>
