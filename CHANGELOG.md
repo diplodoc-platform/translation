@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.10.5](https://github.com/diplodoc-platform/translation/compare/v1.10.4...v1.10.5) (2026-11-24)
+
+
+### Bug Fixes
+
+* **deps:** Update @diplodoc/file-extension@0.2.8 ([3bbb0ad](https://github.com/diplodoc-platform/translation/commit/3bbb0ada805ac5c2e1ed0d937b4dc1c53471edba))
+* preserve file name quotes and multiline Markdown containers ([060a075](https://github.com/diplodoc-platform/translation/commit/060a075f2f8d9a54a656e35f05c03ef9963f5816))
+* preserve Liquid variables in translated file names ([b168c24](https://github.com/diplodoc-platform/translation/commit/b168c2430f462256262644802f815f1d640db3bd))
+* preserve text after file names ending in whitespace ([9863a3e](https://github.com/diplodoc-platform/translation/commit/9863a3e8e0128de0c1fc290ab8f1587e1b27b16a))
+
 ## [1.10.4](https://github.com/diplodoc-platform/translation/compare/v1.10.3...v1.10.4) (2026-11-23)
 
 
