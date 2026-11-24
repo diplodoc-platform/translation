@@ -4,6 +4,7 @@ const gt = crypto.randomUUID();
 const lt = crypto.randomUUID();
 const sl = crypto.randomUUID();
 const qt = crypto.randomUUID();
+const amp = crypto.randomUUID();
 // Should start with upper case to force new sentences on segmentation.
 const mt = 'E' + crypto.randomUUID() + 'e';
 const vr = 'V' + crypto.randomUUID();
@@ -20,8 +21,9 @@ function unescapeSymbols(str: string): string {
         .replace(gtre, '>')
         .replace(ltre, '<')
         .replace(qtre, '"')
+        .replaceAll(amp, '&')
         .replace(slre, '/')
         .replace(mtre, '');
 }
 
-export {lt, gt, sl, qt, mt, vr, gtre, ltre, qtre, slre, mtre, vrre, unescapeSymbols};
+export {amp, lt, gt, sl, qt, mt, vr, gtre, ltre, qtre, slre, mtre, vrre, unescapeSymbols};

@@ -1,29 +1,54 @@
 import type Renderer from 'markdown-it/lib/renderer';
+import type {Consumer} from 'src/consumer';
 
 import {Liquid} from 'src/skeleton/liquid';
 import {token} from 'src/utils';
 
-function fileBoundary(type: 'file_open' | 'file_close', source: string) {
-    const markup = Liquid.unescape(source);
-    return token(type, {markup, skip: markup});
+function filePart(type: string, markup: string) {
+    return token(type, {
+        markup,
+        // Match each line in order. markdown-it removes container prefixes
+        // from its inline input, but they still belong to the original tag.
+        skip: markup.split(/(\n)/).filter(Boolean),
+        erule(consumer: Consumer, tokens: Token[], index: number, [from, to]: [number, number]) {
+            const crlf = markup.startsWith('\n') && consumer.content[from - 1] === '\r';
+            tokens[index].markup = consumer.content.slice(crlf ? from - 1 : from, to);
+        },
+    });
+}
+
+function quotedName(name: string, quote: string) {
+    const part = filePart('file_name', quote + name + quote);
+    const lines = name.split('\n').map((text) => ({text, tokens: new Liquid(text).tokenize()}));
+    part.meta = {lines};
+    if (
+        lines.some(({tokens}) =>
+            tokens.some((child) => child.type === 'text' && child.content.trim()),
+        )
+    ) {
+        part.content = name;
+    }
+    return part;
 }
 
 export const file: Renderer.RenderRuleRecord = {
     yfm_file(tokens, index) {
         const fileToken = tokens[index];
         const markup = fileToken.meta?.fileMarkup;
-        if (!markup) {
-            // Older file plugins only expose the normalized HTML attributes.
-            return '';
-        }
+        if (markup) {
+            const before = Liquid.unescape(markup.beforeName);
+            const after = Liquid.unescape(markup.afterName);
+            const name = Liquid.unescape(fileToken.content);
+            const quote = after[0];
 
-        tokens.splice(
-            index,
-            1,
-            fileBoundary('file_open', markup.beforeName),
-            ...new Liquid(fileToken.content).tokenize(),
-            fileBoundary('file_close', markup.afterName),
-        );
+            tokens.splice(
+                index,
+                1,
+                filePart('file_open', before.slice(0, -1)),
+                quotedName(name, quote),
+                filePart('file_close', after.slice(1)),
+            );
+        }
 
         return '';
     },

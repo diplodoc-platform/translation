@@ -91,9 +91,12 @@ function exclude(content: string, tokens: Token[]) {
     let from = 0,
         to = 0;
 
-    eruler(content, [0, content.length], part, (...args) => {
+    eruler(content, [0, content.length], part, (source, window, current, index) => {
         if (to < content.length) {
-            [from, to] = gobble(...args);
+            // The sentenizer sees the file name without its quote delimiters.
+            const visible =
+                current.type === 'file_name' ? token('text', {content: current.content}) : current;
+            [from, to] = gobble(source, window, visible, index);
         }
 
         return [from, to];
@@ -204,7 +207,8 @@ export function split(tokens: Token[], compact = false) {
             continue;
         }
 
-        if (_token.isInlineCode) {
+        // The file parser needs the entire name to choose a valid quote delimiter.
+        if (_token.isInlineCode || _token.type === 'file_name') {
             add(_token);
             nonSentenseCount = segments.length - 1;
 
