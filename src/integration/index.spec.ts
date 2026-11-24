@@ -160,6 +160,13 @@ describe('file names with Liquid variables', () => {
             );
         });
 
+        it.each(['\n', '\r\n'])('preserves text after a name ending in %j', (newline) => {
+            const markdown = `{% file src='g' name='Manual${newline}' %} Then. Next.`;
+            expect(translateName(markdown, compact, 'Guide')).toBe(
+                markdown.replace('Manual', 'Guide'),
+            );
+        });
+
         it('preserves CRLF in a multiline file tag', () => {
             const markdown = "- See {% file src='g'\r\n  name='Manual\r\n  for users'\r\n  %}.";
             expect(translateName(markdown, compact, 'Guide')).toBe(

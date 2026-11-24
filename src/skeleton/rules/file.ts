@@ -26,7 +26,9 @@ function quotedName(name: string, quote: string) {
             tokens.some((child) => child.type === 'text' && child.content.trim()),
         )
     ) {
-        part.content = name;
+        // Trailing whitespace belongs inside the quotes. Keep it in lines for
+        // rendering, but exclude it from the surrounding sentence.
+        part.content = name.trimEnd();
     }
     return part;
 }
