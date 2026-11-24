@@ -18,7 +18,7 @@ function fileMarkup(tokens: Token[], i: number) {
 
 function protectedMarkup(markup: string) {
     // XML readers normalize literal attribute whitespace to spaces.
-    const equivText = markup.replace(/[\r\n\t]/g, (char) => amp + '#' + char.charCodeAt(0) + ';');
+    const equivText = markup.replace(/[\r\n\t]/g, (char) => amp + '#' + char.codePointAt(0) + ';');
     return generateX({ctype: 'file_markup', equivText});
 }
 
