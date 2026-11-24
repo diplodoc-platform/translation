@@ -58,6 +58,17 @@ const quoted = (actor: (token: XLFToken) => string) => (token: XLFToken) =>
     '"' + actor(token) + '"';
 const attr = spaced(quoted(literal));
 
+function quoteFileName(name: string, original: string) {
+    const alternative = original === "'" ? '"' : "'";
+    const quote = name.includes(original) ? alternative : original;
+    if (!name || name.includes(quote)) {
+        throw new Error(
+            'A file name must be nonempty and cannot contain both single and double quotes.',
+        );
+    }
+    return quote + name + quote;
+}
+
 export class XLFMDRenderer {
     rules: XLFMDRendererRuleSet;
 
@@ -155,8 +166,19 @@ export class XLFMDRenderer {
 
     render(tokens: XLFToken[]): string {
         let rendered = '';
+        let nameStart = 0;
 
         for (const token of tokens) {
+            if (isXLFTagToken(token) && token.data === 'g' && token.syntax === 'file_name') {
+                if (token.nodeType === 'open') {
+                    nameStart = rendered.length;
+                } else {
+                    const name = quoteFileName(rendered.slice(nameStart), token.begin);
+                    rendered = rendered.slice(0, nameStart) + name;
+                }
+                continue;
+            }
+
             const handler = this.rules[token.type];
             if (handler) {
                 rendered += handler(token);

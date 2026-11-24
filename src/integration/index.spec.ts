@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-irregular-whitespace */
 
+import filePlugin from '@diplodoc/transform/lib/plugins/file';
+import MarkdownIt from 'markdown-it';
 import {describe, expect, it} from 'vitest';
 import {dedent} from 'ts-dedent';
 
@@ -111,6 +113,90 @@ describe('file names with Liquid variables', () => {
         expect(compose(skeleton, translated, {})).toBe(
             markdown.replace('name="economy-developer-', 'name="guide-'),
         );
+    });
+
+    function translateName(markdown: string, compact: boolean, name: string) {
+        const {skeleton, xliff} = extract(markdown, {...options, compact});
+        expect(compose(skeleton, xliff, {useSource: true})).toBe(markdown);
+
+        const translated = xliff.replace(
+            /<source([^>]*)>([\s\S]*?)<\/source>/g,
+            (_, attrs: string, text: string) =>
+                `<target${attrs}>${text.replace('Manual', name)}</target>`,
+        );
+        return compose(skeleton, translated, {});
+    }
+
+    describe.each([false, true])('quoted file names (compact: %s)', (compact) => {
+        it.each([
+            ["'", "Guide de l'utilisateur", '"'],
+            ['"', 'The "Guide"', "'"],
+            ['"', "Guide de l'utilisateur", '"'],
+        ])('renders a download link for %s and %s', (quote, translated, expectedQuote) => {
+            const markdown = `{% file name=${quote}Manual-{{locale}}${quote} src="guide.txt" %}`;
+            const result = translateName(markdown, compact, translated);
+            expect(result).toBe(
+                `{% file name=${expectedQuote}${translated}-{{locale}}${expectedQuote} src="guide.txt" %}`,
+            );
+
+            const md = new MarkdownIt().use(filePlugin, {path: ''});
+            const [file] = md.parseInline(result, {})[0].children || [];
+            expect(file.type).toBe('yfm_file');
+            expect(file.attrGet('download')).toBe(translated + '-{{locale}}');
+            expect(file.attrGet('href')).toBe('guide.txt');
+        });
+
+        it('keeps a standalone variable-only name in the skeleton', () => {
+            const markdown = "{% file src='g' name='{{locale}}' %}";
+            const {units, skeleton} = extract(markdown, {...options, compact});
+            expect(units).toEqual([]);
+            expect(skeleton).toBe(markdown);
+        });
+
+        it('keeps the chosen quotes around the entire name across sentence boundaries', () => {
+            const markdown = "First. {% file src='g' name='Manual. Next part' %} then. Another.";
+            expect(translateName(markdown, compact, "Guide de l'utilisateur")).toBe(
+                markdown.replace("'Manual. Next part'", `"Guide de l'utilisateur. Next part"`),
+            );
+        });
+
+        it('preserves CRLF in a multiline file tag', () => {
+            const markdown = "- See {% file src='g'\r\n  name='Manual\r\n  for users'\r\n  %}.";
+            expect(translateName(markdown, compact, 'Guide')).toBe(
+                markdown.replace('Manual', 'Guide'),
+            );
+        });
+
+        it('rejects a name that neither quote can delimit', () => {
+            expect(() =>
+                translateName(
+                    "See {% file src='g' name='Manual' %}.",
+                    compact,
+                    `l'utilisateur "A"`,
+                ),
+            ).toThrow(/both single and double quotes/);
+        });
+
+        it.each([
+            ['> ', '> '],
+            ['- ', '  '],
+            ['> 1. ', '>    '],
+        ])('retains continuation lines inside %s', (first, next) => {
+            const markdown =
+                first +
+                "See {% file src='g'\n" +
+                next +
+                "name='Manual\n" +
+                next +
+                "for {{locale}}'\n" +
+                next +
+                "type='text/plain' %}.";
+            expect(translateName(markdown, compact, "Guide de l'utilisateur")).toBe(
+                markdown
+                    .replace("'Manual", `"Guide de l'utilisateur`)
+                    .replace("{{locale}}'", '{{locale}}"'),
+            );
+        });
     });
 
     it('preserves quoted markup, attribute order and repeated variables', () => {
