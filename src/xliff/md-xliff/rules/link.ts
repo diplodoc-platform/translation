@@ -1,8 +1,9 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 import {generateCloseG, generateOpenG, generateX} from 'src/xliff/generator';
+import {stringAttr} from 'src/utils';
 
-export const link: Renderer.RenderRuleRecord = {
+export const link: Renderer['rules'] = {
     link_auto: linkAuto,
     link_open: linkOpen,
     link_close: linkClose,
@@ -21,8 +22,8 @@ function linkOpen(tokens: Token[], i: number) {
     const open = tokens[i];
 
     if (open.g) {
-        const title = open.attrGet('title');
-        const href = open.attrGet('href');
+        const title = stringAttr(open, 'title');
+        const href = stringAttr(open, 'href');
 
         const begin = '[' + (open.reflink ? '{#T}' : '');
         const end = '](' + [href, title && '"' + title + '"'].filter(Boolean).join(' ') + ')';
@@ -52,8 +53,8 @@ function linkClose(tokens: Token[], i: number) {
     }
 
     const open = close.open as Token;
-    const title = open.attrGet('title');
-    const href = open.attrGet('href');
+    const title = stringAttr(open, 'title');
+    const href = stringAttr(open, 'href');
 
     let rendered = '';
     if (open.reflink) {

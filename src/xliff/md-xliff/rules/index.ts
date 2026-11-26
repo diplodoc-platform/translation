@@ -1,3 +1,5 @@
+import {generateX} from 'src/xliff/generator';
+
 import {rules as diplodocRules} from './diplodoc';
 import {link} from './link';
 import {breaks} from './breaks';
@@ -13,6 +15,12 @@ import {noTranslate} from './no-translate';
 
 // blocks(container and leaf) create group
 export const rules = {
+    translation_directive_marker: (tokens: {markup: string}[], i: number) =>
+        generateX({ctype: 'translation_directive_marker', equivText: tokens[i].markup}),
+    footnote_ref: (tokens: {markup: string}[], i: number) =>
+        generateX({ctype: 'footnote_ref', equivText: tokens[i].markup}),
+    task_marker: (tokens: {markup: string}[], i: number) =>
+        generateX({ctype: 'task_marker', equivText: tokens[i].markup}),
     code_block: () => '',
     fence: () => '',
     html_block: () => '',

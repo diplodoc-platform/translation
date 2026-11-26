@@ -3,6 +3,8 @@ import type {XmlParserElementChildNode, XmlParserElementNode, XmlParserResult} f
 import yaml from 'js-yaml';
 import xmlParser from 'xml-parser-xo';
 
+import {escapeSubscriptBody} from 'src/utils/subscript';
+
 import {YamlQuotingTypeQuote} from './constants';
 import {unescapeXmlText} from './xliff/utils';
 
@@ -126,7 +128,8 @@ function nodeToString(node: XmlParserElementChildNode): string {
         }
         if (node.name === 'g') {
             const begin = getAttr(node, 'x-begin');
-            const text = nodesToString(node.children || []);
+            const body = nodesToString(node.children || []);
+            const text = getAttr(node, 'x-type') === 'sub' ? escapeSubscriptBody(body) : body;
             const end = getAttr(node, 'x-end');
             return `${begin}${text}${end}`;
         }

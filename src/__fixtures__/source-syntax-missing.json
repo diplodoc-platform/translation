@@ -1,0 +1,42 @@
+[
+  {
+    "experimental": false,
+    "compact": false,
+    "output": {
+      "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xliff xmlns=\"urn:oasis:names:tc:xliff:document:1.2\" version=\"1.2\">\n  <file original=\"file.ext\" source-language=\"en-US\" target-language=\"ru-RU\" datatype=\"markdown\">\n    <header>\n      <skeleton>\n        <external-file href=\"file.skl\"></external-file>\n      </skeleton>\n    </header>\n    <body>\n      <trans-unit id=\"0\">\n        <source xml:space=\"preserve\">Main[^text] text.</source>\n      </trans-unit>\n    </body>\n  </file>\n</xliff>",
+      "skeleton": "%%%0%%%\n",
+      "roundTrip": "Main[^text] text.\n",
+      "translated": "Main[^translated longer prose] translated longer prose.\n"
+    }
+  },
+  {
+    "experimental": false,
+    "compact": true,
+    "output": {
+      "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xliff xmlns=\"urn:oasis:names:tc:xliff:document:1.2\" version=\"1.2\">\n  <file original=\"file.ext\" source-language=\"en-US\" target-language=\"ru-RU\" datatype=\"markdown\">\n    <header>\n      <skeleton>\n        <external-file href=\"file.skl\"></external-file>\n      </skeleton>\n    </header>\n    <body>\n      <trans-unit id=\"0\">\n        <source xml:space=\"preserve\">Main[^text] text.</source>\n      </trans-unit>\n    </body>\n  </file>\n</xliff>",
+      "skeleton": "%%%0%%%\n",
+      "roundTrip": "Main[^text] text.\n",
+      "translated": "Main[^translated longer prose] translated longer prose.\n"
+    }
+  },
+  {
+    "experimental": true,
+    "compact": false,
+    "output": {
+      "xml": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xliff xmlns=\"urn:oasis:names:tc:xliff:document:1.2\" version=\"1.2\">\n    <file original=\"syntax.md\" source-language=\"en-US\" target-language=\"ru-RU\" datatype=\"markdown\">\n        <header>\n            <skeleton>\n                <external-file href=\"syntax.skl\"></external-file>\n            </skeleton>\n        </header>\n        <body>\n            <trans-unit id=\"1\">\n                <source xml:space=\"preserve\">Main[^text] text.</source>\n            </trans-unit>\n        </body>\n    </file>\n</xliff>",
+      "skeleton": "%%%1%%%\n",
+      "roundTrip": "Main[^text] text.\n",
+      "translated": "Main[^translated longer prose] translated longer prose.\n"
+    }
+  },
+  {
+    "experimental": true,
+    "compact": true,
+    "output": {
+      "xml": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<xliff xmlns=\"urn:oasis:names:tc:xliff:document:1.2\" version=\"1.2\">\n    <file source-language=\"en-US\" target-language=\"ru-RU\" datatype=\"markdown\">\n        <body>\n            <trans-unit id=\"1\">\n                <source>Main[^text] text.</source>\n            </trans-unit>\n        </body>\n    </file>\n</xliff>",
+      "skeleton": "%%%1%%%\n",
+      "roundTrip": "Main[^text] text.\n",
+      "translated": "Main[^translated longer prose] translated longer prose.\n"
+    }
+  }
+]

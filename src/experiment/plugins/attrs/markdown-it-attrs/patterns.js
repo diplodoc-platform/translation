@@ -7,7 +7,7 @@
  */
 
 const utils = require('./utils.js');
-const Token = require('markdown-it/lib/token');
+const Token = require('markdown-it').Token;
 
 module.exports = (options) => {
     const __hr = new RegExp(

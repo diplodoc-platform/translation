@@ -1,4 +1,4 @@
-import type MdIt from 'markdown-it';
+import type {MarkdownIt as MdIt} from 'markdown-it';
 
 import {termDefinitions} from '@diplodoc/transform/lib/plugins/term/termDefinitions';
 

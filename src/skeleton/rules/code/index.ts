@@ -1,4 +1,4 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
 import type {CodeHandler} from './comments';
@@ -88,7 +88,7 @@ function processFence(state: Consumer, code: Token) {
     state.consume([token('skip', {skip: code.markup})]);
 }
 
-export const code: Renderer.RenderRuleRecord = {
+export const code: Renderer['rules'] = {
     fence: function (this: CustomRenderer<Consumer>, tokens, idx) {
         processFence(this.state, tokens[idx]);
 

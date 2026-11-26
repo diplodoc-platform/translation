@@ -1,9 +1,11 @@
 import type {CustomRendererHookParameters} from 'src/renderer';
 
-import MdToken from 'markdown-it/lib/token';
+import MarkdownIt from 'markdown-it';
 
 import {token} from 'src/utils';
 import {mt} from 'src/symbols';
+
+const MdToken = MarkdownIt.Token;
 
 const TITLE_ATTRS_DOUBLE_RE = /^(\{[^}]*?title=")([^"\\]*(?:\\.[^"\\]*)*)("[^}]*\})/;
 const TITLE_ATTRS_SINGLE_RE = /^(\{[^}]*?title=')([^'\\]*(?:\\.[^'\\]*)*)('[^}]*\})/;

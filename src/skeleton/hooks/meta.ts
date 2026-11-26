@@ -1,23 +1,51 @@
-import type {CustomRenderer} from 'src/renderer';
+import type {CustomRenderer, CustomRendererHookParameters} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
-import type MarkdownIt from 'markdown-it';
+import type {MarkdownIt} from 'markdown-it';
+
+import {envMeta} from '@diplodoc/transform/document';
 
 import {token} from 'src/utils';
 
 import {Liquid} from '../liquid';
 
-type MarkdownItWithMeta = MarkdownIt & {
-    meta: {};
-};
+const authoredMeta = Symbol('translation.authoredMeta');
 
-export function meta(this: CustomRenderer<Consumer, MarkdownItWithMeta>) {
-    const meta = this.md.meta ?? {};
+export function metaPlugin(md: MarkdownIt) {
+    envMeta({
+        core: md.core,
+        block: {
+            ruler: {
+                before(anchor, name, rule, options) {
+                    md.block.ruler.before(
+                        anchor,
+                        name,
+                        (state, start, end) => {
+                            const matched = rule(state, start, end);
 
-    if (!Object.keys(meta).length) {
+                            if (matched) {
+                                // Preserve authored YAML before body plugins append resource metadata.
+                                Object.defineProperty(state.env, authoredMeta, {
+                                    value: structuredClone(state.env.meta),
+                                    configurable: true,
+                                });
+                            }
+
+                            return matched;
+                        },
+                        options,
+                    );
+                },
+            },
+        },
+    });
+}
+
+export function meta(this: CustomRenderer<Consumer>, {env}: CustomRendererHookParameters) {
+    if (!env || typeof env !== 'object' || !(authoredMeta in env)) {
         return '';
     }
 
-    traverse(meta, (value, key) => {
+    traverse(env[authoredMeta], (value, key) => {
         const tokenizer = new Liquid(value);
         this.state.process(token('fake', {skip: key}));
         this.state.process([...tokenizer.tokenize()]);
@@ -26,14 +54,8 @@ export function meta(this: CustomRenderer<Consumer, MarkdownItWithMeta>) {
     return '';
 }
 
-type Meta =
-    | string
-    | {
-          [prop: string | number]: Meta;
-      };
-
 function traverse(
-    meta: Meta,
+    meta: unknown,
     fn: (val: string, key: string | null | undefined) => void,
     key?: string | null,
 ) {

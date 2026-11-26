@@ -1,19 +1,27 @@
-import type MarkdownIt from 'markdown-it';
-import type ParserInline from 'markdown-it/lib/parser_inline';
+import MarkdownIt from 'markdown-it';
 
-import Token from 'markdown-it/lib/token';
+const NativeToken = MarkdownIt.Token;
 
 /* eslint-disable no-param-reassign */
 
 const CUT_REGEXP = /^{%\s*cut\s*(["|'])(.*?)\1\s*%}/;
 
-const tokenize: ParserInline.RuleInline = function (state, silent) {
+const tokenize: Parameters<MarkdownIt.MarkdownIt['inline']['ruler']['push']>[1] = function (
+    state,
+    silent,
+) {
     const pos = state.pos;
     const max = state.posMax;
 
-    if (pos + 2 > max) return false;
-    if (state.src.charAt(pos) !== '{') return false;
-    if (state.src.charAt(pos + 1) !== '%') return false;
+    if (pos + 2 > max) {
+        return false;
+    }
+    if (state.src.charAt(pos) !== '{') {
+        return false;
+    }
+    if (state.src.charAt(pos + 1) !== '%') {
+        return false;
+    }
 
     const fragment = state.src.slice(pos);
     const m = fragment.match(/^\{%(.+?)%}/);
@@ -39,13 +47,13 @@ const tokenize: ParserInline.RuleInline = function (state, silent) {
             token.content = raw;
             token.children = [];
 
-            const quoteOpenToken = new Token('cut_quote_open', '', 0);
+            const quoteOpenToken = new NativeToken('cut_quote_open', '', 0);
             quoteOpenToken.content = quote;
             token.children.push(quoteOpenToken);
 
             state.md.inline.parse(title, state.md, state.env, token.children);
 
-            const quoteCloseToken = new Token('cut_quote_close', '', 0);
+            const quoteCloseToken = new NativeToken('cut_quote_close', '', 0);
             quoteCloseToken.content = quote;
             token.children.push(quoteCloseToken);
         } else {
@@ -58,6 +66,6 @@ const tokenize: ParserInline.RuleInline = function (state, silent) {
     return true;
 };
 
-export function cut(md: MarkdownIt) {
+export function cut(md: MarkdownIt.MarkdownIt) {
     md.inline.ruler.before('backticks', 'cut', tokenize);
 }

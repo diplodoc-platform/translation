@@ -1,4 +1,4 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 function escapeMarkupLikeChars(tokens: Token[], idx: number) {
     const inline = tokens[idx + 1];
@@ -15,7 +15,7 @@ function escapeMarkupLikeChars(tokens: Token[], idx: number) {
     return '';
 }
 
-export const table: Renderer.RenderRuleRecord = {
+export const table: Renderer['rules'] = {
     th_open: escapeMarkupLikeChars,
     td_open: escapeMarkupLikeChars,
 };

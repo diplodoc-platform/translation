@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it';
 
 import {generateCloseG, generateOpenG, generateX} from 'src/xliff/generator';
+import {stringAttr} from 'src/utils';
 
 const decodeURL = new MarkdownIt().utils.lib.mdurl.decode;
 
@@ -13,10 +14,10 @@ function imageOpen(tokens: Token[], idx: number) {
     const open = tokens[idx];
     if (open.g) {
         const close = open.g;
-        const src = close.attrGet('src');
-        const title = close.attrGet('title');
-        const height = close.attrGet('height');
-        const width = close.attrGet('width');
+        const src = stringAttr(close, 'src');
+        const title = stringAttr(close, 'title');
+        const height = stringAttr(close, 'height');
+        const width = stringAttr(close, 'width');
 
         const begin = '![';
         const end =
@@ -59,7 +60,7 @@ function imageClose(tokens: Token[], idx: number) {
         equivText: '(',
     });
 
-    let src = close.attrGet('src');
+    let src = stringAttr(close, 'src');
     if (src?.length) {
         src = decodeURL(src);
         rendered += generateX({
@@ -68,7 +69,7 @@ function imageClose(tokens: Token[], idx: number) {
         });
     }
 
-    const title = close.attrGet('title');
+    const title = stringAttr(close, 'title');
     if (title?.length) {
         rendered += generateX({
             ctype: 'image_attributes_title',
@@ -76,8 +77,8 @@ function imageClose(tokens: Token[], idx: number) {
         });
     }
 
-    const height = close.attrGet('height');
-    const width = close.attrGet('width');
+    const height = stringAttr(close, 'height');
+    const width = stringAttr(close, 'width');
     if (width?.length || height?.length) {
         rendered += generateX({
             ctype: 'image_attributes_size',

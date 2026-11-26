@@ -1,4 +1,4 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 import type {Consumer} from 'src/consumer';
 
 import {Liquid} from 'src/skeleton/liquid';
@@ -33,11 +33,18 @@ function quotedName(name: string, quote: string) {
     return part;
 }
 
-export const file: Renderer.RenderRuleRecord = {
+export const file: Renderer['rules'] = {
     yfm_file(tokens, index) {
         const fileToken = tokens[index];
         const markup = fileToken.meta?.fileMarkup;
-        if (markup) {
+        if (
+            markup &&
+            typeof markup === 'object' &&
+            'beforeName' in markup &&
+            typeof markup.beforeName === 'string' &&
+            'afterName' in markup &&
+            typeof markup.afterName === 'string'
+        ) {
             const before = Liquid.unescape(markup.beforeName);
             const after = Liquid.unescape(markup.afterName);
             const name = Liquid.unescape(fileToken.content);

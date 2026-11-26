@@ -1,6 +1,6 @@
 import type {JSONType, KeywordCxt} from 'ajv';
 import type {Hash} from 'src/hash';
-import type {ConsumerOptions} from 'src/consumer';
+import type {SkeletonOptions} from 'src/skeleton';
 
 import {_} from 'ajv';
 
@@ -23,7 +23,7 @@ export function genCode(ontranslate: (text: string, schema: Schema) => string) {
     };
 }
 
-function extract(hash: Hash, options: ConsumerOptions) {
+function extract(hash: Hash, options: SkeletonOptions) {
     return {
         keyword: 'translate',
         type: ['string', 'object', 'array'] as JSONType[],

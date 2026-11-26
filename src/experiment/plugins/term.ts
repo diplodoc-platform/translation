@@ -1,12 +1,7 @@
-import type {Token} from 'markdown-it';
-import type MarkdownIt from 'markdown-it';
-import type ParserBlock from 'markdown-it/lib/parser_block';
-import type Core from 'markdown-it/lib/parser_core';
-import type StateBlock from 'markdown-it/lib/rules_block/state_block';
-import type StateCore from 'markdown-it/lib/rules_core/state_core';
+import type {Env, MarkdownIt, ParserBlock, StateBlock, StateCore, Token} from 'markdown-it';
 
 const getTermDefinitions = (md: MarkdownIt) => {
-    const termDefinitions: ParserBlock.RuleBlock = function (
+    const termDefinitions: Parameters<ParserBlock['ruler']['push']>[1] = function (
         this: MarkdownIt,
         state,
         startLine,
@@ -112,16 +107,11 @@ function processTermDefinition(
     rawLabel: string,
     rawTitle: string,
 ) {
-    if (!state.env.terms) {
-        // eslint-disable-next-line no-param-reassign
-        state.env.terms = {};
-    }
-
-    // If term inside definition
-
-    if (typeof state.env.terms[':' + label] === 'undefined') {
-        // eslint-disable-next-line no-param-reassign
-        state.env.terms[':' + label] = title;
+    const environment: Env & {terms?: Record<string, string>} = state.env;
+    const terms = (environment.terms ??= {});
+    const key = ':' + label;
+    if (terms[key] === undefined) {
+        terms[key] = title;
     }
 
     const termBlock = new state.Token('term_block', '', 0);
@@ -146,7 +136,9 @@ function processTermDefinition(
 }
 
 const getTermReplace = (md: MarkdownIt) => {
-    const termReplace: Core.RuleCore = function (state: StateCore) {
+    const termReplace: Parameters<MarkdownIt['core']['ruler']['push']>[1] = function (
+        state: StateCore,
+    ) {
         const escapeRE = md.utils.escapeRE;
         const arrayReplaceAt = md.utils.arrayReplaceAt;
 

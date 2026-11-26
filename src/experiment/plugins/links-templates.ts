@@ -1,13 +1,13 @@
-import type MarkdownIt from 'markdown-it';
-import type {RuleCore} from 'markdown-it/lib/parser_core';
+import MarkdownIt from 'markdown-it';
 
-import Token from 'markdown-it/lib/token';
+type Token = MarkdownIt.Token;
+const NativeToken = MarkdownIt.Token;
 
 /* eslint-disable no-param-reassign */
 
 const TEMPLATE = '{#T}';
 
-const tokenize: RuleCore = function (state) {
+const tokenize: Parameters<MarkdownIt.MarkdownIt['core']['ruler']['push']>[1] = function (state) {
     const rootTokens = state.tokens;
 
     const next = (tokens: Token[]) => {
@@ -23,7 +23,7 @@ const tokenize: RuleCore = function (state) {
                     }
                     if (token.type === 'text') {
                         if (token.content === TEMPLATE) {
-                            const templateToken = new Token('link_template', '', 0);
+                            const templateToken = new NativeToken('link_template', '', 0);
                             templateToken.content = token.content;
                             tokens.splice(i, 1, templateToken);
                         }
@@ -41,6 +41,6 @@ const tokenize: RuleCore = function (state) {
     next(rootTokens);
 };
 
-export function linksTemplates(md: MarkdownIt) {
+export function linksTemplates(md: MarkdownIt.MarkdownIt) {
     md.core.ruler.push('linksTemplates', tokenize);
 }

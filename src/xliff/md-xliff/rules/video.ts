@@ -1,10 +1,9 @@
-import type Renderer from 'markdown-it/lib/renderer';
-import type Token from 'markdown-it/lib/token';
+import type {Renderer, Token} from 'markdown-it';
 import type {VideoToken} from '@diplodoc/transform/lib/plugins/video/types';
 
 import {generateX} from 'src/xliff/generator';
 
-export const video: Renderer.RenderRuleRecord = {
+export const video: Renderer['rules'] = {
     video: videoRule,
 };
 

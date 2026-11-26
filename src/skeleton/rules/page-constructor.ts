@@ -1,4 +1,4 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 import type {ValidateFunction} from 'ajv';
 import type {YAMLError} from 'yaml';
 import type {CustomRenderer} from 'src/renderer';
@@ -223,7 +223,7 @@ function processBlock(consumer: Consumer, yaml: string, map: Token['map']) {
     }
 }
 
-export const pageConstructor: Renderer.RenderRuleRecord = {
+export const pageConstructor: Renderer['rules'] = {
     page_constructor: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const {content, map} = tokens[idx];
 

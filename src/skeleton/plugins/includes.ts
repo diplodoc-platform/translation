@@ -1,6 +1,4 @@
-import type MdIt from 'markdown-it';
-import type State from 'markdown-it/lib/rules_core/state_core';
-import type StateInline from 'markdown-it/lib/rules_inline/state_inline';
+import type {MarkdownIt as MdIt, StateCore as State, StateInline} from 'markdown-it';
 
 import {token} from 'src/utils';
 

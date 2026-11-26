@@ -1,4 +1,4 @@
-import type {RenderRuleRecord} from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 import type {CustomRenderer} from 'src/renderer';
 import type {HTMLElement, Node, TextNode} from 'node-html-parser';
 import type {Consumer} from 'src/consumer';
@@ -101,7 +101,7 @@ function close(node: Node): Token[] {
     return [token('html_inline', {skip, tag: node.rawTagName, role: 'close'})];
 }
 
-export const html: RenderRuleRecord = {
+export const html: Renderer['rules'] = {
     html_inline: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const root = tokens[idx];
         root.skip = Liquid.unescape(root.content);

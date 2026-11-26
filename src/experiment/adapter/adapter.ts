@@ -9,7 +9,10 @@ import {transform} from 'src/experiment/transform';
 import {translate} from 'src/experiment/translate';
 
 export function extract(content: string, options: ExtractOptions): ExtractOutput {
-    const {xliff, skeleton} = transform(content, {
+    const {xliff, skeleton, warnings} = transform(content, {
+        originalFile: options.originalFile,
+        log: options.log,
+        deprecationWarnings: options.deprecationWarnings,
         compact: options.compact,
         showTokens: options.showTokens,
         showMap: options.showMap,
@@ -27,6 +30,7 @@ export function extract(content: string, options: ExtractOptions): ExtractOutput
     return {
         skeleton,
         xliff,
+        ...(warnings?.length ? {warnings} : {}),
     };
 }
 

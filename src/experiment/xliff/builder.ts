@@ -1,6 +1,6 @@
 import type {ReplacePart, TokenExtraMap} from '../types';
 
-import Token from 'markdown-it/lib/token';
+import MarkdownIt from 'markdown-it';
 
 import {floatToken, getExtraToken, hasTextChildren, safeSlice, toJsonF} from '../utils';
 
@@ -10,6 +10,9 @@ import {TextElement} from './elements/TextElement';
 import {TransUnitElement} from './elements/TransUnitElement';
 import {XElement} from './elements/XElement';
 import {Xliff} from './xliff';
+
+type Token = MarkdownIt.Token;
+const NativeToken = MarkdownIt.Token;
 
 const tokenNameCType = {
     link: 'link',
@@ -50,6 +53,18 @@ function buildTransUnit(
     const transUnit = new TransUnitElement(transUnitId);
 
     const source = new SourceElement({compact});
+    if (
+        inlineToken.children?.some(
+            (token) =>
+                /^(underline|sub)_(open|close)$/.test(token.type) ||
+                token.type === 'no_translate_marker' ||
+                token.type === 'translation_directive_marker' ||
+                token.type === 'note_type' ||
+                token.type === 'cut_open_tag_open',
+        )
+    ) {
+        source.setAttr('xml:space', 'preserve');
+    }
     transUnit.appendElement(source);
 
     let level = 0;
@@ -74,6 +89,9 @@ function buildTransUnit(
                             tokenNameCType[name as keyof typeof tokenNameCType],
                         );
                     }
+                    element.setAttr('x-type', name);
+                }
+                if (name === 'sub') {
                     element.setAttr('x-type', name);
                 }
                 element.setAttr('x-begin', raw);
@@ -145,7 +163,7 @@ export function prepareInlineToken(
     }, [] as Token[]);
 
     const putToken = (arr: Token[], index: number, start: number, end: number, level: number) => {
-        const textToken = new Token('text', '', 0);
+        const textToken = new NativeToken('text', '', 0);
         textToken.content = mdData.slice(start, end);
         tokenExtraMap.set(textToken, {
             start,

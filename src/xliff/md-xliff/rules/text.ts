@@ -1,6 +1,6 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
-export const text: Renderer.RenderRuleRecord = {
+export const text: Renderer['rules'] = {
     text: function (tokens: Token[], i: number) {
         const text = tokens[i];
 

@@ -150,16 +150,23 @@ function keepPairedEdges([before, content, after]: Token[][]): Token[][] {
     const pinned = (index: number) =>
         Boolean(sequence[index].beforeDrop || sequence[partner[index]]?.beforeDrop);
 
+    // Subscript composition needs its real enclosing pair to escape translated body text.
     let from = start;
     for (let index = start - 1; index >= 0 && !pinned(index); index--) {
-        if (inside(partner[index])) {
+        if (
+            inside(partner[index]) ||
+            (sequence[index].type === 'sub_open' && partner[index] >= end)
+        ) {
             from = index;
         }
     }
 
     let to = end;
     for (let index = end; index < sequence.length && !pinned(index); index++) {
-        if (inside(partner[index])) {
+        if (
+            inside(partner[index]) ||
+            (sequence[index].type === 'sub_close' && partner[index] < start && partner[index] >= 0)
+        ) {
             to = index + 1;
         }
     }

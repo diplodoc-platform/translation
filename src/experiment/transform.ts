@@ -1,10 +1,13 @@
+import type {ExtractionDiagnostics} from 'src/transform-plugins';
 import type {Token} from 'markdown-it';
 import type {ExtraToken, ReplacePart} from './types';
 
-import deflist from '@diplodoc/transform/lib/plugins/deflist';
-import imsize from '@diplodoc/transform/lib/plugins/imsize';
-import yfmTable from '@diplodoc/transform/lib/plugins/table';
 import markdownit from 'markdown-it';
+
+import {experimentPlugins, pluginDiagnostics} from 'src/transform-plugins';
+import {sourceSyntax} from 'src/source-syntax';
+import {sourceBlockDirectives, sourceNoTranslate} from 'src/block-directives';
+import {createTabItemSource} from 'src/tab-item-source';
 
 import {passSymbols} from './constants';
 import {anchor} from './plugins/anchor';
@@ -50,7 +53,7 @@ const SHOW_MAP = false;
 const SHOW_RAW_MAP = false;
 const SHOW_VARS = false;
 
-export interface TransformOptions {
+export interface TransformOptions extends ExtractionDiagnostics {
     compact?: boolean;
     showTokens?: boolean;
     showMap?: boolean;
@@ -86,13 +89,18 @@ export function transform(content: string, options?: TransformOptions) {
     };
     mdData = variableReplaceResult.data;
 
+    const plugins = experimentPlugins();
+    const markupOptions = pluginDiagnostics(options ?? {});
+    const warnings: string[] = [];
+    const tabItems = createTabItemSource({pipeline: 'experiment', warnings});
     const mdIt = markdownit({html: true})
+        .use(sourceNoTranslate)
         .use(liquidVariable)
         .use(liquidOperator)
         .use(meta)
         .use(cut)
-        .use(deflist)
-        .use(imsize)
+        .use(plugins.deflist)
+        .use(plugins.imsize, markupOptions)
         .use(note)
         .use(sup)
         .use(tabs)
@@ -103,11 +111,19 @@ export function transform(content: string, options?: TransformOptions) {
         .use(video)
         .use(attrsPlugin)
         .use(linksTemplates)
-        .use(yfmTable)
+        .use(plugins.table, markupOptions)
         .use(textJoinFix)
         .use(term)
+        .use(plugins.underline)
+        .use(plugins.subscript)
         .disable(['entity', 'html_block']);
 
+    mdIt.use(sourceBlockDirectives, {
+        pipeline: 'experiment',
+        onTabsContainer: tabItems.acceptContainer,
+    });
+    mdIt.use(sourceSyntax);
+    mdIt.use(tabItems.plugin);
     const allTokens = mdIt.parse(mdData, {});
 
     if (showTokens) {
@@ -178,7 +194,9 @@ export function transform(content: string, options?: TransformOptions) {
 
     eachTokens(allTokens, (token) => {
         if (token.type === 'inline') {
-            if (!token.children) return false;
+            if (!token.children) {
+                return false;
+            }
 
             const {yamlToken} = getExtraToken(tokenExtraMap, token);
             const targetToken = yamlToken ?? token;
@@ -209,7 +227,9 @@ export function transform(content: string, options?: TransformOptions) {
 
     const typeAction = {
         inline(token: Token) {
-            if (!token.children) return false;
+            if (!token.children) {
+                return false;
+            }
 
             const extraToken = getExtraToken(tokenExtraMap, token);
             const {yamlToken} = extraToken;
@@ -265,5 +285,10 @@ export function transform(content: string, options?: TransformOptions) {
 
     const xliff = buildXliff(replaceParts, tokenExtraMap, mdData, compact);
 
-    return {skeleton: outMd, variables: variableTextMap, xliff};
+    return {
+        skeleton: outMd,
+        variables: variableTextMap,
+        xliff,
+        ...(warnings.length ? {warnings} : {}),
+    };
 }

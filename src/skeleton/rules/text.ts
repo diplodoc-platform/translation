@@ -1,8 +1,8 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 import {Liquid} from '../liquid';
 
-export const text: Renderer.RenderRuleRecord = {
+export const text: Renderer['rules'] = {
     text_special: (tokens: Token[], i: number) => {
         tokens[i].type = 'text';
         tokens[i].content = tokens[i].markup;

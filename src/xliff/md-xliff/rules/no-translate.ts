@@ -1,8 +1,8 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 import {generateX} from 'src/xliff/generator';
 
-export const noTranslate: Renderer.RenderRuleRecord = {
+export const noTranslate: Renderer['rules'] = {
     no_translate_inline: noTranslateInline,
 };
 

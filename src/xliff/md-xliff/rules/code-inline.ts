@@ -1,9 +1,8 @@
-import type Renderer from 'markdown-it/lib/renderer';
-import type Token from 'markdown-it/lib/token';
+import type {Renderer, Token} from 'markdown-it';
 
 import {generateX} from 'src/xliff/generator';
 
-export const codeInline: Renderer.RenderRuleRecord = {
+export const codeInline: Renderer['rules'] = {
     code_inline_open: codeInlineRule('open'),
     code_inline_close: codeInlineRule('close'),
 };

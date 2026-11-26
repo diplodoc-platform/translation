@@ -1,10 +1,11 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 import type {CustomRenderer} from 'src/renderer';
 
 import {Consumer} from 'src/consumer';
 import {Liquid} from 'src/skeleton/liquid';
+import {stringAttr} from 'src/utils';
 
-export const image: Renderer.RenderRuleRecord = {
+export const image: Renderer['rules'] = {
     image_open: function (tokens: Token[], idx) {
         const open = tokens[idx];
 
@@ -15,7 +16,7 @@ export const image: Renderer.RenderRuleRecord = {
     },
     image_close: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const close = tokens[idx];
-        const titleAttr = Liquid.unescape(close.attrGet('title') || '');
+        const titleAttr = Liquid.unescape(stringAttr(close, 'title') || '');
 
         const skip = (close.skip = (close.skip || []) as string[]);
         skip.push(')');
@@ -53,7 +54,7 @@ export const image: Renderer.RenderRuleRecord = {
             skip.unshift('(');
         }
 
-        close.attrSet('src', Liquid.unescape(close.attrGet('src') || ''));
+        close.attrSet('src', Liquid.unescape(stringAttr(close, 'src') || ''));
 
         return '';
     },

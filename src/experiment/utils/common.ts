@@ -1,13 +1,15 @@
-import type MarkdownIt from 'markdown-it';
+import type {MarkdownIt} from 'markdown-it';
 import type {TokenExtraMap} from '../types';
 
 import markdownit from 'markdown-it';
-import Token from 'markdown-it/lib/token';
 
 import {passTranslation} from '../constants';
 import {liquidOperator} from '../plugins/liquid/liquidOperator';
 import {xliffSpecial} from '../plugins/xliffSpecial';
 import {childrenTokenSearch} from '../tokenSearch';
+
+type Token = markdownit.Token;
+const NativeToken = markdownit.Token;
 
 /* eslint-disable no-console */
 
@@ -54,7 +56,7 @@ export function floatToken(mdData: string, tokenExtraMap: TokenExtraMap, token: 
     const {start: pStart, end: pEnd, level} = getExtraToken(tokenExtraMap, token);
     const {start: cStart, end: cEnd} = getTokenChildrenPos(tokenExtraMap, children);
 
-    const openToken = new Token(`${name}_open`, '', 0);
+    const openToken = new NativeToken(`${name}_open`, '', 0);
     openToken.content = mdData.slice(0, cStart);
     tokenExtraMap.set(openToken, {
         start: pStart,
@@ -62,7 +64,7 @@ export function floatToken(mdData: string, tokenExtraMap: TokenExtraMap, token: 
         level,
     });
 
-    const closeToken = new Token(`${name}_close`, '', 0);
+    const closeToken = new NativeToken(`${name}_close`, '', 0);
     closeToken.content = mdData.slice(cEnd);
     tokenExtraMap.set(closeToken, {
         start: cEnd,
@@ -79,7 +81,9 @@ export function floatToken(mdData: string, tokenExtraMap: TokenExtraMap, token: 
 }
 
 export function hasTextChildren(token: Token): boolean {
-    if (!token.children) return false;
+    if (!token.children) {
+        return false;
+    }
     return token.children.some((tokenLocal) => {
         if (tokenLocal.type === 'text') {
             return true;
@@ -196,11 +200,14 @@ export function extractLinkTitle(
 ) {
     const extraToken = getExtraToken(tokenExtraMap, token);
     const {start, end, level} = extraToken;
-    const {titleStart: titleStartRel, titleEnd: titleEndRel} = token.meta;
+    const {titleStart: titleStartRel, titleEnd: titleEndRel} = token.meta ?? {};
+    if (typeof titleStartRel !== 'number' || typeof titleEndRel !== 'number') {
+        throw new Error('Missing title positions for a translation token');
+    }
     const titleStart = titleStartRel + start;
     const titleEnd = titleEndRel + start;
 
-    const linkTitleToken = new Token('link_title', '', 0);
+    const linkTitleToken = new NativeToken('link_title', '', 0);
     linkTitleToken.content = mdData.slice(start, titleStart);
     tokenExtraMap.set(linkTitleToken, {
         start: start,
@@ -210,7 +217,7 @@ export function extractLinkTitle(
     linkTitleToken.children = [];
 
     const raw = mdData.slice(titleStart, titleEnd);
-    md.inline.parse(raw, md, null, linkTitleToken.children);
+    md.inline.parse(raw, md, {}, linkTitleToken.children);
     const levelTokenType: string[] = [];
     childrenTokenSearch(
         mdData,
@@ -247,11 +254,14 @@ export function extractImageTitle(
 
     const extraToken = getExtraToken(tokenExtraMap, imageCloseToken);
     const {start, end, level} = extraToken;
-    const {titleStart: titleStartRel, titleEnd: titleEndRel} = token.meta;
+    const {titleStart: titleStartRel, titleEnd: titleEndRel} = token.meta ?? {};
+    if (typeof titleStartRel !== 'number' || typeof titleEndRel !== 'number') {
+        throw new Error('Missing title positions for a translation token');
+    }
     const titleStart = titleStartRel + start;
     const titleEnd = titleEndRel + start;
 
-    const imageTitleToken = new Token('image_title', '', 0);
+    const imageTitleToken = new NativeToken('image_title', '', 0);
     imageTitleToken.content = mdData.slice(start, titleStart);
     tokenExtraMap.set(imageTitleToken, {
         start: start,
@@ -261,7 +271,7 @@ export function extractImageTitle(
     imageTitleToken.children = [];
 
     const raw = mdData.slice(titleStart, titleEnd);
-    md.inline.parse(raw, md, null, imageTitleToken.children);
+    md.inline.parse(raw, md, {}, imageTitleToken.children);
     const levelTokenType: string[] = [];
     childrenTokenSearch(
         mdData,
@@ -295,12 +305,14 @@ export function extractInlineCode(mdData: string, tokenExtraMap: TokenExtraMap, 
 
     const raw = mdData.slice(codeStart, codeEnd);
 
-    if (passTranslation.test(raw)) return;
+    if (passTranslation.test(raw)) {
+        return;
+    }
 
     // eslint-disable-next-line no-param-reassign
     token.children = [];
 
-    mdFence.inline.parse(raw, mdFence, null, token.children);
+    mdFence.inline.parse(raw, mdFence, {}, token.children);
     const levelTokenType: string[] = [];
     childrenTokenSearch(
         mdData,
@@ -352,7 +364,7 @@ export function extractFenceLines(mdData: string, tokenExtraMap: TokenExtraMap, 
 
         offset += lOffset;
 
-        const inline = new Token('inline', '', 0);
+        const inline = new NativeToken('inline', '', 0);
         inline.attrSet('idPostfix', '_code');
         inline.content = line;
         tokenExtraMap.set(inline, {
@@ -363,7 +375,7 @@ export function extractFenceLines(mdData: string, tokenExtraMap: TokenExtraMap, 
         inline.children = [];
         token.children?.push(inline);
 
-        mdFence.inline.parse(line, mdFence, null, inline.children);
+        mdFence.inline.parse(line, mdFence, {}, inline.children);
         const levelTokenType: string[] = ['inline'];
         childrenTokenSearch(
             mdData,
@@ -391,7 +403,7 @@ export function skipImageName(mdData: string, tokenExtraMap: TokenExtraMap, toke
         return;
     }
 
-    const imageNameToken = new Token('image_name', '', 0);
+    const imageNameToken = new NativeToken('image_name', '', 0);
     imageNameToken.content = raw;
     tokenExtraMap.set(imageNameToken, {
         start,

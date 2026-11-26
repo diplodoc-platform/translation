@@ -30,6 +30,8 @@ export type ExtractOptions = Experiment & TemplateOptions & TransformOptions;
 export type ExtractOutput = {
     skeleton: string;
     xliff: Xliff;
+    /** Problems that left source content untranslated; lines refer to normalized input. */
+    warnings?: string[];
 };
 
 export type ComposeOptions = Experiment & TranslateOptions;

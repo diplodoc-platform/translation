@@ -1,20 +1,14 @@
-import type MarkdownIt from 'markdown-it';
-import type {RuleCore} from 'markdown-it/lib/parser_core';
+import type {MarkdownIt} from 'markdown-it';
 
-const tokenize: RuleCore = function (state) {
-    const tokens = state.tokens;
+import {eachTokens} from '../utils';
 
-    for (let i = 0, len = tokens.length; i < len; i++) {
-        const blockToken = tokens[i];
-        if (blockToken.type !== 'inline') continue;
-
-        blockToken.children?.forEach((token) => {
-            if (token.type === 'text_special') {
-                // eslint-disable-next-line no-param-reassign
-                token.content = token.markup;
-            }
-        });
-    }
+const tokenize: Parameters<MarkdownIt['core']['ruler']['push']>[1] = (state) => {
+    eachTokens(state.tokens, (token) => {
+        if (token.type === 'text_special') {
+            // eslint-disable-next-line no-param-reassign
+            token.content = token.markup;
+        }
+    });
 };
 
 export function textJoinFix(md: MarkdownIt) {

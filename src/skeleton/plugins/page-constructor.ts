@@ -1,10 +1,9 @@
-import type MarkdownIt from 'markdown-it';
-import type StateBlock from 'markdown-it/lib/rules_block/state_block';
+import type {MarkdownIt, StateBlock} from 'markdown-it';
 import type {ContainerDirectiveParams} from '@diplodoc/directive';
 
 import {directiveParser, registerContainerDirective} from '@diplodoc/directive';
 
-export function pageConstructor(): MarkdownIt.PluginSimple {
+export function pageConstructor(): (md: MarkdownIt) => void {
     return (md) => {
         md.use(directiveParser());
 

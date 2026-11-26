@@ -1,8 +1,10 @@
-import type {Options} from 'markdown-it';
-import type MarkdownIt from 'markdown-it';
-import type Token from 'markdown-it/lib/token';
+import type {Env, MarkdownItOptions, Token} from 'markdown-it';
 
-import Renderer from 'markdown-it/lib/renderer';
+import MarkdownIt from 'markdown-it';
+
+type Renderer = MarkdownIt.Renderer;
+const NativeRenderer = MarkdownIt.Renderer;
+type Options = Required<MarkdownItOptions>;
 
 export enum CustomRendererLifeCycle {
     BeforeRender,
@@ -19,7 +21,7 @@ function isCustomRendererLifeCycle(cycle: unknown): cycle is CustomRendererLifeC
 
 export type CustomRendererParams<S = {}> = {
     hooks?: CustomRendererHooks;
-    rules?: Renderer.RenderRuleRecord;
+    rules?: Renderer['rules'];
     state?: S;
 };
 
@@ -32,7 +34,7 @@ export interface CustomRendererHook {
 export type CustomRendererHookParameters = {
     tokens: Token[];
     options: Options;
-    env: unknown;
+    env: Env | undefined;
     map?: [number, number] | null;
     // accumulates render artifacts inside the inline render
     rendered?: string[];
@@ -55,7 +57,10 @@ function getMap(tokens: Token[], i: number) {
     return null;
 }
 
-export class CustomRenderer<State = {}, Md extends MarkdownIt = MarkdownIt> extends Renderer {
+export class CustomRenderer<
+    State = {},
+    Md extends MarkdownIt.MarkdownIt = MarkdownIt.MarkdownIt,
+> extends NativeRenderer {
     readonly state: State;
 
     readonly md: Md;
@@ -77,7 +82,7 @@ export class CustomRenderer<State = {}, Md extends MarkdownIt = MarkdownIt> exte
         this.setHooks({...hooks});
     }
 
-    setRules(rules: Renderer.RenderRuleRecord) {
+    setRules(rules: Renderer['rules']) {
         for (const [name, rule] of Object.entries(rules)) {
             if (!rule || !name?.length) {
                 continue;
@@ -103,7 +108,7 @@ export class CustomRenderer<State = {}, Md extends MarkdownIt = MarkdownIt> exte
         this.hooks.set(cycle, [...hooks, ...normalized]);
     }
 
-    render(tokens: Token[], options: Options, env: unknown) {
+    render(tokens: Token[], options: Options, env: Env | undefined) {
         let rendered = '';
 
         let children;
@@ -135,13 +140,12 @@ export class CustomRenderer<State = {}, Md extends MarkdownIt = MarkdownIt> exte
         return rendered;
     }
 
-    // @ts-ignore
     renderInline(
         tokens: Token[],
         options: Options,
-        env: unknown,
-        map: SourceMap | null,
-        inline: Token,
+        env: Env | undefined,
+        map: SourceMap | null = null,
+        inline?: Token,
     ) {
         const rendered: string[] = [];
         const parameters = {tokens, options, env, rendered, map, inline};
@@ -180,14 +184,13 @@ export class CustomRenderer<State = {}, Md extends MarkdownIt = MarkdownIt> exte
         return Array.isArray(parameters.rendered) ? '' : rendered;
     }
 
-    processToken(tokens: Token[], i: number, options: Options, env: unknown) {
+    processToken(tokens: Token[], i: number, options: Options, env: Env | undefined) {
         let rendered = '';
 
         const type = tokens[i].type;
         const rule = this.rules[type];
 
         if (rule) {
-            // @ts-ignore
             rendered += rule(tokens, i, options, env, this);
         } else {
             rendered += this.renderToken(tokens, i, options);
@@ -197,11 +200,10 @@ export class CustomRenderer<State = {}, Md extends MarkdownIt = MarkdownIt> exte
     }
 }
 
-export function customRenderer<State = {}, Md extends MarkdownIt = MarkdownIt>(
-    parser: Md,
-    parameters: CustomRendererParams<State> = {},
-) {
-    // @ts-ignore
+export function customRenderer<
+    State = {},
+    Md extends MarkdownIt.MarkdownIt = MarkdownIt.MarkdownIt,
+>(parser: Md, parameters: CustomRendererParams<State> = {}) {
     // eslint-disable-next-line no-param-reassign
     parser.renderer = new CustomRenderer<State, Md>(parameters, parser);
 }

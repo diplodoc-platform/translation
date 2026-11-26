@@ -1,12 +1,13 @@
-import type markdownIt from 'markdown-it';
-import type ParserBlock from 'markdown-it/lib/parser_block';
-import type StateBlock from 'markdown-it/lib/rules_block/state_block';
+import type {ParserBlock, StateBlock, MarkdownIt as markdownIt} from 'markdown-it';
 
+import MarkdownIt from 'markdown-it';
 import yaml from 'js-yaml';
-import Token from 'markdown-it/lib/token';
 
 import {YamlQuoteQuotingType} from '../constants';
 import {yamlVariableReplace} from '../utils';
+
+type Token = MarkdownIt.Token;
+const NativeToken = MarkdownIt.Token;
 
 /* eslint-disable no-param-reassign */
 
@@ -16,7 +17,12 @@ function get(state: StateBlock, line: number) {
     return state.src.slice(pos, max);
 }
 
-const tokenize: ParserBlock.RuleBlock = function (state, startLine, endLine, silent) {
+const tokenize: Parameters<ParserBlock['ruler']['push']>[1] = function (
+    state,
+    startLine,
+    endLine,
+    silent,
+) {
     if (startLine !== 0 || state.blkIndent !== 0) {
         return false;
     }
@@ -136,7 +142,11 @@ const tokenize: ParserBlock.RuleBlock = function (state, startLine, endLine, sil
             if (typeof item.result === 'boolean') {
                 postfix += '-bool';
             }
-            const kindToken = new Token(`yaml_${item.kind}${postfix ? `-${postfix}` : ''}`, '', 0);
+            const kindToken = new NativeToken(
+                `yaml_${item.kind}${postfix ? `-${postfix}` : ''}`,
+                '',
+                0,
+            );
             const content = body.slice(item.openPos, item.closePos).trimStart();
             kindToken.content = content;
             children.push(kindToken);
@@ -145,7 +155,7 @@ const tokenize: ParserBlock.RuleBlock = function (state, startLine, endLine, sil
             const subChildren = kindToken.children;
 
             if (postfix === 'value') {
-                const inlineToken = new Token('inline', '', 0);
+                const inlineToken = new NativeToken('inline', '', 0);
                 inlineToken.attrSet('yaml', 'true');
 
                 let idPostfix = '_yaml';
@@ -160,7 +170,7 @@ const tokenize: ParserBlock.RuleBlock = function (state, startLine, endLine, sil
                 subChildren.push(inlineToken);
                 inlineToken.children = [];
 
-                const textToken = new Token('text', '', 0);
+                const textToken = new NativeToken('text', '', 0);
                 textToken.content = content;
                 inlineToken.children.push(textToken);
             }
