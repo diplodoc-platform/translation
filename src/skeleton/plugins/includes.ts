@@ -7,7 +7,7 @@ import {Liquid} from '../liquid';
 const INCLUDE_REGEXP = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}$/;
 const INCLUDE_REGEXP_2 = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}/;
 
-export default function (md: MarkdownIt) {
+export default function includes(md: MarkdownIt) {
     const block = (state: StateCore) => {
         const {tokens} = state;
         let i = 0;
