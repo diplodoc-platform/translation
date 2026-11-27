@@ -1,4 +1,4 @@
-import type MarkdownIt from 'markdown-it';
+import type {MarkdownIt} from 'markdown-it';
 
 import attrs from './markdown-it-attrs';
 

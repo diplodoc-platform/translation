@@ -1,5 +1,4 @@
-import type MarkdownIt from 'markdown-it';
-import type ParserInline from 'markdown-it/lib/parser_inline';
+import type {MarkdownIt} from 'markdown-it';
 
 /* eslint-disable no-param-reassign */
 
@@ -8,7 +7,7 @@ import type ParserInline from 'markdown-it/lib/parser_inline';
  * (rev 7a644d5), just without content escape
  */
 
-const tokenize: ParserInline.RuleInline = function (state, silent) {
+const tokenize: Parameters<MarkdownIt['inline']['ruler']['push']>[1] = function (state, silent) {
     const max = state.posMax;
     const start = state.pos;
 

@@ -1,10 +1,12 @@
 import MdIt from 'markdown-it';
 
-const md = new MdIt();
-const state = new md.core.State('', md, {});
-
 export function token(type: string, props: Hash = {}) {
-    return Object.assign(new state.Token(type, '', 0), props);
+    return Object.assign(new MdIt.Token(type, '', 0), props);
+}
+
+export function stringAttr(token: MdIt.Token, name: string): string | null {
+    const value = token.attrGet(name);
+    return value === null ? null : String(value);
 }
 
 export function find(type: string, tokens: Token[], idx: number) {

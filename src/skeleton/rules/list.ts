@@ -1,10 +1,10 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 import type {CustomRenderer} from 'src/renderer';
 import type {Consumer} from 'src/consumer';
 
 import {find} from 'src/utils';
 
-export const list: Renderer.RenderRuleRecord = {
+export const list: Renderer['rules'] = {
     list_item_open: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const open = tokens[idx];
         let close = find('list_item_close', tokens, idx + 1) as Token;

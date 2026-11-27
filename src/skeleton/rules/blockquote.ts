@@ -1,8 +1,8 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 import {token} from 'src/utils';
 
-export const blockquote: Renderer.RenderRuleRecord = {
+export const blockquote: Renderer['rules'] = {
     blockquote_open: (tokens, idx) => {
         for (let i = idx + 1; i < tokens.length; i++) {
             if (tokens[i].type === 'blockquote_open' || tokens[i].type === 'blockquote_close') {

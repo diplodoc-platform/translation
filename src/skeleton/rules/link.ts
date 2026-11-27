@@ -1,9 +1,9 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 import type {CustomRenderer} from 'src/renderer';
 
 import {Consumer} from 'src/consumer';
 import {Liquid} from 'src/skeleton/liquid';
-import {find, token} from 'src/utils';
+import {find, stringAttr, token} from 'src/utils';
 import {mt} from 'src/symbols';
 
 function isAutolink(token: Token) {
@@ -26,7 +26,7 @@ function isRefLink(open: Token, text: Token, close: Token) {
     return text?.content === '{#T}';
 }
 
-export const link: Renderer.RenderRuleRecord = {
+export const link: Renderer['rules'] = {
     link_open: function (this: CustomRenderer<Consumer>, tokens: Token[], idx) {
         const open = tokens[idx];
         const close = find('link_close', tokens, idx + 1) as Token;
@@ -58,7 +58,7 @@ export const link: Renderer.RenderRuleRecord = {
             text.reflink = true;
         }
 
-        open.attrSet('href', Liquid.unescape(open.attrGet('href') || ''));
+        open.attrSet('href', Liquid.unescape(stringAttr(open, 'href') || ''));
 
         return '';
     },
@@ -70,8 +70,8 @@ export const link: Renderer.RenderRuleRecord = {
             throw new Error('failed to render link token');
         }
 
-        const titleAttr = Liquid.unescape(open.attrGet('title') || '');
-        const hrefAttr = Liquid.unescape(open.attrGet('href') || '');
+        const titleAttr = Liquid.unescape(stringAttr(open, 'title') || '');
+        const hrefAttr = Liquid.unescape(stringAttr(open, 'href') || '');
         const skip = (close.skip = (close.skip || []) as string[]);
 
         if (hrefAttr) {

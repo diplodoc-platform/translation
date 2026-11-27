@@ -102,7 +102,7 @@ describe.each([true, false])('table title extraction (compact=%s)', (compact) =>
         const result = extract(source, options);
         const translated = result.units.map((unit) => unit.replace('Имя', translation));
         const output = compose(result.skeleton, translated, {useSource: true});
-        const html = transform(output).result.html;
+        const html = transform(output, {enableMarkdownAttrs: true}).result.html;
         const table = load(html)('table');
         expect(table.attr('title')).toBe(expected);
         expect(table.attr('width')).toBe('100%');

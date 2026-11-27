@@ -2,7 +2,6 @@ import type {TokenExtraMap} from '../types';
 
 import yaml from 'js-yaml';
 import markdownit from 'markdown-it';
-import Token from 'markdown-it/lib/token';
 
 import {liquidOperator} from '../plugins/liquid/liquidOperator';
 import {liquidVariable} from '../plugins/liquid/liquidVariable';
@@ -19,7 +18,7 @@ export function tokenizeYaml(rawYaml: string, tokenExtraMap: TokenExtraMap, leve
         throw new Error('Yaml is not string');
     }
 
-    const token = new Token('inline', '', 0);
+    const token = new markdownit.Token('inline', '', 0);
     token.content = raw;
     token.children = [];
     tokenExtraMap.set(token, {
@@ -28,7 +27,7 @@ export function tokenizeYaml(rawYaml: string, tokenExtraMap: TokenExtraMap, leve
         level,
     });
 
-    mdYaml.inline.parse(raw, mdYaml, null, token.children);
+    mdYaml.inline.parse(raw, mdYaml, {}, token.children);
 
     const levelTokenType: string[] = ['inline'];
     childrenTokenSearch(raw, tokenExtraMap, token.children, levelTokenType, 0, level + 1);

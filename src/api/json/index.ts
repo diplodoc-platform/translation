@@ -46,13 +46,23 @@ export type ComposeOptions = JSONSchemas & ParseOptions & AjvConfig;
 
 export function extract(
     content: JSONObject,
-    {schemas = [], source, target, compact, ajvOptions, unitLocalIds}: ExtractOptions,
+    {
+        schemas = [],
+        source,
+        target,
+        compact,
+        ajvOptions,
+        unitLocalIds,
+        originalFile,
+        log,
+        deprecationWarnings,
+    }: ExtractOptions,
 ): ExtractOutput {
     const mainSchema = getMainSchema(content, schemas);
     const hashed = hash({unitLocalIds});
     const ajv = setupAjv(schemas, ajvOptions, mainSchema);
 
-    ajv.addKeyword(translate.extract(hashed, {compact}));
+    ajv.addKeyword(translate.extract(hashed, {compact, originalFile, log, deprecationWarnings}));
     ajv.validate(mainSchema, content);
 
     const xliff = template(hashed.segments, {source, target});

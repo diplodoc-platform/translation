@@ -1,14 +1,13 @@
-import type MarkdownIt from 'markdown-it';
-import type {RuleCore} from 'markdown-it/lib/parser_core';
+import type {Token} from 'markdown-it';
 
-import Token from 'markdown-it/lib/token';
+import MarkdownIt from 'markdown-it';
 
 /* eslint-disable no-param-reassign */
 
 const CUSTOM_ID_REGEXP = /\[?{ ?#(\S+) ?}]?/;
 const CUSTOM_ID_REGEXP_G = new RegExp(CUSTOM_ID_REGEXP.source, 'g');
 
-const tokenize: RuleCore = function (state) {
+const tokenize: Parameters<MarkdownIt.MarkdownIt['core']['ruler']['push']>[1] = function (state) {
     const tokens = state.tokens;
     let i = 0;
 
@@ -21,18 +20,22 @@ const tokenize: RuleCore = function (state) {
 
             const children = inlineToken.children || [];
             children.forEach((tokenLocal, idx) => {
-                if (tokenLocal.type !== 'text') return;
-                if (!CUSTOM_ID_REGEXP.test(tokenLocal.content)) return;
+                if (tokenLocal.type !== 'text') {
+                    return;
+                }
+                if (!CUSTOM_ID_REGEXP.test(tokenLocal.content)) {
+                    return;
+                }
 
                 const newTokens: Token[] = [];
                 let lastPos = 0;
                 tokenLocal.content.replace(CUSTOM_ID_REGEXP_G, (raw, id, pos, str) => {
-                    const textToken = new Token('text', '', 0);
+                    const textToken = new MarkdownIt.Token('text', '', 0);
                     textToken.content = str.slice(lastPos, pos);
                     lastPos = pos + raw.length;
                     newTokens.push(textToken);
 
-                    const hashToken = new Token('header_id', '', 0);
+                    const hashToken = new MarkdownIt.Token('header_id', '', 0);
                     hashToken.content = id;
                     newTokens.push(hashToken);
                     return '';
@@ -48,7 +51,7 @@ const tokenize: RuleCore = function (state) {
     }
 };
 
-export function anchors(md: MarkdownIt) {
+export function anchors(md: MarkdownIt.MarkdownIt) {
     try {
         md.core.ruler.after('curly_attributes', 'anchors', tokenize);
     } catch {

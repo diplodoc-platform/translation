@@ -1,0 +1,78 @@
+{
+  "baseline": "700898d99f446dfab5fb7e5de5a26f8ca2663c28",
+  "transformArchiveSha256": "cad2001cd469e409a5715fdbc7e60791374ad73a83d4a912fd4af84e19e25544",
+  "cases": [
+    {
+      "name": "body",
+      "experimental": false,
+      "compact": false,
+      "source": "**Body prose**\n",
+      "opening": ":::cut [Title]\n\n",
+      "sourceResult": "**Body prose**\n",
+      "targetResult": "**Body translated longer prose**\n"
+    },
+    {
+      "name": "body",
+      "experimental": false,
+      "compact": true,
+      "source": "**Body prose**\n",
+      "opening": ":::cut [Title]\n\n",
+      "sourceResult": "**Body prose**\n",
+      "targetResult": "**Body translated longer prose**\n"
+    },
+    {
+      "name": "body",
+      "experimental": true,
+      "compact": false,
+      "source": "**Body prose**\n",
+      "opening": ":::cut [Title]\n\n",
+      "sourceResult": "**Body prose**\n",
+      "targetResult": "**Body translated longer prose**\n"
+    },
+    {
+      "name": "body",
+      "experimental": true,
+      "compact": true,
+      "source": "**Body prose**\n",
+      "opening": ":::cut [Title]\n\n",
+      "sourceResult": "\n                    **Body prose**\n                \n",
+      "targetResult": "\n                    **Body translated longer prose**\n                \n"
+    },
+    {
+      "name": "tabs",
+      "experimental": false,
+      "compact": false,
+      "source": "- **First prose**\n\n  **Body prose**\n\n- **Second prose**\n\n  **Body prose**\n",
+      "opening": ":::tabs {variant=regular group=prose}\n\n",
+      "sourceResult": "- **First prose**\n\n  **Body prose**\n\n- **Second prose**\n\n  **Body prose**\n",
+      "targetResult": "- **First translated longer prose**\n\n  **Body translated longer prose**\n\n- **Second translated longer prose**\n\n  **Body translated longer prose**\n"
+    },
+    {
+      "name": "tabs",
+      "experimental": false,
+      "compact": true,
+      "source": "- **First prose**\n\n  **Body prose**\n\n- **Second prose**\n\n  **Body prose**\n",
+      "opening": ":::tabs {variant=regular group=prose}\n\n",
+      "sourceResult": "- **First prose**\n\n  **Body prose**\n\n- **Second prose**\n\n  **Body prose**\n",
+      "targetResult": "- **First translated longer prose**\n\n  **Body translated longer prose**\n\n- **Second translated longer prose**\n\n  **Body translated longer prose**\n"
+    },
+    {
+      "name": "tabs",
+      "experimental": true,
+      "compact": false,
+      "source": "- **First prose**\n\n  **Body prose**\n\n- **Second prose**\n\n  **Body prose**\n",
+      "opening": ":::tabs {variant=regular group=prose}\n\n",
+      "sourceResult": "- **First prose**\n\n  **Body prose**\n\n- **Second prose**\n\n  **Body prose**\n",
+      "targetResult": "- **First translated longer prose**\n\n  **Body translated longer prose**\n\n- **Second translated longer prose**\n\n  **Body translated longer prose**\n"
+    },
+    {
+      "name": "tabs",
+      "experimental": true,
+      "compact": true,
+      "source": "- **First prose**\n\n  **Body prose**\n\n- **Second prose**\n\n  **Body prose**\n",
+      "opening": ":::tabs {variant=regular group=prose}\n\n",
+      "sourceResult": "- \n                    **First prose**\n                \n\n  \n                    **Body prose**\n                \n\n- \n                    **Second prose**\n                \n\n  \n                    **Body prose**\n                \n",
+      "targetResult": "- \n                    **First translated longer prose**\n                \n\n  \n                    **Body translated longer prose**\n                \n\n- \n                    **Second translated longer prose**\n                \n\n  \n                    **Body translated longer prose**\n                \n"
+    }
+  ]
+}

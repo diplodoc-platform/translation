@@ -1,8 +1,9 @@
+import type {Token} from 'markdown-it';
 import type {TokenExtraMap} from '../types';
 
+import MarkdownIt from 'markdown-it';
 import {sentenize} from '@diplodoc/sentenizer';
 import {capitalize, uniq} from 'lodash';
-import Token from 'markdown-it/lib/token';
 
 import {getExtraToken, toJsonF} from './common';
 
@@ -204,7 +205,7 @@ export function splitInlineToken(
                 throw new Error("Can't split non text token");
             }
 
-            const leftToken = new Token('text', '', 0);
+            const leftToken = new MarkdownIt.Token('text', '', 0);
             leftToken.content = mdData.slice(start, point);
             tokenExtraMap.set(leftToken, {
                 start,
@@ -213,7 +214,7 @@ export function splitInlineToken(
             });
             leftChildren.push(leftToken);
 
-            const rightToken = new Token('text', '', 0);
+            const rightToken = new MarkdownIt.Token('text', '', 0);
             rightToken.content = mdData.slice(point, end);
             tokenExtraMap.set(rightToken, {
                 start: point,
@@ -238,7 +239,7 @@ export function splitInlineToken(
         }
     }
 
-    const leftInlineToken = new Token('inline', '', 0);
+    const leftInlineToken = new MarkdownIt.Token('inline', '', 0);
     leftInlineToken.content = mdData.slice(inlineTokenExtra.start, point);
     leftInlineToken.children = leftChildren;
     tokenExtraMap.set(leftInlineToken, {
@@ -247,7 +248,7 @@ export function splitInlineToken(
         level: inlineTokenExtra.level,
     });
 
-    const rightInlineToken = new Token('inline', '', 0);
+    const rightInlineToken = new MarkdownIt.Token('inline', '', 0);
     rightInlineToken.content = mdData.slice(point, inlineTokenExtra.end);
     rightInlineToken.children = children;
     tokenExtraMap.set(rightInlineToken, {

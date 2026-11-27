@@ -1,17 +1,22 @@
-import type MarkdownIt from 'markdown-it';
-import type ParserInline from 'markdown-it/lib/parser_inline';
+import type {MarkdownIt} from 'markdown-it';
 
 import {FragmentType} from './constants';
 
 /* eslint-disable no-param-reassign */
 
-const tokenize: ParserInline.RuleInline = function (state, silent) {
+const tokenize: Parameters<MarkdownIt['inline']['ruler']['push']>[1] = function (state, silent) {
     const pos = state.pos;
     const max = state.posMax;
 
-    if (pos + 2 > max) return false;
-    if (state.src.charAt(pos) !== '{') return false;
-    if (state.src.charAt(pos + 1) !== '{') return false;
+    if (pos + 2 > max) {
+        return false;
+    }
+    if (state.src.charAt(pos) !== '{') {
+        return false;
+    }
+    if (state.src.charAt(pos + 1) !== '{') {
+        return false;
+    }
 
     const fragment = state.src.slice(pos);
     const m = fragment.match(/^\{\{.+?}}/);

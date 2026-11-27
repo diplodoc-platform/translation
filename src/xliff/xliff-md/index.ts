@@ -2,10 +2,35 @@ import type {XLFTagToken, XLFTextToken, XLFToken} from '../token';
 
 import assert from 'assert';
 
+import {escapeSubscriptBody} from 'src/utils/subscript';
+
 import {isXLFTagToken, isXLFTextToken} from '../token';
 
 function assertTagToken(token: XLFToken): asserts token is XLFTagToken {
     assert(isXLFTagToken(token));
+}
+
+function isGroup(token: XLFToken): token is XLFTagToken {
+    return isXLFTagToken(token) && token.data === 'g';
+}
+
+function findGroupEnd(tokens: XLFToken[], start: number) {
+    let depth = 1;
+    for (let index = start; index < tokens.length; index++) {
+        const token = tokens[index];
+        if (!isGroup(token)) {
+            continue;
+        }
+        if (token.nodeType === 'open') {
+            depth++;
+        } else if (token.nodeType === 'close') {
+            depth--;
+        }
+        if (!depth) {
+            return index;
+        }
+    }
+    assert.fail('Subscript translation group must be closed');
 }
 
 function assertTextToken(token: XLFToken): asserts token is XLFTextToken {
@@ -96,6 +121,13 @@ export class XLFMDRenderer {
             sup: openclose,
             sup_open: literal,
             sup_close: literal,
+            // underline and subscript
+            underline: openclose,
+            underline_open: literal,
+            underline_close: literal,
+            sub: openclose,
+            sub_open: literal,
+            sub_close: literal,
             // sup
             monospace: openclose,
             monospace_open: literal,
@@ -161,6 +193,9 @@ export class XLFMDRenderer {
 
             // no-translate
             no_translate_inline: literal,
+            footnote_ref: literal,
+            task_marker: literal,
+            translation_directive_marker: literal,
         };
     }
 
@@ -168,14 +203,24 @@ export class XLFMDRenderer {
         let rendered = '';
         let nameStart = 0;
 
-        for (const token of tokens) {
-            if (isXLFTagToken(token) && token.data === 'g' && token.syntax === 'file_name') {
+        let index = 0;
+        while (index < tokens.length) {
+            const token = tokens[index++];
+            if (isGroup(token) && token.syntax === 'file_name') {
                 if (token.nodeType === 'open') {
                     nameStart = rendered.length;
                 } else {
                     const name = quoteFileName(rendered.slice(nameStart), token.begin);
                     rendered = rendered.slice(0, nameStart) + name;
                 }
+                continue;
+            }
+
+            if (isGroup(token) && token.syntax === 'sub' && token.nodeType === 'open') {
+                const end = findGroupEnd(tokens, index);
+                const body = this.render(tokens.slice(index, end));
+                rendered += token.begin + escapeSubscriptBody(body) + token.end;
+                index = end + 1;
                 continue;
             }
 

@@ -139,7 +139,7 @@ describe('file names with Liquid variables', () => {
                 `{% file name=${expectedQuote}${translated}-{{locale}}${expectedQuote} src="guide.txt" %}`,
             );
 
-            const md = new MarkdownIt().use(filePlugin, {path: ''});
+            const md = new MarkdownIt().use(filePlugin);
             const [file] = md.parseInline(result, {})[0].children || [];
             expect(file.type).toBe('yfm_file');
             expect(file.attrGet('download')).toBe(translated + '-{{locale}}');

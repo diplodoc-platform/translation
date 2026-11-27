@@ -1,6 +1,6 @@
 import type {CustomRendererHookParameters} from 'src/renderer';
 
-import MdToken from 'markdown-it/lib/token';
+import MarkdownIt from 'markdown-it';
 
 import {token} from 'src/utils';
 import {mt} from 'src/symbols';
@@ -21,8 +21,8 @@ export function image(parameters: CustomRendererHookParameters) {
 
         for (let j = 0; j < inlines.length; j++) {
             if (inlines[j].type === 'image') {
-                const openToken = new MdToken('image_open', 'img', 0) as Token;
-                const closeToken = new MdToken('image_close', 'img', 0) as Token;
+                const openToken = new MarkdownIt.Token('image_open', 'img', 0) as Token;
+                const closeToken = new MarkdownIt.Token('image_close', 'img', 0) as Token;
                 const fakeContent: Token[] = inlines[j]?.children?.length
                     ? []
                     : // Fake content is important for segmentation.

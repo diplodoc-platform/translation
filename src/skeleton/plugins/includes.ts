@@ -1,6 +1,4 @@
-import type MdIt from 'markdown-it';
-import type State from 'markdown-it/lib/rules_core/state_core';
-import type StateInline from 'markdown-it/lib/rules_inline/state_inline';
+import type {MarkdownIt, StateCore, StateInline} from 'markdown-it';
 
 import {token} from 'src/utils';
 
@@ -9,8 +7,8 @@ import {Liquid} from '../liquid';
 const INCLUDE_REGEXP = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}$/;
 const INCLUDE_REGEXP_2 = /^{%\s*include\s*(notitle)?\s*\[(.+?)]\((.+?)\)\s*%}/;
 
-export default function (md: MdIt) {
-    const block = (state: State) => {
+export default function includes(md: MarkdownIt) {
+    const block = (state: StateCore) => {
         const {tokens} = state;
         let i = 0;
 

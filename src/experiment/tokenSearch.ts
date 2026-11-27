@@ -2,9 +2,10 @@ import type {Token} from 'markdown-it';
 import type {LinePosition, TokenExtraMap} from './types';
 
 import markdownit from 'markdown-it';
-import StateInline from 'markdown-it/lib/rules_inline/state_inline';
 
 import {toJsonF} from './utils';
+
+const StateInline = markdownit.StateInline;
 
 /* eslint-disable no-console */
 
@@ -190,8 +191,30 @@ function getRawContent(lines: string[], start: number, end: number) {
     return lines.slice(start, end).join('\n') + (lines.length > end ? '\n' : '');
 }
 
+const inlineMarkupTokens = new Set([
+    'strong_open',
+    'strong_close',
+    'em_open',
+    'em_close',
+    's_open',
+    's_close',
+    'sup_open',
+    'sup_close',
+    'underline_open',
+    'underline_close',
+    'sub_open',
+    'sub_close',
+]);
+
 function getTokenContent(token: Token) {
+    if (inlineMarkupTokens.has(token.type)) {
+        return token.markup;
+    }
+
     switch (token.type) {
+        case 'footnote_ref':
+        case 'task_marker':
+            return token.markup;
         case 'heading_open': {
             // this tag after content
             if (['=', '-'].includes(token.markup)) {
@@ -203,27 +226,11 @@ function getTokenContent(token: Token) {
         case 'list_item_open': {
             return `${token.info}${token.markup}`;
         }
-        case 'strong_close':
-        case 'strong_open': {
-            return token.markup;
-        }
-        case 'em_close':
-        case 'em_open': {
-            return token.markup;
-        }
-        case 's_open':
-        case 's_close': {
-            return token.markup;
-        }
         case 'hardbreak':
         case 'softbreak': {
             return '\n';
         }
         case 'hr': {
-            return token.markup;
-        }
-        case 'sup_open':
-        case 'sup_close': {
             return token.markup;
         }
         case 'yfm_table_open': {
@@ -302,7 +309,9 @@ function searchRawByLines(fragment: string, searchLines: string[], lastPos: numb
         };
         linePosList.push(linePos);
         const line = lineRaw;
-        if (!line) return;
+        if (!line) {
+            return;
+        }
         const pos = fragment.indexOf(line, subOffsetPos);
         if (pos === -1) {
             console.error(

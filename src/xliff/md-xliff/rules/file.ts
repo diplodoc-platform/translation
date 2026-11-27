@@ -1,11 +1,11 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 import {amp} from 'src/symbols';
 import {generateCloseG, generateOpenG, generateX} from 'src/xliff/generator';
 
 import {renderLiquid} from './liquid';
 
-export const file: Renderer.RenderRuleRecord = {
+export const file: Renderer['rules'] = {
     yfm_file: fileRule,
     file_name: fileName,
     file_open: fileMarkup,
@@ -27,7 +27,7 @@ function fileName(tokens: Token[], i: number) {
     const {markup, meta} = tokens[i];
     const quote = markup[0];
     const rawLines = markup.slice(1, -1).split(/(\r?\n)/);
-    const lines: {text: string; tokens: Token[]}[] = meta.lines;
+    const {lines} = meta as {lines: {text: string; tokens: Token[]}[]};
     let name = '';
 
     for (const [index, {text, tokens: children}] of lines.entries()) {

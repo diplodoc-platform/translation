@@ -1,4 +1,4 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 import {file} from './file';
 import {link} from './link';
@@ -12,7 +12,7 @@ import {list} from './list';
 import {noTranslate} from './no-translate';
 import {pageConstructor} from './page-constructor';
 
-export const rules: Renderer.RenderRuleRecord = {
+export const rules: Renderer['rules'] = {
     ...text,
     ...file,
     ...link,

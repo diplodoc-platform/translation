@@ -1,4 +1,4 @@
-import type Renderer from 'markdown-it/lib/renderer';
+import type {Renderer} from 'markdown-it';
 
 import {generateCloseG, generateOpenG, generateX} from 'src/xliff/generator';
 
@@ -35,7 +35,7 @@ const close = (ctype: string) => (tokens: Token[], i: number) => {
     });
 };
 
-export const pair: Renderer.RenderRuleRecord = {
+export const pair: Renderer['rules'] = {
     strong_open: open('bold'),
     strong_close: close('bold'),
     em_open: open('italic'),
@@ -44,6 +44,10 @@ export const pair: Renderer.RenderRuleRecord = {
     s_close: close('strikethrough'),
     sup_open: open('sup'),
     sup_close: close('sup'),
+    underline_open: open('underline'),
+    underline_close: close('underline'),
+    sub_open: open('sub'),
+    sub_close: close('sub'),
     monospace_open: open('monospace'),
     monospace_close: close('monospace'),
 };

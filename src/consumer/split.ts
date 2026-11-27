@@ -60,7 +60,7 @@ export function trim(part: Token[]) {
         tokens,
         token(first.type, {
             ...first,
-            content: first.content.trimStart(),
+            content: before.at(-1)?.type === 'sub_open' ? first.content : first.content.trimStart(),
             generated: (first.generated || '') + '|trimStart',
         }),
     );
@@ -78,7 +78,10 @@ export function trim(part: Token[]) {
         tokens,
         token(last.type, {
             ...last,
-            content: last.content.replace(trimEndRegExp, ''),
+            content:
+                after[0]?.type === 'sub_close'
+                    ? last.content
+                    : last.content.replace(trimEndRegExp, ''),
             generated: (last.generated || '') + '|trimEnd',
         }),
     );
@@ -179,23 +182,25 @@ export function split(tokens: Token[], compact = false) {
             parts.push(trim(currentPart));
             part = nextPart;
 
-            if (nextPart.length > 0) {
-                prevSegment = nextPart.map((token) => token.content).join('');
-            } else {
-                prevSegment = '';
-            }
+            prevSegment = nextPart.map((token) => token.content).join('');
 
             content = '';
         }
     };
 
     let nonSentenseCount = 0;
+    let subscript = false;
 
     for (const _token of tokens) {
         if (startsSentence(_token, content, nonSentenseCount, compact)) {
             release();
             nonSentenseCount = 0;
         }
+
+        // The official subscript grammar emits one literal body. Keep the real
+        // pair intact instead of replacing an opening marker with generated text.
+        const inSubscript: boolean = subscript || _token.type === 'sub_open';
+        subscript = inSubscript && _token.type !== 'sub_close';
 
         content = extend(content, _token);
 
@@ -208,7 +213,7 @@ export function split(tokens: Token[], compact = false) {
         }
 
         // The file parser needs the entire name to choose a valid quote delimiter.
-        if (_token.isInlineCode || _token.type === 'file_name') {
+        if (_token.isInlineCode || _token.type === 'file_name' || inSubscript) {
             add(_token);
             nonSentenseCount = segments.length - 1;
 

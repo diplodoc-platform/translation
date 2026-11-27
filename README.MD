@@ -75,27 +75,27 @@ function extract(parameters: ExtractParameters): ExtractOutput;
 
 #### 🎛️ Parameters `Object`
 
-| Name           | Type             | Description                                               |
-| -------------- | ---------------- | --------------------------------------------------------- |
-| `markdown`     | `string`         | The markdown string to extract text content from.         |
-| `source`       | `LanguageLocale` | The source language and locale.                           |
-| `target`       | `LanguageLocale` | The target language and locale.                           |
-| `skeletonPath` | `string`         | The path where you will put the skeleton file.         |
-| `markdownPath` | `string`         | The path from where the markdown file were read.         |
-| `filter`       | `boolean`        | Filter none translatable files.                            |
+| Name           | Type             | Description                                                                                                                                                                                                                                          |
+| -------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `markdown`     | `string`         | The markdown string to extract text content from.                                                                                                                                                                                                    |
+| `source`       | `LanguageLocale` | The source language and locale.                                                                                                                                                                                                                      |
+| `target`       | `LanguageLocale` | The target language and locale.                                                                                                                                                                                                                      |
+| `skeletonPath` | `string`         | The path where you will put the skeleton file.                                                                                                                                                                                                       |
+| `markdownPath` | `string`         | The path from where the markdown file were read.                                                                                                                                                                                                     |
+| `filter`       | `boolean`        | Filter none translatable files.                                                                                                                                                                                                                      |
 | `compact`      | `boolean`        | Compact XLIFF without `<g>` wrappers. Code blocks are processed precisely instead of as a whole. Markup wrapping a whole sentence goes to the skeleton, markup that only starts or ends it stays in the unit; a sentence may start with inline code. |
-| `code`         | `string`         | How fenced code is processed, see below.                   |
-| `unitLocalIds` | `boolean`        | Restart placeholder ids (`g-N`/`x-N`) for every unit instead of numbering them through the document, so a unit's text does not depend on the markup above it. Use when unit texts serve as translation cache keys. Off by default. |
+| `code`         | `string`         | How fenced code is processed, see below.                                                                                                                                                                                                             |
+| `unitLocalIds` | `boolean`        | Restart placeholder ids (`g-N`/`x-N`) for every unit instead of numbering them through the document, so a unit's text does not depend on the markup above it. Use when unit texts serve as translation cache keys. Off by default.                   |
 
 #### 🧱 Code blocks
 
 The `code` parameter selects how much of a fenced code block is translatable:
 
-| Mode       | What goes to translation                                                                                   |
-| ---------- | ---------------------------------------------------------------------------------------------------------- |
-| `no`       | Nothing, the block is copied as is.                                                                        |
-| `all`      | The whole block. Default without `compact`.                                                                |
-| `precise`  | `<placeholders>` of any block and comments of `bash`/`shell`/`sh` blocks. Default with `compact`.         |
+| Mode       | What goes to translation                                                                                                                                                         |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `no`       | Nothing, the block is copied as is.                                                                                                                                              |
+| `all`      | The whole block. Default without `compact`.                                                                                                                                      |
+| `precise`  | `<placeholders>` of any block and comments of `bash`/`shell`/`sh` blocks. Default with `compact`.                                                                                |
 | `adaptive` | Everything of `precise` plus line comments of other languages (`#`, `//`, `--`) and labels of `mermaid` diagrams. Commented-out code, tool directives and separators stay as is. |
 
 A single block overrides the mode with its info string: ` ```yaml translate=adaptive `.
@@ -111,10 +111,10 @@ A single block overrides the mode with its info string: ` ```yaml translate=adap
 
 #### 🎛️ ExtractOutput `Object`
 
-| Name       | Type     | Description                                               |
-| ---------- | -------- | --------------------------------------------------------- |
-| `skeleton` | `string` | The extracted skeleton string.                            |
-| `xlf`      | `string` | The extracted XLF string.                                 |
+| Name       | Type       | Description                                                                                                                                                 |
+| ---------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `skeleton` | `string`   | The extracted skeleton string.                                                                                                                              |
+| `xlf`      | `string`   | The extracted XLF string.                                                                                                                                   |
 | `warnings` | `string[]` | Parts of the markdown left untranslated without failing the extraction, one line each. For example, a `page-constructor` block whose YAML cannot be parsed. |
 
 #### 🔤 compose ✨
@@ -122,15 +122,15 @@ A single block overrides the mode with its info string: ` ```yaml translate=adap
 This function composes 🔠 translated 📝 markdown from given 🧟‍♂️ skeleton and 💬 XLF.
 
 ```typescript
-function compose(parameters: ComposeParameters): string
+function compose(parameters: ComposeParameters): string;
 ```
 
 #### 🎛️ Parameters `Object`
 
-| Name           | Type             | Description                                               |
-| -------------- | ---------------- | --------------------------------------------------------- |
-| `skeleton`     | `string`         | The skeleton with hashes instead of translatable text     |
-| `xlf`          | `string`         | XLF with translated text                                  |
+| Name       | Type     | Description                                           |
+| ---------- | -------- | ----------------------------------------------------- |
+| `skeleton` | `string` | The skeleton with hashes instead of translatable text |
+| `xlf`      | `string` | XLF with translated text                              |
 
 ### 👨‍💻 Usage
 
@@ -171,7 +171,7 @@ const params = {
     target: {language: 'ru', locale: 'RU' as const},
     skeletonPath: 'path/where/you/will/put/generated/skeleton.skl.md',
     markdownPath: 'path/to/file/where/markdown/string/came/from.md',
-}
+};
 
 const {skeleton, xlf} = extract(params);
 
@@ -181,9 +181,9 @@ console.log(xlf);
 
 #### 💥 Output
 
-![skeleton output](assets/extract-output-skeleton.png "skeleton")
+![skeleton output](assets/extract-output-skeleton.png 'skeleton')
 
-![xlf output](assets/extract-output-xlf.png "xlf")
+![xlf output](assets/extract-output-xlf.png 'xlf')
 
 #### 🔤 Compose
 
@@ -208,7 +208,7 @@ const skeleton = `%%%1%%%
 [%%%13%%%](files/file.md "%%%14%%%")
 
 ![%%%15%%%](files/image.png "%%%16%%%")
-`
+`;
 
 const xlf = `<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
@@ -295,4 +295,35 @@ console.log(markdown);
 
 #### 💥 Output
 
-![markdown output](assets/compose-output-markdown.png "markdown")
+![markdown output](assets/compose-output-markdown.png 'markdown')
+
+### Block directive translation
+
+Both Markdown extraction pipelines recognize canonical `:::cut`, `:::note`, and
+`:::tabs` containers. Titles, tab labels, and body text are translatable; directive
+names, delimiters, attributes (including `id` and `group`), and refused or incomplete
+headers stay unchanged. Legacy block syntax continues to work alongside colon syntax.
+
+Inline, leaf, and container `no-translate` directives keep their content out of
+translatable XLIFF text in both pipelines. Inline source can remain in opaque XLIFF
+placeholder attributes so composition can restore it. Code blocks retain the selected
+code translation mode. The experimental pipeline retains its existing CRLF-to-LF
+normalization.
+
+For accepted Tabs items, the first canonical custom anchor and the markers consumed
+for activation or display stay outside translatable text. Label prose remains
+translatable in all four colon variants and the supported legacy syntax. Later
+literal markers follow the existing Tabs and Translation behavior.
+
+If a canonical item cannot be associated unambiguously with source text, or a code
+or no-translate inline rule contains its marker, its title is preserved without
+translation. Extraction reports a one-line warning with the reason and, when known,
+the line in normalized parser input. A missing title can require preserving the
+accepted container. The experimental result includes optional `warnings` only when
+nonempty. A failed canonical observation refuses extraction rather than using a
+partial result.
+
+Compact experimental output has an existing limitation: paragraphs or tab labels
+containing only formatted text can gain XML formatter whitespace when composed.
+Colon container bodies retain that behavior; directive headers and opaque
+`no-translate` inline markers preserve their original spacing.
