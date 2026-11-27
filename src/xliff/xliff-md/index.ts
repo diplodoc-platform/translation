@@ -10,6 +10,29 @@ function assertTagToken(token: XLFToken): asserts token is XLFTagToken {
     assert(isXLFTagToken(token));
 }
 
+function isGroup(token: XLFToken): token is XLFTagToken {
+    return isXLFTagToken(token) && token.data === 'g';
+}
+
+function findGroupEnd(tokens: XLFToken[], start: number) {
+    let depth = 1;
+    for (let index = start; index < tokens.length; index++) {
+        const token = tokens[index];
+        if (!isGroup(token)) {
+            continue;
+        }
+        if (token.nodeType === 'open') {
+            depth++;
+        } else if (token.nodeType === 'close') {
+            depth--;
+        }
+        if (!depth) {
+            return index;
+        }
+    }
+    assert.fail('Subscript translation group must be closed');
+}
+
 function assertTextToken(token: XLFToken): asserts token is XLFTextToken {
     assert(isXLFTextToken(token));
 }
@@ -180,9 +203,10 @@ export class XLFMDRenderer {
         let rendered = '';
         let nameStart = 0;
 
-        for (let index = 0; index < tokens.length; index++) {
-            const token = tokens[index];
-            if (isXLFTagToken(token) && token.data === 'g' && token.syntax === 'file_name') {
+        let index = 0;
+        while (index < tokens.length) {
+            const token = tokens[index++];
+            if (isGroup(token) && token.syntax === 'file_name') {
                 if (token.nodeType === 'open') {
                     nameStart = rendered.length;
                 } else {
@@ -192,34 +216,14 @@ export class XLFMDRenderer {
                 continue;
             }
 
-            if (
-                isXLFTagToken(token) &&
-                token.data === 'g' &&
-                token.syntax === 'sub' &&
-                token.nodeType === 'open'
-            ) {
-                let depth = 1;
-                let end = index;
-                while (++end < tokens.length) {
-                    const next = tokens[end];
-                    if (isXLFTagToken(next) && next.data === 'g') {
-                        if (next.nodeType === 'open') {
-                            depth++;
-                        }
-                        if (next.nodeType === 'close') {
-                            depth--;
-                        }
-                    }
-                    if (!depth) {
-                        break;
-                    }
-                }
-                assert(end < tokens.length, 'Subscript translation group must be closed');
-                const body = this.render(tokens.slice(index + 1, end));
+            if (isGroup(token) && token.syntax === 'sub' && token.nodeType === 'open') {
+                const end = findGroupEnd(tokens, index);
+                const body = this.render(tokens.slice(index, end));
                 rendered += token.begin + escapeSubscriptBody(body) + token.end;
-                index = end;
+                index = end + 1;
                 continue;
             }
+
             const handler = this.rules[token.type];
             if (handler) {
                 rendered += handler(token);

@@ -1,7 +1,5 @@
 import MarkdownIt from 'markdown-it';
 
-const NativeToken = MarkdownIt.Token;
-
 /* eslint-disable no-param-reassign */
 
 const CUT_REGEXP = /^{%\s*cut\s*(["|'])(.*?)\1\s*%}/;
@@ -47,13 +45,13 @@ const tokenize: Parameters<MarkdownIt.MarkdownIt['inline']['ruler']['push']>[1] 
             token.content = raw;
             token.children = [];
 
-            const quoteOpenToken = new NativeToken('cut_quote_open', '', 0);
+            const quoteOpenToken = new MarkdownIt.Token('cut_quote_open', '', 0);
             quoteOpenToken.content = quote;
             token.children.push(quoteOpenToken);
 
             state.md.inline.parse(title, state.md, state.env, token.children);
 
-            const quoteCloseToken = new NativeToken('cut_quote_close', '', 0);
+            const quoteCloseToken = new MarkdownIt.Token('cut_quote_close', '', 0);
             quoteCloseToken.content = quote;
             token.children.push(quoteCloseToken);
         } else {

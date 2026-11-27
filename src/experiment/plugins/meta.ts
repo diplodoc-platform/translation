@@ -1,13 +1,10 @@
-import type {ParserBlock, StateBlock, MarkdownIt as markdownIt} from 'markdown-it';
+import type {ParserBlock, StateBlock, Token} from 'markdown-it';
 
 import MarkdownIt from 'markdown-it';
 import yaml from 'js-yaml';
 
 import {YamlQuoteQuotingType} from '../constants';
 import {yamlVariableReplace} from '../utils';
-
-type Token = MarkdownIt.Token;
-const NativeToken = MarkdownIt.Token;
 
 /* eslint-disable no-param-reassign */
 
@@ -142,11 +139,8 @@ const tokenize: Parameters<ParserBlock['ruler']['push']>[1] = function (
             if (typeof item.result === 'boolean') {
                 postfix += '-bool';
             }
-            const kindToken = new NativeToken(
-                `yaml_${item.kind}${postfix ? `-${postfix}` : ''}`,
-                '',
-                0,
-            );
+            const suffix = postfix ? `-${postfix}` : '';
+            const kindToken = new MarkdownIt.Token(`yaml_${item.kind}${suffix}`, '', 0);
             const content = body.slice(item.openPos, item.closePos).trimStart();
             kindToken.content = content;
             children.push(kindToken);
@@ -155,7 +149,7 @@ const tokenize: Parameters<ParserBlock['ruler']['push']>[1] = function (
             const subChildren = kindToken.children;
 
             if (postfix === 'value') {
-                const inlineToken = new NativeToken('inline', '', 0);
+                const inlineToken = new MarkdownIt.Token('inline', '', 0);
                 inlineToken.attrSet('yaml', 'true');
 
                 let idPostfix = '_yaml';
@@ -170,7 +164,7 @@ const tokenize: Parameters<ParserBlock['ruler']['push']>[1] = function (
                 subChildren.push(inlineToken);
                 inlineToken.children = [];
 
-                const textToken = new NativeToken('text', '', 0);
+                const textToken = new MarkdownIt.Token('text', '', 0);
                 textToken.content = content;
                 inlineToken.children.push(textToken);
             }
@@ -212,6 +206,6 @@ const tokenize: Parameters<ParserBlock['ruler']['push']>[1] = function (
     return true;
 };
 
-export function meta(md: markdownIt) {
+export function meta(md: MarkdownIt.MarkdownIt) {
     md.block.ruler.before('code', 'meta', tokenize, {alt: []});
 }

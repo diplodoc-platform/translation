@@ -1,12 +1,10 @@
+import type {Token} from 'markdown-it';
 import type {NoteParser, NoteState} from '@diplodoc/notes-extension/plugin';
 
 import MarkdownIt from 'markdown-it';
 import {createNotesPlugin} from '@diplodoc/notes-extension/plugin';
 
 import {stringAttr} from 'src/utils';
-
-type Token = MarkdownIt.Token;
-const NativeToken = MarkdownIt.Token;
 
 interface Boundary {
     token: Token;
@@ -22,20 +20,33 @@ interface SourceNotes {
 // A lexical fallback only protects unsupported marker bytes; it does not decide
 // whether the canonical grammar accepts them. Stop at the first unquoted end.
 function opaqueMarker(fragment: string): string | undefined {
-    const prefix = fragment.match(/^\{%\s*(?:note|endnote)(?=\s|%)/);
+    const prefix = /^\{%\s*(?:note|endnote)(?=\s|%)/.exec(fragment);
     if (!prefix) {
         return undefined;
     }
+
+    const end = findMarkerEnd(fragment, prefix[0].length);
+    return end < 0 ? fragment : fragment.slice(0, end);
+}
+
+function titleSoftbreakLength(fragment: string, start: number, quoted: boolean) {
+    if (quoted) {
+        return 0;
+    }
+    return /^\r?\n[ \t]*(?=")/.exec(fragment.slice(start))?.[0].length ?? 0;
+}
+
+function findMarkerEnd(fragment: string, start: number) {
     let quoted = false;
     let slashes = 0;
-    for (let i = prefix[0].length; i < fragment.length; i++) {
+    for (let i = start; i < fragment.length; i++) {
         const char = fragment[i];
         if (char === '\n' || char === '\r') {
             // Allow a softbreak immediately before a quoted title, but never
             // scan through a blank line or arbitrary following prose.
-            const next = fragment.slice(i).match(/^\r?\n[ \t]*(?=")/);
-            if (!quoted && next) {
-                i += next[0].length - 1;
+            const length = titleSoftbreakLength(fragment, i, quoted);
+            if (length) {
+                i += length - 1;
                 continue;
             }
             break;
@@ -44,14 +55,13 @@ function opaqueMarker(fragment: string): string | undefined {
             quoted = !quoted;
         }
         if (!quoted && char === '%' && fragment[i + 1] === '}') {
-            return fragment.slice(0, i + 2);
+            return i + 2;
         }
         slashes = char === '\\' ? slashes + 1 : 0;
     }
     // An incomplete lexical marker is kept opaque only to the line boundary;
     // it cannot consume an unrelated paragraph or next source line.
-    const end = fragment.search(/[\r\n]/);
-    return end < 0 ? fragment : fragment.slice(0, end);
+    return fragment.search(/[\r\n]/);
 }
 
 /**
@@ -108,7 +118,7 @@ export function note(md: MarkdownIt.MarkdownIt) {
         // Canonical note parsing mutates maps: use a separate shadow forest.
         const shadow = state.tokens.map((token) => {
             const copy = Object.assign(
-                new NativeToken(token.type, token.tag, token.nesting),
+                new MarkdownIt.Token(token.type, token.tag, token.nesting),
                 token,
             );
             copy.map = token.map ? [...token.map] : null;
@@ -118,10 +128,10 @@ export function note(md: MarkdownIt.MarkdownIt) {
         applyCanonical({
             tokens: shadow,
             env: {},
-            Token: NativeToken,
+            Token: MarkdownIt.Token,
             md: {
                 parseInline(source) {
-                    const token = new NativeToken('inline', '', 0);
+                    const token = new MarkdownIt.Token('inline', '', 0);
                     token.content = source;
                     return [token];
                 },
@@ -197,7 +207,7 @@ export function note(md: MarkdownIt.MarkdownIt) {
             }
             marker.type = 'note_open_tag';
             marker.children = [];
-            const typeToken = new NativeToken('note_type', '', 0);
+            const typeToken = new MarkdownIt.Token('note_type', '', 0);
             typeToken.content = type;
             marker.children.push(typeToken);
             if (title) {
@@ -205,11 +215,11 @@ export function note(md: MarkdownIt.MarkdownIt) {
                 if (!marker.content.includes(titleSpan)) {
                     throw new Error('Canonical note title does not match the source marker');
                 }
-                const before = new NativeToken('note_quote_open', '', 0);
+                const before = new MarkdownIt.Token('note_quote_open', '', 0);
                 before.content = '"';
                 marker.children.push(before);
                 md.inline.parse(title, md, state.env, marker.children);
-                const after = new NativeToken('note_quote_close', '', 0);
+                const after = new MarkdownIt.Token('note_quote_close', '', 0);
                 marker.children.push(after);
             }
         }

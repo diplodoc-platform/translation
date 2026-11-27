@@ -182,11 +182,7 @@ export function split(tokens: Token[], compact = false) {
             parts.push(trim(currentPart));
             part = nextPart;
 
-            if (nextPart.length > 0) {
-                prevSegment = nextPart.map((token) => token.content).join('');
-            } else {
-                prevSegment = '';
-            }
+            prevSegment = nextPart.map((token) => token.content).join('');
 
             content = '';
         }
@@ -203,13 +199,8 @@ export function split(tokens: Token[], compact = false) {
 
         // The official subscript grammar emits one literal body. Keep the real
         // pair intact instead of replacing an opening marker with generated text.
-        if (_token.type === 'sub_open') {
-            subscript = true;
-        }
-        const inSubscript = subscript;
-        if (_token.type === 'sub_close') {
-            subscript = false;
-        }
+        const inSubscript: boolean = subscript || _token.type === 'sub_open';
+        subscript = inSubscript && _token.type !== 'sub_close';
 
         content = extend(content, _token);
 

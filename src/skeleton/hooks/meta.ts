@@ -41,15 +41,13 @@ export function metaPlugin(md: MarkdownIt) {
 }
 
 export function meta(this: CustomRenderer<Consumer>, {env}: CustomRendererHookParameters) {
-    if (!env || typeof env !== 'object' || !(authoredMeta in env)) {
-        return '';
+    if (env && typeof env === 'object' && authoredMeta in env) {
+        traverse(env[authoredMeta], (value, key) => {
+            const tokenizer = new Liquid(value);
+            this.state.process(token('fake', {skip: key}));
+            this.state.process([...tokenizer.tokenize()]);
+        });
     }
-
-    traverse(env[authoredMeta], (value, key) => {
-        const tokenizer = new Liquid(value);
-        this.state.process(token('fake', {skip: key}));
-        this.state.process([...tokenizer.tokenize()]);
-    });
 
     return '';
 }

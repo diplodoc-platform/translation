@@ -1,4 +1,4 @@
-import type {MarkdownIt} from 'markdown-it';
+import type {MarkdownIt, Token} from 'markdown-it';
 import type {TokenExtraMap} from '../types';
 
 import markdownit from 'markdown-it';
@@ -7,9 +7,6 @@ import {passTranslation} from '../constants';
 import {liquidOperator} from '../plugins/liquid/liquidOperator';
 import {xliffSpecial} from '../plugins/xliffSpecial';
 import {childrenTokenSearch} from '../tokenSearch';
-
-type Token = markdownit.Token;
-const NativeToken = markdownit.Token;
 
 /* eslint-disable no-console */
 
@@ -56,7 +53,7 @@ export function floatToken(mdData: string, tokenExtraMap: TokenExtraMap, token: 
     const {start: pStart, end: pEnd, level} = getExtraToken(tokenExtraMap, token);
     const {start: cStart, end: cEnd} = getTokenChildrenPos(tokenExtraMap, children);
 
-    const openToken = new NativeToken(`${name}_open`, '', 0);
+    const openToken = new markdownit.Token(`${name}_open`, '', 0);
     openToken.content = mdData.slice(0, cStart);
     tokenExtraMap.set(openToken, {
         start: pStart,
@@ -64,7 +61,7 @@ export function floatToken(mdData: string, tokenExtraMap: TokenExtraMap, token: 
         level,
     });
 
-    const closeToken = new NativeToken(`${name}_close`, '', 0);
+    const closeToken = new markdownit.Token(`${name}_close`, '', 0);
     closeToken.content = mdData.slice(cEnd);
     tokenExtraMap.set(closeToken, {
         start: cEnd,
@@ -202,12 +199,12 @@ export function extractLinkTitle(
     const {start, end, level} = extraToken;
     const {titleStart: titleStartRel, titleEnd: titleEndRel} = token.meta ?? {};
     if (typeof titleStartRel !== 'number' || typeof titleEndRel !== 'number') {
-        throw new Error('Missing title positions for a translation token');
+        throw new TypeError('Missing title positions for a translation token');
     }
     const titleStart = titleStartRel + start;
     const titleEnd = titleEndRel + start;
 
-    const linkTitleToken = new NativeToken('link_title', '', 0);
+    const linkTitleToken = new markdownit.Token('link_title', '', 0);
     linkTitleToken.content = mdData.slice(start, titleStart);
     tokenExtraMap.set(linkTitleToken, {
         start: start,
@@ -256,12 +253,12 @@ export function extractImageTitle(
     const {start, end, level} = extraToken;
     const {titleStart: titleStartRel, titleEnd: titleEndRel} = token.meta ?? {};
     if (typeof titleStartRel !== 'number' || typeof titleEndRel !== 'number') {
-        throw new Error('Missing title positions for a translation token');
+        throw new TypeError('Missing title positions for a translation token');
     }
     const titleStart = titleStartRel + start;
     const titleEnd = titleEndRel + start;
 
-    const imageTitleToken = new NativeToken('image_title', '', 0);
+    const imageTitleToken = new markdownit.Token('image_title', '', 0);
     imageTitleToken.content = mdData.slice(start, titleStart);
     tokenExtraMap.set(imageTitleToken, {
         start: start,
@@ -364,7 +361,7 @@ export function extractFenceLines(mdData: string, tokenExtraMap: TokenExtraMap, 
 
         offset += lOffset;
 
-        const inline = new NativeToken('inline', '', 0);
+        const inline = new markdownit.Token('inline', '', 0);
         inline.attrSet('idPostfix', '_code');
         inline.content = line;
         tokenExtraMap.set(inline, {
@@ -403,7 +400,7 @@ export function skipImageName(mdData: string, tokenExtraMap: TokenExtraMap, toke
         return;
     }
 
-    const imageNameToken = new NativeToken('image_name', '', 0);
+    const imageNameToken = new markdownit.Token('image_name', '', 0);
     imageNameToken.content = raw;
     tokenExtraMap.set(imageNameToken, {
         start,

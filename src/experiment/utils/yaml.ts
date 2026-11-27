@@ -7,8 +7,6 @@ import {liquidOperator} from '../plugins/liquid/liquidOperator';
 import {liquidVariable} from '../plugins/liquid/liquidVariable';
 import {childrenTokenSearch} from '../tokenSearch';
 
-const NativeToken = markdownit.Token;
-
 const mdYaml = markdownit().use(liquidVariable).use(liquidOperator);
 mdYaml.inline.ruler.enableOnly(['liquidOperator', 'liquidVariable']);
 
@@ -20,7 +18,7 @@ export function tokenizeYaml(rawYaml: string, tokenExtraMap: TokenExtraMap, leve
         throw new Error('Yaml is not string');
     }
 
-    const token = new NativeToken('inline', '', 0);
+    const token = new markdownit.Token('inline', '', 0);
     token.content = raw;
     token.children = [];
     tokenExtraMap.set(token, {

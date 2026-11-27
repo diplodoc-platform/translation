@@ -38,28 +38,7 @@ const getTermDefinitions = (md: MarkdownIt) => {
             }
         }
 
-        const newLineReg = new RegExp(/^(\r\n|\r|\n)/);
-        const termReg = new RegExp(/^\[\*(\w+)]:/);
-        let currentLine = startLine;
-
-        // Allow multiline term definition
-        for (; currentLine < endLine; currentLine++) {
-            const nextLineStart = state.bMarks[currentLine + 1];
-            const nextLineEnd = state.eMarks[currentLine + 1];
-
-            const nextLine =
-                nextLineStart === nextLineEnd
-                    ? state.src[nextLineStart]
-                    : state.src.slice(nextLineStart, nextLineEnd);
-
-            if (newLineReg.test(nextLine) || termReg.test(nextLine)) {
-                break;
-            }
-
-            // eslint-disable-next-line no-param-reassign
-            state.line = currentLine + 1;
-        }
-
+        const currentLine = scanTermDefinition(state, startLine, endLine);
         max = state.eMarks[currentLine];
 
         if (!labelEnd || labelEnd < 0 || state.src.charCodeAt(labelEnd + 1) !== 0x3a /* : */) {
@@ -80,28 +59,42 @@ const getTermDefinitions = (md: MarkdownIt) => {
         const rawLabel = state.src.slice(labelStart - 2, labelEnd + 2);
         const rawTitle = state.src.slice(labelEnd + 2, max);
 
-        return processTermDefinition(
-            md,
-            state,
-            currentLine,
-            startLine,
-            endLine,
-            label,
-            title,
-            rawLabel,
-            rawTitle,
-        );
+        return processTermDefinition(md, state, currentLine, label, title, rawLabel, rawTitle);
     };
 
     return termDefinitions;
 };
 
+function scanTermDefinition(state: StateBlock, startLine: number, endLine: number) {
+    const newLineReg = new RegExp(/^(\r\n|\r|\n)/);
+    const termReg = new RegExp(/^\[\*(\w+)]:/);
+    let currentLine = startLine;
+
+    // Allow multiline term definition
+    for (; currentLine < endLine; currentLine++) {
+        const nextLineStart = state.bMarks[currentLine + 1];
+        const nextLineEnd = state.eMarks[currentLine + 1];
+
+        const nextLine =
+            nextLineStart === nextLineEnd
+                ? state.src[nextLineStart]
+                : state.src.slice(nextLineStart, nextLineEnd);
+
+        if (newLineReg.test(nextLine) || termReg.test(nextLine)) {
+            break;
+        }
+
+        // eslint-disable-next-line no-param-reassign
+        state.line = currentLine + 1;
+    }
+
+    return currentLine;
+}
+
 function processTermDefinition(
     md: MarkdownIt,
     state: StateBlock,
     currentLine: number,
-    _startLine: number,
-    _endLine: number,
     label: string,
     title: string,
     rawLabel: string,
@@ -110,9 +103,7 @@ function processTermDefinition(
     const environment: Env & {terms?: Record<string, string>} = state.env;
     const terms = (environment.terms ??= {});
     const key = ':' + label;
-    if (terms[key] === undefined) {
-        terms[key] = title;
-    }
+    terms[key] ??= title;
 
     const termBlock = new state.Token('term_block', '', 0);
     state.tokens.push(termBlock);
@@ -140,8 +131,6 @@ const getTermReplace = (md: MarkdownIt) => {
         state: StateCore,
     ) {
         const escapeRE = md.utils.escapeRE;
-        const arrayReplaceAt = md.utils.arrayReplaceAt;
-
         const blockTokens = state.tokens;
 
         if (!state.env.terms) {
@@ -167,67 +156,74 @@ const getTermReplace = (md: MarkdownIt) => {
                 continue;
             }
 
-            let tokens = blockTokens[j].children as Token[];
-
-            for (let i = tokens.length - 1; i >= 0; i--) {
-                const currentToken = tokens[i];
-                if (currentToken.type === 'link_close') {
-                    while (tokens[i].type !== 'link_open') {
-                        i--;
-                    }
-                    continue;
-                }
-
-                if (currentToken.type !== 'text') {
-                    continue;
-                }
-
-                let pos = 0;
-                const text = currentToken.content;
-                reg.lastIndex = 0;
-                const nodes = [];
-
-                let termLocal: RegExpExecArray | null;
-                while ((termLocal = reg.exec(text))) {
-                    const termRaw = termLocal[0];
-                    const termTitle = termLocal[1];
-
-                    if (termLocal.index > 0 || termTitle.length > 0) {
-                        const token = new state.Token('text', '', 0);
-                        token.content = text.slice(pos, termLocal.index);
-                        nodes.push(token);
-                    }
-
-                    const termLink = new state.Token('term_link', '', 0);
-                    nodes.push(termLink);
-                    termLink.content = termRaw;
-                    termLink.children = [];
-
-                    const textToken = new state.Token('text', '', 0);
-                    textToken.content = termTitle;
-                    termLink.children.push(textToken);
-
-                    pos = reg.lastIndex;
-                }
-
-                if (!nodes.length) {
-                    continue;
-                }
-
-                if (pos < text.length) {
-                    const token = new state.Token('text', '', 0);
-                    token.content = text.slice(pos);
-                    nodes.push(token);
-                }
-
-                // replace current node
-                blockTokens[j].children = tokens = arrayReplaceAt(tokens, i, nodes);
-            }
+            blockTokens[j].children = replaceInlineTerms(
+                md,
+                state.Token,
+                blockTokens[j].children as Token[],
+                reg,
+            );
         }
     };
 
     return termReplace;
 };
+
+function replaceInlineTerms(
+    md: MarkdownIt,
+    TokenClass: StateCore['Token'],
+    tokens: Token[],
+    pattern: RegExp,
+) {
+    let children = tokens;
+    for (let i = children.length - 1; i >= 0; i--) {
+        const current = children[i];
+        if (current.type === 'link_close') {
+            while (children[i].type !== 'link_open') {
+                i--;
+            }
+            continue;
+        }
+        if (current.type !== 'text') {
+            continue;
+        }
+        const parts = splitTermText(TokenClass, current.content, pattern);
+        if (parts.length) {
+            children = md.utils.arrayReplaceAt(children, i, parts);
+        }
+    }
+    return children;
+}
+
+function splitTermText(TokenClass: StateCore['Token'], text: string, pattern: RegExp) {
+    const parts: Token[] = [];
+    let pos = 0;
+    pattern.lastIndex = 0;
+
+    let match: RegExpExecArray | null;
+    while ((match = pattern.exec(text))) {
+        const [raw, title] = match;
+        if (match.index > 0 || title.length > 0) {
+            const preceding = new TokenClass('text', '', 0);
+            preceding.content = text.slice(pos, match.index);
+            parts.push(preceding);
+        }
+
+        const link = new TokenClass('term_link', '', 0);
+        link.content = raw;
+        const label = new TokenClass('text', '', 0);
+        label.content = title;
+        link.children = [label];
+        parts.push(link);
+        pos = pattern.lastIndex;
+    }
+
+    if (parts.length && pos < text.length) {
+        const trailing = new TokenClass('text', '', 0);
+        trailing.content = text.slice(pos);
+        parts.push(trailing);
+    }
+    return parts;
+}
 
 export function term(md: MarkdownIt) {
     const defaultLinkValidation = md.validateLink;

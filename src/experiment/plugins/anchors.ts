@@ -1,7 +1,6 @@
-import MarkdownIt from 'markdown-it';
+import type {Token} from 'markdown-it';
 
-type Token = MarkdownIt.Token;
-const NativeToken = MarkdownIt.Token;
+import MarkdownIt from 'markdown-it';
 
 /* eslint-disable no-param-reassign */
 
@@ -31,12 +30,12 @@ const tokenize: Parameters<MarkdownIt.MarkdownIt['core']['ruler']['push']>[1] = 
                 const newTokens: Token[] = [];
                 let lastPos = 0;
                 tokenLocal.content.replace(CUSTOM_ID_REGEXP_G, (raw, id, pos, str) => {
-                    const textToken = new NativeToken('text', '', 0);
+                    const textToken = new MarkdownIt.Token('text', '', 0);
                     textToken.content = str.slice(lastPos, pos);
                     lastPos = pos + raw.length;
                     newTokens.push(textToken);
 
-                    const hashToken = new NativeToken('header_id', '', 0);
+                    const hashToken = new MarkdownIt.Token('header_id', '', 0);
                     hashToken.content = id;
                     newTokens.push(hashToken);
                     return '';

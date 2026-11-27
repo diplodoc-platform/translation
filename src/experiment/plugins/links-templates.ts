@@ -1,7 +1,6 @@
-import MarkdownIt from 'markdown-it';
+import type {Token} from 'markdown-it';
 
-type Token = MarkdownIt.Token;
-const NativeToken = MarkdownIt.Token;
+import MarkdownIt from 'markdown-it';
 
 /* eslint-disable no-param-reassign */
 
@@ -23,7 +22,7 @@ const tokenize: Parameters<MarkdownIt.MarkdownIt['core']['ruler']['push']>[1] = 
                     }
                     if (token.type === 'text') {
                         if (token.content === TEMPLATE) {
-                            const templateToken = new NativeToken('link_template', '', 0);
+                            const templateToken = new MarkdownIt.Token('link_template', '', 0);
                             templateToken.content = token.content;
                             tokens.splice(i, 1, templateToken);
                         }

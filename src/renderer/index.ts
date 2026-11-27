@@ -1,9 +1,7 @@
-import type {Env, MarkdownItOptions, Token} from 'markdown-it';
+import type {Env, MarkdownItOptions, Renderer, Token} from 'markdown-it';
 
 import MarkdownIt from 'markdown-it';
 
-type Renderer = MarkdownIt.Renderer;
-const NativeRenderer = MarkdownIt.Renderer;
 type Options = Required<MarkdownItOptions>;
 
 export enum CustomRendererLifeCycle {
@@ -57,10 +55,9 @@ function getMap(tokens: Token[], i: number) {
     return null;
 }
 
-export class CustomRenderer<
-    State = {},
-    Md extends MarkdownIt.MarkdownIt = MarkdownIt.MarkdownIt,
-> extends NativeRenderer {
+export class CustomRenderer<State = {}, Md extends MarkdownIt.MarkdownIt = MarkdownIt.MarkdownIt>
+    extends MarkdownIt.Renderer
+{
     readonly state: State;
 
     readonly md: Md;

@@ -1,3 +1,4 @@
+import type {Token} from 'markdown-it';
 import type {ReplacePart, TokenExtraMap} from '../types';
 
 import MarkdownIt from 'markdown-it';
@@ -10,9 +11,6 @@ import {TextElement} from './elements/TextElement';
 import {TransUnitElement} from './elements/TransUnitElement';
 import {XElement} from './elements/XElement';
 import {Xliff} from './xliff';
-
-type Token = MarkdownIt.Token;
-const NativeToken = MarkdownIt.Token;
 
 const tokenNameCType = {
     link: 'link',
@@ -163,7 +161,7 @@ export function prepareInlineToken(
     }, [] as Token[]);
 
     const putToken = (arr: Token[], index: number, start: number, end: number, level: number) => {
-        const textToken = new NativeToken('text', '', 0);
+        const textToken = new MarkdownIt.Token('text', '', 0);
         textToken.content = mdData.slice(start, end);
         tokenExtraMap.set(textToken, {
             start,

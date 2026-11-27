@@ -1,7 +1,5 @@
 import MarkdownIt from 'markdown-it';
 
-const NativeToken = MarkdownIt.Token;
-
 /* eslint-disable no-param-reassign */
 
 const NOTES_RE = /^{% note (alert|info|tip|warning)\s*(?:"(.*?)")? %}/;
@@ -16,28 +14,25 @@ const tokenize: Parameters<MarkdownIt.MarkdownIt['inline']['ruler']['push']>[1] 
     if (pos + 2 > max) {
         return false;
     }
-    if (state.src.charAt(pos) !== '{') {
-        return false;
-    }
-    if (state.src.charAt(pos + 1) !== '%') {
+    if (!state.src.startsWith('{%', pos)) {
         return false;
     }
 
     const fragment = state.src.slice(pos);
-    const m = fragment.match(/^\{%(.+?)%}/);
+    const m = /^\{%(.+?)%}/.exec(fragment);
     if (!m) {
         return false;
     }
     const [raw, statement] = m;
 
     const statementTrimmed = statement.trim();
-    if (!/^(note|endnote)/.test(statementTrimmed)) {
+    if (!statementTrimmed.startsWith('note') && !statementTrimmed.startsWith('endnote')) {
         return false;
     }
 
     if (!silent) {
-        if (/^note/.test(statementTrimmed)) {
-            const noteM = fragment.match(NOTES_RE);
+        if (statementTrimmed.startsWith('note')) {
+            const noteM = NOTES_RE.exec(fragment);
             if (!noteM) {
                 throw new Error('Note match error');
             }
@@ -47,18 +42,18 @@ const tokenize: Parameters<MarkdownIt.MarkdownIt['inline']['ruler']['push']>[1] 
             token.content = raw;
             token.children = [];
 
-            const typeToken = new NativeToken('note_type', '', 0);
+            const typeToken = new MarkdownIt.Token('note_type', '', 0);
             typeToken.content = noteType;
             token.children.push(typeToken);
 
             if (title) {
-                const quoteOpenToken = new NativeToken('note_quote_open', '', 0);
+                const quoteOpenToken = new MarkdownIt.Token('note_quote_open', '', 0);
                 quoteOpenToken.content = '"';
                 token.children.push(quoteOpenToken);
 
                 state.md.inline.parse(title, state.md, state.env, token.children);
 
-                const quoteCloseToken = new NativeToken('note_quote_close', '', 0);
+                const quoteCloseToken = new MarkdownIt.Token('note_quote_close', '', 0);
                 quoteOpenToken.content = '"';
                 token.children.push(quoteCloseToken);
             }
